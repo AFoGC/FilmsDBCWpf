@@ -1,12 +1,10 @@
-﻿<Window x:Class="FilmsDBCWpf.MainWindow"
+﻿<Window x:Class="FilmsDBCWpf.Visual.MainWindow.MainForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FilmsDBCWpf"
+        xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="MainForm" Height="697" Width="1485">
+    <Grid/>
 </Window>

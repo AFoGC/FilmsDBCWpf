@@ -6,4 +6,13 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Visual\Buttons\" />
+    <Folder Include="Visual\HelpWindows\ExitWindow\" />
+    <Folder Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\" />
+    <Folder Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\" />
+    <Folder Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\" />
+    <Folder Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\" />
+  </ItemGroup>
+
 </Project>

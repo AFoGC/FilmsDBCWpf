@@ -10,23 +10,86 @@ namespace TL_Objects
     [TableCell("Serie")]
     public class Serie : Cell
     {
-        public int FilmId { get; private set; } = 0;
-        
-        private Film film;
+        private int filmId = 0;
+        private Film film = null;
+        private DateTime startWatchDate = new DateTime();
+        private int countOfWatchedSeries = 0;
+        private int totalSeries = 0;
 
-        protected override void loadBody(Comand comand)
+        public Serie() : base() { }
+        public Serie(int id) : base(id) { }
+
+        protected override void updateThisBody(Cell cell)
         {
-            throw new NotImplementedException();
+            Serie serie = (Serie)cell;
+
+            Film = serie.Film;
+            startWatchDate = serie.startWatchDate;
+            countOfWatchedSeries = serie.countOfWatchedSeries;
+            totalSeries = serie.totalSeries;
         }
 
         protected override void saveBody(StreamWriter streamWriter)
         {
-            throw new NotImplementedException();
+            streamWriter.Write(FormatParam("filmId", filmId, 0, 2));
+            streamWriter.Write(FormatParam("startWatchDate", startWatchDate, new DateTime(), 2));
+            streamWriter.Write(FormatParam("countOfWatchedSeries", countOfWatchedSeries, 0, 2));
+            streamWriter.Write(FormatParam("totalSeries", totalSeries, 0, 2));
         }
 
-        protected override void updateThisBody(Cell cell)
+        protected override void loadBody(Comand comand)
         {
-            throw new NotImplementedException();
+            switch (comand.Paramert)
+            {
+                case "filmId":
+                    filmId = Convert.ToInt32(comand.Value);
+                    break;
+                case "startWatchDate":
+                    startWatchDate = readDate(comand.Value);
+                    break;
+                case "countOfWatchedSeries":
+                    countOfWatchedSeries = Convert.ToInt32(comand.Value);
+                    break;
+                case "totalSeries":
+                    totalSeries = Convert.ToInt32(comand.Value);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        public int FilmId
+        {
+            get { return filmId; }
+        }
+
+        public Film Film
+        {
+            get { return film; }
+            set
+            {
+                film = value;
+                filmId = film.ID;
+            }
+        }
+
+        public DateTime StartWatchDate
+        {
+            get { return startWatchDate; }
+            set { startWatchDate = value; }
+        }
+
+        public int CountOfWatchedSeries
+        {
+            get { return countOfWatchedSeries; }
+            set { countOfWatchedSeries = value; }
+        }
+
+        public int TotalSeries
+        {
+            get { return totalSeries; }
+            set { totalSeries = value; }
         }
     }
 }

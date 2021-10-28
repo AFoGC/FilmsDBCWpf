@@ -7,27 +7,24 @@ using TablesLibrary.Interpreter.Attributes;
 
 namespace TL_Objects
 {
-    [TableCell("Genre")]
-    public class Genre : Cell
+    [TableCell("BookGenre")]
+    public class BookGenre : Cell
     {
         private string name = "";
-        private bool isSerialGenre = false;
 
-        public Genre() : base() { }
-        public Genre(int id) : base(id) { }
+        public BookGenre() : base() { }
+        public BookGenre(int id) : base(id) { }
 
         protected override void updateThisBody(Cell cell)
         {
-            Genre genre = (Genre)cell;
+            BookGenre bookGenre = (BookGenre)cell;
 
-            name = genre.name;
-            isSerialGenre = genre.isSerialGenre;
+            name = bookGenre.name;
         }
 
         protected override void saveBody(StreamWriter streamWriter)
         {
             streamWriter.Write(FormatParam("name", name, "", 2));
-            streamWriter.Write(FormatParam("isSerialGenre", isSerialGenre, false, 2));
         }
         protected override void loadBody(Comand comand)
         {
@@ -36,9 +33,6 @@ namespace TL_Objects
             {
                 case "name":
                     name = comand.Value;
-                    break;
-                case "isSerialGenre":
-                    isSerialGenre = Convert.ToBoolean(comand.Value);
                     break;
 
                 default:
@@ -52,15 +46,9 @@ namespace TL_Objects
             set { name = value; }
         }
 
-        public bool IsSerialGenre
-        {
-            get { return isSerialGenre; }
-            set { isSerialGenre = value; }
-        }
-
         public override string ToString()
         {
-            return this.name;
+            return name;
         }
     }
 }

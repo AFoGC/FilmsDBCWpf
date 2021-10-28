@@ -11,7 +11,112 @@ namespace TL_Objects
 	[TableCell("Film")]
 	public class Film : Cell
 	{
-		public String Name { get; set; }			= "";
+		private string name	= "";
+		private Genre genre	= null;
+		private int genreId	= 0;
+		private int realiseYear	= 0;
+		private bool watched = false;
+		private sbyte mark = -1;
+		private DateTime dateOfWatch = new DateTime();
+
+		private string comment = "";
+		private List<Source> sources = new List<Source>();
+
+		private int countOfviews = 0;
+		private int franshiseId = 0;
+		private sbyte franshiseListIndex = -1;
+
+
+		public Film() : base() { }
+		public Film(int id) : base(id) { }
+
+		protected override void updateThisBody(Cell cell)
+		{
+			Film film = (Film)cell;
+
+			name = film.name;
+			Genre = film.genre;
+			realiseYear = film.realiseYear;
+			watched = film.watched;
+			mark = film.mark;
+			dateOfWatch = film.dateOfWatch;
+			comment = film.comment;
+			sources = film.sources;
+			countOfviews = film.countOfviews;
+			franshiseId = film.franshiseId;
+			franshiseListIndex = film.franshiseListIndex;
+		}
+
+		private Source defSource = new Source();
+		protected override void saveBody(StreamWriter streamWriter)
+		{
+			streamWriter.Write(FormatParam("name", name, "", 2));
+			streamWriter.Write(FormatParam("genre", genre.ID, 0, 2));
+			streamWriter.Write(FormatParam("realiseYear", realiseYear, 0, 2));
+			streamWriter.Write(FormatParam("watched", watched, false, 2));
+			streamWriter.Write(FormatParam("mark", mark, -1, 2));
+			streamWriter.Write(FormatParam("dateOfWatch", dateOfWatch, new DateTime(), 2));
+			streamWriter.Write(FormatParam("comment", comment, "", 2));
+
+			foreach (Source source in sources)
+			{
+				streamWriter.Write(FormatParam("sourceUrl", source, defSource, 2));
+			}
+
+			streamWriter.Write(FormatParam("countOfviews", countOfviews, 0, 2));
+			streamWriter.Write(FormatParam("franshiseId", franshiseId, 0, 2));
+			streamWriter.Write(FormatParam("franshiseListIndex", franshiseListIndex, -1, 2));
+		}
+
+		protected override void loadBody(Comand comand)
+		{
+			switch (comand.Paramert)
+			{
+				case "name":
+					name = comand.Value;
+					break;
+				case "genre":
+					genreId = Convert.ToInt32(comand.Value);
+					break;
+				case "realiseYear":
+					realiseYear = Convert.ToInt32(comand.Value);
+					break;
+				case "watched":
+					watched = Convert.ToBoolean(comand.Value);
+					break;
+				case "mark":
+					mark = Convert.ToSByte(comand.Value);
+					break;
+				case "dateOfWatch":
+					dateOfWatch = readDate(comand.Value);
+					break;
+				case "comment":
+					comment = comand.Value;
+					break;
+				case "sourceUrl":
+					sources.Add(Source.ToSource(comand.Value));
+					break;
+				case "countOfviews":
+					countOfviews = Convert.ToInt32(comand.Value);
+					break;
+				case "franshiseId":
+					franshiseId = Convert.ToInt32(comand.Value);
+					break;
+				case "franshiseListIndex":
+					franshiseListIndex = Convert.ToSByte(comand.Value);
+					break;
+
+				default:
+					break;
+			}
+		}
+
+		public string Name
+		{
+			get { return name; }
+			set { name = value; }
+		}
+
 		public Genre Genre
 		{
 			get
@@ -25,110 +130,70 @@ namespace TL_Objects
 					return new Genre(0);
 				}
 			}
-            set
-            {
+			set
+			{
 				genre = value;
-				GenreId = genre.ID;
-			}
-		}
-		private Genre genre;
-		public int GenreId { get; private set; }	= 0;
-		public int RealiseYear { get; set; }		= 0;
-		public bool Watched { get; set; }			= false;
-		public int Mark { get; set; }				= -1;
-		public DateTime DateOfWatch { get; set; }	= new DateTime();
-		public String Comment { get; set; }			= "";
-		public List<Source> Sources { get; set; }	= new List<Source>();
-		public int CountOfViews { get; set; }		= 0;
-		public int FranshiseId { get; set; }		= 0;
-		public int FranshiseListIndex { get; set; } = -1;
-
-
-		public Film() : base() { }
-		public Film(int id) : base(id) { }
-
-
-		protected override void updateThisBody(Cell cell)
-		{
-			Film film = (Film)cell;
-
-			Name = film.Name;
-			Genre = film.Genre;
-			RealiseYear = film.RealiseYear;
-			Watched = film.Watched;
-			Mark = film.Mark;
-			DateOfWatch = film.DateOfWatch;
-			Comment = film.Comment;
-			Sources = film.Sources;
-			CountOfViews = film.CountOfViews;
-			FranshiseId = film.FranshiseId;
-			FranshiseListIndex = film.FranshiseListIndex;
-		}
-
-		protected override void loadBody(Comand comand)
-		{
-			switch (comand.Paramert)
-			{
-				case "name":
-					Name = comand.Value;
-					break;
-				case "genre":
-					GenreId = Convert.ToInt32(comand.Value);
-					break;
-				case "realiseYear":
-					RealiseYear = Convert.ToInt32(comand.Value);
-					break;
-				case "watched":
-					Watched = Convert.ToBoolean(comand.Value);
-					break;
-				case "mark":
-					Mark = Convert.ToInt32(comand.Value);
-					break;
-				case "dateOfWatch":
-					DateOfWatch = readDate(comand.Value);
-					break;
-				case "comment":
-					Comment = comand.Value;
-					break;
-				case "sourceUrl":
-					Sources.Add(Source.ToSource(comand.Value));
-					break;
-				case "countOfviews":
-					CountOfViews = Convert.ToInt32(comand.Value);
-					break;
-				case "franshiseId":
-					FranshiseId = Convert.ToInt32(comand.Value);
-					break;
-				case "franshiseListIndex":
-					FranshiseListIndex = Convert.ToInt32(comand.Value);
-					break;
-
-				default:
-					break;
+				genreId = genre.ID;
 			}
 		}
 
-		private Source defSource = new Source();
-		protected override void saveBody(StreamWriter streamWriter)
+		public int RealiseYear
 		{
-			streamWriter.Write(FormatParam("name", Name, "", 2));
-			streamWriter.Write(FormatParam("genre", Genre.ID, 0, 2));
-			streamWriter.Write(FormatParam("realiseYear", RealiseYear, 0, 2));
-			streamWriter.Write(FormatParam("watched", Watched, false, 2));
-			streamWriter.Write(FormatParam("mark", Mark, -1, 2));
-			streamWriter.Write(FormatParam("dateOfWatch", DateOfWatch, new DateTime(), 2));
-			streamWriter.Write(FormatParam("comment", Comment, "", 2));
-
-			foreach (Source source in Sources)
-			{
-				streamWriter.Write(FormatParam("sourceUrl", source, defSource, 2));
-			}
-
-			streamWriter.Write(FormatParam("countOfviews", CountOfViews, 0, 2));
-			streamWriter.Write(FormatParam("franshiseId", FranshiseId, 0, 2));
-			streamWriter.Write(FormatParam("franshiseListIndex", FranshiseListIndex, -1, 2));
+			get { return realiseYear; }
+			set { realiseYear = value; }
 		}
 
+		public bool Watched
+		{
+			get { return watched; }
+			set { watched = value; }
+		}
 
+		public sbyte Mark
+		{
+			get { return mark; }
+			set { mark = value; }
+		}
+
+		public DateTime DateOfWatch
+		{
+			get { return dateOfWatch; }
+			set { dateOfWatch = value; }
+		}
+
+		public string Comment
+		{
+			get { return comment; }
+			set { comment = value; }
+		}
+
+		public List<Source> Sources
+		{
+			get { return sources; }
+			set { sources = value; }
+		}
+
+		public int CountOfViews
+		{
+			get { return countOfviews; }
+			set { countOfviews = value; }
+		}
+
+		public int FranshiseId
+		{
+			get { return franshiseId; }
+			set { franshiseId = value; }
+		}
+
+		public sbyte FranshiseListIndex
+		{
+			get { return franshiseListIndex; }
+			set { franshiseListIndex = value; }
+		}
+
+		public int GenreId
+		{
+			get { return genreId; }
+		}
 	}
 }

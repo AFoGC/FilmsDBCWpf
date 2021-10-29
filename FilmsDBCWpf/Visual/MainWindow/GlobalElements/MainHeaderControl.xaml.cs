@@ -22,7 +22,7 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements
         public MainHeaderControl()
         {
             InitializeComponent();
-            window = (Window)Parent;
+            window = App.Current.MainWindow;
         }
 
         private void btn_close_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmsDBCWpf.Visual.MainWindow;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,10 @@ namespace FilmsDBCWpf
     /// </summary>
     public partial class App : Application
     {
+        
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            MainInfo.TableCollection.LoadTables();
+        }
     }
 }

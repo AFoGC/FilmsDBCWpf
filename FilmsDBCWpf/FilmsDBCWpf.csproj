@@ -15,4 +15,10 @@
     <Folder Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\TablesLibrary\TablesLibrary\TablesLibrary.csproj" />
+    <ProjectReference Include="..\TLObjects\TL_Objects.csproj" />
+    <ProjectReference Include="..\TL_Tables\TL_Tables.csproj" />
+  </ItemGroup>
+
 </Project>

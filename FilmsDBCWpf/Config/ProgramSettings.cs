@@ -11,6 +11,20 @@ namespace FilmsDBCWpf.Config
 		public ProgramSettings()
 		{
 			profiles.LoadProfiles();
+
+			
+			String settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\Program.properties";
+
+			Comand comand = new Comand();
+			using (System.IO.StreamReader sr = new System.IO.StreamReader(settingPath, System.Text.Encoding.Default))
+			{
+				comand.getComand(sr.ReadLine());
+				if (comand.Paramert == "ProgramSettings")
+				{
+					this.loadCell(sr, comand);
+				}
+			}
+
 		}
 
 		private Profile usedProfile = null;

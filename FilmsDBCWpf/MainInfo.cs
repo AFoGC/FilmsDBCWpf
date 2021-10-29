@@ -16,27 +16,9 @@ namespace FilmsDBCWpf
 			MainWindow = (MainWindow)App.Current.MainWindow;
 
 			Tables.SetDefaultMainTableCollection();
-			Settings = loadSettings();
+			Settings = new ProgramSettings();
 			TableCollection.TableFilePath = Settings.UsedProfile.MainFilePath;
         }
-
-		private static ProgramSettings loadSettings()
-		{
-			ProgramSettings settings = new ProgramSettings();
-			String settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\Program.properties";
-
-			Comand comand = new Comand();
-			using (System.IO.StreamReader sr = new System.IO.StreamReader(settingPath, System.Text.Encoding.Default))
-			{
-				comand.getComand(sr.ReadLine());
-				if (comand.Paramert == "ProgramSettings")
-				{
-					settings.loadCell(sr, comand);
-				}
-			}
-
-			return settings;
-		}
 
 		public static TableCollection TableCollection { get; private set; }
 		public static MainWindow MainWindow { get; private set; }

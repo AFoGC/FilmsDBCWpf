@@ -10,5 +10,6 @@
         WindowStyle="None" Background="{x:Null}" MinWidth="1485" MinHeight="697" ResizeMode="NoResize">
     <Grid Background="#FF121212">
         <GlobalElements:MainHeaderControl x:Name="mainHeader" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="1485" MouseDown="mainHeader_MouseDown"/>
+        <GlobalElements:Navbar HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="1485"/>
     </Grid>
 </Window>

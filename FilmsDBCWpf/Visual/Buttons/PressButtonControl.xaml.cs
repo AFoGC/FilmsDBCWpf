@@ -11,25 +11,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements
+namespace FilmsDBCWpf.Visual.Buttons
 {
     /// <summary>
-    /// Логика взаимодействия для MainHeaderControl.xaml
+    /// Логика взаимодействия для PressButtonControl.xaml
     /// </summary>
-    public partial class MainHeaderControl : UserControl
+    public partial class PressButtonControl : UserControl
     {
-        private Window window;
-        public MainHeaderControl()
+        public PressButtonControl()
         {
             InitializeComponent();
-            window = App.Current.MainWindow;
         }
-
-        private void btn_close_Click(object sender, RoutedEventArgs e)
-        {
-            window.Close();
-        }
-
-        
     }
 }

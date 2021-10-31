@@ -14,22 +14,16 @@ using System.Windows.Shapes;
 namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements
 {
     /// <summary>
-    /// Логика взаимодействия для MainHeaderControl.xaml
+    /// Логика взаимодействия для Navbar.xaml
     /// </summary>
-    public partial class MainHeaderControl : UserControl
+    public partial class Navbar : UserControl
     {
-        private Window window;
-        public MainHeaderControl()
+        public Navbar()
         {
             InitializeComponent();
-            window = App.Current.MainWindow;
+            //this.btn_maximize.Style = abo 
         }
 
-        private void btn_close_Click(object sender, RoutedEventArgs e)
-        {
-            window.Close();
-        }
 
-        
     }
 }

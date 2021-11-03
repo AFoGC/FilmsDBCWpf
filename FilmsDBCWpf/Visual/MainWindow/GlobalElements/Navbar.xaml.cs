@@ -22,6 +22,7 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements
         {
             InitializeComponent();
             //this.btn_maximize.Style = abo 
+            //press.DefaultColor = press.DefaultColor;
         }
 
 

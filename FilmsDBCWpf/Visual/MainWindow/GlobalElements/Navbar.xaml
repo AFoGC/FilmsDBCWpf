@@ -9,7 +9,7 @@
              d:DesignHeight="20" d:DesignWidth="450" Background="#FF1F1F1F">
     <Grid>
         <Grid.ColumnDefinitions>
-            
+
         </Grid.ColumnDefinitions>
         <Button x:Name="btn_maximize" Content="Films" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Padding="0,0,0,0" Height="20" Margin="20,0,0,0" ClickMode="Release" Width="100" HorizontalAlignment="Left" FontSize="14">
             <Button.Style>
@@ -36,7 +36,17 @@
             </Button.Style>
         </Button>
 
-        <Buttons:PressButton Content="PressButton" HorizontalAlignment="Left" Margin="252,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" Included="True" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Grid.ColumnSpan="2"/>
+        <Buttons:PressButton x:Name="press" Content="PressButton" HorizontalAlignment="Left" Margin="257,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="94" Included="True">
+            <Buttons:PressButton.Template>
+                <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Buttons:PressButton.Template>
+        </Buttons:PressButton>
+        
+        <Buttons:PressButtonControl HorizontalAlignment="Left" Margin="197,0,0,0" VerticalAlignment="Center" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Width="40" Height="20"/>
 
     </Grid>
 </UserControl>

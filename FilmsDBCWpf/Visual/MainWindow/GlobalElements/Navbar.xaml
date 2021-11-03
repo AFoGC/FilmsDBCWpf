@@ -11,32 +11,8 @@
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-        <Button x:Name="btn_maximize" Content="Films" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Padding="0,0,0,0" Height="20" Margin="20,0,0,0" ClickMode="Release" Width="100" HorizontalAlignment="Left" FontSize="14">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
 
-        <Buttons:PressButton x:Name="press" Content="PressButton" HorizontalAlignment="Left" Margin="257,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="94" Included="True">
+        <Buttons:PressButton x:Name="films" Content="Films" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="{x:Null}" Click="films_Click">
             <Buttons:PressButton.Template>
                 <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
                     <Border Background="{TemplateBinding Background}">
@@ -45,8 +21,24 @@
                 </ControlTemplate>
             </Buttons:PressButton.Template>
         </Buttons:PressButton>
-        
-        <Buttons:PressButtonControl HorizontalAlignment="Left" Margin="197,0,0,0" VerticalAlignment="Center" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Width="40" Height="20"/>
+        <Buttons:PressButton x:Name="books" Content="Books" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="{x:Null}" Click="books_Click">
+            <Buttons:PressButton.Template>
+                <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Buttons:PressButton.Template>
+        </Buttons:PressButton>
+        <Buttons:PressButton x:Name="settings" Content="Settings" HorizontalAlignment="Left" Margin="220,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="{x:Null}" Click="settings_Click">
+            <Buttons:PressButton.Template>
+                <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Buttons:PressButton.Template>
+        </Buttons:PressButton>
 
     </Grid>
 </UserControl>

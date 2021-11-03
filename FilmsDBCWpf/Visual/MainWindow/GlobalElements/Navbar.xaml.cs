@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmsDBCWpf.Visual.Buttons;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,13 +19,53 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements
     /// </summary>
     public partial class Navbar : UserControl
     {
+        List<PressButton> pressButtons = new List<PressButton>();
         public Navbar()
         {
             InitializeComponent();
-            //this.btn_maximize.Style = abo 
-            //press.DefaultColor = press.DefaultColor;
+            pressButtons.Add(films);
+            pressButtons.Add(books);
+            pressButtons.Add(settings);
+            changeSelectedButton(films);
+            changeSelectedButton(books);
+            changeSelectedButton(settings);
+            changeSelectedButton(films);
         }
 
+        private void films_Click(object sender, RoutedEventArgs e)
+        {
+            changeSelectedButton((PressButton)sender);
+            //MainInfo.MainForm.MainControl.BringToFront();
+        }
 
+        private void books_Click(object sender, RoutedEventArgs e)
+        {
+            changeSelectedButton((PressButton)sender);
+            //MainInfo.MainForm.BooksControl.BringToFront();
+        }
+
+        private void settings_Click(object sender, RoutedEventArgs e)
+        {
+            changeSelectedButton((PressButton)sender);
+            //MainInfo.MainForm.SettingsControl.RefreshControl();
+            //MainInfo.MainForm.SettingsControl.BringToFront();
+        }
+
+        private void changeSelectedButton(PressButton pressButton)
+        {
+            foreach (PressButton button in pressButtons)
+            {
+                if (pressButton == button)
+                {
+                    pressButton.Included = true;
+                    pressButton.ClickLocked = true;
+                }
+                else
+                {
+                    button.ClickLocked = false;
+                    button.Included = false;
+                }
+            }
+        }
     }
 }

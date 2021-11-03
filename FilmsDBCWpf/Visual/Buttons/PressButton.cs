@@ -14,99 +14,7 @@ namespace FilmsDBCWpf.Visual.Buttons
         public PressButton() : base()
         {
             this.Click += new RoutedEventHandler(this.this_Click);
-            this.Style = new Style();
-
-
-        }
-
-        
-        private Style setDefaultStyle()
-        {
-            
-            Style style = new Style();
-
-            Setter defSetter = new Setter();
-            defSetter.Property = Control.BackgroundProperty;
-            defSetter.Value = DefaultColor;
-
-
-            ControlTemplate controlTemplate = new ControlTemplate();
-            controlTemplate.TargetType = this.GetType();
-            //controlTemplate ;
-
-            Setter tempSetter = new Setter();
-            tempSetter.Property = Control.TemplateProperty;
-            tempSetter.Value = controlTemplate; //Додеалть это 
-
-
-            Setter moSetter = new Setter();
-            moSetter.Property = Control.BackgroundProperty;
-            moSetter.Value = MouseEnterColor;
-
-            Trigger moTrigger = new Trigger();
-            moTrigger.Property = UIElement.IsMouseOverProperty;
-            moTrigger.Value = true;
-            moTrigger.Setters.Add(moSetter);
-
-
-            Setter mcwSetter = new Setter();
-            mcwSetter.Property = Control.BackgroundProperty;
-            mcwSetter.Value = mouseDownColor;
-
-            Trigger mcwTrigger = new Trigger();
-            mcwTrigger.Property = UIElement.IsMouseCaptureWithinProperty;
-            mcwTrigger.Value = true;
-            mcwTrigger.Setters.Add(mcwSetter);
-
-            style.Setters.Add(defSetter);
-            style.Triggers.Add(moTrigger);
-            style.Triggers.Add(mcwTrigger);
-
-            return style;
-        }
-
-        private Style setIncludedStyle()
-        {
-            Style style = new Style();
-
-            Setter defSetter = new Setter();
-            defSetter.Property = Control.BackgroundProperty;
-            defSetter.Value = Included_DefaultColor;
-
-
-            ControlTemplate controlTemplate = new ControlTemplate();
-            controlTemplate.TargetType = this.GetType();
-            //controlTemplate ;
-
-            Setter tempSetter = new Setter();
-            tempSetter.Property = Control.TemplateProperty;
-            tempSetter.Value = controlTemplate; //Додеалть это 
-
-
-            Setter moSetter = new Setter();
-            moSetter.Property = Control.BackgroundProperty;
-            moSetter.Value = Included_MouseEnterColor;
-
-            Trigger moTrigger = new Trigger();
-            moTrigger.Property = UIElement.IsMouseOverProperty;
-            moTrigger.Value = true;
-            moTrigger.Setters.Add(moSetter);
-
-
-            Setter mcwSetter = new Setter();
-            mcwSetter.Property = Control.BackgroundProperty;
-            mcwSetter.Value = Included_MouseDownColor;
-
-            Trigger mcwTrigger = new Trigger();
-            mcwTrigger.Property = UIElement.IsMouseCaptureWithinProperty;
-            mcwTrigger.Value = true;
-            mcwTrigger.Setters.Add(mcwSetter);
-
-            style.Setters.Add(defSetter);
-            style.Triggers.Add(moTrigger);
-            style.Triggers.Add(mcwTrigger);
-
-            return style;
+            Included = false;
         }
 
 
@@ -116,14 +24,37 @@ namespace FilmsDBCWpf.Visual.Buttons
             get { return included; }
             set
             {
-                included = value;
                 if (included)
                 {
-                    this.Style = includedStyle;
+                    this.MouseEnter -= new MouseEventHandler(this.this_Included_mouseEnter);
+                    this.MouseLeave -= new MouseEventHandler(this.this_Included_mouseLeave);
+                    this.MouseDown -= new MouseButtonEventHandler(this.this_Included_mouseDown);
+                    this.Click -= new RoutedEventHandler(this.this_Included_mouseUp);
                 }
                 else
                 {
-                    this.Style = defaultStyle;
+                    this.MouseEnter -= new MouseEventHandler(this.this_NotIncluded_mouseEnter);
+                    this.MouseLeave -= new MouseEventHandler(this.this_NotIncluded_mouseLeave);
+                    this.MouseDown -= new MouseButtonEventHandler(this.this_NotIncluded_mouseDown);
+                    this.Click -= new RoutedEventHandler(this.this_NotIncluded_mouseUp);
+                }
+
+                included = value;
+                if (included)
+                {
+                    Background = included_defaultColor;
+                    this.MouseEnter += new MouseEventHandler(this.this_Included_mouseEnter);
+                    this.MouseLeave += new MouseEventHandler(this.this_Included_mouseLeave);
+                    this.MouseDown += new MouseButtonEventHandler(this.this_Included_mouseDown);
+                    this.Click += new RoutedEventHandler(this.this_Included_mouseUp);
+                }
+                else
+                {
+                    Background = defaultColor;
+                    this.MouseEnter += new MouseEventHandler(this.this_NotIncluded_mouseEnter);
+                    this.MouseLeave += new MouseEventHandler(this.this_NotIncluded_mouseLeave);
+                    this.MouseDown += new MouseButtonEventHandler(this.this_NotIncluded_mouseDown);
+                    this.Click += new RoutedEventHandler(this.this_NotIncluded_mouseUp);
                 }
             }
         }
@@ -137,6 +68,10 @@ namespace FilmsDBCWpf.Visual.Buttons
                 if (!clickLocked)
                 {
                     this.Click -= new RoutedEventHandler(this.this_Click);
+                }
+                else
+                {
+                    this.Click += new RoutedEventHandler(this.this_Click);
                 }
 
                 clickLocked = value;
@@ -159,16 +94,12 @@ namespace FilmsDBCWpf.Visual.Buttons
         private Brush defaultColor;
         private Brush mouseDownColor;
 
-        private Style includedStyle;
-        private Style defaultStyle;
-
         public Brush Included_MouseEnterColor
         {
             get { return included_mouseEnterColor; }
             set
             {
                 included_mouseEnterColor = value;
-                //includedStyle = setIncludedStyle();
             }
         }
         public Brush Included_DefaultColor
@@ -177,7 +108,6 @@ namespace FilmsDBCWpf.Visual.Buttons
             set
             {
                 included_defaultColor = value;
-                //includedStyle = setIncludedStyle();
             }
         }
         public Brush Included_MouseDownColor
@@ -186,7 +116,6 @@ namespace FilmsDBCWpf.Visual.Buttons
             set
             {
                 included_mouseDownColor = value;
-                //includedStyle = setIncludedStyle();
             }
         }
 
@@ -196,7 +125,6 @@ namespace FilmsDBCWpf.Visual.Buttons
             set
             {
                 mouseEnterColor = value;
-                //defaultStyle = setDefaultStyle();
             }
         }
         public Brush DefaultColor
@@ -205,8 +133,6 @@ namespace FilmsDBCWpf.Visual.Buttons
             set
             {
                 defaultColor = value;
-                //Background = value;
-                //defaultStyle = setDefaultStyle();
             }
         }
         public Brush MouseDownColor
@@ -215,7 +141,56 @@ namespace FilmsDBCWpf.Visual.Buttons
             set
             {
                 mouseDownColor = value;
-                //defaultStyle = setDefaultStyle();
+            }
+        }
+
+        private void this_Included_mouseEnter(object sender, EventArgs e)
+        {
+            this.Background = this.included_mouseEnterColor;
+        }
+        private void this_NotIncluded_mouseEnter(object sender, EventArgs e)
+        {
+            this.Background = this.mouseEnterColor;
+        }
+
+        private void this_Included_mouseLeave(object sender, EventArgs e)
+        {
+            this.Background = this.included_defaultColor;
+        }
+        private void this_NotIncluded_mouseLeave(object sender, EventArgs e)
+        {
+            this.Background = this.defaultColor;
+        }
+
+        private void this_Included_mouseDown(object sender, EventArgs e)
+        {
+            this.Background = this.included_mouseDownColor;
+        }
+        private void this_NotIncluded_mouseDown(object sender, EventArgs e)
+        {
+            this.Background = this.mouseDownColor;
+        }
+
+        private void this_Included_mouseUp(object sender, EventArgs e)
+        {
+            if (clickLocked)
+            {
+                this.Background = this.mouseEnterColor;
+            }
+            else
+            {
+                this.Background = this.included_mouseEnterColor;
+            }
+        }
+        private void this_NotIncluded_mouseUp(object sender, EventArgs e)
+        {
+            if (clickLocked)
+            {
+                this.Background = this.included_mouseEnterColor;
+            }
+            else
+            {
+                this.Background = this.mouseEnterColor;
             }
         }
 

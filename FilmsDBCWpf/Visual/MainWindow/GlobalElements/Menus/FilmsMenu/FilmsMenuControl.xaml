@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu"
+             mc:Ignorable="d" 
+             d:DesignHeight="647" d:DesignWidth="1485">
+    <Grid>
+        <Border Width="940" Height="90" BorderBrush="White" BorderThickness="1" Margin="35,3,510,554">
+            <Canvas Name="infoCanvas">
+            </Canvas>
+        </Border>
+    </Grid>
+</UserControl>

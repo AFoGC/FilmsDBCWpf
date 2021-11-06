@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow"
-        xmlns:GlobalElements="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements" x:Class="FilmsDBCWpf.Visual.MainWindow.MainWindow"
+        xmlns:GlobalElements="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements" xmlns:FilmsMenu="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu" x:Class="FilmsDBCWpf.Visual.MainWindow.MainWindow"
         mc:Ignorable="d"
         Title="MainForm" Height="697" Width="1485"
         WindowStyle="None" Background="{x:Null}" MinWidth="1485" MinHeight="697" ResizeMode="NoResize">
     <Grid Background="#FF121212">
         <GlobalElements:MainHeaderControl x:Name="mainHeader" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="1485" MouseDown="mainHeader_MouseDown"/>
         <GlobalElements:Navbar HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="1485"/>
+        <FilmsMenu:FilmsMenuControl HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Height="647" Width="1485"/>
     </Grid>
 </Window>

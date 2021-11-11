@@ -33,5 +33,10 @@ namespace FilmsDBCWpf.Visual.MainWindow
             ReleaseCapture();
             SendMessage(Process.GetCurrentProcess().MainWindowHandle, 0x112, 0xf012, 0);
         }
+
+        public GlobalElements.Menus.FilmsMenu.FilmsMenuControl FilmsMenu
+        {
+            get { return films_menu; }
+        }
     }
 }

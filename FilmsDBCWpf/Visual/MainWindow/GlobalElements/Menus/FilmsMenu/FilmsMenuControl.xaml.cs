@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,13 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         public FilmsMenuControl()
         {
             InitializeComponent();
+        }
+
+        private AElementControl controlInBuffer = null;
+        public AElementControl ControlInBuffer
+        {
+            get { return controlInBuffer; }
+            set { controlInBuffer = value; }
         }
     }
 }

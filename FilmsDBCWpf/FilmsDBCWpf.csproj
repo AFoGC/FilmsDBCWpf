@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\" />
     <Folder Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\" />
+    <Folder Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\" />
     <Folder Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\" />
   </ItemGroup>
 

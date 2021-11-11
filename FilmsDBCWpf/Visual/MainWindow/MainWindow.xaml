@@ -11,6 +11,6 @@
     <Grid Background="#FF121212">
         <GlobalElements:MainHeaderControl x:Name="mainHeader" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="1485" MouseDown="mainHeader_MouseDown"/>
         <GlobalElements:Navbar HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="1485"/>
-        <FilmsMenu:FilmsMenuControl HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Height="647" Width="1485"/>
+        <FilmsMenu:FilmsMenuControl x:Name="films_menu" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Height="647" Width="1485"/>
     </Grid>
 </Window>

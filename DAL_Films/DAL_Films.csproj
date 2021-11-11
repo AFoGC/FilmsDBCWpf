@@ -46,5 +46,11 @@
     <Compile Include="FilmsDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BO_Films\BO_Films.csproj">
+      <Project>{761496b9-0d95-44d7-be39-c30c0aeced4e}</Project>
+      <Name>BO_Films</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

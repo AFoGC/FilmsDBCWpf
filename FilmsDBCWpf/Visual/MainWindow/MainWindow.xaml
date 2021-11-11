@@ -12,5 +12,9 @@
         <GlobalElements:MainHeaderControl x:Name="mainHeader" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="1485" MouseDown="mainHeader_MouseDown"/>
         <GlobalElements:Navbar HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="1485"/>
         <FilmsMenu:FilmsMenuControl x:Name="films_menu" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Height="647" Width="1485"/>
+        <TextBox x:Name="id" HorizontalAlignment="Left" Margin="328,374,0,0" Text="id" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Height="94"/>
+        <TextBox x:Name="Username" HorizontalAlignment="Left" Margin="628,391,0,0" Text="username" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="77"/>
+        <TextBox x:Name="Password" HorizontalAlignment="Left" Height="77" Margin="934,391,0,0" Text="Password" TextWrapping="Wrap" VerticalAlignment="Top" Width="171"/>
+        <Button x:Name="Add_To_Base" Content="Button" HorizontalAlignment="Left" Margin="628,537,0,0" VerticalAlignment="Top" Height="69" Width="175" Click="Add_To_Base_Click"/>
     </Grid>
 </Window>

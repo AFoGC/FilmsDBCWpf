@@ -1,0 +1,44 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements"
+             xmlns:Buttons="clr-namespace:FilmsDBCWpf.Visual.Buttons" x:Class="FilmsDBCWpf.Visual.MainWindow.GlobalElements.Navbar"
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="450" Background="#FF1F1F1F">
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+
+        <Buttons:PressButton x:Name="films" Content="Films" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="{x:Null}" Click="films_Click">
+            <Buttons:PressButton.Template>
+                <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Buttons:PressButton.Template>
+        </Buttons:PressButton>
+        <Buttons:PressButton x:Name="books" Content="Books" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="{x:Null}" Click="books_Click">
+            <Buttons:PressButton.Template>
+                <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Buttons:PressButton.Template>
+        </Buttons:PressButton>
+        <Buttons:PressButton x:Name="settings" Content="Settings" HorizontalAlignment="Left" Margin="220,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="{x:Null}" Click="settings_Click">
+            <Buttons:PressButton.Template>
+                <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Buttons:PressButton.Template>
+        </Buttons:PressButton>
+
+    </Grid>
+</UserControl>

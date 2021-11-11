@@ -29,5 +29,7 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements
         {
             window.Close();
         }
+
+        
     }
 }

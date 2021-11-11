@@ -1,16 +1,14 @@
-﻿<UserControl x:Class="FilmsDBCWpf.Visual.MainWindow.GlobalElements.MainHeaderControl"
+﻿<UserControl x:Class="FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenus.UpdateInfo.UpdateControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements"
+             xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenus.UpdateInfo"
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="500">
-    <Grid Background="#FF121212" HorizontalAlignment="Right" Width="500">
-        <Grid.ColumnDefinitions>
-
-        </Grid.ColumnDefinitions>
-        <Button x:Name="btn_close" Content="X" Foreground="WhiteSmoke" VerticalAlignment="Top" RenderTransformOrigin="0.48,-0.933" Padding="0,0,0,0" Height="30" Margin="460,0,0,0" Click="btn_close_Click">
+             d:DesignHeight="90" d:DesignWidth="940">
+    <Grid>
+        <Canvas x:Name="canvas_main" Margin="0,30,0,0"/>
+        <Button x:Name="btn_exit" Content="X" HorizontalAlignment="Left" Margin="917,3,0,0" VerticalAlignment="Top" Width="20" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -34,7 +32,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btn_maximize" Content="#" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Padding="0,0,0,0" Height="30" Margin="420,0,40,0" ClickMode="Release">
+        <Button x:Name="btn_update" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="90" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

@@ -5,10 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu"
              mc:Ignorable="d" 
-             d:DesignHeight="647" d:DesignWidth="1485">
+             d:DesignHeight="705" d:DesignWidth="1485">
     <Grid>
-        <Border Width="940" Height="90" BorderBrush="White" BorderThickness="1" Margin="35,3,510,554">
+        <Border BorderBrush="White" BorderThickness="1" Margin="35,3,510,612">
             <Canvas Name="infoCanvas">
+            </Canvas>
+        </Border>
+        <WrapPanel x:Name="controlsPanel" Margin="35,122,490,0" Orientation="Vertical"/>
+        <Border BorderBrush="White" BorderThickness="1" Margin="998,99,225,167">
+            <Canvas>
+                <WrapPanel Height="100" Width="260" Canvas.Top="339" Name="genres_panel"/>
             </Canvas>
         </Border>
     </Grid>

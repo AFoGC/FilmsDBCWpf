@@ -1,4 +1,5 @@
 ﻿using FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
+using FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -64,26 +65,24 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsCont
         {
             if (filmInfo.Genre.IsSerialGenre)
             {
-                //return new SerieControl(this);
+                return new SerieControl(this);
             }
             else
             {
-                //return new FilmControl(this);
+                return new FilmControl(this);
             }
-            throw new NotImplementedException();
         }
 
         public override Control ToUpdateControl()
         {
             if (filmInfo.Genre.IsSerialGenre)
             {
-                //return new SerieUpdateControl(new SerieControl(this));
+                return new SerieUpdateControl(new SerieControl(this));
             }
             else
             {
-                //return new FilmUpdateControl(new FilmControl(this));
+                return new FilmUpdateControl(new FilmControl(this));
             }
-            throw new NotImplementedException();
         }
 
         private void watched_Checked(object sender, RoutedEventArgs e)
@@ -94,6 +93,16 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsCont
         private void id_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             SetSelectedElement(MainInfo.MainWindow.FilmsMenu.ControlInBuffer);
+        }
+
+        private void watched_Click(object sender, RoutedEventArgs e)
+        {
+            watched.IsChecked = !watched.IsChecked;
+        }
+
+        private void btn_moreInfo_Click(object sender, RoutedEventArgs e)
+        {
+            MainInfo.MainWindow.FilmsMenu.MoreInfoVisualizer.OpenMoreInfoForm(this, MainInfo.MainWindow.FilmsMenu.UpdateVisualizer);
         }
     }
 }

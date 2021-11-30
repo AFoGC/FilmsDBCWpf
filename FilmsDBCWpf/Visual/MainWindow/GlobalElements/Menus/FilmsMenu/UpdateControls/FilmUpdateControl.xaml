@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls.FilmUpdateControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="940">
+    <Grid Margin="261,0,512,0">
+        <ComboBox Background="Yellow" >
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Background" Value="Yellow"/>
+                    <Setter Property="BorderBrush" Value="Yellow"/>
+                </Style>
+            </ComboBox.ItemContainerStyle>
+            <ComboBoxItem Content="One"/>
+            <ComboBoxItem Content="Two"/>
+            <ComboBoxItem Content="Three"/>
+        </ComboBox>
+
+    </Grid>
+</UserControl>

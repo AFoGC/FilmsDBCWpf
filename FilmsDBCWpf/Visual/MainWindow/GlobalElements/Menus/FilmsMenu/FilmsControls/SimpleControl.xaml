@@ -11,9 +11,8 @@
         <TextBox x:Name="name" HorizontalAlignment="Left" Margin="31,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <TextBox x:Name="genre" HorizontalAlignment="Left" Margin="211,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <TextBox x:Name="realiseYear" HorizontalAlignment="Left" Margin="311,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <CheckBox x:Name="watched" Content="" HorizontalAlignment="Left" Margin="360,0,0,0" VerticalAlignment="Center" Checked="watched_Checked">
-        </CheckBox>
-        <Button x:Name="btn_moreInfo" Content="More Info" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Height="13" Margin="395,0,0,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10">
+        <CheckBox x:Name="watched" Content="" HorizontalAlignment="Left" Margin="360,0,0,0" VerticalAlignment="Center" Click="watched_Click"/>
+        <Button x:Name="btn_moreInfo" Content="More Info" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Height="13" Margin="395,0,0,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_moreInfo_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

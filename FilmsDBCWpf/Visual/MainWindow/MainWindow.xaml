@@ -9,7 +9,7 @@
         Title="MainForm" Height="697" Width="1485"
         WindowStyle="None" Background="{x:Null}" MinWidth="1485" MinHeight="755" ResizeMode="NoResize">
     <Grid Background="#FF121212">
-        <GlobalElements:MainHeaderControl x:Name="mainHeader" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="1485" MouseDown="mainHeader_MouseDown"/>
+        <GlobalElements:MainHeaderControl x:Name="mainHeader" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="1485"/>
         <GlobalElements:Navbar HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="1485"/>
         <FilmsMenu:FilmsMenuControl x:Name="films_menu" HorizontalAlignment="Center" Margin="0,50,0,0" Width="1485" Height="705" VerticalAlignment="Top"/>
     </Grid>

@@ -41,6 +41,8 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsCont
             id.Text = categoryInfo.ID.ToString();
             name.Text = categoryInfo.Name;
             mark.Text = VisualHelper.markToText(Category.FormatToString(categoryInfo.Mark, -1));
+
+            categoryFilms();
         }
 
         private void categoryFilms()
@@ -54,11 +56,18 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsCont
                 cat_panel.Children.Add(new SimpleControl(film));
             }
 
-            foreach (SimpleControl simpleControl in cat_panel.Children)
+            SimpleControl simpleControl = null;
+            for (int i = 0; i < cat_panel.Children.Count; i++)
             {
-                cat_panel.Children.Remove(simpleControl);
-                cat_panel.Children.Insert(simpleControl.FilmInfo.FranshiseListIndex, simpleControl);
+                simpleControl = (SimpleControl)cat_panel.Children[i];
+                if (simpleControl.FilmInfo.FranshiseListIndex != i)
+                {
+                    cat_panel.Children.Remove(simpleControl);
+                    cat_panel.Children.Insert(simpleControl.FilmInfo.FranshiseListIndex, simpleControl);
+                    i = 0;
+                }
             }
+
         }
 
         public void AddSimpleCotrol(Film film)

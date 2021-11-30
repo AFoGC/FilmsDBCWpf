@@ -11,11 +11,13 @@
             <Canvas Name="infoCanvas">
             </Canvas>
         </Border>
-        <WrapPanel x:Name="controlsPanel" Margin="35,122,490,0" Orientation="Vertical"/>
         <Border BorderBrush="White" BorderThickness="1" Margin="998,99,225,167">
             <Canvas>
                 <WrapPanel Height="100" Width="260" Canvas.Top="339" Name="genres_panel"/>
             </Canvas>
         </Border>
+        <ScrollViewer Margin="35,122,490,0">
+            <WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>

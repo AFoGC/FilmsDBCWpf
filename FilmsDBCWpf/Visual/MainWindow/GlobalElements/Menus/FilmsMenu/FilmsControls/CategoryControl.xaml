@@ -13,15 +13,8 @@
         <TextBox x:Name="id" HorizontalAlignment="Left" Margin="2,1,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <TextBox x:Name="name" HorizontalAlignment="Left" Margin="31,1,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <TextBox x:Name="mark" HorizontalAlignment="Left" Margin="211,1,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <WrapPanel x:Name="cat_panel" Margin="31,15,0,0" RenderTransformOrigin="0.5,0.5" Orientation="Vertical">
-            <WrapPanel.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </WrapPanel.RenderTransform>
+        <WrapPanel x:Name="cat_panel" Margin="31,15,0,0" Orientation="Vertical">
+            
         </WrapPanel>
         <Button x:Name="btn_update" Content="update" Foreground="WhiteSmoke" VerticalAlignment="Top" RenderTransformOrigin="0.48,-0.933" Height="13" Margin="751,1,1,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
             <Button.Style>

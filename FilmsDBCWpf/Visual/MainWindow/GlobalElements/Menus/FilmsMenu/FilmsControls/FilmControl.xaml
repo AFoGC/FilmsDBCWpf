@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls"
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="940">
-    <Grid>
+    <Grid x:Name="grid" Height="15" Width="940">
         <TextBox x:Name="id" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="27" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" MouseLeftButtonUp="id_MouseLeftButtonUp"/>
         <TextBox x:Name="name" HorizontalAlignment="Left" Margin="31,1,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
         </TextBox>

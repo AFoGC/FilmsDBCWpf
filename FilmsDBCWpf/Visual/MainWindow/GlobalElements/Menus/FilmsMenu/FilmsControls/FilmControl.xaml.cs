@@ -85,8 +85,9 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsCont
         {
             comment.Text = filmInfo.Comment;
 
-            if (commentIsOpen) { this.Height -= 15; }
-            else { this.Height += 15; }
+            if (commentIsOpen) { this.grid.Height -= 15; }
+            else { this.grid.Height += 15; }
+            //this.Height -= 15;
 
             commentIsOpen = !commentIsOpen;
         }

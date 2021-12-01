@@ -10,7 +10,7 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.ACommonElements.Inf
 	public class MoreInfoFormVisualizer
 	{
 
-		private MoreInfoControl infoControl = new MoreInfoControl();
+		private MoreInfoControl infoControl;
 		public MoreInfoControl MoreInfoControl
 		{
 			get { return infoControl; }
@@ -26,10 +26,12 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.ACommonElements.Inf
 		public MoreInfoFormVisualizer(Canvas parentControl)
 		{
 			this.parentControl = parentControl;
+			this.infoControl = new MoreInfoControl(this);
 		}
 		
 		public void OpenMoreInfoForm(ISimpleControl simpleControl, UpdateFormVisualizer updateVisualizer)
 		{
+			parentControl.Children.Remove(infoControl);
 			infoControl.Reinitialize(simpleControl);
 			parentControl.Children.Add(infoControl);
 			

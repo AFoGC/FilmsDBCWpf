@@ -50,5 +50,10 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.ACommonElements.Inf
 			Canvas canvas = (Canvas)this.Parent;
 			canvas.Children.Remove(this);
 		}
-	}
+
+        private void btn_exit_Click(object sender, RoutedEventArgs e)
+        {
+			visualizer.HideUpdateControl();
+		}
+    }
 }

@@ -19,9 +19,11 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.ACommonElements.Inf
     /// </summary>
     public partial class MoreInfoControl : UserControl
     {
-        public MoreInfoControl()
+        private MoreInfoFormVisualizer visualizer;
+        public MoreInfoControl(MoreInfoFormVisualizer visualizer)
         {
             InitializeComponent();
+            this.visualizer = visualizer;
         }
 
         public void Reinitialize(ISimpleControl simpleControl)
@@ -34,6 +36,11 @@ namespace FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.ACommonElements.Inf
         {
             Canvas canvas = (Canvas)this.Parent;
             canvas.Children.Remove(this);
+        }
+
+        private void btn_exit_Click(object sender, RoutedEventArgs e)
+        {
+            visualizer.HideMoreInfoControl();
         }
     }
 }

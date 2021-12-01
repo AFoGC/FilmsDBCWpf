@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="90" d:DesignWidth="940">
     <Grid>
-        <Canvas x:Name="canvas_main" Margin="0,30,0,0"></Canvas>
-        <Button x:Name="btn_exit" Content="X" HorizontalAlignment="Left" Margin="917,3,0,0" VerticalAlignment="Top" Width="20" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke">
+        <WrapPanel x:Name="canvas_main" Margin="0,30,0,0"></WrapPanel>
+        <Button x:Name="btn_exit" Content="X" HorizontalAlignment="Left" Margin="917,3,0,0" VerticalAlignment="Top" Width="20" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Click="btn_exit_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

@@ -17,7 +17,7 @@ namespace FilmsDBCWpf
         
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            MainInfo.TableCollection.LoadTables();
+            MainInfo.TableCollection.LoadTables(System.Text.Encoding.UTF8);
         }
     }
 }

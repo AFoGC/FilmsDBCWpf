@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:FilmsDBCWpf.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls"
              mc:Ignorable="d" 
              d:DesignHeight="20" d:DesignWidth="940">
-    <Grid Margin="261,0,512,0">
-        <ComboBox Background="Yellow" >
+    <Grid HorizontalAlignment="Center" Width="940" Height="20" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <ComboBox Background="#FF353535" Margin="210,0" HorizontalAlignment="Left" Width="100" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
+                  Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke">
             <ComboBox.ItemContainerStyle>
                 <Style TargetType="ComboBoxItem">
                     <Setter Property="Background" Value="Yellow"/>
@@ -18,6 +21,10 @@
             <ComboBoxItem Content="Two"/>
             <ComboBoxItem Content="Three"/>
         </ComboBox>
+        <TextBox HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <CheckBox Content="" HorizontalAlignment="Left" Margin="360,0,0,0" VerticalAlignment="Center"/>
 
     </Grid>
 </UserControl>

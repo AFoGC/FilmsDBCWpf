@@ -16,12 +16,12 @@ namespace DAL_Films
 
             setParameters(ob);
             var insertedRows = command.ExecuteNonQuery();
-            var o = command.Parameters["RETURN VALUE"].Value;
+            //var o = command.Parameters["RETURN VALUE"].Value;
 
-            if (o != null)
-            {
-                insertedRows = Convert.ToInt32(o);
-            }
+            //if (o != null)
+            //{
+            //    insertedRows = Convert.ToInt32(o);
+            //}
 
             connection.Close();
             return insertedRows;

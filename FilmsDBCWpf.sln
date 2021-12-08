@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL_Films", "BL_Films\BL_Fil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_Films", "DAL_Films\DAL_Films.csproj", "{60D4F3AB-B1CD-490B-89C7-8AD6005F7CAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{60D4F3AB-B1CD-490B-89C7-8AD6005F7CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60D4F3AB-B1CD-490B-89C7-8AD6005F7CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60D4F3AB-B1CD-490B-89C7-8AD6005F7CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmsDBCWpf", "FilmsDBCWpf\FilmsDBCWpf.csproj", "{429535D8-4BD9-4674-9178-A7635512CE4F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TL_Realization", "TL_Realization", "{89CCA875-00B4-4617-8BAA-E3C2406136E8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TL_Objects", "TLObjects\TL_Objects.csproj", "{850E8208-E369-4F93-8A80-8227C5605A6E}"
@@ -21,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL_Films", "BL_Films\BL_Fil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_Films", "DAL_Films\DAL_Films.csproj", "{60D4F3AB-B1CD-490B-89C7-8AD6005F7CAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp1\WpfApp.csproj", "{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{F50EE73B-55F1-4C37-BDD2-11ECCABC1C15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{429535D8-4BD9-4674-9178-A7635512CE4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{429535D8-4BD9-4674-9178-A7635512CE4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{429535D8-4BD9-4674-9178-A7635512CE4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{429535D8-4BD9-4674-9178-A7635512CE4F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{850E8208-E369-4F93-8A80-8227C5605A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{850E8208-E369-4F93-8A80-8227C5605A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{850E8208-E369-4F93-8A80-8227C5605A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,10 +51,10 @@ Global
 		{60D4F3AB-B1CD-490B-89C7-8AD6005F7CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60D4F3AB-B1CD-490B-89C7-8AD6005F7CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60D4F3AB-B1CD-490B-89C7-8AD6005F7CAC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD31ADD1-81C1-4903-B60C-DCCB61B4FD75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F50EE73B-55F1-4C37-BDD2-11ECCABC1C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F50EE73B-55F1-4C37-BDD2-11ECCABC1C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F50EE73B-55F1-4C37-BDD2-11ECCABC1C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F50EE73B-55F1-4C37-BDD2-11ECCABC1C15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -31,7 +31,7 @@ namespace FilmsDBCWpf.Visual.MainWindow
 
         private void Add_To_Base_Click(object sender, RoutedEventArgs e)
         {
-            BL_Films.FilmsBL.Add_User(Convert.ToInt32(id.Text), Username.Text.ToString(), Password.Text.ToString());
+            //BL_Films.FilmsBL.Add_User(Convert.ToInt32(id.Text), Username.Text.ToString(), Password.Text.ToString());
         }
     }
 }

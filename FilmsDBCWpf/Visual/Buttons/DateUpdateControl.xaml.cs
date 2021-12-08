@@ -21,6 +21,7 @@ namespace FilmsDBCWpf.Visual.Buttons
         public DateUpdateControl()
         {
             InitializeComponent();
+            
         }
     }
 }

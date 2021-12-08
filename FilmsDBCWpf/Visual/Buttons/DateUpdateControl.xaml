@@ -7,8 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="20" d:DesignWidth="60">
     <Grid Height="20" Width="60">
-        <TextBox HorizontalAlignment="Left" Text="." TextWrapping="Wrap" VerticalAlignment="Center" Width="5" BorderBrush="{x:Null}" Height="12" BorderThickness="1" Padding="-2,-4, -100, 0" Margin="13,0,0,0" Background="White"/>
-        <TextBox HorizontalAlignment="Left" Text="31" TextWrapping="Wrap" VerticalAlignment="Center" Width="15" BorderBrush="{x:Null}" Height="12" BorderThickness="1" Padding="-2,-4, -100, 0"/>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Label HorizontalAlignment="Left" Content="." VerticalAlignment="Top" Width="5" BorderBrush="{x:Null}" Height="16" BorderThickness="1" Padding="0, 4, -100, 0" Margin="13,0,0,0" Background="{x:Null}"/>
+        <Label HorizontalAlignment="Left" Content="." VerticalAlignment="Top" Width="5" BorderBrush="{x:Null}" Height="16" BorderThickness="1" Padding="0, 4, -100, 0" Margin="29,0,0,0" Background="{x:Null}"/>
+        <TextBox HorizontalAlignment="Left" Text="31" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="15" BorderBrush="{x:Null}" Height="12" BorderThickness="1" Padding="-2,-4, 0, 0" Background="{x:Null}"/>
+        <TextBox HorizontalAlignment="Left" Text="12" TextWrapping="Wrap" VerticalAlignment="Center" Width="15" BorderBrush="{x:Null}" Height="12" BorderThickness="1" Padding="-2,-4, -100, 0" Margin="16,0,0,0" Background="{x:Null}"/>
+        <TextBox HorizontalAlignment="Left" Text="2000" TextWrapping="Wrap" VerticalAlignment="Center" Width="28" BorderBrush="{x:Null}" Height="12" BorderThickness="1" Padding="-2,-4, -100, 0" Margin="32,0,0,0" Grid.ColumnSpan="2" Background="{x:Null}"/>
 
     </Grid>
 </UserControl>

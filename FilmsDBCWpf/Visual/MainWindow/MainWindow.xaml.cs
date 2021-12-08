@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BL_Films;
 namespace FilmsDBCWpf.Visual.MainWindow
 {
     /// <summary>
@@ -27,6 +27,11 @@ namespace FilmsDBCWpf.Visual.MainWindow
         public GlobalElements.Menus.FilmsMenu.FilmsMenuControl FilmsMenu
         {
             get { return films_menu; }
+        }
+
+        private void Add_To_Base_Click(object sender, RoutedEventArgs e)
+        {
+            BL_Films.FilmsBL.Add_User(Convert.ToInt32(id.Text), Username.Text.ToString(), Password.Text.ToString());
         }
     }
 }

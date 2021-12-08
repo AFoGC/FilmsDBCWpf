@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\TablesLibrary\TablesLibrary\TablesLibrary.csproj" />
+    <ProjectReference Include="..\BL_Films\BL_Films.csproj" />
     <ProjectReference Include="..\TLObjects\TL_Objects.csproj" />
     <ProjectReference Include="..\TL_Tables\TL_Tables.csproj" />
   </ItemGroup>

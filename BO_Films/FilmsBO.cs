@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace BO_Films
 {
-    class FilmsBO
+    public class FilmsBO
     {
+        public int id { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
     }
 }

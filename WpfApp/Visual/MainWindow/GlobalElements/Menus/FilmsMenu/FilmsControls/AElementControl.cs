@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows.Controls;
 using TL_Objects;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 {
-    public abstract class AElementControl : UserControl, IFilmsControl
+	[TypeDescriptionProvider(typeof(AbstractControlDescriptionProvider<AElementControl, UserControl>))]
+	public abstract class AElementControl : UserControl, IFilmsControl
     {
 		internal Film filmInfo = null;
 		public Film FilmInfo

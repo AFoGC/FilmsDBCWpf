@@ -87,7 +87,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
             if (commentIsOpen) { this.grid.Height -= 15; }
             else { this.grid.Height += 15; }
-            //this.Height -= 15;
 
             commentIsOpen = !commentIsOpen;
         }

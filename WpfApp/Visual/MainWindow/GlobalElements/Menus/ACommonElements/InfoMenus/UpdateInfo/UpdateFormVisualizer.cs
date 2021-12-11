@@ -37,6 +37,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 		public void OpenUpdateControl(IControls userControl, MoreInfoFormVisualizer moreVisualizer)
 		{
 			updateControl.Reinitialize(userControl);
+			parentControl.Children.Remove(updateControl);
 			parentControl.Children.Add(updateControl);
 
 			if (moreVisualizer.IsOpen)

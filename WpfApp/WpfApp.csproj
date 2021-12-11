@@ -59,6 +59,7 @@
     <Compile Include="Config\ProfileCollection.cs" />
     <Compile Include="Config\ProgramSettings.cs" />
     <Compile Include="MainInfo.cs" />
+    <Compile Include="StaticFilmClasses\FilmMethods.cs" />
     <Compile Include="Visual\Buttons\DateUpdateControl.xaml.cs">
       <DependentUpon>DateUpdateControl.xaml</DependentUpon>
     </Compile>
@@ -69,6 +70,7 @@
     <Compile Include="Visual\MainWindow\GlobalElements\MainHeaderControl.xaml.cs">
       <DependentUpon>MainHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\AbstractControlDescriptionProvider.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IControls.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\ISimpleControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IUpdateControl.cs" />

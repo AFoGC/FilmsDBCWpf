@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TL_Objects;
 using TL_Tables;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.MenuElements;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
 {
@@ -72,7 +74,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
             genres_panel.Children.Clear();
             foreach (Genre genre in MainInfo.Tables.GenresTable)
             {
-                //genres_panel.Children.Add(new GenrePressButton(genre));
+                genres_panel.Children.Add(new GenrePressButtonControl(genre));
             }
         }
 
@@ -84,26 +86,22 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
 
         private void lockNotSerialGenreButtons()
         {
-            /*
-            foreach (GenrePressButton button in flowLayoutPanel_requestsGenres.Controls)
+            foreach (GenrePressButtonControl button in genres_panel.Children)
             {
                 if (!button.Genre.IsSerialGenre)
                 {
-                    button.Included = false;
-                    button.ClickLocked = true;
+                    button.PressButton.Included = false;
+                    button.PressButton.ClickLocked = true;
                 }
             }
-            */
         }
         private void unLockGenreButtons()
         {
-            /*
-            foreach (GenrePressButton button in flowLayoutPanel_requestsGenres.Controls)
+            foreach (GenrePressButtonControl button in genres_panel.Children)
             {
-                button.ClickLocked = false;
-                button.Included = true;
+                button.PressButton.ClickLocked = false;
+                button.PressButton.Included = true;
             }
-            */
         }
 
         public void loadFilmTable()
@@ -206,18 +204,129 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
 
         private Genre[] getSelectedGenres()
         {
-            /*
             List<Genre> genres = new List<Genre>();
-            foreach (GenrePressButton requestControl in genres_panel.Children)
+            foreach (GenrePressButtonControl requestControl in genres_panel.Children)
             {
-                if (requestControl.Included)
+                if (requestControl.PressButton.Included)
                 {
                     genres.Add(requestControl.Genre);
                 }
             }
             return genres.ToArray();
-            */
-            throw new Exception();
+        }
+
+        private void btn_saveTable_Click(object sender, RoutedEventArgs e)
+        {
+            MainInfo.TableCollection.SaveTables();
+        }
+
+        private void btn_showCategories_Click(object sender, RoutedEventArgs e)
+        {
+            loadCategories();
+        }
+
+        private void btn_showFilms_Click(object sender, RoutedEventArgs e)
+        {
+            loadFilmTable();
+        }
+
+        private void btn_showSeries_Click(object sender, RoutedEventArgs e)
+        {
+            loadSerieTable();
+        }
+
+        private void btn_showPriority_Click(object sender, RoutedEventArgs e)
+        {
+            loadPriorityTable();
+        }
+
+        private void btn_addCategory_Click(object sender, RoutedEventArgs e)
+        {
+            if (controlsCondition == MenuCondition.Category)
+            {
+                CategoriesTable categoryTable = MainInfo.Tables.CategoriesTable;
+                categoryTable.AddElement();
+                CategoryControl categoryControl = new CategoryControl((Category)categoryTable.GetLastElement);
+                //controlsPanel.Children.Add(categoryControl);
+                //controlsPanel.Children.SetChildIndex(categoryControl, categoryTable.Count - 1);
+                controlsPanel.Children.Insert(categoryTable.Count - 1, categoryControl);
+            }
+        }
+
+        private void btn_addFilm_Click(object sender, RoutedEventArgs e)
+        {
+            MainInfo.Tables.FilmsTable.AddElement();
+            Film film = MainInfo.Tables.FilmsTable.GetLastElement;
+            IControls control = new SimpleControl(film);
+            switch (controlsCondition)
+            {
+                case MenuCondition.Category:
+                    break;
+                case MenuCondition.Film:
+                    control = new FilmControl(film);
+                    break;
+                case MenuCondition.Serie:
+                    film.Genre = MainInfo.Tables.GenresTable.GetFirstSeriealGenre();
+                    control = new SerieControl(film);
+                    break;
+                default:
+                    return;
+            }
+
+            tableControls.Add((UserControl)control);
+            controlsPanel.Children.Add((UserControl)control);
+        }
+
+        private void btn_AddToPriority_Click(object sender, RoutedEventArgs e)
+        {
+            if (controlInBuffer != null)
+            {
+                MainInfo.Tables.PriorityFilmsTable.AddElement();
+                PriorityFilm priorityFilm = MainInfo.Tables.PriorityFilmsTable.GetLastElement;
+                priorityFilm.Film = controlInBuffer.FilmInfo;
+            }
+        }
+
+        private void btn_filter_Click(object sender, RoutedEventArgs e)
+        {
+            controlsPanel.Children.Clear();
+            Genre[] genres = getSelectedGenres();
+
+            foreach (IFilmsControl control in tableControls)
+            {
+                if (watchedRequestControl.IsAllIncluded)
+                {
+                    if (control.HasSelectedGenre(genres))
+                    {
+                        controlsPanel.Children.Add((UserControl)control);
+                    }
+                }
+                else
+                {
+                    if (control.HasSelectedGenre(genres) && control.HasWatchedProperty(watchedRequestControl.IsWatched))
+                    {
+                        controlsPanel.Children.Add((UserControl)control);
+                    }
+                }
+            }
+        }
+
+        private void btn_search_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (IControls control in controlsPanel.Children)
+            {
+                control.SetVisualDefault();
+            }
+
+            if (textbox_search.Text != "")
+            {
+                String searchStr = textbox_search.Text.ToLowerInvariant();
+
+                foreach (IControls control in controlsPanel.Children)
+                {
+                    control.SetFindedElement(searchStr);
+                }
+            }
         }
     }
 }

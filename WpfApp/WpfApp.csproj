@@ -64,6 +64,9 @@
       <DependentUpon>DateUpdateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visual\Buttons\PressButton.cs" />
+    <Compile Include="Visual\Buttons\PressButtonControl.xaml.cs">
+      <DependentUpon>PressButtonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\HelpWindows\ExitWindow\ExitWindow.xaml.cs">
       <DependentUpon>ExitWindow.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,12 @@
       <DependentUpon>UpdateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\UpdateFormVisualizer.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\GenrePressButtonControl.xaml.cs">
+      <DependentUpon>GenrePressButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\WatchedRequestControl.xaml.cs">
+      <DependentUpon>WatchedRequestControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\AElementControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\CategoryControl.xaml.cs">
       <DependentUpon>CategoryControl.xaml</DependentUpon>
@@ -130,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Visual\Buttons\PressButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Visual\HelpWindows\ExitWindow\ExitWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -153,6 +166,14 @@
     <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\UpdateControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\GenrePressButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\WatchedRequestControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\CategoryControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -240,7 +261,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\" />
     <Folder Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\" />
     <Folder Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\" />
   </ItemGroup>

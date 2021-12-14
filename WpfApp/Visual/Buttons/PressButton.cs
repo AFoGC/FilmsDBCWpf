@@ -201,10 +201,12 @@ namespace WpfApp.Visual.Buttons
             if (Included)
             {
                 this.Background = this.included_mouseEnterColor;
+                //this.this_Included_mouseEnter(this, e);
             }
             else
             {
                 this.Background = this.mouseEnterColor;
+                //this.this_NotIncluded_mouseEnter(this, e);
             }
         }
         

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu"
+             xmlns:Elements="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.MenuElements"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1485">
     <Grid>
@@ -13,11 +14,253 @@
         </Border>
         <Border BorderBrush="White" BorderThickness="1" Margin="998,99,225,167">
             <Canvas>
+                <Button x:Name="btn_filter" Content="Search" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="284" Click="btn_filter_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF1F1F1F"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF2E2E2E"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseCaptureWithin" Value="True">
+                                    <Setter Property="Background" Value="#FF151515"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <WrapPanel Height="100" Width="260" Canvas.Top="339" Name="genres_panel"/>
+                <Elements:WatchedRequestControl x:Name="watchedRequestControl" Canvas.Top="313" Canvas.Left="0" IsUnwatched="True" IsWatched="True"/>
+                <Button x:Name="btn_saveTable" Content="Save Table" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Click="btn_saveTable_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF1F1F1F"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF2E2E2E"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseCaptureWithin" Value="True">
+                                    <Setter Property="Background" Value="#FF151515"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btn_showCategories" Content="Show Categories" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="41" Click="btn_showCategories_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF1F1F1F"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF2E2E2E"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseCaptureWithin" Value="True">
+                                    <Setter Property="Background" Value="#FF151515"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btn_addCategory" Content="Add Category" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Top="41" Canvas.Left="0" Click="btn_addCategory_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF1F1F1F"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF2E2E2E"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseCaptureWithin" Value="True">
+                                    <Setter Property="Background" Value="#FF151515"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btn_showFilms" Content="Show Films" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="70" Click="btn_showFilms_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF1F1F1F"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF2E2E2E"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseCaptureWithin" Value="True">
+                                    <Setter Property="Background" Value="#FF151515"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btn_showSeries" Content="Show Series" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="99" Click="btn_showSeries_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF1F1F1F"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF2E2E2E"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseCaptureWithin" Value="True">
+                                    <Setter Property="Background" Value="#FF151515"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btn_showPriority" Content="Show Priority Films" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="128" Click="btn_showPriority_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF1F1F1F"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF2E2E2E"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseCaptureWithin" Value="True">
+                                    <Setter Property="Background" Value="#FF151515"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btn_addFilm" Content="Add Film" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Top="70" Canvas.Left="0" Click="btn_addFilm_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF1F1F1F"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF2E2E2E"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseCaptureWithin" Value="True">
+                                    <Setter Property="Background" Value="#FF151515"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btn_AddToPriority" Content="Add To Priority" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Top="99" Canvas.Left="0" Click="btn_AddToPriority_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FF1F1F1F"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF2E2E2E"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseCaptureWithin" Value="True">
+                                    <Setter Property="Background" Value="#FF151515"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Canvas>
         </Border>
         <ScrollViewer Margin="35,122,490,0">
             <WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
         </ScrollViewer>
+        <TextBox x:Name="textbox_search" HorizontalAlignment="Left" Margin="35,99,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <Button x:Name="btn_search" Content="Search" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="20" VerticalAlignment="Top" Margin="220,99,1190,0" Click="btn_search_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>

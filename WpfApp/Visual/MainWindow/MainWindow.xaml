@@ -4,13 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.Visual.MainWindow"
-        xmlns:GlobalElements="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements" xmlns:FilmsMenu="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu" x:Class="WpfApp.Visual.MainWindow.MainWindow"
+        xmlns:GlobalElements="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements" 
+        xmlns:FilmsMenu="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu" 
+        xmlns:BooksMenu="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu" 
+        x:Class="WpfApp.Visual.MainWindow.MainWindow"
         mc:Ignorable="d"
         Title="MainForm" Height="697" Width="1485"
         WindowStyle="None" Background="{x:Null}" MinWidth="1485" MinHeight="755" ResizeMode="NoResize">
-    <Grid Background="#FF121212">
+    <Grid x:Name="grid" Background="#FF121212">
         <GlobalElements:MainHeaderControl x:Name="mainHeader" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="1485"/>
         <GlobalElements:Navbar HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="1485"/>
-        <FilmsMenu:FilmsMenuControl x:Name="films_menu" HorizontalAlignment="Center" Margin="0,50,0,0" Width="1485" Height="705" VerticalAlignment="Top"/>
+
+
+        <Canvas x:Name="menus" Margin="0,50,0,0" >
+            <FilmsMenu:FilmsMenuControl x:Name="films_menu" HorizontalAlignment="Center" Width="1485" Height="705" VerticalAlignment="Top" Panel.ZIndex="3"/>
+            <BooksMenu:BooksMenuControl x:Name="books_menu" HorizontalAlignment="Center" Width="1485" Height="705" VerticalAlignment="Top" Panel.ZIndex="2"/>
+        </Canvas>
+
+
     </Grid>
 </Window>

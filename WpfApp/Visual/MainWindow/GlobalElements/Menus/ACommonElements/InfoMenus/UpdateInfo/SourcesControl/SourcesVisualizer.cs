@@ -32,6 +32,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 		public void OpenSourceControl(List<Source> sources)
 		{
 			sourcesControl.Reinitialize(sources);
+			updateVisualizer.ParentControl.Children.Remove(sourcesControl);
 			updateVisualizer.ParentControl.Children.Add(sourcesControl);
 			if (isOpen == false)
 			{

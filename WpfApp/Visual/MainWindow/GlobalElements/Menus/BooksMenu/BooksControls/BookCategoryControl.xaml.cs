@@ -1,9 +1,8 @@
-﻿using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
-using WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls;
-using WpfApp.Visual.StaticVisualClasses;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,33 +13,32 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TL_Objects;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls;
+using WpfApp.Visual.StaticVisualClasses;
 
-namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
+namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 {
     /// <summary>
-    /// Логика взаимодействия для CategoryControl.xaml
+    /// Логика взаимодействия для BookCategoryControl.xaml
     /// </summary>
-    public partial class CategoryControl : UserControl, IFilmsControl
+    public partial class BookCategoryControl : UserControl, IBooksControls
     {
-        private Category categoryInfo = null;
-        public Category CategoryInfo
-        {
-            get { return categoryInfo; }
-        }
+        public BookCategory CategoryInfo { get; private set; }
 
-        public CategoryControl(Category category)
+        public BookCategoryControl(BookCategory category)
         {
             InitializeComponent();
-            this.categoryInfo = category;
+            this.CategoryInfo = category;
 
             RefreshData();
         }
 
         public void RefreshData()
         {
-            id.Text = categoryInfo.ID.ToString();
-            name.Text = categoryInfo.Name;
-            mark.Text = VisualHelper.markToText(Category.FormatToString(categoryInfo.Mark, -1));
+            id.Text = CategoryInfo.ID.ToString();
+            name.Text = CategoryInfo.Name;
+            mark.Text = VisualHelper.markToText(Category.FormatToString(CategoryInfo.Mark, -1));
 
             categoryFilms();
         }
@@ -50,53 +48,53 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             this.cat_panel.Children.Clear();
             this.Height = 20;
 
-            foreach (Film film in categoryInfo.Films)
+            foreach (Book book in CategoryInfo.Books)
             {
                 this.Height += 15;
-                cat_panel.Children.Add(new SimpleControl(film));
+                cat_panel.Children.Add(new BookSimpleControl(book));
             }
 
-            SimpleControl simpleControl = null;
+            BookSimpleControl simpleControl = null;
             for (int i = 0; i < cat_panel.Children.Count; i++)
             {
-                simpleControl = (SimpleControl)cat_panel.Children[i];
-                if (simpleControl.FilmInfo.FranshiseListIndex != i)
+                simpleControl = (BookSimpleControl)cat_panel.Children[i];
+                if (simpleControl.BookInfo.FranshiseListIndex != i)
                 {
                     cat_panel.Children.Remove(simpleControl);
-                    cat_panel.Children.Insert(simpleControl.FilmInfo.FranshiseListIndex, simpleControl);
+                    cat_panel.Children.Insert(simpleControl.BookInfo.FranshiseListIndex, simpleControl);
                     i = 0;
                 }
             }
 
         }
 
-        public void AddSimpleCotrol(Film film)
+        public void AddSimpleCotrol(Book book)
         {
             this.Height += 15;
-            this.cat_panel.Children.Add(new SimpleControl(film));
-            film.FranshiseListIndex = Convert.ToSByte(cat_panel.Children.Count - 1);
+            this.cat_panel.Children.Add(new BookSimpleControl(book));
+            book.FranshiseListIndex = Convert.ToSByte(cat_panel.Children.Count - 1);
         }
 
-        public bool RemoveFilmFromCategory(SimpleControl simpleControl)
+        public bool RemoveFilmFromCategory(BookSimpleControl simpleControl)
         {
-            if (simpleControl.FilmInfo.FranshiseId == this.categoryInfo.ID)
+            if (simpleControl.BookInfo.FranshiseId == this.CategoryInfo.ID)
             {
                 cat_panel.Children.Remove(simpleControl);
 
                 this.Height -= 15;
 
-                simpleControl.FilmInfo.FranshiseId = 0;
-                simpleControl.FilmInfo.FranshiseListIndex = 0;
+                simpleControl.BookInfo.FranshiseId = 0;
+                simpleControl.BookInfo.FranshiseListIndex = 0;
 
-                foreach (Film film in categoryInfo.Films)
+                foreach (Book book in CategoryInfo.Books)
                 {
-                    if (simpleControl.FilmInfo.FranshiseListIndex < film.FranshiseListIndex)
+                    if (simpleControl.BookInfo.FranshiseListIndex < book.FranshiseListIndex)
                     {
-                        --film.FranshiseListIndex;
+                        --book.FranshiseListIndex;
                     }
                 }
 
-                return categoryInfo.Films.Remove(simpleControl.FilmInfo);
+                return CategoryInfo.Books.Remove(simpleControl.BookInfo);
             }
             else
             {
@@ -104,9 +102,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             }
         }
 
-        public bool HasSelectedGenre(Genre[] selectedGenres)
+        public bool HasSelectedGenre(BookGenre[] selectedGenres)
         {
-            foreach (SimpleControl control in cat_panel.Children)
+            foreach (BookSimpleControl control in cat_panel.Children)
             {
                 if (control.HasSelectedGenre(selectedGenres))
                 {
@@ -117,11 +115,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             return false;
         }
 
-        public bool HasWatchedProperty(bool isWached)
+        public bool HasReadedProperty(bool isReaded)
         {
-            foreach (SimpleControl control in cat_panel.Children)
+            foreach (BookSimpleControl control in cat_panel.Children)
             {
-                if (control.HasWatchedProperty(isWached))
+                if (control.HasReadedProperty(isReaded))
                 {
                     return true;
                 }
@@ -160,12 +158,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         public Control ToUpdateControl()
         {
-            return new CategoryUpdateControl(this);
+            return new BookCategoryUpdateControl(this);
         }
 
         private void btn_update_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.MainWindow.BooksMenu.UpdateVisualizer.OpenUpdateControl(this, MainInfo.MainWindow.BooksMenu.MoreInfoVisualizer);
+            MainInfo.MainWindow.FilmsMenu.UpdateVisualizer.OpenUpdateControl(this, MainInfo.MainWindow.FilmsMenu.MoreInfoVisualizer);
         }
     }
 }

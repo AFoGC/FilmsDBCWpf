@@ -35,20 +35,19 @@ namespace WpfApp.Visual.MainWindow.GlobalElements
         private void films_Click(object sender, RoutedEventArgs e)
         {
             changeSelectedButton((PressButton)sender);
-            //MainInfo.MainForm.MainControl.BringToFront();
+            ChangePriorityMenu(MainInfo.MainWindow.FilmsMenu);
+
         }
 
         private void books_Click(object sender, RoutedEventArgs e)
         {
             changeSelectedButton((PressButton)sender);
-            //MainInfo.MainForm.BooksControl.BringToFront();
+            ChangePriorityMenu(MainInfo.MainWindow.BooksMenu);
         }
 
         private void settings_Click(object sender, RoutedEventArgs e)
         {
             changeSelectedButton((PressButton)sender);
-            //MainInfo.MainForm.SettingsControl.RefreshControl();
-            //MainInfo.MainForm.SettingsControl.BringToFront();
         }
 
         private void changeSelectedButton(PressButton pressButton)
@@ -66,6 +65,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements
                     button.Included = false;
                 }
             }
+        }
+
+        private void ChangePriorityMenu(UIElement element)
+        {
+            foreach (UIElement el in MainInfo.MainWindow.Menus.Children)
+            {
+                Grid.SetZIndex(el, Grid.GetZIndex(el) - 1);
+            }
+            Grid.SetZIndex(element, MainInfo.MainWindow.Menus.Children.Count);
         }
     }
 }

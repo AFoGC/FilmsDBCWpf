@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BL_Films;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu;
 
 namespace WpfApp.Visual.MainWindow
@@ -31,9 +32,18 @@ namespace WpfApp.Visual.MainWindow
             get { return films_menu; }
         }
 
+        public BooksMenuControl BooksMenu
+        {
+            get { return books_menu; }
+        }
+
+        public Grid Grid { get { return grid; } }
+        public Canvas Menus { get { return menus; } }
+
         private void Add_To_Base_Click(object sender, RoutedEventArgs e)
         {
             //BL_Films.FilmsBL.Add_User(Convert.ToInt32(id.Text), Username.Text.ToString(), Password.Text.ToString());
+            
         }
 
         

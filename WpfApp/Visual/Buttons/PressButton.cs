@@ -14,7 +14,7 @@ namespace WpfApp.Visual.Buttons
         public PressButton() : base()
         {
             this.Click += new RoutedEventHandler(this.this_Click);
-            Included = false;
+            //Included = false;
         }
 
 
@@ -65,25 +65,7 @@ namespace WpfApp.Visual.Buttons
             get { return clickLocked; }
             set
             {
-                if (!clickLocked)
-                {
-                    this.Click -= new RoutedEventHandler(this.this_Click);
-                }
-                else
-                {
-                    this.Click += new RoutedEventHandler(this.this_Click);
-                }
-
                 clickLocked = value;
-
-                if (clickLocked)
-                {
-                    this.Click -= new RoutedEventHandler(this.this_Click);
-                }
-                else
-                {
-                    this.Click += new RoutedEventHandler(this.this_Click);
-                }
             }
         }
 
@@ -196,17 +178,20 @@ namespace WpfApp.Visual.Buttons
 
         private void this_Click(object sender, RoutedEventArgs e)
         {
-            this.Included = !this.Included;
+            if (!clickLocked)
+            {
+                this.Included = !this.Included;
 
-            if (Included)
-            {
-                this.Background = this.included_mouseEnterColor;
-                //this.this_Included_mouseEnter(this, e);
-            }
-            else
-            {
-                this.Background = this.mouseEnterColor;
-                //this.this_NotIncluded_mouseEnter(this, e);
+                if (Included)
+                {
+                    this.Background = this.included_mouseEnterColor;
+                    //this.this_Included_mouseEnter(this, e);
+                }
+                else
+                {
+                    this.Background = this.mouseEnterColor;
+                    //this.this_NotIncluded_mouseEnter(this, e);
+                }
             }
         }
         

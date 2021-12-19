@@ -47,7 +47,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         private void TableCollection_TablesLoad(object sender, EventArgs e)
         {
             loadCategories();
-            loadGenres();
+            LoadGenres();
         }
 
         private MoreInfoFormVisualizer moreInfoVisualizer;
@@ -69,7 +69,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
             set { controlInBuffer = value; }
         }
 
-        public void loadGenres()
+        public void LoadGenres()
         {
             genres_panel.Children.Clear();
             foreach (Genre genre in MainInfo.Tables.GenresTable)
@@ -86,6 +86,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
 
         private void lockNotSerialGenreButtons()
         {
+            /*
             foreach (GenrePressButtonControl button in genres_panel.Children)
             {
                 if (!button.Genre.IsSerialGenre)
@@ -94,14 +95,17 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
                     button.PressButton.ClickLocked = true;
                 }
             }
+            */
         }
         private void unLockGenreButtons()
         {
+            /*
             foreach (GenrePressButtonControl button in genres_panel.Children)
             {
                 button.PressButton.ClickLocked = false;
                 button.PressButton.Included = true;
             }
+            */
         }
 
         public void loadFilmTable()

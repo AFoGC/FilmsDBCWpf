@@ -98,6 +98,26 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\WatchedRequestControl.xaml.cs">
       <DependentUpon>WatchedRequestControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\ABookElementControl.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookCategoryControl.xaml.cs">
+      <DependentUpon>BookCategoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookControl.xaml.cs">
+      <DependentUpon>BookControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookSimpleControl.xaml.cs">
+      <DependentUpon>BookSimpleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\IBooksControls.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksMenuControl.xaml.cs">
+      <DependentUpon>BooksMenuControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\UpdateControls\BookCategoryUpdateControl.xaml.cs">
+      <DependentUpon>BookCategoryUpdateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\UpdateControls\BookUpdateControl.xaml.cs">
+      <DependentUpon>BookUpdateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\AElementControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\CategoryControl.xaml.cs">
       <DependentUpon>CategoryControl.xaml</DependentUpon>
@@ -172,6 +192,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\WatchedRequestControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookCategoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookSimpleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksMenuControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\UpdateControls\BookCategoryUpdateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\UpdateControls\BookUpdateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,7 +305,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\" />
     <Folder Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

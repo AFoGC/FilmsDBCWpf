@@ -18,6 +18,7 @@ namespace WpfApp
 			Tables.SetDefaultMainTableCollection();
 			Settings = new ProgramSettings();
 			TableCollection.TableFilePath = Settings.UsedProfile.MainFilePath;
+			TableCollection.FileEncoding = Encoding.UTF8;
         }
 
 		public static TableCollection TableCollection { get; private set; }

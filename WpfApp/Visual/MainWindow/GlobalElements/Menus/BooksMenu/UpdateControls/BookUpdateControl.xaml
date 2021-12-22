@@ -16,9 +16,6 @@
                     <Setter Property="BorderBrush" Value="#FF353535"/>
                 </Style>
             </ComboBox.ItemContainerStyle>
-            <ComboBoxItem Content="One"/>
-            <ComboBoxItem Content="Two"/>
-            <ComboBoxItem Content="Three"/>
         </ComboBox>
         <TextBox x:Name="name" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="id" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
@@ -36,9 +33,6 @@
                     <Setter Property="BorderBrush" Value="#FF353535"/>
                 </Style>
             </ComboBox.ItemContainerStyle>
-            <ComboBoxItem Content="One"/>
-            <ComboBoxItem Content="Two"/>
-            <ComboBoxItem Content="Three"/>
         </ComboBox>
         <TextBox x:Name="countOfReadings" HorizontalAlignment="Left" Margin="701,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" Margin="737,0,105,0" ClickMode="Release" Padding="0,0,0,0" Height="20" Width="100" VerticalAlignment="Top" Click="btn_comment_Click">

@@ -32,7 +32,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btn_update" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="90" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke">
+        <Button x:Name="btn_update" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="90" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Click="btn_update_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

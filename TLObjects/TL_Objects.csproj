@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TablesLibrary\TablesLibrary\TablesLibrary.csproj" />
+    <Reference Include="TablesLibrary">
+      <HintPath>..\TablesLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

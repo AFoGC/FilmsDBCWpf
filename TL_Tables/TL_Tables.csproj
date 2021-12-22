@@ -1,12 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TablesLibrary\TablesLibrary\TablesLibrary.csproj" />
     <ProjectReference Include="..\TLObjects\TL_Objects.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TablesLibrary">
+      <HintPath>..\TablesLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

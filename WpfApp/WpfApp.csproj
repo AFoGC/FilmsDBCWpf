@@ -46,6 +46,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="TablesLibrary">
+      <HintPath>..\TablesLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -287,10 +290,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\TablesLibrary\TablesLibrary\TablesLibrary.csproj">
-      <Project>{6389a55e-2582-4996-b0f4-eaa7f1078a84}</Project>
-      <Name>TablesLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BL_Films\BL_Films.csproj">
       <Project>{cd17bda4-6aca-49bd-8188-59df8b0bad85}</Project>
       <Name>BL_Films</Name>

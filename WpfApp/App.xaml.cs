@@ -17,7 +17,7 @@ namespace WpfApp
         
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            MainInfo.TableCollection.LoadTables(System.Text.Encoding.UTF8);
+            MainInfo.TableCollection.LoadTables();
         }
     }
 }

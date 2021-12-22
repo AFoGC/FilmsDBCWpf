@@ -10,7 +10,7 @@
         x:Class="WpfApp.Visual.MainWindow.MainWindow"
         mc:Ignorable="d"
         Title="MainForm" Height="697" Width="1485"
-        WindowStyle="None" Background="{x:Null}" MinWidth="1485" MinHeight="755" ResizeMode="NoResize">
+        WindowStyle="None" Background="{x:Null}" MinWidth="1485" MinHeight="755" ResizeMode="NoResize" Closing="Window_Closing" KeyDown="Window_KeyDown">
     <Grid x:Name="grid" Background="#FF121212">
         <GlobalElements:MainHeaderControl x:Name="mainHeader" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="1485"/>
         <GlobalElements:Navbar HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="1485"/>

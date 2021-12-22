@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="500">
-    <Grid Background="#FF121212" MouseDown="mainHeader_MouseDown">
+    <Grid Background="#FF121212" MouseDown="mainHeader_MouseDown" Height="30">
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-        <Button x:Name="btn_close" Content="X" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Padding="0,0,0,0" Height="30" Click="btn_close_Click" HorizontalAlignment="Right" Width="40">
+        <Button x:Name="btn_close" Content="X" Foreground="WhiteSmoke" Padding="0,0,0,0" Click="btn_close_Click" HorizontalAlignment="Right" Width="40">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -34,7 +34,31 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btn_maximize" Content="#" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Padding="0,0,0,0" Height="30" Margin="0,0,40,0" ClickMode="Release" HorizontalAlignment="Right" Width="40">
+        <Button x:Name="btn_maximize" Content="#" Foreground="WhiteSmoke" Padding="0,0,0,0" Margin="0,0,40,0" ClickMode="Release" HorizontalAlignment="Right" Width="40" Click="btn_maximize_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btn_minimize" Content="_" Foreground="WhiteSmoke" Padding="0,0,0,0" Margin="0,0,80,0" ClickMode="Release" HorizontalAlignment="Right" Width="40" Click="btn_minimize_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

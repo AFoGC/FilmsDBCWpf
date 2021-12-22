@@ -39,7 +39,7 @@ namespace WpfApp.Visual.MainWindow
 		}
 
 		public Grid Grid { get { return grid; } }
-		public Canvas Menus { get { return menus; } }
+		public Grid Menus { get { return menus; } }
 
 		public Boolean InfoUnsaved { get; set; } = false;
 		private void boolSaved(object sender, EventArgs e)

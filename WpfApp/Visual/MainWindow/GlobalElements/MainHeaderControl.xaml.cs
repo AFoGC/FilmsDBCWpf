@@ -42,6 +42,21 @@ namespace WpfApp.Visual.MainWindow.GlobalElements
             window.Close();
         }
 
-        
+        private void btn_maximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainInfo.MainWindow.WindowState != WindowState.Maximized)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+            }
+        }
+
+        private void btn_minimize_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
     }
 }

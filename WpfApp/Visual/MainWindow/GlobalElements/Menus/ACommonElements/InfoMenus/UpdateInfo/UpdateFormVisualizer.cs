@@ -10,6 +10,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 {
     public class UpdateFormVisualizer
     {
+		public MoreInfoFormVisualizer MoreVisualizer { get; set; }
 		private UpdateControl updateControl;
 		public UpdateControl UpdateControl { get { return updateControl; } }
 		private bool isOpen = false;
@@ -34,15 +35,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 			this.updateControl = new UpdateControl(this);
 		}
 
-		public void OpenUpdateControl(IControls userControl, MoreInfoFormVisualizer moreVisualizer)
+		public void OpenUpdateControl(IControls userControl)
 		{
 			updateControl.Reinitialize(userControl);
 			parentControl.Children.Remove(updateControl);
 			parentControl.Children.Add(updateControl);
 
-			if (moreVisualizer.IsOpen)
+			if (MoreVisualizer.IsOpen)
 			{
-				moreVisualizer.HideMoreInfoControl();
+				MoreVisualizer.HideMoreInfoControl();
 			}
 			if (sourcesVisualizer.IsOpen)
 			{

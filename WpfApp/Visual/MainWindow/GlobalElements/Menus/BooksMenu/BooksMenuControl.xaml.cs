@@ -36,6 +36,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             InitializeComponent();
             moreInfoVisualizer = new MoreInfoFormVisualizer(infoCanvas);
             updateVisualizer = new UpdateFormVisualizer(infoCanvas);
+            moreInfoVisualizer.UpdateVisualizer = updateVisualizer;
+            updateVisualizer.MoreVisualizer = moreInfoVisualizer;
             MainInfo.TableCollection.TableLoad += new EventHandler(this.TableCollection_TablesLoad);
         }
 

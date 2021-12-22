@@ -8,7 +8,7 @@
              d:DesignHeight="90" d:DesignWidth="940">
     <Grid>
         <WrapPanel x:Name="canvas_main" Margin="0,30,0,0"/>
-        <Button x:Name="btn_exit" Content="X" HorizontalAlignment="Left" Margin="917,3,0,0" VerticalAlignment="Top" Width="20" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Click="btn_exit_Click">
+        <Button x:Name="btn_exit" Content="X" HorizontalAlignment="Left" Margin="917,3,0,0" VerticalAlignment="Top" Width="20" Height="20" Foreground="WhiteSmoke" Click="btn_exit_Click" Background="{x:Null}">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -32,7 +32,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btn_update" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="90" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Click="btn_update_Click">
+        <Button x:Name="btn_update" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="90" Height="20" Foreground="WhiteSmoke" Click="btn_update_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

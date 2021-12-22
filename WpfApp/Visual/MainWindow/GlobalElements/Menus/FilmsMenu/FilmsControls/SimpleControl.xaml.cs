@@ -102,7 +102,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         private void btn_moreInfo_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.MainWindow.FilmsMenu.MoreInfoVisualizer.OpenMoreInfoForm(this, MainInfo.MainWindow.FilmsMenu.UpdateVisualizer);
+            MainInfo.MainWindow.FilmsMenu.MoreInfoVisualizer.OpenMoreInfoForm(this);
         }
     }
 }

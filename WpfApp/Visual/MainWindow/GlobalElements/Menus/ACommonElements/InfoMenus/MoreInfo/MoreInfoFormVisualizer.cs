@@ -9,7 +9,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 {
 	public class MoreInfoFormVisualizer
 	{
-
+		public UpdateFormVisualizer UpdateVisualizer { get; set; }
 		private MoreInfoControl infoControl;
 		public MoreInfoControl MoreInfoControl
 		{
@@ -29,7 +29,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 			this.infoControl = new MoreInfoControl(this);
 		}
 		
-		public void OpenMoreInfoForm(ISimpleControl simpleControl, UpdateFormVisualizer updateVisualizer)
+		public void OpenMoreInfoForm(ISimpleControl simpleControl)
 		{
 			parentControl.Children.Remove(infoControl);
 			infoControl.Reinitialize(simpleControl);
@@ -37,9 +37,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 			
 			
 
-			if (updateVisualizer.IsOpen)
+			if (UpdateVisualizer.IsOpen)
 			{
-				updateVisualizer.HideUpdateControl();
+				UpdateVisualizer.HideUpdateControl();
 			}
 
 			isOpen = true;

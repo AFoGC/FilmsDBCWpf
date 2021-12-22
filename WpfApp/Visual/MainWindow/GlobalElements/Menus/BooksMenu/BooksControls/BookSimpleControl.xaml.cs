@@ -84,7 +84,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         private void btn_moreInfo_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.MainWindow.BooksMenu.MoreInfoVisualizer.OpenMoreInfoForm(this, MainInfo.MainWindow.BooksMenu.UpdateVisualizer);
+            MainInfo.MainWindow.BooksMenu.MoreInfoVisualizer.OpenMoreInfoForm(this);
         }
     }
 }

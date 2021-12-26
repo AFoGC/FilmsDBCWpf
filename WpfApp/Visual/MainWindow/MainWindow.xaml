@@ -7,6 +7,7 @@
         xmlns:GlobalElements="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements" 
         xmlns:FilmsMenu="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu" 
         xmlns:BooksMenu="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu" 
+        xmlns:SettingsMenu="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu"
         x:Class="WpfApp.Visual.MainWindow.MainWindow"
         mc:Ignorable="d"
         Title="MainForm" Height="697" Width="1485"
@@ -19,6 +20,7 @@
         <Grid x:Name="menus" Margin="0,50,0,0">
             <FilmsMenu:FilmsMenuControl x:Name="films_menu" Margin="0,0,0,0" Panel.ZIndex="3"/>
             <BooksMenu:BooksMenuControl x:Name="books_menu" Margin="0,0,0,0" Panel.ZIndex="2"/>
+            <SettingsMenu:SettingsMenuControl x:Name="settings_menu" Margin="0,0,0,0" Panel.ZIndex="1"/>
         </Grid>
 
 

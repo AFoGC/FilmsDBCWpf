@@ -48,6 +48,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements
         private void settings_Click(object sender, RoutedEventArgs e)
         {
             changeSelectedButton((PressButton)sender);
+            ChangePriorityMenu(MainInfo.MainWindow.SettingsMenu);
         }
 
         private void changeSelectedButton(PressButton pressButton)

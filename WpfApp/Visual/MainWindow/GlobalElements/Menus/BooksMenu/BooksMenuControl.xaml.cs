@@ -16,6 +16,7 @@ using TL_Objects;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenus.MoreInfo;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenus.UpdateInfo;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.MenuElements;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
@@ -31,6 +32,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             Book = 2,
             PriorityBook = 3
         }
+
+        public MenuCondition ControlsCondition { get; private set; }
         public BooksMenuControl()
         {
             InitializeComponent();
@@ -76,7 +79,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             genres_panel.Children.Clear();
             foreach (BookGenre genre in MainInfo.Tables.BookGenresTable)
             {
-                //genres_panel.Children.Add(new GenrePressButtonControl(genre));
+                genres_panel.Children.Add(new BookGenrePressButtonControl(genre));
             }
         }
 
@@ -84,6 +87,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
         {
             clearControls();
             controlInBuffer = null;
+            ControlsCondition = MenuCondition.Category;
 
             foreach (BookCategory category in MainInfo.Tables.BookCategoriesTable)
             {
@@ -96,7 +100,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
                     tableControls.Add(new BookSimpleControl(book));
             }
 
-            //controlsPanel.Children.AddRange(tableControls.ToArray());
             foreach (var item in tableControls)
             {
                 controlsPanel.Children.Add(item);
@@ -107,15 +110,23 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
         {
             MainInfo.Tables.BooksTable.AddElement();
             Book book = MainInfo.Tables.BooksTable.GetLastElement;
-            IControls control = new BookSimpleControl(book);
+            IControls control;
+            switch (ControlsCondition)
+            {
+                case MenuCondition.Category:
+                    control = new BookSimpleControl(book);
+                    tableControls.Add((UserControl)control);
+                    controlsPanel.Children.Add((UserControl)control);
+                    break;
 
-            tableControls.Add((UserControl)control);
-            controlsPanel.Children.Add((UserControl)control);
+                default:
+                    break;
+            }
         }
 
         private void btn_addCategory_Click(object sender, RoutedEventArgs e)
         {
-            //if (controlsCondition == MenuCondition.Category)
+            if (ControlsCondition == MenuCondition.Category)
             {
                 MainInfo.Tables.BookCategoriesTable.AddElement();
                 BookCategoryControl categoryControl = new BookCategoryControl(MainInfo.Tables.BookCategoriesTable.GetLastElement);
@@ -125,7 +136,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
 
         private void btn_filter_Click(object sender, RoutedEventArgs e)
         {
-            /*
             controlsPanel.Children.Clear();
             BookGenre[] genres = getSelectedGenres();
 
@@ -140,29 +150,26 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
                 }
                 else
                 {
-                    if (control.HasSelectedGenre(genres) && control.HasWatchedProperty(watchedRequestControl.IsWatched))
+                    if (control.HasSelectedGenre(genres) && control.HasReadedProperty(watchedRequestControl.IsWatched))
                     {
                         controlsPanel.Children.Add((UserControl)control);
                     }
                 }
             }
-            */
+            
         }
 
         private BookGenre[] getSelectedGenres()
         {
-            throw new NotImplementedException();
-            /*
             List<BookGenre> genres = new List<BookGenre>();
-            foreach (BookGenrePressButton requestControl in flowLayoutPanel_requestsGenres.Controls)
+            foreach (BookGenrePressButtonControl requestControl in genres_panel.Children)
             {
-                if (requestControl.Included)
+                if (requestControl.PressButton.Included)
                 {
                     genres.Add(requestControl.Genre);
                 }
             }
             return genres.ToArray();
-            */
         }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)

@@ -16,10 +16,38 @@ namespace TL_Tables
         {
             Table<Film> filmsTable = tablesCollection.GetTable<Film>();
 
+            foreach (Film film in filmsTable)
+            {
+                if (film.Genre.IsSerialGenre)
+                {
+                    FindAndConnectSerie(film);
+                }
+            }
+
             foreach (Serie serie in this)
             {
-                serie.Film = filmsTable.GetElementByIndex(serie.FilmId);
+                if (serie.Film == null)
+                {
+                    serie.Film = filmsTable.GetElementByIndex(serie.FilmId);
+                }
             }
+        }
+
+        public Serie FindAndConnectSerie(Film film)
+        {
+            foreach (Serie serie in this)
+            {
+                if (serie.FilmId == film.ID)
+                {
+                    return serie;
+                }
+            }
+
+            Serie ser = new Serie();
+            ser.Film = film;
+            this.AddElement(ser);
+
+            return ser;
         }
     }
 }

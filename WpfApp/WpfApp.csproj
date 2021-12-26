@@ -73,6 +73,15 @@
     <Compile Include="Visual\HelpWindows\ExitWindow\ExitWindow.xaml.cs">
       <DependentUpon>ExitWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\HelpWindows\RAWindow\Controls\AuthenticationControl.xaml.cs">
+      <DependentUpon>AuthenticationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\HelpWindows\RAWindow\Controls\RegistrationControl.xaml.cs">
+      <DependentUpon>RegistrationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\HelpWindows\RAWindow\RAWindow.xaml.cs">
+      <DependentUpon>RAWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\MainHeaderControl.xaml.cs">
       <DependentUpon>MainHeaderControl.xaml</DependentUpon>
     </Compile>
@@ -95,6 +104,9 @@
       <DependentUpon>UpdateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\UpdateFormVisualizer.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\BookGenrePressButtonControl.xaml.cs">
+      <DependentUpon>BookGenrePressButtonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\GenrePressButtonControl.xaml.cs">
       <DependentUpon>GenrePressButtonControl.xaml</DependentUpon>
     </Compile>
@@ -170,6 +182,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Visual\HelpWindows\RAWindow\Controls\AuthenticationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\HelpWindows\RAWindow\Controls\RegistrationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\HelpWindows\RAWindow\RAWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Visual\MainWindow\GlobalElements\MainHeaderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -189,6 +213,10 @@
     <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\UpdateControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\BookGenrePressButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\GenrePressButtonControl.xaml">
       <SubType>Designer</SubType>

@@ -253,8 +253,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
                 CategoriesTable categoryTable = MainInfo.Tables.CategoriesTable;
                 categoryTable.AddElement();
                 CategoryControl categoryControl = new CategoryControl((Category)categoryTable.GetLastElement);
-                //controlsPanel.Children.Add(categoryControl);
-                //controlsPanel.Children.SetChildIndex(categoryControl, categoryTable.Count - 1);
                 controlsPanel.Children.Insert(categoryTable.Count - 1, categoryControl);
             }
         }

@@ -61,6 +61,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
         public void UpdateElement()
         {
             film.Name = this.name.Text;
+            if (!film.Genre.IsSerialGenre && ((Genre)this.genre.SelectedItem).IsSerialGenre)
+            {
+                MainInfo.Tables.SeriesTable.FindAndConnectSerie(film);
+            }
             film.Genre = (Genre)this.genre.SelectedItem;
             film.RealiseYear = VisualHelper.TextToInt32(this.realiseYear.Text);
             film.Watched = (bool)this.watched.IsChecked;
@@ -97,6 +101,16 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
             {
                 countOfViews.Text = "1";
             }
+        }
+
+        private void genre_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*
+            if (((Genre)genre.SelectedItem).IsSerialGenre)
+            {
+                MainInfo.MainWindow.FilmsMenu.UpdateVisualizer.OpenUpdateControl(filmControl);
+            }
+            */
         }
     }
 }

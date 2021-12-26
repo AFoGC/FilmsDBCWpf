@@ -9,7 +9,7 @@
              d:DesignHeight="40" d:DesignWidth="940">
     <Grid x:Name="grid" HorizontalAlignment="Center" Width="940" Height="20" VerticalAlignment="Top">
         <ComboBox x:Name="genre" Background="#FF353535" Margin="210,0,0,0" HorizontalAlignment="Left" Width="100" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
-                  Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke" Height="20">
+                  Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke" Height="20" SelectionChanged="genre_SelectionChanged">
             <ComboBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ComboBoxItem}">
                     <Setter Property="Background" Value="#FF353535"/>

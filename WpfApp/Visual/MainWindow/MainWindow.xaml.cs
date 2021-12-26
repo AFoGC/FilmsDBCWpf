@@ -15,6 +15,7 @@ using BL_Films;
 using WpfApp.Visual.HelpWindows.ExitWindow;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu;
 
 namespace WpfApp.Visual.MainWindow
 {
@@ -37,7 +38,10 @@ namespace WpfApp.Visual.MainWindow
 		{
 			get { return books_menu; }
 		}
-
+		public SettingsMenuControl SettingsMenu
+        {
+			get { return settings_menu; }
+        }
 		public Grid Grid { get { return grid; } }
 		public Grid Menus { get { return menus; } }
 

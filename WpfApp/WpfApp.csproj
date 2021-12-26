@@ -147,6 +147,12 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\SerieUpdateControl.xaml.cs">
       <DependentUpon>SerieUpdateControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml.cs">
+      <DependentUpon>SettingsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsMenuControl.xaml.cs">
+      <DependentUpon>SettingsMenuControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Navbar.xaml.cs">
       <DependentUpon>Navbar.xaml</DependentUpon>
     </Compile>
@@ -254,6 +260,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Navbar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -303,8 +317,6 @@
       <Name>TL_Tables</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

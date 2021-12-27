@@ -37,7 +37,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
             SettingsList.RefreshControl();
         }
 
-        private void clickButton_embraceSettings_Click(object sender, EventArgs e)
+        private void Embrace_Click(object sender, RoutedEventArgs e)
         {
             foreach (ISettingsControl setting in SettingsListPanel.Children)
             {

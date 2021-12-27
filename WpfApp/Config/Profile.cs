@@ -5,18 +5,23 @@ using System.Text;
 
 namespace WpfApp.Config
 {
+	[Serializable]
 	public class Profile
 	{
-		private String name = "";
-
+		public Profile()
+        {
+			
+        }
 		public Profile(String name)
 		{
 			this.name = name;
 		}
 
+		private String name = "";
 		public String Name
 		{
 			get { return name; }
+            set { name = value; }
 		}
 
 		public static String AllProfilesPath

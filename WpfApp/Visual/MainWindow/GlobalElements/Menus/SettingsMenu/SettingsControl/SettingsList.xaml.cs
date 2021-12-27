@@ -77,7 +77,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
                 RenameProfileComboBox.Items.Add(prof);
                 RemoveProfileComboBox.Items.Add(prof);
 
-                if (prof == usedProfile)
+                if (prof.Name == usedProfile.Name)
                 {
                     ProfileComboBox.SelectedItem = prof;
                 }

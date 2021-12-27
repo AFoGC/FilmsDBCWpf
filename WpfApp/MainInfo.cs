@@ -16,7 +16,7 @@ namespace WpfApp
 			MainWindow = (MainWindow)App.Current.MainWindow;
 
 			Tables.SetDefaultMainTableCollection();
-			Settings = new ProgramSettings();
+			Settings = ProgramSettings.Initialize();
 			TableCollection.TableFilePath = Settings.UsedProfile.MainFilePath;
 			TableCollection.FileEncoding = Encoding.UTF8;
         }
@@ -64,6 +64,8 @@ namespace WpfApp
 				export.AddTable(new DefaultTable<BookGenre>());
 				export.AddTable(new DefaultTable<Book>());
 				export.AddTable(new DefaultTable<BookCategory>());
+
+				export.FileEncoding = Encoding.UTF8;
 
 				return export;
 			}

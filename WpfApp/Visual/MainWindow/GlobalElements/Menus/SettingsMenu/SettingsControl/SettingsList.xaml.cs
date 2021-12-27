@@ -58,6 +58,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
         {
             MainInfo.Settings.UsedProfile = usedProfile;
             MainInfo.TableCollection.TableFilePath = usedProfile.MainFilePath;
+            MainInfo.Settings.SaveSettings();
         }
 
         public void RefreshControl()

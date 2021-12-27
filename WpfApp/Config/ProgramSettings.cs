@@ -37,6 +37,16 @@ namespace WpfApp.Config
 
 			return settings;
         }
+
+		public void SaveSettings()
+        {
+			String settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ProgramSetting.xml";
+			XmlSerializer formatter = new XmlSerializer(typeof(ProgramSettings));
+			using (FileStream fs = new FileStream(settingPath, FileMode.OpenOrCreate))
+			{
+				formatter.Serialize(fs, this);
+			}
+		}
 		
 
 		private Profile usedProfile = null;

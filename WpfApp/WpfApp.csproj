@@ -159,6 +159,7 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\SerieUpdateControl.xaml.cs">
       <DependentUpon>SerieUpdateControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ISettingsControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml.cs">
       <DependentUpon>SettingsList.xaml</DependentUpon>
     </Compile>

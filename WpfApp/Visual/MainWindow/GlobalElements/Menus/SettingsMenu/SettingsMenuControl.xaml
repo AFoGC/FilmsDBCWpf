@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1485">
-    <Grid HorizontalAlignment="Left" Height="705" VerticalAlignment="Top" Width="1485" Margin="0,0,-0.2,-0.2"
+    <Grid HorizontalAlignment="Left" Width="1485"
               Background="#FF121212">
         <WrapPanel x:Name="SettingsListPanel" Background="#FF121212" HorizontalAlignment="Left" Height="238" Margin="296,86,0,0" VerticalAlignment="Top" Width="800"/>
     </Grid>

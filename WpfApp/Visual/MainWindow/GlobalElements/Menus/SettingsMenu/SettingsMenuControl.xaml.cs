@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
 {
@@ -27,9 +28,24 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
 
             SettingsList = new SettingsControl.SettingsList();
 
-            //RefreshControl();
+            RefreshControl();
             SettingsListPanel.Children.Add(SettingsList);
         }
-        
+
+        public void RefreshControl()
+        {
+            SettingsList.RefreshControl();
+        }
+
+        private void clickButton_embraceSettings_Click(object sender, EventArgs e)
+        {
+            foreach (ISettingsControl setting in SettingsListPanel.Children)
+            {
+                setting.GetSettings();
+            }
+
+
+            MainInfo.TableCollection.LoadTables();
+        }
     }
 }

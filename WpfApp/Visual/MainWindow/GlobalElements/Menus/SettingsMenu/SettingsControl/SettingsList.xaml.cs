@@ -82,7 +82,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
                     ProfileComboBox.SelectedItem = prof;
                 }
             }
-            ProfileComboBox.SelectedIndex = 0;
+            RemoveProfileComboBox.Text = "";
         }
 
 

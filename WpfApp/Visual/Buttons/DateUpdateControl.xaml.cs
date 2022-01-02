@@ -45,7 +45,7 @@ namespace WpfApp.Visual.Buttons
             }
         }
 
-        private void date_MouseDown(object sender, MouseButtonEventArgs e)
+        private void day_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (day.Text == "" && month.Text == "" && year.Text == "")
             {
@@ -88,6 +88,8 @@ namespace WpfApp.Visual.Buttons
                 }
             }
         }
+
+        
 
         /*
         [Bindable(true)]

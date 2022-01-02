@@ -19,11 +19,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
     /// </summary>
     public partial class SourcesControl : UserControl
     {
-        private List<Source> sources = null;
-        public List<Source> Sources
-        {
-            get { return sources; }
-        }
         private List<Source> exportSources = null;
         public List<Source> ExportSources
         {
@@ -36,22 +31,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
             InitializeComponent();
             parentControl = visualizer.ParentControl;
             Canvas.SetLeft(this, 940);
-
-            sources = new List<Source>();
         }
 
         public void Reinitialize(List<Source> exportSources)
         {
             this.exportSources = exportSources;
             wrapPanel_sources.Children.Clear();
-            while (sources.Count != 0)
-            {
-                sources.Remove(this.sources[0]);
-            }
 
             foreach (Source source in exportSources)
             {
-                sources.Add(source);
                 addElement(source);
             }
         }
@@ -65,7 +53,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
         {
             while (exportSources.Count != 0)
             {
-                exportSources.Remove(sources[0]);
+                exportSources.Remove(exportSources[0]);
             }
 
             foreach (SourceControl sourceControl in wrapPanel_sources.Children)
@@ -74,14 +62,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
             }
         }
 
-        private void button_addElement_Click(object sender, EventArgs e)
-        {
-            addElement(new Source());
-        }
-
         public WrapPanel FlowLayoutPanel_sources
         {
             get { return wrapPanel_sources; }
+        }
+
+        private void button_addElement_Click(object sender, RoutedEventArgs e)
+        {
+            addElement(new Source());
         }
     }
 }

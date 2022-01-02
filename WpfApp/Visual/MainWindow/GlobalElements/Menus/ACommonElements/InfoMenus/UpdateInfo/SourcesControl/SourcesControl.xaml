@@ -32,7 +32,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="20" Margin="85,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke">
+        <Button Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="20" Margin="85,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="WhiteSmoke" Click="button_addElement_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

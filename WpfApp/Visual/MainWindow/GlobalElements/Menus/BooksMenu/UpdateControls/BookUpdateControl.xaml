@@ -17,12 +17,12 @@
                 </Style>
             </ComboBox.ItemContainerStyle>
         </ComboBox>
-        <TextBox x:Name="name" ToolTip="Name" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="realiseYear" ToolTip="Realise Year" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="name" ToolTip="Name" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="realiseYear" ToolTip="Realise Year" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <CheckBox x:Name="readed" ToolTip="Readed" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" Click="watched_Click"/>
-        <TextBox x:Name="author" ToolTip="Author" HorizontalAlignment="Left" Margin="395,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="bookmark" ToolTip="Bookmark" HorizontalAlignment="Left" Margin="495,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="101" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="author" ToolTip="Author" HorizontalAlignment="Left" Margin="395,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="100" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="bookmark" ToolTip="Bookmark" HorizontalAlignment="Left" Margin="495,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="101" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
 
         <Buttons:DateUpdateControl x:Name="fullReadDate" ToolTip="Full Read Date" HorizontalAlignment="Left" Margin="596,0,0,0" VerticalAlignment="Top" Background="#FF353535" Foreground="Red" BorderThickness="1" BorderBrush="#FF7A7A7A" Width="60"/>
         <ComboBox x:Name="mark" ToolTip="Mark" Background="#FF353535" Margin="656,0,0,0" HorizontalAlignment="Left" Width="45" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"

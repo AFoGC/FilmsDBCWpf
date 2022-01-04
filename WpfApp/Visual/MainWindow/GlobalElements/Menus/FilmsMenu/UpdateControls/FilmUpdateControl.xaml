@@ -17,8 +17,8 @@
                 </Style>
             </ComboBox.ItemContainerStyle>
         </ComboBox>
-        <TextBox x:Name="name" ToolTip="Name" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="name" ToolTip="Name" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="realiseYear" ToolTip="Realise Year" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke" MaxLength="4"/>
         <CheckBox x:Name="watched" ToolTip="Watched" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" Click="watched_Click"/>
 
@@ -32,7 +32,7 @@
                 </Style>
             </ComboBox.ItemContainerStyle>
         </ComboBox>
-        <TextBox x:Name="countOfViews" ToolTip="Count Of Views" HorizontalAlignment="Left" Margin="503,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="countOfViews" ToolTip="Count Of Views" HorizontalAlignment="Left" Margin="503,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" RenderTransformOrigin="0.48,-0.933" Margin="670,0,170,0" ClickMode="Release" Padding="0,0,0,0" Height="20" VerticalAlignment="Top" Click="btn_comment_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

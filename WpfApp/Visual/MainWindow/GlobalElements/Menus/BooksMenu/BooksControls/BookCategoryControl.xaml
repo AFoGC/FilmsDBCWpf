@@ -10,9 +10,9 @@
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="id" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="42" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="name" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="mark" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="42" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <WrapPanel x:Name="cat_panel" Margin="31,15,0,0" Orientation="Vertical">
 
         </WrapPanel>

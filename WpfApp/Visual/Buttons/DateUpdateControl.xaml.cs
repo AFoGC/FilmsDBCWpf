@@ -89,7 +89,25 @@ namespace WpfApp.Visual.Buttons
             }
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (day.Text == "" && month.Text == "" && year.Text == "")
+            {
+                this.date = DateTime.Today;
+                refresh();
+            }
+        }
+
+        private void Grid_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (day.Text == "" && month.Text == "" && year.Text == "")
+            {
+                this.date = DateTime.Today;
+                refresh();
+            }
+        }
+
+
 
         /*
         [Bindable(true)]

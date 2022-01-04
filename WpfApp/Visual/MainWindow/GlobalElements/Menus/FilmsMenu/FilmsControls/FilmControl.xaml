@@ -7,19 +7,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="940">
     <Grid x:Name="grid" Height="15" Width="940">
-        <TextBox x:Name="id" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="27" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" MouseLeftButtonUp="id_MouseLeftButtonUp"/>
-        <TextBox x:Name="name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
+        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="27" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" MouseLeftButtonUp="id_MouseLeftButtonUp"/>
+        <TextBox x:Name="name" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
         </TextBox>
-        <TextBox x:Name="genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
+        <TextBox x:Name="genre" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
         </TextBox>
-        <TextBox x:Name="realiseYear" IsReadOnly="True" HorizontalAlignment="Left" Margin="311,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
+        <TextBox x:Name="realiseYear" ToolTip="Realise Year" IsReadOnly="True" HorizontalAlignment="Left" Margin="311,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
         </TextBox>
-        <CheckBox x:Name="watched" Content="" HorizontalAlignment="Left" Margin="360,0,0,0" VerticalAlignment="Top" Click="watched_Click"/>
-        <TextBox x:Name="watchDate" IsReadOnly="True" HorizontalAlignment="Left" Margin="396,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="58" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
+        <CheckBox x:Name="watched" ToolTip="Watched" Content="" HorizontalAlignment="Left" Margin="360,0,0,0" VerticalAlignment="Top" Click="watched_Click"/>
+        <TextBox x:Name="watchDate" ToolTip="Watche Date" IsReadOnly="True" HorizontalAlignment="Left" Margin="396,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="58" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
         </TextBox>
-        <TextBox x:Name="mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="456,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="43" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
+        <TextBox x:Name="mark" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="456,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="43" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
         </TextBox>
-        <TextBox x:Name="countOfviews" IsReadOnly="True" HorizontalAlignment="Left" Margin="501,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
+        <TextBox x:Name="countOfviews" ToolTip="Count Of Views" IsReadOnly="True" HorizontalAlignment="Left" Margin="501,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
         </TextBox>
         <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" RenderTransformOrigin="0.48,-0.933" Margin="658,1,206,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Height="13" VerticalAlignment="Top" Click="btn_comment_Click">
             <Button.Style>
@@ -93,7 +93,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="comment" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,16,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="498" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="comment" ToolTip="Comment" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,16,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="498" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
 
     </Grid>
 </local:AElementControl>

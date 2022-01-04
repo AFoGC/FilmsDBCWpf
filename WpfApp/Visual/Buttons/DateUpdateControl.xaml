@@ -11,9 +11,9 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="dot1" HorizontalAlignment="Left" Content="." VerticalAlignment="Top" Width="5" BorderBrush="{x:Null}" Height="18" BorderThickness="1" Padding="0, 0, -1, 0" Margin="13,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke"/>
         <Label x:Name="dot2" HorizontalAlignment="Left" Content="." VerticalAlignment="Top" Width="5" BorderBrush="{x:Null}" Height="18" BorderThickness="1" Padding="0, 0, -1, 0" Margin="29,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="day" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="14" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="2" MouseDown="date_MouseDown" MouseLeftButtonDown="day_MouseLeftButtonDown" MouseUp="day_MouseUp"/>
-        <TextBox x:Name="month" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="15" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Margin="16,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="2" MouseDown="date_MouseDown" MouseUp="day_MouseUp"/>
-        <TextBox x:Name="year" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="25" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Margin="33,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="4" MouseDown="date_MouseDown" MouseUp="day_MouseUp"/>
+        <TextBox x:Name="day" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="14" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="2" MouseUp="day_MouseUp"/>
+        <TextBox x:Name="month" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="15" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Margin="16,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="2" MouseUp="day_MouseUp"/>
+        <TextBox x:Name="year" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="25" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Margin="33,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="4" MouseUp="day_MouseUp"/>
 
     </Grid>
 </UserControl>

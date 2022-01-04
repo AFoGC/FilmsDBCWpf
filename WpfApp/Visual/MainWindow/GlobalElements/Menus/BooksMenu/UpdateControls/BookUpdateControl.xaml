@@ -18,7 +18,7 @@
             </ComboBox.ItemContainerStyle>
         </ComboBox>
         <TextBox x:Name="name" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="id" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="id" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="realiseYear" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <CheckBox x:Name="readed" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" Click="watched_Click"/>
         <TextBox x:Name="author" HorizontalAlignment="Left" Margin="395,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
@@ -35,7 +35,7 @@
             </ComboBox.ItemContainerStyle>
         </ComboBox>
         <TextBox x:Name="countOfReadings" HorizontalAlignment="Left" Margin="701,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" Margin="737,0,105,0" ClickMode="Release" Padding="0,0,0,0" Height="20" Width="100" VerticalAlignment="Top" Click="btn_comment_Click">
+        <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" Margin="734,0,106,0" ClickMode="Release" Padding="0,0,0,0" Height="20" Width="100" VerticalAlignment="Top" Click="btn_comment_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -59,7 +59,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btn_sources" Content="update source" Foreground="WhiteSmoke" Margin="837,0,3,0" ClickMode="Release" Padding="0,0,0,0" Height="20" VerticalAlignment="Top" Click="btn_sources_Click">
+        <Button x:Name="btn_sources" Content="update source" Foreground="WhiteSmoke" Margin="834,0,6,0" ClickMode="Release" Padding="0,0,0,0" Height="20" VerticalAlignment="Top" Click="btn_sources_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

@@ -24,9 +24,11 @@ namespace WpfApp.Visual.MainWindow
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		
 		public MainWindow()
 		{
 			InitializeComponent();
+			
 		}
 
 		public FilmsMenuControl FilmsMenu
@@ -75,5 +77,6 @@ namespace WpfApp.Visual.MainWindow
 				MainInfo.TableCollection.SaveTables();
 			}
 		}
+
     }
 }

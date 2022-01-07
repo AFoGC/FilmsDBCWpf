@@ -9,10 +9,10 @@ namespace BL_Films
 {
     public class FilmsBL
     {
-        public static int Add_User(int id, string username, string password)
+        public static int Add_User(string username, string password)
         {
             FilmsBO filmsBO = new FilmsBO();
-            filmsBO.id = id;
+            filmsBO.id = Guid.NewGuid();
             filmsBO.username = username;
             filmsBO.password = password;
             int row = (new FilmsDAL()).Add(filmsBO);

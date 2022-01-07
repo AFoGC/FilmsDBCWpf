@@ -147,6 +147,9 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\SerieUpdateControl.xaml.cs">
       <DependentUpon>SerieUpdateControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml.cs">
       <DependentUpon>SettingsList.xaml</DependentUpon>
     </Compile>
@@ -260,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -317,6 +324,14 @@
       <Name>TL_Tables</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Welcome.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Welcome-White-Text-Transparent-PNG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\White-Stars-on-transparent-background-PNG.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

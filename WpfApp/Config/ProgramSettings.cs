@@ -2,30 +2,52 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml.Serialization;
 using TablesLibrary.Interpreter;
 
 namespace WpfApp.Config
 {
-	public class ProgramSettings : Cell
+	[Serializable]
+	public class ProgramSettings
 	{
-		public ProgramSettings()
-		{
-			profiles.LoadProfiles();
+		private ProgramSettings()
+        {
+			this.profiles.LoadProfiles();
+        }
 
-			
-			String settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\Program.properties";
+		public static ProgramSettings Initialize()
+        {
+			String settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ProgramSetting.xml";
+			XmlSerializer formatter = new XmlSerializer(typeof(ProgramSettings));
 
-			Comand comand = new Comand();
-			using (System.IO.StreamReader sr = new System.IO.StreamReader(settingPath, System.Text.Encoding.Default))
-			{
-				comand.getComand(sr.ReadLine());
-				if (comand.Paramert == "ProgramSettings")
+			ProgramSettings settings = new ProgramSettings();
+
+            if (!File.Exists(settingPath))
+            {
+				using (FileStream fs = new FileStream(settingPath, FileMode.OpenOrCreate))
 				{
-					this.loadCell(sr, comand);
+					formatter.Serialize(fs, settings);
 				}
 			}
 
+			using (FileStream fs = new FileStream(settingPath, FileMode.Open))
+			{
+				settings = (ProgramSettings)formatter.Deserialize(fs);
+			}
+
+			return settings;
+        }
+
+		public void SaveSettings()
+        {
+			String settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ProgramSetting.xml";
+			XmlSerializer formatter = new XmlSerializer(typeof(ProgramSettings));
+			using (FileStream fs = new FileStream(settingPath, FileMode.OpenOrCreate))
+			{
+				formatter.Serialize(fs, this);
+			}
 		}
+		
 
 		private Profile usedProfile = null;
 		public Profile UsedProfile
@@ -48,34 +70,6 @@ namespace WpfApp.Config
 			get { return profiles; }
 		}
 
-		private int markSystem = 0;
-		public int MarkSystem
-		{
-			get { return markSystem; }
-			set { markSystem = value; }
-		}
-
-		protected override void updateThisBody(Cell cell)
-		{
-			throw new NotImplementedException();
-		}
-
-		protected override void saveBody(StreamWriter streamWriter)
-		{
-			streamWriter.Write(FormatParam(nameof(usedProfile), usedProfile.ToString(), "", 1));
-		}
-
-		protected override void loadBody(Comand comand)
-		{
-			switch (comand.Paramert)
-			{
-				case "usedProfile":
-					this.usedProfile = profiles.GetProfileToUsed(comand.Value);
-					break;
-
-				default:
-					break;
-			}
-		}
+		public int MarkSystem { get; set; }
 	}
 }

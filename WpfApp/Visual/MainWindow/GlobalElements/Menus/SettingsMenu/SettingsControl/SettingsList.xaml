@@ -8,7 +8,7 @@
              d:DesignHeight="200" d:DesignWidth="800" >
     <Grid x:Name="Grid" Background="#FF121212">
         <TextBlock x:Name="ProfileTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Profile:" VerticalAlignment="Top" Height ="20" Width="114" TextAlignment="Right" Foreground="White"/>
-        <TextBox x:Name="ProfileTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="129,0,0,0" TextWrapping="Wrap" Text="Main" VerticalAlignment="Top" Width="312" Foreground="White" BorderBrush="#FF7A7A7A"/>
+        <TextBox x:Name="ProfileTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="129,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="312" Foreground="White" BorderBrush="#FF7A7A7A"/>
         <ComboBox x:Name="ProfileComboBox" Background="#FF353535" HorizontalAlignment="Left" Margin="441,0,0,0" VerticalAlignment="Top" Width="120" Height="20"
                    Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke" BorderBrush="#FF7A7A7A">
             <ComboBox.ItemContainerStyle>
@@ -18,7 +18,7 @@
                 </Style>
             </ComboBox.ItemContainerStyle>
         </ComboBox>
-        <Button x:Name="ChangeProfileButton" Content="Change Profile" HorizontalAlignment="Left" Margin="561,0,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White">
+        <Button x:Name="ChangeProfileButton" Content="Change Profile" HorizontalAlignment="Left" Margin="561,0,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White" Click="ChangeProfileButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -68,7 +68,7 @@
             </Button.Style>
         </Button>
         <TextBlock x:Name="RenameProfileTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rename Profile:" VerticalAlignment="Top" Height ="20" Width="114" Margin="0,20,0,0" TextAlignment="Right" Foreground="White"/>
-        <TextBox x:Name="RenameProfileTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="129,20,0,0" TextWrapping="Wrap" Text="Main" VerticalAlignment="Top" Width="312" Foreground="White" BorderBrush="#FF7A7A7A"/>
+        <TextBox x:Name="RenameProfileTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="129,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="312" Foreground="White" BorderBrush="#FF7A7A7A"/>
         <ComboBox x:Name="RenameProfileComboBox" Background="#FF353535" HorizontalAlignment="Left" Margin="441,20,0,0" VerticalAlignment="Top" Width="120" Height="20"
             Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke" BorderBrush="#FF7A7A7A">
             <ComboBox.ItemContainerStyle>
@@ -78,7 +78,7 @@
                 </Style>
             </ComboBox.ItemContainerStyle>
         </ComboBox>
-        <Button x:Name="RenameProfileButton" Content="Rename Profile" HorizontalAlignment="Left" Margin="561,20,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White">
+        <Button x:Name="RenameProfileButton" Content="Rename Profile" HorizontalAlignment="Left" Margin="561,20,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White" Click="RenameProfileButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -112,7 +112,7 @@
                 </Style>
             </ComboBox.ItemContainerStyle>
         </ComboBox>
-        <Button x:Name="RemoveProfileButton" Content="Remove Profile" HorizontalAlignment="Left" Margin="561,40,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White">
+        <Button x:Name="RemoveProfileButton" Content="Remove Profile" HorizontalAlignment="Left" Margin="561,40,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White" Click="RemoveProfileButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -137,8 +137,8 @@
             </Button.Style>
         </Button>
         <TextBlock x:Name="AddProfileTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Add Profile:" VerticalAlignment="Top" Height ="20" Width="114" Margin="0,60,0,0" TextAlignment="Right" Foreground="White"/>
-        <TextBox x:Name="AddProfileTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="129,60,0,0" TextWrapping="Wrap" Text="Main" VerticalAlignment="Top" Width="432" Foreground="White" BorderBrush="#FF7A7A7A"/>
-        <Button x:Name="AddProfileButton" Content="Add Profile" HorizontalAlignment="Left" Margin="561,60,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White">
+        <TextBox x:Name="AddProfileTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="129,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="432" Foreground="White" BorderBrush="#FF7A7A7A"/>
+        <Button x:Name="AddProfileButton" Content="Add Profile" HorizontalAlignment="Left" Margin="561,60,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White" Click="AddProfileButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

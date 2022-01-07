@@ -9,7 +9,7 @@
              d:DesignWidth="940" d:DesignHeight="40">
     <Grid x:Name="grid" HorizontalAlignment="Center" Width="940" Height="20" VerticalAlignment="Top">
 
-        <ComboBox x:Name="genre" Background="#FF353535" Margin="210,0,0,0" HorizontalAlignment="Left" Width="100" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
+        <ComboBox x:Name="genre" ToolTip="Genre" Background="#FF353535" Margin="210,0,0,0" HorizontalAlignment="Left" Width="100" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
         Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke">
             <ComboBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ComboBoxItem}">
@@ -18,16 +18,16 @@
                 </Style>
             </ComboBox.ItemContainerStyle>
         </ComboBox>
-        <TextBox x:Name="name" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="id" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="realiseYear" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke" MaxLength="4"/>
-        <CheckBox x:Name="watched" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" Click="watched_Click"/>
+        <TextBox x:Name="name" ToolTip="Name" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="realiseYear" ToolTip="Realiser Year" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke" MaxLength="4"/>
+        <CheckBox x:Name="watched" ToolTip="Watched" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" Click="watched_Click"/>
 
-        <Buttons:DateUpdateControl x:Name="startWatchDate" HorizontalAlignment="Left" Margin="396,0,0,0" VerticalAlignment="Top" Background="#FF353535" Foreground="Red" BorderThickness="1" BorderBrush="#FF7A7A7A" Width="62"/>
-        <TextBox x:Name="countOfWatchedSeries" HorizontalAlignment="Left" Margin="458,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <Buttons:DateUpdateControl x:Name="watchDate" HorizontalAlignment="Left" Margin="488,0,0,0" VerticalAlignment="Top" Background="#FF353535" Foreground="Red" BorderThickness="1" BorderBrush="#FF7A7A7A" Width="62"/>
-        <TextBox x:Name="totalSeries" HorizontalAlignment="Left" Margin="550,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <ComboBox x:Name="mark" Background="#FF353535" Margin="580,0,0,0" HorizontalAlignment="Left" Width="45" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
+        <Buttons:DateUpdateControl x:Name="startWatchDate" ToolTip="Start Watch Date" HorizontalAlignment="Left" Margin="396,0,0,0" VerticalAlignment="Top" Background="#FF353535" Foreground="Red" BorderThickness="1" BorderBrush="#FF7A7A7A" Width="62"/>
+        <TextBox x:Name="countOfWatchedSeries" ToolTip="Count Of Watched Series" HorizontalAlignment="Left" Margin="458,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <Buttons:DateUpdateControl x:Name="watchDate" ToolTip="Watch Date" HorizontalAlignment="Left" Margin="488,0,0,0" VerticalAlignment="Top" Background="#FF353535" Foreground="Red" BorderThickness="1" BorderBrush="#FF7A7A7A" Width="62"/>
+        <TextBox x:Name="totalSeries" ToolTip="Total Series" HorizontalAlignment="Left" Margin="550,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <ComboBox x:Name="mark" ToolTip="Mark" Background="#FF353535" Margin="580,0,0,0" HorizontalAlignment="Left" Width="45" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
             Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke">
             <ComboBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ComboBoxItem}">
@@ -36,7 +36,7 @@
                 </Style>
             </ComboBox.ItemContainerStyle>
         </ComboBox>
-        <TextBox x:Name="countOfViews" HorizontalAlignment="Left" Margin="625,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="countOfViews" ToolTip="Count Of Views" HorizontalAlignment="Left" Margin="625,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" RenderTransformOrigin="0.48,-0.933" Margin="670,0,170,0" ClickMode="Release" Padding="0,0,0,0" Height="20" VerticalAlignment="Top" Click="btn_comment_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -85,7 +85,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="comment" HorizontalAlignment="Left" Margin="0,20,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="655" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="comment" ToolTip="Comment" HorizontalAlignment="Left" Margin="0,20,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="655" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
 
     </Grid>
 </UserControl>

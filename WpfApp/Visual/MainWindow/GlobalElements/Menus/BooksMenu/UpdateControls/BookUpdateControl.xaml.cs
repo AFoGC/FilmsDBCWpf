@@ -64,7 +64,17 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
 
         public void UpdateElement()
         {
-            MainInfo.MainWindow.BooksMenu.UpdateVisualizer.SourcesVisualizer.OpenSourceControl(this.book.Sources);
+            book.Name = name.Text;
+            book.BookGenre = (BookGenre)genre.SelectedItem;
+            book.PublicationYear = VisualHelper.TextToInt32(realiseYear.Text);
+            book.Readed = (bool)readed.IsChecked;
+            book.Author = author.Text;
+            book.FullReadDate = fullReadDate.Date;
+            book.Mark = VisualHelper.TextToMark(mark.Text);
+            book.CountOfReadings = VisualHelper.TextToInt32(countOfReadings.Text);
+            book.Bookmark = bookmark.Text;
+
+            bookControl.RefreshData();
         }
 
         private void watched_Click(object sender, RoutedEventArgs e)

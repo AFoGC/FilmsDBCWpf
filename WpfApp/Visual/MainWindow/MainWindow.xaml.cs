@@ -24,11 +24,12 @@ namespace WpfApp.Visual.MainWindow
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		
 		public MainWindow()
 		{
 			InitializeComponent();
-			
+			MainInfo.TableCollection.TableSave += boolSaved;
+
+			InfoUnsaved = false;
 		}
 
 		public FilmsMenuControl FilmsMenu
@@ -47,7 +48,7 @@ namespace WpfApp.Visual.MainWindow
 		public Grid Grid { get { return grid; } }
 		public Grid Menus { get { return menus; } }
 
-		public Boolean InfoUnsaved { get; set; } = false;
+		public Boolean InfoUnsaved { get; set; }
 		private void boolSaved(object sender, EventArgs e)
 		{
 			InfoUnsaved = false;
@@ -72,11 +73,10 @@ namespace WpfApp.Visual.MainWindow
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-			if (e.Key == Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+			if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
 			{
 				MainInfo.TableCollection.SaveTables();
 			}
 		}
-
     }
 }

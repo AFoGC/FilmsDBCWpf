@@ -19,7 +19,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
     /// <summary>
     /// Логика взаимодействия для Registration.xaml
     /// </summary>
-    public partial class Registration : UserControl
+    public partial class Registration : Window
     {
         public Registration()
         {

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
@@ -46,6 +47,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
 
 
             MainInfo.TableCollection.LoadTables();
+        }
+
+
+        private void User_Click_1(object sender, RoutedEventArgs e)
+        {
+            Registration registration = new Registration();
+            registration.Show();
         }
     }
 }

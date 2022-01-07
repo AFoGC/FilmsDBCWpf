@@ -95,6 +95,9 @@
       <DependentUpon>UpdateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\UpdateFormVisualizer.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\BookGenrePressButtonControl.xaml.cs">
+      <DependentUpon>BookGenrePressButtonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\GenrePressButtonControl.xaml.cs">
       <DependentUpon>GenrePressButtonControl.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,7 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ISettingsControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml.cs">
       <DependentUpon>SettingsList.xaml</DependentUpon>
     </Compile>
@@ -196,6 +200,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\UpdateControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\BookGenrePressButtonControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -323,9 +331,6 @@
       <Project>{ec150eb1-22a9-4180-8ce0-663ef722411b}</Project>
       <Name>TL_Tables</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Welcome.JPG" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Welcome-White-Text-Transparent-PNG.png" />

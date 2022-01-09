@@ -48,12 +48,5 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
 
             MainInfo.TableCollection.LoadTables();
         }
-
-
-        private void User_Click_1(object sender, RoutedEventArgs e)
-        {
-            Registration registration = new Registration();
-            registration.Show();
-        }
     }
 }

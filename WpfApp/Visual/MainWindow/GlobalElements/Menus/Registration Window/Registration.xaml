@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" WindowStyle="None">
+             Height="450" Width="800" WindowStyle="None" ResizeMode="NoResize" BorderThickness="1" BorderBrush="WhiteSmoke" MouseDown="Window_MouseDown">
     <Window.Resources>
         <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
             <Border Background="{TemplateBinding Background}" 
@@ -49,5 +49,30 @@
         </Button>
         <Image HorizontalAlignment="Left" Height="450" Margin="600,0,0,-0.4" VerticalAlignment="Top" Width="200" Source="White-Stars-on-transparent-background-PNG.png" Stretch="Fill"/>
         <Image HorizontalAlignment="Left" Height="450" Margin="0,0,0,-0.4" VerticalAlignment="Top" Width="200" Source="White-Stars-on-transparent-background-PNG.png" Stretch="Fill"/>
+        <Button x:Name="btn_close" Content="X" HorizontalAlignment="Left" Margin="768,0,0,0" VerticalAlignment="Top" Width="30" Height="20"
+            Foreground="WhiteSmoke" Background="#FF1F1F1F" BorderBrush="#FF1F1F1F" Click="btn_close_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>

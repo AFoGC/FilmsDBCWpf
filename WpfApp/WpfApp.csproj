@@ -157,6 +157,9 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml.cs">
       <DependentUpon>SettingsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsElements\UserMenuElement.xaml.cs">
+      <DependentUpon>UserMenuElement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsMenuControl.xaml.cs">
       <DependentUpon>SettingsMenuControl.xaml</DependentUpon>
     </Compile>
@@ -279,6 +282,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsElements\UserMenuElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -322,6 +329,10 @@
     <ProjectReference Include="..\BL_Films\BL_Films.csproj">
       <Project>{cd17bda4-6aca-49bd-8188-59df8b0bad85}</Project>
       <Name>BL_Films</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BO_Films\BO_Films.csproj">
+      <Project>{761496b9-0d95-44d7-be39-c30c0aeced4e}</Project>
+      <Name>BO_Films</Name>
     </ProjectReference>
     <ProjectReference Include="..\TLObjects\TL_Objects.csproj">
       <Project>{850e8208-e369-4f93-8a80-8227c5605a6e}</Project>

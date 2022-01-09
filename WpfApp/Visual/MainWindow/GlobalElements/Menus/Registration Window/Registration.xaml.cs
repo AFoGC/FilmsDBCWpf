@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -103,6 +105,22 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
         private void Sign_up_Click(object sender, RoutedEventArgs e)
         {
             FilmsBL.Add_User(Username.Text, Password.Text);
+        }
+
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(new WindowInteropHelper(this).Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btn_close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

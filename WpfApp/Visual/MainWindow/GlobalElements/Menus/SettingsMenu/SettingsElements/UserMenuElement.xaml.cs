@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BO_Films;
+using WpfApp.Visual.HelpWindows.LogOutWindow;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsElements
@@ -85,7 +86,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
 
         private void LogOut(object sender, MouseButtonEventArgs e)
         {
-            User = null;
+            LogOutWindow logOutWindow = new LogOutWindow();
+            logOutWindow.ShowDialog();
+            if (logOutWindow.LogOut)
+            {
+                User = null;
+            }
         }
     }
 }

@@ -73,6 +73,9 @@
     <Compile Include="Visual\HelpWindows\ExitWindow\ExitWindow.xaml.cs">
       <DependentUpon>ExitWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\HelpWindows\LogOutWindow\LogOutWindow.xaml.cs">
+      <DependentUpon>LogOutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\MainHeaderControl.xaml.cs">
       <DependentUpon>MainHeaderControl.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
     <Page Include="Visual\HelpWindows\ExitWindow\ExitWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Visual\HelpWindows\LogOutWindow\LogOutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Visual\MainWindow\GlobalElements\MainHeaderControl.xaml">
       <Generator>MSBuild:Compile</Generator>

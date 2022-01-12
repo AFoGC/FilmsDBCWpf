@@ -170,7 +170,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 			watched.IsChecked = !watched.IsChecked;
         }
 
-        private void id_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void id_GotFocus(object sender, RoutedEventArgs e)
         {
 			SetSelectedElement(MainInfo.MainWindow.FilmsMenu.ControlInBuffer);
 		}

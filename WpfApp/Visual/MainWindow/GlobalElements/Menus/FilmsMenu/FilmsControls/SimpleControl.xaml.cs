@@ -104,5 +104,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         {
             MainInfo.MainWindow.FilmsMenu.MoreInfoVisualizer.OpenMoreInfoForm(this);
         }
+
+        private void id_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SetSelectedElement(MainInfo.MainWindow.FilmsMenu.ControlInBuffer);
+        }
     }
 }

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="940">
     <Grid x:Name="grid" Height="15" Width="940">
-        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="27" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" MouseLeftButtonUp="id_MouseLeftButtonUp"/>
+        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="27" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" GotFocus="id_GotFocus"/>
         <TextBox x:Name="name" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
         </TextBox>
         <TextBox x:Name="genre" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">

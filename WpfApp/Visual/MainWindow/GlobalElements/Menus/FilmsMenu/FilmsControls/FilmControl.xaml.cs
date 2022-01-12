@@ -109,11 +109,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             watched.IsChecked = !watched.IsChecked;
         }
 
-        private void id_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            SetSelectedElement(MainInfo.MainWindow.FilmsMenu.ControlInBuffer);
-        }
-
         public override void SetVisualDefault()
         {
             SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(53, 53, 53));
@@ -142,6 +137,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             {
                 return new FilmUpdateControl(this);
             }
+        }
+
+        private void id_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SetSelectedElement(MainInfo.MainWindow.FilmsMenu.ControlInBuffer);
         }
     }
 }

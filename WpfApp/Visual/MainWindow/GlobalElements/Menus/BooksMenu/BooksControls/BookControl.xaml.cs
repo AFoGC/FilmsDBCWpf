@@ -69,13 +69,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             }
             else
             {
-                if (bookInfo.Sources[0].Name != "")
+                if (bookInfo.Sources[0].Name == "")
                 {
-                    btn_copyUrl.Content = "url: " + bookInfo.Sources[0].Name;
+                    btn_copyUrl.Content = "copy url";
                 }
                 else
                 {
-                    btn_copyUrl.Content = "copy url";
+                    btn_copyUrl.Content = "url: " + bookInfo.Sources[0].Name;
                 }
             }
         }
@@ -87,17 +87,20 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         internal override void setVisualSelected()
         {
-            throw new NotImplementedException();
+            SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 220, 0));
+            this.id.Background = myBrush;
         }
 
         internal override void setVisualFinded()
         {
-            throw new NotImplementedException();
+            SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(53, 53, 53));
+            this.id.Background = myBrush;
         }
 
         public override void SetVisualDefault()
         {
-            throw new NotImplementedException();
+            SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(53, 53, 53));
+            this.id.Background = myBrush;
         }
 
         private void btn_copyUrl_Click(object sender, RoutedEventArgs e)
@@ -115,12 +118,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         private void watched_Click(object sender, RoutedEventArgs e)
         {
-            //throw new NotImplementedException();
+            readed.IsChecked = !readed.IsChecked;
         }
 
-        private void id_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void id_GotFocus(object sender, RoutedEventArgs e)
         {
-            //throw new NotImplementedException();
+            SetSelectedElement(MainInfo.MainWindow.BooksMenu.ControlInBuffer);
         }
     }
 }

@@ -72,11 +72,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             return new BookControl(this);
         }
 
-        private void id_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            SetSelectedElement(MainInfo.MainWindow.BooksMenu.ControlInBuffer);
-        }
-
         private void watched_Click(object sender, RoutedEventArgs e)
         {
             readed.IsChecked = !readed.IsChecked;
@@ -85,6 +80,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
         private void btn_moreInfo_Click(object sender, RoutedEventArgs e)
         {
             MainInfo.MainWindow.BooksMenu.MoreInfoVisualizer.OpenMoreInfoForm(this);
+        }
+
+        private void id_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SetSelectedElement(MainInfo.MainWindow.BooksMenu.ControlInBuffer);
         }
     }
 }

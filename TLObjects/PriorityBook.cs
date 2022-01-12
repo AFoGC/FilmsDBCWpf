@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
+using TablesLibrary.Interpreter.Attributes;
 
 namespace TL_Objects
 {
+    [TableCell("PriorityBook")]
     public class PriorityBook : Cell
     {
         private Book book;

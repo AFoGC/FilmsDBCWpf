@@ -25,8 +25,20 @@ namespace WpfApp
 		public static MainWindow MainWindow { get; private set; }
 		public static ProgramSettings Settings { get; private set; }
 
+
 		public static class Tables
 		{
+			public static CategoriesTable CategoriesTable { get; private set; }
+			public static GenresTable GenresTable { get; private set; }
+			public static FilmsTable FilmsTable { get; private set; }
+			public static SeriesTable SeriesTable { get; private set; }
+			public static PriorityFilmsTable PriorityFilmsTable { get; private set; }
+			public static BookGenresTable BookGenresTable { get; private set; }
+			public static BooksTable BooksTable { get; private set; }
+			public static BookCategoriesTable BookCategoriesTable { get; private set; }
+			public static PriorityBooksTable PriorityBooksTable { get; private set; }
+
+
 			public static void SetDefaultMainTableCollection()
 			{
 				TableCollection = new TableCollection();
@@ -39,6 +51,8 @@ namespace WpfApp
 				BookGenresTable = new BookGenresTable();
 				BooksTable = new BooksTable();
 				BookCategoriesTable = new BookCategoriesTable();
+				PriorityBooksTable = new PriorityBooksTable();
+
 
 				TableCollection.RemoveAllTables(true);
 
@@ -50,6 +64,7 @@ namespace WpfApp
 				TableCollection.AddTable(BookGenresTable);
 				TableCollection.AddTable(BooksTable);
 				TableCollection.AddTable(BookCategoriesTable);
+				TableCollection.AddTable(PriorityBooksTable);
 			}
 
 			public static TableCollection GetDefaultTableCollectionData()
@@ -64,11 +79,13 @@ namespace WpfApp
 				export.AddTable(new DefaultTable<BookGenre>());
 				export.AddTable(new DefaultTable<Book>());
 				export.AddTable(new DefaultTable<BookCategory>());
+				export.AddTable(new DefaultTable<PriorityBook>());
 
 				export.FileEncoding = Encoding.UTF8;
 
 				return export;
 			}
+
 
 
 			private class DefaultTable<Te> : Table<Te> where Te : Cell, new()
@@ -81,17 +98,6 @@ namespace WpfApp
 					throw new NotImplementedException();
 				}
 			}
-
-
-
-			public static CategoriesTable CategoriesTable { get; private set; }
-			public static GenresTable GenresTable { get; private set; }
-			public static FilmsTable FilmsTable { get; private set; }
-			public static SeriesTable SeriesTable { get; private set; }
-			public static PriorityFilmsTable PriorityFilmsTable { get; private set; }
-			public static BookGenresTable BookGenresTable { get; private set; }
-			public static BooksTable BooksTable { get; private set; }
-			public static BookCategoriesTable BookCategoriesTable { get; private set; }
 		}
 	}
 }

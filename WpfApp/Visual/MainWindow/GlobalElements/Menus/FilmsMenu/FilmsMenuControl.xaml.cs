@@ -68,7 +68,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         public AElementControl ControlInBuffer
         {
             get { return controlInBuffer; }
-            set { controlInBuffer = value; }
+            set
+            {
+                if (controlInBuffer != null) controlInBuffer.SetVisualDefault();
+                controlInBuffer = value;
+            }
         }
 
         public void LoadGenres()
@@ -114,7 +118,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         {
             clearControls();
             controlsCondition = MenuCondition.Film;
-            controlInBuffer = null;
+            ControlInBuffer = null;
 
             foreach (Film film in MainInfo.Tables.FilmsTable)
             {
@@ -133,7 +137,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         {
             clearControls();
             controlsCondition = MenuCondition.Serie;
-            controlInBuffer = null;
+            ControlInBuffer = null;
 
             foreach (Film film in MainInfo.Tables.FilmsTable)
             {
@@ -154,7 +158,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         {
             clearControls();
             controlsCondition = MenuCondition.Category;
-            controlInBuffer = null;
+            ControlInBuffer = null;
 
             foreach (Category category in MainInfo.Tables.CategoriesTable)
             {
@@ -181,7 +185,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         {
             clearControls();
             controlsCondition = MenuCondition.PriorityFilm;
-            controlInBuffer = null;
+            ControlInBuffer = null;
 
             PriorityFilmsTable priTable = MainInfo.Tables.PriorityFilmsTable;
 
@@ -283,11 +287,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
 
         private void btn_AddToPriority_Click(object sender, RoutedEventArgs e)
         {
-            if (controlInBuffer != null)
+            if (ControlInBuffer != null)
             {
                 MainInfo.Tables.PriorityFilmsTable.AddElement();
                 PriorityFilm priorityFilm = MainInfo.Tables.PriorityFilmsTable.GetLastElement;
-                priorityFilm.Film = controlInBuffer.FilmInfo;
+                priorityFilm.Film = ControlInBuffer.FilmInfo;
             }
         }
 

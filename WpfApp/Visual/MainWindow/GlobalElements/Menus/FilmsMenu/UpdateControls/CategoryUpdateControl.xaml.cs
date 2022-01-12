@@ -87,11 +87,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
                                     if (sControl.FilmInfo.ID > film.ID)
                                     {
                                         MainInfo.MainWindow.FilmsMenu.controlsPanel.Children.Insert(i, simpleControl);
-                                        break;
+                                        return;
                                     }
                                 }
                                 ++i;
                             }
+                            MainInfo.MainWindow.FilmsMenu.controlsPanel.Children.Add(simpleControl);
                         }
                     }
                 }

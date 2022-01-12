@@ -93,7 +93,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         internal override void setVisualFinded()
         {
-            SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(53, 53, 53));
+            SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 0, 220));
             this.id.Background = myBrush;
         }
 

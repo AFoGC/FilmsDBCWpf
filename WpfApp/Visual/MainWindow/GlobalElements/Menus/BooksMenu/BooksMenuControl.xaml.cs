@@ -65,7 +65,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
         public ABookElementControl ControlInBuffer
         {
             get { return controlInBuffer; }
-            set { controlInBuffer = value; }
+            set
+            {
+                if (controlInBuffer != null) controlInBuffer.SetVisualDefault();
+                controlInBuffer = value;
+            }
         }
 
         private List<UserControl> tableControls = new List<UserControl>();
@@ -86,7 +90,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
         public void LoadCategories()
         {
             clearControls();
-            controlInBuffer = null;
+            ControlInBuffer = null;
             ControlsCondition = MenuCondition.Category;
 
             foreach (BookCategory category in MainInfo.Tables.BookCategoriesTable)
@@ -104,6 +108,28 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             {
                 controlsPanel.Children.Add(item);
             }
+        }
+
+        public void LoadBooks()
+        {
+            clearControls();
+            ControlInBuffer = null;
+            ControlsCondition = MenuCondition.Book;
+
+            foreach (Book book in MainInfo.Tables.BooksTable)
+            {
+                tableControls.Add(new BookControl(book));
+            }
+
+            foreach (var item in tableControls)
+            {
+                controlsPanel.Children.Add(item);
+            }
+        }
+
+        public void LoadPriorityBooks()
+        {
+
         }
 
         private void btn_addBook_Click(object sender, RoutedEventArgs e)
@@ -188,6 +214,16 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
                     control.SetFindedElement(searchStr);
                 }
             }
+        }
+
+        private void btn_showBooks_Click(object sender, RoutedEventArgs e)
+        {
+            LoadBooks();
+        }
+
+        private void btn_showCategories_Click(object sender, RoutedEventArgs e)
+        {
+            LoadCategories();
         }
     }
 }

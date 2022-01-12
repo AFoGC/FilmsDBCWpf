@@ -75,7 +75,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             book.FranshiseListIndex = Convert.ToSByte(cat_panel.Children.Count - 1);
         }
 
-        public bool RemoveFilmFromCategory(BookSimpleControl simpleControl)
+        public bool RemoveBookFromCategory(BookSimpleControl simpleControl)
         {
             if (simpleControl.BookInfo.FranshiseId == this.CategoryInfo.ID)
             {
@@ -163,7 +163,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         private void btn_update_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.MainWindow.FilmsMenu.UpdateVisualizer.OpenUpdateControl(this);
+            MainInfo.MainWindow.BooksMenu.UpdateVisualizer.OpenUpdateControl(this);
         }
     }
 }

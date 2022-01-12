@@ -72,7 +72,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="btn_showCategories" Content="Show Categories" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="41">
+                    <Button x:Name="btn_showCategories" Content="Show Categories" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="41" Click="btn_showCategories_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -120,7 +120,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="btn_showBooks" Content="Show Books" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="70">
+                    <Button x:Name="btn_showBooks" Content="Show Books" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="70" Click="btn_showBooks_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="#FF1F1F1F"/>

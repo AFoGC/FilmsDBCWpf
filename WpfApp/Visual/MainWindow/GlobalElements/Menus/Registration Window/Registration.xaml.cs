@@ -26,14 +26,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
         public Registration()
         {
             InitializeComponent();
-            Username.BorderBrush = Brushes.White;
-            Password.BorderBrush = Brushes.White;
+            Username.Background = Brushes.White;
+            Password.Background = Brushes.White;
             SolidColorBrush myAnimatedBrush = new SolidColorBrush();
             SolidColorBrush myAnimatedBrush2 = new SolidColorBrush();
-            myAnimatedBrush.Color = Colors.Orange;
-            myAnimatedBrush2.Color = Colors.Orange;
-            Username.BorderBrush = myAnimatedBrush;
-            Password.BorderBrush = myAnimatedBrush2;
+            Username.Background = myAnimatedBrush;
+            myAnimatedBrush.Color = Colors.Transparent;
+            myAnimatedBrush2.Color = Colors.Transparent;
+            Password.Background = myAnimatedBrush2;
             this.RegisterName("MyAnimatedBrush", myAnimatedBrush);
             this.RegisterName("MyAnimatedBrush2", myAnimatedBrush2);
 
@@ -41,8 +41,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
             // Animation username on MouseEnter
             //
             ColorAnimation mouseEnterColorAnimation = new ColorAnimation();
-            mouseEnterColorAnimation.To = Colors.LightBlue;
-            mouseEnterColorAnimation.Duration = TimeSpan.FromSeconds(1);
+            mouseEnterColorAnimation.To = Colors.Gray;
+            mouseEnterColorAnimation.Duration = TimeSpan.FromSeconds(0.5);
             Storyboard.SetTargetName(mouseEnterColorAnimation, "MyAnimatedBrush");
             Storyboard.SetTargetProperty(
                 mouseEnterColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
@@ -58,8 +58,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
             // Animation on MouseLeave
             //
             ColorAnimation mouseLeaveColorAnimation = new ColorAnimation();
-            mouseLeaveColorAnimation.To = Colors.White;
-            mouseLeaveColorAnimation.Duration = TimeSpan.FromSeconds(1);
+            mouseLeaveColorAnimation.To = Colors.Transparent;
+            mouseLeaveColorAnimation.Duration = TimeSpan.FromSeconds(0.5);
             Storyboard.SetTargetName(mouseLeaveColorAnimation, "MyAnimatedBrush");
             Storyboard.SetTargetProperty(
                 mouseLeaveColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
@@ -74,13 +74,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
             // Animation password on MouseEnter
             //
             ColorAnimation mouseEnterColorAnimation2 = new ColorAnimation();
-            mouseEnterColorAnimation.To = Colors.LightBlue;
-            mouseEnterColorAnimation.Duration = TimeSpan.FromSeconds(1);
-            Storyboard.SetTargetName(mouseEnterColorAnimation, "MyAnimatedBrush");
+            mouseEnterColorAnimation2.To = Colors.Gray;
+            mouseEnterColorAnimation2.Duration = TimeSpan.FromSeconds(0.5);
+            Storyboard.SetTargetName(mouseEnterColorAnimation2, "MyAnimatedBrush2");
             Storyboard.SetTargetProperty(
-                mouseEnterColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
+                mouseEnterColorAnimation2, new PropertyPath(SolidColorBrush.ColorProperty));
             Storyboard mouseEnterStoryboard2 = new Storyboard();
-            mouseEnterStoryboard.Children.Add(mouseEnterColorAnimation);
+            mouseEnterStoryboard2.Children.Add(mouseEnterColorAnimation2);
             Password.MouseEnter += delegate (object sender, MouseEventArgs e)
             {
                 mouseEnterStoryboard2.Begin(this);
@@ -89,13 +89,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
             // Animation Password on MouseLeave
             //
             ColorAnimation mouseLeaveColorAnimation2 = new ColorAnimation();
-            mouseLeaveColorAnimation.To = Colors.White;
-            mouseLeaveColorAnimation.Duration = TimeSpan.FromSeconds(1);
-            Storyboard.SetTargetName(mouseLeaveColorAnimation, "MyAnimatedBrush");
+            mouseLeaveColorAnimation2.To = Colors.Transparent;
+            mouseLeaveColorAnimation2.Duration = TimeSpan.FromSeconds(0.5);
+            Storyboard.SetTargetName(mouseLeaveColorAnimation2, "MyAnimatedBrush2");
             Storyboard.SetTargetProperty(
-                mouseLeaveColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
+                mouseLeaveColorAnimation2, new PropertyPath(SolidColorBrush.ColorProperty));
             Storyboard mouseLeaveStoryboard2 = new Storyboard();
-            mouseLeaveStoryboard.Children.Add(mouseLeaveColorAnimation);
+            mouseLeaveStoryboard2.Children.Add(mouseLeaveColorAnimation2);
             Password.MouseLeave += delegate (object sender, MouseEventArgs e)
             {
                 mouseLeaveStoryboard2.Begin(this);
@@ -104,7 +104,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
 
         private void Sign_up_Click(object sender, RoutedEventArgs e)
         {
-            FilmsBL.Add_User(Username.Text, Password.Text);
+            //FilmsBL.Add_User(Username.Text, Password.Text);
+            UserBL.Add_User(Username.Text, Password.Text);
+            
         }
 
 
@@ -121,6 +123,54 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Username_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (Username.Text == "Username")
+            {
+                Username.Text = "";
+            }
+            else
+            {
+
+            }
+        }
+
+        private void Username_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Username.Text.Length == 0)
+            {
+                Username.Text = "Username";
+            }
+            else
+            {
+
+            }
+        }
+
+        private void Password_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (Password.Text == "Password")
+            {
+                Password.Text = "";
+            }
+            else
+            {
+
+            }
+        }
+
+        private void Password_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Password.Text.Length == 0)
+            {
+                Password.Text = "Password";
+            }
+            else
+            {
+
+            }
         }
     }
 }

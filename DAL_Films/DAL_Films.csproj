@@ -45,6 +45,7 @@
     <Compile Include="BaseConnection.cs" />
     <Compile Include="FilmsDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BO_Films\BO_Films.csproj">

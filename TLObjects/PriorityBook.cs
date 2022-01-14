@@ -52,7 +52,7 @@ namespace TL_Objects
         }
         public int BookId
         {
-            get { return BookId; }
+            get { return bookId; }
         }
     }
 }

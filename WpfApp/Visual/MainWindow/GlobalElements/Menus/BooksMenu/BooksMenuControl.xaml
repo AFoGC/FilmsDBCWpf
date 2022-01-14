@@ -144,7 +144,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="btn_showPriority" Content="Show Priority Books" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="99">
+                    <Button x:Name="btn_showPriority" Content="Show Priority Books" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="99" Click="btn_showPriority_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -192,7 +192,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="btn_AddToPriority" Content="Add To Priority" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Top="99" Canvas.Left="0">
+                    <Button x:Name="btn_AddToPriority" Content="Add To Priority" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Top="99" Canvas.Left="0" Click="btn_AddToPriority_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="#FF1F1F1F"/>

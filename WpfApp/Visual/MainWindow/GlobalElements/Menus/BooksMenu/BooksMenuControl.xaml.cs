@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TL_Objects;
+using TL_Tables;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenus.MoreInfo;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenus.UpdateInfo;
@@ -129,7 +130,32 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
 
         public void LoadPriorityBooks()
         {
+            clearControls();
+            ControlInBuffer = null;
+            ControlsCondition = MenuCondition.Book;
 
+            PriorityBooksTable priorityTable = MainInfo.Tables.PriorityBooksTable;
+
+            PriorityBook book;
+            for (int i = 0; i < priorityTable.Count; i++)
+            {
+                book = priorityTable[i];
+
+                if (book.Book.Readed)
+                {
+                    priorityTable.Remove(book);
+                    --i;
+                }
+                else
+                {
+                    tableControls.Add(new BookSimpleControl(book.Book));
+                }
+            }
+
+            foreach (UserControl control in tableControls)
+            {
+                controlsPanel.Children.Add(control);
+            }
         }
 
         private void btn_addBook_Click(object sender, RoutedEventArgs e)
@@ -182,7 +208,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
                     }
                 }
             }
-            
         }
 
         private BookGenre[] getSelectedGenres()
@@ -224,6 +249,21 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
         private void btn_showCategories_Click(object sender, RoutedEventArgs e)
         {
             LoadCategories();
+        }
+
+        private void btn_AddToPriority_Click(object sender, RoutedEventArgs e)
+        {
+            if (ControlInBuffer != null)
+            {
+                MainInfo.Tables.PriorityBooksTable.AddElement();
+                PriorityBook priorityBook = MainInfo.Tables.PriorityBooksTable.GetLastElement;
+                priorityBook.Book = ControlInBuffer.BookInfo;
+            }
+        }
+
+        private void btn_showPriority_Click(object sender, RoutedEventArgs e)
+        {
+            LoadPriorityBooks();
         }
     }
 }

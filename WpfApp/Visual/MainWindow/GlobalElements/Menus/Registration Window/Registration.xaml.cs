@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BL_Films;
+using BO_Films;
+
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
 {
     /// <summary>
@@ -106,9 +108,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
         {
             //FilmsBL.Add_User(Username.Text, Password.Text);
             UserBL.Add_User(Username.Text, Password.Text);
-            
         }
 
+        public UserBO UserBO { get; private set; }
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            UserBO = UserBL.LogIn(Username.Text, Password.Text);
+            this.Close();
+        }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();

@@ -18,5 +18,10 @@ namespace BL_Films
             int row = (new UserDAL()).Add(userBO);
             return row;
         }
+
+        public static UserBO LogIn(string email, string password)
+        {
+            return new UserDAL().LogIn(email, password);
+        }
     }
 }

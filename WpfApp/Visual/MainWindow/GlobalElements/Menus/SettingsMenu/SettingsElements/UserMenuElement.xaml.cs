@@ -76,12 +76,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
 
         private void LogIn(object sender, MouseButtonEventArgs e)
         {
-            //UserBO item = new UserBO();
-            //item.Email = "example@gmail.com";
-            //item.Username = "Fuhrer";
-            //User = item;
             Registration registration = new Registration();
             registration.ShowDialog();
+            User = registration.UserBO;
         }
 
         private void LogOut(object sender, MouseButtonEventArgs e)

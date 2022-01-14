@@ -40,7 +40,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="Login" Content="Log In" Background="#FF0DF0E4" HorizontalAlignment="Left" Margin="400,368,0,0" VerticalAlignment="Top" Width="106" Height="44" FontSize="24" FontWeight="Bold">
+        <Button x:Name="Login" Content="Log In" Background="#FF0DF0E4" HorizontalAlignment="Left" Margin="400,368,0,0" VerticalAlignment="Top" Width="106" Height="44" FontSize="24" FontWeight="Bold" Click="Login_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>

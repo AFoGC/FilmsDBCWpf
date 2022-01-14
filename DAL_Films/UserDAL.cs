@@ -37,18 +37,15 @@ namespace DAL_Films
         private UserBO selectUser(SqlDataReader objReader)
         {
             var userBO = new UserBO();
-            object obj, obj1, obj2, obj3;
+            object obj;
+
+            userBO.Id = objReader.GetInt64(0);
             if ((obj = objReader.GetValue(1)) != DBNull.Value)
-                userBO.Email = Convert.ToString(obj);
+                userBO.Email = (String)obj;
             if ((obj = objReader.GetValue(2)) != DBNull.Value)
-                userBO.Username = Convert.ToString(obj);
+                userBO.Username = (String)obj;
             if ((obj = objReader.GetValue(3)) != DBNull.Value)
-                userBO.Password = Convert.ToString(obj);
-
-
-            //object ob1 = objReader.GetString(1);
-            //object obj2 = objReader.GetString(2);
-            //object obj3 = objReader.GetString(3);
+                userBO.Password = (String)obj;
 
             return userBO;
         }

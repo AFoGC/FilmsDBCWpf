@@ -36,13 +36,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
             {
                 if (value)
                 {
-                    Grid.SetZIndex(log_grid, 0);
-                    Grid.SetZIndex(user_grid, 1);
+                    Grid.SetZIndex(log_grid, 1);
+                    Grid.SetZIndex(user_grid, 2);
                 }
                 else
                 {
-                    Grid.SetZIndex(user_grid, 0);
-                    Grid.SetZIndex(log_grid, 1);
+                    Grid.SetZIndex(user_grid, 1);
+                    Grid.SetZIndex(log_grid, 2);
                 }
                 loggedIn = value;
             }
@@ -76,13 +76,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
             InitializeComponent();
           
             SolidColorBrush myAnimatedBrush = new SolidColorBrush();
-            //SolidColorBrush myAnimatedBrush2 = new SolidColorBrush();
             log_grid.Background = myAnimatedBrush;
             user_grid.Background = myAnimatedBrush;
             myAnimatedBrush.Color = Color.FromRgb(31, 31, 31);
-            //myAnimatedBrush2.Color = Color.FromRgb(31, 31, 31);
             this.RegisterName("MyAnimatedBrush", myAnimatedBrush);
-            //this.RegisterName("MyAnimatedBrush2", myAnimatedBrush2);
+
 
             //
             // Animation log_grid on MouseEnter
@@ -95,15 +93,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
                 mouseEnterColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
             Storyboard mouseEnterStoryboard = new Storyboard();
             mouseEnterStoryboard.Children.Add(mouseEnterColorAnimation);
-            log_grid.MouseEnter += delegate (object sender, MouseEventArgs e)
+            grid.MouseEnter += delegate (object sender, MouseEventArgs e)
             {
                 mouseEnterStoryboard.Begin(this);
             };
-            // Если не получится - удалить
-            user_grid.MouseEnter += delegate (object sender, MouseEventArgs e)
-            {
-                mouseEnterStoryboard.Begin(this);
-            };
+            
 
             //
             // Animation log_grid on MouseLeave
@@ -116,49 +110,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
                 mouseLeaveColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
             Storyboard mouseLeaveStoryboard = new Storyboard();
             mouseLeaveStoryboard.Children.Add(mouseLeaveColorAnimation);
-            log_grid.MouseLeave += delegate (object sender, MouseEventArgs e)
+            grid.MouseLeave += delegate (object sender, MouseEventArgs e)
             {
                 mouseLeaveStoryboard.Begin(this);
             };
-            // Если не получится - удалить
-            user_grid.MouseLeave += delegate (object sender, MouseEventArgs e)
-            {
-                mouseEnterStoryboard.Begin(this);
-            };
-
-            //
-            // Animation user_grid on MouseEnter
-            //
-
-            /*ColorAnimation mouseEnterColorAnimation2 = new ColorAnimation();
-            mouseEnterColorAnimation2.To = Colors.DarkGray;
-            mouseEnterColorAnimation2.Duration = TimeSpan.FromSeconds(0.5);
-            Storyboard.SetTargetName(mouseEnterColorAnimation2, "MyAnimatedBrush2");
-            Storyboard.SetTargetProperty(
-                mouseEnterColorAnimation2, new PropertyPath(SolidColorBrush.ColorProperty));
-            Storyboard mouseEnterStoryboard2 = new Storyboard();
-            mouseEnterStoryboard.Children.Add(mouseEnterColorAnimation2);
-            user_grid.MouseEnter += delegate (object sender, MouseEventArgs e)
-            {
-                mouseEnterStoryboard2.Begin(this);
-            };
-
-
-            //
-            // Animation user_grid on MouseLeave
-            //
-            ColorAnimation mouseLeaveColorAnimation2 = new ColorAnimation();
-            mouseLeaveColorAnimation2.To = Color.FromRgb(31, 31, 31);
-            mouseLeaveColorAnimation2.Duration = TimeSpan.FromSeconds(0.5);
-            Storyboard.SetTargetName(mouseLeaveColorAnimation2, "MyAnimatedBrush2");
-            Storyboard.SetTargetProperty(
-                mouseLeaveColorAnimation2, new PropertyPath(SolidColorBrush.ColorProperty));
-            Storyboard mouseLeaveStoryboard2 = new Storyboard();
-            mouseLeaveStoryboard2.Children.Add(mouseLeaveColorAnimation2);
-            user_grid.MouseLeave += delegate (object sender, MouseEventArgs e)
-            {
-                mouseLeaveStoryboard2.Begin(this);
-            };*/
         }
 
         private void LogIn(object sender, MouseButtonEventArgs e)

@@ -45,7 +45,7 @@ namespace TL_Objects
                     filmId = Convert.ToInt32(comand.Value);
                     break;
                 case "startWatchDate":
-                    startWatchDate = readDate(comand.Value);
+                    startWatchDate = Convert.ToDateTime(comand.Value);
                     break;
                 case "countOfWatchedSeries":
                     countOfWatchedSeries = Convert.ToInt32(comand.Value);

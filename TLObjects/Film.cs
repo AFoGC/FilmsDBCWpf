@@ -88,7 +88,7 @@ namespace TL_Objects
 					mark = Convert.ToSByte(comand.Value);
 					break;
 				case "dateOfWatch":
-					dateOfWatch = readDate(comand.Value);
+					dateOfWatch = Convert.ToDateTime(comand.Value);
 					break;
 				case "comment":
 					comment = comand.Value;

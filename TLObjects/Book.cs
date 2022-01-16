@@ -50,7 +50,7 @@ namespace TL_Objects
 					this.readed = Convert.ToBoolean(comand.Value);
 					break;
 				case "fullReadDate":
-					this.fullReadDate = readDate(comand.Value);
+					this.fullReadDate = Convert.ToDateTime(comand.Value);
 					break;
 				case "mark":
 					this.mark = Convert.ToSByte(comand.Value);

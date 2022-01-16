@@ -1,7 +1,7 @@
-﻿using System;
+﻿using BL_Films;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,35 +9,37 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BL_Films;
-using BO_Films;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
 {
     /// <summary>
-    /// Логика взаимодействия для Registration.xaml
+    /// Логика взаимодействия для SignUp.xaml
     /// </summary>
-    public partial class Registration : Window
+    public partial class SignUp : UserControl
     {
-        public Registration()
+        public SignUp()
         {
             InitializeComponent();
             Username.Background = Brushes.White;
             Password.Background = Brushes.White;
+            Email.Background = Brushes.White;
             SolidColorBrush myAnimatedBrush = new SolidColorBrush();
             SolidColorBrush myAnimatedBrush2 = new SolidColorBrush();
+            SolidColorBrush myAnimatedBrush3 = new SolidColorBrush();
             Username.Background = myAnimatedBrush;
             myAnimatedBrush.Color = Colors.Transparent;
             myAnimatedBrush2.Color = Colors.Transparent;
             Password.Background = myAnimatedBrush2;
+            Email.Background = myAnimatedBrush3;
             this.RegisterName("MyAnimatedBrush", myAnimatedBrush);
             this.RegisterName("MyAnimatedBrush2", myAnimatedBrush2);
+            this.RegisterName("MyAnimatedBrush3", myAnimatedBrush3);
+
 
             //
             // Animation username on MouseEnter
@@ -102,43 +104,36 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
             {
                 mouseLeaveStoryboard2.Begin(this);
             };
-            SignUpMenu.Sign_up.Click += SignUpHide;
-            
-        }
-        public void SignUpHide(object sender, EventArgs e)
-        {
-            SignUpMenu.Visibility = Visibility.Hidden;
-            RegistrationMenu.Visibility = Visibility.Visible;
-        }
 
-        private void Sign_up_Click(object sender, RoutedEventArgs e)
-        {
-            //FilmsBL.Add_User(Username.Text, Password.Text);
-            SignUpMenu.Visibility = Visibility.Visible;
-            RegistrationMenu.Visibility = Visibility.Hidden;
-            
-        }
-
-        public UserBO UserBO { get; private set; }
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-            UserBO = UserBL.LogIn(Username.Text, Password.Text);
-            this.Close();
-        }
-
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(new WindowInteropHelper(this).Handle, 0x112, 0xf012, 0);
-        }
-
-        private void btn_close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            //
+            // Animation Email on MouseEnter
+            //
+            ColorAnimation mouseEnterColorAnimation3 = new ColorAnimation();
+            mouseEnterColorAnimation3.To = Colors.Gray;
+            mouseEnterColorAnimation3.Duration = TimeSpan.FromSeconds(0.5);
+            Storyboard.SetTargetName(mouseEnterColorAnimation3, "MyAnimatedBrush3");
+            Storyboard.SetTargetProperty(
+                mouseEnterColorAnimation3, new PropertyPath(SolidColorBrush.ColorProperty));
+            Storyboard mouseEnterStoryboard3 = new Storyboard();
+            mouseEnterStoryboard3.Children.Add(mouseEnterColorAnimation3);
+            Email.MouseEnter += delegate (object sender, MouseEventArgs e)
+            {
+                mouseEnterStoryboard3.Begin(this);
+            };
+            // Animation Email on MouseLeave
+            //
+            ColorAnimation mouseLeaveColorAnimation3 = new ColorAnimation();
+            mouseLeaveColorAnimation3.To = Colors.Transparent;
+            mouseLeaveColorAnimation3.Duration = TimeSpan.FromSeconds(0.5);
+            Storyboard.SetTargetName(mouseLeaveColorAnimation3, "MyAnimatedBrush3");
+            Storyboard.SetTargetProperty(
+                mouseLeaveColorAnimation3, new PropertyPath(SolidColorBrush.ColorProperty));
+            Storyboard mouseLeaveStoryboard3 = new Storyboard();
+            mouseLeaveStoryboard3.Children.Add(mouseLeaveColorAnimation3);
+            Email.MouseLeave += delegate (object sender, MouseEventArgs e)
+            {
+                mouseLeaveStoryboard3.Begin(this);
+            };
         }
 
         private void Username_GotFocus(object sender, RoutedEventArgs e)
@@ -165,6 +160,29 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
             }
         }
 
+        private void Email_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (Email.Text == "Email")
+            {
+                Email.Text = "";
+            }
+            else
+            {
+
+            }
+        }
+
+        private void Email_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Email.Text.Length == 0)
+            {
+                Email.Text = "Email";
+            }
+            else
+            {
+
+            }
+        }
         private void Password_GotFocus(object sender, RoutedEventArgs e)
         {
             if (Password.Text == "Password")
@@ -187,6 +205,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
             {
 
             }
+        }
+
+        private void Sign_up_Click(object sender, RoutedEventArgs e)
+        {
+            
+            //UserBL.Add_User(Username.Text, Password.Text);
         }
     }
 }

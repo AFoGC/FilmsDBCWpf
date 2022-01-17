@@ -10,10 +10,11 @@ namespace BL_Films
 {
     public class UserBL
     {
-        public static int Add_User(string email, string password)
+        public static int Add_User(string email, string username, string password)
         {
             UserBO userBO = new UserBO();
             userBO.Email = email;
+            userBO.Username = username;
             userBO.Password = password;
             int row = (new UserDAL()).Add(userBO);
             return row;

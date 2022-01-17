@@ -28,11 +28,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
         public Registration()
         {
             InitializeComponent();
-            Username.Background = Brushes.White;
+            Email.Background = Brushes.White;
             Password.Background = Brushes.White;
             SolidColorBrush myAnimatedBrush = new SolidColorBrush();
             SolidColorBrush myAnimatedBrush2 = new SolidColorBrush();
-            Username.Background = myAnimatedBrush;
+            Email.Background = myAnimatedBrush;
             myAnimatedBrush.Color = Colors.Transparent;
             myAnimatedBrush2.Color = Colors.Transparent;
             Password.Background = myAnimatedBrush2;
@@ -50,7 +50,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
                 mouseEnterColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
             Storyboard mouseEnterStoryboard = new Storyboard();
             mouseEnterStoryboard.Children.Add(mouseEnterColorAnimation);
-            Username.MouseEnter += delegate (object sender, MouseEventArgs e)
+            Email.MouseEnter += delegate (object sender, MouseEventArgs e)
             {
                 mouseEnterStoryboard.Begin(this);
             };
@@ -67,7 +67,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
                 mouseLeaveColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
             Storyboard mouseLeaveStoryboard = new Storyboard();
             mouseLeaveStoryboard.Children.Add(mouseLeaveColorAnimation);
-            Username.MouseLeave += delegate (object sender, MouseEventArgs e)
+            Email.MouseLeave += delegate (object sender, MouseEventArgs e)
             {
                 mouseLeaveStoryboard.Begin(this);
             };
@@ -103,7 +103,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
                 mouseLeaveStoryboard2.Begin(this);
             };
             SignUpMenu.Sign_up.Click += SignUpHide;
-            
+            SignUpMenu.btn_return.Click += SignUpHide;
         }
         public void SignUpHide(object sender, EventArgs e)
         {
@@ -113,7 +113,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
 
         private void Sign_up_Click(object sender, RoutedEventArgs e)
         {
-            //FilmsBL.Add_User(Username.Text, Password.Text);
             SignUpMenu.Visibility = Visibility.Visible;
             RegistrationMenu.Visibility = Visibility.Hidden;
             
@@ -122,7 +121,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
         public UserBO UserBO { get; private set; }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            UserBO = UserBL.LogIn(Username.Text, Password.Text);
+            UserBO = UserBL.LogIn(Email.Text, Password.Text);
             this.Close();
         }
 
@@ -143,9 +142,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
 
         private void Username_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (Username.Text == "Username")
+            if (Email.Text == "Email")
             {
-                Username.Text = "";
+                Email.Text = "";
             }
             else
             {
@@ -155,9 +154,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
 
         private void Username_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (Username.Text.Length == 0)
+            if (Email.Text.Length == 0)
             {
-                Username.Text = "Username";
+                Email.Text = "Email";
             }
             else
             {

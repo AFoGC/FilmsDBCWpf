@@ -30,7 +30,7 @@
     <Grid Background="#FF121212">
         <Grid x:Name="RegistrationMenu">
         <Image HorizontalAlignment="Left" Height="119" Margin="250,59,0,0" VerticalAlignment="Top" Width="279" Source="Welcome-White-Text-Transparent-PNG.png" Stretch="UniformToFill" Opacity="0.8"/>
-        <TextBox x:Name="Username" Template="{StaticResource TextBoxBaseControlTemplate}" HorizontalAlignment="Left" Height="36" Margin="269,205,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="242"
+        <TextBox x:Name="Email" Template="{StaticResource TextBoxBaseControlTemplate}" HorizontalAlignment="Left" Height="36" Margin="269,205,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="242"
                  Background="Transparent" Foreground="AliceBlue" BorderThickness="2" FontSize="22" GotFocus="Username_GotFocus" LostFocus="Username_LostFocus"/>
         <TextBox x:Name="Password" Template="{StaticResource TextBoxBaseControlTemplate}" HorizontalAlignment="Left" Height="36" Margin="269,282,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="242"
             Background="Transparent" Foreground="AliceBlue" BorderThickness="2" FontSize="22" GotFocus="Password_GotFocus" LostFocus="Password_LostFocus"/>

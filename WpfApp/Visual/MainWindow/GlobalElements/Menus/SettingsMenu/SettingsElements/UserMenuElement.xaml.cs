@@ -61,7 +61,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
                 if (value != null)
                 {
                     username_label.Content = "User " + value.Username;
-                    email_label.Content = value.Email;
+                    email_label.Content = cutMail(value.Email);
                     LoggedIn = true;
                 }
                 else
@@ -71,6 +71,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
                 user = value;
             }
         }
+
+        private string cutMail(string email)
+        {
+            int i = email.IndexOf('@');
+            string str = email.Substring(i);
+            return "" + email[0] + email[1] + "****" + email[i-2] + email[i-1] + str;
+        }
+
         public UserMenuElement()
         {
             InitializeComponent();

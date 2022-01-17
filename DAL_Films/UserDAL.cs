@@ -29,10 +29,13 @@ namespace DAL_Films
         }
         private void setParameters(UserBO ob)
         {
-            SqlParameter objParam2 = command.Parameters.Add("@email", SqlDbType.NVarChar);
-            objParam2.Value = ob.Email;
-            SqlParameter objParam3 = command.Parameters.Add("@password", SqlDbType.NVarChar);
-            objParam3.Value = ob.Password;
+            SqlParameter objParam;
+            objParam = command.Parameters.Add("@email", SqlDbType.NVarChar);
+            objParam.Value = ob.Email;
+            objParam = command.Parameters.Add("@username", SqlDbType.NVarChar);
+            objParam.Value = ob.Username;
+            objParam = command.Parameters.Add("@password", SqlDbType.NVarChar);
+            objParam.Value = ob.Password;
         }
         private UserBO selectUser(SqlDataReader objReader)
         {

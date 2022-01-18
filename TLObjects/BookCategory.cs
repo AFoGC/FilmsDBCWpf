@@ -58,25 +58,25 @@ namespace TL_Objects
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set { name = value; OnPropertyChanged(nameof(Name)); }
         }
 
         public sbyte Mark
         {
             get { return mark; }
-            set { mark = value; }
+            set { mark = value; OnPropertyChanged(nameof(Mark)); }
         }
 
         public int Priority
         {
             get { return priority; }
-            set { priority = value; }
+            set { priority = value; OnPropertyChanged(nameof(Priority)); }
         }
 
         public List<Book> Books
         {
             get { return books; }
-            set { books = value; }
+            set { books = value; OnPropertyChanged(nameof(Books)); }
         }
     }
 }

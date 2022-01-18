@@ -48,6 +48,7 @@ namespace TL_Objects
 			{
 				film = value;
 				filmId = film.ID;
+				OnPropertyChanged(nameof(Film));
 			}
 		}
 

@@ -43,7 +43,7 @@ namespace TL_Objects
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set { name = value; OnPropertyChanged(nameof(Name)); }
         }
 
         public override string ToString()

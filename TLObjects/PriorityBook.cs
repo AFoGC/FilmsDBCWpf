@@ -48,6 +48,7 @@ namespace TL_Objects
             {
                 book = value;
                 bookId = book.ID;
+                OnPropertyChanged(nameof(Book));
             }
         }
         public int BookId

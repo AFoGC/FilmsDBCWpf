@@ -109,12 +109,12 @@ namespace TL_Objects
 		public String Name
 		{
 			get { return name; }
-			set { name = value; }
+			set { name = value; OnPropertyChanged(nameof(Name)); }
 		}
 		public String Author
 		{
 			get { return author; }
-			set { author = value; }
+			set { author = value; OnPropertyChanged(nameof(Author)); }
 		}
 		public BookGenre BookGenre
 		{
@@ -133,6 +133,7 @@ namespace TL_Objects
 			{
 				bookGenre = value;
 				bookGenreId = bookGenre.ID;
+				OnPropertyChanged(nameof(BookGenre));
 			}
 		}
 		public int BookGenreId
@@ -142,51 +143,51 @@ namespace TL_Objects
 		public int PublicationYear
 		{
 			get { return publicationYear; }
-			set { publicationYear = value; }
+			set { publicationYear = value; OnPropertyChanged(nameof(PublicationYear)); }
 		}
 		public bool Readed
 		{
 			get { return readed; }
-			set { readed = value; }
+			set { readed = value; OnPropertyChanged(nameof(Readed)); }
 		}
 		public DateTime FullReadDate
 		{
 			get { return fullReadDate; }
-			set { fullReadDate = value; }
+			set { fullReadDate = value; OnPropertyChanged(nameof(FullReadDate)); }
 		}
 		public sbyte Mark
 		{
 			get { return mark; }
-			set { mark = value; }
+			set { mark = value; OnPropertyChanged(nameof(Mark)); }
 		}
 		public List<Source> Sources
 		{
 			get { return sources; }
-			set { sources = value; }
+			set { sources = value; OnPropertyChanged(nameof(Sources)); }
 		}
 
 		public int CountOfReadings
 		{
 			get { return countOfReadings; }
-			set { countOfReadings = value; }
+			set { countOfReadings = value; OnPropertyChanged(nameof(CountOfReadings)); }
 		}
 
 		public int FranshiseId
 		{
 			get { return franshiseId; }
-			set { franshiseId = value; }
+			set { franshiseId = value; OnPropertyChanged(nameof(FranshiseId)); }
 		}
 
 		public sbyte FranshiseListIndex
 		{
 			get { return franshiseListIndex; }
-			set { franshiseListIndex = value; }
+			set { franshiseListIndex = value; OnPropertyChanged(nameof(FranshiseListIndex)); }
 		}
 
 		public String Bookmark
 		{
 			get { return bookmark; }
-			set { bookmark = value; }
+			set { bookmark = value; OnPropertyChanged(nameof(Bookmark)); }
 		}
 	}
 }

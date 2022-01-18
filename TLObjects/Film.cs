@@ -114,7 +114,7 @@ namespace TL_Objects
 		public string Name
 		{
 			get { return name; }
-			set { name = value; }
+			set { name = value; OnPropertyChanged(nameof(Name)); }
 		}
 
 		public Genre Genre
@@ -134,61 +134,62 @@ namespace TL_Objects
 			{
 				genre = value;
 				genreId = genre.ID;
+				OnPropertyChanged(nameof(Genre));
 			}
 		}
 
 		public int RealiseYear
 		{
 			get { return realiseYear; }
-			set { realiseYear = value; }
+			set { realiseYear = value; OnPropertyChanged(nameof(RealiseYear)); }
 		}
 
 		public bool Watched
 		{
 			get { return watched; }
-			set { watched = value; }
+			set { watched = value; OnPropertyChanged(nameof(Watched)); }
 		}
 
 		public sbyte Mark
 		{
 			get { return mark; }
-			set { mark = value; }
+			set { mark = value; OnPropertyChanged(nameof(Mark)); }
 		}
 
 		public DateTime DateOfWatch
 		{
 			get { return dateOfWatch; }
-			set { dateOfWatch = value; }
+			set { dateOfWatch = value; OnPropertyChanged(nameof(DateOfWatch)); }
 		}
 
 		public string Comment
 		{
 			get { return comment; }
-			set { comment = value; }
+			set { comment = value; OnPropertyChanged(nameof(Comment)); }
 		}
 
 		public List<Source> Sources
 		{
 			get { return sources; }
-			set { sources = value; }
+			set { sources = value; OnPropertyChanged(nameof(Sources)); }
 		}
 
 		public int CountOfViews
 		{
 			get { return countOfviews; }
-			set { countOfviews = value; }
+			set { countOfviews = value; OnPropertyChanged(nameof(CountOfViews)); }
 		}
 
 		public int FranshiseId
 		{
 			get { return franshiseId; }
-			set { franshiseId = value; }
+			set { franshiseId = value; OnPropertyChanged(nameof(FranshiseId)); }
 		}
 
 		public sbyte FranshiseListIndex
 		{
 			get { return franshiseListIndex; }
-			set { franshiseListIndex = value; }
+			set { franshiseListIndex = value; OnPropertyChanged(nameof(FranshiseListIndex)); }
 		}
 
 		public int GenreId

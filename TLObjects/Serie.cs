@@ -71,25 +71,26 @@ namespace TL_Objects
             {
                 film = value;
                 filmId = film.ID;
+                OnPropertyChanged(nameof(Film));
             }
         }
 
         public DateTime StartWatchDate
         {
             get { return startWatchDate; }
-            set { startWatchDate = value; }
+            set { startWatchDate = value; OnPropertyChanged(nameof(StartWatchDate)); }
         }
 
         public int CountOfWatchedSeries
         {
             get { return countOfWatchedSeries; }
-            set { countOfWatchedSeries = value; }
+            set { countOfWatchedSeries = value; OnPropertyChanged(nameof(CountOfWatchedSeries)); }
         }
 
         public int TotalSeries
         {
             get { return totalSeries; }
-            set { totalSeries = value; }
+            set { totalSeries = value; OnPropertyChanged(nameof(TotalSeries)); }
         }
     }
 }

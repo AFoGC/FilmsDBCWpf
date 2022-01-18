@@ -49,13 +49,13 @@ namespace TL_Objects
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set { name = value; OnPropertyChanged(nameof(Name)); }
         }
 
         public bool IsSerialGenre
         {
             get { return isSerialGenre; }
-            set { isSerialGenre = value; }
+            set { isSerialGenre = value; OnPropertyChanged(nameof(IsSerialGenre)); }
         }
 
         public override string ToString()

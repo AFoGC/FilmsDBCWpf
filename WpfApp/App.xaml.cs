@@ -18,6 +18,7 @@ namespace WpfApp
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             MainInfo.TableCollection.LoadTables();
+            
         }
     }
 }

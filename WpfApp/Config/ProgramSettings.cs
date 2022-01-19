@@ -10,16 +10,39 @@ namespace WpfApp.Config
 	[Serializable]
 	public class ProgramSettings
 	{
+		private Profile usedProfile = null;
+		public Profile UsedProfile
+		{
+			get
+			{
+				if (usedProfile == null)
+				{
+					usedProfile = Profiles[0];
+					return usedProfile;
+				}
+				return usedProfile;
+			}
+			set { usedProfile = value; }
+		}
+		internal ProfileCollection Profiles { get; private set; }
+		public int MarkSystem { get; set; }
+		public StartUserInfo StartUser { get; set; }
+
+		static ProgramSettings()
+        {
+			formatter = new XmlSerializer(typeof(ProgramSettings));
+			settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ProgramSetting.xml";
+		}
+
 		private ProgramSettings()
         {
-			this.profiles.LoadProfiles();
+			this.Profiles = new ProfileCollection();
+			this.Profiles.LoadProfiles();
+			this.StartUser = new StartUserInfo();
         }
 
 		public static ProgramSettings Initialize()
         {
-			String settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ProgramSetting.xml";
-			XmlSerializer formatter = new XmlSerializer(typeof(ProgramSettings));
-
 			ProgramSettings settings = new ProgramSettings();
 
             if (!File.Exists(settingPath))
@@ -30,46 +53,52 @@ namespace WpfApp.Config
 				}
 			}
 
-			using (FileStream fs = new FileStream(settingPath, FileMode.Open))
-			{
-				settings = (ProgramSettings)formatter.Deserialize(fs);
-			}
+			settings.LoadSettings();
 
 			return settings;
         }
 
 		public void SaveSettings()
         {
-			String settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ProgramSetting.xml";
-			XmlSerializer formatter = new XmlSerializer(typeof(ProgramSettings));
 			using (FileStream fs = new FileStream(settingPath, FileMode.OpenOrCreate))
 			{
 				formatter.Serialize(fs, this);
 			}
 		}
-		
 
-		private Profile usedProfile = null;
-		public Profile UsedProfile
-		{
-			get
+		public void LoadSettings()
+        {	
+			ProgramSettings settings = new ProgramSettings();
+			using (FileStream fs = new FileStream(settingPath, FileMode.Open))
 			{
-				if (usedProfile == null)
-				{
-					usedProfile = profiles[0];
-					return usedProfile;
-				}
-				return usedProfile;
+				settings = (ProgramSettings)formatter.Deserialize(fs);
 			}
-			set { usedProfile = value; }
+
+			copyValues(settings);
 		}
 
-		private ProfileCollection profiles = new ProfileCollection();
-		public ProfileCollection Profiles
-		{
-			get { return profiles; }
-		}
+		private void copyValues(ProgramSettings settings)
+        {
+			this.UsedProfile = settings.UsedProfile;
+			this.MarkSystem = settings.MarkSystem;
+			this.StartUser = settings.StartUser;
+        }
 
-		public int MarkSystem { get; set; }
+		private static readonly String settingPath;
+		private static readonly XmlSerializer formatter;
+
+		[Serializable]
+		public class StartUserInfo
+        {
+			public StartUserInfo()
+            {
+				LoggedIn = false;
+				Email = String.Empty;
+				Password = String.Empty;
+            }
+			public Boolean LoggedIn { get; set; }
+			public String Email { get; set; }
+			public String Password { get; set; }
+        }
 	}
 }

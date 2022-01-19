@@ -31,6 +31,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
 
             RefreshControl();
             SettingsListPanel.Children.Add(SettingsList);
+            
         }
 
         public void RefreshControl()

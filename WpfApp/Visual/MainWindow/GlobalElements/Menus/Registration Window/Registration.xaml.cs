@@ -121,7 +121,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window
         public UserBO UserBO { get; private set; }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            UserBO = UserBL.LogIn(Email.Text, Password.Text);
+            MainInfo.LoggedInUser = UserBL.LogIn(Email.Text, Password.Text);
             this.Close();
         }
 

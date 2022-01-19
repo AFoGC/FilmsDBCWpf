@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BL_Films;
+using BO_Films;
 using WpfApp.Visual.HelpWindows.ExitWindow;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu;
@@ -30,6 +31,10 @@ namespace WpfApp.Visual.MainWindow
 			MainInfo.TableCollection.TableSave += boolSaved;
 
 			InfoUnsaved = false;
+			if (MainInfo.Settings.StartUser.LoggedIn)
+			{
+				MainInfo.LoggedInUser = BL_Films.UserBL.LogIn(MainInfo.Settings.StartUser.Email, MainInfo.Settings.StartUser.Password);
+			}
 		}
 
 		public FilmsMenuControl FilmsMenu
@@ -78,5 +83,8 @@ namespace WpfApp.Visual.MainWindow
 				MainInfo.TableCollection.SaveTables();
 			}
 		}
+
+
+		
     }
 }

@@ -35,6 +35,6 @@
                 </Style>
             </Button.Style>
         </Button>
-        <SettingsElements:UserMenuElement HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="250" Margin="296,0,0,30"/>
+        <SettingsElements:UserMenuElement x:Name="LogInUser" HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="250" Margin="296,0,0,30"/>
     </Grid>
 </UserControl>

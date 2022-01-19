@@ -24,7 +24,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
     /// </summary>
     public partial class UserMenuElement : UserControl
     {
-
         private bool loggedIn;
         public bool LoggedIn
         {
@@ -32,7 +31,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
             {
                 return loggedIn;
             }
-            set
+            private set
             {
                 if (value)
                 {
@@ -49,14 +48,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
         }
 
         private UserBO user;
-        public UserBO User
+        private UserBO User
         {
             get
             {
-                return User;
+                return user;
             }
 
-            private set
+            set
             {
                 if (value != null)
                 {
@@ -69,6 +68,18 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
                     LoggedIn = false;
                 }
                 user = value;
+
+                if (MainInfo.Settings.StartUser.LoggedIn = LoggedIn)
+                {
+                    MainInfo.Settings.StartUser.Email = user.Email;
+                    MainInfo.Settings.StartUser.Password = user.Password;
+                }
+                else
+                {
+                    MainInfo.Settings.StartUser.Email = String.Empty;
+                    MainInfo.Settings.StartUser.Password = String.Empty;
+                }
+                MainInfo.Settings.SaveSettings();
             }
         }
 
@@ -82,7 +93,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
         public UserMenuElement()
         {
             InitializeComponent();
-          
+            MainInfo.UserChanged += LogIn;
+
             SolidColorBrush myAnimatedBrush = new SolidColorBrush();
             log_grid.Background = myAnimatedBrush;
             user_grid.Background = myAnimatedBrush;
@@ -124,11 +136,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
             };
         }
 
+        public void LogIn(object sender, EventArgs e)
+        {
+            User = MainInfo.LoggedInUser;
+        }
+
         private void LogIn(object sender, MouseButtonEventArgs e)
         {
             Registration registration = new Registration();
             registration.ShowDialog();
-            User = registration.UserBO;
         }
 
         private void LogOut(object sender, MouseButtonEventArgs e)
@@ -137,7 +153,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsEle
             logOutWindow.ShowDialog();
             if (logOutWindow.LogOut)
             {
-                User = null;
+                MainInfo.LoggedInUser = null;
             }
         }
     }

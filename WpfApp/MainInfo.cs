@@ -6,6 +6,8 @@ using System.Text;
 using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
+using BL_Films;
+using BO_Films;
 
 namespace WpfApp
 {
@@ -17,13 +19,30 @@ namespace WpfApp
 
 			Tables.SetDefaultMainTableCollection();
 			Settings = ProgramSettings.Initialize();
+            
+			
 			TableCollection.TableFilePath = Settings.UsedProfile.MainFilePath;
 			TableCollection.FileEncoding = Encoding.UTF8;
-        }
+
+			
+		}
 
 		public static TableCollection TableCollection { get; private set; }
 		public static MainWindow MainWindow { get; private set; }
 		public static ProgramSettings Settings { get; private set; }
+
+        public static event EventHandler UserChanged;
+        private static UserBO userBO;
+		public static UserBO LoggedInUser
+		{
+			get { return userBO; }
+			set
+			{
+				userBO = value;
+				EventHandler handler = UserChanged;
+				if (null != handler) handler(null, EventArgs.Empty);
+			}
+		}
 
 
 		public static class Tables

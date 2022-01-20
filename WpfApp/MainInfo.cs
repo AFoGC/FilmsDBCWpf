@@ -21,7 +21,6 @@ namespace WpfApp
 			Settings = ProgramSettings.Initialize();
             
 			
-			TableCollection.TableFilePath = Settings.UsedProfile.MainFilePath;
 			TableCollection.FileEncoding = Encoding.UTF8;
 
 			

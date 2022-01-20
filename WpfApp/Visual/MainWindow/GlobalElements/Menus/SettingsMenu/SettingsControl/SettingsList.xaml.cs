@@ -57,7 +57,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
         public void GetSettings()
         {
             MainInfo.Settings.UsedProfile = usedProfile;
-            MainInfo.TableCollection.TableFilePath = usedProfile.MainFilePath;
             MainInfo.Settings.SaveSettings();
         }
 

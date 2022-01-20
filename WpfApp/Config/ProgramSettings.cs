@@ -22,7 +22,11 @@ namespace WpfApp.Config
 				}
 				return usedProfile;
 			}
-			set { usedProfile = value; }
+			set 
+			{
+				usedProfile = value;
+				MainInfo.TableCollection.TableFilePath = usedProfile.MainFilePath;
+			}
 		}
 		internal ProfileCollection Profiles { get; private set; }
 		public int MarkSystem { get; set; }

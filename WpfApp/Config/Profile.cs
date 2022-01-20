@@ -48,8 +48,10 @@ namespace WpfApp.Config
 				{
 					using (FileStream fs = File.Create(filePath)) { }
 
-					MainInfo.TableCollection.TableFilePath = filePath;
-					MainInfo.TableCollection.SaveTables();
+					var tables = MainInfo.Tables.GetDefaultTableCollectionData();
+					tables.TableFilePath = filePath;
+					tables.SaveTables();
+
 				}
 
 				return filePath;

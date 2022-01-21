@@ -22,21 +22,21 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
     /// </summary>
     public partial class SettingsMenuControl : UserControl
     {
-        private SettingsControl.SettingsList SettingsList;
+        private SettingsControl.ProfilesSettingsControl profilesSettings;
         public SettingsMenuControl()
         {
             InitializeComponent();
 
-            SettingsList = new SettingsControl.SettingsList();
+            profilesSettings = new SettingsControl.ProfilesSettingsControl();
 
             RefreshControl();
-            SettingsListPanel.Children.Add(SettingsList);
+            SettingsListPanel.Children.Add(profilesSettings);
             
         }
 
         public void RefreshControl()
         {
-            SettingsList.RefreshControl();
+            profilesSettings.RefreshControl();
         }
 
         private void Embrace_Click(object sender, RoutedEventArgs e)

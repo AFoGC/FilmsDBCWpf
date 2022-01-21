@@ -15,7 +15,7 @@ namespace WpfApp.Config
 		{
 			get
 			{
-				if (usedProfile == null)
+				if (usedProfile == null && Directory.Exists(usedProfile.ProfilePath))
 				{
 					usedProfile = Profiles[0];
 					return usedProfile;
@@ -25,7 +25,12 @@ namespace WpfApp.Config
 			set 
 			{
 				usedProfile = value;
+                if (!Directory.Exists(usedProfile.ProfilePath))
+                {
+					usedProfile = Profiles[0];
+				}
 				MainInfo.TableCollection.TableFilePath = usedProfile.MainFilePath;
+				MainInfo.TableCollection.LoadTables();
 			}
 		}
 		internal ProfileCollection Profiles { get; private set; }
@@ -58,6 +63,8 @@ namespace WpfApp.Config
 			}
 
 			settings.LoadSettings();
+
+            
 
 			return settings;
         }

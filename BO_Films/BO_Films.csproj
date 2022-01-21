@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilmsBO.cs" />
     <Compile Include="ProfileBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBO.cs" />

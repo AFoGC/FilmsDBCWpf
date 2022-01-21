@@ -36,6 +36,19 @@ namespace WpfApp.Config
 			return profiles[0];
 		}
 
+		public Profile GetProfileToUsed(Profile profile)
+		{
+			foreach (Profile prof in profiles)
+			{
+				if (prof.Name == profile.Name)
+				{
+					return prof;
+				}
+			}
+
+			return profiles[0];
+		}
+
 		public void LoadProfiles()
 		{
 			foreach (Profile profile in Profile.GetAllProfiles)

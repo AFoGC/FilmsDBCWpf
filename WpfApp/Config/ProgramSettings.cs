@@ -15,12 +15,20 @@ namespace WpfApp.Config
 		{
 			get
 			{
-				if (usedProfile == null && Directory.Exists(usedProfile.ProfilePath))
+				if (usedProfile == null)
 				{
 					usedProfile = Profiles[0];
 					return usedProfile;
 				}
-				return usedProfile;
+                else
+                {
+                    if (!Directory.Exists(usedProfile.ProfilePath))
+                    {
+						usedProfile = Profiles[0];
+						return usedProfile;
+					}
+                }
+				return Profiles.GetProfileToUsed(usedProfile);
 			}
 			set 
 			{
@@ -47,6 +55,15 @@ namespace WpfApp.Config
         {
 			this.Profiles = new ProfileCollection();
 			this.Profiles.LoadProfiles();
+
+            foreach (Profile profile in Profiles.Profiles)
+            {
+                if (UsedProfile.Name == profile.Name)
+                {
+					UsedProfile = profile;
+                }
+            }
+
 			this.StartUser = new StartUserInfo();
         }
 

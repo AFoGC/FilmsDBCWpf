@@ -28,12 +28,33 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 			InitializeComponent();
 			Profile = profile;
 			this.ProfileNameTextBox.Text = profile.Name;
+			this.setSelected(MainInfo.Settings.UsedProfile);
 		}
+
+		public void setSelected(Profile usedProfile)
+        {
+            if (usedProfile == Profile)
+            {
+				this.ProfileNameTextBox.Background = new SolidColorBrush(Color.FromRgb(53,53,83));
+				this.ProfileNameTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(122, 122, 182));
+			}
+            else
+            {
+				this.ProfileNameTextBox.Background = new SolidColorBrush(Color.FromRgb(53, 53, 53));
+				this.ProfileNameTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(122, 122, 122));
+			}
+        }
 
 		private void ChangeProfileButton_Click(object sender, RoutedEventArgs e)
 		{
 			MainInfo.Settings.UsedProfile = Profile;
 			MainInfo.Settings.SaveSettings();
+			WrapPanel panel = (WrapPanel)this.Parent;
+			Profile usedProfile = MainInfo.Settings.UsedProfile;
+            foreach (ProfileControl profile in panel.Children)
+            {
+				profile.setSelected(usedProfile);
+            }
 		}
 
 		private void DeleteProfileButton_Click(object sender, RoutedEventArgs e)

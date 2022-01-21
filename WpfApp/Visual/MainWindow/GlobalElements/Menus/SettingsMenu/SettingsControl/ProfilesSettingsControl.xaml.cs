@@ -19,68 +19,84 @@ using WpfApp.Config;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl
 {
-    /// <summary>
-    /// Логика взаимодействия для ProfilesSettingsControl.xaml
-    /// </summary>
-    public partial class ProfilesSettingsControl : UserControl, ISettingsControl
-    {
-        public ProfilesSettingsControl()
-        {
-            InitializeComponent();
-            RefreshControl();
-        }
+	/// <summary>
+	/// Логика взаимодействия для ProfilesSettingsControl.xaml
+	/// </summary>
+	public partial class ProfilesSettingsControl : UserControl, ISettingsControl
+	{
+		public ProfilesSettingsControl()
+		{
+			InitializeComponent();
+			RefreshControl();
+		}
 
-        public void GetSettings()
-        {
-            
-        }
+		public void GetSettings()
+		{
+			
+		}
 
-        public void RefreshControl()
-        {
-            AddProfileTextBox.Text = "";
-            ProfilesPanel.Children.Clear();
-            foreach (Profile profile in MainInfo.Settings.Profiles.Profiles)
-            {
-                ProfilesPanel.Children.Add(new ProfileControl(profile));
-            }
-        }
+		public void RefreshControl()
+		{
+			AddProfileTextBox.Text = "";
+			ProfilesPanel.Children.Clear();
+			
+			/*
+			foreach (Profile profile in MainInfo.Settings.Profiles.Profiles)
+			{
+				if (profile == MainInfo.Settings.UsedProfile)
+				{
+					ProfilesPanel.Children.Insert(0, new ProfileControl(profile));
+				}
+				else
+				{
+					ProfilesPanel.Children.Add(new ProfileControl(profile));
+				}
+			}
+			*/
+			
+			foreach (Profile profile in MainInfo.Settings.Profiles.Profiles)
+			{
+				ProfilesPanel.Children.Add(new ProfileControl(profile));
+			}
+			
+		}
 
-        private void AddProfileButton_Click(object sender, RoutedEventArgs e)
-        {
-            ProfileCollection profileCollection = MainInfo.Settings.Profiles;
-            if (AddProfileTextBox.Text != "")
-            {
-                bool exclusive = true;
-                Profile newProfile = new Profile(AddProfileTextBox.Text);
+		private void AddProfileButton_Click(object sender, RoutedEventArgs e)
+		{
+			ProfileCollection profileCollection = MainInfo.Settings.Profiles;
+			if (AddProfileTextBox.Text != "")
+			{
+				bool exclusive = true;
+				Profile newProfile = new Profile(AddProfileTextBox.Text);
 
-                foreach (Profile prof in profileCollection.Profiles)
-                {
-                    if (prof.Name == newProfile.Name) exclusive = false;
-                }
+				foreach (Profile prof in profileCollection.Profiles)
+				{
+					if (prof.Name == newProfile.Name) exclusive = false;
+				}
 
-                if (exclusive)
-                {
-                    Directory.CreateDirectory(newProfile.ProfilePath);
-                    using (FileStream fs = File.Create(newProfile.MainFilePath)) { }
+				if (exclusive)
+				{
+					Directory.CreateDirectory(newProfile.ProfilePath);
+					using (FileStream fs = File.Create(newProfile.MainFilePath)) { }
 
-                    TableCollection tc = MainInfo.Tables.GetDefaultTableCollectionData();
-                    tc.TableFilePath = newProfile.MainFilePath;
+					TableCollection tc = MainInfo.Tables.GetDefaultTableCollectionData();
+					tc.TableFilePath = newProfile.MainFilePath;
 
-                    Table<Genre> genreTable = tc.GetTable<Genre>();
-                    genreTable.RemoveAll(true);
+					Table<Genre> genreTable = tc.GetTable<Genre>();
+					genreTable.RemoveAll(true);
 
-                    foreach (Genre genre in MainInfo.Tables.GenresTable)
-                    {
-                        genreTable.AddWithoutReindexation(genre);
-                    }
+					foreach (Genre genre in MainInfo.Tables.GenresTable)
+					{
+						genreTable.AddWithoutReindexation(genre);
+					}
 
-                    tc.SaveTables();
+					tc.SaveTables();
 
-                    profileCollection.AddProfile(newProfile);
-                }
+					profileCollection.AddProfile(newProfile);
+				}
 
-                this.RefreshControl();
-            }
-        }
-    }
+				this.RefreshControl();
+			}
+		}
+	}
 }

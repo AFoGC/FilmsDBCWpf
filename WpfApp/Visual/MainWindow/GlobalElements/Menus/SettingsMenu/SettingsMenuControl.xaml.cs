@@ -49,5 +49,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
 
             MainInfo.TableCollection.LoadTables();
         }
+
+        private void GetFromDB_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SendToDB_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

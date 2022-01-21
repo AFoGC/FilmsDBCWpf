@@ -36,5 +36,55 @@
             </Button.Style>
         </Button>
         <SettingsElements:UserMenuElement x:Name="LogInUser" HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="250" Margin="296,0,0,30"/>
+        <Button x:Name="GetFromDB" Content="Get From DB" Height="20"
+            HorizontalAlignment="Left" Margin="551,595,0,0" VerticalAlignment="Top" Width="76" Foreground="White" Click="GetFromDB_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="SendToDB" Content="Send To DB" Height="20"
+            HorizontalAlignment="Left" Margin="551,655,0,0" VerticalAlignment="Top" Width="76" Foreground="White" Click="SendToDB_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>

@@ -10,35 +10,15 @@ namespace WpfApp.Config
 	[Serializable]
 	public class ProgramSettings
 	{
-		private Profile usedProfile = null;
 		public Profile UsedProfile
 		{
 			get
 			{
-				if (usedProfile == null)
-				{
-					usedProfile = Profiles[0];
-					return usedProfile;
-				}
-                else
-                {
-                    if (!Directory.Exists(usedProfile.ProfilePath))
-                    {
-						usedProfile = Profiles[0];
-						return usedProfile;
-					}
-                }
-				return Profiles.GetProfileToUsed(usedProfile);
+				return Profiles.UsedProfile;
 			}
 			set 
 			{
-				usedProfile = value;
-                if (!Directory.Exists(usedProfile.ProfilePath))
-                {
-					usedProfile = Profiles[0];
-				}
-				MainInfo.TableCollection.TableFilePath = usedProfile.MainFilePath;
-				MainInfo.TableCollection.LoadTables();
+				Profiles.UsedProfile = value;
 			}
 		}
 		internal ProfileCollection Profiles { get; private set; }
@@ -54,15 +34,7 @@ namespace WpfApp.Config
 		private ProgramSettings()
         {
 			this.Profiles = new ProfileCollection();
-			this.Profiles.LoadProfiles();
 
-            foreach (Profile profile in Profiles.Profiles)
-            {
-                if (UsedProfile.Name == profile.Name)
-                {
-					UsedProfile = profile;
-                }
-            }
 
 			this.StartUser = new StartUserInfo();
         }

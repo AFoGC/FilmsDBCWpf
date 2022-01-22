@@ -7,10 +7,38 @@ namespace WpfApp.Config
 	public class ProfileCollection
 	{
 		private List<Profile> profiles = null;
+		private Profile usedProfile = null;
+		public Profile UsedProfile
+        {
+            get
+            {
+				return usedProfile;
+            }
+            set
+            {
+				bool hasInCollection = false;
+                foreach (Profile profile in profiles)
+                {
+                    if (profile.Name == value.Name)
+                    {
+						usedProfile = profile;
+						hasInCollection = true;
+                    }
+                }
+                if (!hasInCollection)
+                {
+					usedProfile = profiles[0];
+                }
+				MainInfo.TableCollection.TableFilePath = usedProfile.MainFilePath;
+				MainInfo.TableCollection.LoadTables();
+			}
+        }
 
 		public ProfileCollection()
 		{
 			profiles = new List<Profile>();
+			LoadProfiles();
+			usedProfile = profiles[0];
 		}
 
 		public Profile[] Profiles
@@ -51,6 +79,7 @@ namespace WpfApp.Config
 
 		public void LoadProfiles()
 		{
+			profiles.Clear();
 			foreach (Profile profile in Profile.GetAllProfiles)
 			{
 				AddProfile(profile);

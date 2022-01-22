@@ -74,5 +74,10 @@ namespace WpfApp.Config
 		{
 			profiles.Remove(import);
 		}
+
+		public void GetProfilesFromDB()
+        {
+
+        }
 	}
 }

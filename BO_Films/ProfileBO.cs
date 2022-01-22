@@ -14,6 +14,6 @@ namespace BO_Films
         public Int64 UserId { get; set; }
 
 
-        public UserBO UserBO { get; set; }
+        //public UserBO UserBO { get; set; }
     }
 }

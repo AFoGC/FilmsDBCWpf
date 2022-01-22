@@ -34,29 +34,45 @@ namespace WpfApp.Config
 			get { return AllProfilesPath + "\\" + name; }
 		}
 
+		private String FilePath
+        {
+			get { return ProfilePath + "\\Films.fdbc"; }
+        }
+
 		public String MainFilePath
 		{
 			get
 			{
-				String filePath = ProfilePath + "\\Films.fdbc";
-				if (File.Exists(filePath))
+				if (File.Exists(FilePath))
 				{
 					// Тут нужно сделать проверку первой строки файла
 					//
 				}
 				else
 				{
-					using (FileStream fs = File.Create(filePath)) { }
+					using (FileStream fs = File.Create(FilePath)) { }
 
 					var tables = MainInfo.Tables.GetDefaultTableCollectionData();
-					tables.TableFilePath = filePath;
+					tables.TableFilePath = FilePath;
 					tables.SaveTables();
 
 				}
 
-				return filePath;
+				return FilePath;
 			}
 		}
+
+		public void SetMainFile(byte[] fileBytes)
+        {
+            if (File.Exists(FilePath))
+            {
+
+            }
+            else
+            {
+
+            }
+        }
 
 		public static Profile[] GetAllProfiles
 		{

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL_Films
 {
-    public class UserBL
+    public static class UserBL
     {
         public static int Add_User(string email, string username, string password)
         {

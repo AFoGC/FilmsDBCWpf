@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL_Films;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,12 +53,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
 
         private void GetFromDB_Click(object sender, RoutedEventArgs e)
         {
-
+            MainInfo.Settings.Profiles.GetProfilesFromDB(MainInfo.LoggedInUser);
+            MainInfo.TableCollection.LoadTables();
         }
 
         private void SendToDB_Click(object sender, RoutedEventArgs e)
         {
-
+            MainInfo.Settings.Profiles.SendProfilesToDB(MainInfo.LoggedInUser);
         }
     }
 }

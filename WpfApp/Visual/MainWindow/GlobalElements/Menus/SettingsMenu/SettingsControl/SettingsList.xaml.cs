@@ -111,7 +111,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
             if (RemoveProfileComboBox.Text != "")
             {
                 Profile prof = (Profile)RemoveProfileComboBox.SelectedItem;
-                Directory.Delete(prof.ProfilePath, true);
 
                 profileCollection.RemoveProfile(prof);
 

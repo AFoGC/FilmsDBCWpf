@@ -40,20 +40,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 			AddProfileTextBox.Text = "";
 			ProfilesPanel.Children.Clear();
 			
-			/*
-			foreach (Profile profile in MainInfo.Settings.Profiles.Profiles)
-			{
-				if (profile == MainInfo.Settings.UsedProfile)
-				{
-					ProfilesPanel.Children.Insert(0, new ProfileControl(profile));
-				}
-				else
-				{
-					ProfilesPanel.Children.Add(new ProfileControl(profile));
-				}
-			}
-			*/
-			
 			foreach (Profile profile in MainInfo.Settings.Profiles.Profiles)
 			{
 				ProfilesPanel.Children.Add(new ProfileControl(profile));

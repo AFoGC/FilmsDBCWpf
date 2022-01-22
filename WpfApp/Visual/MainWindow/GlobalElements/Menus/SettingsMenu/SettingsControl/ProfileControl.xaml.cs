@@ -59,8 +59,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 
 		private void DeleteProfileButton_Click(object sender, RoutedEventArgs e)
 		{
-			Directory.Delete(Profile.ProfilePath, true);
-
 			MainInfo.Settings.Profiles.RemoveProfile(Profile);
 			WrapPanel panel =  (WrapPanel)this.Parent;
 			panel.Children.Remove(this);

@@ -16,11 +16,11 @@ namespace DAL_Films
 			ProfileBO profile = new ProfileBO();
 			object ob = null;
 
-			profile.Id = objReader.GetInt32(0);
+			profile.Id = objReader.GetInt64(0);
 			profile.Name = objReader.GetString(1);
 			if ((ob = objReader.GetValue(2)) != DBNull.Value)
 				profile.Lastsave = (byte[])ob;
-			profile.UserId = objReader.GetInt32(3);
+			profile.UserId = objReader.GetInt64(3);
 
 			return profile;
 		}
@@ -30,9 +30,22 @@ namespace DAL_Films
 			SqlParameter objParam;
 			objParam = command.Parameters.Add("@name", SqlDbType.NVarChar);
 			objParam.Value = profile.Name;
-			objParam = command.Parameters.Add("@lastsave", SqlDbType.NVarChar);
+			objParam = command.Parameters.Add("@lastsave", SqlDbType.VarBinary);
 			objParam.Value = profile.Lastsave;
-			objParam = command.Parameters.Add("@user_id", SqlDbType.NVarChar);
+			objParam = command.Parameters.Add("@user_id", SqlDbType.BigInt);
+			objParam.Value = profile.UserId;
+		}
+
+		private void setParametersUpdate(ProfileBO profile)
+		{
+			SqlParameter objParam;
+			objParam = command.Parameters.Add("@id", SqlDbType.BigInt);
+			objParam.Value = profile.Id;
+			objParam = command.Parameters.Add("@name", SqlDbType.NVarChar);
+			objParam.Value = profile.Name;
+			objParam = command.Parameters.Add("@lastsave", SqlDbType.VarBinary);
+			objParam.Value = profile.Lastsave;
+			objParam = command.Parameters.Add("@user_id", SqlDbType.BigInt);
 			objParam.Value = profile.UserId;
 		}
 
@@ -68,7 +81,7 @@ namespace DAL_Films
 
 		public int DeleteByID(long id)
         {
-			command.CommandText = "Profiles_Delete";
+			command.CommandText = "Profiles_Remove";
 			SqlParameter objParam = command.Parameters.Add("@id", SqlDbType.BigInt);
 			objParam.Value = id;
 
@@ -80,7 +93,7 @@ namespace DAL_Films
 		public int Update(ProfileBO profile)
         {
 			command.CommandText = "Profiles_Update";
-			setParameters(profile);
+			setParametersUpdate(profile);
 			var insertedRows = command.ExecuteNonQuery();
 			connection.Close();
 			return insertedRows;

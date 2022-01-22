@@ -1,5 +1,8 @@
-﻿using System;
+﻿using BL_Films;
+using BO_Films;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace WpfApp.Config
@@ -51,7 +54,7 @@ namespace WpfApp.Config
 			get { return profiles[index]; }
 		}
 
-		public Profile GetProfileToUsed(String name)
+		private Profile GetProfileToUsed(String name)
 		{
 			foreach (Profile prof in profiles)
 			{
@@ -64,7 +67,7 @@ namespace WpfApp.Config
 			return profiles[0];
 		}
 
-		public Profile GetProfileToUsed(Profile profile)
+		private Profile GetProfileToUsed(Profile profile)
 		{
 			foreach (Profile prof in profiles)
 			{
@@ -101,12 +104,44 @@ namespace WpfApp.Config
 
 		public void RemoveProfile(Profile import)
 		{
+			Directory.Delete(import.ProfilePath, true);
 			profiles.Remove(import);
 		}
 
-		public void GetProfilesFromDB()
+		public void GetProfilesFromDB(UserBO user)
         {
+			ProfileBO[] DBProfiles = ProfileBL.GetAllUserProfiles(user);
 
+            while (profiles.Count > 0)
+            {
+				profiles.Remove(profiles[0]);
+            }
+
+            foreach (ProfileBO profileBO in DBProfiles)
+            {
+				Profile profile = new Profile(profileBO.Name);
+				AddProfile(profile);
+				profile.SetMainFile(profileBO.Lastsave);
+            }
+        }
+
+		public void SendProfilesToDB(UserBO user)
+        {
+			ProfileBO[] DBProfiles = new ProfileBO[profiles.Count];
+			int i = 0;
+			ProfileBO profileBO;
+
+			foreach (Profile profile in profiles)
+            {
+				profileBO = new ProfileBO();
+				profileBO.Name = profile.Name;
+				profileBO.Lastsave = profile.GetMainFile();
+				profileBO.UserId = user.Id;
+
+				DBProfiles[i++] = profileBO;
+            }
+
+			ProfileBL.SendProfiles(DBProfiles, user);
         }
 	}
 }

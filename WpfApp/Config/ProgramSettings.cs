@@ -34,8 +34,6 @@ namespace WpfApp.Config
 		private ProgramSettings()
         {
 			this.Profiles = new ProfileCollection();
-
-
 			this.StartUser = new StartUserInfo();
         }
 

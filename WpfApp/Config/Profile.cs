@@ -10,7 +10,7 @@ namespace WpfApp.Config
 	{
 		public Profile()
         {
-			
+			this.name = "Main";
         }
 		public Profile(String name)
 		{
@@ -66,13 +66,15 @@ namespace WpfApp.Config
         {
             if (File.Exists(FilePath))
             {
-
+				File.Delete(FilePath);
             }
-            else
-            {
-
-            }
+			File.WriteAllBytes(FilePath, fileBytes);
         }
+
+		public Byte[] GetMainFile()
+        {
+			return File.ReadAllBytes(MainFilePath);
+		}
 
 		public static Profile[] GetAllProfiles
 		{

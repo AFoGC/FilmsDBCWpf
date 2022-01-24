@@ -48,7 +48,7 @@ namespace TL_Objects
 		}
 
 		private Source defSource = new Source();
-		protected override void saveBody(StreamWriter streamWriter)
+		protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
 		{
 			streamWriter.Write(FormatParam("name", name, "", 2));
 			streamWriter.Write(FormatParam("genre", genre.ID, 0, 2));

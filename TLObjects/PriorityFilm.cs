@@ -29,7 +29,7 @@ namespace TL_Objects
 			}
 		}
 
-		protected override void saveBody(StreamWriter streamWriter)
+		protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
 		{
 			streamWriter.Write(FormatParam("film", filmId, 0, 2));
 		}

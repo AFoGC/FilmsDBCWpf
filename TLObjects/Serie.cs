@@ -29,7 +29,7 @@ namespace TL_Objects
             totalSeries = serie.totalSeries;
         }
 
-        protected override void saveBody(StreamWriter streamWriter)
+        protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
             streamWriter.Write(FormatParam("filmId", filmId, 0, 2));
             streamWriter.Write(FormatParam("startWatchDate", startWatchDate, new DateTime(), 2));

@@ -29,7 +29,7 @@ namespace TL_Objects
             films = category.films;
         }
 
-        protected override void saveBody(StreamWriter streamWriter)
+        protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
             streamWriter.Write(FormatParam("name", name, "", 2));
             streamWriter.Write(FormatParam("mark", mark, -1, 2));

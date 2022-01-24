@@ -24,7 +24,7 @@ namespace TL_Objects
             isSerialGenre = genre.isSerialGenre;
         }
 
-        protected override void saveBody(StreamWriter streamWriter)
+        protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
             streamWriter.Write(FormatParam("name", name, "", 2));
             streamWriter.Write(FormatParam("isSerialGenre", isSerialGenre, false, 2));

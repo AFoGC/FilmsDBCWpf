@@ -22,7 +22,7 @@ namespace TL_Objects
             name = bookGenre.name;
         }
 
-        protected override void saveBody(StreamWriter streamWriter)
+        protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
             streamWriter.Write(FormatParam("name", name, "", 2));
         }

@@ -1,13 +1,14 @@
 ﻿using BL_Films;
 using BO_Films;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
 namespace WpfApp.Config
 {
-	public class ProfileCollection
+	public class ProfileCollection : IEnumerable
 	{
 		private List<Profile> profiles = null;
 		private Profile usedProfile = null;
@@ -44,9 +45,9 @@ namespace WpfApp.Config
 			usedProfile = profiles[0];
 		}
 
-		public Profile[] Profiles
+		public Profile[] ToArray()
 		{
-			get { return profiles.ToArray(); }
+			return profiles.ToArray();
 		}
 
 		public Profile this[int index]
@@ -143,5 +144,31 @@ namespace WpfApp.Config
 
 			ProfileBL.SendProfiles(DBProfiles, user);
         }
-	}
+
+        public IEnumerator GetEnumerator()
+        {
+			return new ProfileEnum(profiles);
+        }
+
+        private class ProfileEnum : IEnumerator
+        {
+			IEnumerator enumerator;
+			public ProfileEnum(List<Profile> profiles)
+            {
+				enumerator = profiles.GetEnumerator();
+            }
+
+			public object Current => enumerator.Current;
+
+            public bool MoveNext()
+            {
+				return enumerator.MoveNext();
+            }
+
+            public void Reset()
+            {
+				enumerator.Reset();
+            }
+        }
+    }
 }

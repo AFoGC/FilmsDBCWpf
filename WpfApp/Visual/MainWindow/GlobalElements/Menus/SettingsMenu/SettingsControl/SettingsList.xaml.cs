@@ -71,7 +71,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
             RenameProfileComboBox.Items.Clear();
             RemoveProfileComboBox.Items.Clear();
 
-            foreach (Profile prof in profileCollection.Profiles)
+            foreach (Profile prof in profileCollection)
             {
                 ProfileComboBox.Items.Add(prof);
                 RenameProfileComboBox.Items.Add(prof);
@@ -125,7 +125,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
                 bool exclusive = true;
                 Profile newProfile = new Profile(AddProfileTextBox.Text);
 
-                foreach (Profile prof in profileCollection.Profiles)
+                foreach (Profile prof in profileCollection)
                 {
                     if (prof.Name == newProfile.Name) exclusive = false;
                 }

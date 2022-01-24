@@ -40,7 +40,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 			AddProfileTextBox.Text = "";
 			ProfilesPanel.Children.Clear();
 			
-			foreach (Profile profile in MainInfo.Settings.Profiles.Profiles)
+			foreach (Profile profile in MainInfo.Settings.Profiles)
 			{
 				ProfilesPanel.Children.Add(new ProfileControl(profile));
 			}
@@ -55,7 +55,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 				bool exclusive = true;
 				Profile newProfile = new Profile(AddProfileTextBox.Text);
 
-				foreach (Profile prof in profileCollection.Profiles)
+				foreach (Profile prof in profileCollection)
 				{
 					if (prof.Name == newProfile.Name) exclusive = false;
 				}

@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using TablesLibrary.Interpreter;
+using TablesLibrary.Interpreter.Table;
 using TL_Objects;
 using WpfApp.Config;
 

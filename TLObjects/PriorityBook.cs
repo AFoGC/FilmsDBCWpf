@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
-using TablesLibrary.Interpreter.Attributes;
+using TablesLibrary.Interpreter.TableCell;
 
 namespace TL_Objects
 {

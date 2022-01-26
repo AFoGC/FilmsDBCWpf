@@ -8,6 +8,8 @@ using TL_Objects;
 using TL_Tables;
 using BL_Films;
 using BO_Films;
+using TablesLibrary.Interpreter.Table;
+using TablesLibrary.Interpreter.TableCell;
 
 namespace WpfApp
 {

@@ -20,15 +20,19 @@ namespace TL_Objects
 		private DateTime dateOfWatch = new DateTime();
 
 		private string comment = "";
-		private List<Source> sources = new List<Source>();
+		private TLCollection<Source> sources = new TLCollection<Source>();
 
 		private int countOfviews = 0;
 		private int franshiseId = 0;
 		private sbyte franshiseListIndex = -1;
 
 
-		public Film() : base() { }
-		public Film(int id) : base(id) { }
+		public Film() : base() { sources.CollectionChanged += Sources_CollectionChanged; }
+		public Film(int id) : base(id) { sources.CollectionChanged += Sources_CollectionChanged; }
+		private void Sources_CollectionChanged(object sender, EventArgs e)
+		{
+			this.OnPropertyChanged(nameof(Sources));
+		}
 
 		protected override void updateThisBody(Cell cell)
 		{
@@ -168,7 +172,7 @@ namespace TL_Objects
 			set { comment = value; OnPropertyChanged(nameof(Comment)); }
 		}
 
-		public List<Source> Sources
+		public TLCollection<Source> Sources
 		{
 			get { return sources; }
 			set { sources = value; OnPropertyChanged(nameof(Sources)); }

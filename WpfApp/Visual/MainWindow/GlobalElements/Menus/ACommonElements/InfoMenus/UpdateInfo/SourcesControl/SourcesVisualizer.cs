@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TablesLibrary.Interpreter.TableCell;
 using TL_Objects.CellDataClasses;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenus.UpdateInfo.SourcesControl
@@ -29,7 +30,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 			throw new NotImplementedException();
 		}
 
-		public void OpenSourceControl(List<Source> sources)
+		public void OpenSourceControl(TLCollection<Source> sources)
 		{
 			sourcesControl.Reinitialize(sources);
 			updateVisualizer.ParentControl.Children.Remove(sourcesControl);

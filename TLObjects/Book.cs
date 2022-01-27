@@ -19,7 +19,7 @@ namespace TL_Objects
 		private bool readed = false;
 		private DateTime fullReadDate = new DateTime();
 		private sbyte mark = -1;
-		private List<Source> sources = new List<Source>();
+		private TLCollection<Source> sources = new TLCollection<Source>();
 
 		private int countOfReadings = 0;
 		private String bookmark = "";
@@ -27,8 +27,14 @@ namespace TL_Objects
 		private int franshiseId = 0;
 		private sbyte franshiseListIndex = -1;
 
-		public Book() : base() { }
-		public Book(int id) : base(id) { }
+		public Book() : base() { sources.CollectionChanged += Sources_CollectionChanged; }
+        public Book(int id) : base(id) { sources.CollectionChanged += Sources_CollectionChanged; }
+		private void Sources_CollectionChanged(object sender, EventArgs e)
+		{
+			this.OnPropertyChanged(nameof(Sources));
+		}
+
+
 
 		protected override void loadBody(Comand comand)
 		{
@@ -160,7 +166,7 @@ namespace TL_Objects
 			get { return mark; }
 			set { mark = value; OnPropertyChanged(nameof(Mark)); }
 		}
-		public List<Source> Sources
+		public TLCollection<Source> Sources
 		{
 			get { return sources; }
 			set { sources = value; OnPropertyChanged(nameof(Sources)); }

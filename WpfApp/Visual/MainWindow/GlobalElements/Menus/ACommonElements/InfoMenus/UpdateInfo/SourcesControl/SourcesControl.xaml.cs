@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TablesLibrary.Interpreter.TableCell;
 using TL_Objects.CellDataClasses;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenus.UpdateInfo.SourcesControl
@@ -19,11 +20,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
     /// </summary>
     public partial class SourcesControl : UserControl
     {
-        private List<Source> exportSources = null;
-        public List<Source> ExportSources
-        {
-            get { return exportSources; }
-        }
+        public TLCollection<Source> ExportSources { get; private set; }
 
         private Canvas parentControl;
         public SourcesControl(UpdateFormVisualizer visualizer)
@@ -33,9 +30,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
             Canvas.SetLeft(this, 940);
         }
 
-        public void Reinitialize(List<Source> exportSources)
+        public void Reinitialize(TLCollection<Source> exportSources)
         {
-            this.exportSources = exportSources;
+            this.ExportSources = exportSources;
             wrapPanel_sources.Children.Clear();
 
             foreach (Source source in exportSources)
@@ -51,14 +48,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 
         public void button_update_Click(object sender, EventArgs e)
         {
-            while (exportSources.Count != 0)
+            while (ExportSources.Count != 0)
             {
-                exportSources.Remove(exportSources[0]);
+                ExportSources.Remove(ExportSources[0]);
             }
 
             foreach (SourceControl sourceControl in wrapPanel_sources.Children)
             {
-                exportSources.Add(sourceControl.Source);
+                ExportSources.Add(sourceControl.Source);
             }
         }
 

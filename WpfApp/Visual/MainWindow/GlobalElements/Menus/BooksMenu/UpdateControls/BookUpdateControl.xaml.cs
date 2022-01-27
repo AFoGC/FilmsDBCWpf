@@ -97,7 +97,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
 
         private void btn_sources_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.MainWindow.BooksMenu.UpdateVisualizer.SourcesVisualizer.OpenSourceControl(this.book.Sources);
+            MainInfo.MainWindow.BooksMenu.UpdateFormVisualizer.SourcesVisualizer.OpenSourceControl(this.book.Sources);
         }
     }
 }

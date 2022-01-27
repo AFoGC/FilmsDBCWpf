@@ -151,7 +151,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         private void btn_update_Click(object sender, RoutedEventArgs e)
         {
-			MainInfo.MainWindow.FilmsMenu.UpdateVisualizer.OpenUpdateControl(this);
+			MainInfo.MainWindow.FilmsMenu.UpdateFormVisualizer.OpenUpdateControl(this);
 		}
 
 		private bool commentIsOpen = false;
@@ -172,7 +172,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         private void id_GotFocus(object sender, RoutedEventArgs e)
         {
-			SetSelectedElement(MainInfo.MainWindow.FilmsMenu.ControlInBuffer);
+			SetSelectedElement();
 		}
     }
 }

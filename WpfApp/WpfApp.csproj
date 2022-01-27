@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\AbstractControlDescriptionProvider.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IControls.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IMenuControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\ISimpleControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IUpdateControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\MoreInfo\MoreInfoControl.xaml.cs">

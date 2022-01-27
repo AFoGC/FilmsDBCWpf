@@ -78,7 +78,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
 
 		private void btn_sources_Click(object sender, RoutedEventArgs e)
 		{
-			MainInfo.MainWindow.FilmsMenu.UpdateVisualizer.SourcesVisualizer.OpenSourceControl(this.film.Sources);
+			MainInfo.MainWindow.FilmsMenu.UpdateFormVisualizer.SourcesVisualizer.OpenSourceControl(this.film.Sources);
 		}
 
 		private bool commentIsOpen = false;

@@ -163,7 +163,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         private void btn_update_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.MainWindow.BooksMenu.UpdateVisualizer.OpenUpdateControl(this);
+            MainInfo.MainWindow.BooksMenu.UpdateFormVisualizer.OpenUpdateControl(this);
         }
     }
 }

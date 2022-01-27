@@ -90,11 +90,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             watched.IsChecked = !watched.IsChecked;
         }
 
-        private void id_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            SetSelectedElement(MainInfo.MainWindow.FilmsMenu.ControlInBuffer);
-        }
-
         private void watched_Click(object sender, RoutedEventArgs e)
         {
             watched.IsChecked = !watched.IsChecked;
@@ -102,12 +97,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         private void btn_moreInfo_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.MainWindow.FilmsMenu.MoreInfoVisualizer.OpenMoreInfoForm(this);
+            MainInfo.MainWindow.FilmsMenu.MoreInfoFormVisualizer.OpenMoreInfoForm(this);
         }
 
         private void id_GotFocus(object sender, RoutedEventArgs e)
         {
-            SetSelectedElement(MainInfo.MainWindow.FilmsMenu.ControlInBuffer);
+            SetSelectedElement();
         }
     }
 }

@@ -17,13 +17,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 			get { return filmInfo; }
 		}
 
-		internal void SetSelectedElement(AElementControl controlInBuffer)
+		internal void SetSelectedElement()
 		{
-			if (controlInBuffer != null)
-			{
-				controlInBuffer.SetVisualDefault();
-			}
-
 			MainInfo.MainWindow.FilmsMenu.ControlInBuffer = this;
 			setVisualSelected();
 		}

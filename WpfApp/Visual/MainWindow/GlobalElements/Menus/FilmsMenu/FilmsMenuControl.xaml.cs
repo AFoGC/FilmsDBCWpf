@@ -23,7 +23,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
     /// <summary>
     /// Логика взаимодействия для FilmsMenuControl.xaml
     /// </summary>
-    public partial class FilmsMenuControl : UserControl
+    public partial class FilmsMenuControl : UserControl, IMenuControl
     {
         public enum MenuCondition
         {
@@ -39,10 +39,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         public FilmsMenuControl()
         {
             InitializeComponent();
-            moreInfoVisualizer = new MoreInfoFormVisualizer(infoCanvas);
-            updateVisualizer = new UpdateFormVisualizer(infoCanvas);
-            moreInfoVisualizer.UpdateVisualizer = updateVisualizer;
-            updateVisualizer.MoreVisualizer = moreInfoVisualizer;
+            MoreInfoFormVisualizer = new MoreInfoFormVisualizer(infoCanvas);
+            UpdateFormVisualizer = new UpdateFormVisualizer(infoCanvas);
+            MoreInfoFormVisualizer.UpdateVisualizer = UpdateFormVisualizer;
+            UpdateFormVisualizer.MoreVisualizer = MoreInfoFormVisualizer;
             MainInfo.TableCollection.TableLoad += new EventHandler(this.TableCollection_TablesLoad);
         }
 
@@ -52,16 +52,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
             LoadGenres();
         }
 
-        private MoreInfoFormVisualizer moreInfoVisualizer;
-        public MoreInfoFormVisualizer MoreInfoVisualizer
-        {
-            get { return moreInfoVisualizer; }
-        }
-        private UpdateFormVisualizer updateVisualizer;
-        public UpdateFormVisualizer UpdateVisualizer
-        {
-            get { return updateVisualizer; }
-        }
+        public MoreInfoFormVisualizer MoreInfoFormVisualizer { get; private set; }
+        public UpdateFormVisualizer UpdateFormVisualizer { get; private set; }
 
         private List<UserControl> tableControls = new List<UserControl>();
         private AElementControl controlInBuffer = null;

@@ -121,7 +121,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
 
         private void btn_sources_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.MainWindow.FilmsMenu.UpdateVisualizer.SourcesVisualizer.OpenSourceControl(this.serie.Film.Sources);
+            MainInfo.MainWindow.FilmsMenu.UpdateFormVisualizer.SourcesVisualizer.OpenSourceControl(this.serie.Film.Sources);
         }
 
         private bool commentIsOpen = false;

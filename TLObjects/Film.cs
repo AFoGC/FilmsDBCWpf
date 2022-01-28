@@ -126,14 +126,7 @@ namespace TL_Objects
 		{
 			get
 			{
-				if (genre != null)
-				{
-					return genre;
-				}
-				else
-				{
-					return new Genre(0);
-				}
+				return genre;
 			}
 			set
 			{

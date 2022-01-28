@@ -65,11 +65,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             }
         }
 
-        private List<UserControl> tableControls = new List<UserControl>();
+        public List<UserControl> TableControls { get; private set; } = new List<UserControl>();
         private void clearControls()
         {
             controlsPanel.Children.Clear();
-            tableControls.Clear();
+            TableControls.Clear();
         }
         public void LoadGenres()
         {
@@ -88,16 +88,16 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
 
             foreach (BookCategory category in MainInfo.Tables.BookCategoriesTable)
             {
-                tableControls.Add(new BookCategoryControl(category));
+                TableControls.Add(new BookCategoryControl(category));
             }
 
             foreach (Book book in MainInfo.Tables.BooksTable)
             {
                 if (book.FranshiseId == 0)
-                    tableControls.Add(new BookSimpleControl(book));
+                    TableControls.Add(new BookSimpleControl(book));
             }
 
-            foreach (var item in tableControls)
+            foreach (var item in TableControls)
             {
                 controlsPanel.Children.Add(item);
             }
@@ -111,10 +111,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
 
             foreach (Book book in MainInfo.Tables.BooksTable)
             {
-                tableControls.Add(new BookControl(book));
+                TableControls.Add(new BookControl(book));
             }
 
-            foreach (var item in tableControls)
+            foreach (var item in TableControls)
             {
                 controlsPanel.Children.Add(item);
             }
@@ -140,11 +140,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
                 }
                 else
                 {
-                    tableControls.Add(new BookSimpleControl(book.Book));
+                    TableControls.Add(new BookSimpleControl(book.Book));
                 }
             }
 
-            foreach (UserControl control in tableControls)
+            foreach (UserControl control in TableControls)
             {
                 controlsPanel.Children.Add(control);
             }
@@ -152,14 +152,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
 
         private void btn_addBook_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.Tables.BooksTable.AddElement();
-            Book book = MainInfo.Tables.BooksTable.GetLastElement;
+            Book book = new Book();
+            book.BookGenre = MainInfo.Tables.BookGenresTable[0];
+            MainInfo.Tables.BooksTable.AddElement(book);
             IControls<Book, BookGenre> control;
             switch (ControlsCondition)
             {
                 case MenuCondition.Category:
                     control = new BookSimpleControl(book);
-                    tableControls.Add((UserControl)control);
+                    TableControls.Add((UserControl)control);
                     controlsPanel.Children.Add((UserControl)control);
                     break;
 
@@ -183,7 +184,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             controlsPanel.Children.Clear();
             BookGenre[] genres = getSelectedGenres();
 
-            foreach (IControls<Book, BookGenre> control in tableControls)
+            foreach (IControls<Book, BookGenre> control in TableControls)
             {
                 if (watchedRequestControl.IsAllIncluded)
                 {

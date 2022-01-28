@@ -58,6 +58,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
                         category.Films.Add(film);
                         categoryControl.AddSimpleCotrol(film);
                         MainInfo.MainWindow.FilmsMenu.controlsPanel.Children.Remove(simpleControl);
+                        MainInfo.MainWindow.FilmsMenu.TableControls.Remove(simpleControl);
                         MainInfo.MainWindow.FilmsMenu.ControlInBuffer = null;
                     }
                 }
@@ -87,6 +88,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
                                     if (sControl.Info.ID > film.ID)
                                     {
                                         MainInfo.MainWindow.FilmsMenu.controlsPanel.Children.Insert(i, simpleControl);
+                                        MainInfo.MainWindow.FilmsMenu.TableControls.Insert(i, simpleControl);
                                         return;
                                     }
                                 }

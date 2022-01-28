@@ -80,7 +80,9 @@
       <DependentUpon>MainHeaderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\AbstractControlDescriptionProvider.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IBaseControls.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IControls.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IHasGenreControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IMenuControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\ISimpleControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IToUpdateControl.cs" />

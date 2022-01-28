@@ -60,6 +60,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
                         category.Books.Add(book);
                         categoryControl.AddSimpleCotrol(book);
                         MainInfo.MainWindow.BooksMenu.controlsPanel.Children.Remove(simpleControl);
+                        MainInfo.MainWindow.BooksMenu.TableControls.Remove(simpleControl);
                         MainInfo.MainWindow.BooksMenu.ControlInBuffer = null;
                     }
                 }
@@ -89,6 +90,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
                                     if (sControl.Info.ID > book.ID)
                                     {
                                         MainInfo.MainWindow.BooksMenu.controlsPanel.Children.Insert(i, simpleControl);
+                                        MainInfo.MainWindow.BooksMenu.TableControls.Insert(i, simpleControl);
                                         return;
                                     }
                                 }

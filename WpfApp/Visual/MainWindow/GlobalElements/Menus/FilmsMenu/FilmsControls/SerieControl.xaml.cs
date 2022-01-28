@@ -33,7 +33,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 		{
 			InitializeComponent();
 			this.filmInfo = film;
-			this.serieInfo = findSerie();
+			this.serieInfo = film.Serie;
 
 			RefreshData();
 		}
@@ -51,26 +51,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 		{
 			InitializeComponent();
 			this.filmInfo = simpleControl.filmInfo;
-			this.serieInfo = findSerie();
+			this.serieInfo = simpleControl.FilmInfo.Serie;
 			this.simpleControl = simpleControl;
 
 			RefreshData();
-		}
-
-		private Serie findSerie()
-		{
-			foreach (Serie serie in MainInfo.Tables.SeriesTable)
-			{
-				if (serie.FilmId == filmInfo.ID)
-				{
-					return serie;
-				}
-			}
-
-			Serie ser = new Serie();
-			ser.Film = filmInfo;
-
-			return ser;
 		}
 
 		public override void RefreshData()

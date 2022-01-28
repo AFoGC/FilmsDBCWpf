@@ -26,6 +26,7 @@ namespace TL_Objects
 		private int franshiseId = 0;
 		private sbyte franshiseListIndex = -1;
 
+		public Serie Serie { get; internal set; }
 
 		public Film() : base() { sources.CollectionChanged += Sources_CollectionChanged; }
 		public Film(int id) : base(id) { sources.CollectionChanged += Sources_CollectionChanged; }

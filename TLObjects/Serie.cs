@@ -69,8 +69,12 @@ namespace TL_Objects
             get { return film; }
             set
             {
+                if (Film != null)
+                    Film.Serie = null;
+
                 film = value;
                 filmId = film.ID;
+                film.Serie = this;
                 OnPropertyChanged(nameof(Film));
             }
         }

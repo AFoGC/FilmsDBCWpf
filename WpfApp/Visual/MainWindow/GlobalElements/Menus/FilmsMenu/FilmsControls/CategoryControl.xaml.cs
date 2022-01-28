@@ -20,27 +20,23 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
     /// <summary>
     /// Логика взаимодействия для CategoryControl.xaml
     /// </summary>
-    public partial class CategoryControl : UserControl, IFilmsControl
+    public partial class CategoryControl : UserControl, IControls<Category, Genre>
     {
-        private Category categoryInfo = null;
-        public Category CategoryInfo
-        {
-            get { return categoryInfo; }
-        }
+        public Category Info { get; private set; }
 
         public CategoryControl(Category category)
         {
             InitializeComponent();
-            this.categoryInfo = category;
+            this.Info = category;
 
             RefreshData();
         }
 
         public void RefreshData()
         {
-            id.Text = categoryInfo.ID.ToString();
-            name.Text = categoryInfo.Name;
-            mark.Text = VisualHelper.markToText(Category.FormatToString(categoryInfo.Mark, -1));
+            id.Text = Info.ID.ToString();
+            name.Text = Info.Name;
+            mark.Text = VisualHelper.markToText(Category.FormatToString(Info.Mark, -1));
 
             categoryFilms();
         }
@@ -50,7 +46,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             this.cat_panel.Children.Clear();
             this.Height = 20;
 
-            foreach (Film film in categoryInfo.Films)
+            foreach (Film film in Info.Films)
             {
                 this.Height += 15;
                 cat_panel.Children.Add(new SimpleControl(film));
@@ -60,10 +56,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             for (int i = 0; i < cat_panel.Children.Count; i++)
             {
                 simpleControl = (SimpleControl)cat_panel.Children[i];
-                if (simpleControl.FilmInfo.FranshiseListIndex != i)
+                if (simpleControl.Info.FranshiseListIndex != i)
                 {
                     cat_panel.Children.Remove(simpleControl);
-                    cat_panel.Children.Insert(simpleControl.FilmInfo.FranshiseListIndex, simpleControl);
+                    cat_panel.Children.Insert(simpleControl.Info.FranshiseListIndex, simpleControl);
                     i = 0;
                 }
             }
@@ -79,24 +75,24 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         public bool RemoveFilmFromCategory(SimpleControl simpleControl)
         {
-            if (simpleControl.FilmInfo.FranshiseId == this.categoryInfo.ID)
+            if (simpleControl.Info.FranshiseId == this.Info.ID)
             {
                 cat_panel.Children.Remove(simpleControl);
 
                 this.Height -= 15;
 
-                simpleControl.FilmInfo.FranshiseId = 0;
-                simpleControl.FilmInfo.FranshiseListIndex = 0;
+                simpleControl.Info.FranshiseId = 0;
+                simpleControl.Info.FranshiseListIndex = 0;
 
-                foreach (Film film in categoryInfo.Films)
+                foreach (Film film in Info.Films)
                 {
-                    if (simpleControl.FilmInfo.FranshiseListIndex < film.FranshiseListIndex)
+                    if (simpleControl.Info.FranshiseListIndex < film.FranshiseListIndex)
                     {
                         --film.FranshiseListIndex;
                     }
                 }
 
-                return categoryInfo.Films.Remove(simpleControl.FilmInfo);
+                return Info.Films.Remove(simpleControl.Info);
             }
             else
             {
@@ -117,11 +113,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             return false;
         }
 
-        public bool HasWatchedProperty(bool isWached)
+        public bool HasCheckedProperty(bool isWached)
         {
             foreach (SimpleControl control in cat_panel.Children)
             {
-                if (control.HasWatchedProperty(isWached))
+                if (control.HasCheckedProperty(isWached))
                 {
                     return true;
                 }
@@ -133,13 +129,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         public bool SetFindedElement(string search)
         {
             bool export = false;
-            if (this.CategoryInfo.Name.ToLowerInvariant().Contains(search))
+            if (this.Info.Name.ToLowerInvariant().Contains(search))
             {
                 SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 0, 220));
                 this.id.Background = myBrush;
             }
 
-            foreach (IControls control in cat_panel.Children)
+            foreach (IControls<Film, Genre> control in cat_panel.Children)
             {
                 control.SetFindedElement(search);
             }
@@ -152,7 +148,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(53, 53, 53));
             this.id.Background = myBrush;
 
-            foreach (IControls control in cat_panel.Children)
+            foreach (IControls<Film, Genre> control in cat_panel.Children)
             {
                 control.SetVisualDefault();
             }

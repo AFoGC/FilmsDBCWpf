@@ -28,7 +28,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
         {
             InitializeComponent();
             this.categoryControl = categoryControl;
-            this.category = categoryControl.CategoryInfo;
+            this.category = categoryControl.Info;
             refresh();
         }
 
@@ -51,7 +51,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
                 if (MainInfo.MainWindow.FilmsMenu.ControlInBuffer.GetType() == typeof(SimpleControl))
                 {
                     SimpleControl simpleControl = (SimpleControl)MainInfo.MainWindow.FilmsMenu.ControlInBuffer;
-                    Film film = simpleControl.FilmInfo;
+                    Film film = simpleControl.Info;
                     if (film.FranshiseId == 0)
                     {
                         film.FranshiseId = category.ID;
@@ -71,7 +71,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
                 if (MainInfo.MainWindow.FilmsMenu.ControlInBuffer.GetType() == typeof(SimpleControl))
                 {
                     SimpleControl simpleControl = (SimpleControl)MainInfo.MainWindow.FilmsMenu.ControlInBuffer;
-                    Film film = simpleControl.FilmInfo;
+                    Film film = simpleControl.Info;
 
                     if (categoryControl.RemoveFilmFromCategory(simpleControl))
                     {
@@ -84,7 +84,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
                                 if (userControl.GetType() == typeof(SimpleControl))
                                 {
                                     SimpleControl sControl = (SimpleControl)userControl;
-                                    if (sControl.FilmInfo.ID > film.ID)
+                                    if (sControl.Info.ID > film.ID)
                                     {
                                         MainInfo.MainWindow.FilmsMenu.controlsPanel.Children.Insert(i, simpleControl);
                                         return;

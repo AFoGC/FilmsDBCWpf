@@ -154,7 +154,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
         {
             MainInfo.Tables.BooksTable.AddElement();
             Book book = MainInfo.Tables.BooksTable.GetLastElement;
-            IControls control;
+            IControls<Book, BookGenre> control;
             switch (ControlsCondition)
             {
                 case MenuCondition.Category:
@@ -183,7 +183,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             controlsPanel.Children.Clear();
             BookGenre[] genres = getSelectedGenres();
 
-            foreach (IBooksControls control in tableControls)
+            foreach (IControls<Book, BookGenre> control in tableControls)
             {
                 if (watchedRequestControl.IsAllIncluded)
                 {
@@ -194,7 +194,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
                 }
                 else
                 {
-                    if (control.HasSelectedGenre(genres) && control.HasReadedProperty(watchedRequestControl.IsWatched))
+                    if (control.HasSelectedGenre(genres) && control.HasCheckedProperty(watchedRequestControl.IsWatched))
                     {
                         controlsPanel.Children.Add((UserControl)control);
                     }
@@ -217,7 +217,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            foreach (IControls control in controlsPanel.Children)
+            foreach (IControls<Book, BookGenre> control in controlsPanel.Children)
             {
                 control.SetVisualDefault();
             }
@@ -226,7 +226,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             {
                 String searchStr = textbox_search.Text.ToLowerInvariant();
 
-                foreach (IControls control in controlsPanel.Children)
+                foreach (IControls<Book, BookGenre> control in controlsPanel.Children)
                 {
                     control.SetFindedElement(searchStr);
                 }
@@ -249,7 +249,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             {
                 MainInfo.Tables.PriorityBooksTable.AddElement();
                 PriorityBook priorityBook = MainInfo.Tables.PriorityBooksTable.GetLastElement;
-                priorityBook.Book = ControlInBuffer.BookInfo;
+                priorityBook.Book = ControlInBuffer.Info;
             }
         }
 

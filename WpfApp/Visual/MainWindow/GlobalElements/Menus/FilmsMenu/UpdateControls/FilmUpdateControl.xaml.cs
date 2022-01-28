@@ -29,7 +29,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
 		{
 			InitializeComponent();
 			this.filmControl = filmControl;
-			this.film = filmControl.FilmInfo;
+			this.film = filmControl.Info;
 
 			foreach (var item in MainInfo.Tables.GenresTable)
 			{

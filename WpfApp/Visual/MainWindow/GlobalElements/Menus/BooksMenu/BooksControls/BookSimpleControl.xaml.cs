@@ -26,7 +26,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
         public BookSimpleControl(Book book)
         {
             InitializeComponent();
-            this.bookInfo = book;
+            this.Info = book;
             RefreshData();
         }
 
@@ -34,11 +34,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
         {
             Book defBook = MainInfo.Tables.BooksTable.DefaultCell;
 
-            this.id.Text = bookInfo.ID.ToString();
-            this.name.Text = bookInfo.Name;
-            this.genre.Text = Book.FormatToString(bookInfo.BookGenre, defBook.BookGenre);
-            this.realiseYear.Text = Book.FormatToString(bookInfo.PublicationYear, defBook.PublicationYear);
-            this.readed.IsChecked = bookInfo.Readed;
+            this.id.Text = Info.ID.ToString();
+            this.name.Text = Info.Name;
+            this.genre.Text = Book.FormatToString(Info.BookGenre, defBook.BookGenre);
+            this.realiseYear.Text = Book.FormatToString(Info.PublicationYear, defBook.PublicationYear);
+            this.readed.IsChecked = Info.Readed;
         }
 
         public override void SetVisualDefault()

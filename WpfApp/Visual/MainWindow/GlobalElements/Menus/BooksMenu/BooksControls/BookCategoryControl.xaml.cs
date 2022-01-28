@@ -22,23 +22,23 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
     /// <summary>
     /// Логика взаимодействия для BookCategoryControl.xaml
     /// </summary>
-    public partial class BookCategoryControl : UserControl, IBooksControls
+    public partial class BookCategoryControl : UserControl, IControls<BookCategory, BookGenre>
     {
-        public BookCategory CategoryInfo { get; private set; }
+        public BookCategory Info { get; private set; }
 
         public BookCategoryControl(BookCategory category)
         {
             InitializeComponent();
-            this.CategoryInfo = category;
+            this.Info = category;
 
             RefreshData();
         }
 
         public void RefreshData()
         {
-            id.Text = CategoryInfo.ID.ToString();
-            name.Text = CategoryInfo.Name;
-            mark.Text = VisualHelper.markToText(Category.FormatToString(CategoryInfo.Mark, -1));
+            id.Text = Info.ID.ToString();
+            name.Text = Info.Name;
+            mark.Text = VisualHelper.markToText(Category.FormatToString(Info.Mark, -1));
 
             categoryFilms();
         }
@@ -48,7 +48,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             this.cat_panel.Children.Clear();
             this.Height = 20;
 
-            foreach (Book book in CategoryInfo.Books)
+            foreach (Book book in Info.Books)
             {
                 this.Height += 15;
                 cat_panel.Children.Add(new BookSimpleControl(book));
@@ -58,10 +58,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             for (int i = 0; i < cat_panel.Children.Count; i++)
             {
                 simpleControl = (BookSimpleControl)cat_panel.Children[i];
-                if (simpleControl.BookInfo.FranshiseListIndex != i)
+                if (simpleControl.Info.FranshiseListIndex != i)
                 {
                     cat_panel.Children.Remove(simpleControl);
-                    cat_panel.Children.Insert(simpleControl.BookInfo.FranshiseListIndex, simpleControl);
+                    cat_panel.Children.Insert(simpleControl.Info.FranshiseListIndex, simpleControl);
                     i = 0;
                 }
             }
@@ -77,24 +77,24 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         public bool RemoveBookFromCategory(BookSimpleControl simpleControl)
         {
-            if (simpleControl.BookInfo.FranshiseId == this.CategoryInfo.ID)
+            if (simpleControl.Info.FranshiseId == this.Info.ID)
             {
                 cat_panel.Children.Remove(simpleControl);
 
                 this.Height -= 15;
 
-                simpleControl.BookInfo.FranshiseId = 0;
-                simpleControl.BookInfo.FranshiseListIndex = 0;
+                simpleControl.Info.FranshiseId = 0;
+                simpleControl.Info.FranshiseListIndex = 0;
 
-                foreach (Book book in CategoryInfo.Books)
+                foreach (Book book in Info.Books)
                 {
-                    if (simpleControl.BookInfo.FranshiseListIndex < book.FranshiseListIndex)
+                    if (simpleControl.Info.FranshiseListIndex < book.FranshiseListIndex)
                     {
                         --book.FranshiseListIndex;
                     }
                 }
 
-                return CategoryInfo.Books.Remove(simpleControl.BookInfo);
+                return Info.Books.Remove(simpleControl.Info);
             }
             else
             {
@@ -115,11 +115,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             return false;
         }
 
-        public bool HasReadedProperty(bool isReaded)
+        public bool HasCheckedProperty(bool isReaded)
         {
             foreach (BookSimpleControl control in cat_panel.Children)
             {
-                if (control.HasReadedProperty(isReaded))
+                if (control.HasCheckedProperty(isReaded))
                 {
                     return true;
                 }
@@ -131,13 +131,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
         public bool SetFindedElement(string search)
         {
             bool export = false;
-            if (this.CategoryInfo.Name.ToLowerInvariant().Contains(search))
+            if (this.Info.Name.ToLowerInvariant().Contains(search))
             {
                 SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 0, 220));
                 this.id.Background = myBrush;
             }
 
-            foreach (IControls control in cat_panel.Children)
+            foreach (IControls<Book,BookGenre> control in cat_panel.Children)
             {
                 control.SetFindedElement(search);
             }
@@ -150,7 +150,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(53, 53, 53));
             this.id.Background = myBrush;
 
-            foreach (IControls control in cat_panel.Children)
+            foreach (IControls<Book, BookGenre> control in cat_panel.Children)
             {
                 control.SetVisualDefault();
             }

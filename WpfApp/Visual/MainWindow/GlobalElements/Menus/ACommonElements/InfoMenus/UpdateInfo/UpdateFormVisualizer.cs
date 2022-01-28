@@ -35,7 +35,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 			this.updateControl = new UpdateControl(this);
 		}
 
-		public void OpenUpdateControl(IControls userControl)
+		public void OpenUpdateControl(IToUpdateControl userControl)
 		{
 			updateControl.Reinitialize(userControl);
 			parentControl.Children.Remove(updateControl);

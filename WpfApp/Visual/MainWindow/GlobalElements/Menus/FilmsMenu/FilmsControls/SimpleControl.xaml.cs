@@ -24,7 +24,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         public SimpleControl(Film film)
         {
             InitializeComponent();
-            this.filmInfo = film;
+            this.Info = film;
 
             RefreshData();
         }
@@ -33,11 +33,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         {
             Film defFilm = MainInfo.Tables.FilmsTable.DefaultCell;
 
-            id.Text = filmInfo.ID.ToString();
-            name.Text = filmInfo.Name;
-            genre.Text = filmInfo.Genre.Name;
-            realiseYear.Text = Film.FormatToString(filmInfo.RealiseYear, defFilm.RealiseYear);
-            watched.IsChecked = filmInfo.Watched;
+            id.Text = Info.ID.ToString();
+            name.Text = Info.Name;
+            genre.Text = Info.Genre.Name;
+            realiseYear.Text = Film.FormatToString(Info.RealiseYear, defFilm.RealiseYear);
+            watched.IsChecked = Info.Watched;
         }
 
         public override void SetVisualDefault()
@@ -63,7 +63,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         public Control ToMoreInfo()
         {
-            if (filmInfo.Genre.IsSerialGenre)
+            if (Info.Genre.IsSerialGenre)
             {
                 return new SerieControl(this);
             }
@@ -75,7 +75,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         public override Control ToUpdateControl()
         {
-            if (filmInfo.Genre.IsSerialGenre)
+            if (Info.Genre.IsSerialGenre)
             {
                 return new SerieUpdateControl(new SerieControl(this));
             }

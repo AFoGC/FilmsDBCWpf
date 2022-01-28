@@ -32,7 +32,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
         {
             InitializeComponent();
             this.bookControl = bookControl;
-            this.book = bookControl.BookInfo;
+            this.book = bookControl.Info;
 
             foreach (var item in MainInfo.Tables.BookGenresTable)
             {

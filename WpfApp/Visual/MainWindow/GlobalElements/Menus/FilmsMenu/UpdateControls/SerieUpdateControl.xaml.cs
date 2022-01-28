@@ -51,7 +51,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
             InitializeComponent();
             this.control = filmControl;
 
-            Film film = filmControl.FilmInfo;
+            Film film = filmControl.Info;
 
             foreach (Serie serie in MainInfo.Tables.SeriesTable)
             {

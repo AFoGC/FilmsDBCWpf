@@ -27,14 +27,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
         public BookControl(Book book)
         {
             InitializeComponent();
-            this.bookInfo = book;
+            this.Info = book;
             RefreshData();
         }
 
         public BookControl(BookSimpleControl simpleControl)
         {
             InitializeComponent();
-            this.bookInfo = simpleControl.bookInfo;
+            this.Info = simpleControl.Info;
             this.simpleControl = simpleControl;
             RefreshData();
         }
@@ -44,15 +44,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
         {
             Book defBook = MainInfo.Tables.BooksTable.DefaultCell;
 
-            this.id.Text = bookInfo.ID.ToString();
-            this.name.Text = bookInfo.Name;
-            this.genre.Text = Book.FormatToString(bookInfo.BookGenre, defBook.BookGenre);
-            this.realiseYear.Text = Book.FormatToString(bookInfo.PublicationYear, defBook.PublicationYear);
-            this.readed.IsChecked = bookInfo.Readed;
-            this.fullReadDate.Text = Book.FormatToString(bookInfo.FullReadDate, defBook.FullReadDate);
-            this.mark.Text = VisualHelper.markToText(Book.FormatToString(bookInfo.Mark, defBook.Mark));
-            this.countOfReadings.Text = Book.FormatToString(bookInfo.CountOfReadings, defBook.CountOfReadings);
-            this.bookmark.Text = bookInfo.Bookmark;
+            this.id.Text = Info.ID.ToString();
+            this.name.Text = Info.Name;
+            this.genre.Text = Book.FormatToString(Info.BookGenre, defBook.BookGenre);
+            this.realiseYear.Text = Book.FormatToString(Info.PublicationYear, defBook.PublicationYear);
+            this.readed.IsChecked = Info.Readed;
+            this.fullReadDate.Text = Book.FormatToString(Info.FullReadDate, defBook.FullReadDate);
+            this.mark.Text = VisualHelper.markToText(Book.FormatToString(Info.Mark, defBook.Mark));
+            this.countOfReadings.Text = Book.FormatToString(Info.CountOfReadings, defBook.CountOfReadings);
+            this.bookmark.Text = Info.Bookmark;
             this.RefreshSourceLabel();
 
             if (simpleControl != null)
@@ -63,19 +63,19 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         public void RefreshSourceLabel()
         {
-            if (bookInfo.Sources.Count == 0)
+            if (Info.Sources.Count == 0)
             {
                 btn_copyUrl.Content = "no url";
             }
             else
             {
-                if (bookInfo.Sources[0].Name == "")
+                if (Info.Sources[0].Name == "")
                 {
                     btn_copyUrl.Content = "copy url";
                 }
                 else
                 {
-                    btn_copyUrl.Content = "url: " + bookInfo.Sources[0].Name;
+                    btn_copyUrl.Content = "url: " + Info.Sources[0].Name;
                 }
             }
         }
@@ -105,9 +105,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         private void btn_copyUrl_Click(object sender, RoutedEventArgs e)
         {
-            if (bookInfo.Sources.Count != 0)
+            if (Info.Sources.Count != 0)
             {
-                Clipboard.SetText(bookInfo.Sources[0].SourceUrl);
+                Clipboard.SetText(Info.Sources[0].SourceUrl);
             }
         }
 

@@ -83,6 +83,7 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IControls.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IMenuControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\ISimpleControl.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IToUpdateControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IUpdateControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\MoreInfo\MoreInfoControl.xaml.cs">
       <DependentUpon>MoreInfoControl.xaml</DependentUpon>
@@ -118,7 +119,6 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookSimpleControl.xaml.cs">
       <DependentUpon>BookSimpleControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\IBooksControls.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksMenuControl.xaml.cs">
       <DependentUpon>BooksMenuControl.xaml</DependentUpon>
     </Compile>
@@ -135,7 +135,6 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\FilmControl.xaml.cs">
       <DependentUpon>FilmControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\IFilmsControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\SerieControl.xaml.cs">
       <DependentUpon>SerieControl.xaml</DependentUpon>
     </Compile>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TL_Objects;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 {
@@ -21,12 +22,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
     /// </summary>
     public partial class FilmControl : AElementControl
     {
-        public SimpleControl simpleControl = null;
+        private SimpleControl simpleControl = null;
 
         public FilmControl(Film film)
         {
             InitializeComponent();
-            this.filmInfo = film;
+            this.Info = film;
 
             RefreshData();
         }
@@ -34,7 +35,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         public FilmControl(SimpleControl simpleControl)
         {
             InitializeComponent();
-            this.filmInfo = simpleControl.FilmInfo;
+            this.Info = simpleControl.Info;
             this.simpleControl = simpleControl;
 
             RefreshData();
@@ -44,15 +45,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         {
             Film defFilm = MainInfo.Tables.FilmsTable.DefaultCell;
 
-            this.id.Text = filmInfo.ID.ToString();
-            this.name.Text = filmInfo.Name;
-            this.genre.Text = filmInfo.Genre.Name;
-            this.realiseYear.Text = Film.FormatToString(filmInfo.RealiseYear, defFilm.RealiseYear);
-            this.watched.IsChecked = filmInfo.Watched;
-            this.watchDate.Text = Film.FormatToString(filmInfo.DateOfWatch, defFilm.DateOfWatch);
-            this.mark.Text = VisualHelper.markToText(Film.FormatToString(filmInfo.Mark, defFilm.Mark));
-            this.countOfviews.Text = Film.FormatToString(filmInfo.CountOfViews, defFilm.CountOfViews);
-            this.comment.Text = filmInfo.Comment;
+            this.id.Text = Info.ID.ToString();
+            this.name.Text = Info.Name;
+            this.genre.Text = Info.Genre.Name;
+            this.realiseYear.Text = Film.FormatToString(Info.RealiseYear, defFilm.RealiseYear);
+            this.watched.IsChecked = Info.Watched;
+            this.watchDate.Text = Film.FormatToString(Info.DateOfWatch, defFilm.DateOfWatch);
+            this.mark.Text = VisualHelper.markToText(Film.FormatToString(Info.Mark, defFilm.Mark));
+            this.countOfviews.Text = Film.FormatToString(Info.CountOfViews, defFilm.CountOfViews);
+            this.comment.Text = Info.Comment;
             this.RefreshSourceLabel();
 
             if (simpleControl != null)
@@ -63,15 +64,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         public void RefreshSourceLabel()
         {
-            if (filmInfo.Sources.Count == 0)
+            if (Info.Sources.Count == 0)
             {
                 btn_copyUrl.Content = "no url";
             }
             else
             {
-                if (filmInfo.Sources[0].Name != "")
+                if (Info.Sources[0].Name != "")
                 {
-                    btn_copyUrl.Content = "url: " + filmInfo.Sources[0].Name;
+                    btn_copyUrl.Content = "url: " + Info.Sources[0].Name;
                 }
                 else
                 {
@@ -83,7 +84,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         private bool commentIsOpen = false;
         private void btn_comment_Click(object sender, RoutedEventArgs e)
         {
-            comment.Text = filmInfo.Comment;
+            comment.Text = Info.Comment;
 
             if (commentIsOpen) { this.grid.Height -= 15; }
             else { this.grid.Height += 15; }
@@ -93,9 +94,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         private void btn_copyUrl_Click(object sender, RoutedEventArgs e)
         {
-            if (filmInfo.Sources.Count != 0)
+            if (Info.Sources.Count != 0)
             {
-                Clipboard.SetText(filmInfo.Sources[0].SourceUrl);
+                Clipboard.SetText(Info.Sources[0].SourceUrl);
             }
         }
 
@@ -129,7 +130,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
         public override Control ToUpdateControl()
         {
-            if (filmInfo.Genre.IsSerialGenre)
+            if (Info.Genre.IsSerialGenre)
             {
                 return new SerieUpdateControl(this);
             }

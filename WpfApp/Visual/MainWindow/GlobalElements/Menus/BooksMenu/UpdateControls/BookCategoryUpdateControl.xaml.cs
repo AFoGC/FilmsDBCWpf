@@ -30,7 +30,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
         {
             InitializeComponent();
             this.categoryControl = categoryControl;
-            this.category = categoryControl.CategoryInfo;
+            this.category = categoryControl.Info;
             refresh();
         }
 
@@ -53,7 +53,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
                 if (MainInfo.MainWindow.BooksMenu.ControlInBuffer.GetType() == typeof(BookSimpleControl))
                 {
                     BookSimpleControl simpleControl = (BookSimpleControl)MainInfo.MainWindow.BooksMenu.ControlInBuffer;
-                    Book book = simpleControl.BookInfo;
+                    Book book = simpleControl.Info;
                     if (book.FranshiseId == 0)
                     {
                         book.FranshiseId = category.ID;
@@ -73,7 +73,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
                 if (MainInfo.MainWindow.BooksMenu.ControlInBuffer.GetType() == typeof(BookSimpleControl))
                 {
                     BookSimpleControl simpleControl = (BookSimpleControl)MainInfo.MainWindow.BooksMenu.ControlInBuffer;
-                    Book book = simpleControl.BookInfo;
+                    Book book = simpleControl.Info;
 
                     if (categoryControl.RemoveBookFromCategory(simpleControl))
                     {
@@ -86,7 +86,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
                                 if (userControl.GetType() == typeof(BookSimpleControl))
                                 {
                                     BookSimpleControl sControl = (BookSimpleControl)userControl;
-                                    if (sControl.BookInfo.ID > book.ID)
+                                    if (sControl.Info.ID > book.ID)
                                     {
                                         MainInfo.MainWindow.BooksMenu.controlsPanel.Children.Insert(i, simpleControl);
                                         return;

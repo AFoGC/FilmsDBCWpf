@@ -5,16 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using TL_Objects;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 {
-    public abstract class ABookElementControl : UserControl, IBooksControls
+    public abstract class ABookElementControl : UserControl, IControls<Book, BookGenre>
     {
-		internal Book bookInfo = null;
-		public Book BookInfo
-		{
-			get { return bookInfo; }
-		}
+		public Book Info { get; protected set; }
 
 		internal void SetSelectedElement()
 		{
@@ -25,7 +22,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
 		public bool SetFindedElement(string search)
 		{
-			if (this.BookInfo.Name.ToLowerInvariant().Contains(search))
+			if (this.Info.Name.ToLowerInvariant().Contains(search))
 			{
 				setVisualFinded();
 				return true;
@@ -44,7 +41,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 		{
 			foreach (BookGenre genre in selectedGenres)
 			{
-				if (genre == bookInfo.BookGenre)
+				if (genre == Info.BookGenre)
 				{
 					return true;
 				}
@@ -52,9 +49,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 			return false;
 		}
 
-		public bool HasReadedProperty(bool isWached)
+		public bool HasCheckedProperty(bool isWached)
 		{
-			if (isWached == BookInfo.Readed)
+			if (isWached == Info.Readed)
 			{
 				return true;
 			}

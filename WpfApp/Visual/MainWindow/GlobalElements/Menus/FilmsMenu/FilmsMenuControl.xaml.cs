@@ -257,7 +257,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         {
             MainInfo.Tables.FilmsTable.AddElement();
             Film film = MainInfo.Tables.FilmsTable.GetLastElement;
-            IControls control = new SimpleControl(film);
+            UserControl control = new SimpleControl(film);
             switch (controlsCondition)
             {
                 case MenuCondition.Category:
@@ -273,8 +273,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
                     return;
             }
 
-            tableControls.Add((UserControl)control);
-            controlsPanel.Children.Add((UserControl)control);
+            tableControls.Add(control);
+            controlsPanel.Children.Add(control);
         }
 
         private void btn_AddToPriority_Click(object sender, RoutedEventArgs e)
@@ -283,7 +283,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
             {
                 MainInfo.Tables.PriorityFilmsTable.AddElement();
                 PriorityFilm priorityFilm = MainInfo.Tables.PriorityFilmsTable.GetLastElement;
-                priorityFilm.Film = ControlInBuffer.FilmInfo;
+                priorityFilm.Film = ControlInBuffer.Info;
             }
         }
 
@@ -292,7 +292,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
             controlsPanel.Children.Clear();
             Genre[] genres = getSelectedGenres();
 
-            foreach (IFilmsControl control in tableControls)
+            foreach (IControls<Film, Genre> control in tableControls)
             {
                 if (watchedRequestControl.IsAllIncluded)
                 {
@@ -303,7 +303,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
                 }
                 else
                 {
-                    if (control.HasSelectedGenre(genres) && control.HasWatchedProperty(watchedRequestControl.IsWatched))
+                    if (control.HasSelectedGenre(genres) && control.HasCheckedProperty(watchedRequestControl.IsWatched))
                     {
                         controlsPanel.Children.Add((UserControl)control);
                     }
@@ -313,7 +313,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            foreach (IControls control in controlsPanel.Children)
+            foreach (IControls<Film, Genre> control in controlsPanel.Children)
             {
                 control.SetVisualDefault();
             }
@@ -322,7 +322,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
             {
                 String searchStr = textbox_search.Text.ToLowerInvariant();
 
-                foreach (IControls control in controlsPanel.Children)
+                foreach (IControls<Film, Genre> control in controlsPanel.Children)
                 {
                     control.SetFindedElement(searchStr);
                 }

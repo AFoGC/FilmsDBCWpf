@@ -26,7 +26,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 			this.visualizer = visualizer;
 		}
 
-		public void Reinitialize(IControls icontrol)
+		public void Reinitialize(IToUpdateControl icontrol)
 		{
 			canvas_main.Children.Clear();
 			canvas_main.Children.Add(icontrol.ToUpdateControl());

@@ -9,13 +9,9 @@ using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInte
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 {
 	[TypeDescriptionProvider(typeof(AbstractControlDescriptionProvider<AElementControl, UserControl>))]
-	public abstract class AElementControl : UserControl, IFilmsControl
+	public abstract class AElementControl : UserControl, IControls<Film,Genre>
     {
-		internal Film filmInfo = null;
-		public Film FilmInfo
-		{
-			get { return filmInfo; }
-		}
+		public Film Info { get; protected set; }
 
 		internal void SetSelectedElement()
 		{
@@ -25,7 +21,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
 		public bool SetFindedElement(String searchLine)
 		{
-			if (this.FilmInfo.Name.ToLowerInvariant().Contains(searchLine))
+			if (this.Info.Name.ToLowerInvariant().Contains(searchLine))
 			{
 				setVisualFinded();
 				return true;
@@ -44,7 +40,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 		{
 			foreach (Genre genre in selectedGenres)
 			{
-				if (genre == filmInfo.Genre)
+				if (genre == Info.Genre)
 				{
 					return true;
 				}
@@ -52,9 +48,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 			return false;
 		}
 
-		public bool HasWatchedProperty(bool isWached)
+		public bool HasCheckedProperty(bool isWached)
 		{
-			if (isWached == FilmInfo.Watched)
+			if (isWached == Info.Watched)
 			{
 				return true;
 			}

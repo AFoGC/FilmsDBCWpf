@@ -23,13 +23,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
     /// </summary>
     public partial class SerieUpdateControl : UserControl, IUpdateControl
     {
-        private AElementControl control = null;
         private Serie serie = null;
         public SerieUpdateControl(SerieControl serieControl)
         {
             InitializeComponent();
-
-            this.control = serieControl;
 
             this.serie = serieControl.SerieInfo;
 
@@ -49,7 +46,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
         public SerieUpdateControl(FilmControl filmControl)
         {
             InitializeComponent();
-            this.control = filmControl;
 
             Film film = filmControl.Info;
 
@@ -115,8 +111,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
             serie.StartWatchDate = this.startWatchDate.Date;
             serie.CountOfWatchedSeries = VisualHelper.TextToInt32(this.countOfWatchedSeries.Text);
             serie.TotalSeries = VisualHelper.TextToInt32(this.totalSeries.Text);
-
-            control.RefreshData();
         }
 
         private void btn_sources_Click(object sender, RoutedEventArgs e)

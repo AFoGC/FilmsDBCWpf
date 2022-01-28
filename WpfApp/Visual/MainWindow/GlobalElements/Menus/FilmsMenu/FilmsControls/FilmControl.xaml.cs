@@ -22,8 +22,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
     /// </summary>
     public partial class FilmControl : AElementControl
     {
-        private SimpleControl simpleControl = null;
-
         public FilmControl(Film film)
         {
             InitializeComponent();
@@ -32,14 +30,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             RefreshData();
         }
 
-        public FilmControl(SimpleControl simpleControl)
-        {
-            InitializeComponent();
-            this.Info = simpleControl.Info;
-            this.simpleControl = simpleControl;
-
-            RefreshData();
-        }
+        public FilmControl(SimpleControl simpleControl) : this(simpleControl.Info) { }
 
         public override void RefreshData()
         {
@@ -55,11 +46,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             this.countOfviews.Text = Film.FormatToString(Info.CountOfViews, defFilm.CountOfViews);
             this.comment.Text = Info.Comment;
             this.RefreshSourceLabel();
-
-            if (simpleControl != null)
-            {
-                simpleControl.RefreshData();
-            }
         }
 
         public void RefreshSourceLabel()

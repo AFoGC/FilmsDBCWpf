@@ -22,36 +22,32 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
     public partial class SerieControl : AElementControl
     {
 		public SimpleControl simpleControl = null;
-
-		private Serie serieInfo = null;
-		public Serie SerieInfo
-		{
-			get { return serieInfo; }
-		}
+		public Serie SerieInfo { get; private set; }
 
 		public SerieControl(Film film)
 		{
 			InitializeComponent();
 			this.Info = film;
-			this.serieInfo = film.Serie;
+			this.SerieInfo = film.Serie;
+
+            Info.PropertyChanged += Info_PropertyChanged;
+			SerieInfo.PropertyChanged += Info_PropertyChanged;
 
 			RefreshData();
 		}
 
-		public SerieControl(Serie serie)
-		{
-			InitializeComponent();
-			this.Info = serie.Film;
-			this.serieInfo = serie;
-
+        private void Info_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
 			RefreshData();
-		}
+        }
+
+        public SerieControl(Serie serie) : this(serie.Film) { }
 
 		public SerieControl(SimpleControl simpleControl)
 		{
 			InitializeComponent();
 			this.Info = simpleControl.Info;
-			this.serieInfo = simpleControl.Info.Serie;
+			this.SerieInfo = simpleControl.Info.Serie;
 			this.simpleControl = simpleControl;
 
 			RefreshData();
@@ -72,9 +68,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 
 			Serie defSerie = MainInfo.Tables.SeriesTable.DefaultCell;
 
-			this.startWatchDate.Text = Serie.FormatToString(serieInfo.StartWatchDate, defSerie.StartWatchDate);
-			this.countOfWatchedSeries.Text = Serie.FormatToString(serieInfo.CountOfWatchedSeries, defSerie.CountOfWatchedSeries);
-			this.totalSeries.Text = Serie.FormatToString(serieInfo.TotalSeries, defSerie.TotalSeries);
+			this.startWatchDate.Text = Serie.FormatToString(SerieInfo.StartWatchDate, defSerie.StartWatchDate);
+			this.countOfWatchedSeries.Text = Serie.FormatToString(SerieInfo.CountOfWatchedSeries, defSerie.CountOfWatchedSeries);
+			this.totalSeries.Text = Serie.FormatToString(SerieInfo.TotalSeries, defSerie.TotalSeries);
 			this.refreshSourceLabel();
 
 			if (simpleControl != null)

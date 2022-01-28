@@ -25,7 +25,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         {
             InitializeComponent();
             this.Info = film;
+            film.PropertyChanged += Film_PropertyChanged;
 
+            RefreshData();
+        }
+
+        private void Film_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
             RefreshData();
         }
 

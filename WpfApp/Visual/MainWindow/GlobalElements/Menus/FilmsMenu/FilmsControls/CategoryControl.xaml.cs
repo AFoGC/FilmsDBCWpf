@@ -28,7 +28,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         {
             InitializeComponent();
             this.Info = category;
+            category.PropertyChanged += Category_PropertyChanged;
 
+            RefreshData();
+        }
+
+        private void Category_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
             RefreshData();
         }
 

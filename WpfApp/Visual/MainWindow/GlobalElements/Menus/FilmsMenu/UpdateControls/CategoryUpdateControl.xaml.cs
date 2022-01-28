@@ -21,21 +21,20 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
     /// </summary>
     public partial class CategoryUpdateControl : UserControl, IUpdateControl
     {
-        private CategoryControl categoryControl = null;
         private Category category = null;
+        private CategoryControl categoryControl = null;
 
         public CategoryUpdateControl(CategoryControl categoryControl)
         {
             InitializeComponent();
-            this.categoryControl = categoryControl;
             this.category = categoryControl.Info;
+            this.categoryControl = categoryControl;
             refresh();
         }
 
         public void UpdateElement()
         {
             category.Name = this.name.Text;
-            categoryControl.RefreshData();
         }
 
         private void refresh()

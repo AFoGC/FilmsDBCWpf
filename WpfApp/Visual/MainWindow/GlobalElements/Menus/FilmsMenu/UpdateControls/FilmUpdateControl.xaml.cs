@@ -23,12 +23,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
 	/// </summary>
 	public partial class FilmUpdateControl : UserControl, IUpdateControl
 	{
-		private FilmControl filmControl = null;
 		private Film film = null;
 		public FilmUpdateControl(FilmControl filmControl)
 		{
 			InitializeComponent();
-			this.filmControl = filmControl;
 			this.film = filmControl.Info;
 
 			foreach (var item in MainInfo.Tables.GenresTable)
@@ -72,8 +70,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
 			film.CountOfViews = VisualHelper.TextToInt32(this.countOfViews.Text);
 			film.DateOfWatch = this.watchDate.Date;
 			film.Comment = this.comment.Text;
-
-			filmControl.RefreshData();
 		}
 
 		private void btn_sources_Click(object sender, RoutedEventArgs e)

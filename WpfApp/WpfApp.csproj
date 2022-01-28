@@ -159,6 +159,12 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\FilmGenreControl.xaml.cs">
+      <DependentUpon>FilmGenreControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\FilmGenresSettingsControl.xaml.cs">
+      <DependentUpon>FilmGenresSettingsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ISettingsControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileControl.xaml.cs">
       <DependentUpon>ProfileControl.xaml</DependentUpon>
@@ -295,6 +301,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\SignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\FilmGenreControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\FilmGenresSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

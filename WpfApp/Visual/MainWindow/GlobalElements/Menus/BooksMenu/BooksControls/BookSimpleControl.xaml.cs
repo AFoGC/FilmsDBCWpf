@@ -84,7 +84,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 
         private void id_GotFocus(object sender, RoutedEventArgs e)
         {
-            SetSelectedElement(MainInfo.MainWindow.BooksMenu.ControlInBuffer);
+            SetSelectedElement();
         }
     }
 }

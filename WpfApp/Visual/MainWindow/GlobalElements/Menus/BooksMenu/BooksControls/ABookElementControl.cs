@@ -16,13 +16,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 			get { return bookInfo; }
 		}
 
-		internal void SetSelectedElement(ABookElementControl controlInBuffer)
+		internal void SetSelectedElement()
 		{
-			if (controlInBuffer != null)
-			{
-				controlInBuffer.SetVisualDefault();
-			}
-
 			MainInfo.MainWindow.BooksMenu.ControlInBuffer = this;
 			setVisualSelected();
 		}

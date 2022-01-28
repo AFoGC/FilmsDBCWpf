@@ -29,15 +29,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
         public BookCategoryUpdateControl(BookCategoryControl categoryControl)
         {
             InitializeComponent();
-            this.categoryControl = categoryControl;
             this.category = categoryControl.Info;
+            this.categoryControl = categoryControl;
             refresh();
         }
 
         public void UpdateElement()
         {
             category.Name = this.name.Text;
-            categoryControl.RefreshData();
         }
 
         private void refresh()

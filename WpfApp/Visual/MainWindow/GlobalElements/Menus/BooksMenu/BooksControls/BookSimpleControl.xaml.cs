@@ -27,6 +27,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
         {
             InitializeComponent();
             this.Info = book;
+            book.PropertyChanged += Book_PropertyChanged;
+            RefreshData();
+        }
+
+        private void Book_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
             RefreshData();
         }
 

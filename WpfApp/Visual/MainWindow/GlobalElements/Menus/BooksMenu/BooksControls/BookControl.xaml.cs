@@ -23,22 +23,20 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
     /// </summary>
     public partial class BookControl : ABookElementControl
     {
-        BookSimpleControl simpleControl = null;
         public BookControl(Book book)
         {
             InitializeComponent();
             this.Info = book;
+            book.PropertyChanged += Book_PropertyChanged;
             RefreshData();
         }
 
-        public BookControl(BookSimpleControl simpleControl)
+        public BookControl(BookSimpleControl simpleControl) : this(simpleControl.Info) { }
+
+        private void Book_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            InitializeComponent();
-            this.Info = simpleControl.Info;
-            this.simpleControl = simpleControl;
             RefreshData();
         }
-
 
         public override void RefreshData()
         {
@@ -49,16 +47,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             this.genre.Text = Book.FormatToString(Info.BookGenre, defBook.BookGenre);
             this.realiseYear.Text = Book.FormatToString(Info.PublicationYear, defBook.PublicationYear);
             this.readed.IsChecked = Info.Readed;
+            this.author.Text = Info.Author;
             this.fullReadDate.Text = Book.FormatToString(Info.FullReadDate, defBook.FullReadDate);
             this.mark.Text = VisualHelper.markToText(Book.FormatToString(Info.Mark, defBook.Mark));
             this.countOfReadings.Text = Book.FormatToString(Info.CountOfReadings, defBook.CountOfReadings);
             this.bookmark.Text = Info.Bookmark;
             this.RefreshSourceLabel();
-
-            if (simpleControl != null)
-            {
-                simpleControl.RefreshData();
-            }
         }
 
         public void RefreshSourceLabel()

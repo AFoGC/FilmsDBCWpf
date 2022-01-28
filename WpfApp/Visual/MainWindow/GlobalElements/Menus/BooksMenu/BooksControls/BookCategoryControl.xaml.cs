@@ -30,7 +30,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
         {
             InitializeComponent();
             this.Info = category;
+            this.Info.PropertyChanged += Info_PropertyChanged;
 
+            RefreshData();
+        }
+
+        private void Info_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
             RefreshData();
         }
 

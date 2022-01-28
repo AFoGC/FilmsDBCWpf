@@ -25,13 +25,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
     /// </summary>
     public partial class BookUpdateControl : UserControl, IUpdateControl
     {
-        private BookControl bookControl = null;
         private Book book = null;
 
         public BookUpdateControl(BookControl bookControl)
         {
             InitializeComponent();
-            this.bookControl = bookControl;
             this.book = bookControl.Info;
 
             foreach (var item in MainInfo.Tables.BookGenresTable)
@@ -73,8 +71,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
             book.Mark = VisualHelper.TextToMark(mark.Text);
             book.CountOfReadings = VisualHelper.TextToInt32(countOfReadings.Text);
             book.Bookmark = bookmark.Text;
-
-            bookControl.RefreshData();
         }
 
         private void watched_Click(object sender, RoutedEventArgs e)

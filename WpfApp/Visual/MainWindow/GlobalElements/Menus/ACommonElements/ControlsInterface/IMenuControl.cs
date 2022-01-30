@@ -10,6 +10,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.Controls
 {
     public interface IMenuControl
     {
+        IBaseControls ControlInBuffer { get; set; }
         MoreInfoFormVisualizer MoreInfoFormVisualizer { get; }
         UpdateFormVisualizer UpdateFormVisualizer { get; }
     }

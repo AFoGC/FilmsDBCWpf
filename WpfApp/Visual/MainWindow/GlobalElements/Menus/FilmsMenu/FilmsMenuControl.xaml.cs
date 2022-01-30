@@ -55,8 +55,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
         public MoreInfoFormVisualizer MoreInfoFormVisualizer { get; private set; }
         public UpdateFormVisualizer UpdateFormVisualizer { get; private set; }
         public List<UserControl> TableControls { get; private set; } = new List<UserControl>();
-        private AElementControl controlInBuffer = null;
-        public AElementControl ControlInBuffer
+        private IBaseControls controlInBuffer = null;
+        public IBaseControls ControlInBuffer
         {
             get { return controlInBuffer; }
             set
@@ -287,7 +287,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
             {
                 MainInfo.Tables.PriorityFilmsTable.AddElement();
                 PriorityFilm priorityFilm = MainInfo.Tables.PriorityFilmsTable.GetLastElement;
-                priorityFilm.Film = ControlInBuffer.Info;
+                priorityFilm.Film = ((IControls<Film,Genre>)ControlInBuffer).Info;
             }
         }
 

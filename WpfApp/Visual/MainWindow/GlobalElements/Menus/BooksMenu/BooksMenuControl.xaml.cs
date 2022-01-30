@@ -54,8 +54,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
         public MoreInfoFormVisualizer MoreInfoFormVisualizer { get; private set; }
         public UpdateFormVisualizer UpdateFormVisualizer { get; private set; }
 
-        private ABookElementControl controlInBuffer = null;
-        public ABookElementControl ControlInBuffer
+        private IBaseControls controlInBuffer = null;
+        public IBaseControls ControlInBuffer
         {
             get { return controlInBuffer; }
             set
@@ -250,7 +250,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
             {
                 MainInfo.Tables.PriorityBooksTable.AddElement();
                 PriorityBook priorityBook = MainInfo.Tables.PriorityBooksTable.GetLastElement;
-                priorityBook.Book = ControlInBuffer.Info;
+                priorityBook.Book = ((IControls<Book, BookGenre>)ControlInBuffer).Info;
             }
         }
 

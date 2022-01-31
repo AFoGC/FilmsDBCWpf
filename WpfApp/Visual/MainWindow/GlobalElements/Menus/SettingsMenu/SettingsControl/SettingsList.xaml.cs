@@ -144,7 +144,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 
                     foreach (Genre genre in MainInfo.Tables.GenresTable)
                     {
-                        genreTable.AddWithoutReindexation(genre);
+                        genreTable.AddElement(genre);
                     }
 
                     tc.SaveTables();

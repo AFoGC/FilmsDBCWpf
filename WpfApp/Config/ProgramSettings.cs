@@ -43,7 +43,7 @@ namespace WpfApp.Config
 
             if (!File.Exists(settingPath))
             {
-				using (FileStream fs = new FileStream(settingPath, FileMode.OpenOrCreate))
+				using (StreamWriter fs = new StreamWriter(settingPath, false, Encoding.UTF8))
 				{
 					formatter.Serialize(fs, settings);
 				}
@@ -58,16 +58,16 @@ namespace WpfApp.Config
 
 		public void SaveSettings()
         {
-			using (FileStream fs = new FileStream(settingPath, FileMode.OpenOrCreate))
+			using (StreamWriter fs = new StreamWriter(settingPath, false, Encoding.UTF8))
 			{
 				formatter.Serialize(fs, this);
 			}
 		}
 
 		public void LoadSettings()
-        {	
+        {
 			ProgramSettings settings = new ProgramSettings();
-			using (FileStream fs = new FileStream(settingPath, FileMode.Open))
+			using (StreamReader fs = new StreamReader(settingPath, Encoding.UTF8))
 			{
 				settings = (ProgramSettings)formatter.Deserialize(fs);
 			}

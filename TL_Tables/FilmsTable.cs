@@ -35,5 +35,20 @@ namespace TL_Tables
 				}
 			}
 		}
+
+		public bool GenreHasFilm(Genre genre)
+        {
+			bool hasGenre = false;
+
+            foreach (Film film in this)
+            {
+                if (film.Genre == genre)
+                {
+					return true;
+                }
+            }
+
+			return hasGenre;
+        }
 	}
 }

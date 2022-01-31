@@ -22,10 +22,7 @@ namespace WpfApp
 			Tables.SetDefaultMainTableCollection();
 			Settings = ProgramSettings.Initialize();
             
-			
 			TableCollection.FileEncoding = Encoding.UTF8;
-
-			
 		}
 
 		public static TableCollection TableCollection { get; private set; }

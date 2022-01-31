@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TL_Objects;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl
 {
@@ -20,9 +21,11 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
     /// </summary>
     public partial class FilmGenreControl : UserControl
     {
-        public FilmGenreControl()
+        private Genre FilmGenre { set; get; }
+        public FilmGenreControl(Genre genre)
         {
             InitializeComponent();
+            DataContext = new GenreVM(genre);
         }
     }
 }

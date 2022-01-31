@@ -24,15 +24,18 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
     public partial class SettingsMenuControl : UserControl
     {
         private SettingsControl.ProfilesSettingsControl profilesSettings;
+        private SettingsControl.FilmGenresSettingsControl filmGenreControl;
         public SettingsMenuControl()
         {
             InitializeComponent();
 
             profilesSettings = new SettingsControl.ProfilesSettingsControl();
+            filmGenreControl = new SettingsControl.FilmGenresSettingsControl();
 
-            RefreshControl();
-            SettingsListPanel.Children.Add(profilesSettings);
             
+            SettingsListPanel.Children.Add(profilesSettings);
+            SettingsListPanel.Children.Add(filmGenreControl);
+            RefreshControl();
         }
 
         public void RefreshControl()

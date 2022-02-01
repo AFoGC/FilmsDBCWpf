@@ -8,7 +8,7 @@ using System.Windows.Input;
 using TL_Objects;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl.Commands;
 
-namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl
+namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl.GenreSettings
 {
     public class GenreVM : INotifyPropertyChanged
     {

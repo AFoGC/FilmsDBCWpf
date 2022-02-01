@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp.Config;
 
-namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl
+namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl.ProfileSettings
 {
 	/// <summary>
 	/// Логика взаимодействия для ProfileControl.xaml

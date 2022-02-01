@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.Registration_Window;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl.GenreSettings;
+using WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl.ProfileSettings;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
 {
@@ -23,14 +25,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
     /// </summary>
     public partial class SettingsMenuControl : UserControl
     {
-        private SettingsControl.ProfilesSettingsControl profilesSettings;
-        private SettingsControl.FilmGenresSettingsControl filmGenreControl;
+        private ProfilesSettingsControl profilesSettings;
+        private FilmGenresSettingsControl filmGenreControl;
         public SettingsMenuControl()
         {
             InitializeComponent();
 
-            profilesSettings = new SettingsControl.ProfilesSettingsControl();
-            filmGenreControl = new SettingsControl.FilmGenresSettingsControl();
+            profilesSettings = new ProfilesSettingsControl();
+            filmGenreControl = new FilmGenresSettingsControl();
 
             
             SettingsListPanel.Children.Add(profilesSettings);

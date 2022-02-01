@@ -162,20 +162,21 @@
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\Commands\GenreCommand.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\FilmGenreControl.xaml.cs">
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenreControl.xaml.cs">
       <DependentUpon>FilmGenreControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\FilmGenresSettingsControl.xaml.cs">
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenresSettingsControl.xaml.cs">
       <DependentUpon>FilmGenresSettingsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\GenreCollectionVM.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ISettingsControl.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileControl.xaml.cs">
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileSettings\ProfileControl.xaml.cs">
       <DependentUpon>ProfileControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfilesSettingsControl.xaml.cs">
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileSettings\ProfilesSettingsControl.xaml.cs">
       <DependentUpon>ProfilesSettingsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreVM.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\GenreVM.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml.cs">
       <DependentUpon>SettingsList.xaml</DependentUpon>
     </Compile>
@@ -308,19 +309,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\FilmGenreControl.xaml">
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenreControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\FilmGenresSettingsControl.xaml">
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenresSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileControl.xaml">
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileSettings\ProfileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfilesSettingsControl.xaml">
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileSettings\ProfilesSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

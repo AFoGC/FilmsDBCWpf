@@ -85,5 +85,5 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 				this.RefreshControl();
 			}
 		}
-	}
+    }
 }

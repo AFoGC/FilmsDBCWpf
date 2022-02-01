@@ -21,11 +21,22 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
     /// </summary>
     public partial class FilmGenreControl : UserControl
     {
-        private Genre FilmGenre { set; get; }
+        public GenreVM GenreVM { get; private set; }
         public FilmGenreControl(Genre genre)
         {
             InitializeComponent();
-            DataContext = new GenreVM(genre);
+            GenreVM = new GenreVM(genre);
+            DataContext = GenreVM;
+        }
+
+        private void DeleteGenreButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!MainInfo.Tables.FilmsTable.GenreHasFilm(GenreVM.FilmGenre))
+            {
+                WrapPanel panel = (WrapPanel)Parent;
+                panel.Children.Remove(this);
+                MainInfo.Tables.GenresTable.Remove(GenreVM.FilmGenre);
+            }
         }
     }
 }

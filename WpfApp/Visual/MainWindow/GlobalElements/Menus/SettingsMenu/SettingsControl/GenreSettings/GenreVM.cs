@@ -19,7 +19,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
         public GenreVM(Genre genre)
         {
             FilmGenre = genre;
-            //FilmGenre.PropertyChanged += FilmGenre_PropertyChanged;
+            FilmGenre.PropertyChanged += FilmGenre_PropertyChanged;
             DeleteGenre = new GenreCommand(DelGenre, genre);
         }
 
@@ -42,7 +42,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
                         genre.Name = FilmGenre.Name;
                     }
                 }
-                OnPropertyChanged(nameof(Name)); 
             }
         }
 
@@ -54,7 +53,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
                 if (!MainInfo.Tables.FilmsTable.GenreHasFilm(FilmGenre))
                 {
                     FilmGenre.IsSerialGenre = value;
-                    OnPropertyChanged(nameof(IsSerialGenre));
                 }
             }
         }

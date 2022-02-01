@@ -8,8 +8,8 @@
              d:DesignHeight="20" d:DesignWidth="800">
     <Grid Height="20" Width="800">
         <TextBox x:Name="GenreName" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="200" Foreground="White" BorderBrush="#FF7A7A7A"/>
-        <CheckBox x:Name="CheckBox_IsSerial" IsChecked="{Binding IsSerialGenre}" Content="Is Serial Genre" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="226,2,0,0" VerticalAlignment="Top" Command=""/>
-        <Button x:Name="DeleteGenreButton" Content="Delete Genre" HorizontalAlignment="Left" Margin="413,0,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White">
+        <CheckBox x:Name="CheckBox_IsSerial" IsChecked="{Binding IsSerialGenre}" Content="Is Serial Genre" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="226,2,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="DeleteGenreButton" Content="Delete Genre" HorizontalAlignment="Left" Margin="413,0,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White" Click="DeleteGenreButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

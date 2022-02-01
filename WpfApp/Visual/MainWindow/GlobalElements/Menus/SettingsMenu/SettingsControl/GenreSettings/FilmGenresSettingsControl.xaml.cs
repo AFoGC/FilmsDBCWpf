@@ -50,5 +50,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
         {
             System.Diagnostics.Process.Start("help.html");
         }
+
+        private void AddGenreButton_Click(object sender, RoutedEventArgs e)
+        {
+            Genre genre = new Genre();
+            MainInfo.Tables.GenresTable.AddElement(genre);
+            genre.Name = $"Genre{genre.ID}";
+            GenresPanel.Children.Add(new FilmGenreControl(genre));
+        }
     }
 }

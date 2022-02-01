@@ -36,5 +36,20 @@ namespace TL_Tables
 				}
 			}
 		}
+
+		public bool GenreHasBook(BookGenre genre)
+		{
+			bool hasGenre = false;
+
+			foreach (Book book in this)
+			{
+				if (book.BookGenre == genre)
+				{
+					return true;
+				}
+			}
+
+			return hasGenre;
+		}
 	}
 }

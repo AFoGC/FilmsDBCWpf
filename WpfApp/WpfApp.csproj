@@ -161,6 +161,14 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\BookGenreControl.xaml.cs">
+      <DependentUpon>BookGenreControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\BookGenreSettingsControl.xaml.cs">
+      <DependentUpon>BookGenreSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\GenreVM.cs" />
+    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\Commands\ActionCommand.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\Commands\GenreCommand.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenreControl.xaml.cs">
       <DependentUpon>FilmGenreControl.xaml</DependentUpon>
@@ -168,7 +176,6 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenresSettingsControl.xaml.cs">
       <DependentUpon>FilmGenresSettingsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\GenreCollectionVM.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ISettingsControl.cs" />
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileSettings\ProfileControl.xaml.cs">
       <DependentUpon>ProfileControl.xaml</DependentUpon>
@@ -309,6 +316,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\BookGenreControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\BookGenreSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenreControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -396,8 +411,6 @@
   <ItemGroup>
     <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\White-Stars-on-transparent-background-PNG.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

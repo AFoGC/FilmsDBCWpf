@@ -8,50 +8,38 @@ using System.Windows.Input;
 using TL_Objects;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl.Commands;
 
-namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl.GenreSettings
+namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl.BookGenreSettings
 {
     public class GenreVM : INotifyPropertyChanged
     {
-        public Genre FilmGenre { get; private set; }
+        public BookGenre BookGenre { get; private set; }
         public ICommand DeleteGenre { get; private set; }
 
-        public GenreVM(Genre genre)
+        public GenreVM(BookGenre genre)
         {
-            FilmGenre = genre;
-            FilmGenre.PropertyChanged += FilmGenre_PropertyChanged;
-            DeleteGenre = new GenreCommand(DelGenre, genre);
+            BookGenre = genre;
+            BookGenre.PropertyChanged += FilmGenre_PropertyChanged;
+            DeleteGenre = new ActionCommand(DelGenre);
         }
 
         private void DelGenre()
         {
-            MainInfo.Tables.GenresTable.Remove(FilmGenre);
+            MainInfo.Tables.BookGenresTable.Remove(BookGenre);
         }
 
 
         public String Name
-        { 
-            get { return FilmGenre.Name; }
-            set
-            {
-                FilmGenre.Name = value;
-                foreach (Genre genre in MainInfo.Tables.GenresTable)
-                {
-                    if (genre.ID == FilmGenre.ID)
-                    {
-                        genre.Name = FilmGenre.Name;
-                    }
-                }
-            }
-        }
-
-        public Boolean IsSerialGenre
         {
-            get { return FilmGenre.IsSerialGenre; }
+            get { return BookGenre.Name; }
             set
             {
-                if (!MainInfo.Tables.FilmsTable.GenreHasFilm(FilmGenre))
+                BookGenre.Name = value;
+                foreach (BookGenre genre in MainInfo.Tables.GenresTable)
                 {
-                    FilmGenre.IsSerialGenre = value;
+                    if (genre.ID == BookGenre.ID)
+                    {
+                        genre.Name = BookGenre.Name;
+                    }
                 }
             }
         }

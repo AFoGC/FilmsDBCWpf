@@ -396,6 +396,8 @@
   <ItemGroup>
     <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\White-Stars-on-transparent-background-PNG.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

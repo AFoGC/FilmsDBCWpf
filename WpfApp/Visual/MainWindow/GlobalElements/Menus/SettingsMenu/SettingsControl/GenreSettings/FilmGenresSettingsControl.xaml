@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl.GenreSettings"
              mc:Ignorable="d" 
              >
-    <Grid x:Name="grid" Width="798" Height="60">
+    <Grid x:Name="grid" Width="800" Height="60">
         <Button x:Name="Help" Content="?" HorizontalAlignment="Left" Margin="778,0,0,0" VerticalAlignment="Top" Height="20" Width="20" Foreground="White" Click="Help_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

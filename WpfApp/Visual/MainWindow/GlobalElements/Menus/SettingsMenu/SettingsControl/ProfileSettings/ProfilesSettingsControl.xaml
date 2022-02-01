@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsControl"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="800">
-    <Grid Height="150" Width="800">
-        <WrapPanel x:Name="ProfilesPanel" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="800"/>
-        <Button x:Name="AddProfileButton" Content="Add new profile" HorizontalAlignment="Left" Margin="165,105,0,0" VerticalAlignment="Top" Height="20" Width="133" Foreground="White" Click="AddProfileButton_Click">
+             >
+    <Grid x:Name="grid" Height="30" Width="800">
+        <WrapPanel x:Name="ProfilesPanel" HorizontalAlignment="Left" Width="800" Margin="0,0,0,30"/>
+        <Button x:Name="AddProfileButton" Content="Add new profile" HorizontalAlignment="Left" Margin="165,0,0,5" VerticalAlignment="Bottom" Height="20" Width="133" Foreground="White" Click="AddProfileButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -32,7 +32,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="AddProfileTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="10,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Foreground="White" BorderBrush="#FF7A7A7A"/>
+        <TextBox x:Name="AddProfileTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="10,0,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="150" Foreground="White" BorderBrush="#FF7A7A7A"/>
 
     </Grid>
 </UserControl>

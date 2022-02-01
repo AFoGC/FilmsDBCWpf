@@ -40,10 +40,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 		{
 			AddProfileTextBox.Text = "";
 			ProfilesPanel.Children.Clear();
+			grid.Height = 30;
 			
 			foreach (Profile profile in MainInfo.Settings.Profiles)
 			{
 				ProfilesPanel.Children.Add(new ProfileControl(profile));
+				grid.Height += 20;
 			}
 			
 		}

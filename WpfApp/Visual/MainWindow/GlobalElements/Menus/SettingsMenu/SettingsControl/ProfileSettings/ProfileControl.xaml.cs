@@ -61,6 +61,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 		{
 			MainInfo.Settings.Profiles.RemoveProfile(Profile);
 			WrapPanel panel =  (WrapPanel)this.Parent;
+			((Grid)panel.Parent).Height -= 20;
 			panel.Children.Remove(this);
 		}
 

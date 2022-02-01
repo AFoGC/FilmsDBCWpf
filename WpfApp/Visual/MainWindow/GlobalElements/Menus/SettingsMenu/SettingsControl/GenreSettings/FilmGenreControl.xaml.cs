@@ -35,6 +35,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
             {
                 WrapPanel panel = (WrapPanel)Parent;
                 panel.Children.Remove(this);
+                ((Grid)panel.Parent).Height -= 20;
+
                 MainInfo.Tables.GenresTable.Remove(GenreVM.FilmGenre);
             }
         }

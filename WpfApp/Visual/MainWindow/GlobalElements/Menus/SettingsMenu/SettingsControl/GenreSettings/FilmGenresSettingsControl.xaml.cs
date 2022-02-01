@@ -39,10 +39,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 
         public void RefreshControl()
         {
+            grid.Height = 60;
             GenresPanel.Children.Clear();
             foreach (Genre genre in MainInfo.Tables.GenresTable)
             {
                 GenresPanel.Children.Add(new FilmGenreControl(genre));
+                grid.Height += 20;
             }
         }
 
@@ -57,6 +59,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
             MainInfo.Tables.GenresTable.AddElement(genre);
             genre.Name = $"Genre{genre.ID}";
             GenresPanel.Children.Add(new FilmGenreControl(genre));
+            grid.Height += 20;
         }
     }
 }

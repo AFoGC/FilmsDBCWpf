@@ -9,10 +9,10 @@
              d:DesignHeight="705" d:DesignWidth="1485">
     <Grid HorizontalAlignment="Left" Width="1485"
               Background="#FF121212">
-        <ScrollViewer HorizontalAlignment="Left" Margin="296,86,0,115" Height="504" Width="818">
-            <WrapPanel x:Name="SettingsListPanel" Background="#FF121212" Orientation="Vertical"/>
+        <ScrollViewer HorizontalAlignment="Left" Margin="296,86,0,115" Width="818">
+            <WrapPanel x:Name="SettingsListPanel" HorizontalAlignment="Left" Background="#FF121212" Orientation="Vertical"/>
         </ScrollViewer>
-        
+
         <Button x:Name="Embrace" Content="Embrace" Height="20"
             HorizontalAlignment="Left" Margin="1166,86,0,0" VerticalAlignment="Top" Width="76" Foreground="White" Click="Embrace_Click">
             <Button.Style>

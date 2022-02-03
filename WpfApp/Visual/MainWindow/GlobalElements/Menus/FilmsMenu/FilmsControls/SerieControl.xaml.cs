@@ -29,9 +29,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 			InitializeComponent();
 			this.Info = film;
 			this.SerieInfo = film.Serie;
-
+			
             Info.PropertyChanged += Info_PropertyChanged;
 			SerieInfo.PropertyChanged += Info_PropertyChanged;
+			this.Info.Genre.PropertyChanged += Info_PropertyChanged;
 
 			RefreshData();
 		}

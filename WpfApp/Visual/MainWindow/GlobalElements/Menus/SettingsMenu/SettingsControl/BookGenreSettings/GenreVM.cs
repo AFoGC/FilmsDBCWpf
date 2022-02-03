@@ -34,7 +34,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
             set
             {
                 BookGenre.Name = value;
-                foreach (BookGenre genre in MainInfo.Tables.GenresTable)
+                foreach (BookGenre genre in MainInfo.Tables.BookGenresTable)
                 {
                     if (genre.ID == BookGenre.ID)
                     {

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TL_Objects;
 using WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.ControlsInterface;
+using System.ComponentModel;
 
 namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 {
@@ -26,7 +27,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
         {
             InitializeComponent();
             this.Info = film;
+            film.PropertyChanged += Film_PropertyChanged;
+            film.Genre.PropertyChanged += Film_PropertyChanged;
 
+            RefreshData();
+        }
+
+        private void Film_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
             RefreshData();
         }
 

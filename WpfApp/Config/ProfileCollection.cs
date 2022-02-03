@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using TablesLibrary.Interpreter;
+using TablesLibrary.Interpreter.Table;
+using TL_Objects;
 
 namespace WpfApp.Config
 {
@@ -13,30 +16,30 @@ namespace WpfApp.Config
 		private List<Profile> profiles = null;
 		private Profile usedProfile = null;
 		public Profile UsedProfile
-        {
-            get
-            {
+		{
+			get
+			{
 				return usedProfile;
-            }
-            set
-            {
+			}
+			set
+			{
 				bool hasInCollection = false;
-                foreach (Profile profile in profiles)
-                {
-                    if (profile.Name == value.Name)
-                    {
+				foreach (Profile profile in profiles)
+				{
+					if (profile.Name == value.Name)
+					{
 						usedProfile = profile;
 						hasInCollection = true;
-                    }
-                }
-                if (!hasInCollection)
-                {
+					}
+				}
+				if (!hasInCollection)
+				{
 					usedProfile = profiles[0];
-                }
+				}
 				MainInfo.TableCollection.TableFilePath = usedProfile.MainFilePath;
 				MainInfo.TableCollection.LoadTables();
 			}
-        }
+		}
 
 		public ProfileCollection()
 		{
@@ -86,13 +89,38 @@ namespace WpfApp.Config
 			profiles.Clear();
 			foreach (Profile profile in Profile.GetAllProfiles)
 			{
-				AddProfile(profile);
+				profiles.Add(profile);
 			}
 		}
 
-		public void AddProfile(Profile import)
+		public void AddProfile(Profile newProfile)
 		{
-			profiles.Add(import);
+			bool exclusive = true;
+			foreach (Profile prof in this)
+			{
+				if (prof.Name == newProfile.Name) exclusive = false;
+			}
+
+			if (exclusive)
+			{
+				Directory.CreateDirectory(newProfile.ProfilePath);
+				using (FileStream fs = File.Create(newProfile.MainFilePath)) { }
+
+				TableCollection tc = MainInfo.Tables.GetDefaultTableCollectionData();
+				tc.TableFilePath = newProfile.MainFilePath;
+
+				Table<Genre> genreTable = tc.GetTable<Genre>();
+				genreTable.RemoveAll(true);
+
+				foreach (Genre genre in MainInfo.Tables.GenresTable)
+				{
+					genreTable.AddElement(genre);
+				}
+
+				tc.SaveTables();
+
+				profiles.Add(newProfile);
+			}
 		}
 
 		public void AddProfiles(Profile[] import)
@@ -110,40 +138,52 @@ namespace WpfApp.Config
 		}
 
 		public void GetProfilesFromDB(UserBO user)
-        {
+		{
 			ProfileBO[] DBProfiles = ProfileBL.GetAllUserProfiles(user);
 
-            while (profiles.Count > 0)
-            {
+			while (profiles.Count > 0)
+			{
 				profiles.Remove(profiles[0]);
-            }
+			}
 
-            foreach (ProfileBO profileBO in DBProfiles)
-            {
+			foreach (ProfileBO profileBO in DBProfiles)
+			{
 				Profile profile = new Profile(profileBO.Name);
 				AddProfile(profile);
 				profile.SetMainFile(profileBO.Lastsave);
-            }
-        }
+			}
+		}
 
 		public void SendProfilesToDB(UserBO user)
+		{
+			ProfileBL.SendProfiles(ProfilesToProfileBO(), user);
+		}
+
+		public ProfileBO[] ProfilesToProfileBO(UserBO user)
         {
 			ProfileBO[] DBProfiles = new ProfileBO[profiles.Count];
 			int i = 0;
-			ProfileBO profileBO;
 
 			foreach (Profile profile in profiles)
-            {
-				profileBO = new ProfileBO();
-				profileBO.Name = profile.Name;
-				profileBO.Lastsave = profile.GetMainFile();
-				profileBO.UserId = user.Id;
+			{
+				DBProfiles[i++] = profile.ToProfileBO(user);
+			}
 
-				DBProfiles[i++] = profileBO;
-            }
+			return DBProfiles;
+		}
 
-			ProfileBL.SendProfiles(DBProfiles, user);
-        }
+		public ProfileBO[] ProfilesToProfileBO()
+        {
+			ProfileBO[] DBProfiles = new ProfileBO[profiles.Count];
+			int i = 0;
+
+			foreach (Profile profile in profiles)
+			{
+				DBProfiles[i++] = profile.ToProfileBO();
+			}
+
+			return DBProfiles;
+		}
 
         public IEnumerator GetEnumerator()
         {

@@ -65,14 +65,21 @@ namespace WpfApp.Visual.MainWindow
 			{
 				ExitWindow exitForm = new ExitWindow();
 				exitForm.ShowDialog();
-				{
-					if (exitForm.Save == true)
-					{
-						MainInfo.TableCollection.SaveTables();
-					}
 
-					e.Cancel = !exitForm.CloseProg;
+				if (exitForm.Save == true)
+				{
+					MainInfo.TableCollection.SaveTables();
 				}
+
+				e.Cancel = !exitForm.CloseProg;
+			}
+		}
+
+		private void Window_Closed(object sender, EventArgs e)
+		{
+			if (MainInfo.IsLoggedIn)
+			{
+				MainInfo.Settings.Profiles.SendProfilesToDB(MainInfo.LoggedInUser);
 			}
 		}
 
@@ -83,8 +90,5 @@ namespace WpfApp.Visual.MainWindow
 				MainInfo.TableCollection.SaveTables();
 			}
 		}
-
-
-		
     }
 }

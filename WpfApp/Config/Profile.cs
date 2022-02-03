@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO_Films;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -135,6 +136,21 @@ namespace WpfApp.Config
 
 			return export;
 		}
+
+		public ProfileBO ToProfileBO()
+        {
+			ProfileBO profileBO = new ProfileBO();
+			profileBO.Name = this.name;
+			profileBO.Lastsave = this.GetMainFile();
+			return profileBO;
+        }
+
+		public ProfileBO ToProfileBO(UserBO user)
+        {
+			ProfileBO profileBO = ToProfileBO();
+			profileBO.UserId = user.Id;
+			return profileBO;
+        }
 
 		public override string ToString()
 		{

@@ -70,5 +70,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu
         {
             MainInfo.Settings.Profiles.SendProfilesToDB(MainInfo.LoggedInUser);
         }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("Довідка до програми.pdf");
+        }
     }
 }

@@ -48,5 +48,24 @@ namespace BL_Films
         {
             return new ProfileDAL().GetAllUserProfiles(user.Id);
         }
+
+        public static int AddUserProfile(ProfileBO profile, UserBO user)
+        {
+            profile.UserId = user.Id;
+            return new ProfileDAL().Add(profile);
+        }
+
+        public static void DeleteUserProfile(ProfileBO profile, UserBO user)
+        {
+            ProfileBO[] profiles = GetAllUserProfiles(user);
+
+            foreach (ProfileBO item in profiles)
+            {
+                if (profile.Name == item.Name)
+                {
+                    new ProfileDAL().DeleteByID(profile.Id);
+                }
+            }
+        }
     }
 }

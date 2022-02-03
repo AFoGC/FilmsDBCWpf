@@ -48,11 +48,6 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
             }
         }
 
-        private void Help_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("help.html");
-        }
-
         private void AddGenreButton_Click(object sender, RoutedEventArgs e)
         {
             Genre genre = new Genre();

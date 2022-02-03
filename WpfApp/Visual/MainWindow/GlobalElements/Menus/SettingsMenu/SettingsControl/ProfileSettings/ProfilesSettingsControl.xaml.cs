@@ -55,34 +55,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.SettingsMenu.SettingsCon
 			ProfileCollection profileCollection = MainInfo.Settings.Profiles;
 			if (AddProfileTextBox.Text != "")
 			{
-				bool exclusive = true;
 				Profile newProfile = new Profile(AddProfileTextBox.Text);
 
-				foreach (Profile prof in profileCollection)
-				{
-					if (prof.Name == newProfile.Name) exclusive = false;
-				}
-
-				if (exclusive)
-				{
-					Directory.CreateDirectory(newProfile.ProfilePath);
-					using (FileStream fs = File.Create(newProfile.MainFilePath)) { }
-
-					TableCollection tc = MainInfo.Tables.GetDefaultTableCollectionData();
-					tc.TableFilePath = newProfile.MainFilePath;
-
-					Table<Genre> genreTable = tc.GetTable<Genre>();
-					genreTable.RemoveAll(true);
-
-					foreach (Genre genre in MainInfo.Tables.GenresTable)
-					{
-						genreTable.AddElement(genre);
-					}
-
-					tc.SaveTables();
-
-					profileCollection.AddProfile(newProfile);
-				}
+				profileCollection.AddProfile(newProfile);
 
 				this.RefreshControl();
 			}

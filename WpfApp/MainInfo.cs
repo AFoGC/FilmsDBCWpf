@@ -31,6 +31,14 @@ namespace WpfApp
 
         public static event EventHandler UserChanged;
         private static UserBO userBO;
+
+		public static Boolean IsLoggedIn
+        {
+            get
+            {
+				return LoggedInUser != null;
+            }
+        }
 		public static UserBO LoggedInUser
 		{
 			get { return userBO; }

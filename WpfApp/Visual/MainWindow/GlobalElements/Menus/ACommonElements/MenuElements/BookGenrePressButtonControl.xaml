@@ -9,7 +9,7 @@
              d:DesignHeight="20" d:DesignWidth="129" Margin="0,0,1,1">
     <Grid Height="20" Width="129">
 
-        <Buttons:PressButton x:Name="pbtn" Content="" Included_DefaultColor="#FF1F1F1F" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF151515" Included_MouseEnterColor="#FF2E2E2E" DefaultColor="#FF121212" MouseDownColor="#FF080808" MouseEnterColor="#FF212121" Background="#FF1F1F1F" Included="True">
+        <Buttons:PressButton x:Name="pbtn" Content="{Binding Name}" Included_DefaultColor="#FF1F1F1F" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF151515" Included_MouseEnterColor="#FF2E2E2E" DefaultColor="#FF121212" MouseDownColor="#FF080808" MouseEnterColor="#FF212121" Background="#FF1F1F1F" Included="True">
             <Buttons:PressButton.Template>
                 <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
                     <Border Background="{TemplateBinding Background}">

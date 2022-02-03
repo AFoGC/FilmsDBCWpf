@@ -35,7 +35,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.MenuElem
         {
             InitializeComponent();
             this.genre = genre;
-            this.pbtn.Content = genre;
+            this.DataContext = genre;
         }
     }
 }

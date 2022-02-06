@@ -31,18 +31,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             category.PropertyChanged += Category_PropertyChanged;
             category.CellRemoved += Category_CellRemoved;
 
-            foreach (Film film in category.Films)
-            {
-                film.CellRemoved += Film_CellRemoved;
-            }
-
             RefreshData();
-        }
-
-        private void Film_CellRemoved(object sender, EventArgs e)
-        {
-            Film film = (Film)sender;
-            Info.Films.Remove(film);
         }
 
         private void Category_CellRemoved(object sender, EventArgs e)

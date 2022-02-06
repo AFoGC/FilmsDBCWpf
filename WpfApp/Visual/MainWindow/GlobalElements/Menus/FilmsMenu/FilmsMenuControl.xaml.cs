@@ -335,7 +335,9 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
 
         private void btn_removeFilm_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.Tables.FilmsTable.Remove(((IControls<Film, Genre>)ControlInBuffer).Info);
+            IControls<Film, Genre> control = (IControls<Film, Genre>)ControlInBuffer;
+            if (control.Info.FranshiseId == 0)
+                MainInfo.Tables.FilmsTable.Remove(((IControls<Film, Genre>)ControlInBuffer).Info);
         }
     }
 }

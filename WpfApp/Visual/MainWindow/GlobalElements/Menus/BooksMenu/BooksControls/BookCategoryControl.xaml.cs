@@ -33,19 +33,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             this.Info.PropertyChanged += Info_PropertyChanged;
             this.Info.CellRemoved += Info_CellRemoved;
 
-            foreach (Book book in category.Books)
-            {
-                book.CellRemoved += Book_CellRemoved; ;
-            }
-
             RefreshData();
-        }
-
-        private void Book_CellRemoved(object sender, EventArgs e)
-        {
-            Book book = (Book)sender;
-            //Info.Books.Remove(book);
-            //RemoveBookFromCategory(book);
         }
 
         private void Info_CellRemoved(object sender, EventArgs e)

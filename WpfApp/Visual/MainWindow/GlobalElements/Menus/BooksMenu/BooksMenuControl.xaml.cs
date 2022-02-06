@@ -261,7 +261,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
 
         private void btn_RemoveBook_Click(object sender, RoutedEventArgs e)
         {
-            MainInfo.Tables.BooksTable.Remove(((IControls<Book,BookGenre>)ControlInBuffer).Info);
+            if (ControlInBuffer != null)
+            {
+                IControls<Book, BookGenre> control = (IControls<Book, BookGenre>)ControlInBuffer;
+                if (control.Info.FranshiseId == 0)
+                    MainInfo.Tables.BooksTable.Remove(((IControls<Book, BookGenre>)ControlInBuffer).Info);
+            }
+            
         }
     }
 }

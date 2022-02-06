@@ -31,6 +31,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
         {
             InitializeComponent();
             this.book = bookControl.Info;
+            this.book.CellRemoved += Book_CellRemoved;
 
             foreach (var item in MainInfo.Tables.BookGenresTable)
             {
@@ -42,6 +43,12 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.UpdateControls
             }
 
             refresh();
+        }
+
+        private void Book_CellRemoved(object sender, EventArgs e)
+        {
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Remove(this);
         }
 
         private void refresh()

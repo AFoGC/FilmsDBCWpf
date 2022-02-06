@@ -332,5 +332,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu
                 }
             }
         }
+
+        private void btn_removeFilm_Click(object sender, RoutedEventArgs e)
+        {
+            MainInfo.Tables.FilmsTable.Remove(((IControls<Film, Genre>)ControlInBuffer).Info);
+        }
     }
 }

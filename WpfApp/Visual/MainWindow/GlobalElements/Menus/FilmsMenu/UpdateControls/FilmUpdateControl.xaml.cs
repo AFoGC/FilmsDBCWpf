@@ -28,6 +28,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
 		{
 			InitializeComponent();
 			this.film = filmControl.Info;
+            this.film.CellRemoved += Film_CellRemoved;
 
 			foreach (var item in MainInfo.Tables.GenresTable)
 			{
@@ -41,7 +42,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
 			refresh();
 		}
 
-		private void refresh()
+        private void Film_CellRemoved(object sender, EventArgs e)
+        {
+			Panel panel = (Panel)this.Parent;
+			panel.Children.Remove(this);
+		}
+
+        private void refresh()
 		{
 			Film defFilm = MainInfo.Tables.FilmsTable.DefaultCell;
 

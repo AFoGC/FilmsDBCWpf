@@ -60,5 +60,5 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
 				return false;
 			}
 		}
-	}
+    }
 }

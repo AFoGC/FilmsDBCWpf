@@ -28,8 +28,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
         {
             InitializeComponent();
             this.category = categoryControl.Info;
+            this.category.CellRemoved += Category_CellRemoved;
             this.categoryControl = categoryControl;
             refresh();
+        }
+
+        private void Category_CellRemoved(object sender, EventArgs e)
+        {
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Remove(this);
         }
 
         public void UpdateElement()

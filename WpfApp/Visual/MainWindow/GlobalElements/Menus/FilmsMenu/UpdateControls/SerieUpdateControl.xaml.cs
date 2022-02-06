@@ -29,6 +29,7 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
             InitializeComponent();
 
             this.serie = serieControl.SerieInfo;
+            this.serie.Film.CellRemoved += Serie_CellRemoved;
 
 
             foreach (var item in MainInfo.Tables.GenresTable)
@@ -41,6 +42,13 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.UpdateControls
             }
 
             refresh();
+        }
+
+        private void Serie_CellRemoved(object sender, EventArgs e)
+        {
+            serie.Film = null;
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Remove(this);
         }
 
         public SerieUpdateControl(FilmControl filmControl)

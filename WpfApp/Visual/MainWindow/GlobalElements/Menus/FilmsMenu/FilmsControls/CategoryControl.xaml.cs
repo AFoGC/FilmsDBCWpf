@@ -29,8 +29,26 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             InitializeComponent();
             this.Info = category;
             category.PropertyChanged += Category_PropertyChanged;
+            category.CellRemoved += Category_CellRemoved;
+
+            foreach (Film film in category.Films)
+            {
+                film.CellRemoved += Film_CellRemoved;
+            }
 
             RefreshData();
+        }
+
+        private void Film_CellRemoved(object sender, EventArgs e)
+        {
+            Film film = (Film)sender;
+            Info.Films.Remove(film);
+        }
+
+        private void Category_CellRemoved(object sender, EventArgs e)
+        {
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Remove(this);
         }
 
         private void Category_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

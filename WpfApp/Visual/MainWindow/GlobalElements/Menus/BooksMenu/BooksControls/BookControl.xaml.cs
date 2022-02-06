@@ -29,7 +29,14 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             this.Info = book;
             book.PropertyChanged += Book_PropertyChanged;
             book.BookGenre.PropertyChanged += Book_PropertyChanged;
+            book.CellRemoved += Book_CellRemoved;
             RefreshData();
+        }
+
+        private void Book_CellRemoved(object sender, EventArgs e)
+        {
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Remove(this);
         }
 
         public BookControl(BookSimpleControl simpleControl) : this(simpleControl.Info) { }

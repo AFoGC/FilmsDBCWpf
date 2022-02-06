@@ -34,7 +34,16 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 			SerieInfo.PropertyChanged += Info_PropertyChanged;
 			this.Info.Genre.PropertyChanged += Info_PropertyChanged;
 
+            Info.CellRemoved += Info_CellRemoved;
+
 			RefreshData();
+		}
+
+        private void Info_CellRemoved(object sender, EventArgs e)
+        {
+			SerieInfo.Film = null;
+			Panel panel = (Panel)this.Parent;
+			panel.Children.Remove(this);
 		}
 
         private void Info_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

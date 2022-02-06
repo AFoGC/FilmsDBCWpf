@@ -31,8 +31,31 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             InitializeComponent();
             this.Info = category;
             this.Info.PropertyChanged += Info_PropertyChanged;
+            this.Info.CellRemoved += Info_CellRemoved;
+
+            foreach (Book book in category.Books)
+            {
+                book.CellRemoved += Book_CellRemoved; ;
+            }
 
             RefreshData();
+        }
+
+        private void Book_CellRemoved(object sender, EventArgs e)
+        {
+            Book book = (Book)sender;
+            //Info.Books.Remove(book);
+            //RemoveBookFromCategory(book);
+        }
+
+        private void Info_CellRemoved(object sender, EventArgs e)
+        {
+            foreach (BookSimpleControl control in cat_panel.Children)
+            {
+                RemoveBookFromCategory(control);
+            }
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Remove(this);
         }
 
         private void Info_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -79,6 +102,32 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu.BooksControls
             this.Height += 15;
             this.cat_panel.Children.Add(new BookSimpleControl(book));
             book.FranshiseListIndex = Convert.ToSByte(cat_panel.Children.Count - 1);
+        }
+
+        public bool RemoveBookFromCategory(Book import)
+        {
+            if (import.FranshiseId == this.Info.ID)
+            {
+
+                this.Height -= 15;
+
+                import.FranshiseId = 0;
+                import.FranshiseListIndex = 0;
+
+                foreach (Book book in Info.Books)
+                {
+                    if (import.FranshiseListIndex < book.FranshiseListIndex)
+                    {
+                        --book.FranshiseListIndex;
+                    }
+                }
+
+                return Info.Books.Remove(import);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool RemoveBookFromCategory(BookSimpleControl simpleControl)

@@ -45,15 +45,22 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.ACommonElements.InfoMenu
 
         private void btn_update_Click(object sender, RoutedEventArgs e)
         {
-			IUpdateControl control = (IUpdateControl)canvas_main.Children[0];
-			control.UpdateElement();
+            if (canvas_main.Children.Count != 0)
+            {
+				IUpdateControl control = (IUpdateControl)canvas_main.Children[0];
+				control.UpdateElement();
 
-			if (visualizer.SourcesVisualizer.IsOpen)
-			{
-				visualizer.SourcesVisualizer.SourcesControl.button_update_Click(sender, e);
+				if (visualizer.SourcesVisualizer.IsOpen)
+				{
+					visualizer.SourcesVisualizer.SourcesControl.button_update_Click(sender, e);
+				}
+
+				MainInfo.MainWindow.InfoUnsaved = true;
 			}
-
-			MainInfo.MainWindow.InfoUnsaved = true;
+            else
+            {
+				visualizer.HideUpdateControl();
+			}
 		}
 	}
 }

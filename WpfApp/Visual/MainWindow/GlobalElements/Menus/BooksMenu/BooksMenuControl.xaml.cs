@@ -258,5 +258,10 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.BooksMenu
         {
             LoadPriorityBooks();
         }
+
+        private void btn_RemoveBook_Click(object sender, RoutedEventArgs e)
+        {
+            MainInfo.Tables.BooksTable.Remove(((IControls<Book,BookGenre>)ControlInBuffer).Info);
+        }
     }
 }

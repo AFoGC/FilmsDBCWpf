@@ -29,8 +29,15 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
             this.Info = film;
             film.PropertyChanged += Film_PropertyChanged;
             film.Genre.PropertyChanged += Film_PropertyChanged;
+            film.CellRemoved += Film_CellRemoved;
 
             RefreshData();
+        }
+
+        private void Film_CellRemoved(object sender, EventArgs e)
+        {
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Remove(this);
         }
 
         private void Film_PropertyChanged(object sender, PropertyChangedEventArgs e)

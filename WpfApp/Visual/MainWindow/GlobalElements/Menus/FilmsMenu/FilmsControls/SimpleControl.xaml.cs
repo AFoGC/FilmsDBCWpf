@@ -35,7 +35,8 @@ namespace WpfApp.Visual.MainWindow.GlobalElements.Menus.FilmsMenu.FilmsControls
 		private void Film_CellRemoved(object sender, EventArgs e)
 		{
 			Panel panel = (Panel)this.Parent;
-			panel.Children.Remove(this);
+			if(panel != null)
+				panel.Children.Remove(this);
 		}
 
 		private void Film_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

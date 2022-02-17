@@ -28,6 +28,10 @@ namespace WpfApp.Visual.MainWindow
 		public MainWindow()
 		{
 			InitializeComponent();
+			this.Hide();
+			WpfApp.Visual.HelpWindows.SplashScreen.SplashScreen screen = new WpfApp.Visual.HelpWindows.SplashScreen.SplashScreen();
+			screen.ShowDialog();
+			this.Show();
 			MainInfo.TableCollection.TableSave += boolSaved;
 
 			InfoUnsaved = false;
@@ -89,6 +93,11 @@ namespace WpfApp.Visual.MainWindow
 			{
 				MainInfo.TableCollection.SaveTables();
 			}
+		}
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+			MainInfo.TableCollection.LoadTables();
 		}
     }
 }

@@ -1,0 +1,17 @@
+﻿<Window x:Class="WpfApp.Visual.HelpWindows.SplashScreen.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp.Visual.HelpWindows.SplashScreen"
+        mc:Ignorable="d"
+        Title="SplashScreen" Height="450" Width="800" WindowStyle="None" ResizeMode="NoResize" Background="#FF121212" BorderThickness="1" BorderBrush="WhiteSmoke" MouseDown="Window_MouseDown" >
+    <Grid>
+        <Label FontSize="28" Foreground="WhiteSmoke" Content="Лепський Андрій Станіславович" HorizontalAlignment="Left" Margin="363,391,0,0" VerticalAlignment="Top" Width="425"/>
+        <Label FontSize="28" Foreground="WhiteSmoke" Content="Виконав: студент 4 курсу, 471 групи" HorizontalAlignment="Left" Margin="320,344,0,0" VerticalAlignment="Top" Width="468"/>
+        <Label FontSize="28" Foreground="WhiteSmoke" Content="Курсовий проект на тему: «Робота з файлами»" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="610"/>
+        <Label FontSize="48" Foreground="WhiteSmoke" Content="FilmsDBC" HorizontalAlignment="Left" Margin="10,364,0,0" VerticalAlignment="Top" Width="212"/>
+        <Label FontSize="28" Foreground="WhiteSmoke" Content="2022" HorizontalAlignment="Left" Margin="717,10,0,0" VerticalAlignment="Top" Width="71"/>
+
+    </Grid>
+</Window>

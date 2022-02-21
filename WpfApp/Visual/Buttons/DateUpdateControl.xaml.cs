@@ -61,9 +61,12 @@ namespace WpfApp.Visual.Buttons
             {
                 int year = 1, month = 1, day = 1;
 
-                if (this.year.Text != "") { year = Convert.ToInt32(this.year.Text); }
-                if (this.month.Text != "") { month = Convert.ToInt32(this.month.Text); }
-                if (this.day.Text != "") { day = Convert.ToInt32(this.day.Text); }
+                year = convert(this.year.Text);
+                month = convert(this.month.Text);
+                day = convert(this.day.Text);
+
+                DateTime datemin = DateTime.MinValue;
+                DateTime datemax = DateTime.MaxValue;
 
                 date = new DateTime(year, month, day);
                 return date;
@@ -73,6 +76,14 @@ namespace WpfApp.Visual.Buttons
                 date = value;
                 refresh();
             }
+        }
+
+        private int convert(String str)
+        {
+            if (str != "")
+                return Convert.ToInt32(str);
+            else
+                return 1;
         }
 
         public bool IsEmpty

@@ -418,6 +418,8 @@
   <ItemGroup>
     <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\White-Stars-on-transparent-background-PNG.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Visual\HelpWindows\SplashScreen\Log.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

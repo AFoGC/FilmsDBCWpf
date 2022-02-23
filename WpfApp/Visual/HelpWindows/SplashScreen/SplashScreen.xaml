@@ -10,8 +10,9 @@
         <Label FontSize="28" Foreground="WhiteSmoke" Content="Лепський Андрій Станіславович" HorizontalAlignment="Left" Margin="363,391,0,0" VerticalAlignment="Top" Width="425"/>
         <Label FontSize="28" Foreground="WhiteSmoke" Content="Виконав: студент 4 курсу, 471 групи" HorizontalAlignment="Left" Margin="320,344,0,0" VerticalAlignment="Top" Width="468"/>
         <Label FontSize="28" Foreground="WhiteSmoke" Content="Курсовий проект на тему: «Робота з файлами»" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="610"/>
-        <Label FontSize="48" Foreground="WhiteSmoke" Content="FilmsDBC" HorizontalAlignment="Left" Margin="10,364,0,0" VerticalAlignment="Top" Width="212"/>
+        <Label FontSize="48" Foreground="WhiteSmoke" Content="FilmsDBC" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top" Width="212"/>
         <Label FontSize="28" Foreground="WhiteSmoke" Content="2022" HorizontalAlignment="Left" Margin="717,10,0,0" VerticalAlignment="Top" Width="71"/>
+        <Image HorizontalAlignment="Left" Height="112" VerticalAlignment="Top" Width="212" Margin="10,326,0,0" Source="Log.png" Stretch="Fill"/>
 
     </Grid>
 </Window>

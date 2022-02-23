@@ -65,8 +65,21 @@ namespace WpfApp.Visual.Buttons
                 month = convert(this.month.Text);
                 day = convert(this.day.Text);
 
-                DateTime datemin = DateTime.MinValue;
-                DateTime datemax = DateTime.MaxValue;
+                if (month > 12)
+                    month = 12;
+
+                if (month < 1)
+                    month = 1;
+
+
+                int maxdays = DateTime.DaysInMonth(year, month);
+                if (maxdays < day)
+                {
+                    day = maxdays;
+                }
+
+                
+                
 
                 date = new DateTime(year, month, day);
                 return date;

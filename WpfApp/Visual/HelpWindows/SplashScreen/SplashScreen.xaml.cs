@@ -27,7 +27,7 @@ namespace WpfApp.Visual.HelpWindows.SplashScreen
         {
             InitializeComponent();
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(4);
+            timer.Interval = TimeSpan.FromSeconds(6);
             timer.IsEnabled = true;
             timer.Tick += Timer_Tick;
         }

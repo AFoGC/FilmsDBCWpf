@@ -48,5 +48,8 @@
     <Compile Include="UserBO.cs" />
     <Compile Include="UserHasRoleBO.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DBDiagram.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

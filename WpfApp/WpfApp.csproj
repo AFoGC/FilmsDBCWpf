@@ -62,6 +62,12 @@
     <Compile Include="Config\ProfileCollection.cs" />
     <Compile Include="Config\ProgramSettings.cs" />
     <Compile Include="MainInfo.cs" />
+    <Compile Include="MVP\Models\FilmsMenuModel.cs" />
+    <Compile Include="MVP\Models\MainWindowModel.cs" />
+    <Compile Include="MVP\Presenters\MainWindowPresenter.cs" />
+    <Compile Include="MVP\Views\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StaticFilmClasses\FilmMethods.cs" />
     <Compile Include="Visual\Buttons\DateUpdateControl.xaml.cs">
       <DependentUpon>DateUpdateControl.xaml</DependentUpon>
@@ -207,6 +213,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVP\Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Visual\Buttons\DateUpdateControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -424,5 +434,6 @@
   <ItemGroup>
     <Resource Include="Visual\HelpWindows\SplashScreen\Log.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

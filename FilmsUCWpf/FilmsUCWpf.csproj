@@ -51,10 +51,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Presenters\BasePresenter.cs" />
     <Compile Include="Presenters\FilmCategoryPresenter.cs" />
     <Compile Include="Presenters\FilmPresenter.cs" />
-    <Compile Include="Presenters\IBaseControls.cs" />
+    <Compile Include="Presenters\IBasePresenter.cs" />
     <Compile Include="Presenters\IMenu.cs" />
     <Compile Include="Presenters\IToUpdateControl.cs" />
     <Compile Include="Presenters\SeriePresenter.cs" />

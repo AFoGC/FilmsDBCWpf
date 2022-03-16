@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmsUCWpf.Presenters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,8 @@ namespace FilmsUCWpf.Views
 {
     public interface IView<T> where T : Cell
     {
-        T Info { get; }
+        //BasePresenter<T> Presenter { get; }
+        //T Info { get; }
         void SetVisualDefault();
         void SetVisualSelected();
         void SetVisualFinded();

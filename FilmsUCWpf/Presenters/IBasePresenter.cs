@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmsUCWpf.Presenters
 {
-    public interface IBaseControls
+    public interface IBasePresenter
     {
         bool SetFindedElement(String search);
         bool HasCheckedProperty(bool isReaded);

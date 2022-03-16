@@ -8,15 +8,14 @@ using TablesLibrary.Interpreter.TableCell;
 
 namespace FilmsUCWpf.Presenters
 {
-    public abstract class BasePresenter<T> : IBaseControls where T : Cell
+    public abstract class BasePresenter<T> : IBasePresenter where T : Cell
     {
         public T Model { get; protected set; }
-        public IView<T> View { get; protected set; }
+        public IView<T> View { get; internal set; }
 
-        public BasePresenter(T model, IView<T> view)
+        public BasePresenter(T model)
         {
             this.Model = model;
-            this.View = view;
             this.Model.CellRemoved += Model_CellRemoved;
         }
 

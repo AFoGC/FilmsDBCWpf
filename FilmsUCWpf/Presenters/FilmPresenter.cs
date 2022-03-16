@@ -11,14 +11,14 @@ namespace FilmsUCWpf.Presenters
 	public class FilmPresenter : BasePresenter<Film>
 	{
 		protected IMenu<Film> menu;
-		public FilmPresenter(Film film, IView<Film> view, IMenu<Film> menu) : this(film, view)
+		public FilmPresenter(Film film, IMenu<Film> menu) : this(film)
 		{
 			this.menu = menu;
 		}
 
-		private FilmPresenter(Film film, IView<Film> view) : base(film, view)
+		protected FilmPresenter(Film film) : base(film)
 		{
-
+			
 		}
 
 		public void SetSelectedElement()

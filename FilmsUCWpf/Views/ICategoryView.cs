@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace FilmsUCWpf.Views
 {
     public interface ICategoryView<T> : IView<T> where T : Cell 
     {
-        UIElementCollection CategoryCollection { get; }
+        IList CategoryCollection { get; }
     }
 }

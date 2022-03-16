@@ -22,13 +22,13 @@ namespace FilmsUCWpf.Views
     /// </summary>
     public partial class FilmControl : UserControl, IView<Film>
     {
-        public FilmPresenter Presenter { get; private set; }
+        public FilmPresenter Presenter { get; protected set; }
         public Film Info => Presenter.Model;
-        public FilmControl(Film film, IMenu<Film> menu)
+        public FilmControl(FilmPresenter presenter)
         {
             InitializeComponent();
-            Presenter = new FilmPresenter(film, this, menu);
-            DataContext = film;
+            Presenter = presenter;
+            Presenter.View = this;
         }
 
         private void id_GotFocus(object sender, RoutedEventArgs e)

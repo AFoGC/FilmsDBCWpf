@@ -51,7 +51,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="PresenterInterfaces\BasePresenter.cs" />
     <Compile Include="PresenterInterfaces\IBasePresenter.cs" />
     <Compile Include="PresenterInterfaces\IMenu.cs" />

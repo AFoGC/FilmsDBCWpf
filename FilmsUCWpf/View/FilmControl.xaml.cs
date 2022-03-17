@@ -29,7 +29,7 @@ namespace FilmsUCWpf.View
 			if (this.presenter == null) 
 			{
 				this.presenter = (FilmPresenter)presenter;
-				DataContext = this.presenter.Model;
+				DataContext = this.presenter;
 				return true;
 			}
             else

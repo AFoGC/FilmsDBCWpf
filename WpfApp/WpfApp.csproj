@@ -149,9 +149,6 @@
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\SerieControl.xaml.cs">
       <DependentUpon>SerieControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\SimpleControl.xaml.cs">
-      <DependentUpon>SimpleControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsMenuControl.xaml.cs">
       <DependentUpon>FilmsMenuControl.xaml</DependentUpon>
     </Compile>
@@ -302,10 +299,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\SerieControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\SimpleControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

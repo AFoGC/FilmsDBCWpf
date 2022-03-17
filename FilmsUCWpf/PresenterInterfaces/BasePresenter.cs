@@ -1,21 +1,24 @@
-﻿using FilmsUCWpf.Views;
+﻿using FilmsUCWpf.ViewInterfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using TablesLibrary.Interpreter.TableCell;
 
-namespace FilmsUCWpf.Presenters
+namespace FilmsUCWpf.PresenterInterfaces
 {
     public abstract class BasePresenter<T> : IBasePresenter where T : Cell
     {
         public T Model { get; protected set; }
-        public IView<T> View { get; internal set; }
-
-        public BasePresenter(T model)
+        public IBaseView View { get; protected set; }
+        public BasePresenter(T model, IBaseView view)
         {
             this.Model = model;
+            this.View = view;
+            this.View.SetPresenter(this);
             this.Model.CellRemoved += Model_CellRemoved;
         }
 
@@ -24,7 +27,14 @@ namespace FilmsUCWpf.Presenters
             View.SelfRemove();
         }
 
-        public abstract bool SetFindedElement(String search);
         public abstract bool HasCheckedProperty(bool isReaded);
+        public abstract bool SetFindedElement(string search);
+        public abstract void SetSelectedElement();
+        public abstract void SetVisualDefault();
+
+        public void AddViewToCollection(IList collection)
+        {
+            collection.Add(View);
+        }
     }
 }

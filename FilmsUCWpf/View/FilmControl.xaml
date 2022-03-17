@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="FilmsUCWpf.Views.FilmControl"
+﻿<UserControl x:Class="FilmsUCWpf.View.FilmControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FilmsUCWpf.Views"
+             xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="940">
     <Grid x:Name="grid" Height="15" Width="940">

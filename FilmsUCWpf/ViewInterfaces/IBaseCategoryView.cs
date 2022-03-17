@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using TablesLibrary.Interpreter.TableCell;
 
-namespace FilmsUCWpf.Views
+namespace FilmsUCWpf.ViewInterfaces
 {
-    public interface ICategoryView<T> : IView<T> where T : Cell 
+    public interface ICategoryView : IBaseView
     {
         IList CategoryCollection { get; }
     }

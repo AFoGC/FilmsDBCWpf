@@ -1,4 +1,6 @@
-﻿using FilmsUCWpf.Presenters;
+﻿using FilmsUCWpf.Presenter;
+using FilmsUCWpf.PresenterInterfaces;
+using FilmsUCWpf.ViewInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,51 +15,41 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TL_Objects;
 
-namespace FilmsUCWpf.Views
+namespace FilmsUCWpf.View
 {
 	/// <summary>
-	/// Логика взаимодействия для SerieControl.xaml
+	/// Логика взаимодействия для FilmSimpleControl.xaml
 	/// </summary>
-	public partial class SerieControl : UserControl, IView<Film>
+	public partial class FilmSimpleControl : UserControl, IBaseView
 	{
-		public SeriePresenter Presenter { get; private set; }
-		public Film Info => Presenter.Model;
-		public SerieControl(Film film, IMenu<Film> menu)
+		private FilmPresenter presenter;
+		public FilmSimpleControl()
 		{
 			InitializeComponent();
-			Presenter = new SeriePresenter(film, this, menu);
-			DataContext = film;
 		}
 
 		private void id_GotFocus(object sender, RoutedEventArgs e)
 		{
-			Presenter.SetSelectedElement();
+			presenter.SetSelectedElement();
 		}
 
-		private bool commentIsOpen = false;
-		private void btn_comment_Click(object sender, RoutedEventArgs e)
+		private void btn_moreInfo_Click(object sender, RoutedEventArgs e)
 		{
-			comment.Text = Info.Comment;
-
-			if (commentIsOpen) { this.grid.Height -= 15; }
-			else { this.grid.Height += 15; }
-
-			commentIsOpen = !commentIsOpen;
+			presenter.OpenInfoMenu();
 		}
 
-		private void btn_copyUrl_Click(object sender, RoutedEventArgs e)
+		public bool SetPresenter(IBasePresenter presenter)
 		{
-			if (Info.Sources.Count != 0)
+			if (this.presenter == null)
 			{
-				Clipboard.SetText(Info.Sources[0].SourceUrl);
+				this.presenter = (FilmPresenter)presenter;
+				return true;
 			}
-		}
-
-		private void btn_update_Click(object sender, RoutedEventArgs e)
-		{
-			Presenter.OpenUpdateMenu();
+			else
+			{
+				return false;
+			}
 		}
 
 		public void SetVisualDefault()

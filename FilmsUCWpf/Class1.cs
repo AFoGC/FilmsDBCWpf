@@ -1,5 +1,5 @@
-﻿using FilmsUCWpf.Presenters;
-using FilmsUCWpf.Views;
+﻿using FilmsUCWpf.Presenter;
+using FilmsUCWpf.View;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,8 +17,9 @@ namespace FilmsUCWpf
 		public void a()
 		{
 			Film film = new Film();
-			FilmPresenter presenter = new FilmPresenter(film, null);
-			FilmControl control = new FilmControl(presenter);
+			FilmControl control = new FilmControl();
+			FilmPresenter presenter = new FilmPresenter(film, control, null);
+			
 			
 			//StackPanel panel = new StackPanel();
 			//IList elements = panel.Children;

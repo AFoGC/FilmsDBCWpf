@@ -52,14 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Presenters\BasePresenter.cs" />
-    <Compile Include="Presenters\FilmCategoryPresenter.cs" />
-    <Compile Include="Presenters\FilmPresenter.cs" />
-    <Compile Include="Presenters\IBasePresenter.cs" />
-    <Compile Include="Presenters\IMenu.cs" />
-    <Compile Include="Presenters\IToUpdateControl.cs" />
-    <Compile Include="Presenters\SeriePresenter.cs" />
-    <Compile Include="Presenters\SimpleFilmPresenter.cs" />
+    <Compile Include="PresenterInterfaces\BasePresenter.cs" />
+    <Compile Include="PresenterInterfaces\IBasePresenter.cs" />
+    <Compile Include="PresenterInterfaces\IMenu.cs" />
+    <Compile Include="PresenterInterfaces\IToUpdateControl.cs" />
+    <Compile Include="Presenter\FilmPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,19 +70,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Views\FilmCategoryControl.xaml.cs">
-      <DependentUpon>FilmCategoryControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FilmControl.xaml.cs">
+    <Compile Include="ViewInterfaces\IBaseCategoryView.cs" />
+    <Compile Include="ViewInterfaces\IBaseView.cs" />
+    <Compile Include="View\FilmControl.xaml.cs">
       <DependentUpon>FilmControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ICategoryView.cs" />
-    <Compile Include="Views\IView.cs" />
-    <Compile Include="Views\SerieControl.xaml.cs">
-      <DependentUpon>SerieControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SimpleFilmControl.xaml.cs">
-      <DependentUpon>SimpleFilmControl.xaml</DependentUpon>
+    <Compile Include="View\FilmSimpleControl.xaml.cs">
+      <DependentUpon>FilmSimpleControl.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -107,22 +98,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\FilmCategoryControl.xaml">
+    <Page Include="View\FilmControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FilmControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SerieControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SimpleFilmControl.xaml">
+    <Page Include="View\FilmSimpleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

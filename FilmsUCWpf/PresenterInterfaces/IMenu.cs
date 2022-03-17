@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TablesLibrary.Interpreter.TableCell;
 
-namespace FilmsUCWpf.Presenters
+namespace FilmsUCWpf.PresenterInterfaces
 {
     public interface IMenu<T> where T : Cell
     {

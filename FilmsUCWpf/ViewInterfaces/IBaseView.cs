@@ -1,17 +1,15 @@
-﻿using FilmsUCWpf.Presenters;
+﻿using FilmsUCWpf.PresenterInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TablesLibrary.Interpreter.TableCell;
 
-namespace FilmsUCWpf.Views
+namespace FilmsUCWpf.ViewInterfaces
 {
-    public interface IView<T> where T : Cell
+    public interface IBaseView
     {
-        //BasePresenter<T> Presenter { get; }
-        //T Info { get; }
+        bool SetPresenter(IBasePresenter presenter);
         void SetVisualDefault();
         void SetVisualSelected();
         void SetVisualFinded();

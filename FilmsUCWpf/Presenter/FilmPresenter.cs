@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TL_Objects;
+using TL_Objects.Interfaces;
 
 namespace FilmsUCWpf.Presenter
 {
-    public class FilmPresenter : BasePresenter<Film>
+    public class FilmPresenter : BasePresenter<Film>, IHasGenre
     {
 
         protected IMenu<Film> menu;
@@ -76,6 +77,18 @@ namespace FilmsUCWpf.Presenter
 
             menu.MoreInfoFormVisualizer.OpenMoreInfoForm(control);
             */
+        }
+
+        public bool HasSelectedGenre(IGenre[] selectedGenres)
+        {
+            foreach (IGenre genre in selectedGenres)
+            {
+                if (genre == Model.Genre)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private static Film defFilm = new Film();

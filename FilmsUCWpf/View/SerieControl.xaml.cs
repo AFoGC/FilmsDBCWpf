@@ -18,30 +18,16 @@ using System.Windows.Shapes;
 
 namespace FilmsUCWpf.View
 {
-	/// <summary>
-	/// Логика взаимодействия для FilmControl.xaml
-	/// </summary>
-	public partial class FilmControl : UserControl, IBaseView
+    /// <summary>
+    /// Логика взаимодействия для SerieControl.xaml
+    /// </summary>
+    public partial class SerieControl : UserControl, IBaseView
 	{
 		private FilmPresenter presenter;
-		public bool SetPresenter(IBasePresenter presenter)
-		{
-			if (this.presenter == null) 
-			{
-				this.presenter = (FilmPresenter)presenter;
-				DataContext = this.presenter;
-				return true;
-			}
-            else
-            {
-				return false;
-            }
-		}
-
-		public FilmControl()
-		{
-			InitializeComponent();
-		}
+		public SerieControl()
+        {
+            InitializeComponent();
+        }
 
 		private void id_GotFocus(object sender, RoutedEventArgs e)
 		{
@@ -49,10 +35,7 @@ namespace FilmsUCWpf.View
 		}
 
 		private bool commentIsOpen = false;
-
-        double IBaseView.Height { get => this.Height; set { this.Height = value; } }
-
-        private void btn_comment_Click(object sender, RoutedEventArgs e)
+		private void btn_comment_Click(object sender, RoutedEventArgs e)
 		{
 			if (commentIsOpen) { this.grid.Height -= 15; }
 			else { this.grid.Height += 15; }
@@ -73,10 +56,18 @@ namespace FilmsUCWpf.View
 			presenter.OpenUpdateMenu();
 		}
 
-		public void SelfRemove()
-		{
-			Panel panel = (Panel)this.Parent;
-			panel.Children.Remove(this);
+        public bool SetPresenter(IBasePresenter presenter)
+        {
+			if (this.presenter == null)
+			{
+				this.presenter = (FilmPresenter)presenter;
+				DataContext = this.presenter;
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 
 		public void SetVisualDefault()
@@ -96,5 +87,13 @@ namespace FilmsUCWpf.View
 			SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 220, 0));
 			this.id.Background = myBrush;
 		}
-    }
+
+		public void SelfRemove()
+        {
+			Panel panel = (Panel)this.Parent;
+			panel.Children.Remove(this);
+		}
+
+		double IBaseView.Height { get => this.Height; set { this.Height = value; } }
+	}
 }

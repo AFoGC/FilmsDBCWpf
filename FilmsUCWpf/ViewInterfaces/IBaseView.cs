@@ -14,5 +14,6 @@ namespace FilmsUCWpf.ViewInterfaces
         void SetVisualSelected();
         void SetVisualFinded();
         void SelfRemove();
+        double Height { get; set; }
     }
 }

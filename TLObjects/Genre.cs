@@ -4,11 +4,12 @@ using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
+using TL_Objects.Interfaces;
 
 namespace TL_Objects
 {
     [TableCell("Genre")]
-    public class Genre : Cell
+    public class Genre : Cell, IGenre
     {
         private string name = "";
         private bool isSerialGenre = false;

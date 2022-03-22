@@ -57,5 +57,7 @@ namespace FilmsUCWpf.PresenterInterfaces
         {
             collection.Add(View);
         }
+
+        public Cell ModelCell { get => Model; }
     }
 }

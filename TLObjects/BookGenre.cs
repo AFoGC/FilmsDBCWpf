@@ -4,11 +4,12 @@ using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
+using TL_Objects.Interfaces;
 
 namespace TL_Objects
 {
     [TableCell("BookGenre")]
-    public class BookGenre : Cell
+    public class BookGenre : Cell, IGenre
     {
         private string name = "";
 

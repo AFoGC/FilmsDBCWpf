@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using TablesLibrary.Interpreter.TableCell;
 
 namespace FilmsUCWpf.PresenterInterfaces
 {
@@ -15,5 +16,6 @@ namespace FilmsUCWpf.PresenterInterfaces
         bool HasCheckedProperty(bool isReaded);
         void SetVisualDefault();
         void SetSelectedElement();
+        Cell ModelCell { get; };
     }
 }

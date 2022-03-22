@@ -4,17 +4,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{72F34E44-53A4-42B9-B0CE-EEE673CCD06E}</ProjectGuid>
-    <OutputType>library</OutputType>
-    <RootNamespace>FilmsUCWpf</RootNamespace>
-    <AssemblyName>FilmsUCWpf</AssemblyName>
+    <ProjectGuid>{B0D4D896-9569-4C96-9F0A-CBBC8DF1FB61}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WpfTestApp</RootNamespace>
+    <AssemblyName>WpfTestApp</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,6 +26,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -51,15 +54,24 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper.cs" />
-    <Compile Include="PresenterInterfaces\BasePresenter.cs" />
-    <Compile Include="PresenterInterfaces\IBasePresenter.cs" />
-    <Compile Include="PresenterInterfaces\IHasGenre.cs" />
-    <Compile Include="PresenterInterfaces\IMenu.cs" />
-    <Compile Include="PresenterInterfaces\IToUpdateControl.cs" />
-    <Compile Include="PresentersCollection.cs" />
-    <Compile Include="Presenter\FilmCategoryPresenter.cs" />
-    <Compile Include="Presenter\FilmPresenter.cs" />
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,21 +85,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewInterfaces\ICategoryView.cs" />
-    <Compile Include="ViewInterfaces\IBaseView.cs" />
-    <Compile Include="ViewInterfaces\IFilmCategoryView.cs" />
-    <Compile Include="View\FilmCategoryControl.xaml.cs">
-      <DependentUpon>FilmCategoryControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\FilmControl.xaml.cs">
-      <DependentUpon>FilmControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\FilmSimpleControl.xaml.cs">
-      <DependentUpon>FilmSimpleControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SerieControl.xaml.cs">
-      <DependentUpon>SerieControl.xaml</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -98,33 +95,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InfoMenusWpf\InfoMenusWpf.csproj">
-      <Project>{8357f60c-35c5-4197-ba0e-a9800bc10765}</Project>
-      <Name>InfoMenusWpf</Name>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FilmsUCWpf\FilmsUCWpf.csproj">
+      <Project>{72f34e44-53a4-42b9-b0ce-eee673ccd06e}</Project>
+      <Name>FilmsUCWpf</Name>
     </ProjectReference>
     <ProjectReference Include="..\TLObjects\TL_Objects.csproj">
       <Project>{850e8208-e369-4f93-8a80-8227c5605a6e}</Project>
       <Name>TL_Objects</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TL_Tables\TL_Tables.csproj">
+      <Project>{ec150eb1-22a9-4180-8ce0-663ef722411b}</Project>
+      <Name>TL_Tables</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="View\FilmCategoryControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\FilmControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\FilmSimpleControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SerieControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,6 +44,7 @@ namespace FilmsUCWpf.View
 			if (this.presenter == null)
 			{
 				this.presenter = (FilmPresenter)presenter;
+				DataContext = this.presenter;
 				return true;
 			}
 			else
@@ -75,5 +76,7 @@ namespace FilmsUCWpf.View
 			Panel panel = (Panel)this.Parent;
 			panel.Children.Remove(this);
 		}
+
+		double IBaseView.Height { get => this.Height; set { this.Height = value; } }
 	}
 }

@@ -150,6 +150,11 @@ namespace FilmsUCWpf.Presenter
             return false;
         }
 
+        public void OpenUpdateMenu()
+        {
+            //menu.UpdateFormVisualizer.OpenUpdateControl(new FilmUpdateControl());
+        }
+
         //private static Category category = new Category();
         public String ID { get => Model.ID.ToString(); set { } }
         public String Name { get => Model.Name; set { } }

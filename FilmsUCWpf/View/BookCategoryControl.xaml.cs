@@ -20,12 +20,12 @@ using System.Windows.Shapes;
 namespace FilmsUCWpf.View
 {
 	/// <summary>
-	/// Логика взаимодействия для FilmCategoryControl.xaml
+	/// Логика взаимодействия для BookCategoryControl.xaml
 	/// </summary>
-	public partial class FilmCategoryControl : UserControl, ICategoryView
+	public partial class BookCategoryControl : UserControl, ICategoryView
 	{
-		private FilmCategoryPresenter presenter;
-		public FilmCategoryControl()
+		private BookCategoryPresenter presenter;
+		public BookCategoryControl()
 		{
 			InitializeComponent();
 		}
@@ -42,7 +42,7 @@ namespace FilmsUCWpf.View
 		{
 			if (this.presenter == null)
 			{
-				this.presenter = (FilmCategoryPresenter)presenter;
+				this.presenter = (BookCategoryPresenter)presenter;
 				DataContext = this.presenter;
 				return true;
 			}
@@ -71,7 +71,7 @@ namespace FilmsUCWpf.View
 
 		private void btn_update_Click(object sender, RoutedEventArgs e)
 		{
-			//presenter.
+			presenter.OpenUpdateMenu();
 		}
 	}
 }

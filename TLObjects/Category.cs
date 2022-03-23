@@ -24,7 +24,7 @@ namespace TL_Objects
             if (film.FranshiseId == this.ID)
             {
                 film.FranshiseId = 0;
-                film.FranshiseListIndex = 0;
+                film.FranshiseListIndex = -1;
                 return films.Remove(film);
             }
             else return false;

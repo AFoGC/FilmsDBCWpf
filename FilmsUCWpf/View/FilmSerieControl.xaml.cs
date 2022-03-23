@@ -21,10 +21,10 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для SerieControl.xaml
     /// </summary>
-    public partial class SerieControl : UserControl, IBaseView
+    public partial class FilmSerieControl : UserControl, IBaseView
 	{
 		private FilmPresenter presenter;
-		public SerieControl()
+		public FilmSerieControl()
         {
             InitializeComponent();
         }

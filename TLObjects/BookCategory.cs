@@ -14,10 +14,21 @@ namespace TL_Objects
         private sbyte mark = -1;
         private int priority = 0;
 
-        private List<Book> books = new List<Book>();
+        private TLCollection<Book> books = new TLCollection<Book>();
 
         public BookCategory() : base() { }
         public BookCategory(int id) : base(id) { }
+
+        public bool RemoveBookFromCategory(Book book)
+        {
+            if (book.FranshiseId == this.ID)
+            {
+                book.FranshiseId = 0;
+                book.FranshiseListIndex = -1;
+                return books.Remove(book);
+            }
+            else return false;
+        }
 
         protected override void updateThisBody(Cell cell)
         {
@@ -73,7 +84,7 @@ namespace TL_Objects
             set { priority = value; OnPropertyChanged(nameof(Priority)); }
         }
 
-        public List<Book> Books
+        public TLCollection<Book> Books
         {
             get { return books; }
             set { books = value; OnPropertyChanged(nameof(Books)); }

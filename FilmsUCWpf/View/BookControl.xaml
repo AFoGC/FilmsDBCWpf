@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="FilmsUCWpf.View.BookControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FilmsUCWpf.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="15" d:DesignWidth="940">
+    <Grid Height="15">
+        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" GotFocus="id_GotFocus"/>
+        <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="genre" Text="{Binding BookGenre}" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="realiseYear" Text="{Binding PublicationYear}" ToolTip="Realise Year" IsReadOnly="True" HorizontalAlignment="Left" Margin="311,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <CheckBox x:Name="readed" IsChecked="{Binding Readed}" ToolTip="Readed" HorizontalAlignment="Left" Margin="360,0,0,0" VerticalAlignment="Center" Click="watched_Click"/>
+        <TextBox x:Name="author" Text="{Binding Author}" ToolTip="Author" IsReadOnly="True" HorizontalAlignment="Left" Margin="396,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="bookmark" Text="{Binding Bookmark}" ToolTip="Bookmark" IsReadOnly="True" HorizontalAlignment="Left" Margin="496,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="84" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="fullReadDate" Text="{Binding FullReadDate}" ToolTip="Full Read Date" IsReadOnly="True" HorizontalAlignment="Left" Margin="582,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="58" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="642,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="43" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="countOfReadings" Text="{Binding CountOfReadings}" ToolTip="Count Of Readings" IsReadOnly="True" HorizontalAlignment="Left" Margin="687,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <Button x:Name="btn_copyUrl" Content="{Binding Sources}" Foreground="WhiteSmoke" VerticalAlignment="Top" RenderTransformOrigin="0.48,-0.933" Width="101" Height="13" Margin="738,1,101,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_copyUrl_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btn_update" Content="update" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="13" Width="78" Margin="843,1,19,1" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</UserControl>

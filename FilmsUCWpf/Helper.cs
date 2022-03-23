@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects.CellDataClasses;
 
@@ -41,6 +42,14 @@ namespace FilmsUCWpf
                 {
                     return "copy url";
                 }
+            }
+        }
+
+        public static void CopyFirstSource(TLCollection<Source> sources)
+        {
+            if (sources.Count != 0)
+            {
+                Clipboard.SetText(sources[0].SourceUrl);
             }
         }
     }

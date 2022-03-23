@@ -62,10 +62,7 @@ namespace FilmsUCWpf.View
 
 		private void btn_copyUrl_Click(object sender, RoutedEventArgs e)
 		{
-			if (presenter.Model.Sources.Count != 0)
-			{
-				Clipboard.SetText(presenter.Model.Sources[0].SourceUrl);
-			}
+			presenter.CopyUrl();
 		}
 
 		private void btn_update_Click(object sender, RoutedEventArgs e)

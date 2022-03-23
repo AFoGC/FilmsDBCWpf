@@ -2,7 +2,6 @@
 using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.ViewInterfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,29 +19,31 @@ using System.Windows.Shapes;
 namespace FilmsUCWpf.View
 {
 	/// <summary>
-	/// Логика взаимодействия для FilmCategoryControl.xaml
+	/// Логика взаимодействия для BookSimpleControl.xaml
 	/// </summary>
-	public partial class FilmCategoryControl : UserControl, ICategoryView
+	public partial class BookSimpleControl : UserControl, IBaseView
 	{
-		private FilmCategoryPresenter presenter;
-		public FilmCategoryControl()
+		BookPresenter presenter;
+		public BookSimpleControl()
 		{
 			InitializeComponent();
 		}
 
-		public IList CategoryCollection => cat_panel.Children;
-
-		public void SelfRemove()
+		private void id_GotFocus(object sender, RoutedEventArgs e)
 		{
-			Panel panel = (Panel)this.Parent;
-			panel.Children.Remove(this);
+			presenter.SetSelectedElement();
+		}
+
+		private void btn_moreInfo_Click(object sender, RoutedEventArgs e)
+		{
+			presenter.OpenInfoMenu();
 		}
 
 		public bool SetPresenter(IBasePresenter presenter)
 		{
 			if (this.presenter == null)
 			{
-				this.presenter = (FilmCategoryPresenter)presenter;
+				this.presenter = (BookPresenter)presenter;
 				DataContext = this.presenter;
 				return true;
 			}
@@ -58,20 +59,22 @@ namespace FilmsUCWpf.View
 			this.id.Background = myBrush;
 		}
 
+		public void SetVisualSelected()
+		{
+			SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 220, 0));
+			this.id.Background = myBrush;
+		}
+
 		public void SetVisualFinded()
 		{
 			SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 0, 220));
 			this.id.Background = myBrush;
 		}
 
-		public void SetVisualSelected()
+		public void SelfRemove()
 		{
-			throw new NotImplementedException();
-		}
-
-		private void btn_update_Click(object sender, RoutedEventArgs e)
-		{
-			//presenter.
+			Panel panel = (Panel)this.Parent;
+			panel.Children.Remove(this);
 		}
 	}
 }

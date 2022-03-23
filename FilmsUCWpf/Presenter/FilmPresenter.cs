@@ -1,4 +1,5 @@
 ﻿using FilmsUCWpf.PresenterInterfaces;
+using FilmsUCWpf.View;
 using FilmsUCWpf.ViewInterfaces;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using TL_Objects;
 using TL_Objects.Interfaces;
 
@@ -52,6 +54,11 @@ namespace FilmsUCWpf.Presenter
             }
         }
 
+        public void CopyUrl()
+        {
+            Helper.CopyFirstSource(Model.Sources);
+        }
+
         public override void SetVisualDefault()
         {
             View.SetVisualDefault();
@@ -64,19 +71,15 @@ namespace FilmsUCWpf.Presenter
 
         public void OpenInfoMenu()
         {
-            /*
-            Control control = new Control();
+            IBaseView view;
             if (Model.Serie == null)
-            {
-                control = new FilmControl(Model, menu);
-            }
+                view = new FilmControl();
             else
-            {
-                control = new SerieControl(Model, menu);
-            }
+                view = new FilmSerieControl();
 
-            menu.MoreInfoFormVisualizer.OpenMoreInfoForm(control);
-            */
+            FilmPresenter presenter = new FilmPresenter(Model, view, menu);
+
+            menu.MoreInfoFormVisualizer.OpenMoreInfoForm((Control)presenter.View);
         }
 
         public bool HasSelectedGenre(IGenre[] selectedGenres)

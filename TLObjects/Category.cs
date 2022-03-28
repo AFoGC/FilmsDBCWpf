@@ -21,13 +21,26 @@ namespace TL_Objects
 
         public bool RemoveFilmFromCategory(Film film)
         {
-            if (film.FranshiseId == this.ID)
+            if (films.Contains(film))
             {
-                film.FranshiseId = 0;
-                film.FranshiseListIndex = -1;
+                foreach (Film item in films)
+                {
+                    if (film.FranshiseListIndex < item.FranshiseListIndex)
+                    {
+                        --item.FranshiseListIndex;
+                    }
+                }
+                if (film.FranshiseId == this.ID)
+                {
+                    film.FranshiseId = 0;
+                    film.FranshiseListIndex = -1;
+                }
                 return films.Remove(film);
             }
-            else return false;
+            else
+            {
+                return false;
+            }
         }
 
         protected override void updateThisBody(Cell cell)

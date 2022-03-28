@@ -14,8 +14,8 @@ namespace FilmsUCWpf.PresenterInterfaces
     public abstract class BasePresenter<T> : IBasePresenter, INotifyPropertyChanged where T : Cell
     {
         public T Model { get; protected set; }
-        public IBaseView View { get; protected set; }
-        public BasePresenter(T model, IBaseView view)
+        public IView View { get; protected set; }
+        public BasePresenter(T model, IView view)
         {
             this.Model = model;
             this.View = view;

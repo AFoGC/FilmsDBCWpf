@@ -10,105 +10,115 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using TL_Objects;
 using TL_Objects.Interfaces;
+using TL_Tables;
 
 namespace FilmsUCWpf.Presenter
 {
-    public class FilmPresenter : BasePresenter<Film>, IHasGenre
-    {
+	public class FilmPresenter : BasePresenter<Film>, IHasGenre
+	{
+		protected IMenu<Film> menu;
+		private SeriesTable table;
 
-        protected IMenu<Film> menu;
-
-        public FilmPresenter(Film film, IBaseView view, IMenu<Film> menu) : base(film, view)
+		public FilmPresenter(Film film, IView view, IMenu<Film> menu, SeriesTable table) : this(film, view, menu)
         {
-            this.menu = menu;
-            film.Genre.PropertyChanged += Genre_PropertyChanged;
+			this.table = table;
         }
 
-        private void Genre_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            OnPropertyChanged("Genre");
-        }
+		public FilmPresenter(Film film, IView view, IMenu<Film> menu) : base(film, view)
+		{
+			this.menu = menu;
+			film.Genre.PropertyChanged += Genre_PropertyChanged;
+		}
 
-        public override bool HasCheckedProperty(bool isWatched)
-        {
-            return isWatched == Model.Watched;
-        }
+		private void Genre_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			OnPropertyChanged("Genre");
+		}
 
-        public override bool SetFindedElement(string search)
-        {
-            if (this.Model.Name.ToLowerInvariant().Contains(search))
-            {
-                View.SetVisualFinded();
-                return true;
-            }
+		public override bool HasCheckedProperty(bool isWatched)
+		{
+			return isWatched == Model.Watched;
+		}
 
-            return false;
-        }
+		public override bool SetFindedElement(string search)
+		{
+			if (this.Model.Name.ToLowerInvariant().Contains(search))
+			{
+				View.SetVisualFinded();
+				return true;
+			}
 
-        public override void SetSelectedElement()
-        {
-            if (menu.ControlInBuffer != null)
-            {
-                menu.ControlInBuffer = this;
-                View.SetVisualSelected();
-            }
-        }
+			return false;
+		}
 
-        public void CopyUrl()
-        {
-            Helper.CopyFirstSource(Model.Sources);
-        }
+		public override void SetSelectedElement()
+		{
+			menu.ControlInBuffer = this;
+			View.SetVisualSelected();
+		}
 
-        public override void SetVisualDefault()
-        {
-            View.SetVisualDefault();
-        }
+		public void CopyUrl()
+		{
+			Helper.CopyFirstSource(Model.Sources);
+		}
 
-        public void OpenUpdateMenu()
-        {
-            //menu.UpdateFormVisualizer.OpenUpdateControl(new FilmUpdateControl());
-        }
+		public override void SetVisualDefault()
+		{
+			View.SetVisualDefault();
+		}
 
-        public void OpenInfoMenu()
-        {
-            IBaseView view;
-            if (Model.Serie == null)
-                view = new FilmControl();
-            else
-                view = new FilmSerieControl();
+		public void OpenUpdateMenu()
+		{
+			if (Model.Genre.IsSerialGenre)
+			{
+				menu.UpdateFormVisualizer.OpenUpdateControl(new FilmUpdateControl(Model, menu, table));
+			}
+			else
+			{
+				menu.UpdateFormVisualizer.OpenUpdateControl(new FilmSerieUpdateControl(Model, menu));
+			}
+		}
 
-            FilmPresenter presenter = new FilmPresenter(Model, view, menu);
+		public void OpenInfoMenu()
+		{
+			IView view;
+			if (Model.Serie == null)
+				view = new FilmControl();
+			else
+				view = new FilmSerieControl();
 
-            menu.MoreInfoFormVisualizer.OpenMoreInfoForm((Control)presenter.View);
-        }
+			FilmPresenter presenter = new FilmPresenter(Model, view, menu);
 
-        public bool HasSelectedGenre(IGenre[] selectedGenres)
-        {
-            foreach (IGenre genre in selectedGenres)
-            {
-                if (genre == Model.Genre)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+			menu.MoreInfoFormVisualizer.OpenMoreInfoForm((Control)presenter.View);
+		}
 
-        private static Film defFilm = new Film();
-        private static Serie defSerie = new Serie();
-        public String ID { get => Model.ID.ToString(); set { } }
-        public String Name { get => Model.Name; set { } }
-        public String Genre { get => Model.Genre.ToString(); set { } }
-        public String RealiseYear { get => Film.FormatToString(Model.RealiseYear, defFilm.RealiseYear); set { } }
-        public Boolean Watched { get => Model.Watched; set { } }
-        public String DateOfWatch { get => Film.FormatToString(Model.DateOfWatch, defFilm.DateOfWatch); set { } }
-        public String Mark { get => Helper.MarkToText(Film.FormatToString(Model.Mark, defFilm.Mark)); set { } }
-        public String CountOfViews { get => Film.FormatToString(Model.CountOfViews, defFilm.CountOfViews); set { } }
-        public String Comment { get => Model.Comment; set { } }
-        public String Sources { get => Helper.SourcesStateString(Model.Sources); set { } }
+		public bool HasSelectedGenre(IGenre[] selectedGenres)
+		{
+			foreach (IGenre genre in selectedGenres)
+			{
+				if (genre == Model.Genre)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 
-        public String StartWatchDate { get => Serie.FormatToString(Model.Serie.StartWatchDate, defSerie.StartWatchDate); set { } }
-        public String CountOfWatchedSeries { get => Serie.FormatToString(Model.Serie.CountOfWatchedSeries, defSerie.CountOfWatchedSeries); set { } }
-        public String TotalSeries { get => Serie.FormatToString(Model.Serie.TotalSeries, defSerie.TotalSeries); set { } }
-    }
+		private static Film defFilm = new Film();
+		private static Serie defSerie = new Serie();
+		public String ID { get => Model.ID.ToString(); set { } }
+		public String Name { get => Model.Name; set { } }
+		public String Genre { get => Model.Genre.ToString(); set { } }
+		public String RealiseYear { get => Film.FormatToString(Model.RealiseYear, defFilm.RealiseYear); set { } }
+		public Boolean Watched { get => Model.Watched; set { } }
+		public String DateOfWatch { get => Film.FormatToString(Model.DateOfWatch, defFilm.DateOfWatch); set { } }
+		public String Mark { get => Helper.MarkToText(Film.FormatToString(Model.Mark, defFilm.Mark)); set { } }
+		public String CountOfViews { get => Film.FormatToString(Model.CountOfViews, defFilm.CountOfViews); set { } }
+		public String Comment { get => Model.Comment; set { } }
+		public String Sources { get => Helper.SourcesStateString(Model.Sources); set { } }
+
+		public String StartWatchDate { get => Serie.FormatToString(Model.Serie.StartWatchDate, defSerie.StartWatchDate); set { } }
+		public String CountOfWatchedSeries { get => Serie.FormatToString(Model.Serie.CountOfWatchedSeries, defSerie.CountOfWatchedSeries); set { } }
+		public String TotalSeries { get => Serie.FormatToString(Model.Serie.TotalSeries, defSerie.TotalSeries); set { } }
+	}
 }

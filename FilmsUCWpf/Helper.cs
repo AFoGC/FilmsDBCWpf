@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmsUCWpf.PresenterInterfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,5 +53,34 @@ namespace FilmsUCWpf
                 Clipboard.SetText(sources[0].SourceUrl);
             }
         }
-    }
+
+		public static int TextToInt32(String str)
+		{
+			if (str == "")
+			{
+				return 0;
+			}
+			else
+			{
+				return Convert.ToInt32(str);
+			}
+		}
+
+		public static sbyte TextToMark(String str)
+		{
+			if (str == "")
+			{
+				return -1;
+			}
+			else
+			{
+				return Convert.ToSByte(str.Substring(0, str.IndexOf('/')));
+			}
+		}
+
+		internal static void OpenSources(IBaseMenu menu, TLCollection<Source> sources)
+        {
+			menu.UpdateFormVisualizer.SourcesVisualizer.OpenSourceControl(sources);
+        }
+	}
 }

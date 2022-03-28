@@ -5,14 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TablesLibrary.Interpreter.TableCell;
 
 namespace FilmsUCWpf.PresenterInterfaces
 {
-    public interface IMenu<T> : IBaseMenu where T : Cell
+    public interface IBaseMenu
     {
-        BasePresenter<T> ControlInBuffer { get; set; }
-        bool RemoveSelected();
-        bool AddSelected();
+        MoreInfoFormVisualizer MoreInfoFormVisualizer { get; }
+        UpdateFormVisualizer UpdateFormVisualizer { get; }
     }
 }

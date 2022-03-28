@@ -21,7 +21,7 @@ namespace FilmsUCWpf.View
 	/// <summary>
 	/// Логика взаимодействия для FilmSimpleControl.xaml
 	/// </summary>
-	public partial class FilmSimpleControl : UserControl, IBaseView
+	public partial class FilmSimpleControl : UserControl, IView
 	{
 		private FilmPresenter presenter;
 		public FilmSimpleControl()
@@ -77,6 +77,6 @@ namespace FilmsUCWpf.View
 			panel.Children.Remove(this);
 		}
 
-		double IBaseView.Height { get => this.Height; set { this.Height = value; } }
+		double IView.Height { get => this.Height; set { this.Height = value; } }
 	}
 }

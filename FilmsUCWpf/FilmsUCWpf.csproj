@@ -53,15 +53,22 @@
   <ItemGroup>
     <Compile Include="Helper.cs" />
     <Compile Include="PresenterInterfaces\BasePresenter.cs" />
+    <Compile Include="PresenterInterfaces\IBaseMenu.cs" />
     <Compile Include="PresenterInterfaces\IBasePresenter.cs" />
     <Compile Include="PresenterInterfaces\IHasGenre.cs" />
     <Compile Include="PresenterInterfaces\IMenu.cs" />
     <Compile Include="PresenterInterfaces\IToUpdateControl.cs" />
+    <Compile Include="PresenterInterfaces\IUpdatePresenter.cs" />
     <Compile Include="PresentersCollection.cs" />
     <Compile Include="Presenter\BookCategoryPresenter.cs" />
+    <Compile Include="Presenter\BookCategoryUpdatePresenter.cs" />
     <Compile Include="Presenter\BookPresenter.cs" />
+    <Compile Include="Presenter\BookUpdatePresenter.cs" />
     <Compile Include="Presenter\FilmCategoryPresenter.cs" />
+    <Compile Include="Presenter\FilmCategoryUpdatePresenter.cs" />
     <Compile Include="Presenter\FilmPresenter.cs" />
+    <Compile Include="Presenter\FilmSerieUpdatePresenter.cs" />
+    <Compile Include="Presenter\FilmUpdatePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -75,11 +82,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewInterfaces\IBookCategoryUpdateView.cs" />
+    <Compile Include="ViewInterfaces\IBookUpdateView.cs" />
     <Compile Include="ViewInterfaces\ICategoryView.cs" />
-    <Compile Include="ViewInterfaces\IBaseView.cs" />
-    <Compile Include="ViewInterfaces\IFilmCategoryView.cs" />
+    <Compile Include="ViewInterfaces\IFilmCategoryUpdateView.cs" />
+    <Compile Include="ViewInterfaces\IFilmSerieUpdateView.cs" />
+    <Compile Include="ViewInterfaces\IFilmUpdateView.cs" />
+    <Compile Include="ViewInterfaces\IView.cs" />
     <Compile Include="View\BookCategoryControl.xaml.cs">
       <DependentUpon>BookCategoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BookCategoryUpdateControl.xaml.cs">
+      <DependentUpon>BookCategoryUpdateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BookControl.xaml.cs">
       <DependentUpon>BookControl.xaml</DependentUpon>
@@ -87,17 +101,29 @@
     <Compile Include="View\BookSimpleControl.xaml.cs">
       <DependentUpon>BookSimpleControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BookUpdateControl.xaml.cs">
+      <DependentUpon>BookUpdateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FilmCategoryControl.xaml.cs">
       <DependentUpon>FilmCategoryControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FilmCategoryUpdateControl.xaml.cs">
+      <DependentUpon>FilmCategoryUpdateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FilmControl.xaml.cs">
       <DependentUpon>FilmControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FilmSerieUpdateControl.xaml.cs">
+      <DependentUpon>FilmSerieUpdateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FilmSimpleControl.xaml.cs">
       <DependentUpon>FilmSimpleControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FilmSerieControl.xaml.cs">
       <DependentUpon>FilmSerieControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FilmUpdateControl.xaml.cs">
+      <DependentUpon>FilmUpdateControl.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -109,6 +135,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CustomButtons\CustomButtons.csproj">
+      <Project>{db9a63ca-2850-4e8d-978f-9313be50e4fc}</Project>
+      <Name>CustomButtons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InfoMenusWpf\InfoMenusWpf.csproj">
       <Project>{8357f60c-35c5-4197-ba0e-a9800bc10765}</Project>
       <Name>InfoMenusWpf</Name>
@@ -117,9 +147,17 @@
       <Project>{850e8208-e369-4f93-8a80-8227c5605a6e}</Project>
       <Name>TL_Objects</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TL_Tables\TL_Tables.csproj">
+      <Project>{ec150eb1-22a9-4180-8ce0-663ef722411b}</Project>
+      <Name>TL_Tables</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\BookCategoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BookCategoryUpdateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,11 +169,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BookUpdateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\FilmCategoryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\FilmCategoryUpdateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\FilmControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FilmSerieUpdateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FilmSerieControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FilmUpdateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

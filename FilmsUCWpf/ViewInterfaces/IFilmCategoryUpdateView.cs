@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FilmsUCWpf.ViewInterfaces
 {
-    public interface IFilmCategoryView : IBaseView
+    public interface IFilmCategoryUpdateView
     {
-
+        String ID { set; }
+        String Name { get; set; }
     }
 }

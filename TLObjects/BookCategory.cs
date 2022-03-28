@@ -21,13 +21,26 @@ namespace TL_Objects
 
         public bool RemoveBookFromCategory(Book book)
         {
-            if (book.FranshiseId == this.ID)
+            if (books.Contains(book))
             {
-                book.FranshiseId = 0;
-                book.FranshiseListIndex = -1;
+                foreach (Book item in books)
+                {
+                    if (book.FranshiseListIndex < item.FranshiseListIndex)
+                    {
+                        --item.FranshiseListIndex;
+                    }
+                }
+                if (book.FranshiseId == this.ID)
+                {
+                    book.FranshiseId = 0;
+                    book.FranshiseListIndex = -1;
+                }
                 return books.Remove(book);
             }
-            else return false;
+            else
+            {
+                return false;
+            }
         }
 
         protected override void updateThisBody(Cell cell)

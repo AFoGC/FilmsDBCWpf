@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FilmsUCWpf.ViewInterfaces
 {
-    public interface ICategoryView : IView
+    public interface IBookCategoryUpdateView
     {
-        IList CategoryCollection { get; }
+        string ID { set; }
+        string Name { get; set; }
     }
 }

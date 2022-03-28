@@ -152,7 +152,7 @@ namespace FilmsUCWpf.Presenter
 
         public void OpenUpdateMenu()
         {
-            //menu.UpdateFormVisualizer.OpenUpdateControl(new FilmUpdateControl());
+            menu.UpdateFormVisualizer.OpenUpdateControl(new FilmCategoryUpdateControl(Model, menu));
         }
 
         //private static Category category = new Category();

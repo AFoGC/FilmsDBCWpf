@@ -21,7 +21,7 @@ namespace FilmsUCWpf.View
 	/// <summary>
 	/// Логика взаимодействия для FilmControl.xaml
 	/// </summary>
-	public partial class FilmControl : UserControl, IBaseView
+	public partial class FilmControl : UserControl, IView
 	{
 		private FilmPresenter presenter;
 		public bool SetPresenter(IBasePresenter presenter)
@@ -50,7 +50,7 @@ namespace FilmsUCWpf.View
 
 		private bool commentIsOpen = false;
 
-        double IBaseView.Height { get => this.Height; set { this.Height = value; } }
+        double IView.Height { get => this.Height; set { this.Height = value; } }
 
         private void btn_comment_Click(object sender, RoutedEventArgs e)
 		{

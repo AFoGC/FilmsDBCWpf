@@ -23,7 +23,7 @@ namespace TL_Objects
         {
             Serie serie = (Serie)cell;
 
-            Film = serie.Film;
+            //Film = serie.Film;
             startWatchDate = serie.startWatchDate;
             countOfWatchedSeries = serie.countOfWatchedSeries;
             totalSeries = serie.totalSeries;

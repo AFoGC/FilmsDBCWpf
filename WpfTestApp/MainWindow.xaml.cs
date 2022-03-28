@@ -59,7 +59,7 @@ namespace WpfTestApp
 
             FilmsTable.AddElement(film);
 
-            IBaseView view;
+            IView view;
             if (simple)
                 view = new FilmSimpleControl();
             else

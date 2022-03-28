@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FilmsUCWpf.ViewInterfaces
 {
-    public interface IBaseView
+    public interface IView
     {
         bool SetPresenter(IBasePresenter presenter);
         void SetVisualDefault();

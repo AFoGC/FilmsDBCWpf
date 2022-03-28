@@ -21,7 +21,7 @@ namespace FilmsUCWpf.View
 	/// <summary>
 	/// Логика взаимодействия для BookSimpleControl.xaml
 	/// </summary>
-	public partial class BookSimpleControl : UserControl, IBaseView
+	public partial class BookSimpleControl : UserControl, IView
 	{
 		BookPresenter presenter;
 		public BookSimpleControl()

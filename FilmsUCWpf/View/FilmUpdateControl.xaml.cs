@@ -74,5 +74,10 @@ namespace FilmsUCWpf.View
 		public string CountOfViews { get => countOfViews.Text; set => countOfViews.Text = value; }
 		public DateTime DateOfWatch { get => watchDate.Date; set => watchDate.Date = value; }
 		public string Comment { get => comment.Text; set => comment.Text = value; }
-	}
+
+        private void genre_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+    }
 }

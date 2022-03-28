@@ -30,6 +30,7 @@ namespace WpfApp.MVP.Models
         public FilmsMenuModel()
         {
             TableControls = new List<UserControl>();
+            //var cols = TableControls.Where<Control>(o => o.)
         }
 
         public enum MenuCondition

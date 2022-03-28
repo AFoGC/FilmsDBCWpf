@@ -11,7 +11,7 @@ namespace FilmsUCWpf.PresenterInterfaces
 {
     public interface IMenu<T> : IBaseMenu where T : Cell
     {
-        BasePresenter<T> ControlInBuffer { get; set; }
+        BasePresenter<T> SelectedElement { get; set; }
         bool RemoveSelected();
         bool AddSelected();
     }

@@ -42,7 +42,7 @@ namespace FilmsUCWpf.Presenter
 
 		public override void SetSelectedElement()
 		{
-			menu.ControlInBuffer = this;
+			menu.SelectedElement = this;
 			View.SetVisualSelected();
 		}
 

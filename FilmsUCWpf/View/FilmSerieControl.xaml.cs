@@ -95,5 +95,5 @@ namespace FilmsUCWpf.View
 		}
 
 		double IView.Height { get => this.Height; set { this.Height = value; } }
-	}
+    }
 }

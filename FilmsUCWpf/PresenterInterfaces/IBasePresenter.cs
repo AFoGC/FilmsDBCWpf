@@ -16,6 +16,6 @@ namespace FilmsUCWpf.PresenterInterfaces
         bool HasCheckedProperty(bool isReaded);
         void SetVisualDefault();
         void SetSelectedElement();
-        Cell ModelCell { get; };
+        Cell ModelCell { get; }
     }
 }

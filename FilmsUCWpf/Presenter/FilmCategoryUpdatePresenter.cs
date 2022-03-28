@@ -29,9 +29,9 @@ namespace FilmsUCWpf.Presenter
 
 		public void AddSelected()
         {
-            if (menu.ControlInBuffer != null)
+            if (menu.SelectedElement != null)
             {
-				Film film = menu.ControlInBuffer.Model;
+				Film film = menu.SelectedElement.Model;
                 if (film.FranshiseId == 0)
                 {
 					film.FranshiseId = model.ID;
@@ -43,9 +43,9 @@ namespace FilmsUCWpf.Presenter
 
 		public void RemoveSelected()
         {
-            if (menu.ControlInBuffer != null)
+            if (menu.SelectedElement != null)
             {
-				Film film = menu.ControlInBuffer.Model;
+				Film film = menu.SelectedElement.Model;
 				if (model.RemoveFilmFromCategory(film))
 					menu.AddSelected();
             }

@@ -13,6 +13,7 @@ namespace WpfApp.Config
 {
 	public class ProfileCollection : IEnumerable
 	{
+		public TableCollection TablesCollection { get; private set; }
 		private List<Profile> profiles = null;
 		private Profile usedProfile = null;
 		public Profile UsedProfile
@@ -36,16 +37,20 @@ namespace WpfApp.Config
 				{
 					usedProfile = profiles[0];
 				}
-				MainInfo.TableCollection.TableFilePath = usedProfile.MainFilePath;
-				MainInfo.TableCollection.LoadTables();
+                if (TablesCollection != null)
+                {
+					TablesCollection.TableFilePath = usedProfile.MainFilePath;
+					TablesCollection.LoadTables();
+				}
 			}
 		}
 
-		public ProfileCollection()
+		public ProfileCollection(TableCollection tableCollection)
 		{
 			profiles = new List<Profile>();
 			LoadProfiles();
 			usedProfile = profiles[0];
+			TablesCollection = tableCollection;
 		}
 
 		public Profile[] ToArray()
@@ -106,13 +111,13 @@ namespace WpfApp.Config
 				Directory.CreateDirectory(newProfile.ProfilePath);
 				using (FileStream fs = File.Create(newProfile.MainFilePath)) { }
 
-				TableCollection tc = MainInfo.Tables.GetDefaultTableCollectionData();
+				TableCollection tc = TLTables.GetDefaultTableCollectionData();
 				tc.TableFilePath = newProfile.MainFilePath;
 
 				Table<Genre> genreTable = tc.GetTable<Genre>();
 				genreTable.RemoveAll(true);
 
-				foreach (Genre genre in MainInfo.Tables.GenresTable)
+				foreach (Genre genre in TablesCollection.GetTable<Genre>())
 				{
 					genreTable.AddElement(genre);
 				}

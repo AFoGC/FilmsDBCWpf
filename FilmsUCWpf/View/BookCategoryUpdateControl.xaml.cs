@@ -1,6 +1,7 @@
 ﻿using FilmsUCWpf.Presenter;
 using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.ViewInterfaces;
+using InfoMenusWpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для BookCategoryUpdateControl.xaml
     /// </summary>
-    public partial class BookCategoryUpdateControl : UserControl, IBookCategoryUpdateView
+    public partial class BookCategoryUpdateControl : UserControl, IBookCategoryUpdateView, IUpdateControl
     {
         private BookCategoryUpdatePresenter presenter;
         public BookCategoryUpdateControl(BookCategory model, IMenu<Book> menu)
@@ -39,6 +40,11 @@ namespace FilmsUCWpf.View
         private void btn_RemoveSec_Click(object sender, RoutedEventArgs e)
         {
             presenter.RemoveSelected();
+        }
+
+        public void UpdateElement()
+        {
+            presenter.UpdateElement();
         }
 
         public string ID { set => id.Text = value; }

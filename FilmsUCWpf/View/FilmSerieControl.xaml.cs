@@ -91,7 +91,8 @@ namespace FilmsUCWpf.View
 		public void SelfRemove()
         {
 			Panel panel = (Panel)this.Parent;
-			panel.Children.Remove(this);
+			if (panel != null)
+				panel.Children.Remove(this);
 		}
 
 		double IView.Height { get => this.Height; set { this.Height = value; } }

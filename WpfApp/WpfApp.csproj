@@ -58,317 +58,70 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Config\MainTabColl.cs" />
     <Compile Include="Config\Profile.cs" />
     <Compile Include="Config\ProfileCollection.cs" />
     <Compile Include="Config\ProgramSettings.cs" />
-    <Compile Include="MainInfo.cs" />
     <Compile Include="MVP\Models\FilmsMenuModel.cs" />
     <Compile Include="MVP\Models\MainWindowModel.cs" />
+    <Compile Include="MVP\Presenters\FilmsMenuPresenter.cs" />
     <Compile Include="MVP\Presenters\MainWindowPresenter.cs" />
+    <Compile Include="MVP\ViewsInterface\IBaseMenuView.cs" />
+    <Compile Include="MVP\ViewsInterface\IChangeMenu.cs" />
+    <Compile Include="MVP\Views\BooksMenuView.xaml.cs">
+      <DependentUpon>BooksMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\ExitWindow.xaml.cs">
+      <DependentUpon>ExitWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\FilmsMenuView.xaml.cs">
+      <DependentUpon>FilmsMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\MainHeaderControl.xaml.cs">
+      <DependentUpon>MainHeaderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVP\Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVP\Views\NavbarControl.xaml.cs">
+      <DependentUpon>NavbarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\SettingsMenuView.xaml.cs">
+      <DependentUpon>SettingsMenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StaticFilmClasses\FilmMethods.cs" />
-    <Compile Include="Visual\Buttons\DateUpdateControl.xaml.cs">
-      <DependentUpon>DateUpdateControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\Buttons\PressButton.cs" />
-    <Compile Include="Visual\Buttons\PressButtonControl.xaml.cs">
-      <DependentUpon>PressButtonControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\HelpWindows\ExitWindow\ExitWindow.xaml.cs">
-      <DependentUpon>ExitWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\HelpWindows\LogOutWindow\LogOutWindow.xaml.cs">
-      <DependentUpon>LogOutWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\HelpWindows\SplashScreen\SplashScreen.xaml.cs">
-      <DependentUpon>SplashScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\MainHeaderControl.xaml.cs">
-      <DependentUpon>MainHeaderControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\AbstractControlDescriptionProvider.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IBaseControls.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IControls.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IHasGenreControl.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IMenuControl.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\ISimpleControl.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IToUpdateControl.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\ControlsInterface\IUpdateControl.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\MoreInfo\MoreInfoControl.xaml.cs">
-      <DependentUpon>MoreInfoControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\MoreInfo\MoreInfoFormVisualizer.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\SourcesControl\SourceControl.xaml.cs">
-      <DependentUpon>SourceControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\SourcesControl\SourcesControl.xaml.cs">
-      <DependentUpon>SourcesControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\SourcesControl\SourcesVisualizer.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\UpdateControl.xaml.cs">
-      <DependentUpon>UpdateControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\UpdateFormVisualizer.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\BookGenrePressButtonControl.xaml.cs">
-      <DependentUpon>BookGenrePressButtonControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\GenrePressButtonControl.xaml.cs">
-      <DependentUpon>GenrePressButtonControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\WatchedRequestControl.xaml.cs">
-      <DependentUpon>WatchedRequestControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\ABookElementControl.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookCategoryControl.xaml.cs">
-      <DependentUpon>BookCategoryControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookControl.xaml.cs">
-      <DependentUpon>BookControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookSimpleControl.xaml.cs">
-      <DependentUpon>BookSimpleControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksMenuControl.xaml.cs">
-      <DependentUpon>BooksMenuControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\UpdateControls\BookCategoryUpdateControl.xaml.cs">
-      <DependentUpon>BookCategoryUpdateControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\UpdateControls\BookUpdateControl.xaml.cs">
-      <DependentUpon>BookUpdateControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\AElementControl.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\CategoryControl.xaml.cs">
-      <DependentUpon>CategoryControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\FilmControl.xaml.cs">
-      <DependentUpon>FilmControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\SerieControl.xaml.cs">
-      <DependentUpon>SerieControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsMenuControl.xaml.cs">
-      <DependentUpon>FilmsMenuControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\CategoryUpdateControl.xaml.cs">
-      <DependentUpon>CategoryUpdateControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\FilmUpdateControl.xaml.cs">
-      <DependentUpon>FilmUpdateControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\SerieUpdateControl.xaml.cs">
-      <DependentUpon>SerieUpdateControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Registration.xaml.cs">
-      <DependentUpon>Registration.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\SignUp.xaml.cs">
-      <DependentUpon>SignUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\BookGenreControl.xaml.cs">
-      <DependentUpon>BookGenreControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\BookGenreSettingsControl.xaml.cs">
-      <DependentUpon>BookGenreSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\GenreVM.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\Commands\ActionCommand.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\Commands\GenreCommand.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenreControl.xaml.cs">
-      <DependentUpon>FilmGenreControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenresSettingsControl.xaml.cs">
-      <DependentUpon>FilmGenresSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ISettingsControl.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileSettings\ProfileControl.xaml.cs">
-      <DependentUpon>ProfileControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileSettings\ProfilesSettingsControl.xaml.cs">
-      <DependentUpon>ProfilesSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\GenreVM.cs" />
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml.cs">
-      <DependentUpon>SettingsList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsElements\UserMenuElement.xaml.cs">
-      <DependentUpon>UserMenuElement.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsMenuControl.xaml.cs">
-      <DependentUpon>SettingsMenuControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\GlobalElements\Navbar.xaml.cs">
-      <DependentUpon>Navbar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\MainWindow\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visual\StaticVisualClasses\VisualHelper.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Config\TLTables.cs" />
+    <Page Include="MVP\Views\BooksMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVP\Views\ExitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVP\Views\FilmsMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVP\Views\MainHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVP\Views\MainWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visual\Buttons\DateUpdateControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\Buttons\PressButtonControl.xaml">
+    <Page Include="MVP\Views\NavbarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visual\HelpWindows\ExitWindow\ExitWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\HelpWindows\LogOutWindow\LogOutWindow.xaml">
+    <Page Include="MVP\Views\SettingsMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\HelpWindows\SplashScreen\SplashScreen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\MainHeaderControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\MoreInfo\MoreInfoControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\SourcesControl\SourceControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\SourcesControl\SourcesControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\InfoMenus\UpdateInfo\UpdateControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\BookGenrePressButtonControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\GenrePressButtonControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\ACommonElements\MenuElements\WatchedRequestControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookCategoryControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksControls\BookSimpleControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\BooksMenuControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\UpdateControls\BookCategoryUpdateControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\BooksMenu\UpdateControls\BookUpdateControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\CategoryControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\FilmControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsControls\SerieControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\FilmsMenuControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\CategoryUpdateControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\FilmUpdateControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\FilmsMenu\UpdateControls\SerieUpdateControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Registration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\SignUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\BookGenreControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\BookGenreSettings\BookGenreSettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenreControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\GenreSettings\FilmGenresSettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileSettings\ProfileControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\ProfileSettings\ProfilesSettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsControl\SettingsList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsElements\UserMenuElement.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Menus\SettingsMenu\SettingsMenuControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Visual\MainWindow\GlobalElements\Navbar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Visual\MainWindow\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -389,9 +142,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
-    <None Include="Config\SingletonDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -409,6 +159,18 @@
       <Project>{761496b9-0d95-44d7-be39-c30c0aeced4e}</Project>
       <Name>BO_Films</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CustomButtons\CustomButtons.csproj">
+      <Project>{db9a63ca-2850-4e8d-978f-9313be50e4fc}</Project>
+      <Name>CustomButtons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FilmsUCWpf\FilmsUCWpf.csproj">
+      <Project>{72f34e44-53a4-42b9-b0ce-eee673ccd06e}</Project>
+      <Name>FilmsUCWpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoMenusWpf\InfoMenusWpf.csproj">
+      <Project>{8357f60c-35c5-4197-ba0e-a9800bc10765}</Project>
+      <Name>InfoMenusWpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TLObjects\TL_Objects.csproj">
       <Project>{850e8208-e369-4f93-8a80-8227c5605a6e}</Project>
       <Name>TL_Objects</Name>
@@ -417,15 +179,6 @@
       <Project>{ec150eb1-22a9-4180-8ce0-663ef722411b}</Project>
       <Name>TL_Tables</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\Welcome-White-Text-Transparent-PNG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Visual\MainWindow\GlobalElements\Menus\Registration Window\White-Stars-on-transparent-background-PNG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Visual\HelpWindows\SplashScreen\Log.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

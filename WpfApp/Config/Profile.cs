@@ -53,7 +53,7 @@ namespace WpfApp.Config
 				{
 					using (FileStream fs = File.Create(FilePath)) { }
 
-					var tables = MainInfo.Tables.GetDefaultTableCollectionData();
+					var tables = TLTables.GetDefaultTableCollectionData();
 					tables.TableFilePath = FilePath;
 					tables.SaveTables();
 

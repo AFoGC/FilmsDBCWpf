@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
 
 namespace FilmsUCWpf.PresenterInterfaces
@@ -15,11 +16,13 @@ namespace FilmsUCWpf.PresenterInterfaces
     {
         public T Model { get; protected set; }
         public IView View { get; protected set; }
-        public BasePresenter(T model, IView view)
+        protected TableCollection TableCollection { get; private set; }
+        public BasePresenter(T model, IView view, TableCollection collection)
         {
             this.Model = model;
             this.View = view;
             this.View.SetPresenter(this);
+            this.TableCollection = collection;
             this.Model.CellRemoved += Model_CellRemoved;
             this.Model.PropertyChanged += Model_PropertyChanged;
         }

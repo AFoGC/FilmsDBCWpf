@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Objects.Interfaces;
 
@@ -19,11 +20,12 @@ namespace FilmsUCWpf.Presenter
 
         new ICategoryView View { get => (ICategoryView)base.View; }
 
-        public FilmCategoryPresenter(Category category, ICategoryView view, IMenu<Film> menu) : base(category, view)
+        public FilmCategoryPresenter(Category category, ICategoryView view, IMenu<Film> menu, TableCollection collection) : base(category, view, collection)
         {
             this.menu = menu;
             presenters = new List<FilmPresenter>();
             category.Films.CollectionChanged += Films_CollectionChanged;
+            RefreshCategoryFilms();
         }
 
         private void Films_CollectionChanged(object sender, EventArgs e)
@@ -78,7 +80,7 @@ namespace FilmsUCWpf.Presenter
         {
             View.Height += 15;
             FilmSimpleControl view = new FilmSimpleControl();
-            FilmPresenter presenter = new FilmPresenter(film, view, menu);
+            FilmPresenter presenter = new FilmPresenter(film, view, menu, TableCollection);
             presenters.Add(presenter);
 
             View.CategoryCollection.Add(view);
@@ -118,7 +120,7 @@ namespace FilmsUCWpf.Presenter
 
             foreach (Film film in Model.Films)
             {
-                presenters.Add(new FilmPresenter(film, new FilmSimpleControl(), menu));
+                presenters.Add(new FilmPresenter(film, new FilmSimpleControl(), menu, TableCollection));
             }
 
             for (int i = 0; i < presenters.Count; i++)

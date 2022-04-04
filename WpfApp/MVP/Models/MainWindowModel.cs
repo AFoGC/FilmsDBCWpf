@@ -1,4 +1,5 @@
-﻿using BO_Films;
+﻿using BL_Films;
+using BO_Films;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace WpfApp.MVP.Models
         public Boolean InfoUnsaved { get; set; }
         public TableCollection TableCollection { get; private set; }
         public ProgramSettings Settings { get; private set; }
-		public Tables Tables { get; private set; }
+		public TLTables Tables { get; private set; }
 
         public event EventHandler UserChanged;
         private UserBO userBO;
@@ -44,90 +45,24 @@ namespace WpfApp.MVP.Models
         public MainWindowModel()
         {
             InfoUnsaved = false;
-			Tables = new Tables(TableCollection);
-			Tables.SetDefaultMainTableCollection();
-            Settings = ProgramSettings.Initialize();
 
-            TableCollection.FileEncoding = Encoding.UTF8;
-        }
-	}
+            TableCollection = MainTabColl.GetInstance().TableCollection;
+			Tables = new TLTables(TableCollection);
+			TableCollection.TableSave += boolSaved;
+            //TableCollection.
 
-	public class Tables
-	{
-		public CategoriesTable CategoriesTable { get; private set; }
-		public GenresTable GenresTable { get; private set; }
-		public FilmsTable FilmsTable { get; private set; }
-		public SeriesTable SeriesTable { get; private set; }
-		public PriorityFilmsTable PriorityFilmsTable { get; private set; }
-		public BookGenresTable BookGenresTable { get; private set; }
-		public BooksTable BooksTable { get; private set; }
-		public BookCategoriesTable BookCategoriesTable { get; private set; }
-		public PriorityBooksTable PriorityBooksTable { get; private set; }
-
-		private TableCollection tableCollection;
-		public Tables(TableCollection collection)
-        {
-			tableCollection = collection;
-        }
-
-		public void SetDefaultMainTableCollection()
-		{
-			tableCollection = new TableCollection();
-
-			CategoriesTable = new CategoriesTable();
-			GenresTable = GenresTable.GetDefaultGenresTable();
-			FilmsTable = new FilmsTable();
-			SeriesTable = new SeriesTable();
-			PriorityFilmsTable = new PriorityFilmsTable();
-			BookGenresTable = new BookGenresTable();
-			BooksTable = new BooksTable();
-			BookCategoriesTable = new BookCategoriesTable();
-			PriorityBooksTable = new PriorityBooksTable();
-
-
-			tableCollection.RemoveAllTables(true);
-
-			tableCollection.AddTable(CategoriesTable);
-			tableCollection.AddTable(GenresTable);
-			tableCollection.AddTable(FilmsTable);
-			tableCollection.AddTable(SeriesTable);
-			tableCollection.AddTable(PriorityFilmsTable);
-			tableCollection.AddTable(BookGenresTable);
-			tableCollection.AddTable(BooksTable);
-			tableCollection.AddTable(BookCategoriesTable);
-			tableCollection.AddTable(PriorityBooksTable);
-		}
-
-		public TableCollection GetDefaultTableCollectionData()
-		{
-			TableCollection export = new TableCollection();
-
-			export.AddTable(new DefaultTable<Category>());
-			export.AddTable(GenresTable.GetDefaultGenresTable());
-			export.AddTable(new DefaultTable<Film>());
-			export.AddTable(new DefaultTable<Serie>());
-			export.AddTable(new DefaultTable<PriorityFilm>());
-			export.AddTable(new DefaultTable<BookGenre>());
-			export.AddTable(new DefaultTable<Book>());
-			export.AddTable(new DefaultTable<BookCategory>());
-			export.AddTable(new DefaultTable<PriorityBook>());
-
-			export.FileEncoding = Encoding.UTF8;
-
-			return export;
-		}
-
-
-
-		private class DefaultTable<Te> : Table<Te> where Te : Cell, new()
-		{
-			public DefaultTable() : base() { }
-			public DefaultTable(int id) : base(id) { }
-			public DefaultTable(int id, string name) : base(id, name) { }
-			public override void ConnectionsSubload(TableCollection tablesCollection)
+			Settings = ProgramSettings.Initialize();
+			if (Settings.StartUser.LoggedIn)
 			{
-				throw new NotImplementedException();
+				LoggedInUser = UserBL.LogIn(Settings.StartUser.Email, Settings.StartUser.Email);
 			}
+
+			TableCollection.FileEncoding = Encoding.UTF8;
+        }
+
+		private void boolSaved(object sender, EventArgs e)
+		{
+			InfoUnsaved = false;
 		}
 	}
 }

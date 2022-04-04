@@ -35,7 +35,8 @@ namespace FilmsUCWpf.View
 		public void SelfRemove()
 		{
 			Panel panel = (Panel)this.Parent;
-			panel.Children.Remove(this);
+			if (panel != null)
+				panel.Children.Remove(this);
 		}
 
 		public bool SetPresenter(IBasePresenter presenter)

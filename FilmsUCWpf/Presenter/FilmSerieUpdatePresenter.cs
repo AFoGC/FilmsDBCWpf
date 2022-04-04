@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 
 namespace FilmsUCWpf.Presenter
@@ -14,12 +15,23 @@ namespace FilmsUCWpf.Presenter
 		private Film model;
 		private IFilmSerieUpdateView view;
 		private IBaseMenu menu;
+		private TableCollection collection;
 
-		public FilmSerieUpdatePresenter(Film model, IFilmSerieUpdateView view, IMenu<Film> menu)
+		public FilmSerieUpdatePresenter(Film model, IFilmSerieUpdateView view, IMenu<Film> menu, TableCollection collection)
 		{
 			this.model = model;
 			this.view = view;
 			this.menu = menu;
+			this.collection = collection;
+			foreach (Genre genre in collection.GetTable<Genre>())
+			{
+				view.Genres.Add(genre);
+			}
+			foreach (string mark in Helper.GetAllMarks())
+			{
+				view.Marks.Add(mark);
+			}
+			RefreshElement();
 		}
 
 		private static Film defFilm = new Film();

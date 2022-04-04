@@ -3,6 +3,7 @@ using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.ViewInterfaces;
 using InfoMenusWpf;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 
 namespace FilmsUCWpf.View
@@ -26,10 +28,10 @@ namespace FilmsUCWpf.View
 	public partial class FilmSerieUpdateControl : UserControl, IFilmSerieUpdateView, IUpdateControl
 	{
 		private FilmSerieUpdatePresenter presenter;
-		public FilmSerieUpdateControl(Film film, IMenu<Film> menu)
+		public FilmSerieUpdateControl(Film film, IMenu<Film> menu, TableCollection collection)
 		{
 			InitializeComponent();
-			presenter = new FilmSerieUpdatePresenter(film, this, menu);
+			presenter = new FilmSerieUpdatePresenter(film, this, menu, collection);
 		}
 
 		private bool commentIsOpen = false;
@@ -86,9 +88,11 @@ namespace FilmsUCWpf.View
 
 		public string ID { set => id.Text = value; }
 		string IFilmUpdateView.Name { get => name.Text; set => name.Text = value; }
+		public IList Genres => genre.Items;
 		public Genre Genre { get => (Genre)genre.SelectedItem; set => genre.SelectedItem = value; }
 		public string RealiseYear { get => realiseYear.Text; set => realiseYear.Text = value; }
 		public bool Wathced { get => (bool)watched.IsChecked; set => watched.IsChecked = value; }
+		public IList Marks => mark.Items;
 		public string Mark { get => mark.Text; set => mark.Text = value; }
 		public string CountOfViews { get => countOfViews.Text; set => countOfViews.Text = value; }
 		public DateTime DateOfWatch { get => watchDate.Date; set => watchDate.Date = value; }

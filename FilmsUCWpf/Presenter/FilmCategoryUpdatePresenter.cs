@@ -20,6 +20,7 @@ namespace FilmsUCWpf.Presenter
 			this.model = model;
 			this.view = view;
 			this.menu = menu;
+			RefreshElement();
 		}
 
 		public void UpdateElement()
@@ -35,6 +36,7 @@ namespace FilmsUCWpf.Presenter
                 if (film.FranshiseId == 0)
                 {
 					film.FranshiseId = model.ID;
+					film.FranshiseListIndex = (sbyte)(model.Films.Count);
 					model.Films.Add(film);
 					menu.RemoveSelected();
                 }

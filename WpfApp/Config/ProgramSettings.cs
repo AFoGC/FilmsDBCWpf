@@ -33,7 +33,8 @@ namespace WpfApp.Config
 
 		private ProgramSettings()
         {
-			this.Profiles = new ProfileCollection();
+			TableCollection collection = MainTabColl.GetInstance().TableCollection;
+			this.Profiles = new ProfileCollection(collection);
 			this.StartUser = new StartUserInfo();
         }
 

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="CustomButtons.GenrePressButtonControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomButtons"
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="129" Margin="0,0,1,1">
+    <Grid Height="20" Width="129">
+
+        <local:PressButton x:Name="pbtn" Content="{Binding Name}" Included_DefaultColor="#FF1F1F1F" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF151515" Included_MouseEnterColor="#FF2E2E2E" DefaultColor="#FF121212" MouseDownColor="#FF080808" MouseEnterColor="#FF212121" Background="#FF1F1F1F" Included="True">
+            <local:PressButton.Template>
+                <ControlTemplate TargetType="{x:Type local:PressButton}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </local:PressButton.Template>
+        </local:PressButton>
+
+    </Grid>
+</UserControl>

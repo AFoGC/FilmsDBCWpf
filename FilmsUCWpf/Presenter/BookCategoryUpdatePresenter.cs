@@ -20,6 +20,7 @@ namespace FilmsUCWpf.Presenter
 			this.model = model;
 			this.view = view;
 			this.menu = menu;
+			RefreshElement();
 		}
 
 		public void AddSelected()

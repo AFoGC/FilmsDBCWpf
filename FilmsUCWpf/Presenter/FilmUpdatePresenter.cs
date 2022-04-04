@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
 
@@ -15,13 +16,21 @@ namespace FilmsUCWpf.Presenter
 		private Film model;
 		private IFilmUpdateView view;
 		private IBaseMenu menu;
-		private SeriesTable table;
-		public FilmUpdatePresenter(Film model, IFilmUpdateView view, IMenu<Film> menu, SeriesTable table)
+		private TableCollection collection;
+		public FilmUpdatePresenter(Film model, IFilmUpdateView view, IMenu<Film> menu, TableCollection collection)
 		{
 			this.model = model;
 			this.view = view;
 			this.menu = menu;
-			this.table = table;
+			this.collection = collection;
+            foreach (Genre genre in collection.GetTable<Genre>())
+            {
+				view.Genres.Add(genre);
+            }
+            foreach (string mark in Helper.GetAllMarks())
+            {
+				view.Marks.Add(mark);
+            }
 			RefreshElement();
 		}
 
@@ -41,6 +50,7 @@ namespace FilmsUCWpf.Presenter
 		public void UpdateElement()
         {
 			model.Name = view.Name;
+			SeriesTable table = (SeriesTable)collection.GetTable<Serie>();
 			if (!model.Genre.IsSerialGenre && view.Genre.IsSerialGenre)
 			{
 				table.FindAndConnectSerie(model);

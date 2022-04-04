@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Objects.Interfaces;
 
@@ -13,7 +14,7 @@ namespace FilmsUCWpf.Presenter
 	public class BookPresenter : BasePresenter<Book>, IHasGenre
 	{
 		protected IMenu<Book> menu;
-		public BookPresenter(Book book, IView view, IMenu<Book> menu) : base(book, view)
+		public BookPresenter(Book book, IView view, IMenu<Book> menu, TableCollection collection) : base(book, view, collection)
 		{
 			this.menu = menu;
 			book.BookGenre.PropertyChanged += BookGenre_PropertyChanged;

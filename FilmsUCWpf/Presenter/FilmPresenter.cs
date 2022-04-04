@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Objects.Interfaces;
 using TL_Tables;
@@ -17,14 +18,8 @@ namespace FilmsUCWpf.Presenter
 	public class FilmPresenter : BasePresenter<Film>, IHasGenre
 	{
 		protected IMenu<Film> menu;
-		private SeriesTable table;
 
-		public FilmPresenter(Film film, IView view, IMenu<Film> menu, SeriesTable table) : this(film, view, menu)
-        {
-			this.table = table;
-        }
-
-		public FilmPresenter(Film film, IView view, IMenu<Film> menu) : base(film, view)
+		public FilmPresenter(Film film, IView view, IMenu<Film> menu, TableCollection collection) : base(film, view, collection)
 		{
 			this.menu = menu;
 			film.Genre.PropertyChanged += Genre_PropertyChanged;
@@ -69,13 +64,14 @@ namespace FilmsUCWpf.Presenter
 
 		public void OpenUpdateMenu()
 		{
+			SeriesTable table = (SeriesTable)TableCollection.GetTable<Serie>();
 			if (Model.Genre.IsSerialGenre)
 			{
-				menu.UpdateFormVisualizer.OpenUpdateControl(new FilmUpdateControl(Model, menu, table));
+				menu.UpdateFormVisualizer.OpenUpdateControl(new FilmSerieUpdateControl(Model, menu, TableCollection));
 			}
 			else
 			{
-				menu.UpdateFormVisualizer.OpenUpdateControl(new FilmSerieUpdateControl(Model, menu));
+				menu.UpdateFormVisualizer.OpenUpdateControl(new FilmUpdateControl(Model, menu, TableCollection));
 			}
 		}
 
@@ -87,7 +83,7 @@ namespace FilmsUCWpf.Presenter
 			else
 				view = new FilmSerieControl();
 
-			FilmPresenter presenter = new FilmPresenter(Model, view, menu);
+			FilmPresenter presenter = new FilmPresenter(Model, view, menu, TableCollection);
 
 			menu.MoreInfoFormVisualizer.OpenMoreInfoForm((Control)presenter.View);
 		}

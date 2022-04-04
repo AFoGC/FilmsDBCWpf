@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Objects.Interfaces;
 
@@ -18,11 +19,12 @@ namespace FilmsUCWpf.Presenter
 
 		new ICategoryView View { get => (ICategoryView)base.View; }
 
-		public BookCategoryPresenter(BookCategory category, ICategoryView view, IMenu<Book> menu) : base(category, view)
+		public BookCategoryPresenter(BookCategory category, ICategoryView view, IMenu<Book> menu, TableCollection collection) : base(category, view, collection)
 		{
 			this.menu = menu;
 			presenters = new List<BookPresenter>();
-			category.Books.CollectionChanged += Books_CollectionChanged; ;
+			category.Books.CollectionChanged += Books_CollectionChanged;
+			RefreshCategoryBooks();
 		}
 
 		private void Books_CollectionChanged(object sender, EventArgs e)
@@ -57,7 +59,7 @@ namespace FilmsUCWpf.Presenter
 
 			foreach (Book book in Model.Books)
 			{
-				presenters.Add(new BookPresenter(book, new BookSimpleControl(), menu));
+				presenters.Add(new BookPresenter(book, new BookSimpleControl(), menu, TableCollection));
 			}
 
 			for (int i = 0; i < presenters.Count; i++)
@@ -142,7 +144,7 @@ namespace FilmsUCWpf.Presenter
 
 		public void OpenUpdateMenu()
 		{
-			//menu.UpdateFormVisualizer.OpenUpdateControl(new FilmUpdateControl());
+			menu.UpdateFormVisualizer.OpenUpdateControl(new BookCategoryUpdateControl(Model, menu));
 		}
 
 		public String ID { get => Model.ID.ToString(); set { } }

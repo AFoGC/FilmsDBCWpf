@@ -49,7 +49,7 @@ namespace WpfApp.MVP.Models
             TableCollection = MainTabColl.GetInstance().TableCollection;
 			Tables = new TLTables(TableCollection);
 			TableCollection.TableSave += boolSaved;
-            //TableCollection.
+            TableCollection.CellInTablesChanged += TableCollection_CellInTablesChanged;
 
 			Settings = ProgramSettings.Initialize();
 			if (Settings.StartUser.LoggedIn)
@@ -60,7 +60,12 @@ namespace WpfApp.MVP.Models
 			TableCollection.FileEncoding = Encoding.UTF8;
         }
 
-		private void boolSaved(object sender, EventArgs e)
+        private void TableCollection_CellInTablesChanged(object sender, EventArgs e)
+        {
+            InfoUnsaved = true;
+        }
+
+        private void boolSaved(object sender, EventArgs e)
 		{
 			InfoUnsaved = false;
 		}

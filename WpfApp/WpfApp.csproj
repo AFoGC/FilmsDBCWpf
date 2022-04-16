@@ -58,13 +58,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Config\MainTabColl.cs" />
     <Compile Include="Config\Profile.cs" />
     <Compile Include="Config\ProfileCollection.cs" />
     <Compile Include="Config\ProgramSettings.cs" />
+    <Compile Include="MVP\Models\BooksMenuModel.cs" />
     <Compile Include="MVP\Models\FilmsMenuModel.cs" />
     <Compile Include="MVP\Models\MainWindowModel.cs" />
+    <Compile Include="MVP\Presenters\BooksMenuPresenter.cs" />
     <Compile Include="MVP\Presenters\FilmsMenuPresenter.cs" />
+    <Compile Include="MVP\Presenters\IMenuPresenter.cs" />
     <Compile Include="MVP\Presenters\MainWindowPresenter.cs" />
     <Compile Include="MVP\ViewsInterface\IBaseMenuView.cs" />
     <Compile Include="MVP\ViewsInterface\IChangeMenu.cs" />

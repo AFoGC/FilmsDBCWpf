@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 
 namespace FilmsUCWpf.Presenter
@@ -14,12 +15,22 @@ namespace FilmsUCWpf.Presenter
 		private Book model;
 		private IBookUpdateView view;
 		private IBaseMenu menu;
+		private TableCollection collection;
 
-		public BookUpdatePresenter(Book model, IBookUpdateView view, IMenu<Book> menu)
+		public BookUpdatePresenter(Book model, IBookUpdateView view, IMenu<Book> menu, TableCollection table)
 		{
 			this.model = model;
 			this.view = view;
 			this.menu = menu;
+			collection = table;
+			foreach (BookGenre genre in collection.GetTable<BookGenre>())
+			{
+				view.Genres.Add(genre);
+			}
+			foreach (string mark in Helper.GetAllMarks())
+			{
+				view.Marks.Add(mark);
+			}
 			RefreshElement();
 		}
 

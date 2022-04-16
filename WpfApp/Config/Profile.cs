@@ -15,7 +15,10 @@ namespace WpfApp.Config
         }
 		public Profile(String name)
 		{
-			this.name = name;
+			if (name == String.Empty)
+				this.name = "Main";
+			else this.name = name;
+			
 		}
 
 		private String name = "";

@@ -46,18 +46,19 @@ namespace WpfApp.MVP.Models
         {
             InfoUnsaved = false;
 
-            TableCollection = MainTabColl.GetInstance().TableCollection;
+            TableCollection = new TableCollection();
 			Tables = new TLTables(TableCollection);
 			TableCollection.TableSave += boolSaved;
             TableCollection.CellInTablesChanged += TableCollection_CellInTablesChanged;
 
-			Settings = ProgramSettings.Initialize();
+			Settings = ProgramSettings.Initialize(TableCollection);
 			if (Settings.StartUser.LoggedIn)
 			{
 				LoggedInUser = UserBL.LogIn(Settings.StartUser.Email, Settings.StartUser.Email);
 			}
 
 			TableCollection.FileEncoding = Encoding.UTF8;
+            InfoUnsaved = false;
         }
 
         private void TableCollection_CellInTablesChanged(object sender, EventArgs e)

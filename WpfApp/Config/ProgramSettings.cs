@@ -10,6 +10,13 @@ namespace WpfApp.Config
 	[Serializable]
 	public class ProgramSettings
 	{
+		public TableCollection TableCollection { get; private set; }
+		public ProfileCollection Profiles { get; private set; }
+		public int MarkSystem { get => settingsFields.MarkSystem; set => settingsFields.MarkSystem = value; }
+		public StartUserInfo StartUser { get => settingsFields.StartUser; set => settingsFields.StartUser = value; }
+
+
+		private SettingsFields settingsFields;
 		public Profile UsedProfile
 		{
 			get
@@ -19,69 +26,64 @@ namespace WpfApp.Config
 			set 
 			{
 				Profiles.UsedProfile = value;
+				if (TableCollection != null)
+				{
+					TableCollection.TableFilePath = UsedProfile.MainFilePath;
+					TableCollection.LoadTables();
+				}
+				settingsFields.UsedProfile = UsedProfile.Name;
 			}
 		}
-		internal ProfileCollection Profiles { get; private set; }
-		public int MarkSystem { get; set; }
-		public StartUserInfo StartUser { get; set; }
 
 		static ProgramSettings()
         {
-			formatter = new XmlSerializer(typeof(ProgramSettings));
-			settingPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ProgramSetting.xml";
+			formatter = new XmlSerializer(typeof(SettingsFields));
+			settingPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ProgramSetting.xml";
+			instance = null;
 		}
 
-		private ProgramSettings()
+		private ProgramSettings(TableCollection collection)
         {
-			TableCollection collection = MainTabColl.GetInstance().TableCollection;
-			this.Profiles = new ProfileCollection(collection);
-			this.StartUser = new StartUserInfo();
+			TableCollection = collection;
+			this.Profiles = new ProfileCollection();
+			this.settingsFields = new SettingsFields();
         }
 
-		public static ProgramSettings Initialize()
-        {
-			ProgramSettings settings = new ProgramSettings();
+		private static ProgramSettings instance;
 
-            if (!File.Exists(settingPath))
+		public static ProgramSettings Initialize(TableCollection collection)
+        {
+			if (instance == null)
             {
-				using (StreamWriter fs = new StreamWriter(settingPath, false, Encoding.UTF8))
-				{
-					formatter.Serialize(fs, settings);
-				}
+				instance = new ProgramSettings(collection);
+				if (!File.Exists(settingPath)) 
+					instance.settingsFields = new SettingsFields();
+                else instance.settingsFields = LoadSettings();
 			}
 
-			settings.LoadSettings();
+			instance.UsedProfile = new Profile(instance.settingsFields.UsedProfile);
 
-            
-
-			return settings;
+			return instance;
         }
 
 		public void SaveSettings()
         {
 			using (StreamWriter fs = new StreamWriter(settingPath, false, Encoding.UTF8))
 			{
-				formatter.Serialize(fs, this);
+				formatter.Serialize(fs, settingsFields);
 			}
 		}
 
-		public void LoadSettings()
+		public static SettingsFields LoadSettings()
         {
-			ProgramSettings settings = new ProgramSettings();
+			SettingsFields settings = new SettingsFields();
 			using (StreamReader fs = new StreamReader(settingPath, Encoding.UTF8))
 			{
-				settings = (ProgramSettings)formatter.Deserialize(fs);
+				settings = (SettingsFields)formatter.Deserialize(fs);
 			}
 
-			copyValues(settings);
+			return settings;
 		}
-
-		private void copyValues(ProgramSettings settings)
-        {
-			this.UsedProfile = settings.UsedProfile;
-			this.MarkSystem = settings.MarkSystem;
-			this.StartUser = settings.StartUser;
-        }
 
 		private static readonly String settingPath;
 		private static readonly XmlSerializer formatter;
@@ -99,5 +101,19 @@ namespace WpfApp.Config
 			public String Email { get; set; }
 			public String Password { get; set; }
         }
+
+		public class SettingsFields
+        {
+			public String UsedProfile { get; set; }
+			public int MarkSystem { get; set; }
+			public StartUserInfo StartUser { get; set; }
+
+			public SettingsFields()
+            {
+				UsedProfile = String.Empty;
+				MarkSystem = 0;
+				StartUser = new StartUserInfo();
+            }
+		}
 	}
 }

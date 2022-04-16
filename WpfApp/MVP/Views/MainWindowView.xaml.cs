@@ -29,6 +29,7 @@ namespace WpfApp.MVP.Views
             navbar.Window = this;
             MainWindowModel model = new MainWindowModel();
             presenter = new MainWindowPresenter(model);
+            menus.Children.Add(new BooksMenuView(model));
             menus.Children.Add(new FilmsMenuView(model));
             presenter.WindowLoaded();
         }

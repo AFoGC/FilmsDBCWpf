@@ -1,10 +1,12 @@
 ﻿using FilmsUCWpf.PresenterInterfaces;
+using FilmsUCWpf.View;
 using FilmsUCWpf.ViewInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Objects.Interfaces;
@@ -71,18 +73,20 @@ namespace FilmsUCWpf.Presenter
 
 		public void OpenUpdateMenu()
 		{
-			throw new NotImplementedException();
+			menu.UpdateFormVisualizer.OpenUpdateControl(new BookUpdateControl(Model, menu, TableCollection));
 		}
 
 		public void OpenInfoMenu()
 		{
-			throw new NotImplementedException();
+			IView view = new BookControl();
+			BookPresenter presenter = new BookPresenter(Model, view, menu, TableCollection);
+			menu.MoreInfoFormVisualizer.OpenMoreInfoForm((Control)presenter.View);
 		}
 
 		private static Book defBook = new Book();
 		public String ID { get => Model.ID.ToString(); set { } }
 		public String Name { get => Model.Name; set { } }
-		public String Genre { get => Model.BookGenre.ToString(); set { } }
+		public String BookGenre { get => Model.BookGenre.ToString(); set { } }
 		public String PublicationYear { get => Film.FormatToString(Model.PublicationYear, defBook.PublicationYear); set { } }
 		public Boolean Readed { get => Model.Readed; set { } }
 		public String Author { get => Model.Author; set { } }

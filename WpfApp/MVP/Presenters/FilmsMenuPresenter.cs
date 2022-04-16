@@ -239,7 +239,6 @@ namespace WpfApp.MVP.Presenters
 					button.PressButton.ClickLocked = true;
 				}
 			}
-
 		}
 
 		private void UnLockGenreButtons()

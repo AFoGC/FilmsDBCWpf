@@ -14,7 +14,7 @@ using WpfApp.Config;
 
 namespace WpfApp.MVP.Models
 {
-    public class MainWindowModel
+    public class MainWindowModel : IUserModel
     {
         public Boolean InfoUnsaved { get; set; }
         public TableCollection TableCollection { get; private set; }
@@ -38,7 +38,7 @@ namespace WpfApp.MVP.Models
             {
                 userBO = value;
                 EventHandler handler = UserChanged;
-                if (null != handler) handler(null, EventArgs.Empty);
+                if (null != handler) handler(userBO, EventArgs.Empty);
             }
         }
 

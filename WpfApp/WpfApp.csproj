@@ -63,13 +63,17 @@
     <Compile Include="Config\ProgramSettings.cs" />
     <Compile Include="MVP\Models\BooksMenuModel.cs" />
     <Compile Include="MVP\Models\FilmsMenuModel.cs" />
+    <Compile Include="MVP\Models\IUserModel.cs" />
     <Compile Include="MVP\Models\MainWindowModel.cs" />
+    <Compile Include="MVP\Models\SettingsMenuModel.cs" />
     <Compile Include="MVP\Presenters\BooksMenuPresenter.cs" />
     <Compile Include="MVP\Presenters\FilmsMenuPresenter.cs" />
     <Compile Include="MVP\Presenters\IMenuPresenter.cs" />
     <Compile Include="MVP\Presenters\MainWindowPresenter.cs" />
+    <Compile Include="MVP\Presenters\SettingsMenuPresenter.cs" />
     <Compile Include="MVP\ViewsInterface\IBaseMenuView.cs" />
     <Compile Include="MVP\ViewsInterface\IChangeMenu.cs" />
+    <Compile Include="MVP\ViewsInterface\ISettingsMenuView.cs" />
     <Compile Include="MVP\Views\BooksMenuView.xaml.cs">
       <DependentUpon>BooksMenuView.xaml</DependentUpon>
     </Compile>
@@ -78,6 +82,9 @@
     </Compile>
     <Compile Include="MVP\Views\FilmsMenuView.xaml.cs">
       <DependentUpon>FilmsMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\LogOutWindow.xaml.cs">
+      <DependentUpon>LogOutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVP\Views\MainHeaderControl.xaml.cs">
       <DependentUpon>MainHeaderControl.xaml</DependentUpon>
@@ -88,8 +95,17 @@
     <Compile Include="MVP\Views\NavbarControl.xaml.cs">
       <DependentUpon>NavbarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVP\Views\RegistrationWindow.xaml.cs">
+      <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVP\Views\SettingsMenuView.xaml.cs">
       <DependentUpon>SettingsMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\SingUpControl.xaml.cs">
+      <DependentUpon>SingUpControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\UserSettingsControl.xaml.cs">
+      <DependentUpon>UserSettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="StaticFilmClasses\FilmMethods.cs" />
     <Compile Include="App.xaml.cs">
@@ -109,6 +125,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVP\Views\LogOutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVP\Views\MainHeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,7 +141,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVP\Views\RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVP\Views\SettingsMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVP\Views\SingUpControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVP\Views\UserSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

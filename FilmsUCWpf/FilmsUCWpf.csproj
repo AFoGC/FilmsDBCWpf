@@ -62,10 +62,12 @@
     <Compile Include="PresentersCollection.cs" />
     <Compile Include="Presenter\BookCategoryPresenter.cs" />
     <Compile Include="Presenter\BookCategoryUpdatePresenter.cs" />
+    <Compile Include="Presenter\BookGenrePresenter.cs" />
     <Compile Include="Presenter\BookPresenter.cs" />
     <Compile Include="Presenter\BookUpdatePresenter.cs" />
     <Compile Include="Presenter\FilmCategoryPresenter.cs" />
     <Compile Include="Presenter\FilmCategoryUpdatePresenter.cs" />
+    <Compile Include="Presenter\FilmGenrePresenter.cs" />
     <Compile Include="Presenter\FilmPresenter.cs" />
     <Compile Include="Presenter\FilmSerieUpdatePresenter.cs" />
     <Compile Include="Presenter\FilmUpdatePresenter.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="ViewInterfaces\IBookUpdateView.cs" />
     <Compile Include="ViewInterfaces\ICategoryView.cs" />
     <Compile Include="ViewInterfaces\IFilmCategoryUpdateView.cs" />
+    <Compile Include="ViewInterfaces\IGenreView.cs" />
     <Compile Include="ViewInterfaces\IFilmSerieUpdateView.cs" />
     <Compile Include="ViewInterfaces\IFilmUpdateView.cs" />
     <Compile Include="ViewInterfaces\IView.cs" />
@@ -97,6 +100,9 @@
     </Compile>
     <Compile Include="View\BookControl.xaml.cs">
       <DependentUpon>BookControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BookGenreControl.xaml.cs">
+      <DependentUpon>BookGenreControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BookSimpleControl.xaml.cs">
       <DependentUpon>BookSimpleControl.xaml</DependentUpon>
@@ -112,6 +118,9 @@
     </Compile>
     <Compile Include="View\FilmControl.xaml.cs">
       <DependentUpon>FilmControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FilmGenreControl.xaml.cs">
+      <DependentUpon>FilmGenreControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FilmSerieUpdateControl.xaml.cs">
       <DependentUpon>FilmSerieUpdateControl.xaml</DependentUpon>
@@ -165,6 +174,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BookGenreControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BookSimpleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FilmControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FilmGenreControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

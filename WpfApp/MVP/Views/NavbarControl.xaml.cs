@@ -48,7 +48,7 @@ namespace WpfApp.MVP.Views
         private void settings_Click(object sender, RoutedEventArgs e)
         {
             changeSelectedButton((PressButton)sender);
-            Window.ChangePriorityMenu<BooksMenuView>();
+            Window.ChangePriorityMenu<SettingsMenuView>();
         }
 
         private void changeSelectedButton(PressButton pressButton)

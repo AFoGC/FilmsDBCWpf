@@ -29,8 +29,8 @@ namespace WpfApp.MVP.Presenters
         public void AddGenre()
         {
             Genre genre = new Genre();
-            genre.Name = $"Genre{genre.ID}";
             tableCollection.GetTable<Genre>().AddElement(genre);
+            genre.Name = $"Genre{genre.ID}";
             view.GenreControls.Add(new FilmGenreControl(genre, tableCollection));
             view.Height += 20;
         }

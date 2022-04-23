@@ -32,6 +32,12 @@ namespace WpfApp.MVP.Presenters
 			this.model.MoreInfoFormVisualizer.UpdateVisualizer = this.model.UpdateFormVisualizer;
 			this.model.UpdateFormVisualizer.MoreVisualizer = this.model.MoreInfoFormVisualizer;
 			mainModel.TableCollection.TableLoad += TableCollection_TableLoad;
+			mainModel.Tables.GenresTable.CollectionChanged += GenresTable_CollectionChanged;
+		}
+
+		private void GenresTable_CollectionChanged(object sender, EventArgs e)
+		{
+			LoadGenres();
 		}
 
 		private void TableCollection_TableLoad(object sender, EventArgs e)
@@ -333,8 +339,8 @@ namespace WpfApp.MVP.Presenters
 				Type type = typeof(BasePresenter<Film>);
 				foreach (IBasePresenter item in model.BasePresenters)
 				{
-                    if (item.GetType().IsSubclassOf(type))
-                    {
+					if (item.GetType().IsSubclassOf(type))
+					{
 						BasePresenter<Film> basePresenter = (BasePresenter<Film>)item;
 						Film film = basePresenter.Model;
 						if (film.ID > model.SelectedElement.Model.ID) break;

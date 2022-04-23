@@ -33,9 +33,15 @@ namespace WpfApp.MVP.Presenters
 			this.model.MoreInfoFormVisualizer.UpdateVisualizer = this.model.UpdateFormVisualizer;
 			this.model.UpdateFormVisualizer.MoreVisualizer = this.model.MoreInfoFormVisualizer;
 			mainModel.TableCollection.TableLoad += TableCollection_TableLoad;
+            mainModel.Tables.BookGenresTable.CollectionChanged += BookGenresTable_CollectionChanged;
 		}
 
-		public BasePresenter<Book> SelectedElement { get => model.SelectedElement; set => model.SelectedElement = (BookPresenter)value; }
+        private void BookGenresTable_CollectionChanged(object sender, EventArgs e)
+        {
+			LoadGenres();
+        }
+
+        public BasePresenter<Book> SelectedElement { get => model.SelectedElement; set => model.SelectedElement = (BookPresenter)value; }
 		public MoreInfoFormVisualizer MoreInfoFormVisualizer => model.MoreInfoFormVisualizer;
 		public UpdateFormVisualizer UpdateFormVisualizer => model.UpdateFormVisualizer;
 		private TableCollection TabColl => mainModel.TableCollection;

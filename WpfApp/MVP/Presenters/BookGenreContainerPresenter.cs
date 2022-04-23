@@ -30,8 +30,8 @@ namespace WpfApp.MVP.Presenters
         public void AddGenre()
         {
             BookGenre genre = new BookGenre();
-            genre.Name = $"Genre{genre.ID}";
             tableCollection.GetTable<BookGenre>().AddElement(genre);
+            genre.Name = $"Genre{genre.ID}";
             view.GenreControls.Add(new BookGenreControl(genre, tableCollection));
             view.Height += 20;
         }

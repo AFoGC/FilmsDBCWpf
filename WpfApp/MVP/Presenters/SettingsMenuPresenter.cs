@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp.MVP.Models;
+using WpfApp.MVP.Views;
 using WpfApp.MVP.ViewsInterface;
 
 namespace WpfApp.MVP.Presenters
@@ -33,7 +34,7 @@ namespace WpfApp.MVP.Presenters
 
         public void InitializeSettingsPanel()
         {
-
+            view.SettingsList.Add(new ProfileContainerView(mainModel.Settings));
         }
     }
 }

@@ -35,6 +35,8 @@ namespace WpfApp.MVP.Presenters
         public void InitializeSettingsPanel()
         {
             view.SettingsList.Add(new ProfileContainerView(mainModel.Settings));
+            view.SettingsList.Add(new GenreConteinerView(mainModel.TableCollection, GenrePresenterEnum.FilmGenre));
+            view.SettingsList.Add(new GenreConteinerView(mainModel.TableCollection, GenrePresenterEnum.BookGenre));
         }
     }
 }

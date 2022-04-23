@@ -25,7 +25,7 @@ namespace FilmsUCWpf.Presenter
         public void DeleteGenre()
         {
             BooksTable filmsTable = (BooksTable)tableCollection.GetTable<Book>();
-            if (filmsTable.GenreHasBook(model))
+            if (!filmsTable.GenreHasBook(model))
             {
                 view.RemoveFromview();
                 tableCollection.GetTable<BookGenre>().Remove(model);

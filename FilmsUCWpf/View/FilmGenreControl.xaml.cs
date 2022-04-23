@@ -37,7 +37,6 @@ namespace FilmsUCWpf.View
             WrapPanel panel = (WrapPanel)Parent;
             panel.Children.Remove(this);
             ((Grid)panel.Parent).Height -= 20;
-            throw new NotImplementedException();
         }
 
         private void DeleteGenreButton_Click(object sender, RoutedEventArgs e)

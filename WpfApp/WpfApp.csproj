@@ -66,8 +66,11 @@
     <Compile Include="MVP\Models\IUserModel.cs" />
     <Compile Include="MVP\Models\MainWindowModel.cs" />
     <Compile Include="MVP\Models\SettingsMenuModel.cs" />
+    <Compile Include="MVP\Presenters\BookGenreContainerPresenter.cs" />
     <Compile Include="MVP\Presenters\BooksMenuPresenter.cs" />
+    <Compile Include="MVP\Presenters\FilmGenreContainerPresenter.cs" />
     <Compile Include="MVP\Presenters\FilmsMenuPresenter.cs" />
+    <Compile Include="MVP\Presenters\IGenreContainerPresenter.cs" />
     <Compile Include="MVP\Presenters\IMenuPresenter.cs" />
     <Compile Include="MVP\Presenters\MainWindowPresenter.cs" />
     <Compile Include="MVP\Presenters\ProfileContainerPresenter.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="MVP\Presenters\SettingsMenuPresenter.cs" />
     <Compile Include="MVP\ViewsInterface\IBaseMenuView.cs" />
     <Compile Include="MVP\ViewsInterface\IChangeMenu.cs" />
+    <Compile Include="MVP\ViewsInterface\IGenreSettingsContainerView.cs" />
     <Compile Include="MVP\ViewsInterface\IProfileSettingsContainerView.cs" />
     <Compile Include="MVP\ViewsInterface\IProfileView.cs" />
     <Compile Include="MVP\ViewsInterface\ISettingsMenuView.cs" />
@@ -86,6 +90,9 @@
     </Compile>
     <Compile Include="MVP\Views\FilmsMenuView.xaml.cs">
       <DependentUpon>FilmsMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Views\GenreConteinerView.xaml.cs">
+      <DependentUpon>GenreConteinerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVP\Views\LogOutWindow.xaml.cs">
       <DependentUpon>LogOutWindow.xaml</DependentUpon>
@@ -132,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVP\Views\FilmsMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVP\Views\GenreConteinerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

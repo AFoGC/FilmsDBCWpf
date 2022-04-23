@@ -29,11 +29,14 @@ namespace FilmsUCWpf.View
         {
             presenter = new BookGenrePresenter(genre, this, collection);
             InitializeComponent();
+            DataContext = this.presenter;
         }
 
         public void RemoveFromview()
         {
-            throw new NotImplementedException();
+            WrapPanel panel = (WrapPanel)Parent;
+            panel.Children.Remove(this);
+            ((Grid)panel.Parent).Height -= 20;
         }
 
         private void DeleteGenreButton_Click(object sender, RoutedEventArgs e)

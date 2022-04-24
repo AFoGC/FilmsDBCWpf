@@ -33,7 +33,31 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btn_RemoveSec" Content="Remove Selected" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Height="20" Margin="690,0,40,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_RemoveSec_Click" Width="100">
+        <Button x:Name="btn_RemoveSec" Content="Remove Selected" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Height="20" Margin="690,22,40,18" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_RemoveSec_Click" Width="100">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btn_DeleteCategory" Content="Delete Category" Foreground="WhiteSmoke" VerticalAlignment="Bottom" Height="20" Margin="588,0,142,29" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Width="100" Click="btn_DeleteCategory_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

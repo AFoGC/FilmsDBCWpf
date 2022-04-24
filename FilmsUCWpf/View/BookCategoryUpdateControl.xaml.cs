@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 
 namespace FilmsUCWpf.View
@@ -26,10 +27,10 @@ namespace FilmsUCWpf.View
     public partial class BookCategoryUpdateControl : UserControl, IBookCategoryUpdateView, IUpdateControl
     {
         private BookCategoryUpdatePresenter presenter;
-        public BookCategoryUpdateControl(BookCategory model, IMenu<Book> menu)
+        public BookCategoryUpdateControl(BookCategory model, IMenu<Book> menu, TableCollection tableCollection)
         {
             InitializeComponent();
-            presenter = new BookCategoryUpdatePresenter(model, this, menu);
+            presenter = new BookCategoryUpdatePresenter(model, this, menu, tableCollection);
         }
 
         private void btn_AddSelected_Click(object sender, RoutedEventArgs e)
@@ -49,5 +50,10 @@ namespace FilmsUCWpf.View
 
         public string ID { set => id.Text = value; }
         string IBookCategoryUpdateView.Name { get => name.Text; set => name.Text = value; }
+
+        private void btn_DeleteCategory_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.DeleteThisCategory();
+        }
     }
 }

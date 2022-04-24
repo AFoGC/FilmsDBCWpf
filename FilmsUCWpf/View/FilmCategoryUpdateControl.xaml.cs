@@ -3,6 +3,7 @@ using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.ViewInterfaces;
 using InfoMenusWpf;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TablesLibrary.Interpreter;
 using TL_Objects;
 
 namespace FilmsUCWpf.View
@@ -26,10 +28,10 @@ namespace FilmsUCWpf.View
     public partial class FilmCategoryUpdateControl : UserControl, IFilmCategoryUpdateView, IUpdateControl
     {
         private FilmCategoryUpdatePresenter presenter;
-        public FilmCategoryUpdateControl(Category category, IMenu<Film> menu)
+        public FilmCategoryUpdateControl(Category category, IMenu<Film> menu, TableCollection tableCollection)
         {
             InitializeComponent();
-            presenter = new FilmCategoryUpdatePresenter(category, this, menu);
+            presenter = new FilmCategoryUpdatePresenter(category, this, menu, tableCollection);
         }
 
         private void btn_AddSelected_Click(object sender, RoutedEventArgs e)
@@ -49,5 +51,10 @@ namespace FilmsUCWpf.View
 
         public string ID { set => id.Text = value; }
         string IFilmCategoryUpdateView.Name { set => name.Text = value; get => name.Text; }
+
+        private void btn_DeleteCategory_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.DeleteThisCategory();
+        }
     }
 }

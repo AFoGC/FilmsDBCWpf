@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TablesLibrary.Interpreter;
+using TablesLibrary.Interpreter.Table;
 using TL_Objects;
 
 namespace FilmsUCWpf.Presenter
@@ -14,12 +16,14 @@ namespace FilmsUCWpf.Presenter
 		private Category model;
 		private IFilmCategoryUpdateView view;
 		private IMenu<Film> menu;
+		private TableCollection tableCollection;
 
-		public FilmCategoryUpdatePresenter(Category model, IFilmCategoryUpdateView view, IMenu<Film> menu)
+		public FilmCategoryUpdatePresenter(Category model, IFilmCategoryUpdateView view, IMenu<Film> menu, TableCollection tableCollection)
 		{
 			this.model = model;
 			this.view = view;
 			this.menu = menu;
+			this.tableCollection = tableCollection;
 			RefreshElement();
 		}
 
@@ -51,6 +55,15 @@ namespace FilmsUCWpf.Presenter
 				if (model.RemoveFilmFromCategory(film))
 					menu.AddSelected();
             }
+        }
+
+		public void DeleteThisCategory()
+        {
+			Table<Category> cateories = tableCollection.GetTable<Category>();
+            if (model.Films.Count == 0)
+            {
+				cateories.Remove(model);
+			}
         }
 
         public void RefreshElement()

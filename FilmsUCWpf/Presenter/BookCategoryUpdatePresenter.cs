@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TablesLibrary.Interpreter;
+using TablesLibrary.Interpreter.Table;
 using TL_Objects;
 
 namespace FilmsUCWpf.Presenter
@@ -14,12 +16,14 @@ namespace FilmsUCWpf.Presenter
 		private BookCategory model;
 		private IBookCategoryUpdateView view;
 		private IMenu<Book> menu;
+		private TableCollection tableCollection;
 
-		public BookCategoryUpdatePresenter(BookCategory model, IBookCategoryUpdateView view, IMenu<Book> menu)
+		public BookCategoryUpdatePresenter(BookCategory model, IBookCategoryUpdateView view, IMenu<Book> menu, TableCollection tableCollection)
 		{
 			this.model = model;
 			this.view = view;
 			this.menu = menu;
+			this.tableCollection = tableCollection;
 			RefreshElement();
 		}
 
@@ -52,6 +56,15 @@ namespace FilmsUCWpf.Presenter
 		{
 			view.ID = model.ID.ToString();
 			view.Name = model.Name;
+		}
+
+		public void DeleteThisCategory()
+		{
+			Table<BookCategory> cateories = tableCollection.GetTable<BookCategory>();
+			if (model.Books.Count == 0)
+			{
+				cateories.Remove(model);
+			}
 		}
 
 		public void UpdateElement()

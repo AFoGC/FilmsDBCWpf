@@ -31,7 +31,8 @@ namespace FilmsUCWpf.View
 		}
 
 		public IList CategoryCollection => cat_panel.Children;
-
+		double IView.Height { get => grid.Height; set => grid.Height = value; }
+		double ICategoryView.DefaultHeght => 35;
 		public void SelfRemove()
 		{
 			Panel panel = (Panel)this.Parent;
@@ -74,5 +75,10 @@ namespace FilmsUCWpf.View
 		{
 			presenter.OpenUpdateMenu();
 		}
-	}
+
+        private void btn_plus_Click(object sender, RoutedEventArgs e)
+        {
+			presenter.CreateFilmInCategory();
+        }
+    }
 }

@@ -10,5 +10,6 @@ namespace FilmsUCWpf.ViewInterfaces
     public interface ICategoryView : IView
     {
         IList CategoryCollection { get; }
+        Double DefaultHeght { get; }
     }
 }

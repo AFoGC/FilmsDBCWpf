@@ -116,7 +116,7 @@ namespace FilmsUCWpf.Presenter
         {
             View.CategoryCollection.Clear();
             presenters.Clear();
-            View.Height = 20;
+            View.Height = View.DefaultHeght;
 
             foreach (Film film in Model.Films)
             {
@@ -155,6 +155,16 @@ namespace FilmsUCWpf.Presenter
         public void OpenUpdateMenu()
         {
             menu.UpdateFormVisualizer.OpenUpdateControl(new FilmCategoryUpdateControl(Model, menu));
+        }
+
+        public void CreateFilmInCategory()
+        {
+            Film film = new Film();
+            film.Genre = TableCollection.GetTable<Genre>()[0];
+            TableCollection.GetTable<Film>().AddElement(film);
+            film.FranshiseId = Model.ID;
+            film.FranshiseListIndex = (sbyte)(Model.Films.Count);
+            Model.Films.Add(film);
         }
 
         //private static Category category = new Category();

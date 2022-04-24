@@ -30,6 +30,8 @@ namespace FilmsUCWpf.View
 			InitializeComponent();
 		}
 
+		double IView.Height { get => grid.Height; set => grid.Height = value; }
+		double ICategoryView.DefaultHeght => 35;
 		public IList CategoryCollection => cat_panel.Children;
 
 		public void SelfRemove()
@@ -74,5 +76,10 @@ namespace FilmsUCWpf.View
 		{
 			presenter.OpenUpdateMenu();
 		}
-	}
+
+        private void btn_plus_Click(object sender, RoutedEventArgs e)
+        {
+			presenter.CreateBookInCategory();
+        }
+    }
 }

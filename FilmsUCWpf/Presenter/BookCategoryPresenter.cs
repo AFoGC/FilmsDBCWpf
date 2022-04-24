@@ -55,7 +55,7 @@ namespace FilmsUCWpf.Presenter
 		{
 			View.CategoryCollection.Clear();
 			presenters.Clear();
-			View.Height = 20;
+			View.Height = View.DefaultHeght;
 
 			foreach (Book book in Model.Books)
 			{
@@ -146,6 +146,16 @@ namespace FilmsUCWpf.Presenter
 		{
 			menu.UpdateFormVisualizer.OpenUpdateControl(new BookCategoryUpdateControl(Model, menu));
 		}
+
+		public void CreateBookInCategory()
+        {
+			Book book = new Book();
+			book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
+			TableCollection.GetTable<Book>().AddElement(book);
+			book.FranshiseId = Model.ID;
+			book.FranshiseListIndex = (sbyte)(Model.Books.Count);
+			Model.Books.Add(book);
+        }
 
 		public String ID { get => Model.ID.ToString(); set { } }
 		public String Name { get => Model.Name; set { } }

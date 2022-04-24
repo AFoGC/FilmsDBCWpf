@@ -5,18 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="830">
-    <Grid>
+             >
+    <Grid Height="35" Width="830" x:Name="grid">
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
         <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <TextBox x:Name="mark" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="42" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <WrapPanel x:Name="cat_panel" Margin="31,15,0,0" Orientation="Vertical">
-
-        </WrapPanel>
+        <WrapPanel x:Name="cat_panel" Margin="29,15,2,20" Orientation="Vertical"/>
         <Button x:Name="btn_update" Content="update" Foreground="WhiteSmoke" VerticalAlignment="Top" Width="78" Height="13" Margin="751,1,1,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btn_plus" Content="+" Foreground="WhiteSmoke" VerticalAlignment="Bottom" Height="14" Margin="31,0,0,5" ClickMode="Release" Padding="0,0,0,0" FontSize="10" HorizontalAlignment="Left" Width="15" Click="btn_plus_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

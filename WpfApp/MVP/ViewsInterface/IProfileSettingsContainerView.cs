@@ -11,6 +11,7 @@ namespace WpfApp.MVP.ViewsInterface
     {
         IList ProfileControls { get; }
         Double Height { get; set; }
+        Double DefaultHeight { get; }
         String AddProfileText { get; set; }
     }
 }

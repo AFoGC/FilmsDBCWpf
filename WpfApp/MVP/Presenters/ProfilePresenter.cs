@@ -40,8 +40,11 @@ namespace WpfApp.MVP.Presenters
 
         public void DeleteThisProfile()
         {
-            settings.Profiles.RemoveProfile(model);
-            parentPresenter.RefreshControl();
+            if (model != settings.UsedProfile)
+            {
+                settings.Profiles.RemoveProfile(model);
+                parentPresenter.RefreshControl();
+            }
         }
     }
 }

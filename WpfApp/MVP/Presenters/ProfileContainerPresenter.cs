@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace WpfApp.MVP.Presenters
         {
             view.AddProfileText = String.Empty;
             view.ProfileControls.Clear();
-            view.Height = 30;
+            view.Height = view.DefaultHeight;
 
             foreach (Profile profile in settings.Profiles)
             {
@@ -52,6 +53,22 @@ namespace WpfApp.MVP.Presenters
                 profileCollection.AddProfile(newProfile);
                 this.RefreshControl();
             }
+        }
+
+        public void ImportProfile(string filePath)
+        {
+            ProfileCollection profColl = settings.Profiles;
+            int i = 1;
+            string profName = "import";
+            while (profColl.HasProfileName(profName + i))
+            {
+                i++;
+            }
+            profName += i;
+            Profile profile = new Profile(profName);
+            profColl.AddProfile(profile);
+
+            File.Copy(filePath, profile.MainFilePath, true);
         }
     }
 }

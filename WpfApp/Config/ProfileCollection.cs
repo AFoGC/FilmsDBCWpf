@@ -91,7 +91,16 @@ namespace WpfApp.Config
 			}
 		}
 
-		public void AddProfile(Profile newProfile)
+		public bool HasProfileName(string name)
+		{
+			foreach (Profile profile in this)
+			{
+				if (profile.Name == name) return true;
+			}
+			return false;
+		}
+
+		public bool AddProfile(Profile newProfile)
 		{
 			bool exclusive = true;
 			foreach (Profile prof in this)
@@ -111,6 +120,8 @@ namespace WpfApp.Config
 
 				profiles.Add(newProfile);
 			}
+
+			return exclusive;
 		}
 
 		public void AddProfiles(Profile[] import)
@@ -174,6 +185,8 @@ namespace WpfApp.Config
 
 			return DBProfiles;
 		}
+
+		public bool Contains(Profile profile) => profiles.Contains(profile);
 
         public IEnumerator GetEnumerator()
         {

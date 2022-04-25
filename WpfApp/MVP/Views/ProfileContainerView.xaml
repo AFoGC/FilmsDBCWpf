@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:WpfApp.MVP.Views"
              mc:Ignorable="d" 
              >
-    <Grid x:Name="grid" Height="30" Width="800">
-        <WrapPanel x:Name="ProfilesPanel" HorizontalAlignment="Left" Width="800" Margin="0,0,0,30"/>
-        <Button x:Name="AddProfileButton" Content="Add new profile" HorizontalAlignment="Left" Margin="165,0,0,5" VerticalAlignment="Bottom" Height="20" Width="133" Foreground="White" Click="AddProfileButton_Click">
+    <Grid x:Name="grid" Height="55" Width="800">
+        <WrapPanel x:Name="ProfilesPanel" HorizontalAlignment="Left" Width="800" Margin="0,0,0,55"/>
+        <Button x:Name="AddProfileButton" Content="Add new profile" HorizontalAlignment="Left" Margin="165,0,0,30" VerticalAlignment="Bottom" Height="20" Width="133" Foreground="White" Click="AddProfileButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -32,7 +32,55 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="AddProfileTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="10,0,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="150" Foreground="White" BorderBrush="#FF7A7A7A"/>
+        <TextBox x:Name="AddProfileTextBox" TextWrapping="NoWrap" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="10,0,0,30" Text="" VerticalAlignment="Bottom" Width="150" Foreground="White" BorderBrush="#FF7A7A7A"/>
+        <Button x:Name="OpenDirectoryButton" Content="Open profiles directory" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" Height="20" Width="175" Foreground="White" Click="OpenDirectoryButton_Click" >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="ImportFileButton" Content="Import File" HorizontalAlignment="Left" Margin="190,0,0,5" VerticalAlignment="Bottom" Height="20" Width="108" Foreground="White" Click="ImportFileButton_Click"  >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
     </Grid>
 </UserControl>

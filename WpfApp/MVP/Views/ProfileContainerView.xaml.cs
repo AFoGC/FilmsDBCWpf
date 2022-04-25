@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,10 +36,36 @@ namespace WpfApp.MVP.Views
 
         public string AddProfileText { get => AddProfileTextBox.Text; set => AddProfileTextBox.Text = value; }
         double IProfileSettingsContainerView.Height { get => grid.Height; set => grid.Height = value; }
+        public double DefaultHeight => 55;
 
+        private static readonly char[] symbols = new char[] { '"', '\\', '/', ':', '|', '<', '>', '*', '?'};
         private void AddProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            presenter.AddProfile();
+            if (AddProfileText.IndexOfAny(symbols) != -1)
+                MessageBox.Show("The following characters are not allowed: \" \\ / : | < > * ? ");
+            else presenter.AddProfile();
+            
+        }
+
+        private void OpenDirectoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                Arguments = Profile.AllProfilesPath,
+                FileName = "explorer.exe"
+            };
+            Process.Start(startInfo);
+        }
+
+        private void ImportFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.FileName = "Films";
+            dialog.DefaultExt = ".fdbc";
+            dialog.Filter = "Film documents (.fdbc)|*.fdbc";
+            dialog.ShowDialog();
+            presenter.ImportProfile(dialog.FileName);
+            presenter.RefreshControl();
         }
     }
 }

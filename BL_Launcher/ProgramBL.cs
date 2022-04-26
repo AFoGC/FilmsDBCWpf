@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL_Launcher
 {
-    public static class ProgramBLs
+    public static class ProgramBL
     {
         public static ProgramBO GetLastUpdate()
         {
@@ -25,6 +25,6 @@ namespace BL_Launcher
             new ProgramDAL().AddUpdate(program);
         }
 
-        public static void IsDBOnline() => BaseConnection.IsDatabaseOnline();
+        public static bool IsDBOnline() => BaseConnection.IsDatabaseOnline();
     }
 }

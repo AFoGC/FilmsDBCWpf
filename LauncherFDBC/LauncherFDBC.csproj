@@ -63,6 +63,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\MainWindowModel.cs" />
+    <Compile Include="Presenters\MainWindowPresenter.cs" />
+    <Compile Include="Views\IMainWindowView.cs" />
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -94,9 +97,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Presenters\" />
+    <ProjectReference Include="..\BL_Launcher\BL_Launcher.csproj">
+      <Project>{5aab946d-0b25-4cce-9800-10b6ee6bf39a}</Project>
+      <Name>BL_Launcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BO_Launcher\BO_Launcher.csproj">
+      <Project>{b38f2b72-7684-4567-a0a7-161934539cc5}</Project>
+      <Name>BO_Launcher</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LauncherFDBC.Models;
+using LauncherFDBC.Presenters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +20,29 @@ namespace LauncherFDBC.Views
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindowView : Window
+    public partial class MainWindowView : Window, IMainWindowView
     {
+        MainWindowPresenter presenter;
         public MainWindowView()
         {
             InitializeComponent();
+            presenter = new MainWindowPresenter(new MainWindowModel(), this);
+            if (presenter.CanBeUpdated())
+            {
+                updateButton.Background = Brushes.Red;
+                updateButton.IsEnabled = true;
+            }
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.GetUpdateFromDB();
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.RunProgram();
         }
     }
 }

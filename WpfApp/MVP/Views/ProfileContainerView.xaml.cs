@@ -63,9 +63,13 @@ namespace WpfApp.MVP.Views
             dialog.FileName = "Films";
             dialog.DefaultExt = ".fdbc";
             dialog.Filter = "Film documents (.fdbc)|*.fdbc";
-            dialog.ShowDialog();
-            presenter.ImportProfile(dialog.FileName);
-            presenter.RefreshControl();
+            Nullable<bool> result = dialog.ShowDialog();
+            if (result == true)
+            {
+                presenter.ImportProfile(dialog.FileName);
+                presenter.RefreshControl();
+            }
+            
         }
     }
 }

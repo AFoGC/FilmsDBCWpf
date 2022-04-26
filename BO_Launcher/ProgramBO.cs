@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace BO_Launcher
 {
@@ -17,7 +18,7 @@ namespace BO_Launcher
         public Int64 ID { get; set; }
         public String UpdateInfo { get; set; }
 
-        [field: NonSerialized]
+        [XmlIgnore]
         public Byte[] ProgramFile { get; set; }
     }
 }

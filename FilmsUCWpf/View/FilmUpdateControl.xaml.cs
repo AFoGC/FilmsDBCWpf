@@ -5,6 +5,7 @@ using InfoMenusWpf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +66,15 @@ namespace FilmsUCWpf.View
 		public void UpdateElement()
 		{
 			presenter.UpdateElement();
+			/*
+            try{
+				presenter.UpdateElement();
+			}
+			catch(Exception e)
+            {
+				MessageBox.Show($"Wrong data type\n{new StackTrace(e).GetFrame(0).GetMethod().Name}");
+			}
+			*/
 		}
 
 		public string ID { set => id.Text = value; }

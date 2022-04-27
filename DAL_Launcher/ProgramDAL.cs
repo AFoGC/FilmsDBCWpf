@@ -27,10 +27,6 @@ namespace DAL_Launcher
 			program.ID = objReader.GetInt64(0);
 			program.UpdateInfo = objReader.GetString(1);
 			program.ProgramFile = (byte[])objReader.GetValue(2);
-			/*
-			if ((ob = objReader.GetValue(2)) != DBNull.Value)
-				program.ProgramFile = (byte[])ob;
-			*/
 
 			return program;
 		}

@@ -10,5 +10,6 @@ namespace UpdaterManager.Views
     {
         String FilePath { get; set; }
         String UpdateInfo { get; set; }
+        String LauncherFilePath { get; set; }
     }
 }

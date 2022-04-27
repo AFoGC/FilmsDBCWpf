@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_Launcher", "DAL_Launche
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdaterManager", "UpdaterManager\UpdaterManager.csproj", "{7D427226-394A-4454-BCED-24DBC73785EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherUpdater", "LauncherUpdater\LauncherUpdater.csproj", "{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -273,6 +275,18 @@ Global
 		{7D427226-394A-4454-BCED-24DBC73785EB}.Release|iPhone.Build.0 = Release|Any CPU
 		{7D427226-394A-4454-BCED-24DBC73785EB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{7D427226-394A-4454-BCED-24DBC73785EB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Release|iPhone.Build.0 = Release|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -294,6 +308,7 @@ Global
 		{5AAB946D-0B25-4CCE-9800-10B6EE6BF39A} = {EAB040D3-881E-459E-A97D-8D10B899FD7F}
 		{948E8502-C0A5-46B5-A79A-34189593B8F7} = {EAB040D3-881E-459E-A97D-8D10B899FD7F}
 		{7D427226-394A-4454-BCED-24DBC73785EB} = {EAB040D3-881E-459E-A97D-8D10B899FD7F}
+		{4CCECDC3-A0E1-4E95-8F7F-AF7876DCBF8F} = {EAB040D3-881E-459E-A97D-8D10B899FD7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D9965151-C57E-4D9D-B9F8-F946FBBC746A}

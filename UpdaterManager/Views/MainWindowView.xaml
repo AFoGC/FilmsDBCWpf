@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UpdaterManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="800">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Left" x:Name="UpdateInfoTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Margin="122,65,0,0"/>
+        <TextBox HorizontalAlignment="Left" x:Name="UpdateInfoTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Margin="130,65,0,0"/>
         <Label Content="Update Informatin" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,65,0,0"/>
         <Label Content="Export file path" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" x:Name="FilePathTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Margin="122,99,0,0" GotFocus="FilePathTextBox_GotFocus"/>
-        <Button Content="Add New Program Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="442,127,0,0" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" x:Name="FilePathTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Margin="130,96,0,0" GotFocus="FilePathTextBox_GotFocus"/>
+        <Button Content="Add New Program Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="450,124,0,0" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" x:Name="LauncherPathTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Margin="130,181,0,0" GotFocus="LauncherPathTextBox_GotFocus"/>
+        <Label Content="Export launcher file " HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top"/>
+        <Button Content="Add New Program Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="450,209,0,0" Click="Button_Click_SendLauncher"/>
 
     </Grid>
 </Window>

@@ -15,12 +15,16 @@ namespace LauncherFDBC.Models
         {
             Formatter = new XmlSerializer(typeof(ProgramBO));
             LauncherPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            LauncherUpdaterPath = LauncherPath + "\\LauncherUpdater.exe";
+            LauncherProgPath = LauncherPath + "\\LauncherFDBC.exe";
             SettingPath = LauncherPath + "\\upversion.xml";
             FdbcPath = LauncherPath + "\\FilmsDBC";
             FdbcProgPath = FdbcPath + "\\WpfApp.exe";
             LocalUpdate = new ProgramBO();
         }
 
+        public string LauncherUpdaterPath { get; private set; }
+        public string LauncherProgPath { get; private set; }
         public string LauncherPath { get; private set; }
         public XmlSerializer Formatter { get; private set; }
         public string SettingPath { get; private set; }

@@ -26,6 +26,7 @@ namespace UpdaterManager.Views
 
         public string FilePath { get => FilePathTextBox.Text; set => FilePathTextBox.Text = value; }
         public string UpdateInfo { get => UpdateInfoTextBox.Text; set => UpdateInfoTextBox.Text = value; }
+        public string LauncherFilePath { get => LauncherPathTextBox.Text; set => LauncherPathTextBox.Text = value; }
 
         public MainWindowView()
         {
@@ -49,6 +50,24 @@ namespace UpdaterManager.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             presenter.SendNewUpdate();
+        }
+
+        private void LauncherPathTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.FileName = "WpfApp";
+            dialog.DefaultExt = ".exe";
+            dialog.Filter = "executable file (.exe)|*.exe";
+            Nullable<bool> result = dialog.ShowDialog();
+            if (result == true)
+            {
+                LauncherPathTextBox.Text = dialog.FileName;
+            }
+        }
+
+        private void Button_Click_SendLauncher(object sender, RoutedEventArgs e)
+        {
+            presenter.SendNewLauncherUpdate();
         }
     }
 }

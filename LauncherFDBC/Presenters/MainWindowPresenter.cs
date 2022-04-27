@@ -31,6 +31,14 @@ namespace LauncherFDBC.Presenters
 			return true;
 		}
 
+		public bool LauncherCanBeUpdated()
+        {
+			if (!ProgramBL.IsDBOnline()) return false;
+			if (IsLauncherVersionEqual()) return false;
+
+			return true;
+		}
+
 		public void GetUpdateFromDB()
         {
 			ProgramBO programBO = ProgramBL.GetLastUpdate();
@@ -49,9 +57,20 @@ namespace LauncherFDBC.Presenters
 			SaveUpdateInfo();
         }
 
+		public void GetLauncherUpdateFromDB()
+        {
+			ProcessStartInfo startInfo = new ProcessStartInfo
+			{
+				FileName = model.LauncherUpdaterPath
+			};
+
+			System.Windows.Application.Current.Shutdown();
+			Process.Start(startInfo);
+		}
+
 		public bool IsProgramVersionsEqual()
 		{
-			if (!File.Exists(model.SettingPath)) 
+			if (!IsProgramExist()) 
 				return false;
 			else LoadUpdateInfo();
 
@@ -60,6 +79,18 @@ namespace LauncherFDBC.Presenters
 			if (DBUpdate.ID == model.LocalUpdate.ID) 
 				return true;
 			else return false;
+		}
+
+		public bool IsLauncherVersionEqual()
+        {
+			LauncherBO launcherBO = LauncherBL.GetLastUpdate();
+			byte[] localFile = File.ReadAllBytes(model.LauncherProgPath);
+			return Enumerable.SequenceEqual(localFile, launcherBO.LauncherFile);
+        }
+
+		public bool IsProgramExist()
+        {
+			return File.Exists(model.SettingPath);
 		}
 
 		public void LoadUpdateInfo()
@@ -85,8 +116,8 @@ namespace LauncherFDBC.Presenters
 				FileName = model.FdbcProgPath
 			};
 
-			Process.Start(startInfo);
 			System.Windows.Application.Current.Shutdown();
+			Process.Start(startInfo);
 		}
 	}
 }

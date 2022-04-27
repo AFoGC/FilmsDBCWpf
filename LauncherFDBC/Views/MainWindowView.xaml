@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:LauncherFDBC"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStyle="SingleBorderWindow">
-    <Grid>
+    <Grid Background="Red">
         <Button x:Name="updateButton" IsEnabled="False" Content="Download or Update" Background="#FFDDDDDD" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,307,0,0" Height="102" Click="Button_Click"/>
         <Button x:Name="startButton" IsEnabled="True" Content="Start Program" Background="#FFDDDDDD" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="400,307,0,0" Height="102" Click="startButton_Click"/>
+        <Button x:Name="updateLauncherButton" IsEnabled="False" Content="Update Launcher" Background="#FFDDDDDD" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,200,0,0" Height="102" Click="updateLauncherButton_Click"/>
 
     </Grid>
 </Window>

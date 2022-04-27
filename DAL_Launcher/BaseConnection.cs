@@ -14,10 +14,10 @@ namespace DAL_Launcher
         private string connectionString;
         public SqlConnection connection;
         public SqlCommand command;
+        private static readonly string connectstr = "Server=tcp:filmsdbc.database.windows.net;Database=fdbc_up;User ID=fuhgc@filmsdbc;Password=D32wsxzaq1;Trusted_Connection=False;Encrypt=True;";
         public BaseConnection()
         {
-            connectionString = ConfigurationManager.
-                ConnectionStrings["ConnectionString"].ConnectionString;
+            connectionString = connectstr;
 
             connection = new SqlConnection(connectionString);
 
@@ -38,8 +38,7 @@ namespace DAL_Launcher
         public static bool IsDatabaseOnline()
         {
             bool isConnected = false;
-            string constr = ConfigurationManager.
-                ConnectionStrings["ConnectionString"].ConnectionString;
+            string constr = connectstr;
             SqlConnection connetion = null;
             try
             {

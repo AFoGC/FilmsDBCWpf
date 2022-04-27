@@ -1,9 +1,13 @@
 ﻿using BL_Launcher;
 using BO_Launcher;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace LauncherUpdater
 {
@@ -21,7 +25,7 @@ namespace LauncherUpdater
                 Console.WriteLine("Delete old version");
                 File.Delete(launcherPath);
             }
-            Console.WriteLine("Save new version");
+            Console.WriteLine($"Save new version ID: {launcherBO.ID}");
             File.WriteAllBytes(launcherPath, launcherBO.LauncherFile);
 
             Console.WriteLine("Start launcher");
@@ -30,7 +34,6 @@ namespace LauncherUpdater
                 FileName = launcherPath
             };
             Process.Start(startInfo);
-            Console.ReadKey();
         }
     }
 }

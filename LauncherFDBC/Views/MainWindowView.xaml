@@ -5,11 +5,137 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LauncherFDBC"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStyle="SingleBorderWindow">
-    <Grid Background="Red">
-        <Button x:Name="updateButton" IsEnabled="False" Content="Download or Update" Background="#FFDDDDDD" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,307,0,0" Height="102" Click="Button_Click"/>
-        <Button x:Name="startButton" IsEnabled="True" Content="Start Program" Background="#FFDDDDDD" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="400,307,0,0" Height="102" Click="startButton_Click"/>
-        <Button x:Name="updateLauncherButton" IsEnabled="False" Content="Update Launcher" Background="#FFDDDDDD" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,200,0,0" Height="102" Click="updateLauncherButton_Click"/>
+        Title="MainWindow" Height="520" Width="900" WindowStyle="None" ResizeMode="NoResize" BorderThickness="1" BorderBrush="WhiteSmoke">
+    <Grid Background="#FF121212" MouseDown="Grid_MouseDown">
+        <Button x:Name="updateButton" Content="Download or Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,460,0,0" Height="50" Click="Button_Click" FontSize="20">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#0074e5"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF1381EC"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF0064C5"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#FFDDDDDD"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="startButton" IsEnabled="True" Content="Start Program" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="508,405,0,0" Height="105" Click="startButton_Click" FontSize="36">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#fecc0b"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFFFD42D"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FFE0B510"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#FFDDDDDD"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="updateLauncherButton" Content="Update Launcher" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,405,0,0" Height="50" Click="updateLauncherButton_Click" FontSize="20">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#0074e5"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF1381EC"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF0064C5"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#FFDDDDDD"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btn_close" Content="X" Foreground="WhiteSmoke" Padding="0,0,0,0" Click="btn_close_Click" HorizontalAlignment="Right" Width="40" Margin="0,0,0,490">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#E62E4C"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FFA62036"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btn_minimize" Content="_" Foreground="WhiteSmoke" Padding="0,0,0,0" Margin="0,0,40,490" ClickMode="Release" HorizontalAlignment="Right" Width="40" Click="btn_minimize_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF1F1F1F"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2E2E2E"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="#FF151515"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
     </Grid>
 </Window>

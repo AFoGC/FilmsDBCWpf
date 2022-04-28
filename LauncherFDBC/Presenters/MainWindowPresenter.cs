@@ -88,6 +88,11 @@ namespace LauncherFDBC.Presenters
 			return Enumerable.SequenceEqual(localFile, launcherBO.LauncherFile);
         }
 
+		public bool IsProgramFileExist()
+        {
+			return File.Exists(model.FdbcProgPath);
+        }
+
 		public bool IsProgramExist()
         {
 			return File.Exists(model.SettingPath);

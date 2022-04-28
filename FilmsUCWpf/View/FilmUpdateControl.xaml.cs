@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,6 +51,12 @@ namespace FilmsUCWpf.View
 			presenter.OpenSources();
 		}
 
+		private void TextInputIsNumber(object sender, TextCompositionEventArgs e)
+		{
+			Regex regex = new Regex("[^0-9]+");
+			e.Handled = regex.IsMatch(e.Text);
+		}
+
 		private void watched_Click(object sender, RoutedEventArgs e)
 		{
 			if (watchDate.IsEmpty)
@@ -87,7 +94,7 @@ namespace FilmsUCWpf.View
 		public DateTime DateOfWatch { get => watchDate.Date; set => watchDate.Date = value; }
 		public string Comment { get => comment.Text; set => comment.Text = value; }
 
-        private void genre_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void genre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

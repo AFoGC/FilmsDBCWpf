@@ -33,6 +33,7 @@ namespace WpfApp.MVP.Views
             menus.Children.Add(new BooksMenuView(model));
             menus.Children.Add(new FilmsMenuView(model));
             presenter.WindowLoaded();
+            model.InfoUnsaved = false;
         }
 
         public void ChangePriorityMenu<Element>() where Element : UIElement

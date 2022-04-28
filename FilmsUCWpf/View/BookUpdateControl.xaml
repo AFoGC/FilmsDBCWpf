@@ -19,7 +19,7 @@
         </ComboBox>
         <TextBox x:Name="name" ToolTip="Name (Text)" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="realiseYear" ToolTip="Realise Year (Integer number)" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="realiseYear" ToolTip="Realise Year (Integer number)" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke" PreviewTextInput="TextInputIsNumber"/>
         <CheckBox x:Name="readed" ToolTip="Readed" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" Click="watched_Click"/>
         <TextBox x:Name="author" ToolTip="Author (Text)" HorizontalAlignment="Left" Margin="395,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="100" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="bookmark" ToolTip="Bookmark (Text)" HorizontalAlignment="Left" Margin="495,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="101" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
@@ -34,7 +34,7 @@
                 </Style>
             </ComboBox.ItemContainerStyle>
         </ComboBox>
-        <TextBox x:Name="countOfReadings" ToolTip="Count Of Readings (Integer number)" HorizontalAlignment="Left" Margin="701,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="countOfReadings" ToolTip="Count Of Readings (Integer number)" HorizontalAlignment="Left" Margin="701,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke" PreviewTextInput="TextInputIsNumber"/>
         <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" Margin="734,0,106,0" ClickMode="Release" Padding="0,0,0,0" Height="20" Width="100" VerticalAlignment="Top" Click="btn_comment_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

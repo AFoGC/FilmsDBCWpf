@@ -53,13 +53,15 @@ namespace FilmsUCWpf.Presenter
 		{
 			model.Name = view.Name;
 			model.BookGenre = view.Genre;
-			model.PublicationYear = Helper.TextToInt32(view.RealiseYear);
 			model.Readed = view.Readed;
 			model.Author = view.Author;
 			model.FullReadDate = view.FullReadDate;
-			model.Mark = Helper.TextToMark(view.Mark);
-			model.CountOfReadings = Helper.TextToInt32(view.CountOfReadings);
 			model.Bookmark = view.Bookmark;
+
+			model.PublicationYear = Helper.TextToInt32(view.RealiseYear);
+			model.CountOfReadings = Helper.TextToInt32(view.CountOfReadings);
+
+			model.Mark = Helper.TextToMark(view.Mark);
 		}
 
 		public void OpenSources()

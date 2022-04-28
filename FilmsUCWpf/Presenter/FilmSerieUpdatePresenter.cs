@@ -55,18 +55,20 @@ namespace FilmsUCWpf.Presenter
 
 		public void UpdateElement()
 		{
+			model.Watched = view.Wathced;
 			model.Name = view.Name;
 			model.Genre = view.Genre;
-			model.RealiseYear = Helper.TextToInt32(view.RealiseYear);
-			model.Watched = view.Wathced;
-			model.Mark = Helper.TextToMark(view.Mark);
-			model.CountOfViews = Helper.TextToInt32(view.CountOfViews);
-			model.DateOfWatch = view.DateOfWatch;
 			model.Comment = view.Comment;
-
-			model.Serie.StartWatchDate = view.StartWatchDate;
+			
+			model.CountOfViews = Helper.TextToInt32(view.CountOfViews);
+			model.RealiseYear = Helper.TextToInt32(view.RealiseYear);
 			model.Serie.CountOfWatchedSeries = Helper.TextToInt32(view.CountOfWatchedSeries);
 			model.Serie.TotalSeries = Helper.TextToInt32(view.TotalSeries);
+
+			model.Mark = Helper.TextToMark(view.Mark);
+
+			model.DateOfWatch = view.DateOfWatch;
+			model.Serie.StartWatchDate = view.StartWatchDate;
 		}
 
 		public void OpenSources()

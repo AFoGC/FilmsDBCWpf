@@ -49,19 +49,23 @@ namespace FilmsUCWpf.Presenter
 		}
 		public void UpdateElement()
         {
-			model.Name = view.Name;
 			SeriesTable table = (SeriesTable)collection.GetTable<Serie>();
 			if (!model.Genre.IsSerialGenre && view.Genre.IsSerialGenre)
 			{
 				table.FindAndConnectSerie(model);
 			}
+
 			model.Genre = view.Genre;
-			model.RealiseYear = Helper.TextToInt32(view.RealiseYear);
 			model.Watched = view.Wathced;
-			model.Mark = Helper.TextToMark(view.Mark);
-			model.CountOfViews = Helper.TextToInt32(view.CountOfViews);
-			model.DateOfWatch = view.DateOfWatch;
+			model.Name = view.Name;
 			model.Comment = view.Comment;
+			
+			model.RealiseYear = Helper.TextToInt32(view.RealiseYear);
+			model.CountOfViews = Helper.TextToInt32(view.CountOfViews);
+
+			model.Mark = Helper.TextToMark(view.Mark);
+
+			model.DateOfWatch = view.DateOfWatch;
 		}
 
 		public void OpenSources()

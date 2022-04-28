@@ -83,7 +83,14 @@ namespace FilmsUCWpf.View
 
 		public void UpdateElement()
 		{
-			presenter.UpdateElement();
+			try
+			{
+				presenter.UpdateElement();
+			}
+			catch
+			{
+				MessageBox.Show("Invalid data type entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
 		}
 
 		public string ID { set => id.Text = value; }

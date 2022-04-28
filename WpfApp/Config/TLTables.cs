@@ -48,7 +48,7 @@ namespace WpfApp.Config
 			export.AddTable(new FilmsTable());
 			export.AddTable(new SeriesTable());
 			export.AddTable(new PriorityFilmsTable());
-			export.AddTable(new BookGenresTable());
+			export.AddTable(BookGenresTable.GetDefaultGenresTable());
 			export.AddTable(new BookCategoriesTable());
 			export.AddTable(new PriorityBooksTable());
 

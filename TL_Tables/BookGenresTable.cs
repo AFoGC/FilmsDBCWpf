@@ -17,5 +17,17 @@ namespace TL_Tables
 		{
 
 		}
-	}
+
+        public static BookGenresTable GetDefaultGenresTable()
+        {
+            BookGenresTable export = new BookGenresTable();
+
+            BookGenre genre = new BookGenre();
+            genre.Name = "BookGenre1";
+
+            export.AddElement(genre);
+
+            return export;
+        }
+    }
 }

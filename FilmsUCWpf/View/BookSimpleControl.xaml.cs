@@ -77,5 +77,10 @@ namespace FilmsUCWpf.View
 			if (panel != null)
 				panel.Children.Remove(this);
 		}
-	}
+
+        private void btn_update_Click(object sender, RoutedEventArgs e)
+        {
+			presenter.OpenUpdateMenu();
+        }
+    }
 }

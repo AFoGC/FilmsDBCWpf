@@ -50,10 +50,5 @@ namespace WpfApp.MVP.Views
         {
             presenter.GetFromDB();
         }
-
-        private void Embrace_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

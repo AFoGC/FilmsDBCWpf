@@ -32,6 +32,8 @@ namespace WpfApp.MVP.Views
         public BooksMenuView(MainWindowModel windowModel)
         {
             InitializeComponent();
+            watchedRequestControl.LeftText = "Readed";
+            watchedRequestControl.RightText = "Unreaded";
             presenter = new BooksMenuPresenter(new Models.BooksMenuModel(), this, windowModel);
         }
 

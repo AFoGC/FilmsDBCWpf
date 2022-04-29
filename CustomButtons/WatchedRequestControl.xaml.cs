@@ -35,6 +35,9 @@ namespace CustomButtons
             get { return pbtn_unwatched; }
         }
 
+        public object LeftText { get => pbtn_watched.Content; set => pbtn_watched.Content = value; }
+        public object RightText { get => pbtn_unwatched.Content; set => pbtn_unwatched.Content = value; }
+
         public bool IsWatched
         {
             get { return pbtn_watched.Included; }

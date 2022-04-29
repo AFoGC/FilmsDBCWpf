@@ -29,6 +29,7 @@ namespace WpfApp.MVP.Views
         public GenreConteinerView(TableCollection tableCollection, GenrePresenterEnum genre)
         {
             InitializeComponent();
+            DefaultHeight = Height;
             if (genre == GenrePresenterEnum.BookGenre)
                 presenter = new BookGenreContainerPresenter(this, tableCollection);
             else
@@ -37,6 +38,9 @@ namespace WpfApp.MVP.Views
         }
 
         public IList GenreControls => GenresPanel.Children;
+
+        public double DefaultHeight { get; private set; }
+
         double IGenreSettingsContainerView.Height { get => grid.Height; set => grid.Height = value; }
 
         private void AddGenreButton_Click(object sender, RoutedEventArgs e)

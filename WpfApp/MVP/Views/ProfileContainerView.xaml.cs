@@ -29,6 +29,7 @@ namespace WpfApp.MVP.Views
         public ProfileContainerView(ProgramSettings settings)
         {
             InitializeComponent();
+            DefaultHeight = this.Height;
             presenter = new ProfileContainerPresenter(this, settings);
         }
 
@@ -36,7 +37,7 @@ namespace WpfApp.MVP.Views
 
         public string AddProfileText { get => AddProfileTextBox.Text; set => AddProfileTextBox.Text = value; }
         double IProfileSettingsContainerView.Height { get => grid.Height; set => grid.Height = value; }
-        public double DefaultHeight => 55;
+        public double DefaultHeight { get; private set; }
 
         private static readonly char[] symbols = new char[] { '"', '\\', '/', ':', '|', '<', '>', '*', '?'};
         private void AddProfileButton_Click(object sender, RoutedEventArgs e)

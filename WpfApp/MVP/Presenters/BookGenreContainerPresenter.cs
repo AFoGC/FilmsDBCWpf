@@ -38,7 +38,7 @@ namespace WpfApp.MVP.Presenters
 
         public void RefreshControl()
         {
-            view.Height = 60;
+            view.Height = view.DefaultHeight;
             view.GenreControls.Clear();
             foreach (BookGenre genre in tableCollection.GetTable<BookGenre>())
             {

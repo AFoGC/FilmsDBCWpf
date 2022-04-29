@@ -11,5 +11,6 @@ namespace WpfApp.MVP.ViewsInterface
     {
         IList GenreControls { get; }
         Double Height { get; set; }
+        Double DefaultHeight { get; }
     }
 }

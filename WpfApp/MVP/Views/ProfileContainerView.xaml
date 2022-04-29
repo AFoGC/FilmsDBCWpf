@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:WpfApp.MVP.Views"
              mc:Ignorable="d" 
              >
-    <Grid x:Name="grid" Height="55" Width="800">
-        <WrapPanel x:Name="ProfilesPanel" HorizontalAlignment="Left" Width="800" Margin="0,0,0,55"/>
+    <Grid x:Name="grid" Height="86" Width="800">
+        <Label Content="Profiles Settings" VerticalAlignment="Top" Foreground="White" BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A" Margin="10,0,0,0"/>
+        <WrapPanel x:Name="ProfilesPanel" HorizontalAlignment="Left" Width="800" Margin="0,31,0,55"/>
         <Button x:Name="AddProfileButton" Content="Add new profile" HorizontalAlignment="Left" Margin="165,0,0,30" VerticalAlignment="Bottom" Height="20" Width="133" Foreground="White" Click="AddProfileButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -81,6 +82,7 @@
                 </Style>
             </Button.Style>
         </Button>
+        
 
     </Grid>
 </UserControl>

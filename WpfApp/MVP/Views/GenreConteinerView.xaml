@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:WpfApp.MVP.Views"
              mc:Ignorable="d" 
              >
-    <Grid x:Name="grid" Width="800" Height="60">
-        <WrapPanel x:Name="GenresPanel" HorizontalAlignment="Left" Width="798" Margin="0,25,0,35" Orientation="Vertical"/>
+    <Grid x:Name="grid" Width="800" Height="67">
+        <Label x:Name="MenuLabel" Content="Genres Settings" VerticalAlignment="Top" Foreground="White" BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A" Margin="10,0,0,0"/>
+        <WrapPanel x:Name="GenresPanel" HorizontalAlignment="Left" Width="798" Margin="0,32,0,35" Orientation="Vertical"/>
         <Button x:Name="AddGenreButton" Content="Add new genre" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="20" Foreground="White" Click="AddGenreButton_Click" HorizontalAlignment="Left" Width="133">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -32,6 +33,7 @@
                 </Style>
             </Button.Style>
         </Button>
+        
 
     </Grid>
 </UserControl>

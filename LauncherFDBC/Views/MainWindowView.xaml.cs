@@ -25,7 +25,9 @@ namespace LauncherFDBC.Views
 	public partial class MainWindowView : Window, IMainWindowView
 	{
 		MainWindowPresenter presenter;
-		public MainWindowView()
+        public string UpdateInfo { set => updateInfo.Text = value; }
+        public string UpdateID { set => updateID.Content = value; }
+        public MainWindowView()
 		{
 			InitializeComponent();
 			presenter = new MainWindowPresenter(new MainWindowModel(), this);

@@ -14,7 +14,7 @@
         <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <TextBox x:Name="mark" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="42" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <WrapPanel x:Name="cat_panel" Margin="29,15,2,20" Orientation="Vertical"/>
-        <Button x:Name="btn_update" Content="update" Foreground="WhiteSmoke" VerticalAlignment="Top" Width="78" Height="13" Margin="751,1,1,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
+        <Button x:Name="btn_update" Content="Update Category" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="13" Margin="424,1,213,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

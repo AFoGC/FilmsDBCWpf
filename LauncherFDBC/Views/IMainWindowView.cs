@@ -8,6 +8,7 @@ namespace LauncherFDBC.Views
 {
     public interface IMainWindowView
     {
-
+        String UpdateInfo { set; }
+        String UpdateID { set; }
     }
 }

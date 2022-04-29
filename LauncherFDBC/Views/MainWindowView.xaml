@@ -136,6 +136,10 @@
                 </Style>
             </Button.Style>
         </Button>
+        <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="updateInfo" Foreground="White" Margin="10,42,0,0" VerticalAlignment="Top" Height="358" BorderThickness="0" Width="878" Background="{x:Null}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
+        </TextBox>
+        <Label Content="FilmsDBC" HorizontalAlignment="Left" Foreground="White" Background="#FF1C1C1C" VerticalAlignment="Top" Height="28" Width="818" FontSize="14"/>
+        <Label Content="1.0" x:Name="updateID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="64,2,0,0" Foreground="#FF6E6E6E"/>
 
     </Grid>
 </Window>

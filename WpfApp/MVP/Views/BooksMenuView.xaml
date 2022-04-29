@@ -19,13 +19,17 @@
             <WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
         </ScrollViewer>
 
-        <Canvas Margin="998,99,225,167">
-            <Border BorderBrush="White" BorderThickness="1" Width="262" Height="439" >
+        <Canvas Margin="998,99,225,187">
+            <Border BorderBrush="White" BorderThickness="1" Width="262" Height="419" >
                 <Canvas>
-                    <Button x:Name="btn_filter" Content="Search" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="284" Click="btn_filter_Click">
+                    <Line X1="0" Y1="208"
+                          X2="260" Y2="208"
+                          Stroke="White"/>
+                    <Label Foreground="White" Content="Filter options" Canvas.Left="90" Canvas.Top="232"/>
+                    <Button x:Name="btn_filter" Content="Search" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="110" VerticalAlignment="Top" Canvas.Left="75" Canvas.Top="394" Click="btn_filter_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
-                                <Setter Property="Background" Value="#FF1F1F1F"/>
+                                <Setter Property="Background" Value="#0074e5"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type Button}">
@@ -37,21 +41,24 @@
                                 </Setter>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FF2E2E2E"/>
+                                        <Setter Property="Background" Value="#FF1381EC"/>
                                     </Trigger>
                                     <Trigger Property="IsMouseCaptureWithin" Value="True">
-                                        <Setter Property="Background" Value="#FF151515"/>
+                                        <Setter Property="Background" Value="#FF0064C5"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="#FFDDDDDD"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
                     </Button>
-                    <WrapPanel Height="100" Width="260" Canvas.Top="339" Name="genres_panel"/>
-                    <Elements:WatchedRequestControl x:Name="watchedRequestControl" Canvas.Top="313" Canvas.Left="0" IsUnwatched="True" IsWatched="True"/>
-                    <Button x:Name="btn_saveTable" Content="Save Table" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="111" VerticalAlignment="Top" Canvas.Left="149" Click="btn_saveTable_Click">
+                    <WrapPanel Height="100" Width="260" Canvas.Top="289" Name="genres_panel"/>
+                    <Elements:WatchedRequestControl x:Name="watchedRequestControl" Canvas.Top="263" Canvas.Left="0" IsUnwatched="True" IsWatched="True"/>
+                    <Button x:Name="btn_saveTable" Content="Save Table" Foreground="WhiteSmoke" ClickMode="Release" Padding="0,0,0,0" FontSize="12" Height="23" Width="110" VerticalAlignment="Top" Canvas.Left="75" Click="btn_saveTable_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
-                                <Setter Property="Background" Value="#FF1F1F1F"/>
+                                <Setter Property="Background" Value="#0074e5"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type Button}">
@@ -63,10 +70,13 @@
                                 </Setter>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FF2E2E2E"/>
+                                        <Setter Property="Background" Value="#FF1381EC"/>
                                     </Trigger>
                                     <Trigger Property="IsMouseCaptureWithin" Value="True">
-                                        <Setter Property="Background" Value="#FF151515"/>
+                                        <Setter Property="Background" Value="#FF0064C5"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="#FFDDDDDD"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>

@@ -55,7 +55,9 @@ namespace LauncherFDBC.Presenters
 
 
 			SaveUpdateInfo();
-        }
+			view.UpdateInfo = model.LocalUpdate.UpdateInfo;
+			view.UpdateID = $"1.{model.LocalUpdate.ID}";
+		}
 
 		public void GetLauncherUpdateFromDB()
         {
@@ -104,6 +106,8 @@ namespace LauncherFDBC.Presenters
 			{
 				model.LocalUpdate = (ProgramBO)model.Formatter.Deserialize(fs);
 			}
+			view.UpdateInfo = model.LocalUpdate.UpdateInfo;
+			view.UpdateID = $"1.{model.LocalUpdate.ID}";
 		}
 
 		public void SaveUpdateInfo()

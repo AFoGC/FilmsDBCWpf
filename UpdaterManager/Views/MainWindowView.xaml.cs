@@ -50,6 +50,7 @@ namespace UpdaterManager.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             presenter.SendNewUpdate();
+            MessageBox.Show("New Program update has been successfully submitted", "Info");
         }
 
         private void LauncherPathTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -68,6 +69,7 @@ namespace UpdaterManager.Views
         private void Button_Click_SendLauncher(object sender, RoutedEventArgs e)
         {
             presenter.SendNewLauncherUpdate();
+            MessageBox.Show("New Launcher update has been successfully submitted", "Info");
         }
     }
 }

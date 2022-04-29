@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Left" x:Name="UpdateInfoTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Margin="130,65,0,0"/>
-        <Label Content="Update Informatin" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,65,0,0"/>
-        <Label Content="Export file path" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" x:Name="FilePathTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Margin="130,96,0,0" GotFocus="FilePathTextBox_GotFocus"/>
-        <Button Content="Add New Program Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="450,124,0,0" Click="Button_Click"/>
-        <TextBox HorizontalAlignment="Left" x:Name="LauncherPathTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Margin="130,181,0,0" GotFocus="LauncherPathTextBox_GotFocus"/>
-        <Label Content="Export launcher file " HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top"/>
-        <Button Content="Add New Program Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="450,209,0,0" Click="Button_Click_SendLauncher"/>
+        <TextBox x:Name="UpdateInfoTextBox" Margin="130,10,10,213" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+        <Label Content="Update Informatin" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <Label Content="Export file path" HorizontalAlignment="Left" Margin="10,0,0,182" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="FilePathTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="130,0,10,185" GotFocus="FilePathTextBox_GotFocus"/>
+        <Button Content="Add New Program Update" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="180" Margin="0,0,10,160" Click="Button_Click"/>
+        <TextBox x:Name="LauncherPathTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="130,0,10,70" GotFocus="LauncherPathTextBox_GotFocus"/>
+        <Label Content="Export launcher file " Margin="10,0,0,67" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="115"/>
+        <Button Content="Add New Program Update" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="180" Margin="0,0,10,45" Click="Button_Click_SendLauncher"/>
 
     </Grid>
 </Window>

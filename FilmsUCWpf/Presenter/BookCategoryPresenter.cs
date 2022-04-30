@@ -51,7 +51,7 @@ namespace FilmsUCWpf.Presenter
 			View.CategoryCollection.Add(presenter.View);
 		}
 
-		private void RefreshCategoryBooks()
+		public void RefreshCategoryBooks()
 		{
 			View.CategoryCollection.Clear();
 			presenters.Clear();

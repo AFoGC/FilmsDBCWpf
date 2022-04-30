@@ -47,6 +47,7 @@ namespace FilmsUCWpf.View
 			if (this.presenter == null)
 			{
 				this.presenter = (BookCategoryPresenter)presenter;
+                this.presenter.Model.Books.CollectionChanged += Books_CollectionChanged;
 				DataContext = this.presenter;
 				return true;
 			}
@@ -56,7 +57,7 @@ namespace FilmsUCWpf.View
 			}
 		}
 
-		public void SetVisualDefault()
+        public void SetVisualDefault()
 		{
 			SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(53, 53, 53));
 			this.id.Background = myBrush;
@@ -82,5 +83,19 @@ namespace FilmsUCWpf.View
         {
 			presenter.CreateBookInCategory();
         }
+
+		private bool isOpen = true;
+		private void Books_CollectionChanged(object sender, EventArgs e)
+		{
+			isOpen = true;
+		}
+
+		private void hide_show_Cilck(object sender, RoutedEventArgs e)
+        {
+			if (isOpen) grid.Height = MinimizedHeight;
+			else presenter.RefreshCategoryBooks();
+
+			isOpen = !isOpen;
+		}
     }
 }

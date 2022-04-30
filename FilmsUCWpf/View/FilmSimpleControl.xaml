@@ -34,7 +34,7 @@
             <Button.ContextMenu>
                 <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
                     <MenuItem Header="Delete This" Click="MenuItem_Click"/>
-                    <MenuItem Header="Add To Priority"/>
+                    <MenuItem Header="Add To Priority" Click="addToPriority_Click"/>
                 </ContextMenu>
             </Button.ContextMenu>
         </Button>

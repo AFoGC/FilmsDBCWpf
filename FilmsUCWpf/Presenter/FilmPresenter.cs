@@ -66,6 +66,17 @@ namespace FilmsUCWpf.Presenter
 			filmsTable.Remove(Model);
 		}
 
+		public void AddToPriority()
+        {
+			PriorityFilmsTable priorityFilms = (PriorityFilmsTable)TableCollection.GetTable<PriorityFilm>();
+            if (!priorityFilms.ContainFilm(Model))
+            {
+				PriorityFilm priority = new PriorityFilm();
+				priority.Film = Model;
+				priorityFilms.AddElement(priority);
+            }
+        }
+
 		public void CopyUrl()
 		{
 			Helper.CopyFirstSource(Model.Sources);

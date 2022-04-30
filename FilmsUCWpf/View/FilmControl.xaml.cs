@@ -99,5 +99,10 @@ namespace FilmsUCWpf.View
         {
 			presenter.DeleteThis();
         }
+
+        private void addToPriority_Click(object sender, RoutedEventArgs e)
+        {
+			presenter.AddToPriority();
+        }
     }
 }

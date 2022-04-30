@@ -39,5 +39,15 @@ namespace TL_Tables
                 }
             }
         }
+
+        public Category GetCategoryByFilm(Film film)
+        {
+            foreach (Category item in this)
+            {
+                if (item.Films.Contains(film))
+                    return item;
+            }
+            return null;
+        }
     }
 }

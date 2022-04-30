@@ -94,5 +94,10 @@ namespace FilmsUCWpf.View
 			SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 220, 0));
 			this.id.Background = myBrush;
 		}
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+			presenter.DeleteThis();
+        }
     }
 }

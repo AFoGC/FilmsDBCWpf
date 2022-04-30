@@ -40,5 +40,15 @@ namespace TL_Tables
 				}
 			}
 		}
+
+		public BookCategory GetCategoryByBook(Book book)
+        {
+            foreach (BookCategory item in this)
+            {
+				if (item.Books.Contains(book)) 
+					return item;
+            }
+			return null;
+        }
 	}
 }

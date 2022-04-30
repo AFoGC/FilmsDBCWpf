@@ -52,6 +52,20 @@ namespace FilmsUCWpf.Presenter
 			View.SetVisualSelected();
 		}
 
+		public void DeleteThis()
+        {
+			FilmsTable filmsTable = (FilmsTable)TableCollection.GetTable<Film>();
+			CategoriesTable categoriesTable = (CategoriesTable)TableCollection.GetTable<Category>();
+
+			if (Model.FranshiseId != 0)
+            {
+				Category category = categoriesTable.GetCategoryByFilm(Model);
+				category.RemoveFilmFromCategory(Model);
+			}
+
+			filmsTable.Remove(Model);
+		}
+
 		public void CopyUrl()
 		{
 			Helper.CopyFirstSource(Model.Sources);

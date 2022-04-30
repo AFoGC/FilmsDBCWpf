@@ -7,7 +7,37 @@
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="940">
     <Grid x:Name="grid" Height="15" Width="940">
-        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="27" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" GotFocus="id_GotFocus"/>
+        <TextBox x:Name="id" Text="{Binding ID}" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="27" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <Button Margin="2,1,911,1" ToolTip="ID" IsHitTestVisible="True" BorderThickness="1" Content="        " Click="id_GotFocus">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{x:Null}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptureWithin" Value="True">
+                            <Setter Property="Background" Value="{x:Null}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.ContextMenu>
+                <ContextMenu Name="cm" StaysOpen="true" Opened="id_GotFocus">
+                    <MenuItem Header="Delete This" Click="MenuItem_Click" />
+                    <MenuItem Header="Add To Priority"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
         <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">
         </TextBox>
         <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535">

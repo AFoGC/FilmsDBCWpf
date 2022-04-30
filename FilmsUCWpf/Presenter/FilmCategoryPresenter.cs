@@ -112,7 +112,7 @@ namespace FilmsUCWpf.Presenter
             return false;
         }
 
-        private void RefreshCategoryFilms()
+        public void RefreshCategoryFilms()
         {
             View.CategoryCollection.Clear();
             presenters.Clear();

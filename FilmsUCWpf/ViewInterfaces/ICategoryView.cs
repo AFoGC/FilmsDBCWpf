@@ -11,5 +11,6 @@ namespace FilmsUCWpf.ViewInterfaces
     {
         IList CategoryCollection { get; }
         Double DefaultHeght { get; }
+        Double MinimizedHeight { get; }
     }
 }

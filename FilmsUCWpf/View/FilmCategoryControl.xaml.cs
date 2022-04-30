@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TL_Objects;
 
 namespace FilmsUCWpf.View
 {
@@ -28,11 +29,13 @@ namespace FilmsUCWpf.View
 		public FilmCategoryControl()
 		{
 			InitializeComponent();
+			DefaultHeght = this.Height;
 		}
 
-		public IList CategoryCollection => cat_panel.Children;
+        public IList CategoryCollection => cat_panel.Children;
 		double IView.Height { get => grid.Height; set => grid.Height = value; }
-		double ICategoryView.DefaultHeght => 35;
+		public double MinimizedHeight => 15;
+		public double DefaultHeght { get; private set; }
 		public void SelfRemove()
 		{
 			Panel panel = (Panel)this.Parent;
@@ -45,6 +48,7 @@ namespace FilmsUCWpf.View
 			if (this.presenter == null)
 			{
 				this.presenter = (FilmCategoryPresenter)presenter;
+                this.presenter.Model.Films.CollectionChanged += Films_CollectionChanged;
 				DataContext = this.presenter;
 				return true;
 			}
@@ -52,6 +56,20 @@ namespace FilmsUCWpf.View
 			{
 				return false;
 			}
+		}
+
+		private bool isOpen = true;
+        private void Films_CollectionChanged(object sender, EventArgs e)
+        {
+			isOpen = true;
+        }
+
+		private void hide_show_Cilck(object sender, RoutedEventArgs e)
+		{
+            if (isOpen) grid.Height = MinimizedHeight;
+            else presenter.RefreshCategoryFilms();
+
+			isOpen = !isOpen;
 		}
 
 		public void SetVisualDefault()

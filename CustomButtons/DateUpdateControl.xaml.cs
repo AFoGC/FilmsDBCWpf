@@ -46,15 +46,6 @@ namespace CustomButtons
             }
         }
 
-        private void day_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (day.Text == "" && month.Text == "" && year.Text == "")
-            {
-                this.date = DateTime.Today;
-                refresh();
-            }
-        }
-
         public DateTime Date
         {
             get
@@ -114,28 +105,33 @@ namespace CustomButtons
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (day.Text == "" && month.Text == "" && year.Text == "")
-            {
-                this.date = DateTime.Today;
-                refresh();
-            }
-        }
-
-        private void Grid_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (day.Text == "" && month.Text == "" && year.Text == "")
-            {
-                this.date = DateTime.Today;
-                refresh();
-            }
-        }
-
         private void day_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void wipe_Click(object sender, RoutedEventArgs e)
+        {
+            this.Date = new DateTime();
+        }
+
+        private void day_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (day.Text == "" && month.Text == "" && year.Text == "")
+            {
+                this.date = DateTime.Today;
+                refresh();
+            }
+        }
+
+        private void day_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text != String.Empty)
+            {
+                cm.IsOpen = true;
+            }
         }
 
 

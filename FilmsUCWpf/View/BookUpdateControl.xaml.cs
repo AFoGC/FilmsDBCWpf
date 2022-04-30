@@ -45,17 +45,21 @@ namespace FilmsUCWpf.View
             presenter.OpenSources();
         }
 
-        private void watched_Click(object sender, RoutedEventArgs e)
+        private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (fullReadDate.IsEmpty)
+            if (readed.IsChecked == false)
             {
-                fullReadDate.Date = DateTime.Today;
-            }
+                if (fullReadDate.IsEmpty)
+                {
+                    fullReadDate.Date = DateTime.Today;
+                }
 
-            if (countOfReadings.Text == "")
-            {
-                countOfReadings.Text = "1";
+                if (countOfReadings.Text == "")
+                {
+                    countOfReadings.Text = "1";
+                }
             }
+            readed.IsChecked = !readed.IsChecked;
         }
 
         private void TextInputIsNumber(object sender, TextCompositionEventArgs e)

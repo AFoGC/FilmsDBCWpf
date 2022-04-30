@@ -20,7 +20,7 @@
         <TextBox x:Name="name" ToolTip="Name (Text)" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="realiseYear" ToolTip="Realise Year (Integer number)" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke" PreviewTextInput="TextInputIsNumber"/>
-        <CheckBox x:Name="readed" ToolTip="Readed" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" Click="watched_Click"/>
+        <CheckBox x:Name="readed" ToolTip="Readed" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" MouseRightButtonDown="watched_MouseRightButtonDown"/>
         <TextBox x:Name="author" ToolTip="Author (Text)" HorizontalAlignment="Left" Margin="395,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="100" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="bookmark" ToolTip="Bookmark (Text)" HorizontalAlignment="Left" Margin="495,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="101" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
 

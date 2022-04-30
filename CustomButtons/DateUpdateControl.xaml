@@ -6,14 +6,19 @@
              xmlns:local="clr-namespace:CustomButtons"
              mc:Ignorable="d" 
              d:DesignHeight="20" d:DesignWidth="60">
-    <Grid Height="18" Width="58" MouseDown="day_MouseUp">
+    <Grid Height="18" Width="58">
+        <Grid.ContextMenu>
+            <ContextMenu Name="cm" StaysOpen="true">
+                <MenuItem Header="Wipe Date" Click="wipe_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="dot1" Content="." VerticalAlignment="Top" BorderBrush="{x:Null}" Height="18" BorderThickness="1" Padding="0, 0, 0, 0" Margin="13,-1,40,0" Background="{x:Null}" Foreground="WhiteSmoke" MouseDown="day_MouseUp"/>
-        <Label x:Name="dot2" HorizontalAlignment="Left" Content="." VerticalAlignment="Top" Width="5" BorderBrush="{x:Null}" Height="18" BorderThickness="1" Padding="0, 0, 0, 0" Margin="29,-1,0,0" Background="{x:Null}" Foreground="WhiteSmoke" MouseDown="day_MouseUp"/>
-        <TextBox x:Name="day" Text="" PreviewTextInput="day_PreviewTextInput" GotFocus="Grid_GotFocus" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="14" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="2"/>
-        <TextBox x:Name="month" PreviewTextInput="day_PreviewTextInput" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="15" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Margin="16,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="2" MouseUp="day_MouseUp" MouseDown="day_MouseUp" GotFocus="Grid_GotFocus"/>
-        <TextBox x:Name="year" PreviewTextInput="day_PreviewTextInput" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="25" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Margin="33,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="4" MouseUp="day_MouseUp" MouseDown="day_MouseUp" GotFocus="Grid_GotFocus"/>
+        <Label x:Name="dot1" Content="." VerticalAlignment="Top" BorderBrush="{x:Null}" Height="18" BorderThickness="1" Padding="0, 0, 0, 0" Margin="13,-1,40,0" Background="{x:Null}" Foreground="WhiteSmoke"/>
+        <Label x:Name="dot2" HorizontalAlignment="Left" Content="." VerticalAlignment="Top" Width="5" BorderBrush="{x:Null}" Height="18" BorderThickness="1" Padding="0, 0, 0, 0" Margin="29,-1,0,0" Background="{x:Null}" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="day" Text="" PreviewTextInput="day_PreviewTextInput" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="14" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="2" PreviewMouseLeftButtonDown="day_PreviewMouseDown" PreviewMouseRightButtonDown="day_PreviewMouseRightButtonDown"/>
+        <TextBox x:Name="month" PreviewTextInput="day_PreviewTextInput" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="15" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Margin="16,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="2" PreviewMouseLeftButtonDown="day_PreviewMouseDown" PreviewMouseRightButtonDown="day_PreviewMouseRightButtonDown"/>
+        <TextBox x:Name="year" PreviewTextInput="day_PreviewTextInput" HorizontalAlignment="Left" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="25" BorderBrush="{x:Null}" Height="18" BorderThickness="0" Padding="-2, 0, 0, 0" Margin="33,0,0,0" Background="{x:Null}" Foreground="WhiteSmoke" MaxLength="4" PreviewMouseLeftButtonDown="day_PreviewMouseDown" PreviewMouseRightButtonDown="day_PreviewMouseRightButtonDown"/>
     </Grid>
 </UserControl>

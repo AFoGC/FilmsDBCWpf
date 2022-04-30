@@ -20,7 +20,7 @@
         <TextBox x:Name="name" ToolTip="Name (Text)" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <TextBox x:Name="realiseYear" ToolTip="Realise Year (Integer number)" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke" MaxLength="4" PreviewTextInput="TextInputIsNumber"/>
-        <CheckBox x:Name="watched" ToolTip="Watched" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" Click="watched_Click"/>
+        <CheckBox x:Name="watched" ToolTip="Watched" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" MouseRightButtonDown="watched_MouseRightButtonDown"/>
 
         <Buttons:DateUpdateControl x:Name="watchDate" ToolTip="Watch Date (Date(dd.mm.yyyy))" HorizontalAlignment="Left" Margin="396,0,0,0" VerticalAlignment="Top" Background="#FF353535" Foreground="Red" BorderThickness="1" BorderBrush="#FF7A7A7A" Width="62"/>
         <ComboBox x:Name="mark" ToolTip="Mark" Background="#FF353535" Margin="458,0,0,0" HorizontalAlignment="Left" Width="45" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"

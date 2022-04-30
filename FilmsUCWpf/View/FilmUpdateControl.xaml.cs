@@ -57,17 +57,21 @@ namespace FilmsUCWpf.View
 			e.Handled = regex.IsMatch(e.Text);
 		}
 
-		private void watched_Click(object sender, RoutedEventArgs e)
+		private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (watchDate.IsEmpty)
-			{
-				watchDate.Date = DateTime.Today;
-			}
+            if (watched.IsChecked == false)
+            {
+				if (watchDate.IsEmpty)
+				{
+					watchDate.Date = DateTime.Today;
+				}
 
-			if (countOfViews.Text == "")
-			{
-				countOfViews.Text = "1";
+				if (countOfViews.Text == "")
+				{
+					countOfViews.Text = "1";
+				}
 			}
+			watched.IsChecked = !watched.IsChecked;
 		}
 
 		public void UpdateElement()

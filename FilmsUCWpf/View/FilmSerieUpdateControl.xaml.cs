@@ -51,34 +51,48 @@ namespace FilmsUCWpf.View
 
 		private void watched_Click(object sender, RoutedEventArgs e)
 		{
-			if (watchDate.IsEmpty)
-			{
-				watchDate.Date = DateTime.Today;
-			}
+			
+		}
 
-			int cows = 0;
-			int ts = 0;
-			bool emptyTotal = true;
+		private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+		{
+            if (watched.IsChecked == false)
+            {
+				if (watchDate.IsEmpty)
+				{
+					watchDate.Date = DateTime.Today;
+				}
 
-			if (countOfWatchedSeries.Text != "")
-			{
-				cows = Convert.ToInt32(countOfWatchedSeries.Text);
-			}
+				if (startWatchDate.IsEmpty)
+				{
+					startWatchDate.Date = DateTime.Today;
+				}
 
-			if (totalSeries.Text != "")
-			{
-				ts = Convert.ToInt32(totalSeries.Text);
-				emptyTotal = false;
-			}
+				int cows = 0;
+				int ts = 0;
+				bool emptyTotal = true;
 
-			if (cows < ts && emptyTotal == false)
-			{
-				countOfWatchedSeries.Text = totalSeries.Text;
-			}
+				if (countOfWatchedSeries.Text != "")
+				{
+					cows = Convert.ToInt32(countOfWatchedSeries.Text);
+				}
 
-			if (countOfViews.Text == "")
-			{
-				countOfViews.Text = "1";
+				if (totalSeries.Text != "")
+				{
+					ts = Convert.ToInt32(totalSeries.Text);
+					emptyTotal = false;
+				}
+
+				if (cows < ts && emptyTotal == false)
+				{
+					countOfWatchedSeries.Text = totalSeries.Text;
+				}
+
+				if (countOfViews.Text == "")
+				{
+					countOfViews.Text = "1";
+				}
+				watched.IsChecked = !watched.IsChecked;
 			}
 		}
 
@@ -115,5 +129,5 @@ namespace FilmsUCWpf.View
 		public DateTime StartWatchDate { get => startWatchDate.Date; set => startWatchDate.Date = value; }
 		public string CountOfWatchedSeries { get => countOfWatchedSeries.Text; set => countOfWatchedSeries.Text = value; }
 		public string TotalSeries { get => totalSeries.Text; set => totalSeries.Text = value; }
-	}
+    }
 }

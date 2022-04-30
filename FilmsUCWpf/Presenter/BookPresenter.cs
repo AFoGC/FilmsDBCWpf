@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Objects.Interfaces;
+using TL_Tables;
 
 namespace FilmsUCWpf.Presenter
 {
@@ -64,6 +65,31 @@ namespace FilmsUCWpf.Presenter
 				}
 			}
 			return false;
+		}
+
+		public void DeleteThis()
+		{
+			BooksTable booksTable = (BooksTable)TableCollection.GetTable<Book>();
+			BookCategoriesTable categoriesTable = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+
+			if (Model.FranshiseId != 0)
+			{
+				BookCategory category = categoriesTable.GetCategoryByBook(Model);
+				category.RemoveBookFromCategory(Model);
+			}
+
+			booksTable.Remove(Model);
+		}
+
+		public void AddToPriority()
+        {
+			PriorityBooksTable priorityFilms = (PriorityBooksTable)TableCollection.GetTable<PriorityBook>();
+			if (!priorityFilms.ContainBook(Model))
+			{
+				PriorityBook priority = new PriorityBook();
+				priority.Book = Model;
+				priorityFilms.AddElement(priority);
+			}
 		}
 
 		public void CopyUrl()

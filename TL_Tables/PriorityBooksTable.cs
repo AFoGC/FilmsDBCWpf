@@ -28,5 +28,31 @@ namespace TL_Tables
                 }
             }
         }
+
+        public void RemoveWatchedBooks()
+        {
+            PriorityBook priBook;
+            for (int i = 0; i < this.Count; i++)
+            {
+                priBook = this[i];
+                if (priBook.Book.Readed)
+                {
+                    this.Remove(priBook);
+                    --i;
+                }
+            }
+        }
+
+        public bool ContainBook(Book book)
+        {
+            foreach (PriorityBook priority in this)
+            {
+                if (priority.Book == book)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

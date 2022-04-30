@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="590">
     <Grid Height="15" Width="590" HorizontalAlignment="Left">
-        <TextBox x:Name="id" Text="{Binding ID}" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="27" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" />
-        <Button Margin="2,1,561,1" ToolTip="ID" IsHitTestVisible="True" BorderThickness="1" Content="        " Click="id_Click">
+        <TextBox x:Name="id" Text="{Binding ID}" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" />
+        <Button Margin="2,1,560,1" ToolTip="ID" IsHitTestVisible="True" BorderThickness="1" Content="        " Click="id_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="{x:Null}"/>
@@ -38,11 +38,11 @@
                 </ContextMenu>
             </Button.ContextMenu>
         </Button>
-        <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="Realise Year" IsReadOnly="True" HorizontalAlignment="Left" Margin="311,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="Watched"  Content="" HorizontalAlignment="Left" Margin="360,0,0,0" VerticalAlignment="Center" IsEnabled="False"/>
-        <Button x:Name="btn_moreInfo" Content="More Info" Foreground="WhiteSmoke" VerticalAlignment="Center" Height="13" Margin="395,1,0,1" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_moreInfo_Click" HorizontalAlignment="Left" Width="110">
+        <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="32,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="212,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="Realise Year" IsReadOnly="True" HorizontalAlignment="Left" Margin="312,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="Watched"  Content="" HorizontalAlignment="Left" Margin="361,0,0,0" VerticalAlignment="Center" IsEnabled="False"/>
+        <Button x:Name="btn_moreInfo" Content="More Info" Foreground="WhiteSmoke" VerticalAlignment="Center" Height="13" Margin="396,1,0,1" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_moreInfo_Click" HorizontalAlignment="Left" Width="110">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -66,7 +66,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btn_update" Content="Update" Foreground="WhiteSmoke" VerticalAlignment="Top" Width="78" Height="13" Margin="510,1,0,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click" HorizontalAlignment="Left">
+        <Button x:Name="btn_update" Content="Update" Foreground="WhiteSmoke" VerticalAlignment="Top" Width="78" Height="13" Margin="511,1,0,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click" HorizontalAlignment="Left">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

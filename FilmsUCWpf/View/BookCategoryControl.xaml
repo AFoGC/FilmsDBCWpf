@@ -40,7 +40,7 @@
                 </Button.Style>
             </Button>
         </Grid>
-        <Button x:Name="btn_show_hide" Content="v" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="13" Margin="623,1,194,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="hide_show_Cilck">
+        <Button x:Name="btn_show_hide" Content="v" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="13" Margin="624,1,193,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="hide_show_Cilck">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>
@@ -65,7 +65,7 @@
             </Button.Style>
         </Button>
 
-        <Button x:Name="btn_update" Content="Update Category" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="13" Margin="425,1,212,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
+        <Button x:Name="btn_update" Content="Update Category" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="13" Margin="426,1,211,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF1F1F1F"/>

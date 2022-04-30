@@ -79,7 +79,7 @@ namespace WpfApp.MVP.Views
 
         private void btn_showPriority_Click(object sender, RoutedEventArgs e)
         {
-
+            presenter.LoadPriorityTable();
         }
 
         private void btn_addBook_Click(object sender, RoutedEventArgs e)

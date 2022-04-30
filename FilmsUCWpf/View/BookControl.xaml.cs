@@ -29,7 +29,7 @@ namespace FilmsUCWpf.View
 			InitializeComponent();
 		}
 
-		private void id_GotFocus(object sender, RoutedEventArgs e)
+		private void id_Click(object sender, RoutedEventArgs e)
 		{
 			presenter.SetSelectedElement();
 		}
@@ -82,5 +82,15 @@ namespace FilmsUCWpf.View
 			if (panel != null)
 				panel.Children.Remove(this);
 		}
-	}
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+			presenter.DeleteThis();
+        }
+
+        private void addToPriority_Click(object sender, RoutedEventArgs e)
+        {
+			presenter.AddToPriority();
+        }
+    }
 }

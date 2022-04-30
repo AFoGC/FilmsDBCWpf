@@ -113,6 +113,26 @@ namespace WpfApp.MVP.Presenters
 			}
 		}
 
+		public void LoadPriorityTable()
+        {
+			ClearControls();
+			model.ControlsCondition = BooksMenuModel.MenuCondition.PriorityBook;
+			model.SelectedElement = null;
+
+			PriorityBooksTable priorityBooks = mainModel.Tables.PriorityBooksTable;
+			priorityBooks.RemoveWatchedBooks();
+
+            foreach (PriorityBook priority in priorityBooks)
+            {
+				model.BasePresenters.Add(new BookPresenter(priority.Book, new BookSimpleControl(), this, TabColl));
+			}
+
+			foreach (IBasePresenter presenter in model.BasePresenters)
+			{
+				presenter.AddViewToCollection(view.MenuControls);
+			}
+		}
+
 		public BookGenre[] GetSelectedGenres()
         {
 			List<BookGenre> genres = new List<BookGenre>();

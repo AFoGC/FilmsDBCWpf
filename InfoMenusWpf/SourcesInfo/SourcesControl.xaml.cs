@@ -46,7 +46,10 @@ namespace InfoMenusWpf.SourcesInfo
 
         private void addElement(Source source)
         {
-            wrapPanel_sources.Children.Add(new SourceControl(source, this));
+            if (wrapPanel_sources.Children.Count < 3)
+            {
+                wrapPanel_sources.Children.Add(new SourceControl(source, this));
+            }
         }
 
         public void button_update_Click(object sender, EventArgs e)

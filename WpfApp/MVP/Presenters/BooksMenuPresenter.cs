@@ -124,7 +124,7 @@ namespace WpfApp.MVP.Presenters
 
             foreach (PriorityBook priority in priorityBooks)
             {
-				model.BasePresenters.Add(new BookPresenter(priority.Book, new BookSimpleControl(), this, TabColl));
+				model.BasePresenters.Add(new BookPriorityPresenter(priority, new BookPriorityControl(), this, TabColl));
 			}
 
 			foreach (IBasePresenter presenter in model.BasePresenters)

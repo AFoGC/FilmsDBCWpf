@@ -46,11 +46,24 @@ namespace TL_Objects
             get { return book; }
             set
             {
+                if (book != null)
+                    book.CellRemoved -= Book_CellRemoved;
+
                 book = value;
                 bookId = book.ID;
+
+                book.CellRemoved += Book_CellRemoved;
+
                 OnPropertyChanged(nameof(Book));
             }
         }
+
+        private void Book_CellRemoved(object sender, EventArgs e)
+        {
+            TablesLibrary.Interpreter.Table.Table<PriorityBook> table = (TablesLibrary.Interpreter.Table.Table<PriorityBook>)ParentTable;
+            table.Remove(this);
+        }
+
         public int BookId
         {
             get { return bookId; }

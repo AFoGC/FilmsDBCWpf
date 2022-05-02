@@ -147,7 +147,7 @@ namespace WpfApp.MVP.Presenters
 
 			foreach (PriorityFilm priorityFilm in priorityFilms)
 			{
-				model.BasePresenters.Add(new FilmPresenter(priorityFilm.Film, new FilmSimpleControl(), this, TabColl));
+				model.BasePresenters.Add(new FilmPriorityPresenter(priorityFilm, new FilmPriorityControl(), this, TabColl));
 			}
 
 			foreach (IBasePresenter presenter in model.BasePresenters)

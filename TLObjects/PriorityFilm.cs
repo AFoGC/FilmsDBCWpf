@@ -46,13 +46,25 @@ namespace TL_Objects
 			get { return film; }
 			set
 			{
+                if (film != null)
+                    film.CellRemoved -= Film_CellRemoved;
+
 				film = value;
 				filmId = film.ID;
+
+				film.CellRemoved += Film_CellRemoved;
+
 				OnPropertyChanged(nameof(Film));
 			}
 		}
 
-		public int FilmId
+        private void Film_CellRemoved(object sender, EventArgs e)
+        {
+			TablesLibrary.Interpreter.Table.Table<PriorityFilm> table = (TablesLibrary.Interpreter.Table.Table<PriorityFilm>)ParentTable;
+			table.Remove(this);
+        }
+
+        public int FilmId
 		{
 			get { return filmId; }
 		}

@@ -64,11 +64,13 @@
     <Compile Include="Presenter\BookCategoryUpdatePresenter.cs" />
     <Compile Include="Presenter\BookGenrePresenter.cs" />
     <Compile Include="Presenter\BookPresenter.cs" />
+    <Compile Include="Presenter\BookPriorityPresenter.cs" />
     <Compile Include="Presenter\BookUpdatePresenter.cs" />
     <Compile Include="Presenter\FilmCategoryPresenter.cs" />
     <Compile Include="Presenter\FilmCategoryUpdatePresenter.cs" />
     <Compile Include="Presenter\FilmGenrePresenter.cs" />
     <Compile Include="Presenter\FilmPresenter.cs" />
+    <Compile Include="Presenter\FilmPriorityPresenter.cs" />
     <Compile Include="Presenter\FilmSerieUpdatePresenter.cs" />
     <Compile Include="Presenter\FilmUpdatePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -104,6 +106,9 @@
     <Compile Include="View\BookGenreControl.xaml.cs">
       <DependentUpon>BookGenreControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BookPriorityControl.xaml.cs">
+      <DependentUpon>BookPriorityControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BookSimpleControl.xaml.cs">
       <DependentUpon>BookSimpleControl.xaml</DependentUpon>
     </Compile>
@@ -133,6 +138,9 @@
     </Compile>
     <Compile Include="View\FilmUpdateControl.xaml.cs">
       <DependentUpon>FilmUpdateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FilmPriorityControl.xaml.cs">
+      <DependentUpon>FilmPriorityControl.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -178,6 +186,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BookPriorityControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BookSimpleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FilmUpdateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FilmPriorityControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

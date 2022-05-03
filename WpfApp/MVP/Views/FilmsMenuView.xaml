@@ -14,7 +14,6 @@
             </Border>
         </Canvas>
 
-
         <Canvas Margin="998,99,225,187">
             <Border BorderBrush="White" BorderThickness="1" Width="262" Height="419">
                 <Canvas HorizontalAlignment="Left" Width="260" Height="417" VerticalAlignment="Top">

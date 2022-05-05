@@ -10,5 +10,6 @@ namespace FilmsUCWpf.ViewInterfaces
     {
         String ID { set; }
         String Name { get; set; }
+        String HideName { get; set; }
     }
 }

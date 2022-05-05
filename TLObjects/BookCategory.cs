@@ -11,6 +11,7 @@ namespace TL_Objects
     public class BookCategory : Cell
     {
         private string name = "";
+        private string hideName = String.Empty;
         private sbyte mark = -1;
         private int priority = 0;
 
@@ -48,6 +49,7 @@ namespace TL_Objects
             BookCategory category = (BookCategory)cell;
 
             name = category.name;
+            hideName = category.hideName;
             mark = category.mark;
             priority = category.priority;
             books = category.books;
@@ -56,6 +58,7 @@ namespace TL_Objects
         protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
             streamWriter.Write(FormatParam("name", name, "", 2));
+            streamWriter.Write(FormatParam("hideName", hideName, String.Empty, 2));
             streamWriter.Write(FormatParam("mark", mark, -1, 2));
             streamWriter.Write(FormatParam("priority", priority, 0, 2));
         }
@@ -66,6 +69,9 @@ namespace TL_Objects
             {
                 case "name":
                     name = comand.Value;
+                    break;
+                case "hideName":
+                    hideName = comand.Value;
                     break;
                 case "mark":
                     mark = Convert.ToSByte(comand.Value);
@@ -83,6 +89,20 @@ namespace TL_Objects
         {
             get { return name; }
             set { name = value; OnPropertyChanged(nameof(Name)); }
+        }
+
+        public string HideName
+        {
+            get { return hideName; }
+            set 
+            { 
+                hideName = value;
+                foreach (Book book in Books)
+                {
+                    book.OnPropertyChanged(nameof(book.Name));
+                }
+                OnPropertyChanged(nameof(HideName)); 
+            }
         }
 
         public sbyte Mark

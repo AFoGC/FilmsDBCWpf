@@ -56,6 +56,7 @@ namespace FilmsUCWpf.Presenter
 		{
 			view.ID = model.ID.ToString();
 			view.Name = model.Name;
+			view.HideName = model.HideName;
 		}
 
 		public void DeleteThisCategory()
@@ -70,6 +71,7 @@ namespace FilmsUCWpf.Presenter
 		public void UpdateElement()
 		{
 			model.Name = view.Name;
+			model.HideName = view.HideName;
 		}
 	}
 }

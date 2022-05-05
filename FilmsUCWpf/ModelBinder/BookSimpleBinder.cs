@@ -28,8 +28,18 @@ namespace FilmsUCWpf.ModelBinder
                 {
                     BookCategory category = bookCategories.GetCategoryByBook(Model);
                     if (category != null)
-                        if(category.Name != String.Empty)
-                            return Model.Name.Replace(category.Name, String.Empty);
+                    {
+                         if (category.HideName != String.Empty)
+                         {
+                            if (category.Name == String.Empty)
+                            {
+                                return Model.Name.Replace(category.Name, String.Empty);
+                            }
+                         }
+                         return Model.Name.Replace(category.HideName, String.Empty);
+                            
+                    }
+                        
                 }
                 return Model.Name;
             }

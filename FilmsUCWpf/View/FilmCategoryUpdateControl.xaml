@@ -81,6 +81,7 @@
                 </Style>
             </Button.Style>
         </Button>
+        <TextBox x:Name="hideName" ToolTip="Hide Name (Text)" HorizontalAlignment="Left" Margin="208,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="190" Height="20" FlowDirection="LeftToRight" Padding="0,-3" TextAlignment="Left" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
 
     </Grid>
 </UserControl>

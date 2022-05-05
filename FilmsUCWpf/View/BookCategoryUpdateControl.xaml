@@ -8,7 +8,7 @@
              d:DesignHeight="60" d:DesignWidth="830">
     <Grid>
         <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" FlowDirection="LeftToRight" Padding="0,-3" TextAlignment="Left" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="name" ToolTip="Name (Text)" HorizontalAlignment="Left" Margin="30,1,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Height="20" FlowDirection="LeftToRight" Padding="0,-3" TextAlignment="Left" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <TextBox x:Name="name" ToolTip="Name (Text)" HorizontalAlignment="Left" Margin="30,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="20" FlowDirection="LeftToRight" Padding="0,-3" TextAlignment="Left" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <Button x:Name="btn_AddSelected" Content="Add Selected" Foreground="WhiteSmoke" VerticalAlignment="Bottom" RenderTransformOrigin="0.48,-0.933" Height="20" Margin="690,0,40,40" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_AddSelected_Click" Width="100">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -81,5 +81,6 @@
                 </Style>
             </Button.Style>
         </Button>
+        <TextBox x:Name="hideName" ToolTip="Hide Name (Text)" HorizontalAlignment="Left" Margin="208,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="190" Height="20" FlowDirection="LeftToRight" Padding="0,-3" TextAlignment="Left" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
     </Grid>
 </UserControl>

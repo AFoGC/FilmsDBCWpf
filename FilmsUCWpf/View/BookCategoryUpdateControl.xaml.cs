@@ -50,6 +50,7 @@ namespace FilmsUCWpf.View
 
         public string ID { set => id.Text = value; }
         string IBookCategoryUpdateView.Name { get => name.Text; set => name.Text = value; }
+        string IBookCategoryUpdateView.HideName { get => name.Text; set => name.Text = value; }
 
         private void btn_DeleteCategory_Click(object sender, RoutedEventArgs e)
         {

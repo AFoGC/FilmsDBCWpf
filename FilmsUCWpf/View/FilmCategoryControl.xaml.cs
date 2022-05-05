@@ -1,4 +1,5 @@
-﻿using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.ModelBinder;
+using FilmsUCWpf.Presenter;
 using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.ViewInterfaces;
 using System;
@@ -49,7 +50,7 @@ namespace FilmsUCWpf.View
 			{
 				this.presenter = (FilmCategoryPresenter)presenter;
                 this.presenter.Model.Films.CollectionChanged += Films_CollectionChanged;
-				DataContext = this.presenter;
+				DataContext = new FilmCategoryBinder(this.presenter.Model);
 				return true;
 			}
 			else

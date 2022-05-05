@@ -166,9 +166,5 @@ namespace FilmsUCWpf.Presenter
             film.FranshiseListIndex = (sbyte)(Model.Films.Count);
             Model.Films.Add(film);
         }
-
-        //private static Category category = new Category();
-        public String ID { get => Model.ID.ToString(); set { } }
-        public String Name { get => Model.Name; set { } }
     }
 }

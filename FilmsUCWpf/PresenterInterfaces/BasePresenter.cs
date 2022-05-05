@@ -12,7 +12,7 @@ using TablesLibrary.Interpreter.TableCell;
 
 namespace FilmsUCWpf.PresenterInterfaces
 {
-    public abstract class BasePresenter<T> : IBasePresenter, INotifyPropertyChanged where T : Cell
+    public abstract class BasePresenter<T> : IBasePresenter where T : Cell
     {
         public T Model { get; protected set; }
         public IView View { get; protected set; }
@@ -24,26 +24,6 @@ namespace FilmsUCWpf.PresenterInterfaces
             this.View.SetPresenter(this);
             this.TableCollection = collection;
             this.Model.CellRemoved += Model_CellRemoved;
-            this.Model.PropertyChanged += Model_PropertyChanged;
-        }
-
-        private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            OnPropertyChanged(e);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(PropertyChangedEventArgs e)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, e);
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
 
         private void Model_CellRemoved(object sender, EventArgs e)

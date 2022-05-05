@@ -20,12 +20,6 @@ namespace FilmsUCWpf.Presenter
 		public BookPresenter(Book book, IView view, IMenu<Book> menu, TableCollection collection) : base(book, view, collection)
 		{
 			this.menu = menu;
-			book.BookGenre.PropertyChanged += BookGenre_PropertyChanged;
-		}
-
-		private void BookGenre_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-		{
-			OnPropertyChanged("BookGenre");
 		}
 
 		public override bool HasCheckedProperty(bool isReaded)
@@ -108,18 +102,5 @@ namespace FilmsUCWpf.Presenter
 			BookPresenter presenter = new BookPresenter(Model, view, menu, TableCollection);
 			menu.MoreInfoFormVisualizer.OpenMoreInfoForm((Control)presenter.View);
 		}
-
-		private static Book defBook = new Book();
-		public String ID { get => Model.ID.ToString(); set { } }
-		public String Name { get => Model.Name; set { } }
-		public String BookGenre { get => Model.BookGenre.ToString(); set { } }
-		public String PublicationYear { get => Film.FormatToString(Model.PublicationYear, defBook.PublicationYear); set { } }
-		public Boolean Readed { get => Model.Readed; set { } }
-		public String Author { get => Model.Author; set { } }
-		public String FullReadDate { get => Book.FormatToString(Model.FullReadDate, defBook.FullReadDate); set { } }
-		public String Mark { get => Helper.MarkToText(Book.FormatToString(Model.Mark, defBook.Mark)); set { } }
-		public String CountOfReadings { get => Book.FormatToString(Model.CountOfReadings, defBook.CountOfReadings); set { } }
-		public String Bookmark { get => Model.Bookmark; set { } }
-		public String Sources { get => Helper.SourcesStateString(Model.Sources); set { } }
 	}
 }

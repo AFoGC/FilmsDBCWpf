@@ -1,4 +1,5 @@
-﻿using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.ModelBinder;
+using FilmsUCWpf.Presenter;
 using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.ViewInterfaces;
 using System;
@@ -44,7 +45,7 @@ namespace FilmsUCWpf.View
 			if (this.presenter == null)
 			{
 				this.presenter = (FilmPresenter)presenter;
-				DataContext = this.presenter;
+				DataContext = new FilmSimpleBinder(this.presenter.Model);
 				return true;
 			}
 			else

@@ -156,8 +156,5 @@ namespace FilmsUCWpf.Presenter
 			book.FranshiseListIndex = (sbyte)(Model.Books.Count);
 			Model.Books.Add(book);
         }
-
-		public String ID { get => Model.ID.ToString(); set { } }
-		public String Name { get => Model.Name; set { } }
 	}
 }

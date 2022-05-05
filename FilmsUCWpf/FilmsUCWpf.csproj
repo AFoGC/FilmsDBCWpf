@@ -53,6 +53,13 @@
   <ItemGroup>
     <Compile Include="BrushColors.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="ModelBinder\BaseBinder.cs" />
+    <Compile Include="ModelBinder\BookBinder.cs" />
+    <Compile Include="ModelBinder\BookCategoryBinder.cs" />
+    <Compile Include="ModelBinder\BookSimpleBinder.cs" />
+    <Compile Include="ModelBinder\FilmBinder.cs" />
+    <Compile Include="ModelBinder\FilmCategoryBinder.cs" />
+    <Compile Include="ModelBinder\FilmSimpleBinder.cs" />
     <Compile Include="PresenterInterfaces\BasePresenter.cs" />
     <Compile Include="PresenterInterfaces\IBaseMenu.cs" />
     <Compile Include="PresenterInterfaces\IBasePresenter.cs" />

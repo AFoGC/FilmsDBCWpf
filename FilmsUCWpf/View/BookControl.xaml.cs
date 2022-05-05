@@ -1,4 +1,5 @@
-﻿using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.ModelBinder;
+using FilmsUCWpf.Presenter;
 using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.ViewInterfaces;
 using System;
@@ -49,7 +50,7 @@ namespace FilmsUCWpf.View
 			if (this.presenter == null)
 			{
 				this.presenter = (BookPresenter)presenter;
-				DataContext = this.presenter;
+				DataContext = new BookBinder(this.presenter.Model);
 				return true;
 			}
 			else

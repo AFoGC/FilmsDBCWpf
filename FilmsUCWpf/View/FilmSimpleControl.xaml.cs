@@ -55,19 +55,25 @@ namespace FilmsUCWpf.View
 
 		public void SetVisualDefault()
 		{
-			SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(53, 53, 53));
+			SolidColorBrush myBrush = BrushColors.DefaultColor;
 			this.id.Background = myBrush;
+			this.name.Background = myBrush;
+			this.genre.Background = myBrush;
+			this.realiseYear.Background = myBrush;
 		}
 
 		public void SetVisualSelected()
 		{
-			SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 220, 0));
+			SolidColorBrush myBrush = BrushColors.SelectColor;
 			this.id.Background = myBrush;
+			this.name.Background = myBrush;
+			this.genre.Background = myBrush;
+			this.realiseYear.Background = myBrush;
 		}
 
 		public void SetVisualFinded()
 		{
-			SolidColorBrush myBrush = new SolidColorBrush(Color.FromRgb(0, 0, 220));
+			SolidColorBrush myBrush = BrushColors.FindColor;
 			this.id.Background = myBrush;
 		}
 

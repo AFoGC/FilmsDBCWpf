@@ -51,6 +51,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrushColors.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="PresenterInterfaces\BasePresenter.cs" />
     <Compile Include="PresenterInterfaces\IBaseMenu.cs" />
@@ -59,7 +60,6 @@
     <Compile Include="PresenterInterfaces\IMenu.cs" />
     <Compile Include="PresenterInterfaces\IToUpdateControl.cs" />
     <Compile Include="PresenterInterfaces\IUpdatePresenter.cs" />
-    <Compile Include="PresentersCollection.cs" />
     <Compile Include="Presenter\BookCategoryPresenter.cs" />
     <Compile Include="Presenter\BookCategoryUpdatePresenter.cs" />
     <Compile Include="Presenter\BookGenrePresenter.cs" />

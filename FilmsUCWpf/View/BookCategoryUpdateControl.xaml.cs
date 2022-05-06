@@ -3,6 +3,7 @@ using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.ViewInterfaces;
 using InfoMenusWpf;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,8 @@ namespace FilmsUCWpf.View
 
         public string ID { set => id.Text = value; }
         string IBookCategoryUpdateView.Name { get => name.Text; set => name.Text = value; }
+        IList IBookCategoryUpdateView.Marks { get => mark.Items; }
+        string IBookCategoryUpdateView.Mark { get => mark.Text; set => mark.Text = value; }
         string IBookCategoryUpdateView.HideName { get => name.Text; set => name.Text = value; }
 
         private void btn_DeleteCategory_Click(object sender, RoutedEventArgs e)

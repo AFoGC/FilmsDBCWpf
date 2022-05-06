@@ -82,5 +82,14 @@
             </Button.Style>
         </Button>
         <TextBox x:Name="hideName" ToolTip="Hide Name (Text)" HorizontalAlignment="Left" Margin="208,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="190" Height="20" FlowDirection="LeftToRight" Padding="0,-3" TextAlignment="Left" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
+        <ComboBox x:Name="mark" ToolTip="Mark" Background="#FF353535" Margin="398,1,0,0" HorizontalAlignment="Left" Width="45" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
+            Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ComboBoxItem}">
+                    <Setter Property="Background" Value="#FF353535"/>
+                    <Setter Property="BorderBrush" Value="#FF353535"/>
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
     </Grid>
 </UserControl>

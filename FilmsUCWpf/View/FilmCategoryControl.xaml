@@ -12,7 +12,7 @@
         </Grid.ColumnDefinitions>
         <TextBox x:Name="id" ToolTip="ID" Text="{Binding ID}" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
         <TextBox x:Name="name" ToolTip="Name" Text="{Binding Name}" IsReadOnly="True" HorizontalAlignment="Left" Margin="32,1,0,0"  TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="mark" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="212,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="42" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="mark" ToolTip="Mark" Text="{Binding Mark}" IsReadOnly="True" HorizontalAlignment="Left" Margin="212,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="42" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
 
         <Button x:Name="btn_update" Content="Update Category" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="13" Margin="426,1,211,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
             <Button.Style>

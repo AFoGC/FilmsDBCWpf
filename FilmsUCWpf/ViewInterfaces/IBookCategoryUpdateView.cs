@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,7 @@ namespace FilmsUCWpf.ViewInterfaces
         string ID { set; }
         string Name { get; set; }
         string HideName { get; set; }
+        string Mark { get; set; }
+        IList Marks { get; }
     }
 }

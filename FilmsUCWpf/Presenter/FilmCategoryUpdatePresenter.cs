@@ -24,13 +24,11 @@ namespace FilmsUCWpf.Presenter
 			this.view = view;
 			this.menu = menu;
 			this.tableCollection = tableCollection;
+			foreach (string mark in Helper.GetAllMarks())
+			{
+				view.Marks.Add(mark);
+			}
 			RefreshElement();
-		}
-
-		public void UpdateElement()
-		{
-			model.Name = view.Name;
-			model.HideName = view.HideName;
 		}
 
 		public void AddSelected()
@@ -67,11 +65,20 @@ namespace FilmsUCWpf.Presenter
 			}
         }
 
-        public void RefreshElement()
+		private static Category defCat = new Category();
+		public void RefreshElement()
         {
 			view.ID = model.ID.ToString();
 			view.Name = model.Name;
 			view.HideName = model.HideName;
-        }
-    }
+			view.Mark = Helper.MarkToText(Film.FormatToString(model.Mark, defCat.Mark));
+		}
+
+		public void UpdateElement()
+		{
+			model.Name = view.Name;
+			model.HideName = view.HideName;
+			model.Mark = Helper.TextToMark(view.Mark);
+		}
+	}
 }

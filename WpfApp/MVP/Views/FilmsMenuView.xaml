@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WpfApp.MVP.Views"
              xmlns:Elements="clr-namespace:CustomButtons;assembly=CustomButtons"
              mc:Ignorable="d" 
-             d:DesignHeight="705" d:DesignWidth="1485">
+             d:DesignHeight="705" d:DesignWidth="1485" KeyDown="UserControl_KeyDown" Focusable="True">
     <Grid Background="#FF121212">
         <Canvas Margin="35,3,510,612">
             <Border BorderBrush="White" BorderThickness="1" Width="940" Height="90">

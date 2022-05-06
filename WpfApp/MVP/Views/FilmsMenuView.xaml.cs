@@ -82,5 +82,13 @@ namespace WpfApp.MVP.Views
         {
             presenter.RemoveSelectedFilm();
         }
+
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key == Key.Enter) && presenter.UpdateFormVisualizer.IsOpen)
+            {
+                presenter.UpdateFormVisualizer.UpdateControl.Update();
+            }
+        }
     }
 }

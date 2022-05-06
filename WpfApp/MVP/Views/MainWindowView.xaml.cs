@@ -43,6 +43,7 @@ namespace WpfApp.MVP.Views
                 if (el.GetType() == typeof(Element))
                 {
                     Grid.SetZIndex(el, menus.Children.Count);
+                    el.Focus();
                 }
                 else
                 {

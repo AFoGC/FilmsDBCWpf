@@ -62,16 +62,6 @@ namespace WpfApp.MVP.Views
             presenter.LoadBooks();
         }
 
-        private void btn_AddToPriority_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_RemoveBook_Click(object sender, RoutedEventArgs e)
-        {
-            presenter.RemoveSelectedBook();
-        }
-
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
             presenter.SearchByName(textbox_search.Text);
@@ -85,6 +75,14 @@ namespace WpfApp.MVP.Views
         private void btn_addBook_Click(object sender, RoutedEventArgs e)
         {
             presenter.AddBook();
+        }
+
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key == Key.Enter) && presenter.UpdateFormVisualizer.IsOpen)
+            {
+                presenter.UpdateFormVisualizer.UpdateControl.Update();
+            }
         }
     }
 }

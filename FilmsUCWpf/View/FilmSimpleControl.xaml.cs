@@ -76,6 +76,9 @@ namespace FilmsUCWpf.View
 		{
 			SolidColorBrush myBrush = BrushColors.FindColor;
 			this.id.Background = myBrush;
+			this.name.Background = myBrush;
+			this.genre.Background = myBrush;
+			this.realiseYear.Background = myBrush;
 		}
 
 		public void SelfRemove()

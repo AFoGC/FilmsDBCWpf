@@ -77,12 +77,16 @@ namespace FilmsUCWpf.View
 		{
 			SolidColorBrush myBrush = BrushColors.DefaultColor;
 			this.id.Background = myBrush;
+			this.name.Background = myBrush;
+			this.mark.Background = myBrush;
 		}
 
 		public void SetVisualFinded()
 		{
 			SolidColorBrush myBrush = BrushColors.FindColor;
 			this.id.Background = myBrush;
+			this.name.Background = myBrush;
+			this.mark.Background = myBrush;
 		}
 
 		public void SetVisualSelected()

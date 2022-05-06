@@ -52,7 +52,7 @@ namespace InfoMenusWpf.SourcesInfo
             }
         }
 
-        public void button_update_Click(object sender, EventArgs e)
+        public void Update()
         {
             while (ExportSources.Count != 0)
             {

@@ -46,6 +46,11 @@ namespace InfoMenusWpf.UpdateInfo
 
 		private void btn_update_Click(object sender, RoutedEventArgs e)
 		{
+			Update();
+		}
+
+		public void Update()
+        {
 			if (canvas_main.Children.Count != 0)
 			{
 				IUpdateControl control = (IUpdateControl)canvas_main.Children[0];
@@ -53,10 +58,8 @@ namespace InfoMenusWpf.UpdateInfo
 
 				if (visualizer.SourcesVisualizer.IsOpen)
 				{
-					visualizer.SourcesVisualizer.SourcesControl.button_update_Click(sender, e);
+					visualizer.SourcesVisualizer.SourcesControl.Update();
 				}
-
-				//MainInfo.MainWindow.InfoUnsaved = true;
 			}
 			else
 			{

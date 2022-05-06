@@ -7,46 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="15" d:DesignWidth="940">
     <Grid Height="15">
-        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <Button Margin="2,1,910,1" ToolTip="ID" IsHitTestVisible="True" BorderThickness="1" Content="        " Click="id_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="{x:Null}"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{x:Null}"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="{x:Null}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-            <Button.ContextMenu>
-                <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
-                    <MenuItem Header="Delete This" Click="MenuItem_Click"/>
-                    <MenuItem Header="Add To Priority" Click="addToPriority_Click"/>
-                </ContextMenu>
-            </Button.ContextMenu>
-        </Button>
-        <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="32,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="genre" Text="{Binding BookGenre}" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="212,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="realiseYear" Text="{Binding PublicationYear}" ToolTip="Realise Year" IsReadOnly="True" HorizontalAlignment="Left" Margin="312,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <Grid.ContextMenu>
+            <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
+                <MenuItem Header="Delete This" Click="MenuItem_Click"/>
+                <MenuItem Header="Add To Priority" Click="addToPriority_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+        <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="32,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+        <TextBox x:Name="genre" Text="{Binding BookGenre}" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="212,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+        <TextBox x:Name="realiseYear" Text="{Binding PublicationYear}" ToolTip="Realise Year" IsReadOnly="True" HorizontalAlignment="Left" Margin="312,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
         <CheckBox x:Name="readed" IsChecked="{Binding Readed}" ToolTip="Readed" HorizontalAlignment="Left" Margin="361,0,0,0" VerticalAlignment="Center" IsEnabled="False"/>
-        <TextBox x:Name="author" Text="{Binding Author}" ToolTip="Author" IsReadOnly="True" HorizontalAlignment="Left" Margin="397,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="bookmark" Text="{Binding Bookmark}" ToolTip="Bookmark" IsReadOnly="True" HorizontalAlignment="Left" Margin="497,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="84" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="fullReadDate" Text="{Binding FullReadDate}" ToolTip="Full Read Date" IsReadOnly="True" HorizontalAlignment="Left" Margin="583,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="58" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="643,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="43" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="countOfReadings" Text="{Binding CountOfReadings}" ToolTip="Count Of Readings" IsReadOnly="True" HorizontalAlignment="Left" Margin="688,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="author" Text="{Binding Author}" ToolTip="Author" IsReadOnly="True" HorizontalAlignment="Left" Margin="397,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+        <TextBox x:Name="bookmark" Text="{Binding Bookmark}" ToolTip="Bookmark" IsReadOnly="True" HorizontalAlignment="Left" Margin="497,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="84" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+        <TextBox x:Name="fullReadDate" Text="{Binding FullReadDate}" ToolTip="Full Read Date" IsReadOnly="True" HorizontalAlignment="Left" Margin="583,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="58" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+        <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="643,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="43" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+        <TextBox x:Name="countOfReadings" Text="{Binding CountOfReadings}" ToolTip="Count Of Readings" IsReadOnly="True" HorizontalAlignment="Left" Margin="688,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
         <Button x:Name="btn_copyUrl" Content="{Binding Sources}" Foreground="WhiteSmoke" VerticalAlignment="Top" RenderTransformOrigin="0.48,-0.933" Width="101" Height="13" Margin="738,1,101,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_copyUrl_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

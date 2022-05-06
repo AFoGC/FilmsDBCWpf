@@ -35,6 +35,11 @@ namespace FilmsUCWpf.View
 			presenter.SetSelectedElement();
 		}
 
+		private void id_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			presenter.SetSelectedElement();
+		}
+
 		private void btn_copyUrl_Click(object sender, RoutedEventArgs e)
 		{
 			presenter.CopyUrl();

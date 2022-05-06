@@ -49,6 +49,11 @@ namespace FilmsUCWpf.View
 			presenter.SetSelectedElement();
 		}
 
+		private void id_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			presenter.SetSelectedElement();
+		}
+
 		private bool commentIsOpen = false;
 
         double IView.Height { get => this.Height; set { this.Height = value; } }

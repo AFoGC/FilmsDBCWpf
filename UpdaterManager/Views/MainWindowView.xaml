@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UpdaterManager.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="588" Width="800">
+        Title="MainWindow" Height="863.5" Width="800">
     <Grid>
         <local:ProgramView Height="302" VerticalAlignment="Top"/>
-        <local:LauncherView Margin="0,380,0,0" Height="177" VerticalAlignment="Top"></local:LauncherView>
+        <local:LauncherView Margin="0,380,0,0" Height="177" VerticalAlignment="Top"/>
+        <local:UpdaterView Height="200" Margin="0,562,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

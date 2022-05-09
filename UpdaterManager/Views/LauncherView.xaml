@@ -9,7 +9,9 @@
     <Grid>
         <TextBox x:Name="LauncherPathTextBox" Text="" TextWrapping="Wrap" Margin="130,13,10,141" PreviewMouseLeftButtonDown="LauncherPathTextBox_PreviewMouseLeftButtonDown"/>
         <Label Content="Export launcher file " Margin="10,0,0,141" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="115"/>
-        <Button Content="Add New Program Update" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="180" Margin="0,0,10,116" Click="Button_Click_SendLauncher"/>
+        <Button Content="Add New Program Update" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="180" Margin="0,0,10,114" Click="Button_Click_SendLauncher" Height="22"/>
+        <TextBox x:Name="VersionText" IsReadOnly="True" Height="23" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="130,0,470,114"/>
+        <Label Content="Version" HorizontalAlignment="Left" Margin="10,0,0,114" VerticalAlignment="Bottom"/>
 
     </Grid>
 </UserControl>

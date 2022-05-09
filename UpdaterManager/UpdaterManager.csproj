@@ -58,13 +58,18 @@
     <Compile Include="Presenters\Helper.cs" />
     <Compile Include="Presenters\LauncherPresenter.cs" />
     <Compile Include="Presenters\ProgramPresenter.cs" />
+    <Compile Include="Presenters\UpdaterPresenter.cs" />
     <Compile Include="Views\ILauncherView.cs" />
     <Compile Include="Views\IProgramView.cs" />
+    <Compile Include="Views\IUpdaterView.cs" />
     <Compile Include="Views\LauncherView.xaml.cs">
       <DependentUpon>LauncherView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProgramView.xaml.cs">
       <DependentUpon>ProgramView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdaterView.xaml.cs">
+      <DependentUpon>UpdaterView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\LauncherView.xaml">
       <SubType>Designer</SubType>
@@ -84,6 +89,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ProgramView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdaterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

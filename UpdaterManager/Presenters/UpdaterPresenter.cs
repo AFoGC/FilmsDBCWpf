@@ -9,25 +9,25 @@ using UpdaterManager.Views;
 
 namespace UpdaterManager.Presenters
 {
-    public class LauncherPresenter
+    public class UpdaterPresenter
     {
-        private readonly ILauncherView view;
-        public LauncherPresenter(ILauncherView view)
+        private readonly IUpdaterView view;
+        public UpdaterPresenter(IUpdaterView view)
         {
             this.view = view;
         }
 
         public bool SendNewUpdate()
         {
-            byte[] file = File.ReadAllBytes(view.LauncherPath);
-            byte[] fileServer = LauncherBL.GetLastUpdate().LauncherFile;
+            byte[] file = File.ReadAllBytes(view.UpdaterPath);
+            byte[] fileServer = UpdaterBL.GetLastUpdate().UpdaterFile;
             if (Helper.IsEqualVersions(fileServer, file))
             {
                 return false;
             }
             else
             {
-                LauncherBL.AddUpdate(file);
+                UpdaterBL.AddUpdate(file);
                 return true;
             }
         }

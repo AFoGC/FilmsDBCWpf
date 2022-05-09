@@ -18,19 +18,20 @@ using UpdaterManager.Presenters;
 namespace UpdaterManager.Views
 {
     /// <summary>
-    /// Логика взаимодействия для LauncherView.xaml
+    /// Логика взаимодействия для UpdaterView.xaml
     /// </summary>
-    public partial class LauncherView : UserControl, ILauncherView
+    public partial class UpdaterView : UserControl, IUpdaterView
     {
-        private LauncherPresenter presenter;
-        public string LauncherPath => LauncherPathTextBox.Text;
-        public LauncherView()
+        private UpdaterPresenter presenter;
+        public string UpdaterPath => updaterPath.Text;
+
+        public UpdaterView()
         {
-            presenter = new LauncherPresenter(this);
+            presenter = new UpdaterPresenter(this);
             InitializeComponent();
         }
 
-        private void LauncherPathTextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
             dialog.FileName = "WpfApp";
@@ -39,12 +40,12 @@ namespace UpdaterManager.Views
             Nullable<bool> result = dialog.ShowDialog();
             if (result == true)
             {
-                LauncherPathTextBox.Text = dialog.FileName;
-                VersionText.Text = FileVersionInfo.GetVersionInfo(LauncherPath).FileVersion;
+                updaterPath.Text = dialog.FileName;
+                VersionText.Text = FileVersionInfo.GetVersionInfo(UpdaterPath).FileVersion;
             }
         }
 
-        private void Button_Click_SendLauncher(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             presenter.SendNewUpdate();
         }

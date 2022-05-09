@@ -20,7 +20,18 @@ namespace UpdaterManager.Presenters
         public bool SendNewUpdate()
         {
             byte[] file = File.ReadAllBytes(view.UpdaterPath);
-            byte[] fileServer = UpdaterBL.GetLastUpdate().UpdaterFile;
+            byte[] fileServer = null;
+            try
+            {
+                fileServer = UpdaterBL.GetLastUpdate().UpdaterFile;
+            }
+            catch
+            {
+                UpdaterBL.AddUpdate(file);
+                return true;
+            }
+
+
             if (Helper.IsEqualVersions(fileServer, file))
             {
                 return false;

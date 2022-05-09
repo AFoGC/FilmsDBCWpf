@@ -18,6 +18,10 @@ namespace DAL_Launcher
 			objParam.Value = program.UpdateInfo;
 			objParam = command.Parameters.Add("@programfile", SqlDbType.VarBinary);
 			objParam.Value = program.ProgramFile;
+			objParam = command.Parameters.Add("@submit_date", SqlDbType.DateTime);
+			objParam.Value = program.SubmitDate;
+			objParam = command.Parameters.Add("@version", SqlDbType.Char);
+			objParam.Value = program.Version;
 		}
 
 		private ProgramBO getProfile(SqlDataReader objReader)
@@ -27,6 +31,8 @@ namespace DAL_Launcher
 			program.ID = objReader.GetInt64(0);
 			program.UpdateInfo = objReader.GetString(1);
 			program.ProgramFile = (byte[])objReader.GetValue(2);
+			program.SubmitDate = objReader.GetDateTime(3);
+			program.Version = objReader.GetString(4);
 
 			return program;
 		}
@@ -44,6 +50,39 @@ namespace DAL_Launcher
 
 			return programBO;
         }
+
+		public List<ProgramBO> GetPatchNotes()
+        {
+			List<ProgramBO> programs = null;
+			command.CommandText = "get_last_update";
+			SqlDataReader objReader = command.ExecuteReader();
+			ProgramBO program;
+			if (objReader.Read())
+			{
+				program = new ProgramBO
+				{
+					UpdateInfo = objReader.GetString(0),
+					Version = objReader.GetString(1)
+				};
+				programs.Add(program);
+			}
+			connection.Close();
+
+			return programs;
+		}
+
+		public string GetLastVersion()
+        {
+			command.CommandText = "get_last_prog_version";
+			SqlDataReader objReader = command.ExecuteReader();
+			string version = String.Empty;
+			if (objReader.Read())
+			{
+				version = objReader.GetString(0);
+			}
+			connection.Close();
+			return version;
+		}
 
 		public int AddUpdate(ProgramBO program)
         {

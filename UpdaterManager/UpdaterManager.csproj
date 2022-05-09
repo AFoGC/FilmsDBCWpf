@@ -55,6 +55,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Presenters\Helper.cs" />
+    <Compile Include="Presenters\LauncherPresenter.cs" />
+    <Compile Include="Presenters\ProgramPresenter.cs" />
+    <Compile Include="Views\ILauncherView.cs" />
+    <Compile Include="Views\IProgramView.cs" />
+    <Compile Include="Views\LauncherView.xaml.cs">
+      <DependentUpon>LauncherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProgramView.xaml.cs">
+      <DependentUpon>ProgramView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\LauncherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,12 +79,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\MainWindowModel.cs" />
-    <Compile Include="Presenters\MainWindowPresenter.cs" />
-    <Compile Include="Views\IMainWindowView.cs" />
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ProgramView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

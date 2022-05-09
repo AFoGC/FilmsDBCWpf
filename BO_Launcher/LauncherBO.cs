@@ -9,9 +9,14 @@ namespace BO_Launcher
 {
     public class LauncherBO
     {
-        public Int64 ID { get; set; }
+        public LauncherBO()
+        {
+            Version = String.Empty;
+        }
 
-        [XmlIgnore]
+        public Int64 ID { get; set; }
         public byte[] LauncherFile { get; set; }
+        public DateTime SubmitDate { get; set; }
+        public String Version { get; set; }
     }
 }

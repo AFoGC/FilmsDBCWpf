@@ -16,6 +16,10 @@ namespace DAL_Launcher
 			SqlParameter objParam;
 			objParam = command.Parameters.Add("@launcherfile", SqlDbType.VarBinary);
 			objParam.Value = launcher.LauncherFile;
+			objParam = command.Parameters.Add("@submit_date", SqlDbType.VarBinary);
+			objParam.Value = launcher.SubmitDate;
+			objParam = command.Parameters.Add("@version", SqlDbType.VarBinary);
+			objParam.Value = launcher.Version;
 		}
 
 		private LauncherBO getLauncher(SqlDataReader objReader)
@@ -24,6 +28,8 @@ namespace DAL_Launcher
 
 			program.ID = objReader.GetInt64(0);
 			program.LauncherFile = (byte[])objReader.GetValue(1);
+			program.SubmitDate = objReader.GetDateTime(2);
+			program.Version = objReader.GetString(3);
 
 			return program;
 		}

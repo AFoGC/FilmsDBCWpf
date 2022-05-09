@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace UpdaterManager.Views
 {
-    public interface IMainWindowView
+    public interface ILauncherView
     {
-        String FilePath { get; set; }
-        String UpdateInfo { get; set; }
-        String LauncherFilePath { get; set; }
+        String LauncherPath { get; }
     }
 }

@@ -17,6 +17,8 @@ namespace BO_Launcher
 
         public Int64 ID { get; set; }
         public String UpdateInfo { get; set; }
+        public DateTime SubmitDate { get; set; }
+        public String Version { get; set; }
 
         [XmlIgnore]
         public Byte[] ProgramFile { get; set; }

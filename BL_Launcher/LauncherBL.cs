@@ -3,6 +3,7 @@ using DAL_Launcher;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +13,13 @@ namespace BL_Launcher
     {
         public static void AddUpdate(byte[] programFile)
         {
+            Assembly assembly = Assembly.Load(programFile);
+            string version = assembly.GetName().Version.ToString();
             LauncherBO program = new LauncherBO
             {
-                LauncherFile = programFile
+                LauncherFile = programFile,
+                SubmitDate = DateTime.Now,
+                Version = version
             };
             new LauncherDAL().AddUpdate(program);
         }

@@ -24,13 +24,20 @@ namespace LauncherFDBC.Views
 	/// </summary>
 	public partial class MainWindowView : Window, IMainWindowView
 	{
-		MainWindowPresenter presenter;
-        public string UpdateInfo { set => updateInfo.Text = value; }
+		WindowLauncherPresenter launcherPresenter;
+		WindowProgramPresenter programPresenter;
+        public string UpdateInfo { set => updateInfo.Text = value; get => updateInfo.Text; }
         public string UpdateID { set => updateID.Content = value; }
         public MainWindowView()
 		{
 			InitializeComponent();
-			presenter = new MainWindowPresenter(new MainWindowModel(), this);
+			MainWindowModel model = new MainWindowModel();
+			launcherPresenter = new WindowLauncherPresenter(model, this);
+			programPresenter = new WindowProgramPresenter(model, this);
+
+			
+
+			programPresenter.GetPatchesNote();
 			RefreshCanBeUpdated();
 			RefreshIsProgExist();
 			RefreshLauncherCanBeUpdated();
@@ -38,24 +45,24 @@ namespace LauncherFDBC.Views
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			presenter.GetUpdateFromDB();
+			programPresenter.GetUpdateFromDB();
 			RefreshCanBeUpdated();
 			RefreshIsProgExist();
 		}
 
 		private void updateLauncherButton_Click(object sender, RoutedEventArgs e)
 		{
-			presenter.GetLauncherUpdateFromDB();
+			launcherPresenter.GetLauncherUpdateFromDB();
 		}
 
 		private void startButton_Click(object sender, RoutedEventArgs e)
 		{
-			presenter.RunProgram();
+			programPresenter.RunProgram();
 		}
 
 		private void RefreshCanBeUpdated()
 		{
-			if (presenter.CanBeUpdated())
+			if (programPresenter.CanBeUpdated())
 			{
 				updateButton.IsEnabled = true;
 			}
@@ -64,7 +71,7 @@ namespace LauncherFDBC.Views
 
 		private void RefreshLauncherCanBeUpdated()
 		{
-			if (presenter.LauncherCanBeUpdated())
+			if (launcherPresenter.LauncherCanBeUpdated())
 				updateLauncherButton.IsEnabled = true;
 			else
 				updateLauncherButton.IsEnabled = false;
@@ -72,7 +79,7 @@ namespace LauncherFDBC.Views
 
 		private void RefreshIsProgExist()
 		{
-			if (presenter.IsProgramExist() && presenter.IsProgramFileExist())
+			if (programPresenter.IsProgramExist())
             {
 				updateButton.Content = "Update Program";
 				startButton.IsEnabled = true;

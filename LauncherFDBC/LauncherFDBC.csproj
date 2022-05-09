@@ -203,7 +203,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\MainWindowModel.cs" />
-    <Compile Include="Presenters\MainWindowPresenter.cs" />
+    <Compile Include="Presenters\WindowLauncherPresenter.cs" />
+    <Compile Include="Presenters\WindowProgramPresenter.cs" />
     <Compile Include="Views\IMainWindowView.cs" />
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>

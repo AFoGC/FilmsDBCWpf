@@ -48,6 +48,19 @@ namespace DAL_Launcher
 			return launcherBO;
 		}
 
+		public string GetLastVersion()
+		{
+			command.CommandText = "get_last_launcher_version";
+			SqlDataReader objReader = command.ExecuteReader();
+			string version = String.Empty;
+			if (objReader.Read())
+			{
+				version = objReader.GetString(0);
+			}
+			connection.Close();
+			return version;
+		}
+
 		public int AddUpdate(LauncherBO launcher)
 		{
 			command.CommandText = "add_launcher_update";

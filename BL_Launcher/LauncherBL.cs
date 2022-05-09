@@ -28,5 +28,10 @@ namespace BL_Launcher
         {
             return new LauncherDAL().GetLastUpdate();
         }
+
+        public static String GetLastVersion()
+        {
+            return new LauncherDAL().GetLastVersion();
+        }
     }
 }

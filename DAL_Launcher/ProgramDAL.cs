@@ -53,11 +53,11 @@ namespace DAL_Launcher
 
 		public List<ProgramBO> GetPatchNotes()
         {
-			List<ProgramBO> programs = null;
-			command.CommandText = "get_last_update";
+			List<ProgramBO> programs = new List<ProgramBO>();
+			command.CommandText = "get_last_update_info";
 			SqlDataReader objReader = command.ExecuteReader();
 			ProgramBO program;
-			if (objReader.Read())
+			while (objReader.Read())
 			{
 				program = new ProgramBO
 				{

@@ -16,9 +16,9 @@ namespace DAL_Launcher
 			SqlParameter objParam;
 			objParam = command.Parameters.Add("@launcherfile", SqlDbType.VarBinary);
 			objParam.Value = launcher.LauncherFile;
-			objParam = command.Parameters.Add("@submit_date", SqlDbType.VarBinary);
+			objParam = command.Parameters.Add("@submit_date", SqlDbType.DateTime);
 			objParam.Value = launcher.SubmitDate;
-			objParam = command.Parameters.Add("@version", SqlDbType.VarBinary);
+			objParam = command.Parameters.Add("@version", SqlDbType.VarChar);
 			objParam.Value = launcher.Version;
 		}
 

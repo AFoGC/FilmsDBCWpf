@@ -20,7 +20,7 @@ namespace DAL_Launcher
 			objParam.Value = program.ProgramFile;
 			objParam = command.Parameters.Add("@submit_date", SqlDbType.DateTime);
 			objParam.Value = program.SubmitDate;
-			objParam = command.Parameters.Add("@version", SqlDbType.Char);
+			objParam = command.Parameters.Add("@version", SqlDbType.VarChar);
 			objParam.Value = program.Version;
 		}
 

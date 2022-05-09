@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace BO_Launcher
 {
-    [Serializable]
-    public class ProgramBO
+    public class UpdaterBO
     {
-        public ProgramBO()
+        public UpdaterBO()
         {
-            UpdateInfo = String.Empty;
+            Version = String.Empty;
         }
 
         public Int64 ID { get; set; }
-        public String UpdateInfo { get; set; }
+        public byte[] UpdaterFile { get; set; }
         public DateTime SubmitDate { get; set; }
         public String Version { get; set; }
-        public Byte[] ProgramFile { get; set; }
     }
 }

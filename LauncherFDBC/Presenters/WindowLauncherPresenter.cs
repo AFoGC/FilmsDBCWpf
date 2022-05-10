@@ -48,5 +48,25 @@ namespace LauncherFDBC.Presenters
 			string localVersion = FileVersionInfo.GetVersionInfo(model.LauncherProgPath).FileVersion;
 			return (version == localVersion);
 		}
+
+		public bool UpdateUpdater()
+        {
+			string localVersion = FileVersionInfo.GetVersionInfo(model.LauncherUpdaterPath).FileVersion;
+			if (UpdaterBL.GetLastVersion() != localVersion)
+            {
+				UpdaterBO updater = UpdaterBL.GetLastUpdate();
+                if (IsUpdaterExist())
+					File.Delete(model.FdbcProgPath);
+				File.WriteAllBytes(model.LauncherUpdaterPath, updater.UpdaterFile);
+				return true;
+			}
+
+			return false;
+        }
+
+		public bool IsUpdaterExist()
+		{
+			return File.Exists(model.LauncherUpdaterPath);
+		}
 	}
 }

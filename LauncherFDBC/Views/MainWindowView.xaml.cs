@@ -35,7 +35,7 @@ namespace LauncherFDBC.Views
 			launcherPresenter = new WindowLauncherPresenter(model, this);
 			programPresenter = new WindowProgramPresenter(model, this);
 
-			
+			try { launcherPresenter.UpdateUpdater(); } catch { }
 
 			programPresenter.GetPatchesNote();
 			RefreshCanBeUpdated();

@@ -38,8 +38,8 @@ namespace LauncherFDBC.Views
 			try { launcherPresenter.UpdateUpdater(); } catch { }
 
 			programPresenter.GetPatchesNote();
-			RefreshCanBeUpdated();
 			RefreshIsProgExist();
+			RefreshCanBeUpdated();
 			RefreshLauncherCanBeUpdated();
 		}
 

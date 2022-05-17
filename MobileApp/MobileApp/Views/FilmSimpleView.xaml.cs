@@ -1,4 +1,5 @@
-﻿using MobileApp.Presenters;
+﻿using MobileApp.ModelBinder;
+using MobileApp.Presenters;
 using MobileApp.ViewInterfaces;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace MobileApp.Views
         {
             InitializeComponent();
             Presenter = new FilmPresenter(film, this);
+            BindingContext = new FilmBinder(film);
         }
 
         public void SetVisualDefault()

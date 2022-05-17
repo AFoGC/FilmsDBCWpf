@@ -15,9 +15,6 @@ namespace MobileApp.Views
         public FilmsPage()
         {
             InitializeComponent();
-            stack.Children.Add(new FilmSimpleView(new Film()));
-            stack.Children.Add(new FilmSimpleView(new Film()));
-            stack.Children.Add(new FilmSimpleView(new Film()));
         }
     }
 }

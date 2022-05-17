@@ -4,13 +4,25 @@
              xmlns:local="clr-namespace:MobileApp.Views"
              x:Class="MobileApp.Views.FilmsPage"
              BackgroundColor="#FF121212">
-    <ContentPage.Content>
-        <StackLayout Spacing="2" x:Name="stack">
-            
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
-        </StackLayout>
-    </ContentPage.Content>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0">
+            <StackLayout Spacing="2" x:Name="stack">
+
+            </StackLayout>
+        </ScrollView>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Text="Add" Grid.Column="1"/>
+        </Grid>
+        
+    </Grid>
+
 </ContentPage>

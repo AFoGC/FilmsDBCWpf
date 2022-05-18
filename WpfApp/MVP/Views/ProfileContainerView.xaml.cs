@@ -52,7 +52,7 @@ namespace WpfApp.MVP.Views
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                Arguments = Profile.AllProfilesPath,
+                Arguments = presenter.AllProfilesPath,
                 FileName = "explorer.exe"
             };
             Process.Start(startInfo);

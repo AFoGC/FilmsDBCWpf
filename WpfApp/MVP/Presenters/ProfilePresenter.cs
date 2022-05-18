@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProfilesConfig;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,7 @@ namespace WpfApp.MVP.Presenters
 
         public void ChangeProfile()
         {
-            settings.UsedProfile = model;
+            settings.SetUsedProfile(model);
             settings.SaveSettings();
             parentPresenter.SetSelectedInfCollection(settings.UsedProfile);
         }

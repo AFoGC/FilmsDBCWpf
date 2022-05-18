@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProfilesConfig;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -49,8 +50,7 @@ namespace WpfApp.MVP.Presenters
             ProfileCollection profileCollection = settings.Profiles;
             if (view.AddProfileText != "")
             {
-                Profile newProfile = new Profile(view.AddProfileText);
-                profileCollection.AddProfile(newProfile);
+                profileCollection.AddProfile(view.AddProfileText);
                 this.RefreshControl();
             }
         }
@@ -65,10 +65,12 @@ namespace WpfApp.MVP.Presenters
                 i++;
             }
             profName += i;
-            Profile profile = new Profile(profName);
-            profColl.AddProfile(profile);
+            Profile profile = profColl.AddProfile(profName);
+            
 
             File.Copy(filePath, profile.MainFilePath, true);
         }
+
+        public String AllProfilesPath => settings.Profiles.ProfilesPath;
     }
 }

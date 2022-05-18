@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProfilesConfig;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -19,20 +20,29 @@ namespace WpfApp.Config
 		private SettingsFields settingsFields;
 		public Profile UsedProfile
 		{
-			get
+			get => Profiles.UsedProfile;
+		}
+
+		public void SetUsedProfile(Profile profile)
+        {
+			Profiles.SetUsedProfile(profile);
+			if (TableCollection != null)
 			{
-				return Profiles.UsedProfile;
+				TableCollection.TableFilePath = UsedProfile.MainFilePath;
+				TableCollection.LoadTables();
 			}
-			set 
+			settingsFields.UsedProfile = UsedProfile.Name;
+		}
+
+		public void SetUsedProfile(String profileName)
+        {
+			Profiles.SetUsedProfile(profileName);
+			if (TableCollection != null)
 			{
-				Profiles.UsedProfile = value;
-				if (TableCollection != null)
-				{
-					TableCollection.TableFilePath = UsedProfile.MainFilePath;
-					TableCollection.LoadTables();
-				}
-				settingsFields.UsedProfile = UsedProfile.Name;
+				TableCollection.TableFilePath = UsedProfile.MainFilePath;
+				TableCollection.LoadTables();
 			}
+			settingsFields.UsedProfile = UsedProfile.Name;
 		}
 
 		static ProgramSettings()
@@ -45,7 +55,7 @@ namespace WpfApp.Config
 		private ProgramSettings(TableCollection collection)
         {
 			TableCollection = collection;
-			this.Profiles = new ProfileCollection();
+			this.Profiles = new ProfileCollection(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
 			this.settingsFields = new SettingsFields();
         }
 
@@ -61,7 +71,7 @@ namespace WpfApp.Config
                 else instance.settingsFields = LoadSettings();
 			}
 
-			instance.UsedProfile = new Profile(instance.settingsFields.UsedProfile);
+			instance.SetUsedProfile(instance.settingsFields.UsedProfile);
 
 			return instance;
         }

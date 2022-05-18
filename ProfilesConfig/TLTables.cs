@@ -7,7 +7,7 @@ using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
 
-namespace WpfApp.Config
+namespace ProfilesConfig
 {
 	public class TLTables
 	{

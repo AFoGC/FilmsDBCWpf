@@ -198,8 +198,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Config\Profile.cs" />
-    <Compile Include="Config\ProfileCollection.cs" />
     <Compile Include="Config\ProgramSettings.cs" />
     <Compile Include="MVP\Models\BooksMenuModel.cs" />
     <Compile Include="MVP\Models\FilmsMenuModel.cs" />
@@ -269,7 +267,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config\TLTables.cs" />
     <Page Include="MVP\Views\BooksMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -374,6 +371,10 @@
     <ProjectReference Include="..\InfoMenusWpf\InfoMenusWpf.csproj">
       <Project>{8357f60c-35c5-4197-ba0e-a9800bc10765}</Project>
       <Name>InfoMenusWpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProfilesConfig\ProfilesConfig.csproj">
+      <Project>{88ca77f1-88e7-468e-80a5-b77138f78894}</Project>
+      <Name>ProfilesConfig</Name>
     </ProjectReference>
     <ProjectReference Include="..\TLObjects\TL_Objects.csproj">
       <Project>{850e8208-e369-4f93-8a80-8227c5605a6e}</Project>

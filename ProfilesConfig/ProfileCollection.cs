@@ -7,9 +7,8 @@ using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.Table;
-using TL_Objects;
 
-namespace WpfApp.Config
+namespace ProfilesConfig
 {
 	public class ProfileCollection : IEnumerable
 	{
@@ -21,27 +20,48 @@ namespace WpfApp.Config
 			{
 				return usedProfile;
 			}
-			set
+		}
+
+		public void SetUsedProfile(Profile profile)
+        {
+			bool hasInCollection = false;
+			foreach (Profile item in profiles)
 			{
-				bool hasInCollection = false;
-				foreach (Profile profile in profiles)
+				if (item.Name == profile.Name)
 				{
-					if (profile.Name == value.Name)
-					{
-						usedProfile = profile;
-						hasInCollection = true;
-					}
+					usedProfile = item;
+					hasInCollection = true;
 				}
-				if (!hasInCollection)
-				{
-					usedProfile = profiles[0];
-				}
+			}
+			if (!hasInCollection)
+			{
+				usedProfile = profiles[0];
 			}
 		}
 
-		public ProfileCollection()
+		public void SetUsedProfile(String profileName)
+        {
+			bool hasInCollection = false;
+			foreach (Profile item in profiles)
+			{
+				if (item.Name == profileName)
+				{
+					usedProfile = item;
+					hasInCollection = true;
+				}
+			}
+			if (!hasInCollection)
+			{
+				usedProfile = profiles[0];
+			}
+		}
+
+		public String ProfilesPath { get; private set; }
+
+		public ProfileCollection(string path)
 		{
 			profiles = new List<Profile>();
+			ProfilesPath = Path.Combine(path, "Profiles");
 			LoadProfiles();
 			usedProfile = profiles[0];
 		}
@@ -85,9 +105,10 @@ namespace WpfApp.Config
 		public void LoadProfiles()
 		{
 			profiles.Clear();
-			foreach (Profile profile in Profile.GetAllProfiles)
+			foreach (Profile profile in GetAllProfiles)
 			{
 				profiles.Add(profile);
+				profile.ParentCollection = this;
 			}
 		}
 
@@ -99,6 +120,14 @@ namespace WpfApp.Config
 			}
 			return false;
 		}
+
+		public Profile AddProfile(String name)
+        {
+			Profile profile = new Profile(name);
+			if (AddProfile(profile)) return profile;
+			else return profile;
+
+        }
 
 		public bool AddProfile(Profile newProfile)
 		{
@@ -118,6 +147,7 @@ namespace WpfApp.Config
 
 				tc.SaveTables();
 
+				newProfile.ParentCollection = this;
 				profiles.Add(newProfile);
 			}
 
@@ -153,6 +183,46 @@ namespace WpfApp.Config
 				AddProfile(profile);
 				profile.SetMainFile(profileBO.Lastsave);
 			}
+		}
+
+		public Profile[] GetAllProfiles
+		{
+			get
+			{
+				List<Profile> export = new List<Profile>();
+				if (Directory.Exists(ProfilesPath))
+				{
+					foreach (String str in Directory.GetDirectories(ProfilesPath))
+					{
+						export.Add(new Profile(getDirecotryName(str)));
+					}
+					if (export.Count != 0)
+					{
+						return export.ToArray();
+					}
+				}
+				else
+				{
+					Directory.CreateDirectory(ProfilesPath + "\\Main");
+				}
+
+				export.Add(new Profile("Main"));
+				return export.ToArray();
+			}
+		}
+
+		private static String getDirecotryName(String import)
+		{
+			int i = import.Length - 1;
+			for (; i > 0; i--)
+			{
+				if (import[i] == '\\')
+				{
+					return import.Substring(++i);
+				}
+			}
+
+			return import;
 		}
 
 		public void SendProfilesToDB(UserBO user)

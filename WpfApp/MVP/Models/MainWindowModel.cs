@@ -1,5 +1,6 @@
 ﻿using BL_Films;
 using BO_Films;
+using ProfilesConfig;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdaterManager", "UpdaterMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherUpdater", "LauncherUpdater\LauncherUpdater.csproj", "{C0580BBC-58D9-4AB4-99AC-7952065CE027}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfilesConfig", "ProfilesConfig\ProfilesConfig.csproj", "{88CA77F1-88E7-468E-80A5-B77138F78894}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -287,6 +289,18 @@ Global
 		{C0580BBC-58D9-4AB4-99AC-7952065CE027}.Release|iPhone.Build.0 = Release|Any CPU
 		{C0580BBC-58D9-4AB4-99AC-7952065CE027}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{C0580BBC-58D9-4AB4-99AC-7952065CE027}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Release|iPhone.Build.0 = Release|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{88CA77F1-88E7-468E-80A5-B77138F78894}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

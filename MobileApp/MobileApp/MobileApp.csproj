@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ProfilesConfig\ProfilesConfig.csproj" />
     <ProjectReference Include="..\..\TLObjects\TL_Objects.csproj" />
     <ProjectReference Include="..\..\TL_Tables\TL_Tables.csproj" />
   </ItemGroup>

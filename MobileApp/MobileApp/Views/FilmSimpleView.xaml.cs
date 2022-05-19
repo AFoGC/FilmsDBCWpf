@@ -1,6 +1,5 @@
 ﻿using MobileApp.ModelBinder;
 using MobileApp.Presenters;
-using MobileApp.ViewInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

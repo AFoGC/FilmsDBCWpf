@@ -4,7 +4,4 @@
             xmlns:local="clr-namespace:MobileApp.Views"
             x:Class="MobileApp.Views.MainPage">
   <!--Pages can be added as references or inline-->
-  <local:FilmsPage Title="Films" />
-  <ContentPage Title="Tab 2" />
-  <ContentPage Title="Tab 3" />
 </TabbedPage>

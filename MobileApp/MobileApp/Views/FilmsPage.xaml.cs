@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MobileApp.Models;
+using MobileApp.Presenters;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +13,16 @@ using Xamarin.Forms.Xaml;
 namespace MobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FilmsPage : ContentPage
+    public partial class FilmsPage : ContentPage, IFilmsMenuView
     {
-        public FilmsPage()
+
+        private readonly FilmsMenuPresenter presenter;
+        public FilmsPage(MainModel mainModel)
         {
+            presenter = new FilmsMenuPresenter(this, new FilmsMenuModel(), mainModel);
             InitializeComponent();
         }
+
+        
     }
 }

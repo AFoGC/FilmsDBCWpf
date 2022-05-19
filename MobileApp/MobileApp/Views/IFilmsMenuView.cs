@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MobileApp.ViewInterfaces
+namespace MobileApp.Views
 {
     public interface IFilmsMenuView
     {
-        IList MenuControls { get; } 
+        //IList MenuControls { get; } 
     }
 }

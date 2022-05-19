@@ -1,5 +1,5 @@
 ﻿using MobileApp.Models;
-using MobileApp.ViewInterfaces;
+using MobileApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,11 +10,13 @@ namespace MobileApp.Presenters
     {
         private readonly IFilmsMenuView view;
         private readonly FilmsMenuModel model;
+        private readonly MainModel mainModel;
 
-        public FilmsMenuPresenter(IFilmsMenuView view, FilmsMenuModel model)
+        public FilmsMenuPresenter(IFilmsMenuView view, FilmsMenuModel model, MainModel mainModel)
         {
             this.view = view;
             this.model = model;
+            this.mainModel = mainModel;
         }
 
 

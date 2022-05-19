@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MobileApp.ViewInterfaces
+namespace MobileApp.Views
 {
     public interface IView
     {

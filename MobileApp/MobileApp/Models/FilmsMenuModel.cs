@@ -6,6 +6,9 @@ namespace MobileApp.Models
 {
     public class FilmsMenuModel
     {
+        public FilmsMenuModel()
+        {
 
+        }
     }
 }

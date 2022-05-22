@@ -62,6 +62,7 @@ namespace ProfilesConfig
 		{
 			profiles = new List<Profile>();
 			ProfilesPath = Path.Combine(path, "Profiles");
+			DirectoryInfo info = Directory.CreateDirectory(ProfilesPath);
 			LoadProfiles();
 			usedProfile = profiles[0];
 		}

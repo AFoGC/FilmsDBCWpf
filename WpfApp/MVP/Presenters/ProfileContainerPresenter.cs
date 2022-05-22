@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WpfApp.Config;
 using WpfApp.MVP.Models;
 using WpfApp.MVP.Views;
 using WpfApp.MVP.ViewsInterface;

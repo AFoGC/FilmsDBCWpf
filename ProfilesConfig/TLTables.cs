@@ -32,7 +32,7 @@ namespace ProfilesConfig
 			tcoll.AddTable(new FilmsTable());
 			tcoll.AddTable(new SeriesTable());
 			tcoll.AddTable(new PriorityFilmsTable());
-			tcoll.AddTable(new BookGenresTable());
+			tcoll.AddTable(BookGenresTable.GetDefaultGenresTable());
 			tcoll.AddTable(new BooksTable());
 			tcoll.AddTable(new BookCategoriesTable());
 			tcoll.AddTable(new PriorityBooksTable());
@@ -49,6 +49,7 @@ namespace ProfilesConfig
 			export.AddTable(new SeriesTable());
 			export.AddTable(new PriorityFilmsTable());
 			export.AddTable(BookGenresTable.GetDefaultGenresTable());
+			export.AddTable(new BooksTable());
 			export.AddTable(new BookCategoriesTable());
 			export.AddTable(new PriorityBooksTable());
 

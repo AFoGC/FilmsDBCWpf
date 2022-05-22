@@ -1,12 +1,11 @@
-﻿using ProfilesConfig;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using TablesLibrary.Interpreter;
 
-namespace WpfApp.Config
+namespace ProfilesConfig
 {
 	[Serializable]
 	public class ProgramSettings
@@ -48,24 +47,24 @@ namespace WpfApp.Config
 		static ProgramSettings()
         {
 			formatter = new XmlSerializer(typeof(SettingsFields));
-			settingPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ProgramSetting.xml";
 			instance = null;
 		}
 
-		private ProgramSettings(TableCollection collection)
+		private ProgramSettings(TableCollection collection, String profilesDirectoryPath)
         {
 			TableCollection = collection;
-			this.Profiles = new ProfileCollection(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
+			this.Profiles = new ProfileCollection(profilesDirectoryPath);
 			this.settingsFields = new SettingsFields();
         }
 
 		private static ProgramSettings instance;
 
-		public static ProgramSettings Initialize(TableCollection collection)
+		public static ProgramSettings Initialize(TableCollection collection, String profilesDirectoryPath, String settingsPath)
         {
 			if (instance == null)
             {
-				instance = new ProgramSettings(collection);
+				settingPath = settingsPath;
+				instance = new ProgramSettings(collection, profilesDirectoryPath);
 				if (!File.Exists(settingPath)) 
 					instance.settingsFields = new SettingsFields();
                 else instance.settingsFields = LoadSettings();
@@ -95,7 +94,7 @@ namespace WpfApp.Config
 			return settings;
 		}
 
-		private static readonly String settingPath;
+		private static String settingPath;
 		private static readonly XmlSerializer formatter;
 
 		[Serializable]

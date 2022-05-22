@@ -11,8 +11,9 @@ namespace DAL_Films
         public SqlCommand command;
         public BaseConnection()
         {
-            connectionString = ConfigurationManager.
-                ConnectionStrings["ConnectionString"].ConnectionString;
+            /*connectionString = ConfigurationManager.
+                ConnectionStrings["ConnectionString"].ConnectionString;*/
+            connectionString = string.Empty;
 
             connection = new SqlConnection(connectionString);
 

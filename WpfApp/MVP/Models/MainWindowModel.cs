@@ -3,6 +3,7 @@ using BO_Films;
 using ProfilesConfig;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,6 @@ using TablesLibrary.Interpreter.Table;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Tables;
-using WpfApp.Config;
 
 namespace WpfApp.MVP.Models
 {
@@ -52,7 +52,9 @@ namespace WpfApp.MVP.Models
 			TableCollection.TableSave += boolSaved;
             TableCollection.CellInTablesChanged += TableCollection_CellInTablesChanged;
 
-			Settings = ProgramSettings.Initialize(TableCollection);
+            String localPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            Settings = ProgramSettings.Initialize(TableCollection, localPath, Path.Combine(localPath, "ProgramSetting.xml"));
 			if (Settings.StartUser.LoggedIn)
 			{
 				LoggedInUser = UserBL.LogIn(Settings.StartUser.Email, Settings.StartUser.Email);

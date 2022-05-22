@@ -19,10 +19,15 @@ namespace MobileApp.Views
         private readonly FilmsMenuPresenter presenter;
         public FilmsPage(MainModel mainModel)
         {
-            presenter = new FilmsMenuPresenter(this, new FilmsMenuModel(), mainModel);
             InitializeComponent();
+            presenter = new FilmsMenuPresenter(this, new FilmsMenuModel(), mainModel);
         }
 
-        
+        public IList<View> MenuControls => stack.Children;
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            presenter.AddFilm();
+        }
     }
 }

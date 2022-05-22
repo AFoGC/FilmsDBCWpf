@@ -198,7 +198,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Config\ProgramSettings.cs" />
     <Compile Include="MVP\Models\BooksMenuModel.cs" />
     <Compile Include="MVP\Models\FilmsMenuModel.cs" />
     <Compile Include="MVP\Models\IUserModel.cs" />
@@ -385,7 +384,9 @@
       <Name>TL_Tables</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Config\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\BookIcon.ico" />
   </ItemGroup>

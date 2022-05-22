@@ -18,12 +18,11 @@ namespace MobileApp.Views
         private readonly MainPresenter presenter;
         public MainPage()
         {
+            InitializeComponent();
+
             MainModel model = new MainModel();
             presenter = new MainPresenter(model, this);
-
-            InitializeComponent();
-            
-            this.Children.Add(new FilmsPage());
+            this.Children.Add(new FilmsPage(model) { Title = "Films" });
             this.Children.Add(new ContentPage { Title = "Tab 2" });
             this.Children.Add(new ContentPage { Title = "Tab 3" });
         }

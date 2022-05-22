@@ -18,7 +18,7 @@ namespace ProfilesConfig
 			if (name == String.Empty)
 				this.name = "Main";
 			else this.name = name;
-			
+
 		}
 
 		private String name = "";
@@ -30,7 +30,15 @@ namespace ProfilesConfig
 
 		public ProfileCollection ParentCollection { get; internal set; }
 
-		public String ProfilePath => Path.Combine(ParentCollection.ProfilesPath, name);
+		public String ProfilePath
+		{
+			get 
+			{
+				string export = Path.Combine(ParentCollection.ProfilesPath, name);
+				Directory.CreateDirectory(export);
+				return export;
+			} 
+		}
 
 		private String FilePath => Path.Combine(ProfilePath, "Films.fdbc");
 

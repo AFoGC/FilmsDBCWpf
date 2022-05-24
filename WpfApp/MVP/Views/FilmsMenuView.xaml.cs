@@ -89,6 +89,12 @@ namespace WpfApp.MVP.Views
             {
                 presenter.UpdateFormVisualizer.UpdateControl.Update();
             }
+
+            if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (presenter.UpdateFormVisualizer.IsOpen)
+                    presenter.UpdateFormVisualizer.UpdateControl.Update();
+            }
         }
     }
 }

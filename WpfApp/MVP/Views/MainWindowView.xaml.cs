@@ -26,6 +26,8 @@ namespace WpfApp.MVP.Views
         public MainWindowView()
         {
             InitializeComponent();
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
             navbar.Window = this;
             MainWindowModel model = new MainWindowModel();
             presenter = new MainWindowPresenter(model);
@@ -74,7 +76,10 @@ namespace WpfApp.MVP.Views
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            presenter.WindowKeyDown(e);
+            if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                presenter.SaveTables();
+            }
         }
     }
 }

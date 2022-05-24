@@ -25,14 +25,6 @@ namespace WpfApp.MVP.Presenters
 			model.TableCollection.LoadTables();
 		}
 
-		public void WindowKeyDown(KeyEventArgs e)
-		{
-			if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
-			{
-				model.TableCollection.SaveTables();
-			}
-		}
-
 		public void WindowClosed()
 		{
 			if (model.IsLoggedIn)

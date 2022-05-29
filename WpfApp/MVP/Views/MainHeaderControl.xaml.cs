@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -44,6 +45,7 @@ namespace WpfApp.MVP.Views
 
         private void btn_maximize_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.MainWindow.MaxHeight = SystemParameters.VirtualScreenHeight;
             if (App.Current.MainWindow.WindowState != WindowState.Maximized)
             {
                 Application.Current.MainWindow.WindowState = WindowState.Maximized;

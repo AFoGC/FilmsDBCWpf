@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.MVP.Views"
         mc:Ignorable="d"
-        Title="MainWindowView" Height="450" Width="800"
-        WindowStyle="None" Background="{x:Null}" MinWidth="1485" MinHeight="755" ResizeMode="NoResize" Closing="Window_Closing" KeyDown="Window_KeyDown" Closed="Window_Closed">
+        Title="MainWindowView" Height="755" Width="1485"
+        WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize" Closing="Window_Closing" KeyDown="Window_KeyDown" Closed="Window_Closed">
     <Grid x:Name="grid" Background="#FF121212">
         <local:MainHeaderControl x:Name="mainHeader" Margin="0,0,0,0" VerticalAlignment="Top"/>
         <local:NavbarControl x:Name="navbar" Margin="0,30,0,0" VerticalAlignment="Top"/>

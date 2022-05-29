@@ -125,7 +125,10 @@ namespace ProfilesConfig
 		public Profile AddProfile(String name)
         {
 			Profile profile = new Profile(name);
-			if (AddProfile(profile)) return profile;
+			if (AddProfile(profile))
+			{
+				return profile;
+			}
 			else return profile;
 
         }
@@ -140,6 +143,7 @@ namespace ProfilesConfig
 
 			if (exclusive)
 			{
+				newProfile.ParentCollection = this;
 				Directory.CreateDirectory(newProfile.ProfilePath);
 				using (FileStream fs = File.Create(newProfile.MainFilePath)) { }
 

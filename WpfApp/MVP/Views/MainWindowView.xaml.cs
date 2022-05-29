@@ -26,8 +26,11 @@ namespace WpfApp.MVP.Views
         public MainWindowView()
         {
             InitializeComponent();
-            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+
+            
+
+            
+            //MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
             navbar.Window = this;
             MainWindowModel model = new MainWindowModel();
             presenter = new MainWindowPresenter(model);

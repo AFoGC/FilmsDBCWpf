@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
@@ -15,22 +17,48 @@ namespace TL_Objects
         private sbyte mark = -1;
         private int priority = 0;
 
-        private TLCollection<Film> films = new TLCollection<Film>();
+        private ObservableCollection<Film> films = new ObservableCollection<Film>();
 
-        public Category() : base() { }
-        public Category(int id) : base(id) { }
+        public Category() : base()
+        {
+            films.CollectionChanged += Films_CollectionChanged;
+        }
+
+        public Category(int id) : base(id)
+        {
+            films.CollectionChanged += Films_CollectionChanged;
+        }
+
+        private void Films_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Film film;
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Remove:
+                    film = (Film)e.OldItems[0];
+                    film.FranshiseId = 0;
+                    film.FranshiseListIndex = -1;
+                    break;
+                case NotifyCollectionChangedAction.Add:
+                    film = (Film)e.NewItems[0];
+                    film.FranshiseId = this.ID;
+                    break;
+
+                default:
+                    break;
+            }
+
+            sbyte i = 0;
+            foreach (Film item in Films)
+            {
+                item.FranshiseListIndex = i++;
+            }
+        }
 
         public bool RemoveFilmFromCategory(Film film)
         {
             if (films.Contains(film))
             {
-                foreach (Film item in films)
-                {
-                    if (film.FranshiseListIndex < item.FranshiseListIndex)
-                    {
-                        --item.FranshiseListIndex;
-                    }
-                }
                 if (film.FranshiseId == this.ID)
                 {
                     film.FranshiseId = 0;
@@ -43,6 +71,21 @@ namespace TL_Objects
                 return false;
             }
         }
+
+        
+        public bool ChangeFilmPositionBy(Film film, int i)
+        {
+            int oldIndex = Films.IndexOf(film);
+            int newIndex = oldIndex + i;
+
+            if (newIndex > -1 && newIndex < Films.Count)
+            {
+                Films.Move(oldIndex, newIndex);
+                return true;
+            }
+            return false;
+        }
+        
 
         protected override void updateThisBody(Cell cell)
         {
@@ -117,10 +160,9 @@ namespace TL_Objects
             set { priority = value; OnPropertyChanged(nameof(Priority)); }
         }
 
-        public TLCollection<Film> Films
+        public ObservableCollection<Film> Films
         {
             get { return films; }
-            set { films = value; OnPropertyChanged(nameof(Films)); }
         }
     }
 }

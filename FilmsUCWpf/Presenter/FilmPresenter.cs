@@ -118,5 +118,12 @@ namespace FilmsUCWpf.Presenter
 			}
 			return false;
 		}
+
+		public void UpFranshiseListID()
+        {
+			CategoriesTable categories = (CategoriesTable)TableCollection.GetTable<Category>();
+			Category category = categories.GetCategoryByFilm(Model);
+			category.ChangeFilmPositionBy(Model, -1);
+        }
 	}
 }

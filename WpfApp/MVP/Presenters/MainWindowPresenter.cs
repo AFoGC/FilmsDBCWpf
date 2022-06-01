@@ -22,7 +22,7 @@ namespace WpfApp.MVP.Presenters
 
 		public void WindowLoaded()
 		{
-			model.TableCollection.LoadTables();
+			//model.TableCollection.LoadTables();
 		}
 
 		public void WindowClosed()

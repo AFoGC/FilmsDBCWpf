@@ -20,6 +20,7 @@ namespace WpfApp.MVP.Presenters
             this.view = view;
             this.tableCollection = tableCollection;
             tableCollection.TableLoad += TableCollection_TableLoad;
+            RefreshControl();
         }
 
         private void TableCollection_TableLoad(object sender, EventArgs e)

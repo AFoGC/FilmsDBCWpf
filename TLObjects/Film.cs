@@ -116,8 +116,6 @@ namespace TL_Objects
 			}
 		}
 
-		//public CategoryEventHandler CategoryChanged;
-
 		public string Name
 		{
 			get { return name; }
@@ -185,7 +183,6 @@ namespace TL_Objects
 			get { return franshiseId; }
 			set
 			{
-				//OnCategoryChanged(new CategoryFilmEventArgs(value, FranshiseId));
 				franshiseId = value;
 				OnPropertyChanged(nameof(FranshiseId));
 			}
@@ -201,27 +198,5 @@ namespace TL_Objects
 		{
 			get { return genreId; }
 		}
-		/*
-		private void OnCategoryChanged(CategoryFilmEventArgs e)
-		{
-			CategoryEventHandler handler = CategoryChanged;
-			if (handler != null)
-				handler(this, e);
-		}
-		*/
 	}
-	/*
-	public delegate void CategoryEventHandler(Film sender, CategoryFilmEventArgs e);
-
-	public class CategoryFilmEventArgs : EventArgs
-    {
-		public CategoryFilmEventArgs(int CategoryId, int PreviousCategoryId)
-        {
-			this.CategoryId = CategoryId;
-			this.PreviousCategoryId = PreviousCategoryId;
-        }
-		public int CategoryId { get; private set; }
-		public int PreviousCategoryId { get; private set; }
-    }
-	*/
 }

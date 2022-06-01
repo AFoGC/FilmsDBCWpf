@@ -109,5 +109,15 @@ namespace FilmsUCWpf.View
         {
 			presenter.AddToPriority();
         }
+
+        private void Up_Click(object sender, RoutedEventArgs e)
+        {
+			presenter.UpFranshiseListID();
+        }
+
+        private void Down_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

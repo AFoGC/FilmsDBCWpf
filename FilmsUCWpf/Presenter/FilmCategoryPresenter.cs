@@ -92,26 +92,6 @@ namespace FilmsUCWpf.Presenter
             View.CategoryCollection.Add(presenter.View);
         }
 
-        public bool RemoveFilmFromCategory(FilmPresenter presenter)
-        {
-            if (Model.RemoveFilmFromCategory(presenter.Model))
-            {
-                View.CategoryCollection.Remove(presenter.View);
-                presenters.Remove(presenter);
-                View.Height -= 15;
-
-                foreach (Film film in Model.Films)
-                {
-                    if (presenter.Model.FranshiseListIndex < film.FranshiseListIndex)
-                    {
-                        --film.FranshiseListIndex;
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-
         public void RefreshCategoryFilms()
         {
             View.CategoryCollection.Clear();
@@ -121,17 +101,6 @@ namespace FilmsUCWpf.Presenter
             foreach (Film film in Model.Films)
             {
                 presenters.Add(new FilmPresenter(film, new FilmSimpleControl(), menu, TableCollection));
-            }
-
-            for (int i = 0; i < presenters.Count; i++)
-            {
-                FilmPresenter presenter = presenters[i];
-                if (presenter.Model.FranshiseListIndex != i)
-                {
-                    presenters.Remove(presenter);
-                    presenters.Insert(presenter.Model.FranshiseListIndex, presenter);
-                    i = 0;
-                }
             }
 
             foreach (FilmPresenter presenter in presenters)
@@ -163,7 +132,6 @@ namespace FilmsUCWpf.Presenter
             film.Genre = TableCollection.GetTable<Genre>()[0];
             TableCollection.GetTable<Film>().AddElement(film);
             film.FranshiseId = Model.ID;
-            film.FranshiseListIndex = (sbyte)(Model.Films.Count);
             Model.Films.Add(film);
         }
     }

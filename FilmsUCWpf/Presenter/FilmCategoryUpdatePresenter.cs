@@ -39,7 +39,6 @@ namespace FilmsUCWpf.Presenter
                 if (film.FranshiseId == 0)
                 {
 					film.FranshiseId = model.ID;
-					film.FranshiseListIndex = (sbyte)(model.Films.Count);
 					model.Films.Add(film);
 					menu.RemoveSelected();
                 }

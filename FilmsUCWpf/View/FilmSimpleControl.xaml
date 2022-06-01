@@ -11,6 +11,8 @@
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
                 <MenuItem Header="Delete This" Click="MenuItem_Click"/>
                 <MenuItem Header="Add To Priority" Click="addToPriority_Click"/>
+                <MenuItem Header="Up" Click="Up_Click" />
+                <MenuItem Header="Down" Click="Down_Click" />
             </ContextMenu>
         </Grid.ContextMenu>
         <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,1" TextWrapping="NoWrap" VerticalAlignment="Center" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>

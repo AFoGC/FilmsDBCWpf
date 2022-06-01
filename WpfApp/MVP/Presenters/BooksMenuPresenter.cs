@@ -34,6 +34,7 @@ namespace WpfApp.MVP.Presenters
 			this.model.UpdateFormVisualizer.MoreVisualizer = this.model.MoreInfoFormVisualizer;
 			mainModel.TableCollection.TableLoad += TableCollection_TableLoad;
             mainModel.Tables.BookGenresTable.CollectionChanged += BookGenresTable_CollectionChanged;
+			loadPage();
 		}
 
         private void BookGenresTable_CollectionChanged(object sender, EventArgs e)
@@ -48,6 +49,11 @@ namespace WpfApp.MVP.Presenters
 
 		private void TableCollection_TableLoad(object sender, EventArgs e)
 		{
+			loadPage();
+		}
+
+		private void loadPage()
+        {
 			LoadCategories();
 			LoadGenres();
 		}

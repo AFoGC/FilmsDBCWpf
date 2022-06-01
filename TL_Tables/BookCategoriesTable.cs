@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.Table;
@@ -18,26 +20,28 @@ namespace TL_Tables
 		{
 			Table<Book> booksTable = tablesCollection.GetTable<Book>();
 
+			List<Book> categoryFilms = new List<Book>();
 			foreach (BookCategory category in this)
 			{
-				while (category.Books.Count != 0)
+				categoryFilms.Clear();
+				foreach (Book book in booksTable)
 				{
-					category.Books.Remove(category.Books[0]);
-				}
-			}
-
-			foreach (Book book in booksTable)
-			{
-				if (book.FranshiseId != 0)
-				{
-					foreach (BookCategory category in this)
+					if (book.FranshiseId == category.ID)
 					{
-						if (book.FranshiseId == category.ID)
-						{
-							category.Books.Add(book);
-						}
+						categoryFilms.Add(book);
 					}
 				}
+				sortBooks(category.Books, categoryFilms);
+			}
+		}
+
+		private void sortBooks(ObservableCollection<Book> categoryBooks, List<Book> source)
+		{
+			IEnumerable<Book> enumerable = source.OrderBy(o => o.FranshiseListIndex);
+
+			foreach (Book book in enumerable)
+			{
+				categoryBooks.Add(book);
 			}
 		}
 

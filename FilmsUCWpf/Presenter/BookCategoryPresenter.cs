@@ -59,23 +59,9 @@ namespace FilmsUCWpf.Presenter
 
 			foreach (Book book in Model.Books)
 			{
-				presenters.Add(new BookPresenter(book, new BookSimpleControl(), menu, TableCollection));
-			}
-
-			for (int i = 0; i < presenters.Count; i++)
-			{
-				BookPresenter presenter = presenters[i];
-				if (presenter.Model.FranshiseListIndex != i)
-				{
-					presenters.Remove(presenter);
-					presenters.Insert(presenter.Model.FranshiseListIndex, presenter);
-					i = 0;
-				}
-			}
-
-			foreach (BookPresenter presenter in presenters)
-			{
-				AddViewPresenter(presenter);
+				BookPresenter bookPresenter = new BookPresenter(book, new BookInCategorySimpleControl(), menu, TableCollection);
+				presenters.Add(bookPresenter);
+				AddViewPresenter(bookPresenter);
 			}
 		}
 
@@ -152,8 +138,6 @@ namespace FilmsUCWpf.Presenter
 			Book book = new Book();
 			book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
 			TableCollection.GetTable<Book>().AddElement(book);
-			book.FranshiseId = Model.ID;
-			book.FranshiseListIndex = (sbyte)(Model.Books.Count);
 			Model.Books.Add(book);
         }
 	}

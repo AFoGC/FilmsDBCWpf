@@ -95,6 +95,7 @@ namespace FilmsUCWpf.Presenter
                 AddViewPresenter(filmPresenter);
             }
         }
+
         public bool HasSelectedGenre(IGenre[] selectedGenres)
         {
             foreach (FilmPresenter presenter in presenters)

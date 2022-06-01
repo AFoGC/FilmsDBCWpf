@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
@@ -15,22 +17,48 @@ namespace TL_Objects
         private sbyte mark = -1;
         private int priority = 0;
 
-        private TLCollection<Book> books = new TLCollection<Book>();
+        private ObservableCollection<Book> books = new ObservableCollection<Book>();
 
-        public BookCategory() : base() { }
-        public BookCategory(int id) : base(id) { }
+        public BookCategory() : base()
+        {
+            books.CollectionChanged += Books_CollectionChanged;
+        }
+
+        public BookCategory(int id) : base(id)
+        {
+            books.CollectionChanged += Books_CollectionChanged;
+        }
+
+        private void Books_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Book book;
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Remove:
+                    book = (Book)e.OldItems[0];
+                    book.FranshiseId = 0;
+                    book.FranshiseListIndex = -1;
+                    break;
+                case NotifyCollectionChangedAction.Add:
+                    book = (Book)e.NewItems[0];
+                    book.FranshiseId = this.ID;
+                    break;
+
+                default:
+                    break;
+            }
+
+            sbyte i = 0;
+            foreach (Book item in Books)
+            {
+                item.FranshiseListIndex = i++;
+            }
+        }
 
         public bool RemoveBookFromCategory(Book book)
         {
             if (books.Contains(book))
             {
-                foreach (Book item in books)
-                {
-                    if (book.FranshiseListIndex < item.FranshiseListIndex)
-                    {
-                        --item.FranshiseListIndex;
-                    }
-                }
                 if (book.FranshiseId == this.ID)
                 {
                     book.FranshiseId = 0;
@@ -42,6 +70,19 @@ namespace TL_Objects
             {
                 return false;
             }
+        }
+
+        public bool ChangeBookPositionBy(Book book, int i)
+        {
+            int oldIndex = Books.IndexOf(book);
+            int newIndex = oldIndex + i;
+
+            if (newIndex > -1 && newIndex < Books.Count)
+            {
+                Books.Move(oldIndex, newIndex);
+                return true;
+            }
+            return false;
         }
 
         protected override void updateThisBody(Cell cell)
@@ -117,10 +158,9 @@ namespace TL_Objects
             set { priority = value; OnPropertyChanged(nameof(Priority)); }
         }
 
-        public TLCollection<Book> Books
+        public ObservableCollection<Book> Books
         {
             get { return books; }
-            set { books = value; OnPropertyChanged(nameof(Books)); }
         }
     }
 }

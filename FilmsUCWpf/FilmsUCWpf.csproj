@@ -113,6 +113,9 @@
     <Compile Include="View\BookGenreControl.xaml.cs">
       <DependentUpon>BookGenreControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BookInCategorySimpleControl.xaml.cs">
+      <DependentUpon>BookInCategorySimpleControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BookPriorityControl.xaml.cs">
       <DependentUpon>BookPriorityControl.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BookGenreControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BookInCategorySimpleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

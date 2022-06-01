@@ -102,5 +102,19 @@ namespace FilmsUCWpf.Presenter
 			BookPresenter presenter = new BookPresenter(Model, view, menu, TableCollection);
 			menu.MoreInfoFormVisualizer.OpenMoreInfoForm((Control)presenter.View);
 		}
+
+		public void UpFranshiseListID()
+		{
+			BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+			BookCategory category = categories.GetCategoryByBook(Model);
+			category.ChangeBookPositionBy(Model, -1);
+		}
+
+		public void DownFranshiseListID()
+		{
+			BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+			BookCategory category = categories.GetCategoryByBook(Model);
+			category.ChangeBookPositionBy(Model, 1);
+		}
 	}
 }

@@ -14,7 +14,6 @@ namespace TL_Objects
         private string name = "";
 
         public BookGenre() : base() { }
-        public BookGenre(int id) : base(id) { }
 
         protected override void updateThisBody(Cell cell)
         {

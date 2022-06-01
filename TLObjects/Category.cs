@@ -24,11 +24,6 @@ namespace TL_Objects
             films.CollectionChanged += Films_CollectionChanged;
         }
 
-        public Category(int id) : base(id)
-        {
-            films.CollectionChanged += Films_CollectionChanged;
-        }
-
         private void Films_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Film film;

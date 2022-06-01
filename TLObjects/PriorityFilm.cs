@@ -14,7 +14,6 @@ namespace TL_Objects
 		private int filmId = 0;
 
 		public PriorityFilm() : base() { }
-		public PriorityFilm(int id) : base(id) { }
 
 		protected override void loadBody(Comand comand)
 		{

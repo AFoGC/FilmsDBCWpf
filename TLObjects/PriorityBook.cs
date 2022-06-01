@@ -14,7 +14,6 @@ namespace TL_Objects
         private int bookId = 0;
 
         public PriorityBook() : base() { }
-        public PriorityBook(int id) : base(id) { }
 
         protected override void loadBody(Comand comand)
         {

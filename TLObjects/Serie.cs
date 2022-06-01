@@ -17,13 +17,11 @@ namespace TL_Objects
         private int totalSeries = 0;
 
         public Serie() : base() { }
-        public Serie(int id) : base(id) { }
 
         protected override void updateThisBody(Cell cell)
         {
             Serie serie = (Serie)cell;
 
-            //Film = serie.Film;
             startWatchDate = serie.startWatchDate;
             countOfWatchedSeries = serie.countOfWatchedSeries;
             totalSeries = serie.totalSeries;

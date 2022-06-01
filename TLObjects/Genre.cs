@@ -15,7 +15,6 @@ namespace TL_Objects
         private bool isSerialGenre = false;
 
         public Genre() : base() { }
-        public Genre(int id) : base(id) { }
 
         protected override void updateThisBody(Cell cell)
         {

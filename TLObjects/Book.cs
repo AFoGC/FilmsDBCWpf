@@ -28,7 +28,6 @@ namespace TL_Objects
 		private sbyte franshiseListIndex = -1;
 
 		public Book() : base() { sources.CollectionChanged += Sources_CollectionChanged; }
-        public Book(int id) : base(id) { sources.CollectionChanged += Sources_CollectionChanged; }
 		private void Sources_CollectionChanged(object sender, EventArgs e)
 		{
 			this.OnPropertyChanged(nameof(Sources));
@@ -132,7 +131,7 @@ namespace TL_Objects
 				}
 				else
 				{
-					return new BookGenre(0);
+					return new BookGenre();
 				}
 			}
 			set

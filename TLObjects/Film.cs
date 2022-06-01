@@ -29,7 +29,6 @@ namespace TL_Objects
 		public Serie Serie { get; internal set; }
 
 		public Film() : base() { sources.CollectionChanged += Sources_CollectionChanged; }
-		public Film(int id) : base(id) { sources.CollectionChanged += Sources_CollectionChanged; }
 		private void Sources_CollectionChanged(object sender, EventArgs e)
 		{
 			this.OnPropertyChanged(nameof(Sources));

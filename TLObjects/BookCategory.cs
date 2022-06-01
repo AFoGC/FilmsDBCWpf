@@ -24,11 +24,6 @@ namespace TL_Objects
             books.CollectionChanged += Books_CollectionChanged;
         }
 
-        public BookCategory(int id) : base(id)
-        {
-            books.CollectionChanged += Books_CollectionChanged;
-        }
-
         private void Books_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             Book book;

@@ -76,16 +76,6 @@ namespace FilmsUCWpf.Presenter
             }
         }
 
-        private void AddPresenter(Film film)
-        {
-            View.Height += 15;
-            FilmSimpleControl view = new FilmSimpleControl();
-            FilmPresenter presenter = new FilmPresenter(film, view, menu, TableCollection);
-            presenters.Add(presenter);
-
-            View.CategoryCollection.Add(view);
-        }
-
         private void AddViewPresenter(FilmPresenter presenter)
         {
             View.Height += 15;
@@ -100,12 +90,9 @@ namespace FilmsUCWpf.Presenter
 
             foreach (Film film in Model.Films)
             {
-                presenters.Add(new FilmPresenter(film, new FilmSimpleControl(), menu, TableCollection));
-            }
-
-            foreach (FilmPresenter presenter in presenters)
-            {
-                AddViewPresenter(presenter);
+                FilmPresenter filmPresenter = new FilmPresenter(film, new FilmInCategorySimpleControl(), menu, TableCollection);
+                presenters.Add(filmPresenter);
+                AddViewPresenter(filmPresenter);
             }
         }
         public bool HasSelectedGenre(IGenre[] selectedGenres)
@@ -131,7 +118,6 @@ namespace FilmsUCWpf.Presenter
             Film film = new Film();
             film.Genre = TableCollection.GetTable<Genre>()[0];
             TableCollection.GetTable<Film>().AddElement(film);
-            film.FranshiseId = Model.ID;
             Model.Films.Add(film);
         }
     }

@@ -134,6 +134,9 @@
     <Compile Include="View\FilmGenreControl.xaml.cs">
       <DependentUpon>FilmGenreControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FilmInCategorySimpleControl.xaml.cs">
+      <DependentUpon>FilmInCategorySimpleControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FilmSerieUpdateControl.xaml.cs">
       <DependentUpon>FilmSerieUpdateControl.xaml</DependentUpon>
     </Compile>
@@ -218,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FilmGenreControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FilmInCategorySimpleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

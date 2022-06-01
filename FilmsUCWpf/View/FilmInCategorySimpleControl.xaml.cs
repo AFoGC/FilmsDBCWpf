@@ -19,13 +19,13 @@ using System.Windows.Shapes;
 
 namespace FilmsUCWpf.View
 {
-	/// <summary>
-	/// Логика взаимодействия для FilmSimpleControl.xaml
-	/// </summary>
-	public partial class FilmSimpleControl : UserControl, IView
-	{
+    /// <summary>
+    /// Логика взаимодействия для FilmInCategorySimpleControl.xaml
+    /// </summary>
+    public partial class FilmInCategorySimpleControl : UserControl, IView
+    {
 		private FilmPresenter presenter;
-		public FilmSimpleControl()
+		public FilmInCategorySimpleControl()
 		{
 			InitializeComponent();
 		}
@@ -95,19 +95,29 @@ namespace FilmsUCWpf.View
 
 		double IView.Height { get => this.Height; set { this.Height = value; } }
 
-        private void btn_update_Click(object sender, RoutedEventArgs e)
-        {
+		private void btn_update_Click(object sender, RoutedEventArgs e)
+		{
 			presenter.OpenUpdateMenu();
-        }
+		}
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
+		private void MenuItem_Click(object sender, RoutedEventArgs e)
+		{
 			presenter.DeleteThis();
-        }
+		}
 
-        private void addToPriority_Click(object sender, RoutedEventArgs e)
-        {
+		private void addToPriority_Click(object sender, RoutedEventArgs e)
+		{
 			presenter.AddToPriority();
-        }
-    }
+		}
+
+		private void Up_Click(object sender, RoutedEventArgs e)
+		{
+			presenter.UpFranshiseListID();
+		}
+
+		private void Down_Click(object sender, RoutedEventArgs e)
+		{
+			presenter.DownFranshiseListID();
+		}
+	}
 }

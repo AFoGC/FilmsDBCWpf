@@ -62,6 +62,22 @@ namespace FilmsUCWpf.View
             readed.IsChecked = !readed.IsChecked;
         }
 
+        private void readed_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (readed.IsChecked == false)
+            {
+                if (fullReadDate.IsEmpty)
+                {
+                    fullReadDate.Date = DateTime.Today;
+                }
+
+                if (countOfReadings.Text == "")
+                {
+                    countOfReadings.Text = "1";
+                }
+            }
+        }
+
         private void TextInputIsNumber(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex(@"\D");

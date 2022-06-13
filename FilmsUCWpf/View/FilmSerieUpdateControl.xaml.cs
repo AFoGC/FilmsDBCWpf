@@ -96,6 +96,17 @@ namespace FilmsUCWpf.View
 			}
 		}
 
+		private void watched_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (watched.IsChecked == false)
+			{
+				if (countOfViews.Text == "")
+				{
+					countOfViews.Text = "1";
+				}
+			}
+		}
+
 		private void TextInputIsNumber(object sender, TextCompositionEventArgs e)
 		{
 			Regex regex = new Regex("[^0-9]+");

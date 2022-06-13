@@ -74,6 +74,17 @@ namespace FilmsUCWpf.View
 			watched.IsChecked = !watched.IsChecked;
 		}
 
+		private void watched_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (watched.IsChecked == false)
+			{
+				if (countOfViews.Text == "")
+				{
+					countOfViews.Text = "1";
+				}
+			}
+		}
+
 		public void UpdateElement()
 		{
 			try

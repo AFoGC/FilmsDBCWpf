@@ -31,6 +31,8 @@ namespace WpfApp.MVP.Views
             pressButtons.Add(books);
             pressButtons.Add(settings);
             changeSelectedButton(films);
+
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
         }
 
         private void films_Click(object sender, RoutedEventArgs e)

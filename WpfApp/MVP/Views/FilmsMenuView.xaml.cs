@@ -45,6 +45,7 @@ namespace WpfApp.MVP.Views
         private void btn_showCategories_Click(object sender, RoutedEventArgs e)
         {
             presenter.LoadCategories();
+            
         }
         private void btn_showFilms_Click(object sender, RoutedEventArgs e)
         {

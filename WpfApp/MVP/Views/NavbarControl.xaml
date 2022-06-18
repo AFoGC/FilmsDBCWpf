@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:WpfApp.Properties"
              xmlns:local="clr-namespace:WpfApp.MVP.Views"
              xmlns:Buttons="clr-namespace:CustomButtons;assembly=CustomButtons"
              mc:Ignorable="d" 
@@ -12,6 +13,7 @@
 
         </Grid.ColumnDefinitions>
 
+        <!--Content="{x:Static p:Resources.Title}"-->
         <Buttons:PressButton x:Name="films" Content="Films" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="#FF1F1F1F" Click="films_Click">
             <Buttons:PressButton.Template>
                 <ControlTemplate TargetType="{x:Type Buttons:PressButton}">

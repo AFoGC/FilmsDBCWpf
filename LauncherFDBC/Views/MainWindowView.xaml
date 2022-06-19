@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="520" Width="900" WindowStyle="None" ResizeMode="NoResize" BorderThickness="1" BorderBrush="WhiteSmoke">
     <Grid Background="#FF121212" MouseDown="Grid_MouseDown">
-        <Button x:Name="updateButton" Content="Download or Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,460,0,0" Height="50" Click="Button_Click" FontSize="20">
+        <Button x:Name="updateButton" Content="Download or Update" Command="{Binding UpdateProgramCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,460,0,0" Height="50" FontSize="20">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#0074e5"/>
@@ -34,7 +34,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="startButton" IsEnabled="True" Content="Start Program" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="508,405,0,0" Height="105" Click="startButton_Click" FontSize="36">
+        <Button x:Name="startButton" IsEnabled="True" Content="Start Program" Command="{Binding StartCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="508,405,0,0" Height="105" FontSize="36">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#fecc0b"/>
@@ -61,7 +61,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="updateLauncherButton" Content="Update Launcher" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,405,0,0" Height="50" Click="updateLauncherButton_Click" FontSize="20">
+        <Button x:Name="updateLauncherButton" Content="Update Launcher" Command="{Binding UpdateLauncherCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="10,405,0,0" Height="50" FontSize="20">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#0074e5"/>
@@ -136,7 +136,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="updateInfo" Foreground="White" Margin="10,42,0,0" VerticalAlignment="Top" Height="358" BorderThickness="0" Width="878" Background="{x:Null}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
+        <TextBox HorizontalAlignment="Left" Text="{Binding PatchNote}" IsReadOnly="True" x:Name="updateInfo" Foreground="White" Margin="10,42,0,0" VerticalAlignment="Top" Height="358" BorderThickness="0" Width="878" Background="{x:Null}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
         </TextBox>
         <Label Content="FilmsDBC" HorizontalAlignment="Left" Foreground="White" Background="#FF1C1C1C" VerticalAlignment="Top" Height="28" Width="818" FontSize="14"/>
         <Label Content="" x:Name="updateID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="64,2,0,0" Foreground="#FF6E6E6E"/>

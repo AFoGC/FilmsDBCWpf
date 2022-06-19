@@ -1,5 +1,5 @@
 ﻿using LauncherFDBC.Models;
-using LauncherFDBC.Presenters;
+using LauncherFDBC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,73 +22,12 @@ namespace LauncherFDBC.Views
 	/// <summary>
 	/// Логика взаимодействия для MainWindow.xaml
 	/// </summary>
-	public partial class MainWindowView : Window, IMainWindowView
+	public partial class MainWindowView : Window
 	{
-		WindowLauncherPresenter launcherPresenter;
-		WindowProgramPresenter programPresenter;
-        public string UpdateInfo { set => updateInfo.Text = value; get => updateInfo.Text; }
-        public string UpdateID { set => updateID.Content = value; }
         public MainWindowView()
 		{
 			InitializeComponent();
-			MainWindowModel model = new MainWindowModel();
-			launcherPresenter = new WindowLauncherPresenter(model, this);
-			programPresenter = new WindowProgramPresenter(model, this);
-
-			try { launcherPresenter.UpdateUpdater(); } catch { }
-
-			programPresenter.GetPatchesNote();
-			RefreshIsProgExist();
-			RefreshCanBeUpdated();
-			RefreshLauncherCanBeUpdated();
-		}
-
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			programPresenter.GetUpdateFromDB();
-			RefreshCanBeUpdated();
-			RefreshIsProgExist();
-		}
-
-		private void updateLauncherButton_Click(object sender, RoutedEventArgs e)
-		{
-			launcherPresenter.GetLauncherUpdateFromDB();
-		}
-
-		private void startButton_Click(object sender, RoutedEventArgs e)
-		{
-			programPresenter.RunProgram();
-		}
-
-		private void RefreshCanBeUpdated()
-		{
-			if (programPresenter.CanBeUpdated())
-			{
-				updateButton.IsEnabled = true;
-			}
-			else updateButton.IsEnabled = false;
-		}
-
-		private void RefreshLauncherCanBeUpdated()
-		{
-			if (launcherPresenter.LauncherCanBeUpdated())
-				updateLauncherButton.IsEnabled = true;
-			else
-				updateLauncherButton.IsEnabled = false;
-		}
-
-		private void RefreshIsProgExist()
-		{
-			if (programPresenter.IsProgramExist())
-            {
-				updateButton.Content = "Update Program";
-				startButton.IsEnabled = true;
-			}
-            else
-            {
-				updateButton.Content = "Download Program";
-				startButton.IsEnabled = false;
-			}
+			DataContext = new MainViewModel();
 		}
 
 		private void btn_minimize_Click(object sender, RoutedEventArgs e)

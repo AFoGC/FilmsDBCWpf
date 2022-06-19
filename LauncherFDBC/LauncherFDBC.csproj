@@ -202,10 +202,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Commands\LauncherUpdateCommand.cs" />
+    <Compile Include="Commands\ProgramUpdateCommand.cs" />
+    <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
-    <Compile Include="Presenters\WindowLauncherPresenter.cs" />
-    <Compile Include="Presenters\WindowProgramPresenter.cs" />
-    <Compile Include="Views\IMainWindowView.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -251,6 +253,7 @@
       <Name>BO_Launcher</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.5.5\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.5\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

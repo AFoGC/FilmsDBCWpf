@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,7 +50,10 @@ namespace WpfApp.MVP.Views
 
         private void btn_showCategories_Click(object sender, RoutedEventArgs e)
         {
-            presenter.LoadCategories();
+            new Thread(() =>
+            {
+                Dispatcher.Invoke(presenter.LoadCategories);
+            }).Start();
         }
 
         private void btn_addCategory_Click(object sender, RoutedEventArgs e)
@@ -59,7 +63,10 @@ namespace WpfApp.MVP.Views
 
         private void btn_showBooks_Click(object sender, RoutedEventArgs e)
         {
-            presenter.LoadBooks();
+            new Thread(() =>
+            {
+                Dispatcher.Invoke(presenter.LoadBooks);
+            }).Start();
         }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
@@ -69,7 +76,10 @@ namespace WpfApp.MVP.Views
 
         private void btn_showPriority_Click(object sender, RoutedEventArgs e)
         {
-            presenter.LoadPriorityTable();
+            new Thread(() =>
+            {
+                Dispatcher.Invoke(presenter.LoadPriorityTable);
+            }).Start();
         }
 
         private void btn_addBook_Click(object sender, RoutedEventArgs e)

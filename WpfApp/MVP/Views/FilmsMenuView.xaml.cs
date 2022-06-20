@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,20 +45,32 @@ namespace WpfApp.MVP.Views
         }
         private void btn_showCategories_Click(object sender, RoutedEventArgs e)
         {
-            presenter.LoadCategories();
-            
+            new Thread(() =>
+            {
+                Dispatcher.Invoke(presenter.LoadCategories);
+            }).Start();
         }
         private void btn_showFilms_Click(object sender, RoutedEventArgs e)
         {
-            presenter.LoadFilmTable();
+            new Thread(() =>
+            {
+                Dispatcher.Invoke(presenter.LoadFilmTable);
+            }).Start();
+            
         }
         private void btn_showSeries_Click(object sender, RoutedEventArgs e)
         {
-            presenter.LoadSerieTable();
+            new Thread(() =>
+            {
+                Dispatcher.Invoke(presenter.LoadSerieTable);
+            }).Start();
         }
         private void btn_showPriority_Click(object sender, RoutedEventArgs e)
         {
-            presenter.LoadPriorityTable();
+            new Thread(() =>
+            {
+                Dispatcher.Invoke(presenter.LoadPriorityTable);
+            }).Start();
         }
         private void btn_addCategory_Click(object sender, RoutedEventArgs e)
         {

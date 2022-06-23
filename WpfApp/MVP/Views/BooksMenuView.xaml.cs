@@ -35,7 +35,7 @@ namespace WpfApp.MVP.Views
             InitializeComponent();
             watchedRequestControl.LeftText = "Readed";
             watchedRequestControl.RightText = "Unreaded";
-            presenter = new BooksMenuPresenter(new Models.BooksMenuModel(), this, windowModel);
+            presenter = new BooksMenuPresenter(new BooksMenuModel(windowModel), this);
         }
 
         private void btn_saveTable_Click(object sender, RoutedEventArgs e)
@@ -89,15 +89,14 @@ namespace WpfApp.MVP.Views
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.Key == Key.Enter) && presenter.UpdateFormVisualizer.IsOpen)
+            if ((e.Key == Key.Enter))
             {
-                presenter.UpdateFormVisualizer.UpdateControl.Update();
+                presenter.UpdateVisualizerIfOpen();
             }
 
             if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
-                if (presenter.UpdateFormVisualizer.IsOpen)
-                    presenter.UpdateFormVisualizer.UpdateControl.Update();
+                presenter.UpdateVisualizerIfOpen();
             }
         }
     }

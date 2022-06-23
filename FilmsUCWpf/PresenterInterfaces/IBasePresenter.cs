@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmsUCWpf.ViewInterfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace FilmsUCWpf.PresenterInterfaces
         void SetVisualDefault();
         void SetSelectedElement();
         Cell ModelCell { get; }
+        IView View { get; }
     }
 }

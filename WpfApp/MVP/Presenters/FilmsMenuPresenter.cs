@@ -6,6 +6,7 @@ using InfoMenusWpf.MoreInfo;
 using InfoMenusWpf.UpdateInfo;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,151 +18,132 @@ using WpfApp.MVP.ViewsInterface;
 
 namespace WpfApp.MVP.Presenters
 {
-	public class FilmsMenuPresenter : IMenu<Film>
+	public class FilmsMenuPresenter
 	{
 		private FilmsMenuModel model;
 		private IBaseMenuView view;
-		private MainWindowModel mainModel;
-		public FilmsMenuPresenter(FilmsMenuModel model, IBaseMenuView view, MainWindowModel windowModel)
+		public FilmsMenuPresenter(FilmsMenuModel model, IBaseMenuView view)
 		{
-			this.model = model;
 			this.view = view;
-			this.mainModel = windowModel;
+			this.model = model;
 			this.model.MoreInfoFormVisualizer = new MoreInfoFormVisualizer(view.InfoCanvas);
 			this.model.UpdateFormVisualizer = new UpdateFormVisualizer(view.InfoCanvas);
 			this.model.MoreInfoFormVisualizer.UpdateVisualizer = this.model.UpdateFormVisualizer;
 			this.model.UpdateFormVisualizer.MoreVisualizer = this.model.MoreInfoFormVisualizer;
-			mainModel.TableCollection.TableLoad += TableCollection_TableLoad;
-			mainModel.Tables.GenresTable.CollectionChanged += GenresTable_CollectionChanged;
-			loadPage();
+
+            model.FilmPresenters.CollectionChanged += presentersChanged;
+            model.SeriePresenters.CollectionChanged += presentersChanged;
+            model.PriorityPresenters.CollectionChanged += presentersChanged;
+            model.CategoryPresenters.CollectionChanged += presentersChanged;
+            model.GenreButtons.CollectionChanged += GenreButtons_CollectionChanged;
+
+			model.TableLoad();
 		}
 
-		private void GenresTable_CollectionChanged(object sender, EventArgs e)
-		{
-			LoadGenres();
-		}
-
-		private void TableCollection_TableLoad(object sender, EventArgs e)
-		{
-			loadPage();
-		}
-
-		private void loadPage()
-		{
-			LoadCategories();
-			LoadGenres();
-		}
-
-		public MoreInfoFormVisualizer MoreInfoFormVisualizer => model.MoreInfoFormVisualizer;
-		public UpdateFormVisualizer UpdateFormVisualizer => model.UpdateFormVisualizer;
-		public BasePresenter<Film> SelectedElement { get => model.SelectedElement; set => model.SelectedElement = (FilmPresenter)value; }
-		private TableCollection TabColl => mainModel.TableCollection;
-
-		public void LoadGenres()
-		{
-			view.GenresControls.Clear();
-			foreach (Genre genre in mainModel.Tables.GenresTable)
+        private void GenreButtons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+			switch (e.Action)
 			{
-				view.GenresControls.Add(new GenrePressButtonControl(genre));
+				case NotifyCollectionChangedAction.Add:
+					view.GenresControls.Insert(e.NewStartingIndex, e.NewItems[0]);
+					break;
+				case NotifyCollectionChangedAction.Remove:
+					view.GenresControls.RemoveAt(e.OldStartingIndex);
+					break;
+				case NotifyCollectionChangedAction.Reset:
+					view.GenresControls.Clear();
+					break;
+				default:
+					break;
 			}
 		}
 
-		private void ClearControls()
+		private void presentersChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			view.MenuControls.Clear();
-			model.BasePresenters.Clear();
+			if (sender == model.GetCurrentPresenters())
+			{
+				switch (e.Action)
+				{
+					case NotifyCollectionChangedAction.Add:
+						view.MenuControls.Insert(e.NewStartingIndex, ((IBasePresenter)e.NewItems[0]).View);
+						break;
+					case NotifyCollectionChangedAction.Remove:
+						view.MenuControls.RemoveAt(e.OldStartingIndex);
+						break;
+					case NotifyCollectionChangedAction.Reset:
+						view.MenuControls.Clear();
+						break;
+					default:
+						break;
+				}
+			}
 		}
 
-		public void SaveTables()
-		{
-			mainModel.TableCollection.SaveTables();
-		}
+		public void SaveTables() => model.TableCollection.SaveTables();
 
 		public void LoadFilmTable()
 		{
-			ClearControls();
-			model.ControlsCondition = FilmsMenuModel.MenuCondition.Film;
 			model.SelectedElement = null;
-
-			foreach (Film film in mainModel.Tables.FilmsTable)
-			{
-				model.BasePresenters.Add(new FilmPresenter(film, new FilmControl(), this, TabColl));
+            if (model.ControlsCondition != FilmsMenuModel.MenuCondition.Film)
+            {
+				model.ControlsCondition = FilmsMenuModel.MenuCondition.Film;
+				view.MenuControls.Clear();
+				foreach (IBasePresenter presenter in model.FilmPresenters)
+				{
+					presenter.AddViewToCollection(view.MenuControls);
+				}
+				UnLockGenreButtons();
 			}
-			foreach (IBasePresenter presenter in model.BasePresenters)
-			{
-				presenter.AddViewToCollection(view.MenuControls);
-			}
-			UnLockGenreButtons();
 		}
 
 		public void LoadSerieTable()
 		{
-			ClearControls();
-			model.ControlsCondition = FilmsMenuModel.MenuCondition.Serie;
 			model.SelectedElement = null;
 
-			foreach (Film film in mainModel.Tables.FilmsTable)
-			{
-				if (film.Genre.IsSerialGenre)
+            if (model.ControlsCondition != FilmsMenuModel.MenuCondition.Serie)
+            {
+				model.ControlsCondition = FilmsMenuModel.MenuCondition.Serie;
+				view.MenuControls.Clear();
+				foreach (IBasePresenter presenter in model.SeriePresenters)
 				{
-					model.BasePresenters.Add(new FilmPresenter(film, new FilmSerieControl(), this, TabColl));
+					presenter.AddViewToCollection(view.MenuControls);
 				}
+				LockNotSerialGenreButtons();
 			}
-			foreach (IBasePresenter presenter in model.BasePresenters)
-			{
-				presenter.AddViewToCollection(view.MenuControls);
-			}
-
-			LockNotSerialGenreButtons();
 		}
 
 		public void LoadCategories()
 		{
-			ClearControls();
-			model.ControlsCondition = FilmsMenuModel.MenuCondition.Category;
+			
 			model.SelectedElement = null;
 
-			foreach (Category category in mainModel.Tables.CategoriesTable)
-			{
-				model.BasePresenters.Add(new FilmCategoryPresenter(category, new FilmCategoryControl(), this, TabColl));
-			}
-
-			foreach (Film film in mainModel.Tables.FilmsTable)
-			{
-				if (film.FranshiseId == 0)
+            if (model.ControlsCondition != FilmsMenuModel.MenuCondition.Category)
+            {
+				model.ControlsCondition = FilmsMenuModel.MenuCondition.Category;
+				view.MenuControls.Clear();
+				foreach (IBasePresenter presenter in model.CategoryPresenters)
 				{
-					model.BasePresenters.Add(new FilmPresenter(film, new FilmSimpleControl(), this, TabColl));
+					presenter.AddViewToCollection(view.MenuControls);
 				}
+				UnLockGenreButtons();
 			}
-
-			foreach (IBasePresenter presenter in model.BasePresenters)
-			{
-				presenter.AddViewToCollection(view.MenuControls);
-			}
-
-			UnLockGenreButtons();
 		}
 
 		public void LoadPriorityTable()
 		{
-			ClearControls();
-			model.ControlsCondition = FilmsMenuModel.MenuCondition.PriorityFilm;
+			
 			model.SelectedElement = null;
 
-			PriorityFilmsTable priorityFilms = mainModel.Tables.PriorityFilmsTable;
-			priorityFilms.RemoveWatchedFilms();
-
-			foreach (PriorityFilm priorityFilm in priorityFilms)
-			{
-				model.BasePresenters.Add(new FilmPriorityPresenter(priorityFilm, new FilmPriorityControl(), this, TabColl));
+            if (model.ControlsCondition != FilmsMenuModel.MenuCondition.PriorityFilm)
+            {
+				model.ControlsCondition = FilmsMenuModel.MenuCondition.PriorityFilm;
+				view.MenuControls.Clear();
+				foreach (IBasePresenter presenter in model.PriorityPresenters)
+				{
+					presenter.AddViewToCollection(view.MenuControls);
+				}
+				UnLockGenreButtons();
 			}
-
-			foreach (IBasePresenter presenter in model.BasePresenters)
-			{
-				presenter.AddViewToCollection(view.MenuControls);
-			}
-
-			UnLockGenreButtons();
 		}
 
 		private Genre[] GetSelectedGenres()
@@ -179,7 +161,7 @@ namespace WpfApp.MVP.Presenters
 
 		public void SearchByName(String name)
 		{
-			foreach (IBasePresenter presenter in model.BasePresenters)
+			foreach (IBasePresenter presenter in model.GetCurrentPresenters())
 			{
 				presenter.SetVisualDefault();
 			}
@@ -187,17 +169,11 @@ namespace WpfApp.MVP.Presenters
 			if (name != "")
 			{
 				name = name.ToLowerInvariant();
-				foreach (IBasePresenter presenter in model.BasePresenters)
+				foreach (IBasePresenter presenter in model.GetCurrentPresenters())
 				{
 					presenter.SetFindedElement(name);
 				}
 			}
-		}
-
-		private void AddPresenter(IBasePresenter basePresenter)
-		{
-			model.BasePresenters.Add(basePresenter);
-			AddPresenterToView(basePresenter);
 		}
 
 		private void AddPresenterToView(IBasePresenter basePresenter)
@@ -211,9 +187,9 @@ namespace WpfApp.MVP.Presenters
 			Genre[] genres = GetSelectedGenres();
 
 
-			if (genres.Length == mainModel.Tables.GenresTable.Count && watched && unwatched)
+			if (genres.Length == model.Tables.GenresTable.Count && watched && unwatched)
 			{
-				foreach (IBasePresenter presenter in model.BasePresenters)
+				foreach (IBasePresenter presenter in model.GetCurrentPresenters())
 				{
 					AddPresenterToView(presenter);
 				}
@@ -222,7 +198,7 @@ namespace WpfApp.MVP.Presenters
 			{
 				if (watched && unwatched)
 				{
-					foreach(IHasGenre hasGenre in model.BasePresenters)
+					foreach(IHasGenre hasGenre in model.GetCurrentPresenters())
 					{
 						if (hasGenre.HasSelectedGenre(genres))
 							AddPresenterToView((IBasePresenter)hasGenre);
@@ -230,7 +206,7 @@ namespace WpfApp.MVP.Presenters
 				}
 				else
 				{
-					foreach (IHasGenre hasGenre in model.BasePresenters)
+					foreach (IHasGenre hasGenre in model.GetCurrentPresenters())
 					{
 						IBasePresenter presenter = (IBasePresenter)hasGenre;
 						if (hasGenre.HasSelectedGenre(genres) && presenter.HasCheckedProperty(watched))
@@ -268,7 +244,7 @@ namespace WpfApp.MVP.Presenters
 			{
 				PriorityFilm priorityFilm = new PriorityFilm();
 				priorityFilm.Film = model.SelectedElement.Model;
-				mainModel.Tables.PriorityFilmsTable.AddElement(priorityFilm);
+				model.Tables.PriorityFilmsTable.AddElement(priorityFilm);
 			}
 		}
 
@@ -276,102 +252,22 @@ namespace WpfApp.MVP.Presenters
 		{
 			if (model.ControlsCondition == FilmsMenuModel.MenuCondition.Category)
 			{
-				CategoriesTable categories = mainModel.Tables.CategoriesTable;
+				CategoriesTable categories = model.Tables.CategoriesTable;
 				Category category = new Category();
 				categories.AddElement(category);
-				FilmCategoryPresenter presenter = new FilmCategoryPresenter(category, new FilmCategoryControl(), this, TabColl);
-				model.BasePresenters.Insert(categories.Count - 1, presenter);
-				view.MenuControls.Insert(categories.Count - 1, presenter.View);
 			}
 		}
 
 		public void AddFilm()
 		{
 			Film film = new Film();
-			film.Genre = mainModel.Tables.GenresTable[0];
-			mainModel.Tables.FilmsTable.AddElement(film);
-			FilmPresenter presenter;
-			switch (model.ControlsCondition)
-			{
-				case FilmsMenuModel.MenuCondition.Category:
-					presenter = new FilmPresenter(film, new FilmSimpleControl(), this, TabColl);
-					AddPresenter(presenter);
-					break;
-
-				case FilmsMenuModel.MenuCondition.Film:
-					presenter = new FilmPresenter(film, new FilmControl(), this, TabColl);
-					AddPresenter(presenter);
-					break;
-
-				case FilmsMenuModel.MenuCondition.Serie:
-					film.Genre = mainModel.Tables.GenresTable.GetFirstSeriealGenre();
-					Serie serie = new Serie();
-					serie.Film = film;
-					mainModel.Tables.SeriesTable.AddElement(serie);
-					presenter = new FilmPresenter(film, new FilmSerieControl(), this, TabColl);
-					AddPresenter(presenter);
-					break;
-
-				default:
-					break;
-			}
+			film.Genre = model.Tables.GenresTable[0];
+			model.Tables.FilmsTable.AddElement(film);
 		}
 
-		public void RemoveSelectedFilm()
+		public void UpdateVisualizerIfOpen()
 		{
-			Film film = model.SelectedElement.Model;
-			
-
-			switch (model.ControlsCondition)
-			{
-				case FilmsMenuModel.MenuCondition.PriorityFilm:
-					PriorityFilmsTable priFilmTab = mainModel.Tables.PriorityFilmsTable;
-					priFilmTab.Remove(priFilmTab.GetElementByFilm(film));
-					RemoveSelected();
-					break;
-				default:
-					if (film.FranshiseId == 0)
-						mainModel.Tables.FilmsTable.Remove(film);
-					model.BasePresenters.Remove(model.SelectedElement);
-					break;
-			}
-		}
-
-		public bool AddSelected()
-		{
-			if (SelectedElement != null)
-			{
-				int i = 0;
-				Type type = typeof(BasePresenter<Film>);
-				foreach (IBasePresenter item in model.BasePresenters)
-				{
-					if (item.GetType().IsSubclassOf(type))
-					{
-						BasePresenter<Film> basePresenter = (BasePresenter<Film>)item;
-						Film film = basePresenter.Model;
-						if (film.ID > model.SelectedElement.Model.ID) break;
-					}
-					++i;
-				}
-				FilmPresenter presenter = new FilmPresenter(model.SelectedElement.Model, new FilmSimpleControl(), this, TabColl);
-				model.BasePresenters.Insert(i, presenter);
-				view.MenuControls.Insert(i, presenter.View);
-				model.SelectedElement = null;
-				return true;
-			}
-			else return false;
-		}
-
-		public bool RemoveSelected()
-		{
-			if (SelectedElement != null)
-			{
-				view.MenuControls.Remove(SelectedElement.View);
-				bool exp = model.BasePresenters.Remove(SelectedElement);
-				SelectedElement = null;
-				return exp;
-			}
-			else return false;
+			model.UpdateFormVisualizer.UpdateControl.Update();
 		}
 	}
 }

@@ -80,7 +80,7 @@ namespace WpfApp.MVP.Models
 			mainModel.Tables.BooksTable.CollectionChanged += BooksTable_CollectionChanged;
 			mainModel.Tables.BookCategoriesTable.CollectionChanged += BookCategoriesTable_CollectionChanged;
 			mainModel.Tables.PriorityBooksTable.CollectionChanged += PriorityBooksTable_CollectionChanged;
-			mainModel.Tables.GenresTable.CollectionChanged += GenresTable_CollectionChanged;
+			mainModel.Tables.BookGenresTable.CollectionChanged += GenresTable_CollectionChanged;
 
 			ControlsCondition = MenuCondition.Category;
 		}

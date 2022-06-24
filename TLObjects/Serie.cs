@@ -76,7 +76,12 @@ namespace TL_Objects
                     filmId = film.ID;
                     film.Serie = this;
                 }
-                else filmId = 0;
+                else
+                {
+                    filmId = 0;
+                    ParentTable.Remove(this);
+                }
+                    
                 OnPropertyChanged(nameof(Film));
             }
         }

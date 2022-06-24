@@ -36,7 +36,7 @@ namespace WpfApp.MVP.Views
         public FilmsMenuView(MainWindowModel windowModel)
         {
             InitializeComponent();
-            presenter = new FilmsMenuPresenter(new Models.FilmsMenuModel(), this, windowModel);
+            presenter = new FilmsMenuPresenter(new FilmsMenuModel(windowModel), this);
         }
 
         private void btn_saveTable_Click(object sender, RoutedEventArgs e)
@@ -80,10 +80,6 @@ namespace WpfApp.MVP.Views
         {
             presenter.AddFilm();
         }
-        private void btn_AddToPriority_Click(object sender, RoutedEventArgs e)
-        {
-            presenter.AddSelectedToPriority();
-        }
         private void btn_filter_Click(object sender, RoutedEventArgs e)
         {
             presenter.Filter(watchedRequestControl.IsWatched, watchedRequestControl.IsUnwatched);
@@ -92,22 +88,17 @@ namespace WpfApp.MVP.Views
         {
             presenter.SearchByName(textbox_search.Text);
         }
-        private void btn_removeFilm_Click(object sender, RoutedEventArgs e)
-        {
-            presenter.RemoveSelectedFilm();
-        }
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.Key == Key.Enter) && presenter.UpdateFormVisualizer.IsOpen)
+            if ((e.Key == Key.Enter))
             {
-                presenter.UpdateFormVisualizer.UpdateControl.Update();
+                presenter.UpdateVisualizerIfOpen();
             }
 
             if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
-                if (presenter.UpdateFormVisualizer.IsOpen)
-                    presenter.UpdateFormVisualizer.UpdateControl.Update();
+                presenter.UpdateVisualizerIfOpen();
             }
         }
     }

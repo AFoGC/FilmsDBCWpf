@@ -3,6 +3,7 @@ using FilmsUCWpf.View;
 using FilmsUCWpf.ViewInterfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,12 +25,49 @@ namespace FilmsUCWpf.Presenter
 			this.menu = menu;
 			presenters = new List<BookPresenter>();
 			category.Books.CollectionChanged += Books_CollectionChanged;
-			RefreshCategoryBooks();
+			refreshCategoryBooks();
 		}
 
-		private void Books_CollectionChanged(object sender, EventArgs e)
+		public void refreshCategoryBooks()
 		{
-			RefreshCategoryBooks();
+			View.CategoryCollection.Clear();
+			presenters.Clear();
+			View.Height = View.DefaultHeght;
+
+			foreach (Book book in Model.Books)
+			{
+				BookPresenter bookPresenter = new BookPresenter(book, new BookInCategorySimpleControl(), menu, TableCollection);
+				presenters.Add(bookPresenter);
+				View.Height += bookPresenter.View.Height;
+				View.CategoryCollection.Add(bookPresenter.View);
+			}
+		}
+
+		private void Books_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			Book book;
+			BookPresenter presenter;
+			switch (e.Action)
+			{
+				case NotifyCollectionChangedAction.Add:
+					book = (Book)e.NewItems[0];
+					presenter = new BookPresenter(book, new BookSimpleControl(), menu, TableCollection);
+					presenters.Add(presenter);
+					View.CategoryCollection.Add(presenter.View);
+					break;
+				case NotifyCollectionChangedAction.Remove:
+					book = (Book)e.OldItems[0];
+					presenter = presenters.Where(x => x.Model == book).FirstOrDefault();
+					presenters.Remove(presenter);
+					View.CategoryCollection.Remove(presenter?.View);
+					break;
+				case NotifyCollectionChangedAction.Reset:
+					presenters.Clear();
+					View.CategoryCollection.Clear();
+					break;
+				default:
+					break;
+			}
 		}
 
 		public bool HasSelectedGenre(IGenre[] selectedGenres)
@@ -42,46 +80,6 @@ namespace FilmsUCWpf.Presenter
 				}
 			}
 
-			return false;
-		}
-
-		private void AddViewPresenter(BookPresenter presenter)
-		{
-			View.Height += 15;
-			View.CategoryCollection.Add(presenter.View);
-		}
-
-		public void RefreshCategoryBooks()
-		{
-			View.CategoryCollection.Clear();
-			presenters.Clear();
-			View.Height = View.DefaultHeght;
-
-			foreach (Book book in Model.Books)
-			{
-				BookPresenter bookPresenter = new BookPresenter(book, new BookInCategorySimpleControl(), menu, TableCollection);
-				presenters.Add(bookPresenter);
-				AddViewPresenter(bookPresenter);
-			}
-		}
-
-		public bool RemoveBookFromCategory(BookPresenter presenter)
-		{
-			if (Model.RemoveBookFromCategory(presenter.Model))
-			{
-				View.CategoryCollection.Remove(presenter.View);
-				presenters.Remove(presenter);
-				View.Height -= 15;
-
-				foreach (Book book in Model.Books)
-				{
-					if (presenter.Model.FranshiseListIndex < book.FranshiseListIndex)
-					{
-						--book.FranshiseListIndex;
-					}
-				}
-				return true;
-			}
 			return false;
 		}
 

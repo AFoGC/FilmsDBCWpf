@@ -3,6 +3,7 @@ using FilmsUCWpf.View;
 using FilmsUCWpf.ViewInterfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,12 +26,49 @@ namespace FilmsUCWpf.Presenter
             this.menu = menu;
             presenters = new List<FilmPresenter>();
             category.Films.CollectionChanged += Films_CollectionChanged;
-            RefreshCategoryFilms();
+            refreshCategoryFilms();
         }
 
-        private void Films_CollectionChanged(object sender, EventArgs e)
+        private void refreshCategoryFilms()
         {
-            RefreshCategoryFilms();
+            View.CategoryCollection.Clear();
+            presenters.Clear();
+            View.Height = View.DefaultHeght;
+
+            foreach (Film film in Model.Films)
+            {
+                FilmPresenter filmPresenter = new FilmPresenter(film, new FilmInCategorySimpleControl(), menu, TableCollection);
+                presenters.Add(filmPresenter);
+                View.Height += filmPresenter.View.Height;
+                View.CategoryCollection.Add(filmPresenter.View);
+            }
+        }
+
+        private void Films_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Film film;
+            FilmPresenter presenter;
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    film = (Film)e.NewItems[0];
+                    presenter = new FilmPresenter(film, new FilmSimpleControl(), menu, TableCollection);
+                    presenters.Add(presenter);
+                    View.CategoryCollection.Add(presenter.View);
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    film = (Film)e.OldItems[0];
+                    presenter = presenters.Where(x => x.Model == film).FirstOrDefault();
+                    presenters.Remove(presenter);
+                    View.CategoryCollection.Remove(presenter?.View);
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    presenters.Clear();
+                    View.CategoryCollection.Clear();
+                    break;
+                default:
+                    break;
+            }
         }
 
         public override bool HasCheckedProperty(bool isWached)
@@ -73,26 +111,6 @@ namespace FilmsUCWpf.Presenter
             foreach (FilmPresenter presenter in presenters)
             {
                 presenter.SetVisualDefault();
-            }
-        }
-
-        private void AddViewPresenter(FilmPresenter presenter)
-        {
-            View.Height += 15;
-            View.CategoryCollection.Add(presenter.View);
-        }
-
-        public void RefreshCategoryFilms()
-        {
-            View.CategoryCollection.Clear();
-            presenters.Clear();
-            View.Height = View.DefaultHeght;
-
-            foreach (Film film in Model.Films)
-            {
-                FilmPresenter filmPresenter = new FilmPresenter(film, new FilmInCategorySimpleControl(), menu, TableCollection);
-                presenters.Add(filmPresenter);
-                AddViewPresenter(filmPresenter);
             }
         }
 

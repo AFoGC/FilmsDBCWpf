@@ -49,7 +49,6 @@ namespace FilmsUCWpf.View
 			if (this.presenter == null)
 			{
 				this.presenter = (FilmCategoryPresenter)presenter;
-                this.presenter.Model.Films.CollectionChanged += Films_CollectionChanged;
 				DataContext = new FilmCategoryBinder(this.presenter.Model);
 				return true;
 			}
@@ -60,17 +59,34 @@ namespace FilmsUCWpf.View
 		}
 
 		private bool isOpen = true;
-        private void Films_CollectionChanged(object sender, EventArgs e)
+		public void Maximize()
         {
 			isOpen = true;
+			Height = DefaultHeght + getControlsHeight();
+        }
+
+		public void Minimize()
+        {
+			isOpen = false;
+			Height = MinimizedHeight;
+        }
+
+		private double getControlsHeight()
+        {
+			double height = 0;
+
+            foreach (Control control in cat_panel.Children)
+				height += control.Height;
+
+			return height;
         }
 
 		private void hide_show_Cilck(object sender, RoutedEventArgs e)
 		{
-            if (isOpen) grid.Height = MinimizedHeight;
-            else presenter.RefreshCategoryFilms();
-
-			isOpen = !isOpen;
+            if (isOpen) 
+				Minimize();
+            else 
+				Maximize();
 		}
 
 		public void SetVisualDefault()

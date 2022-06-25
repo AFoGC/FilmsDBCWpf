@@ -32,7 +32,7 @@ namespace FilmsUCWpf.View
 		}
 
 		double IView.Height { get => grid.Height; set => grid.Height = value; }
-		double ICategoryView.DefaultHeght => 35;
+		public double DefaultHeght => 35;
 		public double MinimizedHeight => 15;
 		public IList CategoryCollection => cat_panel.Children;
 
@@ -48,7 +48,6 @@ namespace FilmsUCWpf.View
 			if (this.presenter == null)
 			{
 				this.presenter = (BookCategoryPresenter)presenter;
-                this.presenter.Model.Books.CollectionChanged += Books_CollectionChanged;
 				DataContext = new BookCategoryBinder(this.presenter.Model);
 				return true;
 			}
@@ -90,17 +89,34 @@ namespace FilmsUCWpf.View
         }
 
 		private bool isOpen = true;
-		private void Books_CollectionChanged(object sender, EventArgs e)
+		public void Maximize()
 		{
 			isOpen = true;
+			Height = DefaultHeght + getControlsHeight();
+		}
+
+		public void Minimize()
+		{
+			isOpen = false;
+			Height = MinimizedHeight;
+		}
+
+		private double getControlsHeight()
+		{
+			double height = 0;
+
+			foreach (Control control in cat_panel.Children)
+				height += control.Height;
+
+			return height;
 		}
 
 		private void hide_show_Cilck(object sender, RoutedEventArgs e)
         {
-			if (isOpen) grid.Height = MinimizedHeight;
-			else presenter.RefreshCategoryBooks();
-
-			isOpen = !isOpen;
+			if (isOpen) 
+				Minimize();
+			else 
+				Maximize();
 		}
     }
 }

@@ -96,7 +96,7 @@ namespace WpfApp.MVP.Models
 					break;
 				case NotifyCollectionChangedAction.Remove:
 					genre = (BookGenre)e.OldItems[0];
-					GenreButtons.Remove(GenreButtons.Where(x => x.Genre == genre).First());
+					GenreButtons.Remove(GenreButtons.Where(x => x.Genre == genre).FirstOrDefault());
 					break;
 				case NotifyCollectionChangedAction.Reset:
 					GenreButtons.Clear();
@@ -151,7 +151,7 @@ namespace WpfApp.MVP.Models
 					break;
 				case NotifyCollectionChangedAction.Remove:
 					priorityBook = (PriorityBook)e.OldItems[0];
-					PriorityPresenters.Remove(PriorityPresenters.Where(x => x.PriorityModel == priorityBook).First());
+					PriorityPresenters.Remove(PriorityPresenters.Where(x => x.PriorityModel == priorityBook).FirstOrDefault());
 					break;
 				case NotifyCollectionChangedAction.Reset:
 					PriorityPresenters.Clear();
@@ -179,7 +179,7 @@ namespace WpfApp.MVP.Models
 						else
 							return false;
 
-					}).First());
+					}).FirstOrDefault());
 					break;
 				case NotifyCollectionChangedAction.Reset:
 					CategoryPresenters.Clear();
@@ -201,8 +201,8 @@ namespace WpfApp.MVP.Models
 					break;
 				case NotifyCollectionChangedAction.Remove:
 					book = (Book)e.OldItems[0];
-					BookPresenters.Remove(BookPresenters.Where(x => x.Model == book).First());
-					PriorityPresenters.Remove(PriorityPresenters.Where(x => x.Model == book).First());
+					BookPresenters.Remove(BookPresenters.Where(x => x.Model == book).FirstOrDefault());
+					PriorityPresenters.Remove(PriorityPresenters.Where(x => x.Model == book).FirstOrDefault());
 					CategoryPresenters.Remove(CategoryPresenters.Where(x =>
 						{
 							if (x.GetType() == typeof(BookPresenter))
@@ -210,7 +210,7 @@ namespace WpfApp.MVP.Models
 							else 
 								return false;
 
-						}).First());
+						}).FirstOrDefault());
 					break;
 				case NotifyCollectionChangedAction.Reset:
 					BookPresenters.Clear();

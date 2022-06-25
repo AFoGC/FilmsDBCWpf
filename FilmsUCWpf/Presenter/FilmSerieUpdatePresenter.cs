@@ -69,6 +69,9 @@ namespace FilmsUCWpf.Presenter
 
 			model.DateOfWatch = view.DateOfWatch;
 			model.Serie.StartWatchDate = view.StartWatchDate;
+
+			if(!model.Genre.IsSerialGenre)
+				model.Serie.Film = null;
 		}
 
 		public void OpenSources()

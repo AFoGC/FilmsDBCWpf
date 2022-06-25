@@ -93,7 +93,23 @@ namespace WpfApp.MVP.Models
 
         private void GenresTable_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            Genre genre;
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    genre = (Genre)e.NewItems[0];
+                    GenreButtons.Add(new GenrePressButtonControl(genre));
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    genre = (Genre)e.OldItems[0];
+                    GenreButtons.Remove(GenreButtons.Where(x => x.Genre == genre).FirstOrDefault());
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    GenreButtons.Clear();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void CategoriesTable_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -156,7 +172,7 @@ namespace WpfApp.MVP.Models
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     serie = (Serie)e.OldItems[0];
-                    SeriePresenters.Remove(SeriePresenters.Where(x => x.Model.Serie == serie).FirstOrDefault());
+                    SeriePresenters.Remove(SeriePresenters.Where(x => x.Model.Serie == null).FirstOrDefault());
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     SeriePresenters.Clear();

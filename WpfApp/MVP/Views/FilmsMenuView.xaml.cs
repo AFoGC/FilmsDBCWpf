@@ -45,32 +45,19 @@ namespace WpfApp.MVP.Views
         }
         private void btn_showCategories_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(() =>
-            {
-                Dispatcher.Invoke(presenter.LoadCategories);
-            }).Start();
+            presenter.LoadCategories();
         }
         private void btn_showFilms_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(() =>
-            {
-                Dispatcher.Invoke(presenter.LoadFilmTable);
-            }).Start();
-            
+            presenter.LoadFilmTable();
         }
         private void btn_showSeries_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(() =>
-            {
-                Dispatcher.Invoke(presenter.LoadSerieTable);
-            }).Start();
+            presenter.LoadSerieTable();
         }
         private void btn_showPriority_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(() =>
-            {
-                Dispatcher.Invoke(presenter.LoadPriorityTable);
-            }).Start();
+            presenter.LoadPriorityTable();
         }
         private void btn_addCategory_Click(object sender, RoutedEventArgs e)
         {

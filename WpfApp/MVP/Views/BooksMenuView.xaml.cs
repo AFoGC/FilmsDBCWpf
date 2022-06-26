@@ -50,23 +50,17 @@ namespace WpfApp.MVP.Views
 
         private void btn_showCategories_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(() =>
-            {
-                Dispatcher.Invoke(presenter.LoadCategories);
-            }).Start();
+            presenter.LoadCategories();
         }
 
-        private void btn_addCategory_Click(object sender, RoutedEventArgs e)
+        private void btn_showPriority_Click(object sender, RoutedEventArgs e)
         {
-            presenter.AddCategory();
+            presenter.LoadPriorityTable();
         }
 
         private void btn_showBooks_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(() =>
-            {
-                Dispatcher.Invoke(presenter.LoadBooks);
-            }).Start();
+            presenter.LoadBooks();
         }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
@@ -74,12 +68,9 @@ namespace WpfApp.MVP.Views
             presenter.SearchByName(textbox_search.Text);
         }
 
-        private void btn_showPriority_Click(object sender, RoutedEventArgs e)
+        private void btn_addCategory_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(() =>
-            {
-                Dispatcher.Invoke(presenter.LoadPriorityTable);
-            }).Start();
+            presenter.AddCategory();
         }
 
         private void btn_addBook_Click(object sender, RoutedEventArgs e)

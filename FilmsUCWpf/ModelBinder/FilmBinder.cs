@@ -27,13 +27,13 @@ namespace FilmsUCWpf.ModelBinder
 		public String Genre { get => Model.Genre.ToString(); set { } }
 		public String RealiseYear { get => Film.FormatToString(Model.RealiseYear, defFilm.RealiseYear); set { } }
 		public Boolean Watched { get => Model.Watched; set { } }
-		public String DateOfWatch { get => Film.FormatToString(Model.DateOfWatch, defFilm.DateOfWatch); set { } }
+		public String DateOfWatch { get => FormateDate(Model.DateOfWatch); set { } }
 		public String Mark { get => Helper.MarkToText(Film.FormatToString(Model.Mark, defFilm.Mark)); set { } }
 		public String CountOfViews { get => Film.FormatToString(Model.CountOfViews, defFilm.CountOfViews); set { } }
 		public String Comment { get => Model.Comment; set { } }
 		public String Sources { get => Helper.SourcesStateString(Model.Sources); set { } }
 
-		public String StartWatchDate { get => Serie.FormatToString(Model.Serie.StartWatchDate, defSerie.StartWatchDate); set { } }
+		public String StartWatchDate { get => FormateDate(Model.Serie.StartWatchDate); set { } }
 		public String CountOfWatchedSeries { get => Serie.FormatToString(Model.Serie.CountOfWatchedSeries, defSerie.CountOfWatchedSeries); set { } }
 		public String TotalSeries { get => Serie.FormatToString(Model.Serie.TotalSeries, defSerie.TotalSeries); set { } }
 	}

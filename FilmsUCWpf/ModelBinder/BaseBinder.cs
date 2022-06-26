@@ -34,5 +34,14 @@ namespace FilmsUCWpf.ModelBinder
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
+
+        private DateTime defaultDate = new DateTime();
+        protected string FormateDate(DateTime date)
+        {
+            if (date != defaultDate)
+                return date.ToShortDateString();
+            else
+                return String.Empty;
+        }
     }
 }

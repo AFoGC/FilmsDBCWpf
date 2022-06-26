@@ -26,7 +26,7 @@ namespace FilmsUCWpf.ModelBinder
 		public String PublicationYear { get => Film.FormatToString(Model.PublicationYear, defBook.PublicationYear); set { } }
 		public Boolean Readed { get => Model.Readed; set { } }
 		public String Author { get => Model.Author; set { } }
-		public String FullReadDate { get => Book.FormatToString(Model.FullReadDate, defBook.FullReadDate); set { } }
+		public String FullReadDate { get => FormateDate(Model.FullReadDate); set { } }
 		public String Mark { get => Helper.MarkToText(Book.FormatToString(Model.Mark, defBook.Mark)); set { } }
 		public String CountOfReadings { get => Book.FormatToString(Model.CountOfReadings, defBook.CountOfReadings); set { } }
 		public String Bookmark { get => Model.Bookmark; set { } }

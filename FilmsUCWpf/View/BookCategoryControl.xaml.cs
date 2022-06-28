@@ -118,5 +118,14 @@ namespace FilmsUCWpf.View
 			else 
 				Maximize();
 		}
+
+		private void delete_Click(object sender, RoutedEventArgs e) =>
+			presenter.DeleteThisCategory();
+
+		private void addSelected_Click(object sender, RoutedEventArgs e) =>
+			presenter.AddSelected();
+
+		private void removeSelected_Click(object sender, RoutedEventArgs e) =>
+			presenter.RemoveSelected();
     }
 }

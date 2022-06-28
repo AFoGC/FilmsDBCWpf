@@ -107,7 +107,10 @@ namespace FilmsUCWpf.View
 
 		public void SetVisualSelected()
 		{
-			throw new NotImplementedException();
+			SolidColorBrush myBrush = BrushColors.SelectColor;
+			this.id.Background = myBrush;
+			this.name.Background = myBrush;
+			this.mark.Background = myBrush;
 		}
 
 		private void btn_update_Click(object sender, RoutedEventArgs e)
@@ -119,5 +122,17 @@ namespace FilmsUCWpf.View
         {
 			presenter.CreateFilmInCategory();
         }
+
+        private void cm_Opened(object sender, RoutedEventArgs e) => SetVisualSelected();
+        private void cm_Closed(object sender, RoutedEventArgs e) => SetVisualDefault();
+
+		private void delete_Click(object sender, RoutedEventArgs e) 
+			=> presenter.DeleteThisCategory();
+
+		private void addSelected_Click(object sender, RoutedEventArgs e)
+			=> presenter.AddSelected();
+
+		private void removeSelected_Click(object sender, RoutedEventArgs e)
+			=> presenter.RemoveSelected();
     }
 }

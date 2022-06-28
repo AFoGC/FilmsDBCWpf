@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TablesLibrary.Interpreter;
+using TablesLibrary.Interpreter.Table;
 using TL_Objects;
 using TL_Objects.Interfaces;
 
@@ -138,6 +139,39 @@ namespace FilmsUCWpf.Presenter
             film.Genre = TableCollection.GetTable<Genre>()[0];
             TableCollection.GetTable<Film>().AddElement(film);
             Model.Films.Add(film);
+        }
+
+        public void AddSelected()
+        {
+            if (menu.SelectedElement != null)
+            {
+                Film film = menu.SelectedElement.Model;
+                if (film.FranshiseId == 0)
+                {
+                    film.FranshiseId = Model.ID;
+                    Model.Films.Add(film);
+                    menu.RemoveSelected();
+                }
+            }
+        }
+
+        public void RemoveSelected()
+        {
+            if (menu.SelectedElement != null)
+            {
+                Film film = menu.SelectedElement.Model;
+                if (Model.RemoveFilmFromCategory(film))
+                    menu.AddSelected();
+            }
+        }
+
+        public void DeleteThisCategory()
+        {
+            Table<Category> cateories = TableCollection.GetTable<Category>();
+            if (Model.Films.Count == 0)
+            {
+                cateories.Remove(Model);
+            }
         }
     }
 }

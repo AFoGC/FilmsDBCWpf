@@ -227,7 +227,7 @@ namespace WpfApp.MVP.Models
 			Type type = presenter.GetType();
 			foreach (IBasePresenter item in CategoryPresenters)
 			{
-				if (item.GetType().IsSubclassOf(type))
+				if (item.GetType() == type)
 				{
 					BasePresenter<Book> basePresenter = (BasePresenter<Book>)item;
 					Book book = basePresenter.Model;

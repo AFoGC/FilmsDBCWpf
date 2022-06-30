@@ -66,6 +66,8 @@ namespace WpfApp.MVP.Presenters
 						break;
 					case NotifyCollectionChangedAction.Remove:
 						view.MenuControls.RemoveAt(e.OldStartingIndex);
+						if (e.OldItems[0] == model.SelectedElement)
+							model.SelectedElement = null;
 						break;
 					case NotifyCollectionChangedAction.Reset:
 						view.MenuControls.Clear();

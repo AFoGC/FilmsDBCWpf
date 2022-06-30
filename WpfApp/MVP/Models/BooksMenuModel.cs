@@ -113,8 +113,8 @@ namespace WpfApp.MVP.Models
 			CategoryPresenters.Clear();
 			GenreButtons.Clear();
 
-            foreach (BookGenre genre in Tables.BookGenresTable)
-            {
+			foreach (BookGenre genre in Tables.BookGenresTable)
+			{
 				GenreButtons.Add(new GenrePressButtonControl(genre));
 			}
 
@@ -221,39 +221,28 @@ namespace WpfApp.MVP.Models
 			}
 		}
 
-		public bool AddSelected()
+		public bool AddPresenter(BasePresenter<Book> presenter)
 		{
-			if (SelectedElement != null)
+			int i = 0;
+			Type type = presenter.GetType();
+			foreach (IBasePresenter item in CategoryPresenters)
 			{
-				int i = 0;
-				Type type = typeof(BasePresenter<Book>);
-				foreach (IBasePresenter item in CategoryPresenters)
+				if (item.GetType().IsSubclassOf(type))
 				{
-					if (item.GetType().IsSubclassOf(type))
-					{
-						BasePresenter<Book> basePresenter = (BasePresenter<Book>)item;
-						Book book = basePresenter.Model;
-						if (book.ID > SelectedElement.Model.ID) break;
-					}
-					++i;
+					BasePresenter<Book> basePresenter = (BasePresenter<Book>)item;
+					Book book = basePresenter.Model;
+					if (book.ID > SelectedElement.Model.ID) break;
 				}
-				BookPresenter presenter = new BookPresenter(SelectedElement.Model, new BookSimpleControl(), this, TableCollection);
-				CategoryPresenters.Insert(i, presenter);
-				SelectedElement = null;
-				return true;
+				++i;
 			}
-			else return false;
+			BookPresenter bookPresenter = new BookPresenter(SelectedElement.Model, new BookSimpleControl(), this, TableCollection);
+			CategoryPresenters.Insert(i, bookPresenter);
+			return true;
 		}
 
-		public bool RemoveSelected()
+		public bool RemovePresenter(BasePresenter<Book> presenter)
 		{
-			if (SelectedElement != null)
-			{
-				bool exp = CategoryPresenters.Remove(SelectedElement);
-				SelectedElement = null;
-				return exp;
-			}
-			else return false;
+			return CategoryPresenters.Remove(presenter);
 		}
 	}
 }

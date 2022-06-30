@@ -258,39 +258,28 @@ namespace WpfApp.MVP.Models
             }
         }
 
-        public bool AddSelected()
+        public bool AddPresenter(BasePresenter<Film> presenter)
         {
-            if (SelectedElement != null)
+            int i = 0;
+            Type type = presenter.GetType();
+            foreach (IBasePresenter item in CategoryPresenters)
             {
-                int i = 0;
-                Type type = typeof(BasePresenter<Film>);
-                foreach (IBasePresenter item in CategoryPresenters)
+                if (item.GetType().IsSubclassOf(type))
                 {
-                    if (item.GetType().IsSubclassOf(type))
-                    {
-                        BasePresenter<Film> basePresenter = (BasePresenter<Film>)item;
-                        Film film = basePresenter.Model;
-                        if (film.ID > SelectedElement.Model.ID) break;
-                    }
-                    ++i;
+                    BasePresenter<Film> basePresenter = (BasePresenter<Film>)item;
+                    Film film = basePresenter.Model;
+                    if (film.ID > SelectedElement.Model.ID) break;
                 }
-                FilmPresenter presenter = new FilmPresenter(SelectedElement.Model, new FilmSimpleControl(), this, TableCollection);
-                CategoryPresenters.Insert(i, presenter);
-                SelectedElement = null;
-                return true;
+                ++i;
             }
-            else return false;
+            FilmPresenter filmPresenter = new FilmPresenter(SelectedElement.Model, new FilmSimpleControl(), this, TableCollection);
+            CategoryPresenters.Insert(i, filmPresenter);
+            return true;
         }
 
-        public bool RemoveSelected()
+        public bool RemovePresenter(BasePresenter<Film> presenter)
         {
-            if (SelectedElement != null)
-            {
-                bool exp = CategoryPresenters.Remove(SelectedElement);
-                SelectedElement = null;
-                return exp;
-            }
-            else return false;
+            return CategoryPresenters.Remove(presenter);
         }
     }
 }

@@ -41,7 +41,8 @@ namespace FilmsUCWpf.Presenter
 					book.FranshiseId = model.ID;
 					book.FranshiseListIndex = (sbyte)(model.Books.Count);
 					model.Books.Add(book);
-					menu.RemoveSelected();
+					menu.RemovePresenter(menu.SelectedElement);
+					menu.SelectedElement = null;
 				}
 			}
 		}
@@ -52,7 +53,10 @@ namespace FilmsUCWpf.Presenter
 			{
 				Book book = menu.SelectedElement.Model;
 				if (model.RemoveBookFromCategory(book))
-					menu.AddSelected();
+				{
+					menu.AddPresenter(menu.SelectedElement);
+					menu.SelectedElement = null;
+				}
 			}
 		}
 

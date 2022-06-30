@@ -40,8 +40,9 @@ namespace FilmsUCWpf.Presenter
                 {
 					film.FranshiseId = model.ID;
 					model.Films.Add(film);
-					menu.RemoveSelected();
-                }
+					menu.RemovePresenter(menu.SelectedElement);
+					menu.SelectedElement = null;
+				}
             }
         }
 
@@ -51,8 +52,11 @@ namespace FilmsUCWpf.Presenter
             {
 				Film film = menu.SelectedElement.Model;
 				if (model.RemoveFilmFromCategory(film))
-					menu.AddSelected();
-            }
+				{
+					menu.AddPresenter(menu.SelectedElement);
+					menu.SelectedElement = null;
+				}
+			}
         }
 
 		public void DeleteThisCategory()

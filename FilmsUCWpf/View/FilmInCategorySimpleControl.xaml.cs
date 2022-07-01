@@ -119,5 +119,10 @@ namespace FilmsUCWpf.View
 		{
 			presenter.DownFranshiseListID();
 		}
-	}
+
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+			presenter.RemoveThisFromCategory();
+        }
+    }
 }

@@ -11,6 +11,7 @@
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
                 <MenuItem Header="Delete This" Click="MenuItem_Click"/>
                 <MenuItem Header="Add To Priority" Click="addToPriority_Click"/>
+                <MenuItem Header="Remove From Category" Click="Remove_Click" />
                 <MenuItem Header="Up" Click="Up_Click" />
                 <MenuItem Header="Down" Click="Down_Click" />
             </ContextMenu>

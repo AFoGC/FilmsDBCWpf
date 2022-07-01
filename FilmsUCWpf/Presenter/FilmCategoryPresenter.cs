@@ -53,7 +53,7 @@ namespace FilmsUCWpf.Presenter
             {
                 case NotifyCollectionChangedAction.Add:
                     film = (Film)e.NewItems[0];
-                    presenter = new FilmPresenter(film, new FilmSimpleControl(), menu, TableCollection);
+                    presenter = new FilmPresenter(film, new FilmInCategorySimpleControl(), menu, TableCollection);
                     presenters.Add(presenter);
                     View.CategoryCollection.Add(presenter.View);
                     break;
@@ -148,7 +148,7 @@ namespace FilmsUCWpf.Presenter
                 Film film = menu.SelectedElement.Model;
                 if (film.FranshiseId == 0)
                 {
-                    film.FranshiseId = Model.ID;
+                    
                     Model.Films.Add(film);
                     menu.RemovePresenter(menu.SelectedElement);
                     menu.SelectedElement = null;

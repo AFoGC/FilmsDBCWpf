@@ -132,5 +132,16 @@ namespace FilmsUCWpf.Presenter
 			Category category = categories.GetCategoryByFilm(Model);
 			category.ChangeFilmPositionBy(Model, 1);
 		}
+
+		public void RemoveThisFromCategory()
+        {
+			CategoriesTable categories = (CategoriesTable)TableCollection.GetTable<Category>();
+			Category category = categories.GetCategoryByFilm(Model);
+            if (category != null)
+            {
+				category.RemoveFilmFromCategory(Model);
+				menu.AddPresenter(this);
+            }
+		}
 	}
 }

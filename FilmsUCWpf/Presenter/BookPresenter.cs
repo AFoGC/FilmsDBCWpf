@@ -116,5 +116,16 @@ namespace FilmsUCWpf.Presenter
 			BookCategory category = categories.GetCategoryByBook(Model);
 			category.ChangeBookPositionBy(Model, 1);
 		}
+
+		public void RemoveThisFromCategory()
+		{
+			BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+			BookCategory category = categories.GetCategoryByBook(Model);
+			if (category != null)
+			{
+				category.RemoveBookFromCategory(Model);
+				menu.AddPresenter(this);
+			}
+		}
 	}
 }

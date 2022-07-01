@@ -52,7 +52,7 @@ namespace FilmsUCWpf.Presenter
 			{
 				case NotifyCollectionChangedAction.Add:
 					book = (Book)e.NewItems[0];
-					presenter = new BookPresenter(book, new BookSimpleControl(), menu, TableCollection);
+					presenter = new BookPresenter(book, new BookInCategorySimpleControl(), menu, TableCollection);
 					presenters.Add(presenter);
 					View.CategoryCollection.Add(presenter.View);
 					break;
@@ -147,8 +147,6 @@ namespace FilmsUCWpf.Presenter
 				Book book = menu.SelectedElement.Model;
 				if (book.FranshiseId == 0)
 				{
-					book.FranshiseId = Model.ID;
-					book.FranshiseListIndex = (sbyte)(Model.Books.Count);
 					Model.Books.Add(book);
 					menu.RemovePresenter(menu.SelectedElement);
 					menu.SelectedElement = null;

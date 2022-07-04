@@ -221,6 +221,32 @@ namespace WpfApp.Models
             }
         }
 
+        public IEnumerable<BookCategoryPresenter> GetBookCategoryPresenters()
+        {
+            List<BookCategoryPresenter> export = new List<BookCategoryPresenter>();
+            foreach (var item in CategoryPresenters)
+            {
+                if (item.GetType() == typeof(BookCategoryPresenter))
+                {
+                    export.Add((BookCategoryPresenter)item);
+                }
+            }
+            return export;
+        }
+
+        public IEnumerable<BookPresenter> GetBookSimplePresenters()
+        {
+            List<BookPresenter> export = new List<BookPresenter>();
+            foreach (var item in CategoryPresenters)
+            {
+                if (item.GetType() == typeof(BookPresenter))
+                {
+                    export.Add((BookPresenter)item);
+                }
+            }
+            return export;
+        }
+
         public bool AddPresenter(BasePresenter<Book> presenter)
         {
             int i = 0;

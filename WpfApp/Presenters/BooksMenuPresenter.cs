@@ -289,17 +289,17 @@ namespace WpfApp.Presenters
 			{
 				case BooksMenuModel.MenuCondition.Book:
 					books = model.BookPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.Mark));
+					addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
 					books = model.PriorityPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.Mark));
+					addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.Category:
 					categories = model.GetBookCategoryPresenters();
 					books = model.GetBookSimplePresenters();
-					addPresentersToView(categories.OrderBy(a => a.Model.Mark));
-					addPresentersToView(books.OrderBy(a => a.Model.Mark));
+					addPresentersToView(categories.OrderBy(a => a.Model.Mark).Reverse());
+					addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
 					break;
 				default:
 					break;
@@ -355,11 +355,11 @@ namespace WpfApp.Presenters
 			{
 				case BooksMenuModel.MenuCondition.Book:
 					books = model.BookPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.PublicationYear));
+					addPresentersToView(books.OrderBy(a => a.Model.PublicationYear).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
 					books = model.PriorityPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.PublicationYear));
+					addPresentersToView(books.OrderBy(a => a.Model.PublicationYear).Reverse());
 					break;
 				default:
 					break;
@@ -375,11 +375,11 @@ namespace WpfApp.Presenters
 			{
 				case BooksMenuModel.MenuCondition.Book:
 					books = model.BookPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.Readed));
+					addPresentersToView(books.OrderBy(a => a.Model.Readed).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
 					books = model.PriorityPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.Readed));
+					addPresentersToView(books.OrderBy(a => a.Model.Readed).Reverse());
 					break;
 				default:
 					break;
@@ -395,11 +395,11 @@ namespace WpfApp.Presenters
 			{
 				case BooksMenuModel.MenuCondition.Book:
 					books = model.BookPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.FullReadDate));
+					addPresentersToView(books.OrderBy(a => a.Model.FullReadDate).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
 					books = model.PriorityPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.FullReadDate));
+					addPresentersToView(books.OrderBy(a => a.Model.FullReadDate).Reverse());
 					break;
 				default:
 					break;
@@ -415,11 +415,11 @@ namespace WpfApp.Presenters
 			{
 				case BooksMenuModel.MenuCondition.Book:
 					books = model.BookPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.Bookmark));
+					addPresentersToView(books.OrderBy(a => a.Model.Bookmark).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
 					books = model.PriorityPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.Bookmark));
+					addPresentersToView(books.OrderBy(a => a.Model.Bookmark).Reverse());
 					break;
 				default:
 					break;
@@ -435,11 +435,11 @@ namespace WpfApp.Presenters
 			{
 				case BooksMenuModel.MenuCondition.Book:
 					books = model.BookPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.CountOfReadings));
+					addPresentersToView(books.OrderBy(a => a.Model.CountOfReadings).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
 					books = model.PriorityPresenters;
-					addPresentersToView(books.OrderBy(a => a.Model.CountOfReadings));
+					addPresentersToView(books.OrderBy(a => a.Model.CountOfReadings).Reverse());
 					break;
 				default:
 					break;

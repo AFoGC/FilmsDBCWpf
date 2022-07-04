@@ -54,6 +54,12 @@
                  Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <Button x:Name="btn_search" Content="Search" Style="{StaticResource GrayButton}" Height="20" Width="75"
                 VerticalAlignment="Top" Margin="220,99,0,0" Click="btn_search_Click" HorizontalAlignment="Left"/>
-		<Canvas HorizontalAlignment="Left" Height="20" Margin="35,124,0,0" VerticalAlignment="Top" Width="958"/>
-	</Grid>
+        <Grid HorizontalAlignment="Left" Height="20" Margin="35,124,0,0" VerticalAlignment="Top" Width="958">
+            <Canvas>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="42" Content="Mark" Margin="212,0,0,0" Click="mark_sort"/>
+            </Canvas>
+        </Grid>
+    </Grid>
 </UserControl>

@@ -7,6 +7,7 @@ using InfoMenusWpf.UpdateInfo;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
@@ -213,6 +214,54 @@ namespace WpfApp.Presenters
         public void UpdateVisualizerIfOpen()
         {
             model.UpdateFormVisualizer.UpdateControl.Update();
+        }
+
+        public void SortByID()
+        {
+            IEnumerable<IBasePresenter> categories = model.CategoryPresenters.Where(a => a.GetType() == typeof(BookCategoryPresenter));
+            IEnumerable<IBasePresenter> books = model.CategoryPresenters.Where(a => a.GetType() == typeof(BookPresenter));
+
+            view.MenuControls.Clear();
+            foreach (var item in categories.OrderBy(a => a.ModelCell.ID))
+            {
+                view.MenuControls.Add(item.View);
+            }
+            foreach (var item in books.OrderBy(a => a.ModelCell.ID))
+            {
+                view.MenuControls.Add(item.View);
+            }
+        }
+
+        public void SortByName()
+        {
+            IEnumerable<IBasePresenter> categories = model.CategoryPresenters.Where(a => a.GetType() == typeof(BookCategoryPresenter));
+            IEnumerable<IBasePresenter> books = model.CategoryPresenters.Where(a => a.GetType() == typeof(BookPresenter));
+
+            view.MenuControls.Clear();
+            foreach (var item in categories.OrderBy(a => ((BookCategoryPresenter)a).Model.Name))
+            {
+                view.MenuControls.Add(item.View);
+            }
+            foreach (var item in books.OrderBy(a => ((BookPresenter)a).Model.Name))
+            {
+                view.MenuControls.Add(item.View);
+            }
+        }
+
+        public void SortByMark()
+        {
+            IEnumerable<IBasePresenter> categories = model.CategoryPresenters.Where(a => a.GetType() == typeof(BookCategoryPresenter));
+            IEnumerable<IBasePresenter> books = model.CategoryPresenters.Where(a => a.GetType() == typeof(BookPresenter));
+
+            view.MenuControls.Clear();
+            foreach (var item in categories.OrderBy(a => ((BookCategoryPresenter)a).Model.Mark))
+            {
+                view.MenuControls.Add(item.View);
+            }
+            foreach (var item in books.OrderBy(a => ((BookPresenter)a).Model.Mark))
+            {
+                view.MenuControls.Add(item.View);
+            }
         }
     }
 }

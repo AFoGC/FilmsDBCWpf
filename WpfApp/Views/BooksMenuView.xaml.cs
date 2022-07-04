@@ -90,5 +90,20 @@ namespace WpfApp.Views
                 presenter.UpdateVisualizerIfOpen();
             }
         }
+
+        private void id_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByID();
+        }
+
+        private void name_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByName();
+        }
+
+        private void mark_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByMark();
+        }
     }
 }

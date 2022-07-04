@@ -305,5 +305,145 @@ namespace WpfApp.Presenters
 					break;
 			}
 		}
+
+		public void SortByAuthor()
+		{
+			IEnumerable<BookPresenter> books;
+			view.MenuControls.Clear();
+
+			switch (model.ControlsCondition)
+			{
+				case BooksMenuModel.MenuCondition.Book:
+					books = model.BookPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.Author));
+					break;
+				case BooksMenuModel.MenuCondition.PriorityBook:
+					books = model.PriorityPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.Author));
+					break;
+				default:
+					break;
+			}
+		}
+
+		public void SortByGenre()
+        {
+			IEnumerable<BookPresenter> books;
+			view.MenuControls.Clear();
+
+			switch (model.ControlsCondition)
+			{
+				case BooksMenuModel.MenuCondition.Book:
+					books = model.BookPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.BookGenre.Name));
+					break;
+				case BooksMenuModel.MenuCondition.PriorityBook:
+					books = model.PriorityPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.BookGenre.Name));
+					break;
+				default:
+					break;
+			}
+		}
+
+		public void SortByYear()
+		{
+			IEnumerable<BookPresenter> books;
+			view.MenuControls.Clear();
+
+			switch (model.ControlsCondition)
+			{
+				case BooksMenuModel.MenuCondition.Book:
+					books = model.BookPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.PublicationYear));
+					break;
+				case BooksMenuModel.MenuCondition.PriorityBook:
+					books = model.PriorityPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.PublicationYear));
+					break;
+				default:
+					break;
+			}
+		}
+
+		public void SortByReaded()
+		{
+			IEnumerable<BookPresenter> books;
+			view.MenuControls.Clear();
+
+			switch (model.ControlsCondition)
+			{
+				case BooksMenuModel.MenuCondition.Book:
+					books = model.BookPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.Readed));
+					break;
+				case BooksMenuModel.MenuCondition.PriorityBook:
+					books = model.PriorityPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.Readed));
+					break;
+				default:
+					break;
+			}
+		}
+
+		public void SortByDate()
+		{
+			IEnumerable<BookPresenter> books;
+			view.MenuControls.Clear();
+
+			switch (model.ControlsCondition)
+			{
+				case BooksMenuModel.MenuCondition.Book:
+					books = model.BookPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.FullReadDate));
+					break;
+				case BooksMenuModel.MenuCondition.PriorityBook:
+					books = model.PriorityPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.FullReadDate));
+					break;
+				default:
+					break;
+			}
+		}
+
+		public void SortByBookmark()
+		{
+			IEnumerable<BookPresenter> books;
+			view.MenuControls.Clear();
+
+			switch (model.ControlsCondition)
+			{
+				case BooksMenuModel.MenuCondition.Book:
+					books = model.BookPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.Bookmark));
+					break;
+				case BooksMenuModel.MenuCondition.PriorityBook:
+					books = model.PriorityPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.Bookmark));
+					break;
+				default:
+					break;
+			}
+		}
+
+		public void SortByCoR()
+		{
+			IEnumerable<BookPresenter> books;
+			view.MenuControls.Clear();
+
+			switch (model.ControlsCondition)
+			{
+				case BooksMenuModel.MenuCondition.Book:
+					books = model.BookPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.CountOfReadings));
+					break;
+				case BooksMenuModel.MenuCondition.PriorityBook:
+					books = model.PriorityPresenters;
+					addPresentersToView(books.OrderBy(a => a.Model.CountOfReadings));
+					break;
+				default:
+					break;
+			}
+		}
 	}
 }

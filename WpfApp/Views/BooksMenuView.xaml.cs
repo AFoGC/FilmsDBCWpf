@@ -38,6 +38,15 @@ namespace WpfApp.Views
             presenter = new BooksMenuPresenter(new BooksMenuModel(windowModel), this);
         }
 
+        private void bringToFront(Grid grid, UIElement element)
+        {
+            foreach (UIElement item in grid.Children)
+            {
+                Grid.SetZIndex(item, Grid.GetZIndex(item) - 1);
+            }
+            Grid.SetZIndex(element, 0);
+        }
+
         private void btn_saveTable_Click(object sender, RoutedEventArgs e)
         {
             presenter.SaveTables();
@@ -50,16 +59,19 @@ namespace WpfApp.Views
 
         private void btn_showCategories_Click(object sender, RoutedEventArgs e)
         {
+            bringToFront(sortPanel, sort_category);
             presenter.LoadCategories();
         }
 
         private void btn_showPriority_Click(object sender, RoutedEventArgs e)
         {
+            bringToFront(sortPanel, sort_priority);
             presenter.LoadPriorityTable();
         }
 
         private void btn_showBooks_Click(object sender, RoutedEventArgs e)
         {
+            bringToFront(sortPanel, sort_books);
             presenter.LoadBooks();
         }
 
@@ -104,6 +116,41 @@ namespace WpfApp.Views
         private void mark_sort(object sender, RoutedEventArgs e)
         {
             presenter.SortByMark();
+        }
+
+        private void author_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByAuthor();
+        }
+
+        private void genre_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByGenre();
+        }
+
+        private void year_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByYear();
+        }
+
+        private void readed_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByReaded();
+        }
+
+        private void date_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByDate();
+        }
+
+        private void bookmark_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByBookmark();
+        }
+
+        private void countOfReadings_sort(object sender, RoutedEventArgs e)
+        {
+            presenter.SortByCoR();
         }
     }
 }

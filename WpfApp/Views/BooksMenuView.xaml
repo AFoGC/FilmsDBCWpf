@@ -8,31 +8,31 @@
 			 mc:Ignorable="d" 
 			 d:DesignHeight="705" d:DesignWidth="1485" Focusable="True" KeyDown="UserControl_KeyDown">
     <Grid Background="#FF121212">
-		<Canvas Margin="35,3,510,612">
-			<Border BorderBrush="White" BorderThickness="1" Width="940" Height="90">
-				<Canvas Name="infoCanvas">
-				</Canvas>
-			</Border>
-		</Canvas>
+        <Canvas Margin="35,3,510,612">
+            <Border BorderBrush="White" BorderThickness="1" Width="940" Height="90">
+                <Canvas Name="infoCanvas">
+                </Canvas>
+            </Border>
+        </Canvas>
 
-		<ScrollViewer Margin="35,148,0,0" HorizontalAlignment="Left" Width="960">
-			<WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
-		</ScrollViewer>
+        <ScrollViewer Margin="35,148,0,0" HorizontalAlignment="Left" Width="960">
+            <WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
+        </ScrollViewer>
 
-		<Canvas Margin="998,99,225,187">
-			<Border BorderBrush="White" BorderThickness="1" Width="262" Height="419" >
+        <Canvas Margin="998,99,225,187">
+            <Border BorderBrush="White" BorderThickness="1" Width="262" Height="419" >
                 <Canvas>
                     <Button x:Name="btn_saveTable" Style="{StaticResource BlueButton}" Content="Save Table" Height="23" Width="110" 
 							VerticalAlignment="Top" Canvas.Left="75" Click="btn_saveTable_Click"/>
-					<Button x:Name="btn_showCategories" Style="{StaticResource GrayButton}" Content="Show Categories" Height="23" Width="111" 
+                    <Button x:Name="btn_showCategories" Style="{StaticResource GrayButton}" Content="Show Categories" Height="23" Width="111" 
                             VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="41" Click="btn_showCategories_Click"/>
-					<Button x:Name="btn_addCategory" Style="{StaticResource GrayButton}" Content="Add Category" Height="23" Width="111" 
+                    <Button x:Name="btn_addCategory" Style="{StaticResource GrayButton}" Content="Add Category" Height="23" Width="111" 
                             VerticalAlignment="Top" Canvas.Top="41" Canvas.Left="0" Click="btn_addCategory_Click"/>
-					<Button x:Name="btn_showBooks" Content="Show Books" Style="{StaticResource GrayButton}" Height="23" Width="111" 
+                    <Button x:Name="btn_showBooks" Content="Show Books" Style="{StaticResource GrayButton}" Height="23" Width="111" 
                             VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="70" Click="btn_showBooks_Click"/>
-					<Button x:Name="btn_showPriority" Content="Show Priority Books" Style="{StaticResource GrayButton}" Height="23" Width="111" 
+                    <Button x:Name="btn_showPriority" Content="Show Priority Books" Style="{StaticResource GrayButton}" Height="23" Width="111" 
                             VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="99" Click="btn_showPriority_Click"/>
-					<Button x:Name="btn_addBook" Content="Add Book" Style="{StaticResource GrayButton}" Height="23" Width="111" 
+                    <Button x:Name="btn_addBook" Content="Add Book" Style="{StaticResource GrayButton}" Height="23" Width="111" 
                             VerticalAlignment="Top" Canvas.Top="70" Canvas.Left="0" Click="btn_addBook_Click"/>
 
                     <Line X1="0" Y1="208"
@@ -47,15 +47,33 @@
                     <Button x:Name="btn_filter" Style="{StaticResource BlueButton}" Content="Search" Height="23" Width="110" 
 							VerticalAlignment="Top" Canvas.Left="75" Canvas.Top="394" Click="btn_filter_Click"/>
                 </Canvas>
-			</Border>
-		</Canvas>
+            </Border>
+        </Canvas>
 
-		<TextBox x:Name="textbox_search" HorizontalAlignment="Left" Margin="35,99,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" 
+        <TextBox x:Name="textbox_search" HorizontalAlignment="Left" Margin="35,99,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" 
                  Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
         <Button x:Name="btn_search" Content="Search" Style="{StaticResource GrayButton}" Height="20" Width="75"
                 VerticalAlignment="Top" Margin="220,99,0,0" Click="btn_search_Click" HorizontalAlignment="Left"/>
-        <Grid HorizontalAlignment="Left" Height="20" Margin="35,124,0,0" VerticalAlignment="Top" Width="958">
-            <Canvas>
+        <Grid HorizontalAlignment="Left" Height="20" Margin="35,124,0,0" VerticalAlignment="Top" Width="958" x:Name="sortPanel">
+            <Canvas Background="#FF121212" x:Name="sort_books">
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Genre" Margin="212,0,0,0" Click="genre_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Year" Margin="312,0,0,0" Click="year_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="53" Content="Readed" Margin="342,0,0,0" Click="readed_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Author" Margin="397,0,0,0" Click="author_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="84" Content="BookMark" Margin="497,0,0,0" Click="bookmark_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Margin="583,0,0,0" Click="date_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Margin="643,0,0,0" Click="mark_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Content="Count of Views" Margin="688,0,0,0" Click="countOfReadings_sort"/>
+            </Canvas>
+            <Canvas Background="#FF121212" x:Name="sort_priority">
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Genre" Margin="212,0,0,0" Click="genre_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Year" Margin="312,0,0,0" Click="year_sort"/>
+            </Canvas>
+            <Canvas Background="#FF121212" x:Name="sort_category">
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="42" Content="Mark" Margin="212,0,0,0" Click="mark_sort"/>

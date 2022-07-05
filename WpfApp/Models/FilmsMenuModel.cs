@@ -258,6 +258,32 @@ namespace WpfApp.Models
             }
         }
 
+        public IEnumerable<FilmCategoryPresenter> GetFilmCategoryPresenters()
+        {
+            List<FilmCategoryPresenter> export = new List<FilmCategoryPresenter>();
+            foreach (var item in CategoryPresenters)
+            {
+                if (item.GetType() == typeof(FilmCategoryPresenter))
+                {
+                    export.Add((FilmCategoryPresenter)item);
+                }
+            }
+            return export;
+        }
+
+        public IEnumerable<FilmPresenter> GetFilmSimplePresenters()
+        {
+            List<FilmPresenter> export = new List<FilmPresenter>();
+            foreach (var item in CategoryPresenters)
+            {
+                if (item.GetType() == typeof(FilmPresenter))
+                {
+                    export.Add((FilmPresenter)item);
+                }
+            }
+            return export;
+        }
+
         public bool AddPresenter(BasePresenter<Film> presenter)
         {
             int i = 0;

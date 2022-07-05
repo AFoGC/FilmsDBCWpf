@@ -5,6 +5,7 @@ using FilmsUCWpf.View;
 using InfoMenusWpf.MoreInfo;
 using InfoMenusWpf.UpdateInfo;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -178,9 +179,17 @@ namespace WpfApp.Presenters
             }
         }
 
-        private void AddPresenterToView(IBasePresenter basePresenter)
+        private void addPresenterToView(IBasePresenter basePresenter)
         {
             basePresenter.AddViewToCollection(view.MenuControls);
+        }
+
+        private void addPresentersToView(IEnumerable presenters)
+        {
+            foreach (IBasePresenter presenter in presenters)
+            {
+                addPresenterToView(presenter);
+            }
         }
 
         public void Filter(bool watched, bool unwatched)
@@ -193,7 +202,7 @@ namespace WpfApp.Presenters
             {
                 foreach (IBasePresenter presenter in model.GetCurrentPresenters())
                 {
-                    AddPresenterToView(presenter);
+                    addPresenterToView(presenter);
                 }
             }
             else
@@ -203,7 +212,7 @@ namespace WpfApp.Presenters
                     foreach (IHasGenre hasGenre in model.GetCurrentPresenters())
                     {
                         if (hasGenre.HasSelectedGenre(genres))
-                            AddPresenterToView((IBasePresenter)hasGenre);
+                            addPresenterToView((IBasePresenter)hasGenre);
                     }
                 }
                 else
@@ -212,7 +221,7 @@ namespace WpfApp.Presenters
                     {
                         IBasePresenter presenter = (IBasePresenter)hasGenre;
                         if (hasGenre.HasSelectedGenre(genres) && presenter.HasCheckedProperty(watched))
-                            AddPresenterToView((IBasePresenter)hasGenre);
+                            addPresenterToView((IBasePresenter)hasGenre);
                     }
                 }
             }
@@ -270,6 +279,246 @@ namespace WpfApp.Presenters
         public void UpdateVisualizerIfOpen()
         {
             model.UpdateFormVisualizer.UpdateControl.Update();
+        }
+
+        public void SortByID()
+        {
+            IEnumerable<FilmCategoryPresenter> categories;
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            switch (model.ControlsCondition)
+            {
+                case FilmsMenuModel.MenuCondition.Film:
+                    books = model.FilmPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.ID));
+                    break;
+                case FilmsMenuModel.MenuCondition.Serie:
+                    books = model.SeriePresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.ID));
+                    break;
+                case FilmsMenuModel.MenuCondition.PriorityFilm:
+                    books = model.PriorityPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.ID));
+                    break;
+                case FilmsMenuModel.MenuCondition.Category:
+                    categories = model.GetFilmCategoryPresenters();
+                    books = model.GetFilmSimplePresenters();
+                    addPresentersToView(categories.OrderBy(a => a.Model.ID));
+                    addPresentersToView(books.OrderBy(a => a.Model.ID));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SortByName()
+        {
+            IEnumerable<FilmCategoryPresenter> categories;
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            switch (model.ControlsCondition)
+            {
+                case FilmsMenuModel.MenuCondition.Film:
+                    books = model.FilmPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Name));
+                    break;
+                case FilmsMenuModel.MenuCondition.Serie:
+                    books = model.SeriePresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Name));
+                    break;
+                case FilmsMenuModel.MenuCondition.PriorityFilm:
+                    books = model.PriorityPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Name));
+                    break;
+                case FilmsMenuModel.MenuCondition.Category:
+                    categories = model.GetFilmCategoryPresenters();
+                    books = model.GetFilmSimplePresenters();
+                    addPresentersToView(categories.OrderBy(a => a.Model.Name));
+                    addPresentersToView(books.OrderBy(a => a.Model.Name));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SortByMark()
+        {
+            IEnumerable<FilmCategoryPresenter> categories;
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            switch (model.ControlsCondition)
+            {
+                case FilmsMenuModel.MenuCondition.Film:
+                    books = model.FilmPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.Serie:
+                    books = model.SeriePresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.PriorityFilm:
+                    books = model.PriorityPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.Category:
+                    categories = model.GetFilmCategoryPresenters();
+                    books = model.GetFilmSimplePresenters();
+                    addPresentersToView(categories.OrderBy(a => a.Model.Mark).Reverse());
+                    addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SortByGenre()
+        {
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            switch (model.ControlsCondition)
+            {
+                case FilmsMenuModel.MenuCondition.Film:
+                    books = model.FilmPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Genre.Name));
+                    break;
+                case FilmsMenuModel.MenuCondition.Serie:
+                    books = model.SeriePresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Genre.Name));
+                    break;
+                case FilmsMenuModel.MenuCondition.PriorityFilm:
+                    books = model.PriorityPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Genre.Name));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SortByYear()
+        {
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            switch (model.ControlsCondition)
+            {
+                case FilmsMenuModel.MenuCondition.Film:
+                    books = model.FilmPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.RealiseYear).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.Serie:
+                    books = model.SeriePresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.RealiseYear).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.PriorityFilm:
+                    books = model.PriorityPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.RealiseYear).Reverse());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SortByWatched()
+        {
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            switch (model.ControlsCondition)
+            {
+                case FilmsMenuModel.MenuCondition.Film:
+                    books = model.FilmPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Watched).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.Serie:
+                    books = model.SeriePresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Watched).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.PriorityFilm:
+                    books = model.PriorityPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.Watched).Reverse());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SortByDate()
+        {
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            switch (model.ControlsCondition)
+            {
+                case FilmsMenuModel.MenuCondition.Film:
+                    books = model.FilmPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.DateOfWatch).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.Serie:
+                    books = model.SeriePresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.DateOfWatch).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.PriorityFilm:
+                    books = model.PriorityPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.DateOfWatch).Reverse());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SortByCoV()
+        {
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            switch (model.ControlsCondition)
+            {
+                case FilmsMenuModel.MenuCondition.Film:
+                    books = model.FilmPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.CountOfViews).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.Serie:
+                    books = model.SeriePresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.CountOfViews).Reverse());
+                    break;
+                case FilmsMenuModel.MenuCondition.PriorityFilm:
+                    books = model.PriorityPresenters;
+                    addPresentersToView(books.OrderBy(a => a.Model.CountOfViews).Reverse());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SortByStartDate()
+        {
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            books = model.SeriePresenters;
+            addPresentersToView(books.OrderBy(a => a.Model.Serie.StartWatchDate).Reverse());
+        }
+
+        public void SortByWatchedSeries()
+        {
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            books = model.SeriePresenters;
+            addPresentersToView(books.OrderBy(a => a.Model.Serie.CountOfWatchedSeries).Reverse());
+        }
+
+        public void SortByTotalSeries()
+        {
+            IEnumerable<FilmPresenter> books;
+            view.MenuControls.Clear();
+
+            books = model.SeriePresenters;
+            addPresentersToView(books.OrderBy(a => a.Model.Serie.TotalSeries).Reverse());
         }
     }
 }

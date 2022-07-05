@@ -13,19 +13,19 @@
                 <MenuItem Header="Add To Priority" Click="addToPriority_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="27" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown" />
-        <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
+        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown" />
+        <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="32,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
         </TextBox>
-        <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="211,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
+        <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="212,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
         </TextBox>
-        <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="Realise Year" IsReadOnly="True" HorizontalAlignment="Left" Margin="311,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
+        <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="Realise Year" IsReadOnly="True" HorizontalAlignment="Left" Margin="312,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
         </TextBox>
-        <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="Watched" Content="" HorizontalAlignment="Left" Margin="360,0,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <TextBox x:Name="watchDate" Text="{Binding DateOfWatch}" ToolTip="Watche Date" IsReadOnly="True" HorizontalAlignment="Left" Margin="396,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="58" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
+        <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="Watched" Content="" HorizontalAlignment="Left" Margin="361,0,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <TextBox x:Name="watchDate" Text="{Binding DateOfWatch}" ToolTip="Watche Date" IsReadOnly="True" HorizontalAlignment="Left" Margin="397,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="58" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
         </TextBox>
-        <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="456,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="43" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
+        <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="457,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="43" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
         </TextBox>
-        <TextBox x:Name="countOfviews" Text="{Binding CountOfViews}" ToolTip="Count Of Views" IsReadOnly="True" HorizontalAlignment="Left" Margin="501,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
+        <TextBox x:Name="countOfviews" Text="{Binding CountOfViews}" ToolTip="Count Of Views" IsReadOnly="True" HorizontalAlignment="Left" Margin="502,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown">
         </TextBox>
         <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" RenderTransformOrigin="0.48,-0.933" Margin="658,1,206,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Height="13" VerticalAlignment="Top" Click="btn_comment_Click">
             <Button.Style>
@@ -99,7 +99,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="comment" ToolTip="Comment" IsReadOnly="True" HorizontalAlignment="Left" Margin="31,16,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="498" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
+        <TextBox x:Name="comment" ToolTip="Comment" IsReadOnly="True" HorizontalAlignment="Left" Margin="32,16,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="498" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
 
     </Grid>
 </UserControl>

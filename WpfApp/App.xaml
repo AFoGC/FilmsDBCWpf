@@ -4,8 +4,14 @@
              xmlns:local="clr-namespace:WpfApp.Views" Startup="Application_Startup"
              >
     <Application.Resources>
-        <ResourceDictionary Source="Resources/Dictionaries/ButtonDictionary.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Dictionaries/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/ImagesDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
+    
     <Application.MainWindow>
         <local:MainWindowView Visibility="Visible"></local:MainWindowView>
     </Application.MainWindow>

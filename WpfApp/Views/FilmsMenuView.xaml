@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Views"
              xmlns:Elements="clr-namespace:CustomButtons;assembly=CustomButtons"
+             xmlns:resx="clr-namespace:WpfApp.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1485" KeyDown="UserControl_KeyDown" Focusable="True">
     <Grid Background="#FF121212">
@@ -71,7 +72,11 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="53" Content="Watched" Canvas.Left="342" Click="watched_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Canvas.Left="397" Click="date_sort" />
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Canvas.Left="457" Click="mark_sort" />
-                <Button Style="{StaticResource GrayButton}" Height="20" Content="Count of Views" Canvas.Left="502" Click="countOfViews_sort" />
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="502" Click="countOfViews_sort">
+                    <Button.Content>
+                        <Image Source="{StaticResource ImgSource}"/>
+                    </Button.Content>
+                </Button>
             </Canvas>
             <Canvas Background="#FF121212" x:Name="sort_series">
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Canvas.Left="2" Click="id_sort"/>
@@ -80,16 +85,29 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Year" Canvas.Left="312" Click="year_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="53" Content="Watched" Canvas.Left="342" Click="watched_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Canvas.Left="397" Click="start_date_sort" />
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Series" Canvas.Left="457" Click="watched_series_sort" />
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="457" Click="watched_series_sort">
+                    <Button.Content>
+                        <Image Source="{StaticResource ImgSource}"/>
+                    </Button.Content>
+                </Button>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Canvas.Left="487" Click="date_sort" />
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Series" Canvas.Left="547" Click="total_series_sort" />
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="547" Click="total_series_sort">
+                    <Button.Content>
+                        <Image Source="{StaticResource ImgSource}"/>
+                    </Button.Content>
+                </Button>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Canvas.Left="577" Click="mark_sort" />
-                <Button Style="{StaticResource GrayButton}" Height="20" Content="Count of Views" Canvas.Left="622" Click="countOfViews_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="622" Click="countOfViews_sort">
+                    <Button.Content>
+                        <Image Source="{StaticResource ImgSource}"/>
+                    </Button.Content>
+                </Button>
             </Canvas>
             <Canvas Background="#FF121212" x:Name="sort_category">
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="42" Content="Mark" Margin="212,0,0,0" Click="mark_sort"/>
+
             </Canvas>
         </Grid>
     </Grid>

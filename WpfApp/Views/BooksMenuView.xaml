@@ -65,7 +65,11 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="84" Content="BookMark" Margin="497,0,0,0" Click="bookmark_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Margin="583,0,0,0" Click="date_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Margin="643,0,0,0" Click="mark_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Content="Count of Views" Margin="688,0,0,0" Click="countOfReadings_sort"/>
+                <Button Style="{StaticResource GrayButton}" Height="20" Margin="688,0,0,0" Click="countOfReadings_sort">
+                    <Button.Content>
+                        <Image Source="{StaticResource ImgSource}"/>
+                    </Button.Content>
+                </Button>
             </Canvas>
             <Canvas Background="#FF121212" x:Name="sort_priority">
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>

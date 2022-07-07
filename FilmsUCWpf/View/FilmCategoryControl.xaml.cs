@@ -27,6 +27,7 @@ namespace FilmsUCWpf.View
 	public partial class FilmCategoryControl : UserControl, ICategoryView
 	{
 		private FilmCategoryPresenter presenter;
+		public IBasePresenter Presenter => presenter;
 		public FilmCategoryControl()
 		{
 			InitializeComponent();

@@ -9,6 +9,7 @@ namespace FilmsUCWpf.ViewInterfaces
 {
     public interface IView
     {
+        IBasePresenter Presenter { get; }
         bool SetPresenter(IBasePresenter presenter);
         void SetVisualDefault();
         void SetVisualSelected();

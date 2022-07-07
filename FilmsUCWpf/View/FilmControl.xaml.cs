@@ -25,6 +25,7 @@ namespace FilmsUCWpf.View
 	public partial class FilmControl : UserControl, IView
 	{
 		private FilmPresenter presenter;
+		public IBasePresenter Presenter => presenter;
 		public bool SetPresenter(IBasePresenter presenter)
 		{
 			if (this.presenter == null) 

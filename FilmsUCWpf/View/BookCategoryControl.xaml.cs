@@ -31,6 +31,7 @@ namespace FilmsUCWpf.View
 			InitializeComponent();
 		}
 
+		public IBasePresenter Presenter => presenter;
 		double IView.Height { get => grid.Height; set => grid.Height = value; }
 		public double DefaultHeght => 35;
 		public double MinimizedHeight => 15;

@@ -2,6 +2,7 @@
 using FilmsUCWpf.Presenter;
 using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.View;
+using FilmsUCWpf.ViewInterfaces;
 using InfoMenusWpf.MoreInfo;
 using InfoMenusWpf.UpdateInfo;
 using System;
@@ -225,6 +226,40 @@ namespace WpfApp.Presenters
 			model.UpdateFormVisualizer.UpdateControl.Update();
 		}
 
+		private IEnumerable<BookCategoryPresenter> getCategoriesOnView()
+        {
+			List<BookCategoryPresenter> presenters = new List<BookCategoryPresenter>();
+			Type categoryType = typeof(BookCategoryPresenter);
+
+            foreach (IView view in view.MenuControls)
+            {
+				Type presenterType = view.Presenter.GetType();
+				if (categoryType == presenterType || presenterType.IsSubclassOf(categoryType))
+                {
+					presenters.Add((BookCategoryPresenter)view.Presenter);
+                }
+            }
+
+			return presenters;
+        }
+
+		private IEnumerable<BookPresenter> getBooksOnView()
+		{
+			List<BookPresenter> presenters = new List<BookPresenter>();
+			Type categoryType = typeof(BookPresenter);
+
+			foreach (IView view in view.MenuControls)
+			{
+				Type presenterType = view.Presenter.GetType();
+				if (categoryType == presenterType || presenterType.IsSubclassOf(categoryType))
+				{
+					presenters.Add((BookPresenter)view.Presenter);
+				}
+			}
+
+			return presenters;
+		}
+
 		public void SortByID()
         {
 			IEnumerable<BookCategoryPresenter> categories;
@@ -254,23 +289,20 @@ namespace WpfApp.Presenters
 
 		public void SortByName()
         {
-			IEnumerable<BookCategoryPresenter> categories;
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookCategoryPresenter> categories = getCategoriesOnView();
+			IEnumerable<BookPresenter> books = getBooksOnView();
+
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
 			{
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Name));
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Name));
 					break;
 				case BooksMenuModel.MenuCondition.Category:
-					categories = model.GetBookCategoryPresenters();
-					books = model.GetBookSimplePresenters();
 					addPresentersToView(categories.OrderBy(a => a.Model.Name));
 					addPresentersToView(books.OrderBy(a => a.Model.Name));
 					break;

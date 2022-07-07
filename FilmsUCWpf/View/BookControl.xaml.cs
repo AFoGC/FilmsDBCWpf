@@ -25,6 +25,7 @@ namespace FilmsUCWpf.View
 	public partial class BookControl : UserControl, IView
 	{
 		BookPresenter presenter;
+		public IBasePresenter Presenter => presenter;
 		public BookControl()
 		{
 			InitializeComponent();

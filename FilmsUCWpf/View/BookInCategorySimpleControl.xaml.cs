@@ -25,6 +25,7 @@ namespace FilmsUCWpf.View
     public partial class BookInCategorySimpleControl : UserControl, IView
     {
 		BookPresenter presenter;
+		public IBasePresenter Presenter => presenter;
 		public BookInCategorySimpleControl()
 		{
 			InitializeComponent();

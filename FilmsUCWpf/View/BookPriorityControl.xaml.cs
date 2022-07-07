@@ -25,6 +25,7 @@ namespace FilmsUCWpf.View
     public partial class BookPriorityControl : UserControl, IView
     {
         private BookPriorityPresenter presenter;
+        public IBasePresenter Presenter => presenter;
         public BookPriorityControl()
         {
             InitializeComponent();

@@ -262,23 +262,19 @@ namespace WpfApp.Presenters
 
 		public void SortByID()
         {
-			IEnumerable<BookCategoryPresenter> categories;
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookCategoryPresenter> categories = getCategoriesOnView();
+			IEnumerable<BookPresenter> books = getBooksOnView();
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
             {
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.ID));
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.ID));
 					break;
 				case BooksMenuModel.MenuCondition.Category:
-					categories = model.GetBookCategoryPresenters();
-					books = model.GetBookSimplePresenters();
 					addPresentersToView(categories.OrderBy(a => a.Model.ID));
 					addPresentersToView(books.OrderBy(a => a.Model.ID));
 					break;
@@ -291,7 +287,6 @@ namespace WpfApp.Presenters
         {
 			IEnumerable<BookCategoryPresenter> categories = getCategoriesOnView();
 			IEnumerable<BookPresenter> books = getBooksOnView();
-
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
@@ -313,23 +308,19 @@ namespace WpfApp.Presenters
 
 		public void SortByMark()
 		{
-			IEnumerable<BookCategoryPresenter> categories;
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookCategoryPresenter> categories = getCategoriesOnView();
+			IEnumerable<BookPresenter> books = getBooksOnView();
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
 			{
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.Category:
-					categories = model.GetBookCategoryPresenters();
-					books = model.GetBookSimplePresenters();
 					addPresentersToView(categories.OrderBy(a => a.Model.Mark).Reverse());
 					addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
 					break;
@@ -340,17 +331,15 @@ namespace WpfApp.Presenters
 
 		public void SortByAuthor()
 		{
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookPresenter> books = getBooksOnView();
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
 			{
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Author));
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Author));
 					break;
 				default:
@@ -360,17 +349,15 @@ namespace WpfApp.Presenters
 
 		public void SortByGenre()
         {
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookPresenter> books = getBooksOnView();
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
 			{
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.BookGenre.Name));
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.BookGenre.Name));
 					break;
 				default:
@@ -380,17 +367,15 @@ namespace WpfApp.Presenters
 
 		public void SortByYear()
 		{
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookPresenter> books = getBooksOnView();
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
 			{
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.PublicationYear).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.PublicationYear).Reverse());
 					break;
 				default:
@@ -400,17 +385,15 @@ namespace WpfApp.Presenters
 
 		public void SortByReaded()
 		{
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookPresenter> books = getBooksOnView();
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
 			{
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Readed).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Readed).Reverse());
 					break;
 				default:
@@ -420,17 +403,15 @@ namespace WpfApp.Presenters
 
 		public void SortByDate()
 		{
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookPresenter> books = getBooksOnView();
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
 			{
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.FullReadDate).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.FullReadDate).Reverse());
 					break;
 				default:
@@ -440,17 +421,15 @@ namespace WpfApp.Presenters
 
 		public void SortByBookmark()
 		{
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookPresenter> books = getBooksOnView();
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
 			{
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Bookmark).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.Bookmark).Reverse());
 					break;
 				default:
@@ -460,17 +439,15 @@ namespace WpfApp.Presenters
 
 		public void SortByCoR()
 		{
-			IEnumerable<BookPresenter> books;
+			IEnumerable<BookPresenter> books = getBooksOnView();
 			view.MenuControls.Clear();
 
 			switch (model.ControlsCondition)
 			{
 				case BooksMenuModel.MenuCondition.Book:
-					books = model.BookPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.CountOfReadings).Reverse());
 					break;
 				case BooksMenuModel.MenuCondition.PriorityBook:
-					books = model.PriorityPresenters;
 					addPresentersToView(books.OrderBy(a => a.Model.CountOfReadings).Reverse());
 					break;
 				default:

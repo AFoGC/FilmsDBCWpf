@@ -2,6 +2,7 @@
 using FilmsUCWpf.Presenter;
 using FilmsUCWpf.PresenterInterfaces;
 using FilmsUCWpf.View;
+using FilmsUCWpf.ViewInterfaces;
 using InfoMenusWpf.MoreInfo;
 using InfoMenusWpf.UpdateInfo;
 using System;
@@ -281,243 +282,151 @@ namespace WpfApp.Presenters
             model.UpdateFormVisualizer.UpdateControl.Update();
         }
 
+        private IEnumerable<FilmCategoryPresenter> getCategoriesOnView()
+        {
+            List<FilmCategoryPresenter> presenters = new List<FilmCategoryPresenter>();
+            Type categoryType = typeof(FilmCategoryPresenter);
+
+            foreach (IView view in view.MenuControls)
+            {
+                Type presenterType = view.Presenter.GetType();
+                if (categoryType == presenterType || presenterType.IsSubclassOf(categoryType))
+                {
+                    presenters.Add((FilmCategoryPresenter)view.Presenter);
+                }
+            }
+
+            return presenters;
+        }
+
+        private IEnumerable<FilmPresenter> getFilmsOnView()
+        {
+            List<FilmPresenter> presenters = new List<FilmPresenter>();
+            Type categoryType = typeof(FilmPresenter);
+
+            foreach (IView view in view.MenuControls)
+            {
+                Type presenterType = view.Presenter.GetType();
+                if (categoryType == presenterType || presenterType.IsSubclassOf(categoryType))
+                {
+                    presenters.Add((FilmPresenter)view.Presenter);
+                }
+            }
+
+            return presenters;
+        }
+
         public void SortByID()
         {
-            IEnumerable<FilmCategoryPresenter> categories;
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmCategoryPresenter> categories = getCategoriesOnView();
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
 
             switch (model.ControlsCondition)
             {
-                case FilmsMenuModel.MenuCondition.Film:
-                    books = model.FilmPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.ID));
-                    break;
-                case FilmsMenuModel.MenuCondition.Serie:
-                    books = model.SeriePresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.ID));
-                    break;
-                case FilmsMenuModel.MenuCondition.PriorityFilm:
-                    books = model.PriorityPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.ID));
-                    break;
                 case FilmsMenuModel.MenuCondition.Category:
-                    categories = model.GetFilmCategoryPresenters();
-                    books = model.GetFilmSimplePresenters();
                     addPresentersToView(categories.OrderBy(a => a.Model.ID));
                     addPresentersToView(books.OrderBy(a => a.Model.ID));
                     break;
                 default:
+                    addPresentersToView(books.OrderBy(a => a.Model.ID));
                     break;
             }
         }
 
         public void SortByName()
         {
-            IEnumerable<FilmCategoryPresenter> categories;
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmCategoryPresenter> categories = getCategoriesOnView();
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
 
             switch (model.ControlsCondition)
             {
-                case FilmsMenuModel.MenuCondition.Film:
-                    books = model.FilmPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Name));
-                    break;
-                case FilmsMenuModel.MenuCondition.Serie:
-                    books = model.SeriePresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Name));
-                    break;
-                case FilmsMenuModel.MenuCondition.PriorityFilm:
-                    books = model.PriorityPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Name));
-                    break;
                 case FilmsMenuModel.MenuCondition.Category:
-                    categories = model.GetFilmCategoryPresenters();
-                    books = model.GetFilmSimplePresenters();
                     addPresentersToView(categories.OrderBy(a => a.Model.Name));
                     addPresentersToView(books.OrderBy(a => a.Model.Name));
                     break;
                 default:
+                    addPresentersToView(books.OrderBy(a => a.Model.Name));
                     break;
             }
         }
 
         public void SortByMark()
         {
-            IEnumerable<FilmCategoryPresenter> categories;
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmCategoryPresenter> categories = getCategoriesOnView();
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
 
             switch (model.ControlsCondition)
             {
-                case FilmsMenuModel.MenuCondition.Film:
-                    books = model.FilmPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.Serie:
-                    books = model.SeriePresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.PriorityFilm:
-                    books = model.PriorityPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
-                    break;
                 case FilmsMenuModel.MenuCondition.Category:
-                    categories = model.GetFilmCategoryPresenters();
-                    books = model.GetFilmSimplePresenters();
                     addPresentersToView(categories.OrderBy(a => a.Model.Mark).Reverse());
                     addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
                     break;
                 default:
+                    addPresentersToView(books.OrderBy(a => a.Model.Mark).Reverse());
                     break;
             }
         }
 
         public void SortByGenre()
         {
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
 
-            switch (model.ControlsCondition)
-            {
-                case FilmsMenuModel.MenuCondition.Film:
-                    books = model.FilmPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Genre.Name));
-                    break;
-                case FilmsMenuModel.MenuCondition.Serie:
-                    books = model.SeriePresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Genre.Name));
-                    break;
-                case FilmsMenuModel.MenuCondition.PriorityFilm:
-                    books = model.PriorityPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Genre.Name));
-                    break;
-                default:
-                    break;
-            }
+            addPresentersToView(books.OrderBy(a => a.Model.Genre.Name));
         }
 
         public void SortByYear()
         {
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
-
-            switch (model.ControlsCondition)
-            {
-                case FilmsMenuModel.MenuCondition.Film:
-                    books = model.FilmPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.RealiseYear).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.Serie:
-                    books = model.SeriePresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.RealiseYear).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.PriorityFilm:
-                    books = model.PriorityPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.RealiseYear).Reverse());
-                    break;
-                default:
-                    break;
-            }
+            addPresentersToView(books.OrderBy(a => a.Model.RealiseYear).Reverse());
         }
 
         public void SortByWatched()
         {
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
-
-            switch (model.ControlsCondition)
-            {
-                case FilmsMenuModel.MenuCondition.Film:
-                    books = model.FilmPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Watched).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.Serie:
-                    books = model.SeriePresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Watched).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.PriorityFilm:
-                    books = model.PriorityPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.Watched).Reverse());
-                    break;
-                default:
-                    break;
-            }
+            addPresentersToView(books.OrderBy(a => a.Model.Watched).Reverse());
         }
 
         public void SortByDate()
         {
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
-
-            switch (model.ControlsCondition)
-            {
-                case FilmsMenuModel.MenuCondition.Film:
-                    books = model.FilmPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.DateOfWatch).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.Serie:
-                    books = model.SeriePresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.DateOfWatch).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.PriorityFilm:
-                    books = model.PriorityPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.DateOfWatch).Reverse());
-                    break;
-                default:
-                    break;
-            }
+            addPresentersToView(books.OrderBy(a => a.Model.DateOfWatch).Reverse());
         }
 
         public void SortByCoV()
         {
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
-
-            switch (model.ControlsCondition)
-            {
-                case FilmsMenuModel.MenuCondition.Film:
-                    books = model.FilmPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.CountOfViews).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.Serie:
-                    books = model.SeriePresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.CountOfViews).Reverse());
-                    break;
-                case FilmsMenuModel.MenuCondition.PriorityFilm:
-                    books = model.PriorityPresenters;
-                    addPresentersToView(books.OrderBy(a => a.Model.CountOfViews).Reverse());
-                    break;
-                default:
-                    break;
-            }
+            addPresentersToView(books.OrderBy(a => a.Model.CountOfViews).Reverse());
         }
 
         public void SortByStartDate()
         {
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
 
-            books = model.SeriePresenters;
             addPresentersToView(books.OrderBy(a => a.Model.Serie.StartWatchDate).Reverse());
         }
 
         public void SortByWatchedSeries()
         {
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
 
-            books = model.SeriePresenters;
             addPresentersToView(books.OrderBy(a => a.Model.Serie.CountOfWatchedSeries).Reverse());
         }
 
         public void SortByTotalSeries()
         {
-            IEnumerable<FilmPresenter> books;
+            IEnumerable<FilmPresenter> books = getFilmsOnView();
             view.MenuControls.Clear();
 
-            books = model.SeriePresenters;
             addPresentersToView(books.OrderBy(a => a.Model.Serie.TotalSeries).Reverse());
         }
     }

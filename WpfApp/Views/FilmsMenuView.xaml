@@ -69,7 +69,7 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Canvas.Left="32" Click="name_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Genre" Canvas.Left="212" Click="genre_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Year" Canvas.Left="312" Click="year_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="53" Content="Watched" Canvas.Left="342" Click="watched_sort"/>
+                
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Canvas.Left="397" Click="date_sort" />
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Canvas.Left="457" Click="mark_sort" />
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="502" Click="countOfViews_sort">
@@ -83,7 +83,7 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Canvas.Left="32" Click="name_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Genre" Canvas.Left="212" Click="genre_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Year" Canvas.Left="312" Click="year_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="53" Content="Watched" Canvas.Left="342" Click="watched_sort"/>
+                
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Canvas.Left="397" Click="start_date_sort" />
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="457" Click="watched_series_sort">
                     <Button.Content>

@@ -16,7 +16,7 @@ using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
 using WpfApp.Models;
-using WpfApp.ViewsInterface;
+using WpfApp.Views.Interfaces;
 
 namespace WpfApp.Presenters
 {

@@ -60,12 +60,12 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Genre" Margin="212,0,0,0" Click="genre_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Year" Margin="312,0,0,0" Click="year_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="53" Content="Readed" Margin="342,0,0,0" Click="readed_sort"/>
+                
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Author" Margin="397,0,0,0" Click="author_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="84" Content="BookMark" Margin="497,0,0,0" Click="bookmark_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Margin="583,0,0,0" Click="date_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Margin="643,0,0,0" Click="mark_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Margin="688,0,0,0" Click="countOfReadings_sort">
+                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Margin="688,0,0,0" Click="countOfReadings_sort">
                     <Button.Content>
                         <Image Source="{StaticResource ImgSource}"/>
                     </Button.Content>

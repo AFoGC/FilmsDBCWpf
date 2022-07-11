@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TablesLibrary.Interpreter;
 using TL_Objects;
-using WpfApp.ViewsInterface;
+using WpfApp.Views.Interfaces;
 
 namespace WpfApp.Presenters
 {

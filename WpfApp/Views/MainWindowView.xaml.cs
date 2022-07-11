@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfApp.Models;
 using WpfApp.Presenters;
-using WpfApp.ViewsInterface;
+using WpfApp.Views.Interfaces;
 
 namespace WpfApp.Views
 {

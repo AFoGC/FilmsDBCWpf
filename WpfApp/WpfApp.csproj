@@ -214,12 +214,12 @@
     <Compile Include="Presenters\ProfileContainerPresenter.cs" />
     <Compile Include="Presenters\ProfilePresenter.cs" />
     <Compile Include="Presenters\SettingsMenuPresenter.cs" />
-    <Compile Include="ViewsInterface\IBaseMenuView.cs" />
-    <Compile Include="ViewsInterface\IChangeMenu.cs" />
-    <Compile Include="ViewsInterface\IGenreSettingsContainerView.cs" />
-    <Compile Include="ViewsInterface\IProfileSettingsContainerView.cs" />
-    <Compile Include="ViewsInterface\IProfileView.cs" />
-    <Compile Include="ViewsInterface\ISettingsMenuView.cs" />
+    <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
+    <Compile Include="Views\Interfaces\IChangeMenu.cs" />
+    <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
+    <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />
+    <Compile Include="Views\Interfaces\IProfileView.cs" />
+    <Compile Include="Views\Interfaces\ISettingsMenuView.cs" />
     <Compile Include="Views\BooksMenuView.xaml.cs">
       <DependentUpon>BooksMenuView.xaml</DependentUpon>
     </Compile>
@@ -423,6 +423,7 @@
     <Content Include="Resources\Images\ArrowDown2.svg" />
     <Resource Include="Resources\Images\ArrowDownWhite.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.5.5\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.5\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

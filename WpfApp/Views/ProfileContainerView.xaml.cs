@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp.Presenters;
-using WpfApp.ViewsInterface;
+using WpfApp.Views.Interfaces;
 
 namespace WpfApp.Views
 {

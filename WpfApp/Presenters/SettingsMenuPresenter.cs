@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfApp.Models;
 using WpfApp.Views;
-using WpfApp.ViewsInterface;
+using WpfApp.Views.Interfaces;
 
 namespace WpfApp.Presenters
 {

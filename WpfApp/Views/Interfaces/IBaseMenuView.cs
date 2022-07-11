@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace WpfApp.ViewsInterface
+namespace WpfApp.Views.Interfaces
 {
     public interface IBaseMenuView
     {

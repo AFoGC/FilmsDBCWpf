@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UpdaterManager.Views
+namespace UpdaterManager.Views.Interfaces
 {
     public interface IProgramView
     {
-        String UpdateInfo { get; }
-        String ProgramPath { get; }
-        String VersionInfo { set; }
+        string UpdateInfo { get; }
+        string ProgramPath { get; }
+        string VersionInfo { set; }
     }
 }

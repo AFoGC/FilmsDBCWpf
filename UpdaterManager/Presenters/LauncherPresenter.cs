@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UpdaterManager.Views;
+using UpdaterManager.Views.Interfaces;
 
 namespace UpdaterManager.Presenters
 {

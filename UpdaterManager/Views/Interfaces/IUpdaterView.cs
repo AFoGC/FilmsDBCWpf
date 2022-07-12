@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UpdaterManager.Views
+namespace UpdaterManager.Views.Interfaces
 {
     public interface IUpdaterView
     {
-        String UpdaterPath { get; }
+        string UpdaterPath { get; }
     }
 }

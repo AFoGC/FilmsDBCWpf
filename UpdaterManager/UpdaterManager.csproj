@@ -59,9 +59,9 @@
     <Compile Include="Presenters\LauncherPresenter.cs" />
     <Compile Include="Presenters\ProgramPresenter.cs" />
     <Compile Include="Presenters\UpdaterPresenter.cs" />
-    <Compile Include="Views\ILauncherView.cs" />
-    <Compile Include="Views\IProgramView.cs" />
-    <Compile Include="Views\IUpdaterView.cs" />
+    <Compile Include="Views\Interfaces\ILauncherView.cs" />
+    <Compile Include="Views\Interfaces\IProgramView.cs" />
+    <Compile Include="Views\Interfaces\IUpdaterView.cs" />
     <Compile Include="Views\LauncherView.xaml.cs">
       <DependentUpon>LauncherView.xaml</DependentUpon>
     </Compile>

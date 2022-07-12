@@ -1,7 +1,7 @@
 ﻿using FilmsUCWpf.ModelBinder;
 using FilmsUCWpf.Presenter;
-using FilmsUCWpf.PresenterInterfaces;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.Presenter.Interfaces;
+using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,10 +21,10 @@ using TL_Objects;
 
 namespace FilmsUCWpf.View
 {
-	/// <summary>
-	/// Логика взаимодействия для FilmCategoryControl.xaml
-	/// </summary>
-	public partial class FilmCategoryControl : UserControl, ICategoryView
+    /// <summary>
+    /// Логика взаимодействия для FilmCategoryControl.xaml
+    /// </summary>
+    public partial class FilmCategoryControl : UserControl, ICategoryView
 	{
 		private FilmCategoryPresenter presenter;
 		public IBasePresenter Presenter => presenter;

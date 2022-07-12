@@ -1,6 +1,6 @@
 ﻿using FilmsUCWpf.Presenter;
-using FilmsUCWpf.PresenterInterfaces;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.Presenter.Interfaces;
+using FilmsUCWpf.View.Interfaces;
 using InfoMenusWpf;
 using System;
 using System.Collections;
@@ -25,10 +25,10 @@ using TL_Tables;
 
 namespace FilmsUCWpf.View
 {
-	/// <summary>
-	/// Логика взаимодействия для FilmUpdateControl.xaml
-	/// </summary>
-	public partial class FilmUpdateControl : UserControl, IFilmUpdateView, IUpdateControl
+    /// <summary>
+    /// Логика взаимодействия для FilmUpdateControl.xaml
+    /// </summary>
+    public partial class FilmUpdateControl : UserControl, IFilmUpdateView, IUpdateControl
 	{
 		private FilmUpdatePresenter presenter;
 		public FilmUpdateControl(Film film, IMenu<Film> menu, TableCollection table)

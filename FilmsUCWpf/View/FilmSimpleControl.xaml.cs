@@ -1,7 +1,7 @@
 ﻿using FilmsUCWpf.ModelBinder;
 using FilmsUCWpf.Presenter;
-using FilmsUCWpf.PresenterInterfaces;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.Presenter.Interfaces;
+using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +19,10 @@ using System.Windows.Shapes;
 
 namespace FilmsUCWpf.View
 {
-	/// <summary>
-	/// Логика взаимодействия для FilmSimpleControl.xaml
-	/// </summary>
-	public partial class FilmSimpleControl : UserControl, IView
+    /// <summary>
+    /// Логика взаимодействия для FilmSimpleControl.xaml
+    /// </summary>
+    public partial class FilmSimpleControl : UserControl, IView
 	{
 		private FilmPresenter presenter;
 		public IBasePresenter Presenter => presenter;

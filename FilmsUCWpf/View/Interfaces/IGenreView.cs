@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmsUCWpf.PresenterInterfaces
+namespace FilmsUCWpf.View.Interfaces
 {
-    public interface IToUpdateControl
+    public interface IGenreView
     {
-        //Control ToUpdateControl();
+        void RemoveFromview();
     }
 }

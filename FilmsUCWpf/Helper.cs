@@ -1,4 +1,4 @@
-﻿using FilmsUCWpf.PresenterInterfaces;
+﻿using FilmsUCWpf.Presenter.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

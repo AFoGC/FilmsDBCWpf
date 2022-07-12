@@ -1,4 +1,4 @@
-﻿using FilmsUCWpf.ViewInterfaces;
+﻿using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
 
-namespace FilmsUCWpf.PresenterInterfaces
+namespace FilmsUCWpf.Presenter.Interfaces
 {
     public abstract class BasePresenter<T> : IBasePresenter where T : Cell
     {
@@ -19,11 +19,11 @@ namespace FilmsUCWpf.PresenterInterfaces
         protected TableCollection TableCollection { get; private set; }
         public BasePresenter(T model, IView view, TableCollection collection)
         {
-            this.Model = model;
-            this.View = view;
-            this.View.SetPresenter(this);
-            this.TableCollection = collection;
-            this.Model.CellRemoved += Model_CellRemoved;
+            Model = model;
+            View = view;
+            View.SetPresenter(this);
+            TableCollection = collection;
+            Model.CellRemoved += Model_CellRemoved;
         }
 
         private void Model_CellRemoved(object sender, EventArgs e)

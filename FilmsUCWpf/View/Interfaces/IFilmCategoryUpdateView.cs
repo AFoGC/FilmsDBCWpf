@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmsUCWpf.ViewInterfaces
+namespace FilmsUCWpf.View.Interfaces
 {
     public interface IFilmCategoryUpdateView
     {
-        String ID { set; }
-        String Name { get; set; }
-        String HideName { get; set; }
-        String Mark { get; set; }
+        string ID { set; }
+        string Name { get; set; }
+        string HideName { get; set; }
+        string Mark { get; set; }
         IList Marks { get; }
     }
 }

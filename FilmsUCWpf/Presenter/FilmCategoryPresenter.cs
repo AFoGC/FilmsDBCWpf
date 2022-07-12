@@ -1,6 +1,6 @@
-﻿using FilmsUCWpf.PresenterInterfaces;
+﻿using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;

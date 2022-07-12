@@ -6,21 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 using TL_Objects;
 
-namespace FilmsUCWpf.ViewInterfaces
+namespace FilmsUCWpf.View.Interfaces
 {
-    public interface IBookUpdateView
+    public interface IFilmUpdateView
     {
         string ID { set; }
         string Name { get; set; }
         IList Genres { get; }
-        BookGenre Genre { get; set; }
+        Genre Genre { get; set; }
         string RealiseYear { get; set; }
-        bool Readed { get; set; }
-        string Author { get; set; }
-        DateTime FullReadDate { get; set; }
+        bool Wathced { get; set; }
         IList Marks { get; }
         string Mark { get; set; }
-        string CountOfReadings { get; set; }
-        string Bookmark { get; set; }
+        string CountOfViews { get; set; }
+        DateTime DateOfWatch { get; set; }
+        string Comment { get; set; }
+
     }
 }

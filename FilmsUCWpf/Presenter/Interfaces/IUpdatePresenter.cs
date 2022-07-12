@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmsUCWpf.PresenterInterfaces
+namespace FilmsUCWpf.Presenter.Interfaces
 {
     public interface IUpdatePresenter
     {

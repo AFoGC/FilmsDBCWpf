@@ -60,13 +60,13 @@
     <Compile Include="ModelBinder\FilmBinder.cs" />
     <Compile Include="ModelBinder\FilmCategoryBinder.cs" />
     <Compile Include="ModelBinder\FilmSimpleBinder.cs" />
-    <Compile Include="PresenterInterfaces\BasePresenter.cs" />
-    <Compile Include="PresenterInterfaces\IBaseMenu.cs" />
-    <Compile Include="PresenterInterfaces\IBasePresenter.cs" />
-    <Compile Include="PresenterInterfaces\IHasGenre.cs" />
-    <Compile Include="PresenterInterfaces\IMenu.cs" />
-    <Compile Include="PresenterInterfaces\IToUpdateControl.cs" />
-    <Compile Include="PresenterInterfaces\IUpdatePresenter.cs" />
+    <Compile Include="Presenter\Interfaces\BasePresenter.cs" />
+    <Compile Include="Presenter\Interfaces\IBaseMenu.cs" />
+    <Compile Include="Presenter\Interfaces\IBasePresenter.cs" />
+    <Compile Include="Presenter\Interfaces\IHasGenre.cs" />
+    <Compile Include="Presenter\Interfaces\IMenu.cs" />
+    <Compile Include="Presenter\Interfaces\IToUpdateControl.cs" />
+    <Compile Include="Presenter\Interfaces\IUpdatePresenter.cs" />
     <Compile Include="Presenter\BookCategoryPresenter.cs" />
     <Compile Include="Presenter\BookCategoryUpdatePresenter.cs" />
     <Compile Include="Presenter\BookGenrePresenter.cs" />
@@ -93,14 +93,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewInterfaces\IBookCategoryUpdateView.cs" />
-    <Compile Include="ViewInterfaces\IBookUpdateView.cs" />
-    <Compile Include="ViewInterfaces\ICategoryView.cs" />
-    <Compile Include="ViewInterfaces\IFilmCategoryUpdateView.cs" />
-    <Compile Include="ViewInterfaces\IGenreView.cs" />
-    <Compile Include="ViewInterfaces\IFilmSerieUpdateView.cs" />
-    <Compile Include="ViewInterfaces\IFilmUpdateView.cs" />
-    <Compile Include="ViewInterfaces\IView.cs" />
+    <Compile Include="View\Interfaces\IBookCategoryUpdateView.cs" />
+    <Compile Include="View\Interfaces\IBookUpdateView.cs" />
+    <Compile Include="View\Interfaces\ICategoryView.cs" />
+    <Compile Include="View\Interfaces\IFilmCategoryUpdateView.cs" />
+    <Compile Include="View\Interfaces\IGenreView.cs" />
+    <Compile Include="View\Interfaces\IFilmSerieUpdateView.cs" />
+    <Compile Include="View\Interfaces\IFilmUpdateView.cs" />
+    <Compile Include="View\Interfaces\IView.cs" />
     <Compile Include="View\BookCategoryControl.xaml.cs">
       <DependentUpon>BookCategoryControl.xaml</DependentUpon>
     </Compile>

@@ -1,5 +1,5 @@
 ﻿using FilmsUCWpf.Presenter;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

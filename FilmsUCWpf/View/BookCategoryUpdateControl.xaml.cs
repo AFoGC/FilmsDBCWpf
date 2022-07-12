@@ -1,6 +1,6 @@
 ﻿using FilmsUCWpf.Presenter;
-using FilmsUCWpf.PresenterInterfaces;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.Presenter.Interfaces;
+using FilmsUCWpf.View.Interfaces;
 using InfoMenusWpf;
 using System;
 using System.Collections;

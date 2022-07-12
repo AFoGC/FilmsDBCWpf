@@ -1,5 +1,5 @@
-﻿using FilmsUCWpf.PresenterInterfaces;
-using FilmsUCWpf.ViewInterfaces;
+﻿using FilmsUCWpf.Presenter.Interfaces;
+using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using TL_Objects;
 
 namespace FilmsUCWpf.Presenter
 {
-	public class BookCategoryUpdatePresenter : IUpdatePresenter
+    public class BookCategoryUpdatePresenter : IUpdatePresenter
 	{
 		private BookCategory model;
 		private IBookCategoryUpdateView view;

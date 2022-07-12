@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TablesLibrary.Interpreter.TableCell;
 
-namespace FilmsUCWpf.PresenterInterfaces
+namespace FilmsUCWpf.Presenter.Interfaces
 {
     public interface IMenu<T> : IBaseMenu where T : Cell
     {

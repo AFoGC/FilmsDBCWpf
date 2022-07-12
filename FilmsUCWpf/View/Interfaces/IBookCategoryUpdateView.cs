@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmsUCWpf.ViewInterfaces
+namespace FilmsUCWpf.View.Interfaces
 {
     public interface IBookCategoryUpdateView
     {

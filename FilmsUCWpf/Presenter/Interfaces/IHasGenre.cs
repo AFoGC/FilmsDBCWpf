@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TL_Objects.Interfaces;
 
-namespace FilmsUCWpf.PresenterInterfaces
+namespace FilmsUCWpf.Presenter.Interfaces
 {
     public interface IHasGenre
     {

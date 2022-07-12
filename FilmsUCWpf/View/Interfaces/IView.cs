@@ -1,11 +1,11 @@
-﻿using FilmsUCWpf.PresenterInterfaces;
+﻿using FilmsUCWpf.Presenter.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmsUCWpf.ViewInterfaces
+namespace FilmsUCWpf.View.Interfaces
 {
     public interface IView
     {

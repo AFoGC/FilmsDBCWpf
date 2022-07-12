@@ -1,4 +1,4 @@
-﻿using FilmsUCWpf.ViewInterfaces;
+﻿using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using TablesLibrary.Interpreter.TableCell;
 
-namespace FilmsUCWpf.PresenterInterfaces
+namespace FilmsUCWpf.Presenter.Interfaces
 {
     public interface IBasePresenter
     {
         void AddViewToCollection(IList collection);
-        bool SetFindedElement(String search);
+        bool SetFindedElement(string search);
         bool HasCheckedProperty(bool isReaded);
         void SetVisualDefault();
         void SetSelectedElement();

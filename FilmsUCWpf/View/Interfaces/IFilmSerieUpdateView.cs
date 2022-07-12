@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmsUCWpf.ViewInterfaces
+namespace FilmsUCWpf.View.Interfaces
 {
     public interface IFilmSerieUpdateView : IFilmUpdateView
     {
         DateTime StartWatchDate { get; set; }
-        String CountOfWatchedSeries { get; set; }
-        String TotalSeries { get; set; }
+        string CountOfWatchedSeries { get; set; }
+        string TotalSeries { get; set; }
     }
 }

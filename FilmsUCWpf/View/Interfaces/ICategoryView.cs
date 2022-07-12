@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmsUCWpf.ViewInterfaces
+namespace FilmsUCWpf.View.Interfaces
 {
     public interface ICategoryView : IView
     {
         IList CategoryCollection { get; }
-        Double DefaultHeght { get; }
-        Double MinimizedHeight { get; }
+        double DefaultHeght { get; }
+        double MinimizedHeight { get; }
     }
 }

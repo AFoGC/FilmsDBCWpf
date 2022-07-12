@@ -1,6 +1,6 @@
-﻿using FilmsUCWpf.PresenterInterfaces;
+﻿using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ using TL_Tables;
 
 namespace FilmsUCWpf.Presenter
 {
-	public class FilmPresenter : BasePresenter<Film>, IHasGenre
+    public class FilmPresenter : BasePresenter<Film>, IHasGenre
 	{
 		protected IMenu<Film> menu;
 

@@ -1,6 +1,6 @@
-﻿using FilmsUCWpf.PresenterInterfaces;
+﻿using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -14,7 +14,7 @@ using TL_Objects.Interfaces;
 
 namespace FilmsUCWpf.Presenter
 {
-	public class BookCategoryPresenter : BasePresenter<BookCategory>, IHasGenre
+    public class BookCategoryPresenter : BasePresenter<BookCategory>, IHasGenre
 	{
 		protected IMenu<Book> menu;
 		private List<BookPresenter> presenters;

@@ -1,6 +1,6 @@
-﻿using FilmsUCWpf.PresenterInterfaces;
+﻿using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using TL_Tables;
 
 namespace FilmsUCWpf.Presenter
 {
-	public class BookPresenter : BasePresenter<Book>, IHasGenre
+    public class BookPresenter : BasePresenter<Book>, IHasGenre
 	{
 		protected IMenu<Book> menu;
 		public BookPresenter(Book book, IView view, IMenu<Book> menu, TableCollection collection) : base(book, view, collection)

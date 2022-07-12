@@ -1,8 +1,8 @@
 ﻿using CustomButtons;
 using FilmsUCWpf.Presenter;
-using FilmsUCWpf.PresenterInterfaces;
+using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
-using FilmsUCWpf.ViewInterfaces;
+using FilmsUCWpf.View.Interfaces;
 using InfoMenusWpf.MoreInfo;
 using InfoMenusWpf.UpdateInfo;
 using System;

@@ -21,7 +21,7 @@ namespace UpdaterManager.Views
     /// <summary>
     /// Логика взаимодействия для UpdaterView.xaml
     /// </summary>
-    public partial class UpdaterView : UserControl, IUpdaterView
+    public partial class UpdaterView : Page, IUpdaterView
     {
         private UpdaterPresenter presenter;
         public string UpdaterPath => updaterPath.Text;

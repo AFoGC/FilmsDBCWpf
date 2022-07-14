@@ -1,18 +1,47 @@
-﻿<UserControl x:Class="UpdaterManager.Views.ProgramView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:UpdaterManager.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="273" d:DesignWidth="800" Background="#FFFFFFFF">
+﻿<Page x:Class="UpdaterManager.Views.ProgramView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UpdaterManager.Views"
+      mc:Ignorable="d" 
+      d:DesignWidth="800"
+      Title="ProgramView" Background="WhiteSmoke">
     <Grid>
-        <TextBox x:Name="UpdateInfoTextBox" Margin="130,10,18,67" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
-        <Label Content="Update Informatin" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-        <Label Content="Export file path" HorizontalAlignment="Left" Margin="10,0,0,36" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="FilePathTextBox" Text="" Height="23" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="130,0,18,39" PreviewMouseDown="FilePathTextBox_PreviewMouseDown"/>
-        <Button Content="Add New Program Update" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="180" Margin="0,0,18,8" Click="Button_Click" Height="23"/>
-        <TextBox x:Name="VersionText" IsReadOnly="True" Height="23" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="130,0,470,8"/>
-        <Label Content="Version" HorizontalAlignment="Left" Margin="10,0,0,8" VerticalAlignment="Bottom"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="Program" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="175"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Add update" Grid.ColumnSpan="4" HorizontalContentAlignment="Center"/>
+            <Label HorizontalAlignment="Right" Grid.Row="1" Content="Update Information"/>
+            <Label HorizontalAlignment="Right" Grid.Row="2" Content="Export file path"/>
+            <Label HorizontalAlignment="Right" Grid.Row="3" Content="Version"/>
+
+            <TextBox x:Name="UpdateInfoTextBox" Margin="4" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" 
+                     Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"/>
+            <TextBox x:Name="FilePathTextBox" Margin="4" PreviewMouseDown="FilePathTextBox_PreviewMouseDown"
+                     Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"/>
+            <TextBox x:Name="VersionText" IsReadOnly="True" Margin="4"
+                     Grid.Column="1" Grid.Row="3"/>
+            <Button Content="Add New Program Update" Click="Button_Click" Padding="5,2" Margin="0,0,4,0"
+                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Grid.Column="4" Grid.Row="3" />
+
+        </Grid>
     </Grid>
-</UserControl>
+</Page>

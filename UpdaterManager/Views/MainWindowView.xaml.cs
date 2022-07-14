@@ -23,9 +23,31 @@ namespace UpdaterManager.Views
     /// </summary>
     public partial class MainWindowView : Window
     {
+        private ProgramView programView;
+        private LauncherView launcherView;
+        private UpdaterView updaterView;
         public MainWindowView()
         {
             InitializeComponent();
+            programView = new ProgramView();
+            launcherView = new LauncherView();
+            updaterView = new UpdaterView();
+            frame.Navigate(programView);
+        }
+
+        private void toProgram(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(programView);
+        }
+
+        private void toLauncher(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(launcherView);
+        }
+
+        private void toUpdater(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(updaterView);
         }
     }
 }

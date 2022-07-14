@@ -21,7 +21,7 @@ namespace UpdaterManager.Views
     /// <summary>
     /// Логика взаимодействия для LauncherView.xaml
     /// </summary>
-    public partial class LauncherView : UserControl, ILauncherView
+    public partial class LauncherView : Page, ILauncherView
     {
         private LauncherPresenter presenter;
         public string LauncherPath => LauncherPathTextBox.Text;

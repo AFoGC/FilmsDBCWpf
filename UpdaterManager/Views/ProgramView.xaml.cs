@@ -21,7 +21,7 @@ namespace UpdaterManager.Views
     /// <summary>
     /// Логика взаимодействия для ProgramView.xaml
     /// </summary>
-    public partial class ProgramView : UserControl, IProgramView
+    public partial class ProgramView : Page, IProgramView
     {
         ProgramPresenter presenter;
         public ProgramView()
@@ -31,9 +31,7 @@ namespace UpdaterManager.Views
         }
 
         public string UpdateInfo => UpdateInfoTextBox.Text;
-
         public string ProgramPath => FilePathTextBox.Text;
-
         public string VersionInfo { set => VersionText.Text = value; }
 
         private void Button_Click(object sender, RoutedEventArgs e)

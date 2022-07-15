@@ -14,7 +14,7 @@
                 <Canvas Name="infoCanvas" HorizontalAlignment="Left" Width="938" Height="88" VerticalAlignment="Top"/>
             </Border>
         </Canvas>
-
+        <!--Margin="35,148,0,0"-->
         <ScrollViewer Margin="35,148,0,0" HorizontalAlignment="Left" Width="960">
             <WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
         </ScrollViewer>

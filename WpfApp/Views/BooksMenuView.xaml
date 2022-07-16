@@ -6,55 +6,35 @@
 			 xmlns:local="clr-namespace:WpfApp.Views"
 			 xmlns:Elements="clr-namespace:CustomButtons;assembly=CustomButtons"
 			 mc:Ignorable="d" 
-			 d:DesignHeight="705" d:DesignWidth="1485" Focusable="True" KeyDown="UserControl_KeyDown">
+			 d:DesignHeight="705" d:DesignWidth="1265" Focusable="True" KeyDown="UserControl_KeyDown">
     <Grid Background="#FF121212">
-        <Canvas Margin="35,3,510,612">
-            <Border BorderBrush="White" BorderThickness="1" Width="940" Height="90">
-                <Canvas Name="infoCanvas">
-                </Canvas>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="960"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Canvas Width="940" Height="90" Grid.Column="1" HorizontalAlignment="Left" Margin="2,0,0,0">
+            <Border BorderBrush="White" BorderThickness="1">
+                <Canvas Name="infoCanvas" HorizontalAlignment="Left" Width="938" Height="88" VerticalAlignment="Top"/>
             </Border>
         </Canvas>
 
-        <ScrollViewer Margin="35,148,0,0" HorizontalAlignment="Left" Width="960">
-            <WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
-        </ScrollViewer>
-
-        <Canvas Margin="998,99,225,187">
-            <Border BorderBrush="White" BorderThickness="1" Width="262" Height="419" >
-                <Canvas>
-                    <Button x:Name="btn_saveTable" Style="{StaticResource BlueButton}" Content="Save Table" Height="23" Width="110" 
-							VerticalAlignment="Top" Canvas.Left="75" Click="btn_saveTable_Click"/>
-                    <Button x:Name="btn_showCategories" Style="{StaticResource GrayButton}" Content="Show Categories" Height="23" Width="111" 
-                            VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="41" Click="btn_showCategories_Click"/>
-                    <Button x:Name="btn_addCategory" Style="{StaticResource GrayButton}" Content="Add Category" Height="23" Width="111" 
-                            VerticalAlignment="Top" Canvas.Top="41" Canvas.Left="0" Click="btn_addCategory_Click"/>
-                    <Button x:Name="btn_showBooks" Content="Show Books" Style="{StaticResource GrayButton}" Height="23" Width="111" 
-                            VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="70" Click="btn_showBooks_Click"/>
-                    <Button x:Name="btn_showPriority" Content="Show Priority Books" Style="{StaticResource GrayButton}" Height="23" Width="111" 
-                            VerticalAlignment="Top" Canvas.Left="149" Canvas.Top="99" Click="btn_showPriority_Click"/>
-                    <Button x:Name="btn_addBook" Content="Add Book" Style="{StaticResource GrayButton}" Height="23" Width="111" 
-                            VerticalAlignment="Top" Canvas.Top="70" Canvas.Left="0" Click="btn_addBook_Click"/>
-
-                    <Line X1="0" Y1="208"
-						  X2="260" Y2="208"
-						  Stroke="White"/>
-
-                    <Label Foreground="White" Content="Filter options" 
-                           Canvas.Left="90" Canvas.Top="232"/>
-                    <Elements:WatchedRequestControl x:Name="watchedRequestControl" 
-							Canvas.Top="263" Canvas.Left="0" IsUnwatched="True" IsWatched="True"/>
-                    <WrapPanel Height="100" Width="260" Canvas.Top="289" Name="genres_panel"/>
-                    <Button x:Name="btn_filter" Style="{StaticResource BlueButton}" Content="Search" Height="23" Width="110" 
-							VerticalAlignment="Top" Canvas.Left="75" Canvas.Top="394" Click="btn_filter_Click"/>
-                </Canvas>
-            </Border>
-        </Canvas>
-
-        <TextBox x:Name="textbox_search" HorizontalAlignment="Left" Margin="35,99,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" 
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="2,0,0,0">
+            <TextBox x:Name="textbox_search" HorizontalAlignment="Left" Margin="0,5" TextWrapping="NoWrap" VerticalAlignment="Top" 
                  Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <Button x:Name="btn_search" Content="Search" Style="{StaticResource GrayButton}" Height="20" Width="75"
-                VerticalAlignment="Top" Margin="220,99,0,0" Click="btn_search_Click" HorizontalAlignment="Left"/>
-        <Grid HorizontalAlignment="Left" Height="20" Margin="35,124,0,0" VerticalAlignment="Top" Width="958" x:Name="sortPanel">
+            <Button x:Name="btn_search" Content="Search" Style="{StaticResource GrayButton}" Height="20" Width="75"
+                VerticalAlignment="Top" Margin="5" Click="btn_search_Click" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <Grid HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="958" x:Name="sortPanel" Margin="0,0,0,1"
+              Grid.Column="1" Grid.Row="2">
             <Canvas Background="#FF121212" x:Name="sort_books">
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
@@ -83,5 +63,70 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="42" Content="Mark" Margin="212,0,0,0" Click="mark_sort"/>
             </Canvas>
         </Grid>
+
+        <ScrollViewer HorizontalAlignment="Left" Width="960" Grid.Column="1" Grid.Row="3">
+            <WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
+        </ScrollViewer>
+
+        <Border BorderBrush="White" BorderThickness="1" Width="262"
+                Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Border.Resources>
+                <Style x:Key="BB" TargetType="Button" BasedOn="{StaticResource BlueButton}">
+                    <Setter Property="Height" Value="23"/>
+                </Style>
+                <Style x:Key="GB" TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                    <Setter Property="Height" Value="23"/>
+                </Style>
+            </Border.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="28"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btn_saveTable" Style="{StaticResource BB}" Content="Save Table"
+							VerticalAlignment="Top" Click="btn_saveTable_Click"
+                            Grid.ColumnSpan="3" Margin="60,0,60,0"/>
+                    <Button x:Name="btn_addCategory" Style="{StaticResource GB}" Content="Add Category"
+                            VerticalAlignment="Top" Click="btn_addCategory_Click"
+                            Grid.Column="0" Grid.Row="1"/>
+                    <Button x:Name="btn_addBook" Content="Add Book" Style="{StaticResource GB}"
+                            VerticalAlignment="Top" Click="btn_addBook_Click"
+                            Grid.Column="0" Grid.Row="2"/>
+                    <Button x:Name="btn_showCategories" Style="{StaticResource GB}" Content="Show Categories"
+                            VerticalAlignment="Top" Click="btn_showCategories_Click"
+                            Grid.Column="2" Grid.Row="1"/>
+                    <Button x:Name="btn_showBooks" Content="Show Books" Style="{StaticResource GB}"
+                            VerticalAlignment="Top" Click="btn_showBooks_Click"
+                            Grid.Column="2" Grid.Row="2"/>
+                    <Button x:Name="btn_showPriority" Content="Show Priority Books" Style="{StaticResource GB}" 
+                            VerticalAlignment="Top" Click="btn_showPriority_Click"
+                            Grid.Column="2" Grid.Row="3"/>
+                </Grid>
+                <StackPanel Grid.Row="1">
+                    <Separator Background="White"/>
+                    <Label Foreground="White" Content="Filter options" HorizontalAlignment="Center"  Margin="0,10,0,0"/>
+                    <Elements:WatchedRequestControl x:Name="watchedRequestControl" Margin="0,0,0,5"
+							IsUnwatched="True" IsWatched="True"/>
+                    <WrapPanel Name="genres_panel"/>
+                    <Button x:Name="btn_filter" Style="{StaticResource BB}" Content="Search"
+							VerticalAlignment="Bottom" Click="btn_filter_Click"
+                            Margin="60,5,60,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
     </Grid>
 </UserControl>

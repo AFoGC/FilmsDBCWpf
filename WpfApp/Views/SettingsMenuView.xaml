@@ -5,61 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="705" d:DesignWidth="1485">
-    <Grid HorizontalAlignment="Left" Width="1485"
-              Background="#FF121212">
-        <ScrollViewer HorizontalAlignment="Left" Margin="296,86,0,115" Width="818">
-            <WrapPanel x:Name="SettingsListPanel" HorizontalAlignment="Left" Background="#FF121212" Orientation="Vertical"/>
+             d:DesignHeight="705" d:DesignWidth="1265">
+    <Grid Background="#FF121212">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="818"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="1" Grid.Column="1">
+            <WrapPanel x:Name="SettingsListPanel" Background="#FF121212" Orientation="Vertical"/>
         </ScrollViewer>
-        <local:UserSettingsControl x:Name="LogInUser" HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="250" Margin="296,0,0,30"/>
-        <Button x:Name="GetFromDB" Content="Get From DB" Margin="0,0,858,90" Foreground="White" Click="GetFromDB_Click" HorizontalAlignment="Right" Width="76" Height="20" VerticalAlignment="Bottom">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="SendToDB" Content="Send To DB" Margin="0,0,858,30" Foreground="White" Click="SendToDB_Click" HorizontalAlignment="Right" Width="76" Height="20" VerticalAlignment="Bottom">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Rectangle Fill="#FF121212" HorizontalAlignment="Left" Height="100" Margin="293,0,0,15" VerticalAlignment="Bottom" Width="371"/>
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+            <local:UserSettingsControl x:Name="LogInUser" Height="80" Width="250" 
+                                       HorizontalAlignment="Left"/>
+            <Grid Width="76" Height="80" Margin="5,0,0,0">
+                <Button x:Name="GetFromDB" Content="Get From DB" Width="76" Height="20" Style="{StaticResource GrayButton}" 
+                        VerticalAlignment="Top" Click="GetFromDB_Click"/>
+                <Button x:Name="SendToDB" Content="Send To DB" Width="76" Height="20" Style="{StaticResource GrayButton}"
+                        VerticalAlignment="Bottom" Click="SendToDB_Click"/>
+            </Grid>
+        </StackPanel>
+        <Rectangle Fill="#FF121212" Grid.Column="1" Grid.Row="2"/>
     </Grid>
 </UserControl>

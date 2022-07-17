@@ -7,14 +7,18 @@
              xmlns:local="clr-namespace:WpfApp.Views"
              xmlns:Buttons="clr-namespace:CustomButtons;assembly=CustomButtons"
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="450" Background="#FF1F1F1F">
-    <Grid>
-        <Grid.ColumnDefinitions>
-
-        </Grid.ColumnDefinitions>
-
+             d:DesignHeight="20" d:DesignWidth="1265" Background="#FF1F1F1F">
+    <UserControl.Resources>
+        <Style TargetType="Buttons:PressButton">
+            <Setter Property="Width" Value="200"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal" Margin="20,0">
         <!--Content="{x:Static p:Resources.Title}"-->
-        <Buttons:PressButton x:Name="films" Content="Films" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="#FF1F1F1F" Click="films_Click">
+        <Buttons:PressButton x:Name="films" Content="Films" 
+                             Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" 
+                             Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" 
+                             MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Background="#FF1F1F1F" Click="films_Click">
             <Buttons:PressButton.Template>
                 <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
                     <Border Background="{TemplateBinding Background}">
@@ -23,7 +27,9 @@
                 </ControlTemplate>
             </Buttons:PressButton.Template>
         </Buttons:PressButton>
-        <Buttons:PressButton x:Name="books" Content="Books" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="#FF1F1F1F" Click="books_Click">
+        <Buttons:PressButton x:Name="books" Content="Books" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" 
+                             Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" 
+                             MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Background="#FF1F1F1F" Click="books_Click">
             <Buttons:PressButton.Template>
                 <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
                     <Border Background="{TemplateBinding Background}">
@@ -32,7 +38,9 @@
                 </ControlTemplate>
             </Buttons:PressButton.Template>
         </Buttons:PressButton>
-        <Buttons:PressButton x:Name="settings" Content="Settings" HorizontalAlignment="Left" Margin="220,0,0,0" VerticalAlignment="Center" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Height="20" Width="100" Background="#FF1F1F1F" Click="settings_Click">
+        <Buttons:PressButton x:Name="settings" Content="Settings" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" 
+                             Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" 
+                             MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Background="#FF1F1F1F" Click="settings_Click">
             <Buttons:PressButton.Template>
                 <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
                     <Border Background="{TemplateBinding Background}">
@@ -42,5 +50,5 @@
             </Buttons:PressButton.Template>
         </Buttons:PressButton>
 
-    </Grid>
+    </StackPanel>
 </UserControl>

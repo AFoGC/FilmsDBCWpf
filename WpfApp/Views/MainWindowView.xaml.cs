@@ -23,6 +23,11 @@ namespace WpfApp.Views
     public partial class MainWindowView : Window, IChangeMenu
     {
         private MainWindowPresenter presenter;
+
+        private readonly SettingsMenuView settingsMenu;
+        private readonly BooksMenuView booksMenu;
+        private readonly FilmsMenuView filmsMenu;
+
         public MainWindowView()
         {
             InitializeComponent();
@@ -31,27 +36,28 @@ namespace WpfApp.Views
             MainWindowModel model = new MainWindowModel();
             presenter = new MainWindowPresenter(model);
 
-            menus.Children.Add(new SettingsMenuView(model));
-            menus.Children.Add(new BooksMenuView(model));
-            menus.Children.Add(new FilmsMenuView(model));
+            settingsMenu = new SettingsMenuView(model);
+            booksMenu = new BooksMenuView(model);
+            filmsMenu = new FilmsMenuView(model);
 
-            presenter.WindowLoaded();
+            ChangeMenu(SelectedMenu.FilmsMenu);
+
             model.InfoUnsaved = false;
         }
 
-        public void ChangePriorityMenu<Element>() where Element : UIElement
+        public void ChangeMenu(SelectedMenu menu)
         {
-            foreach (UIElement el in menus.Children)
+            switch (menu)
             {
-                if (el.GetType() == typeof(Element))
-                {
-                    Grid.SetZIndex(el, menus.Children.Count);
-                    el.Focus();
-                }
-                else
-                {
-                    Grid.SetZIndex(el, Grid.GetZIndex(el) - 1);
-                }
+                case SelectedMenu.FilmsMenu:
+                    menus.Navigate(filmsMenu);
+                    break;
+                case SelectedMenu.BooksMenu:
+                    menus.Navigate(booksMenu);
+                    break;
+                case SelectedMenu.SettingMenu:
+                    menus.Navigate(settingsMenu);
+                    break;
             }
         }
 

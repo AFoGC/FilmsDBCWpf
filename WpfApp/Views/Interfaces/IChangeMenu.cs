@@ -9,6 +9,13 @@ namespace WpfApp.Views.Interfaces
 {
     public interface IChangeMenu
     {
-        void ChangePriorityMenu<Element>() where Element : UIElement;
+        void ChangeMenu(SelectedMenu menu);
+    }
+
+    public enum SelectedMenu
+    {
+        FilmsMenu,
+        BooksMenu,
+        SettingMenu
     }
 }

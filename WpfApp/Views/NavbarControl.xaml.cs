@@ -39,19 +39,19 @@ namespace WpfApp.Views
         private void films_Click(object sender, RoutedEventArgs e)
         {
             changeSelectedButton((PressButton)sender);
-            Window.ChangePriorityMenu<FilmsMenuView>();
+            Window.ChangeMenu(SelectedMenu.FilmsMenu);
         }
 
         private void books_Click(object sender, RoutedEventArgs e)
         {
             changeSelectedButton((PressButton)sender);
-            Window.ChangePriorityMenu<BooksMenuView>();
+            Window.ChangeMenu(SelectedMenu.BooksMenu);
         }
 
         private void settings_Click(object sender, RoutedEventArgs e)
         {
             changeSelectedButton((PressButton)sender);
-            Window.ChangePriorityMenu<SettingsMenuView>();
+            Window.ChangeMenu(SelectedMenu.SettingMenu);
         }
 
         private void changeSelectedButton(PressButton pressButton)

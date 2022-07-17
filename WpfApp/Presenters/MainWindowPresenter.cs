@@ -20,11 +20,6 @@ namespace WpfApp.Presenters
 
         public bool InfoUnsaved => model.InfoUnsaved;
 
-        public void WindowLoaded()
-        {
-            //model.TableCollection.LoadTables();
-        }
-
         public void WindowClosed()
         {
             if (model.IsLoggedIn)

@@ -52,7 +52,7 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Canvas.Left="457" Click="mark_sort" />
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="502" Click="countOfViews_sort">
                     <Button.Content>
-                        <Image Source="{StaticResource ImgSource}"/>
+                        <Path Style="{StaticResource ArrowDownImage}"/>
                     </Button.Content>
                 </Button>
             </Canvas>
@@ -65,19 +65,19 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Canvas.Left="397" Click="start_date_sort" />
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="457" Click="watched_series_sort">
                     <Button.Content>
-                        <Image Source="{StaticResource ImgSource}"/>
+                        <Path Style="{StaticResource ArrowDownImage}"/>
                     </Button.Content>
                 </Button>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Canvas.Left="487" Click="date_sort" />
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="547" Click="total_series_sort">
                     <Button.Content>
-                        <Image Source="{StaticResource ImgSource}"/>
+                        <Path Style="{StaticResource ArrowDownImage}"/>
                     </Button.Content>
                 </Button>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Canvas.Left="577" Click="mark_sort" />
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Canvas.Left="622" Click="countOfViews_sort">
                     <Button.Content>
-                        <Image Source="{StaticResource ImgSource}"/>
+                        <Path Style="{StaticResource ArrowDownImage}"/>
                     </Button.Content>
                 </Button>
             </Canvas>

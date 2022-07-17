@@ -47,7 +47,7 @@
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Margin="643,0,0,0" Click="mark_sort"/>
                 <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Margin="688,0,0,0" Click="countOfReadings_sort">
                     <Button.Content>
-                        <Image Source="{StaticResource ImgSource}"/>
+                        <Path Style="{StaticResource ArrowDownImage}"/>
                     </Button.Content>
                 </Button>
             </Canvas>

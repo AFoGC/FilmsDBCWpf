@@ -7,7 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="20" d:DesignWidth="259">
     <Grid>
-        <local:PressButton x:Name="pbtn_watched" Content="Watched" HorizontalAlignment="Left" VerticalAlignment="Center" Included_DefaultColor="#FF1F1F1F" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF151515" Included_MouseEnterColor="#FF2E2E2E" DefaultColor="#FF121212" MouseDownColor="#FF080808" MouseEnterColor="#FF212121" Height="20" Width="129" Background="#FF121212">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <local:PressButton x:Name="pbtn_watched" Content="Watched" 
+                           Included_DefaultColor="#FF1F1F1F" Foreground="WhiteSmoke" BorderBrush="{x:Null}" 
+                           Included_MouseDownColor="#FF151515" Included_MouseEnterColor="#FF2E2E2E" 
+                           DefaultColor="#FF121212" MouseDownColor="#FF080808" MouseEnterColor="#FF212121" 
+                           Background="#FF121212">
             <local:PressButton.Template>
                 <ControlTemplate TargetType="{x:Type local:PressButton}">
                     <Border Background="{TemplateBinding Background}">
@@ -16,7 +25,12 @@
                 </ControlTemplate>
             </local:PressButton.Template>
         </local:PressButton>
-        <local:PressButton x:Name="pbtn_unwatched" Content="Unwatched" HorizontalAlignment="Left" VerticalAlignment="Center" Included_DefaultColor="#FF1F1F1F" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Included_MouseDownColor="#FF151515" Included_MouseEnterColor="#FF2E2E2E" DefaultColor="#FF121212" MouseDownColor="#FF080808" MouseEnterColor="#FF212121" Height="20" Width="129" Background="#FF121212" Margin="130,0,0,0">
+        <local:PressButton x:Name="pbtn_unwatched" Content="Unwatched" 
+                           Included_DefaultColor="#FF1F1F1F" Foreground="WhiteSmoke" 
+                           BorderBrush="{x:Null}" Included_MouseDownColor="#FF151515" 
+                           Included_MouseEnterColor="#FF2E2E2E" DefaultColor="#FF121212" MouseDownColor="#FF080808" 
+                           MouseEnterColor="#FF212121" Background="#FF121212"
+                           Grid.Column="2">
             <local:PressButton.Template>
                 <ControlTemplate TargetType="{x:Type local:PressButton}">
                     <Border Background="{TemplateBinding Background}">

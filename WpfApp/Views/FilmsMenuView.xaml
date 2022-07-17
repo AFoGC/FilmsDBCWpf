@@ -148,7 +148,7 @@
                     <Separator Background="White"/>
                     <Label Foreground="White" Content="Filter options" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                     <Elements:WatchedRequestControl x:Name="watchedRequestControl" Margin="0,0,0,5"
-                            IsUnwatched="True" IsWatched="True"/>
+                            IsUnwatched="True" IsWatched="True" Height="20"/>
                     <WrapPanel Name="genres_panel"/>
                     <Button x:Name="btn_filter" Style="{StaticResource BB}" Content="Search"
                             VerticalAlignment="Bottom" Click="btn_filter_Click"

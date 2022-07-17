@@ -68,7 +68,7 @@
             <WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
         </ScrollViewer>
 
-        <Border BorderBrush="White" BorderThickness="1" Width="262"
+        <Border BorderBrush="White" BorderThickness="1" Width="268"
                 Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"
                 VerticalAlignment="Top" HorizontalAlignment="Left">
             <Border.Resources>

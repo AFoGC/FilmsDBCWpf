@@ -22,6 +22,9 @@ namespace DAL_Launcher
 			objParam.Value = program.SubmitDate;
 			objParam = command.Parameters.Add("@version", SqlDbType.VarChar);
 			objParam.Value = program.Version;
+			objParam = command.Parameters.Add("@zipfile", SqlDbType.VarBinary);
+			objParam.Value = (object)program.ZipFile ?? DBNull.Value;
+
 		}
 
 		private ProgramBO getProfile(SqlDataReader objReader)
@@ -33,6 +36,9 @@ namespace DAL_Launcher
 			program.ProgramFile = (byte[])objReader.GetValue(2);
 			program.SubmitDate = objReader.GetDateTime(3);
 			program.Version = objReader.GetString(4);
+			object value = objReader.GetValue(5);
+			if (value != DBNull.Value)
+				program.ZipFile = (byte[])value;
 
 			return program;
 		}

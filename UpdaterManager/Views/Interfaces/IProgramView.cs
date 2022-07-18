@@ -10,6 +10,7 @@ namespace UpdaterManager.Views.Interfaces
     {
         string UpdateInfo { get; }
         string ProgramPath { get; }
+        string ZipPath { get; }
         string VersionInfo { set; }
     }
 }

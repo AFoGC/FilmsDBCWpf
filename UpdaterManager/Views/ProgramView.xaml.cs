@@ -33,10 +33,18 @@ namespace UpdaterManager.Views
         public string UpdateInfo => UpdateInfoTextBox.Text;
         public string ProgramPath => FilePathTextBox.Text;
         public string VersionInfo { set => VersionText.Text = value; }
+        public string ZipPath => ZipPathTextBox.Text;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            presenter.SendNewUpdate();
+            if (FilePathTextBox.Text != String.Empty)
+            {
+                presenter.SendNewUpdate();
+            }
+            else
+            {
+                MessageBox.Show("Присутствуют пустые поля");
+            }
         }
 
         private void FilePathTextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)

@@ -16,7 +16,7 @@ namespace BL_Launcher
             return new ProgramDAL().GetLastUpdate();
         }
 
-        public static void AddUpdate(string updateInfo, byte[] programFile)
+        public static void AddUpdate(string updateInfo, byte[] programFile, byte[] zipFile)
         {
             Assembly assembly = Assembly.Load(programFile);
             string version = assembly.GetName().Version.ToString();
@@ -25,7 +25,8 @@ namespace BL_Launcher
                 UpdateInfo = updateInfo,
                 ProgramFile = programFile,
                 SubmitDate = DateTime.Now,
-                Version = version
+                Version = version,
+                ZipFile = zipFile
             };
             new ProgramDAL().AddUpdate(program);
         }

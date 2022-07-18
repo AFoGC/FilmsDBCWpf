@@ -20,5 +20,6 @@ namespace BO_Launcher
         public DateTime SubmitDate { get; set; }
         public String Version { get; set; }
         public Byte[] ProgramFile { get; set; }
+        public Byte[] ZipFile { get; set; }
     }
 }

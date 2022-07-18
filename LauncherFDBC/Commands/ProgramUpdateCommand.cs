@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,13 +40,26 @@ namespace LauncherFDBC.Commands
                 Directory.CreateDirectory(model.FdbcPath);
 
             if (File.Exists(model.FdbcProgPath))
-            {
                 File.Delete(model.FdbcProgPath);
-            }
-            File.WriteAllBytes(model.FdbcProgPath, programBO.ProgramFile);
 
+            File.WriteAllBytes(model.FdbcProgPath, programBO.ProgramFile);
             vm.UpdateID = FileVersionInfo.GetVersionInfo(model.FdbcProgPath).ProductVersion;
+
+            downloadAdditionalFiles(programBO.ZipFile);
+
             OnCanExecuteChanged();
+        }
+
+        private void downloadAdditionalFiles(byte[] zipFile)
+        {
+            if (zipFile != null)
+            {
+                string zipPath = Path.Combine(model.FdbcPath, "add.zip");
+                File.Delete(zipPath);
+                File.WriteAllBytes(zipPath, zipFile);
+                ZipFile.ExtractToDirectory(zipPath, model.FdbcPath);
+                File.Delete(zipPath);
+            }
         }
 
         public bool IsProgramExist()

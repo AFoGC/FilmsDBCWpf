@@ -5,6 +5,7 @@ using LauncherFDBC.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,7 @@ namespace LauncherFDBC.ViewModels
             StartCommand = new StartCommand(Model);
             UpdateProgramCommand = new ProgramUpdateCommand(this);
             UpdateLauncherCommand = new LauncherUpdateCommand(this);
+            UpdateID = FileVersionInfo.GetVersionInfo(Model.FdbcProgPath).ProductVersion;
             PatchNote = GetPatchNote();
         }
 

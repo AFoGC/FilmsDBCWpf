@@ -7,6 +7,6 @@
         <local:MainWindowView Visibility="Visible"></local:MainWindowView>
     </Application.MainWindow>
     <Application.Resources>
-         
+        
     </Application.Resources>
 </Application>

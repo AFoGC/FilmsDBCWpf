@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,17 +19,6 @@ namespace LauncherFDBC.ViewModels
         public MainWindowModel Model { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string updateInfo;
-        public string UpdateInfo
-        {
-            get => updateInfo;
-            set
-            {
-                updateInfo = value;
-                OnPropertyChanged(nameof(UpdateInfo));
-            }
-        }
-
         private string updateID;
         public string UpdateID
         {
@@ -37,6 +27,16 @@ namespace LauncherFDBC.ViewModels
             {
                 updateID = value;
                 OnPropertyChanged(nameof(UpdateID));
+            }
+        }
+        private string updateButtonText;
+        public string UpdateButtonText
+        {
+            get => updateButtonText;
+            set
+            {
+                updateButtonText = value;
+                OnPropertyChanged(nameof(UpdateButtonText));
             }
         }
 
@@ -51,8 +51,17 @@ namespace LauncherFDBC.ViewModels
             StartCommand = new StartCommand(Model);
             UpdateProgramCommand = new ProgramUpdateCommand(this);
             UpdateLauncherCommand = new LauncherUpdateCommand(this);
-            UpdateID = FileVersionInfo.GetVersionInfo(Model.FdbcProgPath).ProductVersion;
+            if (File.Exists(Model.FdbcProgPath))
+                UpdateID = FileVersionInfo.GetVersionInfo(Model.FdbcProgPath).ProductVersion;
+            RefreshButtonString();
             PatchNote = GetPatchNote();
+
+            UpdateProgramCommand.CanExecuteChanged += UpdateProgramCommand_CanExecuteChanged;
+        }
+
+        private void UpdateProgramCommand_CanExecuteChanged(object sender, EventArgs e)
+        {
+            RefreshButtonString();
         }
 
         public string GetPatchNote()
@@ -65,6 +74,17 @@ namespace LauncherFDBC.ViewModels
                 export += "\n\n\n";
             }
             return export;
+        }
+
+        public void RefreshButtonString()
+        {
+            string str;
+            if (UpdateProgramCommand.CanExecute(null))
+                if (File.Exists(Model.FdbcProgPath))
+                    str = "Update";
+                else str = "Download";
+            else str = "Download\nor Update";
+            UpdateButtonText = str;
         }
         
         protected void OnPropertyChanged(string name)

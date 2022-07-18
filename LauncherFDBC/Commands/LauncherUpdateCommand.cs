@@ -51,9 +51,6 @@ namespace LauncherFDBC.Commands
             return (version == localVersion);
         }
 
-
-
-
         public bool UpdateUpdater()
         {
             string localVersion = FileVersionInfo.GetVersionInfo(model.LauncherUpdaterPath).FileVersion;

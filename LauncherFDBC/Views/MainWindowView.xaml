@@ -4,8 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LauncherFDBC"
+        xmlns:behaviours="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="520" Width="900" WindowStyle="None" ResizeMode="NoResize" BorderThickness="1" BorderBrush="WhiteSmoke">
+        Title="MainWindow" Height="520" Width="900" WindowStyle="None" ResizeMode="NoResize" 
+        BorderThickness="1" BorderBrush="WhiteSmoke">
+    <behaviours:Interaction.Triggers>
+        <behaviours:EventTrigger EventName="Loaded">
+            <behaviours:InvokeCommandAction Command="{Binding UpdateLauncherCommand}"/>
+        </behaviours:EventTrigger>
+    </behaviours:Interaction.Triggers>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -51,14 +58,10 @@
                 Style="{StaticResource YellowButton}" HorizontalAlignment="Right" VerticalAlignment="Center" 
                 Width="382" Margin="5" Height="105" FontSize="36"
                 Grid.Column="1" Grid.Row="2"/>
-        
-        <Button x:Name="updateLauncherButton" Content="Update Launcher" Command="{Binding UpdateLauncherCommand}" 
-                Style="{StaticResource BlueButton}" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                Width="382" Margin="5" Height="50" FontSize="20" Grid.Row="2"/>
 
-        <Button x:Name="updateButton" Content="Download or Update" Command="{Binding UpdateProgramCommand}" 
-                Style="{StaticResource BlueButton}" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-                Width="382" Margin="5" Height="50" FontSize="20"
+        <Button x:Name="updateButton" Content="{Binding UpdateButtonText}" Command="{Binding UpdateProgramCommand}" 
+                Style="{StaticResource BlueButton}" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                Width="382" Margin="5" Height="105" FontSize="36"
                 Grid.Row="2"/>
     </Grid>
 </Window>

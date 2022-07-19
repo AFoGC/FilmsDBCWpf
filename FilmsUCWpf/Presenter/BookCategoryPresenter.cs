@@ -66,6 +66,19 @@ namespace FilmsUCWpf.Presenter
 					presenters.Clear();
 					View.CategoryCollection.Clear();
 					break;
+				case NotifyCollectionChangedAction.Move:
+					IView view = null;
+					foreach (IView item in View.CategoryCollection)
+					{
+						if (item.Presenter.ModelCell == e.OldItems[0])
+						{
+							view = item;
+							break;
+						}
+					}
+					View.CategoryCollection.Remove(view);
+					View.CategoryCollection.Insert(e.NewStartingIndex, view);
+					break;
 				default:
 					break;
 			}
@@ -138,7 +151,7 @@ namespace FilmsUCWpf.Presenter
 			book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
 			TableCollection.GetTable<Book>().AddElement(book);
 			Model.Books.Add(book);
-        }
+		}
 
 		public void AddSelected()
 		{

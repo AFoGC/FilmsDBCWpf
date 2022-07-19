@@ -2,6 +2,7 @@
 using FilmsUCWpf.View;
 using FilmsUCWpf.View.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -66,6 +67,19 @@ namespace FilmsUCWpf.Presenter
                 case NotifyCollectionChangedAction.Reset:
                     presenters.Clear();
                     View.CategoryCollection.Clear();
+                    break;
+                case NotifyCollectionChangedAction.Move:
+                    IView view = null;
+                    foreach (IView item in View.CategoryCollection)
+                    {
+                        if (item.Presenter.ModelCell == e.OldItems[0])
+                        {
+                            view = item;
+                            break;
+                        }
+                    }
+                    View.CategoryCollection.Remove(view);
+                    View.CategoryCollection.Insert(e.NewStartingIndex, view);
                     break;
                 default:
                     break;
@@ -137,8 +151,8 @@ namespace FilmsUCWpf.Presenter
         {
             Film film = new Film();
             film.Genre = TableCollection.GetTable<Genre>()[0];
-            TableCollection.GetTable<Film>().AddElement(film);
             Model.Films.Add(film);
+            TableCollection.GetTable<Film>().AddElement(film);
         }
 
         public void AddSelected()

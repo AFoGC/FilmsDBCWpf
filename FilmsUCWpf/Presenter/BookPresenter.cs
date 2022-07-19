@@ -124,7 +124,7 @@ namespace FilmsUCWpf.Presenter
 			if (category != null)
 			{
 				category.RemoveBookFromCategory(Model);
-				menu.AddPresenter(this);
+				menu.AddElement(this.Model);
 			}
 		}
 	}

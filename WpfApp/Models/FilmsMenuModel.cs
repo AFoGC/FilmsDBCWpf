@@ -284,28 +284,41 @@ namespace WpfApp.Models
             return export;
         }
 
-        public bool AddPresenter(BasePresenter<Film> presenter)
+        public bool AddElement(Film film)
         {
             int i = 0;
-            Type type = presenter.GetType();
+            Type type = typeof(BookPresenter);
             foreach (IBasePresenter item in CategoryPresenters)
             {
                 if (item.GetType() == type)
                 {
-                    BasePresenter<Film> basePresenter = (BasePresenter<Film>)item;
-                    Film film = basePresenter.Model;
-                    if (film.ID > SelectedElement.Model.ID) break;
+                    Film filmInPresenter = (Film)item.ModelCell;
+                    if (filmInPresenter.ID > film.ID) break;
                 }
                 ++i;
             }
-            FilmPresenter filmPresenter = new FilmPresenter(SelectedElement.Model, new FilmSimpleControl(), this, TableCollection);
+            FilmPresenter filmPresenter = new FilmPresenter(film, new FilmSimpleControl(), this, TableCollection);
             CategoryPresenters.Insert(i, filmPresenter);
             return true;
         }
 
-        public bool RemovePresenter(BasePresenter<Film> presenter)
+        public bool RemoveElement(Film film)
         {
-            return CategoryPresenters.Remove(presenter);
+            Type type = typeof(FilmPresenter);
+            FilmPresenter presenterInCategory;
+            foreach (IBasePresenter presenter in CategoryPresenters)
+            {
+                if (presenter.GetType() == type)
+                {
+                    presenterInCategory = (FilmPresenter)presenter;
+                    if (presenterInCategory.Model == film)
+                    {
+                        CategoryPresenters.Remove(presenterInCategory);
+                        break;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

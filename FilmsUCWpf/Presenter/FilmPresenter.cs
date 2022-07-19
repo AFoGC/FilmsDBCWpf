@@ -140,7 +140,7 @@ namespace FilmsUCWpf.Presenter
             if (category != null)
             {
 				category.RemoveFilmFromCategory(Model);
-				menu.AddPresenter(this);
+				menu.AddElement(this.Model);
             }
 		}
 	}

@@ -151,6 +151,7 @@ namespace FilmsUCWpf.Presenter
 			book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
 			TableCollection.GetTable<Book>().AddElement(book);
 			Model.Books.Add(book);
+			menu.RemoveElement(book);
 		}
 
 		public void AddSelected()
@@ -161,7 +162,7 @@ namespace FilmsUCWpf.Presenter
 				if (book.FranshiseId == 0)
 				{
 					Model.Books.Add(book);
-					menu.RemovePresenter(menu.SelectedElement);
+					menu.RemoveElement(menu.SelectedElement.Model);
 					menu.SelectedElement = null;
 				}
 			}
@@ -174,7 +175,7 @@ namespace FilmsUCWpf.Presenter
 				Book book = menu.SelectedElement.Model;
 				if (Model.RemoveBookFromCategory(book))
                 {
-					menu.AddPresenter(menu.SelectedElement);
+					menu.AddElement(menu.SelectedElement.Model);
 					menu.SelectedElement = null;
 				}
 			}

@@ -12,7 +12,7 @@ namespace FilmsUCWpf.Presenter.Interfaces
     public interface IMenu<T> : IBaseMenu where T : Cell
     {
         BasePresenter<T> SelectedElement { get; set; }
-        bool RemovePresenter(BasePresenter<T> presenter);
-        bool AddPresenter(BasePresenter<T> presenter);
+        bool RemoveElement(T element);
+        bool AddElement(T element);
     }
 }

@@ -247,28 +247,41 @@ namespace WpfApp.Models
             return export;
         }
 
-        public bool AddPresenter(BasePresenter<Book> presenter)
+        public bool AddElement(Book book)
         {
             int i = 0;
-            Type type = presenter.GetType();
+            Type type = typeof(BookPresenter);
             foreach (IBasePresenter item in CategoryPresenters)
             {
                 if (item.GetType() == type)
                 {
-                    BasePresenter<Book> basePresenter = (BasePresenter<Book>)item;
-                    Book book = basePresenter.Model;
-                    if (book.ID > SelectedElement.Model.ID) break;
+                    Book bookInPresenter = (Book)item.ModelCell;
+                    if (bookInPresenter.ID > book.ID) break;
                 }
-                ++i;
+                i++;
             }
-            BookPresenter bookPresenter = new BookPresenter(SelectedElement.Model, new BookSimpleControl(), this, TableCollection);
+            BookPresenter bookPresenter = new BookPresenter(book, new BookSimpleControl(), this, TableCollection);
             CategoryPresenters.Insert(i, bookPresenter);
             return true;
         }
 
-        public bool RemovePresenter(BasePresenter<Book> presenter)
+        public bool RemoveElement(Book book)
         {
-            return CategoryPresenters.Remove(presenter);
+            Type type = typeof(BookPresenter);
+            BookPresenter presenterInCategory;
+            foreach (IBasePresenter presenter in CategoryPresenters)
+            {
+                if (presenter.GetType() == type)
+                {
+                    presenterInCategory = (BookPresenter)presenter;
+                    if (presenterInCategory.Model == book)
+                    {
+                        CategoryPresenters.Remove(presenterInCategory);
+                        break;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

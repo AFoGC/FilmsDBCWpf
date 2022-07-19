@@ -151,8 +151,9 @@ namespace FilmsUCWpf.Presenter
         {
             Film film = new Film();
             film.Genre = TableCollection.GetTable<Genre>()[0];
-            Model.Films.Add(film);
             TableCollection.GetTable<Film>().AddElement(film);
+            Model.Films.Add(film);
+            menu.RemoveElement(film);
         }
 
         public void AddSelected()
@@ -164,7 +165,7 @@ namespace FilmsUCWpf.Presenter
                 {
                     
                     Model.Films.Add(film);
-                    menu.RemovePresenter(menu.SelectedElement);
+                    menu.RemoveElement(menu.SelectedElement.Model);
                     menu.SelectedElement = null;
                 }
             }
@@ -177,7 +178,7 @@ namespace FilmsUCWpf.Presenter
                 Film film = menu.SelectedElement.Model;
                 if (Model.RemoveFilmFromCategory(film))
                 {
-                    menu.AddPresenter(menu.SelectedElement);
+                    menu.AddElement(menu.SelectedElement.Model);
                     menu.SelectedElement = null;
                 }
             }

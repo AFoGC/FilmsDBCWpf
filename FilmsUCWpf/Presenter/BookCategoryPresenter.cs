@@ -148,11 +148,20 @@ namespace FilmsUCWpf.Presenter
 		public void CreateBookInCategory()
         {
 			Book book = new Book();
+			book.Name = getDefaulBookName();
 			book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
 			TableCollection.GetTable<Book>().AddElement(book);
 			Model.Books.Add(book);
 			menu.RemoveElement(book);
 		}
+
+		private string getDefaulBookName()
+        {
+            if (Model.HideName == string.Empty)
+				return Model.Name;
+            else
+				return Model.HideName;
+        }
 
 		public void AddSelected()
 		{

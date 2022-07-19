@@ -150,10 +150,19 @@ namespace FilmsUCWpf.Presenter
         public void CreateFilmInCategory()
         {
             Film film = new Film();
+            film.Name = getDefaulFilmName();
             film.Genre = TableCollection.GetTable<Genre>()[0];
             TableCollection.GetTable<Film>().AddElement(film);
             Model.Films.Add(film);
             menu.RemoveElement(film);
+        }
+
+        private string getDefaulFilmName()
+        {
+            if (Model.HideName == string.Empty)
+                return Model.Name;
+            else
+                return Model.HideName;
         }
 
         public void AddSelected()

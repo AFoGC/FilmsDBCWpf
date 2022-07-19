@@ -21,17 +21,23 @@ namespace UpdaterManager.Presenters
 
         public bool SendNewUpdate()
         {
-            string[] files = Directory.GetFiles(view.ZipPath);
-            string zipFilePath = Path.Combine(Path.GetDirectoryName(view.ZipPath), "files.zip");
-            if (File.Exists(zipFilePath))
-                File.Delete(zipFilePath);
-            ZipFile.CreateFromDirectory(view.ZipPath, zipFilePath);
-
             byte[] zipFile = null;
+
             if (view.ZipPath != String.Empty)
             {
-                zipFile = File.ReadAllBytes(zipFilePath);
+                string[] files = Directory.GetFiles(view.ZipPath);
+                string zipFilePath = Path.Combine(Path.GetDirectoryName(view.ZipPath), "files.zip");
+                if (File.Exists(zipFilePath))
+                    File.Delete(zipFilePath);
+                ZipFile.CreateFromDirectory(view.ZipPath, zipFilePath);
+
+
+                if (view.ZipPath != String.Empty)
+                {
+                    zipFile = File.ReadAllBytes(zipFilePath);
+                }
             }
+            
 
 
             byte[] file = File.ReadAllBytes(view.ProgramPath);

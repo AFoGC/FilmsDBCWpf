@@ -287,7 +287,7 @@ namespace WpfApp.Models
         public bool AddElement(Film film)
         {
             int i = 0;
-            Type type = typeof(BookPresenter);
+            Type type = typeof(FilmPresenter);
             foreach (IBasePresenter item in CategoryPresenters)
             {
                 if (item.GetType() == type)

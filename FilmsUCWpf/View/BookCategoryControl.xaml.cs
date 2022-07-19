@@ -29,11 +29,12 @@ namespace FilmsUCWpf.View
 		public BookCategoryControl()
 		{
 			InitializeComponent();
+			DefaultHeght = this.Height;
 		}
 
 		public IBasePresenter Presenter => presenter;
 		double IView.Height { get => grid.Height; set => grid.Height = value; }
-		public double DefaultHeght => 35;
+		public double DefaultHeght { get; private set; }
 		public double MinimizedHeight => 15;
 		public IList CategoryCollection => cat_panel.Children;
 

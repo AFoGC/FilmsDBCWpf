@@ -119,7 +119,7 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     category = (Category)e.NewItems[0];
-                    CategoryPresenters.Insert(Tables.BookCategoriesTable.Count - 1, new FilmCategoryPresenter(category, new FilmCategoryControl(), this, TableCollection));
+                    CategoryPresenters.Insert(Tables.FilmsTable.Count - 1, new FilmCategoryPresenter(category, new FilmCategoryControl(), this, TableCollection));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     CategoryPresenters.Remove(CategoryPresenters.Where(x =>

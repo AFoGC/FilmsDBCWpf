@@ -4,9 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
-             mc:Ignorable="d" 
-             >
-    <Grid Height="35" Width="830" x:Name="grid">
+             mc:Ignorable="d" d:DesignHeight="35">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/TextBoxDictionary.xaml"/>
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ButtonDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Width="830" x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto" x:Name="lowerRow"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="404"/>
+        </Grid.ColumnDefinitions>
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="cm_Opened" Closed="cm_Closed">
                 <MenuItem Header="Delete Category" Click="delete_Click"/>
@@ -14,84 +30,25 @@
                 <MenuItem Header="Remove Selected" Click="removeSelected_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="32,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="212,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="42" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535"/>
-        <Grid Margin="30,15,1,0">
-            <WrapPanel x:Name="cat_panel" Margin="0,0,0,20" Orientation="Vertical"/>
-            <Button x:Name="btn_plus" Content="+" Foreground="WhiteSmoke" VerticalAlignment="Bottom" Height="14" Margin="2,0,0,5" ClickMode="Release" Padding="0,0,0,0" FontSize="10" HorizontalAlignment="Left" Width="15" Click="btn_plus_Click">
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Background" Value="#FF1F1F1F"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF2E2E2E"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseCaptureWithin" Value="True">
-                                <Setter Property="Background" Value="#FF151515"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-        </Grid>
-        <Button x:Name="btn_show_hide" Content="v" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="13" Margin="624,1,193,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="hide_show_Cilck">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
+        <TextBox x:Name="id" Text="{Binding ID}" Style="{StaticResource ROtextbox}" ToolTip="ID" Width="28"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <TextBox x:Name="name" Text="{Binding Name}" Style="{StaticResource ROtextbox}" ToolTip="Name" Width="178"/>
+            <TextBox x:Name="mark" Text="{Binding Mark}" Style="{StaticResource ROtextbox}"  ToolTip="Mark" Width="42"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <WrapPanel x:Name="cat_panel" Orientation="Vertical"/>
+            <Button x:Name="btn_plus" Style="{StaticResource GrayButton}" Content="+" Width="15" Height="14" 
+                    Margin="1,1,1,5" FontSize="10" HorizontalAlignment="Left" Click="btn_plus_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="3">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                    <Setter Property="Height" Value="13"/>
+                    <Setter Property="FontSize" Value="10"/>
                 </Style>
-            </Button.Style>
-        </Button>
-
-        <Button x:Name="btn_update" Content="Update Category" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="13" Margin="426,1,211,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+            </StackPanel.Resources>
+            <Button x:Name="btn_update" Content="Update Category" Width="193" Click="btn_update_Click"/>
+            <Button x:Name="btn_show_hide" Content="v" Width="13" Click="hide_show_Cilck" Margin="5,0"/>
+        </StackPanel>
     </Grid>
 </UserControl>

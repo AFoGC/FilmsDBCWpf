@@ -31,7 +31,6 @@ namespace FilmsUCWpf.View
 		public FilmCategoryControl()
 		{
 			InitializeComponent();
-			DefaultHeght = this.Height;
 		}
 
         public IList CategoryCollection => cat_panel.Children;
@@ -60,34 +59,18 @@ namespace FilmsUCWpf.View
 		}
 
 		private bool isOpen = true;
-		public void Maximize()
-        {
-			isOpen = true;
-			Height = DefaultHeght + getControlsHeight();
-        }
-
-		public void Minimize()
-        {
-			isOpen = false;
-			Height = MinimizedHeight;
-        }
-
-		private double getControlsHeight()
-        {
-			double height = 0;
-
-            foreach (Control control in cat_panel.Children)
-				height += control.Height;
-
-			return height;
-        }
-
 		private void hide_show_Cilck(object sender, RoutedEventArgs e)
 		{
-            if (isOpen) 
-				Minimize();
-            else 
-				Maximize();
+			if (isOpen)
+			{
+				lowerRow.Height = new GridLength(0);
+				isOpen = false;
+			}
+			else
+			{
+				lowerRow.Height = GridLength.Auto;
+				isOpen = true;
+			}
 		}
 
 		public void SetVisualDefault()

@@ -33,13 +33,11 @@ namespace FilmsUCWpf.Presenter
 		{
 			View.CategoryCollection.Clear();
 			presenters.Clear();
-			View.Height = View.DefaultHeght;
 
 			foreach (Book book in Model.Books)
 			{
 				BookPresenter bookPresenter = new BookPresenter(book, new BookInCategorySimpleControl(), menu, TableCollection);
 				presenters.Add(bookPresenter);
-				View.Height += bookPresenter.View.Height;
 				View.CategoryCollection.Add(bookPresenter.View);
 			}
 		}

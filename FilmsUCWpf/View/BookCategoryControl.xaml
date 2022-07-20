@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Grid Width="830" x:Name="grid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" x:Name="lowerRow"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>

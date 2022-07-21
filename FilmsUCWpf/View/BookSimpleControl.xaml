@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
-             mc:Ignorable="d" 
-             Height="15" Width="590">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,7 +13,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <Grid Height="15" Width="590" HorizontalAlignment="Left">
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
                 <MenuItem Header="Delete This" Click="MenuItem_Click"/>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
-             Height="15" Width="940">
+             >
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,14 +14,14 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid x:Name="grid">
+    <Grid x:Name="grid" Width="940" HorizontalAlignment="Left">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="658"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="0" x:Name="lowerRow"/>
         </Grid.RowDefinitions>
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_GotFocus">
@@ -56,7 +56,7 @@
             <Button x:Name="btn_copyUrl" Content="{Binding Sources}" Width="101" Margin="5,1" Click="btn_copyUrl_Click"/>
             <Button x:Name="btn_update" Content="update" Width="78" Click="btn_update_Click"/>
         </StackPanel>
-        <TextBox x:Name="comment" Style="{StaticResource ROtextbox}" HorizontalAlignment="Left" Margin="31,1,0,0" Grid.Row="1"/>
+        <TextBox x:Name="comment" Style="{StaticResource ROtextbox}" HorizontalAlignment="Left" Margin="31,1,1,1" Width="619" Grid.Row="1"/>
 
     </Grid>
 </UserControl>

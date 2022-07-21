@@ -54,15 +54,15 @@ namespace FilmsUCWpf.View
 		{
 			presenter.SetSelectedElement();
 		}
-
-		private bool commentIsOpen = false;
-
         double IView.Height { get => this.Height; set { this.Height = value; } }
 
-        private void btn_comment_Click(object sender, RoutedEventArgs e)
+		private bool commentIsOpen = false;
+		private void btn_comment_Click(object sender, RoutedEventArgs e)
 		{
-			if (commentIsOpen) { this.grid.Height -= 15; }
-			else { this.grid.Height += 15; }
+			if (commentIsOpen)
+				lowerRow.Height = new GridLength(0);
+			else
+				lowerRow.Height = GridLength.Auto;
 
 			commentIsOpen = !commentIsOpen;
 		}

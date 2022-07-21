@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
-             mc:Ignorable="d" 
-             >
+             mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -52,9 +51,9 @@
                     <Setter Property="FontSize" Value="10"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btn_comment" Content="comment" Width="76" Click="btn_comment_Click"/>
-            <Button x:Name="btn_copyUrl" Content="{Binding Sources}" Width="101" Margin="5,1" Click="btn_copyUrl_Click"/>
-            <Button x:Name="btn_update" Content="update" Width="78" Click="btn_update_Click"/>
+            <Button x:Name="btn_comment" Content="comment" Width="76" ToolTip="Open comment" Click="btn_comment_Click"/>
+            <Button x:Name="btn_copyUrl" Content="{Binding Sources}" ToolTip="Copy url" Width="101" Margin="5,1" Click="btn_copyUrl_Click"/>
+            <Button x:Name="btn_update" Content="Edit" Width="78" ToolTip="Open edit menu" Click="btn_update_Click"/>
         </StackPanel>
         <TextBox x:Name="comment" Style="{StaticResource ROtextbox}" HorizontalAlignment="Left" Margin="31,1,1,1" Width="619" Grid.Row="1"/>
 

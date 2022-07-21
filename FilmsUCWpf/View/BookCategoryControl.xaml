@@ -47,8 +47,8 @@
                     <Setter Property="FontSize" Value="10"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btn_update" Content="Update Category" Width="193" Click="btn_update_Click"/>
-            <Button x:Name="btn_show_hide" Content="v" Width="13" Click="hide_show_Cilck" Margin="5,0"/>
+            <Button x:Name="btn_update" Content="Edit Category" ToolTip="Open edit menu" Width="193" Click="btn_update_Click"/>
+            <Button x:Name="btn_show_hide" Content="v" Width="13" ToolTip="Сollapse category elements" Click="hide_show_Cilck" Margin="5,0"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -33,8 +33,8 @@
             <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="Realise Year" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <Button x:Name="btn_moreInfo" Content="More Info" Width="110" Click="btn_moreInfo_Click"/>
-            <Button x:Name="btn_update" Content="Update" Width="110" Click="btn_update_Click"/>
+            <Button x:Name="btn_moreInfo" Content="More Info" Width="110" ToolTip="Open more info menu" Click="btn_moreInfo_Click"/>
+            <Button x:Name="btn_update" Content="Edit" Width="110" ToolTip="Open edit menu" Click="btn_update_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

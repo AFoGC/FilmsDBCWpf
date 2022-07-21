@@ -33,8 +33,8 @@
             <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="Realise Year" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="Watched" Margin="20,0" IsEnabled="False"/>
-            <Button x:Name="btn_moreInfo" Content="More Info" Width="110" Click="btn_moreInfo_Click"/>
-            <Button x:Name="btn_update" Content="Update" Width="78" Margin="5,1,1,1" Click="btn_update_Click"/>
+            <Button x:Name="btn_moreInfo" Content="More Info" Width="110" ToolTip="Open more info menu" Click="btn_moreInfo_Click"/>
+            <Button x:Name="btn_update" Content="Edit" Width="78" ToolTip="Open edit menu" Margin="5,1,1,1" Click="btn_update_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

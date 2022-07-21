@@ -5,98 +5,58 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
-             d:DesignHeight="15" d:DesignWidth="940">
-    <Grid x:Name="grid" Height="15">
+             Height="15" Width="940">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/TextBoxDictionary.xaml"/>
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ButtonDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="658"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_GotFocus">
                 <MenuItem Header="Delete This" Click="MenuItem_Click" />
                 <MenuItem Header="Add To Priority" Click="addToPriority_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" IsReadOnly="True" HorizontalAlignment="Left" Margin="32,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" IsReadOnly="True" HorizontalAlignment="Left" Margin="212,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="98" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="Realise Year" IsReadOnly="True" HorizontalAlignment="Left" Margin="312,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="Watched" HorizontalAlignment="Left" Margin="361,0,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <TextBox x:Name="startWatchDate" Text="{Binding StartWatchDate}" ToolTip="Strart Watch Date" IsReadOnly="True" HorizontalAlignment="Left" Margin="397,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="58" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="Mark" IsReadOnly="True" HorizontalAlignment="Left" Margin="577,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="43" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <TextBox x:Name="countOfviews" Text="{Binding CountOfViews}" ToolTip="Count Of Views" IsReadOnly="True" HorizontalAlignment="Left" Margin="622,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <TextBox x:Name="countOfWatchedSeries" Text="{Binding CountOfWatchedSeries}" ToolTip="Count Of Watched Series" IsReadOnly="True" HorizontalAlignment="Center" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" Margin="457,1,455,0" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <TextBox x:Name="watchDate" Text="{Binding DateOfWatch}" ToolTip="Watched Date" IsReadOnly="True" HorizontalAlignment="Left" Margin="487,1,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="58" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <TextBox x:Name="totalSeries" Text="{Binding TotalSeries}" ToolTip="Total Series" IsReadOnly="True" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" Width="28" Height="13" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" Margin="547,1,0,0" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-        <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" RenderTransformOrigin="0.48,-0.933" Margin="658,1,206,0" ClickMode="Release" FontSize="10" VerticalAlignment="Top" Padding="0,0,0,0" Height="13" Click="btn_comment_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}"/>
+            </StackPanel.Resources>
+            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="Realise Year" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="Watched" Margin="20,0" IsEnabled="False"/>
+            <TextBox x:Name="startWatchDate" Text="{Binding StartWatchDate}" ToolTip="Strart Watch Date" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="countOfWatchedSeries" Text="{Binding CountOfWatchedSeries}" ToolTip="Count Of Watched Series" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="watchDate" Text="{Binding DateOfWatch}" ToolTip="Watched Date" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="totalSeries" Text="{Binding TotalSeries}" ToolTip="Total Series" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="Mark" Width="43" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="countOfviews" Text="{Binding CountOfViews}" ToolTip="Count Of Views" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                    <Setter Property="Height" Value="13"/>
+                    <Setter Property="FontSize" Value="10"/>
                 </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="btn_copyUrl" Content="{Binding Sources}" Foreground="WhiteSmoke" VerticalAlignment="Top" RenderTransformOrigin="0.48,-0.933" Height="13" Margin="738,1,101,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_copyUrl_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="btn_update" Content="update" Foreground="WhiteSmoke" VerticalAlignment="Top" RenderTransformOrigin="0.48,-0.933" Height="13" Margin="843,1,19,0" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_update_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <TextBox x:Name="comment" IsReadOnly="True" HorizontalAlignment="Left" Margin="32,16,0,0" Text="" TextWrapping="Wrap" Width="618" FlowDirection="LeftToRight" BorderThickness="0" Padding="0,-3" TextAlignment="Left" Foreground="WhiteSmoke" Background="#FF353535" Height="13" VerticalAlignment="Top"/>
+            </StackPanel.Resources>
+            <Button x:Name="btn_comment" Content="comment" Width="76" Click="btn_comment_Click"/>
+            <Button x:Name="btn_copyUrl" Content="{Binding Sources}" Width="101" Margin="5,1" Click="btn_copyUrl_Click"/>
+            <Button x:Name="btn_update" Content="update" Width="78" Click="btn_update_Click"/>
+        </StackPanel>
+        <TextBox x:Name="comment" Style="{StaticResource ROtextbox}" HorizontalAlignment="Left" Margin="31,1,0,0" Grid.Row="1"/>
 
     </Grid>
 </UserControl>

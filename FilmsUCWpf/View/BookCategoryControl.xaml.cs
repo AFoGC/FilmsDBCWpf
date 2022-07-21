@@ -32,9 +32,6 @@ namespace FilmsUCWpf.View
 		}
 
 		public IBasePresenter Presenter => presenter;
-		double IView.Height { get => grid.Height; set => grid.Height = value; }
-		public double DefaultHeght { get; private set; }
-		public double MinimizedHeight => 15;
 		public IList CategoryCollection => cat_panel.Children;
 
         public void SelfRemove()

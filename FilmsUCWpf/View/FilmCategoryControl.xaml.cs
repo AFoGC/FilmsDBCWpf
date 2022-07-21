@@ -34,9 +34,6 @@ namespace FilmsUCWpf.View
 		}
 
         public IList CategoryCollection => cat_panel.Children;
-		double IView.Height { get => grid.Height; set => grid.Height = value; }
-		public double MinimizedHeight => 15;
-		public double DefaultHeght { get; private set; }
 		public void SelfRemove()
 		{
 			Panel panel = (Panel)this.Parent;

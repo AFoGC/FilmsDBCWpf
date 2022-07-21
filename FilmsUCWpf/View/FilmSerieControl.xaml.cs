@@ -131,8 +131,6 @@ namespace FilmsUCWpf.View
 				panel.Children.Remove(this);
 		}
 
-		double IView.Height { get => this.Height; set { this.Height = value; } }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 			presenter.DeleteThis();

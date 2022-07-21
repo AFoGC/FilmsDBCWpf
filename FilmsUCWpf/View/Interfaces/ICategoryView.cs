@@ -10,7 +10,5 @@ namespace FilmsUCWpf.View.Interfaces
     public interface ICategoryView : IView
     {
         IList CategoryCollection { get; }
-        double DefaultHeght { get; }
-        double MinimizedHeight { get; }
     }
 }

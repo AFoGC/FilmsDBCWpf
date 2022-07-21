@@ -54,7 +54,6 @@ namespace FilmsUCWpf.View
 		{
 			presenter.SetSelectedElement();
 		}
-        double IView.Height { get => this.Height; set { this.Height = value; } }
 
 		private bool commentIsOpen = false;
 		private void btn_comment_Click(object sender, RoutedEventArgs e)

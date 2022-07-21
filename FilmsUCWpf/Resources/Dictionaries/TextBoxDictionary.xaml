@@ -12,4 +12,12 @@
         <Setter Property="Foreground" Value="WhiteSmoke"/>
         <Setter Property="Background" Value="#FF353535"/>
     </Style>
+    <Style TargetType="TextBox" x:Key="Wtextbox">
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="FlowDirection" Value="LeftToRight"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="Background" Value="#FF353535"/>
+        <Setter Property="BorderBrush" Value="#FF7A7A7A"/>
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+    </Style>
 </ResourceDictionary>

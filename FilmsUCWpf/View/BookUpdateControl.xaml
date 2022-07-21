@@ -7,82 +7,45 @@
              xmlns:Buttons="clr-namespace:CustomButtons;assembly=CustomButtons"
              mc:Ignorable="d" 
             d:DesignHeight="20" d:DesignWidth="940">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/TextBoxDictionary.xaml"/>
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ButtonDictionary.xaml" />
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ComboBoxDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid Height="20">
-        <ComboBox x:Name="genre" ToolTip="Genre" Background="#FF353535" Margin="210,0,0,0" HorizontalAlignment="Left" Width="100" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
-            Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke" Height="20">
-            <ComboBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ComboBoxItem}">
-                    <Setter Property="Background" Value="#FF353535"/>
-                    <Setter Property="BorderBrush" Value="#FF353535"/>
-                </Style>
-            </ComboBox.ItemContainerStyle>
-        </ComboBox>
-        <TextBox x:Name="name" ToolTip="Name (Text)" HorizontalAlignment="Left" Margin="30,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="realiseYear" ToolTip="Realise Year (Integer number)" HorizontalAlignment="Left" Margin="310,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke" PreviewTextInput="TextInputIsNumber"/>
-        <CheckBox x:Name="readed" ToolTip="Readed" Content="" HorizontalAlignment="Left" Margin="360,2,0,0" VerticalAlignment="Top" MouseRightButtonDown="watched_MouseRightButtonDown" PreviewMouseLeftButtonDown="readed_PreviewMouseLeftButtonDown"/>
-        <TextBox x:Name="author" ToolTip="Author (Text)" HorizontalAlignment="Left" Margin="395,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="100" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="bookmark" ToolTip="Bookmark (Text)" HorizontalAlignment="Left" Margin="495,0,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="101" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-
-        <Buttons:DateUpdateControl x:Name="fullReadDate" ToolTip="Full Read Date (Date(dd.mm.yyyy))" HorizontalAlignment="Left" Margin="596,0,0,0" VerticalAlignment="Top" Background="#FF353535" Foreground="Red" BorderThickness="1" BorderBrush="#FF7A7A7A" Width="60"/>
-        <ComboBox x:Name="mark" ToolTip="Mark" Background="#FF353535" Margin="656,0,0,0" HorizontalAlignment="Left" Width="45" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
-            Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke">
-            <ComboBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ComboBoxItem}">
-                    <Setter Property="Background" Value="#FF353535"/>
-                    <Setter Property="BorderBrush" Value="#FF353535"/>
-                </Style>
-            </ComboBox.ItemContainerStyle>
-        </ComboBox>
-        <TextBox x:Name="countOfReadings" ToolTip="Count Of Readings (Integer number)" HorizontalAlignment="Left" Margin="701,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke" PreviewTextInput="TextInputIsNumber"/>
-        <Button x:Name="btn_comment" Content="comment" Foreground="WhiteSmoke" Margin="734,0,106,0" ClickMode="Release" Padding="0,0,0,0" Height="20" Width="100" VerticalAlignment="Top" Click="btn_comment_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="btn_sources" Content="update source" Foreground="WhiteSmoke" Margin="834,0,6,0" ClickMode="Release" Padding="0,0,0,0" Height="20" VerticalAlignment="Top" Click="btn_sources_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-
+        <Grid.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource Wtextbox}">
+                <Setter Property="Height" Value="20"/>
+            </Style>
+            <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="100"/>
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource DarkComboBox}">
+                <Setter Property="Width" Value="45"/>
+                <Setter Property="Height" Value="20"/>
+            </Style>
+        </Grid.Resources>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" Width="30"/>
+            <TextBox x:Name="name" ToolTip="Name (Text)" Width="180"/>
+            <ComboBox x:Name="genre" ToolTip="Genre" Width="100"/>
+            <TextBox x:Name="realiseYear" ToolTip="Realise Year (Integer number)" Width="30" PreviewTextInput="TextInputIsNumber"/>
+            <CheckBox x:Name="readed" ToolTip="Readed" Margin="20,1" VerticalAlignment="Center" 
+                      MouseRightButtonDown="watched_MouseRightButtonDown" PreviewMouseLeftButtonDown="readed_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="author" ToolTip="Author (Text)" Width="100"/>
+            <TextBox x:Name="bookmark" ToolTip="Bookmark (Text)" Width="101"/>
+            <Buttons:DateUpdateControl x:Name="fullReadDate" ToolTip="Full Read Date (Date(dd.mm.yyyy))" Width="60" 
+                                       Background="#FF353535" BorderThickness="1" BorderBrush="#FF7A7A7A"/>
+            <ComboBox x:Name="mark" ToolTip="Mark" Width="45"/>
+            <TextBox x:Name="countOfReadings" ToolTip="Count Of Readings (Integer number)" Width="30" PreviewTextInput="TextInputIsNumber"/>
+            <Rectangle Width="2"/>
+            <Button x:Name="btn_comment" Content="comment" Click="btn_comment_Click"/>
+            <Button x:Name="btn_sources" Content="update source" Click="btn_sources_Click"/>
+        </StackPanel>
     </Grid>
 </UserControl>

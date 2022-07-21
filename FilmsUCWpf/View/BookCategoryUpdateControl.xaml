@@ -5,91 +5,51 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="830">
+             d:DesignHeight="44" d:DesignWidth="830">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/TextBoxDictionary.xaml"/>
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ButtonDictionary.xaml" />
+                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ComboBoxDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-        <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" HorizontalAlignment="Left" Margin="2,1,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" FlowDirection="LeftToRight" Padding="0,-3" TextAlignment="Left" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <TextBox x:Name="name" ToolTip="Name (Text)" HorizontalAlignment="Left" Margin="30,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="178" Height="20" FlowDirection="LeftToRight" Padding="0,-3" TextAlignment="Left" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <Button x:Name="btn_AddSelected" Content="Add Selected" Foreground="WhiteSmoke" VerticalAlignment="Bottom" RenderTransformOrigin="0.48,-0.933" Height="20" Margin="690,0,40,40" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_AddSelected_Click" Width="100">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="btn_RemoveSec" Content="Remove Selected" Foreground="WhiteSmoke" VerticalAlignment="Center" RenderTransformOrigin="0.48,-0.933" Height="20" Margin="690,22,40,18" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Click="btn_RemoveSec_Click" Width="100">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="btn_DeleteCategory" Content="Delete Category" Foreground="WhiteSmoke" VerticalAlignment="Bottom" Height="20" Margin="588,0,142,29" ClickMode="Release" Padding="0,0,0,0" FontSize="10" Width="100" Click="btn_DeleteCategory_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <TextBox x:Name="hideName" ToolTip="Hide Name (Text)" HorizontalAlignment="Left" Margin="253,1,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="190" Height="20" FlowDirection="LeftToRight" Padding="0,-3" TextAlignment="Left" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
-        <ComboBox x:Name="mark" ToolTip="Mark" Background="#FF353535" Margin="208,1,0,0" HorizontalAlignment="Left" Width="45" Height="20" VerticalAlignment="Top" BorderBrush="#FF7A7A7A"
-            Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" Foreground="WhiteSmoke">
-            <ComboBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ComboBoxItem}">
-                    <Setter Property="Background" Value="#FF353535"/>
-                    <Setter Property="BorderBrush" Value="#FF353535"/>
-                </Style>
-            </ComboBox.ItemContainerStyle>
-        </ComboBox>
+        <Grid.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource Wtextbox}">
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Margin" Value="0,1"/>
+            </Style>
+            <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource DarkComboBox}">
+                <Setter Property="Width" Value="45"/>
+                <Setter Property="Height" Value="20"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" Width="28"/>
+            <TextBox x:Name="name" ToolTip="Name (Text)" Width="178"/>
+            <ComboBox x:Name="mark" ToolTip="Mark"/>
+            <TextBox x:Name="hideName" ToolTip="Hide Name (Text)" Width="190"/>
+        </StackPanel>
+        <Button x:Name="btn_AddSelected" Content="Add Selected" Grid.Column="1" Click="btn_AddSelected_Click"/>
+        <Button x:Name="btn_RemoveSec" Content="Remove Selected" Grid.Column="1" Grid.Row="1" Click="btn_RemoveSec_Click"/>
+        <Button x:Name="btn_DeleteCategory" Content="Delete Category" Grid.Column="2" Grid.RowSpan="2" Height="Auto" Click="btn_DeleteCategory_Click"/>
+
+
     </Grid>
 </UserControl>

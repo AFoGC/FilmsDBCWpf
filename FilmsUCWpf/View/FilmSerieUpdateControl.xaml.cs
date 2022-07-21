@@ -38,8 +38,10 @@ namespace FilmsUCWpf.View
 		private bool commentIsOpen = false;
 		private void btn_comment_Click(object sender, RoutedEventArgs e)
 		{
-			if (commentIsOpen) { this.grid.Height -= 20; }
-			else { this.grid.Height += 20; }
+			if (commentIsOpen)
+				lowerRow.Height = new GridLength(0);
+			else
+				lowerRow.Height = GridLength.Auto;
 
 			commentIsOpen = !commentIsOpen;
 		}
@@ -47,11 +49,6 @@ namespace FilmsUCWpf.View
 		private void btn_sources_Click(object sender, RoutedEventArgs e)
 		{
 			presenter.OpenSources();
-		}
-
-		private void watched_Click(object sender, RoutedEventArgs e)
-		{
-			
 		}
 
 		private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)

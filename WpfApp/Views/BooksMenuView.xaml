@@ -20,13 +20,13 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <Canvas Width="940" Height="90" Grid.Column="1" HorizontalAlignment="Left" Margin="2,0,0,0">
+        <Canvas Width="940" Height="90" Grid.Column="1" HorizontalAlignment="Left" Margin="1,0,0,0">
             <Border BorderBrush="White" BorderThickness="1">
                 <Canvas Name="infoCanvas" HorizontalAlignment="Left" Width="938" Height="88" VerticalAlignment="Top"/>
             </Border>
         </Canvas>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="2,0,0,0">
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="1,0,0,0">
             <TextBox x:Name="textbox_search" HorizontalAlignment="Left" Margin="0,5" TextWrapping="NoWrap" VerticalAlignment="Top" 
                  Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
             <Button x:Name="btn_search" Content="Search" Style="{StaticResource GrayButton}" Height="20" Width="75"
@@ -35,33 +35,43 @@
 
         <Grid HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="958" x:Name="sortPanel" Margin="0,0,0,1"
               Grid.Column="1" Grid.Row="2">
-            <Canvas Background="#FF121212" x:Name="sort_books">
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Genre" Margin="212,0,0,0" Click="genre_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Year" Margin="312,0,0,0" Click="year_sort"/>
-                
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Author" Margin="397,0,0,0" Click="author_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="84" Content="BookMark" Margin="497,0,0,0" Click="bookmark_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="58" Content="Date" Margin="583,0,0,0" Click="date_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="43" Content="Mark" Margin="643,0,0,0" Click="mark_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Margin="688,0,0,0" Click="countOfReadings_sort">
+            <Grid.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                    <Setter Property="Height" Value="20"/>
+                    <Setter Property="Margin" Value="1,0"/>
+                </Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Background" Value="#FF121212"/>
+                    <Setter Property="Orientation" Value="Horizontal"/>
+                </Style>
+            </Grid.Resources>
+            <StackPanel x:Name="sort_books">
+                <Button Width="28" Content="ID" Click="id_sort"/>
+                <Button Width="178" Content="Name" Click="name_sort"/>
+                <Button Width="98" Content="Genre" Click="genre_sort"/>
+                <Button Width="28" Content="Year" Click="year_sort"/>
+                <Rectangle Width="56"/>
+                <Button Width="98" Content="Author" Click="author_sort"/>
+                <Button Width="84" Content="BookMark" Click="bookmark_sort"/>
+                <Button Width="58" Content="Date" Click="date_sort"/>
+                <Button Width="43" Content="Mark" Click="mark_sort"/>
+                <Button Width="28" Click="countOfReadings_sort">
                     <Button.Content>
                         <Path Style="{StaticResource ArrowDownImage}"/>
                     </Button.Content>
                 </Button>
-            </Canvas>
-            <Canvas Background="#FF121212" x:Name="sort_priority">
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="98" Content="Genre" Margin="212,0,0,0" Click="genre_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="Year" Margin="312,0,0,0" Click="year_sort"/>
-            </Canvas>
-            <Canvas Background="#FF121212" x:Name="sort_category">
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="28" Content="ID" Margin="2,0,0,0" Click="id_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="178" Content="Name" Margin="32,0,0,0" Click="name_sort"/>
-                <Button Style="{StaticResource GrayButton}" Height="20" Width="42" Content="Mark" Margin="212,0,0,0" Click="mark_sort"/>
-            </Canvas>
+            </StackPanel>
+            <StackPanel x:Name="sort_priority">
+                <Button Width="28" Content="ID" Click="id_sort"/>
+                <Button Width="178" Content="Name" Click="name_sort"/>
+                <Button Width="98" Content="Genre" Click="genre_sort"/>
+                <Button Width="28" Content="Year" Click="year_sort"/>
+            </StackPanel>
+            <StackPanel x:Name="sort_category">
+                <Button Width="28" Content="ID" Click="id_sort"/>
+                <Button Width="178" Content="Name" Click="name_sort"/>
+                <Button Width="42" Content="Mark" Click="mark_sort"/>
+            </StackPanel>
         </Grid>
 
         <ScrollViewer HorizontalAlignment="Left" Width="960" Grid.Column="1" Grid.Row="3">

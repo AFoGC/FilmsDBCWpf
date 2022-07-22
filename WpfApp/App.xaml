@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Resources/Dictionaries/ImagesDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/ScrollBarDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/TextBoxDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/ComboBoxDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/lang.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

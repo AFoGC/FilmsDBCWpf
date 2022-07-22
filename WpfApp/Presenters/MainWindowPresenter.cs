@@ -22,6 +22,7 @@ namespace WpfApp.Presenters
 
         public void WindowClosed()
         {
+            LanguageHelper.SaveLang();
             if (model.IsLoggedIn)
             {
                 model.Settings.Profiles.SendProfilesToDB(model.LoggedInUser);

@@ -44,6 +44,8 @@ namespace WpfApp.Presenters
             conteinerView = new GenreConteinerView(mainModel.TableCollection, GenrePresenterEnum.BookGenre);
             conteinerView.MenuLabel.Content = "Book Genre Settings";
             view.SettingsList.Add(conteinerView);
+
+            view.SettingsList.Add(new LanguageSettingsView());
         }
     }
 }

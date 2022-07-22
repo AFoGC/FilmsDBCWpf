@@ -15,7 +15,7 @@
         </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal" Margin="35,0">
-        <!--Content="{x:Static p:Resources.Title}"-->
+        <!--Text="{DynamicResource m_Title}"-->
         <Buttons:PressButton x:Name="films"
                              Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" 
                              Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" 
@@ -30,7 +30,7 @@
             <Buttons:PressButton.Content>
                 <StackPanel Orientation="Horizontal">
                     <Path Style="{StaticResource FilmImage}" Stretch="Uniform" Height="20"/>
-                    <TextBlock Text="Films" Margin="5,0,0,0"/>
+                    <TextBlock Text="{DynamicResource m_Title}" Margin="5,0,0,0"/>
                 </StackPanel>
             </Buttons:PressButton.Content>
         </Buttons:PressButton>

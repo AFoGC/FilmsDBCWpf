@@ -5,19 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d">
-    <Grid Height="20" Width="800">
+    <Grid Height="20">
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource DarkTextBox}"/>
             <Style TargetType="Button" BasedOn="{StaticResource GrayButton}"/>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="GenreName" Text="{Binding Name}" Grid.Column="1"/>
-        <Button x:Name="DeleteGenreButton" Content="Delete Genre" Width="100" Grid.Column="3" 
+        <TextBox x:Name="GenreName" Text="{Binding Name}" Grid.Column="0"/>
+        <Button x:Name="DeleteGenreButton" Content="Delete Genre" Width="100" Grid.Column="2" 
                 HorizontalAlignment="Left" Click="DeleteGenreButton_Click"/>
     </Grid>
 </UserControl>

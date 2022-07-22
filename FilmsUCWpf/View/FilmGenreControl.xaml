@@ -5,21 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="800">
-    <Grid Height="20" Width="800">
+             d:DesignHeight="20">
+    <Grid Height="20">
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource DarkTextBox}"/>
             <Style TargetType="Button" BasedOn="{StaticResource GrayButton}"/>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="GenreName" Text="{Binding Name}" Grid.Column="1"/>
+        <TextBox x:Name="GenreName" Text="{Binding Name}" Grid.Column="0"/>
         <CheckBox x:Name="CheckBox_IsSerial" IsChecked="{Binding IsSerialGenre}" Content="Is Serial Genre" 
-                  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Column="2"/>
-        <Button x:Name="DeleteGenreButton" Content="Delete Genre" Width="100" HorizontalAlignment="Left" Click="DeleteGenreButton_Click" Grid.Column="3"/>
+                  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Column="1"/>
+        <Button x:Name="DeleteGenreButton" Content="Delete Genre" Width="100" HorizontalAlignment="Left" Click="DeleteGenreButton_Click" Grid.Column="2"/>
     </Grid>
 </UserControl>

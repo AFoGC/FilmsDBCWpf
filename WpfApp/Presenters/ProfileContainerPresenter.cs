@@ -26,12 +26,10 @@ namespace WpfApp.Presenters
         {
             view.AddProfileText = string.Empty;
             view.ProfileControls.Clear();
-            view.Height = view.DefaultHeight;
 
             foreach (Profile profile in settings.Profiles)
             {
                 view.ProfileControls.Add(new ProflieView(profile, settings, this));
-                view.Height += 20;
             }
         }
 

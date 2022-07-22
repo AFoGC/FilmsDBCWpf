@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Resources/Dictionaries/ButtonDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/ImagesDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/ScrollBarDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/TextBoxDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

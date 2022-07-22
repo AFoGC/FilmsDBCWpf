@@ -10,8 +10,6 @@ namespace WpfApp.Views.Interfaces
     public interface IProfileSettingsContainerView
     {
         IList ProfileControls { get; }
-        double Height { get; set; }
-        double DefaultHeight { get; }
         string AddProfileText { get; set; }
     }
 }

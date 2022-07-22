@@ -29,15 +29,12 @@ namespace WpfApp.Views
         public ProfileContainerView(ProgramSettings settings)
         {
             InitializeComponent();
-            DefaultHeight = this.Height;
             presenter = new ProfileContainerPresenter(this, settings);
         }
 
         public IList ProfileControls => ProfilesPanel.Children;
 
         public string AddProfileText { get => AddProfileTextBox.Text; set => AddProfileTextBox.Text = value; }
-        double IProfileSettingsContainerView.Height { get => grid.Height; set => grid.Height = value; }
-        public double DefaultHeight { get; private set; }
 
         private static readonly char[] symbols = new char[] { '"', '\\', '/', ':', '|', '<', '>', '*', '?'};
         private void AddProfileButton_Click(object sender, RoutedEventArgs e)
@@ -70,7 +67,6 @@ namespace WpfApp.Views
                 presenter.ImportProfile(dialog.FileName);
                 presenter.RefreshControl();
             }
-            
         }
     }
 }

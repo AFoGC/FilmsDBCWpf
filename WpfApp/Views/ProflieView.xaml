@@ -6,56 +6,20 @@
              xmlns:local="clr-namespace:WpfApp.Views"
              mc:Ignorable="d" 
               d:DesignHeight="20" d:DesignWidth="800">
-    <Grid>
-        <TextBox x:Name="ProfileNameTextBox" Background="#FF353535" HorizontalAlignment="Left" Height="20" Margin="10,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" Foreground="White" BorderBrush="#FF7A7A7A" IsReadOnly="True"/>
-        <Button x:Name="ChangeProfileButton" Content="Use This Profile" HorizontalAlignment="Left" Margin="258,0,0,0" VerticalAlignment="Top" Height="20" Width="133" Foreground="White" Click="ChangeProfileButton_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="DeleteProfileButton" Content="Delete Profile" HorizontalAlignment="Left" Margin="396,0,0,0" VerticalAlignment="Top" Height="20" Width="100" Foreground="White" Click="DeleteProfileButton_Click">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#FF1F1F1F"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF2E2E2E"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseCaptureWithin" Value="True">
-                            <Setter Property="Background" Value="#FF151515"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+    <Grid Height="20" Width="800">
+        <Grid.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource DarkTextBox}"/>
+            <Style TargetType="Button" BasedOn="{StaticResource GrayButton}"/>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="ProfileNameTextBox" IsReadOnly="True" Grid.Column="1"/>
+        <Button x:Name="ChangeProfileButton" Content="Use This Profile" Width="134" Grid.Column="2" Click="ChangeProfileButton_Click"/>
+        <Button x:Name="DeleteProfileButton" Content="Delete Profile" Width="100" HorizontalAlignment="Left" Grid.Column="3" Click="DeleteProfileButton_Click"/>
 
     </Grid>
 </UserControl>

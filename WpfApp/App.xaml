@@ -11,7 +11,7 @@
                 <ResourceDictionary Source="Resources/Dictionaries/ScrollBarDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/TextBoxDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/ComboBoxDictionary.xaml"/>
-                <ResourceDictionary Source="Resources/lang.xaml"/>
+                <ResourceDictionary Source="Resources/Localizations/lang.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

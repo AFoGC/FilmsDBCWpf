@@ -300,15 +300,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\lang.ru.xaml">
+    <Page Include="Resources\Localizations\lang.ru.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\lang.uk-UA.xaml">
+    <Page Include="Resources\Localizations\lang.uk-UA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\lang.xaml">
+    <Page Include="Resources\Localizations\lang.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -445,9 +445,7 @@
   <ItemGroup>
     <Resource Include="Resources\Images\BookIcon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Localizations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.5.5\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.5\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -16,17 +16,17 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Label Content="Profiles Settings" Foreground="White" BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+        <Label Content="{DynamicResource st_prof_title}" Foreground="White" BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
         <StackPanel x:Name="ProfilesPanel" Margin="0,5,0,0" Grid.Row="1"/>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Height="20">
-            <Button x:Name="AddProfileButton" Content="Add new profile" Width="133" Click="AddProfileButton_Click"/>
+            <Button x:Name="AddProfileButton" Content="{DynamicResource st_add_prof}" Width="200" Click="AddProfileButton_Click"/>
             <Rectangle Width="5"/>
             <TextBox x:Name="AddProfileTextBox" Width="150"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="3">
-            <Button x:Name="OpenDirectoryButton" Content="Open profiles directory" Width="175" Click="OpenDirectoryButton_Click"/>
+            <Button x:Name="OpenDirectoryButton" Content="{DynamicResource st_prof_dir}" Width="220" Click="OpenDirectoryButton_Click"/>
             <Rectangle Width="5"/>
-            <Button x:Name="ImportFileButton" Content="Import File" Width="108" Click="ImportFileButton_Click"/>
+            <Button x:Name="ImportFileButton" Content="{DynamicResource st_import_prof}" Width="130" Click="ImportFileButton_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -25,6 +25,7 @@ namespace WpfApp.Views
         public LanguageSettingsView()
         {
             InitializeComponent();
+            langPanel.Items.Add(new CultureInfo("en").NativeName);
             foreach (CultureInfo culture in LanguageHelper.Cultures)
             {
                 langPanel.Items.Add(culture.NativeName);
@@ -40,9 +41,10 @@ namespace WpfApp.Views
                 if (langPanel.Text == culture.NativeName)
                 {
                     LanguageHelper.Language = culture;
-                    break;
+                    return;
                 }
             }
+            LanguageHelper.Language = new CultureInfo("en");
         }
     }
 }

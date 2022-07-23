@@ -2,5 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WpfApp.Resources"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
-    <v:String x:Key="m_Title">Фільми</v:String>
+    <!--Navbar-->
+    <v:String x:Key="nav_film">Фільми</v:String>
+    <v:String x:Key="nav_book">Книжки</v:String>
+    <v:String x:Key="nav_setting">Налаштування</v:String>
+    <!--SettingsMenu-->
+        <!--Language Settings-->
+    <v:String x:Key="st_lang_title">Налаштування мови</v:String>
+    <v:String x:Key="st_lang_btn">Змінити мову</v:String>
+        <!--Profiles Settings-->
+    <v:String x:Key="st_prof_title">Налаштування профілів</v:String>
+    <v:String x:Key="st_add_prof">Додати новий профіль</v:String>
+    <v:String x:Key="st_prof_dir">Відкрити директорію профілів</v:String>
+    <v:String x:Key="st_import_prof">Імпорт файлу</v:String>
+        <!--Genre Settings-->
+    <v:String x:Key="st_genre_title">Налаштування жанрів</v:String>
+    <v:String x:Key="st_fgenre_title">Налаштування жанрів фільмів</v:String>
+    <v:String x:Key="st_bgenre_title">Налаштування жанрів книжок</v:String>
+    <v:String x:Key="st_add_genre">Додати новий жанр</v:String>
 </ResourceDictionary>

@@ -30,7 +30,7 @@
             <Buttons:PressButton.Content>
                 <StackPanel Orientation="Horizontal">
                     <Path Style="{StaticResource FilmImage}" Stretch="Uniform" Height="20"/>
-                    <TextBlock Text="{DynamicResource m_Title}" Margin="5,0,0,0"/>
+                    <TextBlock Text="{DynamicResource nav_film}" Margin="5,0,0,0"/>
                 </StackPanel>
             </Buttons:PressButton.Content>
         </Buttons:PressButton>
@@ -47,7 +47,7 @@
             <Buttons:PressButton.Content>
                 <StackPanel Orientation="Horizontal">
                     <Path Style="{StaticResource BookImage}" Stretch="Uniform" Height="20"/>
-                    <TextBlock Text="Books" Margin="5,0,0,0"/>
+                    <TextBlock Text="{DynamicResource nav_book}" Margin="5,0,0,0"/>
                 </StackPanel>
             </Buttons:PressButton.Content>
         </Buttons:PressButton>
@@ -64,7 +64,7 @@
             <Buttons:PressButton.Content>
                 <StackPanel Orientation="Horizontal">
                     <Path Style="{StaticResource SettingsImage}" Stretch="Uniform" Height="20"/>
-                    <TextBlock Text="Settings" Margin="5,0,0,0"/>
+                    <TextBlock Text="{DynamicResource nav_setting}" Margin="5,0,0,0"/>
                 </StackPanel>
             </Buttons:PressButton.Content>
         </Buttons:PressButton>

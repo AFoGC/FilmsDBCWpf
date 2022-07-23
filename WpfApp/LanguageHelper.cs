@@ -16,7 +16,6 @@ namespace WpfApp
         static LanguageHelper()
         {
             Cultures = new List<CultureInfo>();
-            Cultures.Add(new CultureInfo("en"));
             Cultures.Add(new CultureInfo("ru"));
             Cultures.Add(new CultureInfo("uk-UA"));
 

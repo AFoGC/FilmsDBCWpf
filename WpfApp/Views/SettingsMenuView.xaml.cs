@@ -32,8 +32,19 @@ namespace WpfApp.Views
             presenter = new SettingsMenuPresenter(new SettingsMenuModel(), this, model);
             InitializeComponent();
             LogInUser.SetUserModel(model);
-            presenter.InitializeSettingsPanel();
 
+            this.SettingsList.Add(new ProfileContainerView(model.Settings));
+            GenreConteinerView conteinerView;
+
+            conteinerView = new GenreConteinerView(model.TableCollection, GenrePresenterEnum.FilmGenre);
+            conteinerView.MenuLabel.SetResourceReference(System.Windows.Controls.Label.ContentProperty, "st_fgenre_title");
+            this.SettingsList.Add(conteinerView);
+
+            conteinerView = new GenreConteinerView(model.TableCollection, GenrePresenterEnum.BookGenre);
+            conteinerView.MenuLabel.SetResourceReference(System.Windows.Controls.Label.ContentProperty, "st_bgenre_title");
+            this.SettingsList.Add(conteinerView);
+
+            this.SettingsList.Add(new LanguageSettingsView());
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)

@@ -2,5 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WpfApp.Resources"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
-    <v:String x:Key="m_Title">Films</v:String>
+    <!--Navbar-->
+    <v:String x:Key="nav_film">Films</v:String>
+    <v:String x:Key="nav_book">Books</v:String>
+    <v:String x:Key="nav_setting">Settings</v:String>
+    <!--SettingsMenu-->
+        <!--Language Settings-->
+    <v:String x:Key="st_lang_title">Language Settings</v:String>
+    <v:String x:Key="st_lang_btn">Change language</v:String>
+        <!--Profiles Settings-->
+    <v:String x:Key="st_prof_title">Profiles Settings</v:String>
+    <v:String x:Key="st_add_prof">Add new profile</v:String>
+    <v:String x:Key="st_prof_dir">Open profiles directory</v:String>
+    <v:String x:Key="st_import_prof">Import File</v:String>
+        <!--Genre Settings-->
+    <v:String x:Key="st_genre_title">Genres Settings</v:String>
+    <v:String x:Key="st_fgenre_title">Books Genres Settings</v:String>
+    <v:String x:Key="st_bgenre_title">Films Genres Settings</v:String>
+    <v:String x:Key="st_add_genre">Add new genre</v:String>
 </ResourceDictionary>

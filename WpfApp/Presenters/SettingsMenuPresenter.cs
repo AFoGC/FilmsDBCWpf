@@ -31,21 +31,5 @@ namespace WpfApp.Presenters
             mainModel.Settings.Profiles.GetProfilesFromDB(mainModel.LoggedInUser);
             mainModel.TableCollection.LoadTables();
         }
-
-        public void InitializeSettingsPanel()
-        {
-            view.SettingsList.Add(new ProfileContainerView(mainModel.Settings));
-            GenreConteinerView conteinerView;
-
-            conteinerView = new GenreConteinerView(mainModel.TableCollection, GenrePresenterEnum.FilmGenre);
-            conteinerView.MenuLabel.Content = "Film Genre Settings";
-            view.SettingsList.Add(conteinerView);
-
-            conteinerView = new GenreConteinerView(mainModel.TableCollection, GenrePresenterEnum.BookGenre);
-            conteinerView.MenuLabel.Content = "Book Genre Settings";
-            view.SettingsList.Add(conteinerView);
-
-            view.SettingsList.Add(new LanguageSettingsView());
-        }
     }
 }

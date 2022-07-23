@@ -15,7 +15,7 @@
         <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" >
             <ComboBox x:Name="langPanel" Style="{StaticResource DarkComboBox}" Width="200"/>
             <Rectangle Width="5"/>
-            <Button Style="{StaticResource GrayButton}" Content="{StaticResource st_lang_btn}" Width="180" Click="ChangeLang"/>
+            <Button Style="{StaticResource GrayButton}" Content="{DynamicResource st_lang_btn}" Width="180" Click="ChangeLang"/>
         </StackPanel>
         
     </Grid>

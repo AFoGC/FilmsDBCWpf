@@ -8,7 +8,7 @@
              d:DesignHeight="20">
     <Grid Height="20">
         <Grid.Resources>
-            <Style TargetType="TextBox" BasedOn="{StaticResource DarkTextBox}"/>
+            <Style TargetType="TextBox" BasedOn="{StaticResource Wtextbox}"/>
             <Style TargetType="Button" BasedOn="{StaticResource GrayButton}"/>
         </Grid.Resources>
         <Grid.ColumnDefinitions>

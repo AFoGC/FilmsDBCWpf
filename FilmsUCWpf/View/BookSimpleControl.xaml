@@ -5,14 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/TextBoxDictionary.xaml"/>
-                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ButtonDictionary.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid Height="15" Width="590" HorizontalAlignment="Left">
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">

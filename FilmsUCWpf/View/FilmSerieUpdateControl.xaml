@@ -7,15 +7,6 @@
              xmlns:Buttons="clr-namespace:CustomButtons;assembly=CustomButtons"
              mc:Ignorable="d" 
             d:DesignWidth="940" d:DesignHeight="40">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/TextBoxDictionary.xaml"/>
-                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ButtonDictionary.xaml" />
-                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ComboBoxDictionary.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid x:Name="grid" HorizontalAlignment="Center" Width="940" VerticalAlignment="Top">
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource Wtextbox}">

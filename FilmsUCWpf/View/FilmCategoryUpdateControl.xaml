@@ -6,15 +6,6 @@
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
              d:DesignHeight="44" d:DesignWidth="830">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/TextBoxDictionary.xaml"/>
-                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ButtonDictionary.xaml" />
-                <ResourceDictionary Source="/FilmsUCWpf;component/Resources/Dictionaries/ComboBoxDictionary.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource Wtextbox}">

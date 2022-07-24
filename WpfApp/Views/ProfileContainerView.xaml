@@ -7,7 +7,7 @@
              mc:Ignorable="d" >
     <Grid x:Name="grid">
         <Grid.Resources>
-            <Style TargetType="TextBox" BasedOn="{StaticResource DarkTextBox}"/>
+            <Style TargetType="TextBox" BasedOn="{StaticResource Wtextbox}"/>
             <Style TargetType="Button" BasedOn="{StaticResource GrayButton}"/>
         </Grid.Resources>
         <Grid.RowDefinitions>

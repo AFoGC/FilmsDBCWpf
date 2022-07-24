@@ -15,9 +15,17 @@
     <v:String x:Key="st_add_prof">Добавить новый профиль</v:String>
     <v:String x:Key="st_prof_dir">Открыть директорию профилей</v:String>
     <v:String x:Key="st_import_prof">Импорт файла</v:String>
+            <!--Profile Element-->
+    <v:String x:Key="st_use_prof">Использовать профиль</v:String>
+    <v:String x:Key="st_del_prof">Удалить профиль</v:String>
         <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Настройки жанров</v:String>
     <v:String x:Key="st_fgenre_title">Настройки жанров фильмов</v:String>
     <v:String x:Key="st_bgenre_title">Настройки жанров книг</v:String>
     <v:String x:Key="st_add_genre">Добавить новый жанр</v:String>
+            <!--Genre Element-->
+    <v:String x:Key="st_is_serial">Сериальный жанр</v:String>
+    <v:String x:Key="st_del_genre">Удалить жанр</v:String>
+    <!--Tables Controls-->
+    <v:String x:Key="edit_btn">Изменить</v:String>
 </ResourceDictionary>

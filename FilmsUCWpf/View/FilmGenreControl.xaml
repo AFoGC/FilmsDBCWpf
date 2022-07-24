@@ -17,8 +17,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="GenreName" Text="{Binding Name}" Grid.Column="0"/>
-        <CheckBox x:Name="CheckBox_IsSerial" IsChecked="{Binding IsSerialGenre}" Content="Is Serial Genre" 
+        <CheckBox x:Name="CheckBox_IsSerial" IsChecked="{Binding IsSerialGenre}" Content="{DynamicResource st_is_serial}" 
                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Column="1"/>
-        <Button x:Name="DeleteGenreButton" Content="Delete Genre" Width="100" HorizontalAlignment="Left" Click="DeleteGenreButton_Click" Grid.Column="2"/>
+        <Button x:Name="DeleteGenreButton" Content="{DynamicResource st_del_genre}" Width="100" HorizontalAlignment="Left" Click="DeleteGenreButton_Click" Grid.Column="2"/>
     </Grid>
 </UserControl>

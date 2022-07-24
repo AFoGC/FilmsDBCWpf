@@ -16,7 +16,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="GenreName" Text="{Binding Name}" Grid.Column="0"/>
-        <Button x:Name="DeleteGenreButton" Content="Delete Genre" Width="100" Grid.Column="2" 
+        <Button x:Name="DeleteGenreButton" Content="{DynamicResource st_del_genre}" Width="100" Grid.Column="2" 
                 HorizontalAlignment="Left" Click="DeleteGenreButton_Click"/>
     </Grid>
 </UserControl>

@@ -16,8 +16,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="ProfileNameTextBox" IsReadOnly="True" Grid.Column="0"/>
-        <Button x:Name="ChangeProfileButton" Content="Use This Profile" Width="134" Grid.Column="1" Click="ChangeProfileButton_Click"/>
-        <Button x:Name="DeleteProfileButton" Content="Delete Profile" Width="100" HorizontalAlignment="Left" Grid.Column="2" Click="DeleteProfileButton_Click"/>
+        <Button x:Name="ChangeProfileButton" Content="{DynamicResource st_use_prof}" Width="134" Grid.Column="1" Click="ChangeProfileButton_Click"/>
+        <Button x:Name="DeleteProfileButton" Content="{DynamicResource st_del_prof}" Width="100" HorizontalAlignment="Left" Grid.Column="2" Click="DeleteProfileButton_Click"/>
 
     </Grid>
 </UserControl>

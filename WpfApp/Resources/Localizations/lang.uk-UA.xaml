@@ -15,9 +15,17 @@
     <v:String x:Key="st_add_prof">Додати новий профіль</v:String>
     <v:String x:Key="st_prof_dir">Відкрити директорію профілів</v:String>
     <v:String x:Key="st_import_prof">Імпорт файлу</v:String>
+            <!--Profile Element-->
+    <v:String x:Key="st_use_prof">Використати профіль</v:String>
+    <v:String x:Key="st_del_prof">Видалити профіль</v:String>
         <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Налаштування жанрів</v:String>
     <v:String x:Key="st_fgenre_title">Налаштування жанрів фільмів</v:String>
     <v:String x:Key="st_bgenre_title">Налаштування жанрів книжок</v:String>
     <v:String x:Key="st_add_genre">Додати новий жанр</v:String>
+            <!--Genre Element-->
+    <v:String x:Key="st_is_serial">Серіальний жанр</v:String>
+    <v:String x:Key="st_del_genre">Видалити жанр</v:String>
+    <!--Tables Controls-->
+    <v:String x:Key="edit_btn">Змінити</v:String>
 </ResourceDictionary>

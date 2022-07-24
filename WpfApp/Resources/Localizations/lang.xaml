@@ -15,9 +15,17 @@
     <v:String x:Key="st_add_prof">Add new profile</v:String>
     <v:String x:Key="st_prof_dir">Open profiles directory</v:String>
     <v:String x:Key="st_import_prof">Import File</v:String>
+            <!--Profile Element-->
+    <v:String x:Key="st_use_prof">Use This Profile</v:String>
+    <v:String x:Key="st_del_prof">Delete Profile</v:String>
         <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Genres Settings</v:String>
     <v:String x:Key="st_fgenre_title">Books Genres Settings</v:String>
     <v:String x:Key="st_bgenre_title">Films Genres Settings</v:String>
     <v:String x:Key="st_add_genre">Add new genre</v:String>
+            <!--Genre Element-->
+    <v:String x:Key="st_is_serial">Is Serial Genre</v:String>
+    <v:String x:Key="st_del_genre">Delete Genre</v:String>
+    <!--Tables Controls-->
+    <v:String x:Key="edit_btn">Edit</v:String>
 </ResourceDictionary>

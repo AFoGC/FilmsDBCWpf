@@ -6,26 +6,49 @@
     <v:String x:Key="nav_film">Films</v:String>
     <v:String x:Key="nav_book">Books</v:String>
     <v:String x:Key="nav_setting">Settings</v:String>
-    <!--SettingsMenu-->
-        <!--Language Settings-->
+    
+    <!--Language Settings-->
     <v:String x:Key="st_lang_title">Language Settings</v:String>
     <v:String x:Key="st_lang_btn">Change language</v:String>
-        <!--Profiles Settings-->
+    
+    <!--Profiles Settings-->
     <v:String x:Key="st_prof_title">Profiles Settings</v:String>
     <v:String x:Key="st_add_prof">Add new profile</v:String>
     <v:String x:Key="st_prof_dir">Open profiles directory</v:String>
     <v:String x:Key="st_import_prof">Import File</v:String>
-            <!--Profile Element-->
     <v:String x:Key="st_use_prof">Use This Profile</v:String>
     <v:String x:Key="st_del_prof">Delete Profile</v:String>
-        <!--Genre Settings-->
+    
+    <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Genres Settings</v:String>
     <v:String x:Key="st_fgenre_title">Books Genres Settings</v:String>
     <v:String x:Key="st_bgenre_title">Films Genres Settings</v:String>
     <v:String x:Key="st_add_genre">Add new genre</v:String>
-            <!--Genre Element-->
     <v:String x:Key="st_is_serial">Is Serial Genre</v:String>
     <v:String x:Key="st_del_genre">Delete Genre</v:String>
+    
+    <!--Common Buttons-->
+    <v:String x:Key="serch_btn">Search</v:String>
+    <v:String x:Key="save_tab_btn">Save Table</v:String>
+    <v:String x:Key="add_cat_btn">Add Category</v:String>
+    <v:String x:Key="show_cat_btn">Show Categories</v:String>
+    <v:String x:Key="filter_title">Filter options</v:String>
+    
+    <!--Filmsmenu ButtonPanel-->
+    <v:String x:Key="add_film_btn">Add Film</v:String>
+    <v:String x:Key="show_film_btn">Show Films</v:String>
+    <v:String x:Key="show_serie_btn">Show Series</v:String>
+    <v:String x:Key="show_fprior_btn">Show Priority Films</v:String>
+    <v:String x:Key="watched_btn">Watched</v:String>
+    <v:String x:Key="unwatched_btn">Unwatched</v:String>
+    
+    <!--Booksmenu ButtonPanel-->
+    <v:String x:Key="add_book_btn">Add Book</v:String>
+    <v:String x:Key="show_book_btn">Show Books</v:String>
+    <v:String x:Key="show_bprior_btn">Show Priority Books</v:String>
+    <v:String x:Key="readed_btn">Readed</v:String>
+    <v:String x:Key="unreaded_btn">Unreaded</v:String>
+    
     <!--Tables Controls-->
     <v:String x:Key="edit_btn">Edit</v:String>
 </ResourceDictionary>

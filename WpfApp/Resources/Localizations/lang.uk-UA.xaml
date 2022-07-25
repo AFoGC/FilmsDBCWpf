@@ -6,26 +6,49 @@
     <v:String x:Key="nav_film">Фільми</v:String>
     <v:String x:Key="nav_book">Книжки</v:String>
     <v:String x:Key="nav_setting">Налаштування</v:String>
-    <!--SettingsMenu-->
-        <!--Language Settings-->
+    
+    <!--Language Settings-->
     <v:String x:Key="st_lang_title">Налаштування мови</v:String>
     <v:String x:Key="st_lang_btn">Змінити мову</v:String>
-        <!--Profiles Settings-->
+    
+    <!--Profiles Settings-->
     <v:String x:Key="st_prof_title">Налаштування профілів</v:String>
     <v:String x:Key="st_add_prof">Додати новий профіль</v:String>
     <v:String x:Key="st_prof_dir">Відкрити директорію профілів</v:String>
     <v:String x:Key="st_import_prof">Імпорт файлу</v:String>
-            <!--Profile Element-->
     <v:String x:Key="st_use_prof">Використати профіль</v:String>
     <v:String x:Key="st_del_prof">Видалити профіль</v:String>
-        <!--Genre Settings-->
+    
+    <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Налаштування жанрів</v:String>
     <v:String x:Key="st_fgenre_title">Налаштування жанрів фільмів</v:String>
     <v:String x:Key="st_bgenre_title">Налаштування жанрів книжок</v:String>
     <v:String x:Key="st_add_genre">Додати новий жанр</v:String>
-            <!--Genre Element-->
     <v:String x:Key="st_is_serial">Серіальний жанр</v:String>
     <v:String x:Key="st_del_genre">Видалити жанр</v:String>
+    
+    <!--Common Buttons-->
+    <v:String x:Key="serch_btn">Пошук</v:String>
+    <v:String x:Key="save_tab_btn">Зберегти таблиці</v:String>
+    <v:String x:Key="add_cat_btn">Додати категорію</v:String>
+    <v:String x:Key="show_cat_btn">Меню категорій</v:String>
+    <v:String x:Key="filter_title">Опції фільтру</v:String>
+    
+    <!--Filmsmenu ButtonPanel-->
+    <v:String x:Key="add_film_btn">Додати фільм</v:String>
+    <v:String x:Key="show_film_btn">Меню фільмів</v:String>
+    <v:String x:Key="show_serie_btn">Меню серіалів</v:String>
+    <v:String x:Key="show_fprior_btn">Меню пріорітетних фільмів</v:String>
+    <v:String x:Key="watched_btn">Переглянуто</v:String>
+    <v:String x:Key="unwatched_btn">Непереглянуто</v:String>
+    
+    <!--Booksmenu ButtonPanel-->
+    <v:String x:Key="add_book_btn">Додати книжку</v:String>
+    <v:String x:Key="show_book_btn">Меню книжок</v:String>
+    <v:String x:Key="show_bprior_btn">Меню пріорітетних книжок</v:String>
+    <v:String x:Key="readed_btn">Прочитано</v:String>
+    <v:String x:Key="unreaded_btn">Непрочитано</v:String>
+    
     <!--Tables Controls-->
     <v:String x:Key="edit_btn">Змінити</v:String>
 </ResourceDictionary>

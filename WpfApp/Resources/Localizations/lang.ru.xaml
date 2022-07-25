@@ -6,26 +6,49 @@
     <v:String x:Key="nav_film">Фильмы</v:String>
     <v:String x:Key="nav_book">Книги</v:String>
     <v:String x:Key="nav_setting">Настройки</v:String>
-    <!--SettingsMenu-->
-        <!--Language Settings-->
+    
+    <!--Language Settings-->
     <v:String x:Key="st_lang_title">Настройки языка</v:String>
     <v:String x:Key="st_lang_btn">Изменить яызк</v:String>
-        <!--Profiles Settings-->
+    
+    <!--Profiles Settings-->
     <v:String x:Key="st_prof_title">Настройки профилей</v:String>
     <v:String x:Key="st_add_prof">Добавить новый профиль</v:String>
     <v:String x:Key="st_prof_dir">Открыть директорию профилей</v:String>
     <v:String x:Key="st_import_prof">Импорт файла</v:String>
-            <!--Profile Element-->
     <v:String x:Key="st_use_prof">Использовать профиль</v:String>
     <v:String x:Key="st_del_prof">Удалить профиль</v:String>
-        <!--Genre Settings-->
+    
+    <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Настройки жанров</v:String>
     <v:String x:Key="st_fgenre_title">Настройки жанров фильмов</v:String>
     <v:String x:Key="st_bgenre_title">Настройки жанров книг</v:String>
     <v:String x:Key="st_add_genre">Добавить новый жанр</v:String>
-            <!--Genre Element-->
     <v:String x:Key="st_is_serial">Сериальный жанр</v:String>
     <v:String x:Key="st_del_genre">Удалить жанр</v:String>
+    
+    <!--Common Buttons-->
+    <v:String x:Key="serch_btn">Поиск</v:String>
+    <v:String x:Key="save_tab_btn">Сохранить таблицы</v:String>
+    <v:String x:Key="add_cat_btn">Добавить категорию</v:String>
+    <v:String x:Key="show_cat_btn">Меню категорий</v:String>
+    <v:String x:Key="filter_title">Опции фильтра</v:String>
+    
+    <!--Filmsmenu ButtonPanel-->
+    <v:String x:Key="add_film_btn">Добавить фильм</v:String>
+    <v:String x:Key="show_film_btn">Меню фильмов</v:String>
+    <v:String x:Key="show_serie_btn">Меню сериалов</v:String>
+    <v:String x:Key="show_fprior_btn">Меню приоритетных фильмов</v:String>
+    <v:String x:Key="watched_btn">Просмотрено</v:String>
+    <v:String x:Key="unwatched_btn">Непросмотрено</v:String>
+    
+    <!--Booksmenu ButtonPanel-->
+    <v:String x:Key="add_book_btn">Добавить книгу</v:String>
+    <v:String x:Key="show_book_btn">Меню книг</v:String>
+    <v:String x:Key="show_bprior_btn">Меню приоритетных книг</v:String>
+    <v:String x:Key="readed_btn">Прочитано</v:String>
+    <v:String x:Key="unreaded_btn">Непрочитано</v:String>
+    
     <!--Tables Controls-->
     <v:String x:Key="edit_btn">Изменить</v:String>
 </ResourceDictionary>

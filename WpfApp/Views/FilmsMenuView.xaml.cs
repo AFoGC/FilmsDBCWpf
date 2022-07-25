@@ -82,7 +82,7 @@ namespace WpfApp.Views
         }
         private void btn_filter_Click(object sender, RoutedEventArgs e)
         {
-            presenter.Filter(watchedRequestControl.IsWatched, watchedRequestControl.IsUnwatched);
+            presenter.Filter((bool)watched.IsChecked, (bool)unwatched.IsChecked);
         }
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {

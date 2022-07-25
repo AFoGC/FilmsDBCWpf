@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
 namespace CustomButtons
 {
-    public class PressButton : Button
+    public class PressButton : ButtonBase
     {
-        
         public PressButton() : base()
         {
             this.Click += new RoutedEventHandler(this.this_Click);
-            //Included = false;
         }
 
 
@@ -42,7 +41,7 @@ namespace CustomButtons
                 included = value;
                 if (included)
                 {
-                    Background = included_defaultColor;
+                    Background = Included_DefaultColor;
                     this.MouseEnter += new MouseEventHandler(this.this_Included_mouseEnter);
                     this.MouseLeave += new MouseEventHandler(this.this_Included_mouseLeave);
                     this.MouseDown += new MouseButtonEventHandler(this.this_Included_mouseDown);
@@ -50,7 +49,7 @@ namespace CustomButtons
                 }
                 else
                 {
-                    Background = defaultColor;
+                    Background = DefaultColor;
                     this.MouseEnter += new MouseEventHandler(this.this_NotIncluded_mouseEnter);
                     this.MouseLeave += new MouseEventHandler(this.this_NotIncluded_mouseLeave);
                     this.MouseDown += new MouseButtonEventHandler(this.this_NotIncluded_mouseDown);
@@ -58,142 +57,86 @@ namespace CustomButtons
                 }
             }
         }
+        /*
+        public static readonly DependencyProperty
+         SetTextProperty = DependencyProperty.Register("SetText", typeof(string),
+         typeof(PressButton), new PropertyMetadata("",
+         new PropertyChangedCallback(OnSetTextChanged)));
+        */
+        public bool ClickLocked { get; set; }
 
-        private bool clickLocked = false;
-        public bool ClickLocked
-        {
-            get { return clickLocked; }
-            set
-            {
-                clickLocked = value;
-            }
-        }
-
-        private Brush included_mouseEnterColor;
-        private Brush included_defaultColor;
-        private Brush included_mouseDownColor;
-        private Brush mouseEnterColor;
-        private Brush defaultColor;
-        private Brush mouseDownColor;
-
-        public Brush Included_MouseEnterColor
-        {
-            get { return included_mouseEnterColor; }
-            set
-            {
-                included_mouseEnterColor = value;
-            }
-        }
-        public Brush Included_DefaultColor
-        {
-            get { return included_defaultColor; }
-            set
-            {
-                included_defaultColor = value;
-            }
-        }
-        public Brush Included_MouseDownColor
-        {
-            get { return included_mouseDownColor; }
-            set
-            {
-                included_mouseDownColor = value;
-            }
-        }
-
-        public Brush MouseEnterColor
-        {
-            get { return mouseEnterColor; }
-            set
-            {
-                mouseEnterColor = value;
-            }
-        }
-        public Brush DefaultColor
-        {
-            get { return defaultColor; }
-            set
-            {
-                defaultColor = value;
-            }
-        }
-        public Brush MouseDownColor
-        {
-            get { return mouseDownColor; }
-            set
-            {
-                mouseDownColor = value;
-            }
-        }
+        public Brush Included_MouseEnterColor { get; set; }
+        public Brush Included_DefaultColor { get; set; }
+        public Brush Included_MouseDownColor { get; set; }
+        public Brush MouseEnterColor { get; set; }
+        public Brush DefaultColor { get; set; }
+        public Brush MouseDownColor { get; set; }
 
         private void this_Included_mouseEnter(object sender, EventArgs e)
         {
-            this.Background = this.included_mouseEnterColor;
+            this.Background = this.Included_MouseEnterColor;
         }
         private void this_NotIncluded_mouseEnter(object sender, EventArgs e)
         {
-            this.Background = this.mouseEnterColor;
+            this.Background = this.MouseEnterColor;
         }
 
         private void this_Included_mouseLeave(object sender, EventArgs e)
         {
-            this.Background = this.included_defaultColor;
+            this.Background = this.Included_DefaultColor;
         }
         private void this_NotIncluded_mouseLeave(object sender, EventArgs e)
         {
-            this.Background = this.defaultColor;
+            this.Background = this.DefaultColor;
         }
 
         private void this_Included_mouseDown(object sender, EventArgs e)
         {
-            this.Background = this.included_mouseDownColor;
+            this.Background = this.Included_MouseDownColor;
         }
         private void this_NotIncluded_mouseDown(object sender, EventArgs e)
         {
-            this.Background = this.mouseDownColor;
+            this.Background = this.MouseDownColor;
         }
 
         private void this_Included_mouseUp(object sender, EventArgs e)
         {
-            if (clickLocked)
+            if (ClickLocked)
             {
-                this.Background = this.mouseEnterColor;
+                this.Background = this.MouseEnterColor;
             }
             else
             {
-                this.Background = this.included_mouseEnterColor;
+                this.Background = this.Included_MouseEnterColor;
             }
         }
         private void this_NotIncluded_mouseUp(object sender, EventArgs e)
         {
-            if (clickLocked)
+            if (ClickLocked)
             {
-                this.Background = this.included_mouseEnterColor;
+                this.Background = this.Included_MouseEnterColor;
             }
             else
             {
-                this.Background = this.mouseEnterColor;
+                this.Background = this.MouseEnterColor;
             }
         }
 
         private void this_Click(object sender, RoutedEventArgs e)
         {
-            if (!clickLocked)
+            if (!ClickLocked)
             {
                 this.Included = !this.Included;
 
                 if (Included)
                 {
-                    this.Background = this.included_mouseEnterColor;
-                    //this.this_Included_mouseEnter(this, e);
+                    this.Background = this.Included_MouseEnterColor;
                 }
                 else
                 {
-                    this.Background = this.mouseEnterColor;
-                    //this.this_NotIncluded_mouseEnter(this, e);
+                    this.Background = this.MouseEnterColor;
                 }
             }
         }
-        
     }
 }

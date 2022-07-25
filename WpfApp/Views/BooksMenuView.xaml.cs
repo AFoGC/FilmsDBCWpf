@@ -33,8 +33,6 @@ namespace WpfApp.Views
         public BooksMenuView(MainWindowModel windowModel)
         {
             InitializeComponent();
-            watchedRequestControl.LeftText = "Readed";
-            watchedRequestControl.RightText = "Unreaded";
             presenter = new BooksMenuPresenter(new BooksMenuModel(windowModel), this);
         }
 
@@ -54,7 +52,7 @@ namespace WpfApp.Views
 
         private void btn_filter_Click(object sender, RoutedEventArgs e)
         {
-            presenter.Filter(watchedRequestControl.IsWatched, watchedRequestControl.IsUnwatched);
+            presenter.Filter((bool)readed.IsChecked, (bool)unreaded.IsChecked);
         }
 
         private void btn_showCategories_Click(object sender, RoutedEventArgs e)

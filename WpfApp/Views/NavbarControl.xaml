@@ -9,65 +9,37 @@
              mc:Ignorable="d" 
              Height="30" d:DesignWidth="1265" Background="#FF1F1F1F">
     <UserControl.Resources>
-        <Style TargetType="Buttons:PressButton">
+        <Style TargetType="ToggleButton" BasedOn="{StaticResource NavbarToggleButton}">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Width" Value="250"/>
         </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal" Margin="35,0">
         <!--Text="{DynamicResource m_Title}"-->
-        <Buttons:PressButton x:Name="films"
-                             Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" 
-                             Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" 
-                             MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Background="#FF1F1F1F" Click="films_Click">
-            <Buttons:PressButton.Template>
-                <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
-                    <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Buttons:PressButton.Template>
-            <Buttons:PressButton.Content>
+        <ToggleButton x:Name="films" Click="films_Click">
+            <ToggleButton.Content>
                 <StackPanel Orientation="Horizontal">
                     <Path Style="{StaticResource FilmImage}" Stretch="Uniform" Height="20"/>
                     <TextBlock Text="{DynamicResource nav_film}" Margin="5,0,0,0"/>
                 </StackPanel>
-            </Buttons:PressButton.Content>
-        </Buttons:PressButton>
-        <Buttons:PressButton x:Name="books" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" 
-                             Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" 
-                             MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Background="#FF1F1F1F" Click="books_Click">
-            <Buttons:PressButton.Template>
-                <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
-                    <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Buttons:PressButton.Template>
-            <Buttons:PressButton.Content>
+            </ToggleButton.Content>
+        </ToggleButton>
+        <ToggleButton x:Name="books" Click="books_Click">
+            <ToggleButton.Content>
                 <StackPanel Orientation="Horizontal">
                     <Path Style="{StaticResource BookImage}" Stretch="Uniform" Height="20"/>
                     <TextBlock Text="{DynamicResource nav_book}" Margin="5,0,0,0"/>
                 </StackPanel>
-            </Buttons:PressButton.Content>
-        </Buttons:PressButton>
-        <Buttons:PressButton x:Name="settings" Included_DefaultColor="#FF121212" Foreground="WhiteSmoke" BorderBrush="{x:Null}" 
-                             Included_MouseDownColor="#FF080808" Included_MouseEnterColor="#FF212121" DefaultColor="#FF1F1F1F" 
-                             MouseDownColor="#FF151515" MouseEnterColor="#FF2E2E2E" Background="#FF1F1F1F" Click="settings_Click">
-            <Buttons:PressButton.Template>
-                <ControlTemplate TargetType="{x:Type Buttons:PressButton}">
-                    <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Buttons:PressButton.Template>
-            <Buttons:PressButton.Content>
+            </ToggleButton.Content>
+        </ToggleButton>
+        <ToggleButton x:Name="settings" Click="settings_Click">
+            <ToggleButton.Content>
                 <StackPanel Orientation="Horizontal">
                     <Path Style="{StaticResource SettingsImage}" Stretch="Uniform" Height="20"/>
                     <TextBlock Text="{DynamicResource nav_setting}" Margin="5,0,0,0"/>
                 </StackPanel>
-            </Buttons:PressButton.Content>
-        </Buttons:PressButton>
+            </ToggleButton.Content>
+        </ToggleButton>
 
     </StackPanel>
 </UserControl>

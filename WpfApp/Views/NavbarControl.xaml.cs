@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -23,7 +24,7 @@ namespace WpfApp.Views
     /// </summary>
     public partial class NavbarControl : UserControl
     {
-        private List<PressButton> pressButtons = new List<PressButton>();
+        private List<ToggleButton> pressButtons = new List<ToggleButton>();
         public IChangeMenu Window { get; set; }
         public NavbarControl()
         {
@@ -36,35 +37,33 @@ namespace WpfApp.Views
 
         private void films_Click(object sender, RoutedEventArgs e)
         {
-            changeSelectedButton((PressButton)sender);
+            changeSelectedButton((ToggleButton)sender);
             Window.ChangeMenu(SelectedMenu.FilmsMenu);
         }
 
         private void books_Click(object sender, RoutedEventArgs e)
         {
-            changeSelectedButton((PressButton)sender);
+            changeSelectedButton((ToggleButton)sender);
             Window.ChangeMenu(SelectedMenu.BooksMenu);
         }
 
         private void settings_Click(object sender, RoutedEventArgs e)
         {
-            changeSelectedButton((PressButton)sender);
+            changeSelectedButton((ToggleButton)sender);
             Window.ChangeMenu(SelectedMenu.SettingMenu);
         }
 
-        private void changeSelectedButton(PressButton pressButton)
+        private void changeSelectedButton(ToggleButton pressButton)
         {
-            foreach (PressButton button in pressButtons)
+            foreach (ToggleButton button in pressButtons)
             {
                 if (pressButton == button)
                 {
-                    pressButton.Included = true;
-                    pressButton.ClickLocked = true;
+                    pressButton.IsChecked = true;
                 }
                 else
                 {
-                    button.ClickLocked = false;
-                    button.Included = false;
+                    button.IsChecked = false;
                 }
             }
         }

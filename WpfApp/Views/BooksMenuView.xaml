@@ -46,15 +46,15 @@
                 </Style>
             </Grid.Resources>
             <StackPanel x:Name="sort_books">
-                <Button Width="28" Content="ID" Click="id_sort"/>
-                <Button Width="178" Content="Name" Click="name_sort"/>
-                <Button Width="98" Content="Genre" Click="genre_sort"/>
-                <Button Width="28" Content="Year" Click="year_sort"/>
+                <Button Width="28" Content="{DynamicResource id_sort}" Click="id_sort"/>
+                <Button Width="178" Content="{DynamicResource name_sort}" Click="name_sort"/>
+                <Button Width="98" Content="{DynamicResource genre_sort}" Click="genre_sort"/>
+                <Button Width="28" Content="{DynamicResource year_sort}" Click="year_sort"/>
                 <Rectangle Width="56"/>
-                <Button Width="98" Content="Author" Click="author_sort"/>
-                <Button Width="84" Content="BookMark" Click="bookmark_sort"/>
-                <Button Width="58" Content="Date" Click="date_sort"/>
-                <Button Width="43" Content="Mark" Click="mark_sort"/>
+                <Button Width="98" Content="{DynamicResource author_sort}" Click="author_sort"/>
+                <Button Width="84" Content="{DynamicResource bookmark_sort}" Click="bookmark_sort"/>
+                <Button Width="58" Content="{DynamicResource date_sort}" Click="date_sort"/>
+                <Button Width="43" Content="{DynamicResource mark_sort}" Click="mark_sort"/>
                 <Button Width="28" Click="countOfReadings_sort">
                     <Button.Content>
                         <Path Style="{StaticResource ArrowDownImage}"/>
@@ -62,15 +62,15 @@
                 </Button>
             </StackPanel>
             <StackPanel x:Name="sort_priority">
-                <Button Width="28" Content="ID" Click="id_sort"/>
-                <Button Width="178" Content="Name" Click="name_sort"/>
-                <Button Width="98" Content="Genre" Click="genre_sort"/>
-                <Button Width="28" Content="Year" Click="year_sort"/>
+                <Button Width="28" Content="{DynamicResource id_sort}" Click="id_sort"/>
+                <Button Width="178" Content="{DynamicResource name_sort}" Click="name_sort"/>
+                <Button Width="98" Content="{DynamicResource genre_sort}" Click="genre_sort"/>
+                <Button Width="28" Content="{DynamicResource year_sort}" Click="year_sort"/>
             </StackPanel>
             <StackPanel x:Name="sort_category">
-                <Button Width="28" Content="ID" Click="id_sort"/>
-                <Button Width="178" Content="Name" Click="name_sort"/>
-                <Button Width="42" Content="Mark" Click="mark_sort"/>
+                <Button Width="28" Content="{DynamicResource id_sort}" Click="id_sort"/>
+                <Button Width="178" Content="{DynamicResource name_sort}" Click="name_sort"/>
+                <Button Width="42" Content="{DynamicResource mark_sort}" Click="mark_sort"/>
             </StackPanel>
         </Grid>
 

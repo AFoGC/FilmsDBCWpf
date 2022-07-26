@@ -33,7 +33,17 @@
     <v:String x:Key="add_cat_btn">Додати категорію</v:String>
     <v:String x:Key="show_cat_btn">Меню категорій</v:String>
     <v:String x:Key="filter_title">Опції фільтру</v:String>
-    
+
+    <!--SortPanel-->
+    <v:String x:Key="id_sort">ID</v:String>
+    <v:String x:Key="name_sort">Назва</v:String>
+    <v:String x:Key="genre_sort">Жанр</v:String>
+    <v:String x:Key="year_sort">Рік</v:String>
+    <v:String x:Key="date_sort">Дата</v:String>
+    <v:String x:Key="mark_sort">Оцінка</v:String>
+    <v:String x:Key="author_sort">Автор</v:String>
+    <v:String x:Key="bookmark_sort">Закладка</v:String>
+
     <!--Filmsmenu ButtonPanel-->
     <v:String x:Key="add_film_btn">Додати фільм</v:String>
     <v:String x:Key="show_film_btn">Меню фільмів</v:String>
@@ -41,7 +51,7 @@
     <v:String x:Key="show_fprior_btn">Меню пріорітетних фільмів</v:String>
     <v:String x:Key="watched_btn">Переглянуто</v:String>
     <v:String x:Key="unwatched_btn">Непереглянуто</v:String>
-    
+
     <!--Booksmenu ButtonPanel-->
     <v:String x:Key="add_book_btn">Додати книжку</v:String>
     <v:String x:Key="show_book_btn">Меню книжок</v:String>

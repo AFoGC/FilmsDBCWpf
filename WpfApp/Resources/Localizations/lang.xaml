@@ -33,7 +33,17 @@
     <v:String x:Key="add_cat_btn">Add Category</v:String>
     <v:String x:Key="show_cat_btn">Show Categories</v:String>
     <v:String x:Key="filter_title">Filter options</v:String>
-    
+
+    <!--SortPanel-->
+    <v:String x:Key="id_sort">ID</v:String>
+    <v:String x:Key="name_sort">Name</v:String>
+    <v:String x:Key="genre_sort">Genre</v:String>
+    <v:String x:Key="year_sort">Year</v:String>
+    <v:String x:Key="date_sort">Date</v:String>
+    <v:String x:Key="mark_sort">Mark</v:String>
+    <v:String x:Key="author_sort">Author</v:String>
+    <v:String x:Key="bookmark_sort">Bookmark</v:String>
+
     <!--Filmsmenu ButtonPanel-->
     <v:String x:Key="add_film_btn">Add Film</v:String>
     <v:String x:Key="show_film_btn">Show Films</v:String>
@@ -41,7 +51,7 @@
     <v:String x:Key="show_fprior_btn">Show Priority Films</v:String>
     <v:String x:Key="watched_btn">Watched</v:String>
     <v:String x:Key="unwatched_btn">Unwatched</v:String>
-    
+
     <!--Booksmenu ButtonPanel-->
     <v:String x:Key="add_book_btn">Add Book</v:String>
     <v:String x:Key="show_book_btn">Show Books</v:String>

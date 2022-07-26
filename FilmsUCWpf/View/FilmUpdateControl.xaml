@@ -37,8 +37,8 @@
             <ComboBox x:Name="mark" ToolTip="Mark" Width="45"/>
             <TextBox x:Name="countOfViews" ToolTip="Count Of Views (Integer number)" Width="30" PreviewTextInput="TextInputIsNumber"/>
             <Rectangle Width="137"/>
-            <Button x:Name="btn_comment" Content="comment" Click="btn_comment_Click"/>
-            <Button x:Name="btn_sources" Content="update source" Click="btn_sources_Click"/>
+            <Button x:Name="btn_comment" Content="{DynamicResource comment_btn}" Click="btn_comment_Click"/>
+            <Button x:Name="btn_sources" Content="{DynamicResource upd_source_btn}" Click="btn_sources_Click"/>
         </StackPanel>
         <TextBox x:Name="comment" ToolTip="Comment" Width="533" HorizontalAlignment="Left" Grid.Row="1"/>
     </Grid>

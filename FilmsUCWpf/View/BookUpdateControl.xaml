@@ -35,8 +35,8 @@
             <ComboBox x:Name="mark" ToolTip="Mark" Width="45"/>
             <TextBox x:Name="countOfReadings" ToolTip="Count Of Readings (Integer number)" Width="30" PreviewTextInput="TextInputIsNumber"/>
             <Rectangle Width="2"/>
-            <Button x:Name="btn_comment" Content="comment" Click="btn_comment_Click"/>
-            <Button x:Name="btn_sources" Content="update source" Click="btn_sources_Click"/>
+            <Button x:Name="btn_comment" Content="{DynamicResource comment_btn}" Click="btn_comment_Click"/>
+            <Button x:Name="btn_sources" Content="{DynamicResource upd_source_btn}" Click="btn_sources_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

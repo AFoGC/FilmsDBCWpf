@@ -37,9 +37,9 @@
             <ComboBox x:Name="mark" ToolTip="Mark"/>
             <TextBox x:Name="hideName" ToolTip="Hide Name (Text)" Width="190"/>
         </StackPanel>
-        <Button x:Name="btn_AddSelected" Content="Add Selected" Grid.Column="1" Click="btn_AddSelected_Click"/>
-        <Button x:Name="btn_RemoveSec" Content="Remove Selected" Grid.Column="1" Grid.Row="1" Click="btn_RemoveSec_Click"/>
-        <Button x:Name="btn_DeleteCategory" Content="Delete Category" Grid.Column="2" Grid.RowSpan="2" Height="Auto" Click="btn_DeleteCategory_Click"/>
+        <Button x:Name="btn_AddSelected" Content="{DynamicResource add_selected_btn}" Grid.Column="1" Click="btn_AddSelected_Click"/>
+        <Button x:Name="btn_RemoveSec" Content="{DynamicResource remove_selected_btn}" Grid.Column="1" Grid.Row="1" Click="btn_RemoveSec_Click"/>
+        <Button x:Name="btn_DeleteCategory" Content="{DynamicResource del_category_btn}" Grid.Column="2" Grid.RowSpan="2" Height="Auto" Click="btn_DeleteCategory_Click"/>
 
 
     </Grid>

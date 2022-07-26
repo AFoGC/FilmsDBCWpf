@@ -65,6 +65,9 @@
     <v:String x:Key="comment_btn">Комментарий</v:String>
     <v:String x:Key="more_info_btn">Более детально</v:String>
     <v:String x:Key="upd_source_btn">Источник</v:String>
+    <v:String x:Key="add_selected_btn">Добавить выбранное</v:String>
+    <v:String x:Key="remove_selected_btn">Убрать выбранное</v:String>
+    <v:String x:Key="del_category_btn">Удалить категорию</v:String>
 
     <!--Table ToolTips-->
     <v:String x:Key="id_tt">ID</v:String>

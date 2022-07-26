@@ -96,5 +96,28 @@
     <v:String x:Key="open_edit_tt">Открыть меню изменений</v:String>
     <v:String x:Key="open_more_info_tt">Открыть меню полной информации</v:String>
     <v:String x:Key="open_comment_tt">Открыть комментарий</v:String>
-    
+
+    <!--Update Controls ToolTips-->
+    <v:String x:Key="hidename_utt">Скрытое имя (Текст)</v:String>
+
+    <v:String x:Key="id_utt">ID (не может быть изменено)</v:String>
+    <v:String x:Key="name_utt">Название (Текст)</v:String>
+    <v:String x:Key="genre_utt">Жанр</v:String>
+    <v:String x:Key="year_utt">Год выпуска (Целое число)</v:String>
+    <v:String x:Key="mark_utt">Оценка</v:String>
+
+    <v:String x:Key="start_watch_date_utt">Дата начала просмотра (Дата(дд.мм.гггг))</v:String>
+    <v:String x:Key="end_watch_date_utt">Дата окончания просмотра (Дата(дд.мм.гггг))</v:String>
+    <v:String x:Key="watched_series_utt">Количество просмотренных серий (Целое число)</v:String>
+    <v:String x:Key="total_series_utt">Всего серий (Целое число)</v:String>
+    <v:String x:Key="watched_utt">Просмотрено (Булевое значение)</v:String>
+    <v:String x:Key="cov_utt">Количество просмотров (Целое число)</v:String>
+    <v:String x:Key="comment_utt">Комментарий (Текст)</v:String>
+
+    <v:String x:Key="author_utt">Автор (Текст)</v:String>
+    <v:String x:Key="bookmark_utt">Закладка (Текст)</v:String>
+    <v:String x:Key="end_read_date_utt">Дата окончания чтения (Дата(дд.мм.гггг))</v:String>
+    <v:String x:Key="readed_utt">Прочтено (Булевое значение)</v:String>
+    <v:String x:Key="cor_utt">Количество прочтений (Целое число)</v:String>
+
 </ResourceDictionary>

@@ -26,24 +26,24 @@
             <RowDefinition Height="0" x:Name="lowerRow"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="id" ToolTip="ID" IsReadOnly="True" Width="30"/>
-            <TextBox x:Name="name" ToolTip="Name (Text)" Width="180"/>
-            <ComboBox x:Name="genre" ToolTip="Genre" Width="100"/>
-            <TextBox x:Name="realiseYear" ToolTip="Realiser Year (Integer number)" Width="30" MaxLength="4" PreviewTextInput="TextInputIsNumber"/>
-            <CheckBox x:Name="watched" ToolTip="Watched" Margin="20,1" VerticalAlignment="Center"
+            <TextBox x:Name="id" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="30"/>
+            <TextBox x:Name="name" ToolTip="{DynamicResource name_utt}" Width="180"/>
+            <ComboBox x:Name="genre" ToolTip="{DynamicResource genre_utt}" Width="100"/>
+            <TextBox x:Name="realiseYear" ToolTip="{DynamicResource year_utt}" Width="30" MaxLength="4" PreviewTextInput="TextInputIsNumber"/>
+            <CheckBox x:Name="watched" ToolTip="{DynamicResource watched_utt}" Margin="20,1" VerticalAlignment="Center"
                   MouseRightButtonDown="watched_MouseRightButtonDown" PreviewMouseLeftButtonDown="watched_PreviewMouseLeftButtonDown"/>
-            <Buttons:DateUpdateControl x:Name="startWatchDate" ToolTip="Start Watch Date (Date(dd.mm.yyyy))" Width="62" 
+            <Buttons:DateUpdateControl x:Name="startWatchDate" ToolTip="{DynamicResource start_watch_date_utt}" Width="62" 
                                    Background="#FF353535" BorderThickness="1" BorderBrush="#FF7A7A7A"/>
-            <TextBox x:Name="countOfWatchedSeries" ToolTip="Count Of Watched Series (Integer number)" Width="30" PreviewTextInput="TextInputIsNumber"/>
-            <Buttons:DateUpdateControl x:Name="watchDate" ToolTip="Watch Date (Date(dd.mm.yyyy))" Width="62" 
+            <TextBox x:Name="countOfWatchedSeries" ToolTip="{DynamicResource watched_series_utt}" Width="30" PreviewTextInput="TextInputIsNumber"/>
+            <Buttons:DateUpdateControl x:Name="watchDate" ToolTip="{DynamicResource end_watch_date_utt}" Width="62" 
                                    Background="#FF353535" BorderThickness="1" BorderBrush="#FF7A7A7A" />
-            <TextBox x:Name="totalSeries" ToolTip="Total Series (Integer number)" Width="30" PreviewTextInput="TextInputIsNumber"/>
-            <ComboBox x:Name="mark" ToolTip="Mark" Width="45"/>
-            <TextBox x:Name="countOfViews" ToolTip="Count Of Views (Integer number)" Width="30" PreviewTextInput="TextInputIsNumber"/>
+            <TextBox x:Name="totalSeries" ToolTip="{DynamicResource total_series_utt}" Width="30" PreviewTextInput="TextInputIsNumber"/>
+            <ComboBox x:Name="mark" ToolTip="{DynamicResource mark_utt}" Width="45"/>
+            <TextBox x:Name="countOfViews" ToolTip="{DynamicResource cov_utt}" Width="30" PreviewTextInput="TextInputIsNumber"/>
             <Rectangle Width="15"/>
             <Button x:Name="btn_comment" Content="{DynamicResource comment_btn}" Click="btn_comment_Click"/>
             <Button x:Name="btn_sources" Content="{DynamicResource upd_source_btn}" Click="btn_sources_Click"/>
         </StackPanel>
-        <TextBox x:Name="comment" ToolTip="Comment" Width="655" Grid.Row="1" HorizontalAlignment="Left"/>
+        <TextBox x:Name="comment" ToolTip="{DynamicResource comment_utt}" Width="655" Grid.Row="1" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

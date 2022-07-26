@@ -96,5 +96,28 @@
     <v:String x:Key="open_edit_tt">Open edit menu</v:String>
     <v:String x:Key="open_more_info_tt">Open more info menu</v:String>
     <v:String x:Key="open_comment_tt">Open comment</v:String>
+    
+    <!--Update Controls ToolTips-->
+    <v:String x:Key="hidename_utt">Hide Name (Text)</v:String>
+
+    <v:String x:Key="id_utt">ID (cannot be changed)</v:String>
+    <v:String x:Key="name_utt">Name (Text)</v:String>
+    <v:String x:Key="genre_utt">Genre</v:String>
+    <v:String x:Key="year_utt">Realise Year (Integer number)</v:String>
+    <v:String x:Key="mark_utt">Mark</v:String>
+
+    <v:String x:Key="start_watch_date_utt">Start Watch Date (Date(dd.mm.yyyy))</v:String>
+    <v:String x:Key="end_watch_date_utt">End Watch Date (Date(dd.mm.yyyy))</v:String>
+    <v:String x:Key="watched_series_utt">Count Of Watched Series (Integer number)</v:String>
+    <v:String x:Key="total_series_utt">Total Series (Integer number)</v:String>
+    <v:String x:Key="watched_utt">Watched (Boolean)</v:String>
+    <v:String x:Key="cov_utt">Count of views (Integer number)</v:String>
+    <v:String x:Key="comment_utt">Comment (Text)</v:String>
+
+    <v:String x:Key="author_utt">Author (Text)</v:String>
+    <v:String x:Key="bookmark_utt">Bookmark (Text)</v:String>
+    <v:String x:Key="end_read_date_utt">End Read Date (Date(dd.mm.yyyy))</v:String>
+    <v:String x:Key="readed_utt">Readed (Boolean)</v:String>
+    <v:String x:Key="cor_utt">Count of readings (Integer number)</v:String>
 
 </ResourceDictionary>

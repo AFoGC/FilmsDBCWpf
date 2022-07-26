@@ -80,7 +80,7 @@
     <v:String x:Key="end_watch_date_tt">Дата закінчення перегляду</v:String>
     <v:String x:Key="watched_series_tt">Кількість переглянутих серій</v:String>
     <v:String x:Key="total_series_tt">Всього серій</v:String>
-    <v:String x:Key="watched_tt">Перегляно</v:String>
+    <v:String x:Key="watched_tt">Переглянуто</v:String>
     <v:String x:Key="cov_tt">Кількісить переглядів</v:String>
     <v:String x:Key="comment_tt">Коментар</v:String>
 
@@ -96,5 +96,28 @@
     <v:String x:Key="open_edit_tt">Відкрити меню змін</v:String>
     <v:String x:Key="open_more_info_tt">Відкрити меню повної інформації</v:String>
     <v:String x:Key="open_comment_tt">Відкрити коментар</v:String>
-    
+
+    <!--Update Controls ToolTips-->
+    <v:String x:Key="hidename_utt">Приховане ім'я (Текст)</v:String>
+
+    <v:String x:Key="id_utt">ID (не може бути змінено)</v:String>
+    <v:String x:Key="name_utt">Назва (Текст)</v:String>
+    <v:String x:Key="genre_utt">Жанр</v:String>
+    <v:String x:Key="year_utt">Рік випуску (Ціле число)</v:String>
+    <v:String x:Key="mark_utt">Оцінка</v:String>
+
+    <v:String x:Key="start_watch_date_utt">Дата початку перегляду (Дата(дд.мм.рррр))</v:String>
+    <v:String x:Key="end_watch_date_utt">Дата закінчення перегляду (Дата(дд.мм.рррр))</v:String>
+    <v:String x:Key="watched_series_utt">Кількість переглянутих серій (Ціле число)</v:String>
+    <v:String x:Key="total_series_utt">Всього серій (Ціле число)</v:String>
+    <v:String x:Key="watched_utt">Переглянуто (Бульове значення)</v:String>
+    <v:String x:Key="cov_utt">Кількісить переглядів (Ціле число)</v:String>
+    <v:String x:Key="comment_utt">Коментар (Текст)</v:String>
+
+    <v:String x:Key="author_utt">Автор (Текст)</v:String>
+    <v:String x:Key="bookmark_utt">Закладка (Текст)</v:String>
+    <v:String x:Key="end_read_date_utt">Дата закінчення читання (Дата(дд.мм.рррр))</v:String>
+    <v:String x:Key="readed_utt">Прочитано (Бульове значення)</v:String>
+    <v:String x:Key="cor_utt">Кількість читань (Ціле число)</v:String>
+
 </ResourceDictionary>

@@ -17,16 +17,19 @@
             </ContextMenu>
         </Grid.ContextMenu>
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="id" Text="{Binding ID}" Style="{StaticResource ROtextbox}" ToolTip="ID" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="name" Text="{Binding Name}" Style="{StaticResource ROtextbox}" ToolTip="Name" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="genre" Text="{Binding BookGenre}" Style="{StaticResource ROtextbox}" ToolTip="Genre" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="realiseYear" Text="{Binding PublicationYear}" Style="{StaticResource ROtextbox}" ToolTip="Realise Year" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <CheckBox x:Name="readed" IsChecked="{Binding Readed}" ToolTip="Readed" Margin="20,0" IsEnabled="False" />
-            <TextBox x:Name="author" Text="{Binding Author}" Style="{StaticResource ROtextbox}" ToolTip="Author" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="bookmark" Text="{Binding Bookmark}" Style="{StaticResource ROtextbox}" ToolTip="Bookmark" Width="84" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="fullReadDate" Text="{Binding FullReadDate}" Style="{StaticResource ROtextbox}" ToolTip="Full Read Date" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="mark" Text="{Binding Mark}" Style="{StaticResource ROtextbox}" ToolTip="Mark" Width="43" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="countOfReadings" Text="{Binding CountOfReadings}" Style="{StaticResource ROtextbox}" ToolTip="Count Of Readings" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <StackPanel.Resources>
+                <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}"/>
+            </StackPanel.Resources>
+            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="genre" Text="{Binding BookGenre}" ToolTip="{DynamicResource genre_tt}" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="realiseYear" Text="{Binding PublicationYear}" ToolTip="{DynamicResource year_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <CheckBox x:Name="readed" IsChecked="{Binding Readed}" ToolTip="{DynamicResource readed_tt}" Margin="20,0" IsEnabled="False" />
+            <TextBox x:Name="author" Text="{Binding Author}" ToolTip="{DynamicResource author_tt}" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="bookmark" Text="{Binding Bookmark}" ToolTip="{DynamicResource bookmark_tt}" Width="84" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="fullReadDate" Text="{Binding FullReadDate}" ToolTip="{DynamicResource end_read_date_tt}" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="43" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="countOfReadings" Text="{Binding CountOfReadings}" ToolTip="{DynamicResource cor_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="1">
             <StackPanel.Resources>
@@ -35,8 +38,8 @@
                     <Setter Property="FontSize" Value="10"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btn_copyUrl" Content="{Binding Sources}" ToolTip="Copy url" Width="101" Click="btn_copyUrl_Click" />
-            <Button x:Name="btn_update" Content="Edit" ToolTip="Open edit menu" Width="78" Margin="5,1" Click="btn_update_Click"/>
+            <Button x:Name="btn_copyUrl" Content="{Binding Sources}" ToolTip="{DynamicResource copy_url_tt}" Width="101" Click="btn_copyUrl_Click" />
+            <Button x:Name="btn_update" Content="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}" Width="78" Margin="5,1" Click="btn_update_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -59,6 +59,39 @@
     <v:String x:Key="readed_btn">Прочитано</v:String>
     <v:String x:Key="unreaded_btn">Непрочитано</v:String>
     
-    <!--Tables Controls-->
+    <!--Tables Controls Buttons-->
     <v:String x:Key="edit_btn">Змінити</v:String>
+    <v:String x:Key="edit_category_btn">Змінити категорію</v:String>
+    <v:String x:Key="comment_btn">Коментар</v:String>
+    <v:String x:Key="more_info_btn">Більш детально</v:String>
+    <v:String x:Key="upd_source_btn">Джерело</v:String>
+
+    <!--Table ToolTips-->
+    <v:String x:Key="id_tt">ID</v:String>
+    <v:String x:Key="name_tt">Назва</v:String>
+    <v:String x:Key="genre_tt">Жанр</v:String>
+    <v:String x:Key="year_tt">Рік випуску</v:String>
+    <v:String x:Key="mark_tt">Оцінка</v:String>
+
+    <v:String x:Key="start_watch_date_tt">Дата початку перегляду</v:String>
+    <v:String x:Key="end_watch_date_tt">Дата закінчення перегляду</v:String>
+    <v:String x:Key="watched_series_tt">Кількість переглянутих серій</v:String>
+    <v:String x:Key="total_series_tt">Всього серій</v:String>
+    <v:String x:Key="watched_tt">Перегляно</v:String>
+    <v:String x:Key="cov_tt">Кількісить переглядів</v:String>
+    <v:String x:Key="comment_tt">Коментар</v:String>
+
+    <v:String x:Key="author_tt">Автор</v:String>
+    <v:String x:Key="bookmark_tt">Закладка</v:String>
+    <v:String x:Key="end_read_date_tt">Дата закінчення читання</v:String>
+    <v:String x:Key="readed_tt">Прочитано</v:String>
+    <v:String x:Key="cor_tt">Кількість читань</v:String>
+    
+    <v:String x:Key="add_in_category_tt">Створити новий елемент в категорії</v:String>
+    <v:String x:Key="collapse_category_tt">Згорнути елементи категорії</v:String>
+    <v:String x:Key="copy_url_tt">Скопіювати посилання</v:String>
+    <v:String x:Key="open_edit_tt">Відкрити меню змін</v:String>
+    <v:String x:Key="open_more_info_tt">Відкрити меню повної інформації</v:String>
+    <v:String x:Key="open_comment_tt">Відкрити коментар</v:String>
+    
 </ResourceDictionary>

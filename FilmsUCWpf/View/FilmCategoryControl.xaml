@@ -22,14 +22,17 @@
                 <MenuItem Header="Remove Selected" Click="removeSelected_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <TextBox x:Name="id" Text="{Binding ID}" Style="{StaticResource ROtextbox}" ToolTip="ID" Width="28"/>
+        <Grid.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}"/>
+        </Grid.Resources>
+        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28"/>
         <StackPanel Orientation="Horizontal" Grid.Column="1">
-            <TextBox x:Name="name" Text="{Binding Name}" Style="{StaticResource ROtextbox}" ToolTip="Name" Width="178"/>
-            <TextBox x:Name="mark" Text="{Binding Mark}" Style="{StaticResource ROtextbox}"  ToolTip="Mark" Width="42"/>
+            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178"/>
+            <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="42"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <WrapPanel x:Name="cat_panel" Orientation="Vertical"/>
-            <Button x:Name="btn_plus" Style="{StaticResource GrayButton}" Content="+" Width="15" Height="14" 
+            <Button x:Name="btn_plus" Style="{StaticResource GrayButton}" ToolTip="{DynamicResource add_in_category_tt}" Content="+" Width="15" Height="14" 
                     Margin="1,1,1,5" FontSize="10" HorizontalAlignment="Left" Click="btn_plus_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="3">
@@ -39,8 +42,8 @@
                     <Setter Property="FontSize" Value="10"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btn_update" Content="Edit Category" ToolTip="Open edit menu" Width="193" Click="btn_update_Click"/>
-            <Button x:Name="btn_show_hide" Content="v" Width="13" ToolTip="Сollapse category elements" Click="hide_show_Cilck" Margin="5,0"/>
+            <Button x:Name="btn_update" Content="{DynamicResource edit_category_btn}" ToolTip="{DynamicResource open_edit_tt}" Width="193" Click="btn_update_Click"/>
+            <Button x:Name="btn_show_hide" Content="v" Width="13" ToolTip="{DynamicResource collapse_category_tt}" Click="hide_show_Cilck" Margin="5,0"/>
         </StackPanel>
     </Grid>
 </UserControl>

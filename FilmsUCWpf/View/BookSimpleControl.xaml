@@ -20,13 +20,13 @@
                     <Setter Property="FontSize" Value="10"/>
                 </Style>
             </StackPanel.Resources>
-            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="genre" Text="{Binding BookGenre}" ToolTip="Genre" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="realiseYear" Text="{Binding PublicationYear}" ToolTip="Realise Year" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <CheckBox x:Name="readed" IsChecked="{Binding Readed}" ToolTip="Readed" Margin="20,0" IsEnabled="False"/>
-            <Button x:Name="btn_moreInfo" Content="More Info" Width="110" ToolTip="Open more info menu" Click="btn_moreInfo_Click" />
-            <Button x:Name="btn_update" Content="Edit" Width="78" ToolTip="Open edit menu" Margin="5,1,1,1" Click="btn_update_Click"/>
+            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="genre" Text="{Binding BookGenre}" ToolTip="{DynamicResource genre_tt}" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="realiseYear" Text="{Binding PublicationYear}" ToolTip="{DynamicResource year_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <CheckBox x:Name="readed" IsChecked="{Binding Readed}" ToolTip="{DynamicResource readed_tt}" Margin="20,0" IsEnabled="False"/>
+            <Button x:Name="btn_moreInfo" Content="{DynamicResource more_info_btn}" Width="110" ToolTip="{DynamicResource open_more_info_tt}" Click="btn_moreInfo_Click" />
+            <Button x:Name="btn_update" Content="{DynamicResource edit_btn}" Width="78" ToolTip="{DynamicResource open_edit_tt}" Margin="5,1,1,1" Click="btn_update_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

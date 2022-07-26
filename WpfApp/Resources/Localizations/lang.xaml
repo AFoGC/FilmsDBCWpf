@@ -59,6 +59,39 @@
     <v:String x:Key="readed_btn">Readed</v:String>
     <v:String x:Key="unreaded_btn">Unreaded</v:String>
     
-    <!--Tables Controls-->
+    <!--Tables Controls Buttons-->
     <v:String x:Key="edit_btn">Edit</v:String>
+    <v:String x:Key="edit_category_btn">Edit Category</v:String>
+    <v:String x:Key="comment_btn">Comment</v:String>
+    <v:String x:Key="more_info_btn">More Info</v:String>
+    <v:String x:Key="upd_source_btn">Update Source</v:String>
+
+    <!--Table ToolTips-->
+    <v:String x:Key="id_tt">ID</v:String>
+    <v:String x:Key="name_tt">Name</v:String>
+    <v:String x:Key="genre_tt">Genre</v:String>
+    <v:String x:Key="year_tt">Realise Year</v:String>
+    <v:String x:Key="mark_tt">Mark</v:String>
+
+    <v:String x:Key="start_watch_date_tt">Start Watch Date</v:String>
+    <v:String x:Key="end_watch_date_tt">End Watch Date</v:String>
+    <v:String x:Key="watched_series_tt">Count Of Watched Series</v:String>
+    <v:String x:Key="total_series_tt">Total Series</v:String>
+    <v:String x:Key="watched_tt">Watched</v:String>
+    <v:String x:Key="cov_tt">Count of views</v:String>
+    <v:String x:Key="comment_tt">Comment</v:String>
+
+    <v:String x:Key="author_tt">Author</v:String>
+    <v:String x:Key="bookmark_tt">Bookmark</v:String>
+    <v:String x:Key="end_read_date_tt">End Read Date</v:String>
+    <v:String x:Key="readed_tt">Readed</v:String>
+    <v:String x:Key="cor_tt">Count of readings</v:String>
+
+    <v:String x:Key="add_in_category_tt">Create new element in category</v:String>
+    <v:String x:Key="collapse_category_tt">Сollapse category elements</v:String>
+    <v:String x:Key="copy_url_tt">Copy url</v:String>
+    <v:String x:Key="open_edit_tt">Open edit menu</v:String>
+    <v:String x:Key="open_more_info_tt">Open more info menu</v:String>
+    <v:String x:Key="open_comment_tt">Open comment</v:String>
+
 </ResourceDictionary>

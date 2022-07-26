@@ -24,17 +24,17 @@
             <StackPanel.Resources>
                 <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}"/>
             </StackPanel.Resources>
-            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="Genre" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="Realise Year" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="Watched" Margin="20,0" IsEnabled="False"/>
-            <TextBox x:Name="startWatchDate" Text="{Binding StartWatchDate}" ToolTip="Strart Watch Date" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="countOfWatchedSeries" Text="{Binding CountOfWatchedSeries}" ToolTip="Count Of Watched Series" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="watchDate" Text="{Binding DateOfWatch}" ToolTip="Watched Date" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="totalSeries" Text="{Binding TotalSeries}" ToolTip="Total Series" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="Mark" Width="43" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="countOfviews" Text="{Binding CountOfViews}" ToolTip="Count Of Views" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="{DynamicResource genre_tt}" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="{DynamicResource watched_tt}" Margin="20,0" IsEnabled="False"/>
+            <TextBox x:Name="startWatchDate" Text="{Binding StartWatchDate}" ToolTip="{DynamicResource start_watch_date_tt}" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="countOfWatchedSeries" Text="{Binding CountOfWatchedSeries}" ToolTip="{DynamicResource watched_series_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="watchDate" Text="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_tt}" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="totalSeries" Text="{Binding TotalSeries}" ToolTip="{DynamicResource total_series_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="43" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="countOfviews" Text="{Binding CountOfViews}" ToolTip="{DynamicResource cov_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="1">
             <StackPanel.Resources>

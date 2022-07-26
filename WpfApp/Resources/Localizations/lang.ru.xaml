@@ -58,7 +58,40 @@
     <v:String x:Key="show_bprior_btn">Меню приоритетных книг</v:String>
     <v:String x:Key="readed_btn">Прочитано</v:String>
     <v:String x:Key="unreaded_btn">Непрочитано</v:String>
-    
-    <!--Tables Controls-->
+
+    <!--Tables Controls Buttons-->
     <v:String x:Key="edit_btn">Изменить</v:String>
+    <v:String x:Key="edit_category_btn">Изменить категорию</v:String>
+    <v:String x:Key="comment_btn">Комментарий</v:String>
+    <v:String x:Key="more_info_btn">Более детально</v:String>
+    <v:String x:Key="upd_source_btn">Источник</v:String>
+
+    <!--Table ToolTips-->
+    <v:String x:Key="id_tt">ID</v:String>
+    <v:String x:Key="name_tt">Название</v:String>
+    <v:String x:Key="genre_tt">Жанр</v:String>
+    <v:String x:Key="year_tt">Год выпуска</v:String>
+    <v:String x:Key="mark_tt">Оценка</v:String>
+
+    <v:String x:Key="start_watch_date_tt">Дата начала просмотра</v:String>
+    <v:String x:Key="end_watch_date_tt">Дата окончания просмотра</v:String>
+    <v:String x:Key="watched_series_tt">Количество просмотренных серий</v:String>
+    <v:String x:Key="total_series_tt">Всего серий</v:String>
+    <v:String x:Key="watched_tt">Просмотрено</v:String>
+    <v:String x:Key="cov_tt">Количество просмотров</v:String>
+    <v:String x:Key="comment_tt">Комментарий</v:String>
+
+    <v:String x:Key="author_tt">Автор</v:String>
+    <v:String x:Key="bookmark_tt">Закладка</v:String>
+    <v:String x:Key="end_read_date_tt">Дата окончания чтения</v:String>
+    <v:String x:Key="readed_tt">Прочтено</v:String>
+    <v:String x:Key="cor_tt">Количество прочтений</v:String>
+
+    <v:String x:Key="add_in_category_tt">Создать новый элемент в категории</v:String>
+    <v:String x:Key="collapse_category_tt">Свернуть элементы категории</v:String>
+    <v:String x:Key="copy_url_tt">Скопировать ссылку</v:String>
+    <v:String x:Key="open_edit_tt">Открыть меню изменений</v:String>
+    <v:String x:Key="open_more_info_tt">Открыть меню полной информации</v:String>
+    <v:String x:Key="open_comment_tt">Открыть комментарий</v:String>
+    
 </ResourceDictionary>

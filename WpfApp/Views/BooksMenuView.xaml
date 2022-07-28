@@ -28,10 +28,10 @@
                 </Style>
             </StackPanel.Resources>
             <Border Width="940">
-                <Frame x:Name="MainInfoPanel" NavigationUIVisibility="Hidden"/>
+                <StackPanel x:Name="MainInfoPanel"/>
             </Border>
             <Border>
-                <Frame x:Name="SourceInfoPanel" NavigationUIVisibility="Hidden"/>
+                <StackPanel x:Name="SourceInfoPanel"/>
             </Border>
         </StackPanel>
 

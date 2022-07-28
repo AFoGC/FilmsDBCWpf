@@ -49,13 +49,13 @@ namespace WpfApp.Views
         {
             CloseAllInfos();
             infoControl.Open(uiElement);
-            MainInfoPanel.Content = infoControl;
+            MainInfoPanel.Children.Add(infoControl);
         }
         public void OpenUpdateInfo(IUpdateControl uiElement)
         {
             CloseAllInfos();
             updateControl.Open(uiElement);
-            MainInfoPanel.Content = updateControl;
+            MainInfoPanel.Children.Add(updateControl);
         }
         public void UpdateInUpdateInfo()
         {
@@ -64,12 +64,13 @@ namespace WpfApp.Views
         public void OpenSourcesInfo(TLCollection<Source> sources)
         {
             sourcesControl.Open(sources);
-            SourceInfoPanel.Content = sourcesControl;
+            SourceInfoPanel.Children.Clear();
+            SourceInfoPanel.Children.Add(sourcesControl);
         }
         public void CloseAllInfos()
         {
-            MainInfoPanel.Content = null;
-            SourceInfoPanel.Content = null;
+            MainInfoPanel.Children.Clear();
+            SourceInfoPanel.Children.Clear();
         }
 
         private void bringToFront(Grid grid, UIElement element)

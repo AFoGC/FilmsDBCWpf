@@ -18,6 +18,6 @@
             </Style>
         </Grid.Resources>
         <Button Content="X" Width="20" Height="20" Click="Close_Click"/>
-        <Frame x:Name="ElementFrame" Grid.Row="1" />
+        <Frame x:Name="ElementFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </UserControl>

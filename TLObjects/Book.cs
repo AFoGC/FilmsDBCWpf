@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
@@ -19,7 +20,7 @@ namespace TL_Objects
 		private bool readed = false;
 		private DateTime fullReadDate = new DateTime();
 		private sbyte mark = -1;
-		private TLCollection<Source> sources = new TLCollection<Source>();
+		private ObservableCollection<Source> sources = new ObservableCollection<Source>();
 
 		private int countOfReadings = 0;
 		private String bookmark = "";
@@ -165,7 +166,7 @@ namespace TL_Objects
 			get { return mark; }
 			set { mark = value; OnPropertyChanged(nameof(Mark)); }
 		}
-		public TLCollection<Source> Sources
+		public ObservableCollection<Source> Sources
 		{
 			get { return sources; }
 			set { sources = value; OnPropertyChanged(nameof(Sources)); }

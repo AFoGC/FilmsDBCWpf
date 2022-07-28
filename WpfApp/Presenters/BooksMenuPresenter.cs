@@ -6,6 +6,7 @@ using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using TablesLibrary.Interpreter;
@@ -91,7 +92,7 @@ namespace WpfApp.Presenters
 			view.OpenUpdateInfo(uiElement);
         }
 
-		public void OpenSourcesInfo(TLCollection<Source> sources)
+		public void OpenSourcesInfo(ObservableCollection<Source> sources)
         {
 			view.OpenSourcesInfo(sources);
         }

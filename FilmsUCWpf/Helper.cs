@@ -1,6 +1,7 @@
 ﻿using FilmsUCWpf.Presenter.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace FilmsUCWpf
 			}
 		}
 
-		public static String SourcesStateString(TLCollection<Source> sources)
+		public static String SourcesStateString(ObservableCollection<Source> sources)
         {
             if (sources.Count == 0)
             {
@@ -46,7 +47,7 @@ namespace FilmsUCWpf
             }
         }
 
-        public static void CopyFirstSource(TLCollection<Source> sources)
+        public static void CopyFirstSource(ObservableCollection<Source> sources)
         {
             if (sources.Count != 0)
             {

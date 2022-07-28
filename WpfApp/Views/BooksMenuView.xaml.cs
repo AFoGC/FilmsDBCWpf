@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -61,7 +62,7 @@ namespace WpfApp.Views
         {
             updateControl.Update();
         }
-        public void OpenSourcesInfo(TLCollection<Source> sources)
+        public void OpenSourcesInfo(ObservableCollection<Source> sources)
         {
             sourcesControl.Open(sources);
             SourceInfoPanel.Children.Clear();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
@@ -20,7 +21,7 @@ namespace TL_Objects
 		private DateTime dateOfWatch = new DateTime();
 
 		private string comment = "";
-		private TLCollection<Source> sources = new TLCollection<Source>();
+		private ObservableCollection<Source> sources = new ObservableCollection<Source>();
 
 		private int countOfviews = 0;
 		private int franshiseId = 0;
@@ -165,7 +166,7 @@ namespace TL_Objects
 			set { comment = value; OnPropertyChanged(nameof(Comment)); }
 		}
 
-		public TLCollection<Source> Sources
+		public ObservableCollection<Source> Sources
 		{
 			get { return sources; }
 			set { sources = value; OnPropertyChanged(nameof(Sources)); }

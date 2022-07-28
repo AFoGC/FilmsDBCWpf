@@ -19,7 +19,7 @@ namespace WpfApp.Views.Interfaces
         void OpenMoreInfo(IView uiElement);
         void OpenUpdateInfo(IUpdateControl uiElement);
         void UpdateInUpdateInfo();
-        void OpenSourcesInfo(TLCollection<Source> sources);
+        void OpenSourcesInfo(ObservableCollection<Source> sources);
         void CloseAllInfos();
     }
 }

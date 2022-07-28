@@ -1,6 +1,7 @@
 ﻿using FilmsUCWpf.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,8 +29,8 @@ namespace WpfApp.Views
             InitializeComponent();
         }
 
-        private TLCollection<Source> sources;
-        public void Open(TLCollection<Source> sources)
+        private ObservableCollection<Source> sources;
+        public void Open(ObservableCollection<Source> sources)
         {
             this.sources = sources;
             SourcesPanel.Children.Clear();

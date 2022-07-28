@@ -1,6 +1,7 @@
 ﻿using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,6 @@ namespace FilmsUCWpf.Presenter.Interfaces
         IMenuModel<T> Model { get; }
         void OpenMoreInfo(IView uiElement);
         void OpenUpdateInfo(IUpdateControl uiElement);
-        void OpenSourcesInfo(TLCollection<Source> sources);
+        void OpenSourcesInfo(ObservableCollection<Source> sources);
     }
 }

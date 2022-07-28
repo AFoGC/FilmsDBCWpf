@@ -119,5 +119,9 @@
     <v:String x:Key="end_read_date_utt">End Read Date (Date(dd.mm.yyyy))</v:String>
     <v:String x:Key="readed_utt">Readed (Boolean)</v:String>
     <v:String x:Key="cor_utt">Count of readings (Integer number)</v:String>
+    
+    <!--InfoPanels-->
+    <v:String x:Key="add_source_btn">Add</v:String>
+    <v:String x:Key="apply_update_btn">Apply</v:String>
 
 </ResourceDictionary>

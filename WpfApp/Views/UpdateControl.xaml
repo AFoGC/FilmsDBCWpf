@@ -22,7 +22,7 @@
                 <Setter Property="Margin" Value="3"/>
             </Style>
         </Grid.Resources>
-        <Button Content="Apply" Style="{StaticResource ApplyButton}" Width="100" Height="20" Click="Button_Click"/>
+        <Button Content="{DynamicResource apply_update_btn}" Style="{StaticResource ApplyButton}" Width="100" Height="20" Click="Button_Click"/>
         <Button Content="X" Style="{StaticResource CloseButton}" Width="20" Height="20" Click="Close_Click"/>
         <Frame x:Name="ElementFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>

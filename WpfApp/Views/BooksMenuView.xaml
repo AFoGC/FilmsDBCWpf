@@ -84,7 +84,7 @@
         </Grid>
 
         <ScrollViewer HorizontalAlignment="Left" Width="960" Grid.Column="1" Grid.Row="3">
-            <WrapPanel x:Name="controlsPanel" Orientation="Vertical"/>
+            <StackPanel x:Name="controlsPanel" Orientation="Vertical"/>
         </ScrollViewer>
 
         <Border BorderBrush="White" BorderThickness="1" Width="268"

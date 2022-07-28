@@ -18,7 +18,7 @@
             <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="1" Grid.Column="1">
-            <WrapPanel x:Name="SettingsListPanel" Background="#FF121212" Orientation="Vertical"/>
+            <StackPanel x:Name="SettingsListPanel" Background="#FF121212" Orientation="Vertical"/>
         </ScrollViewer>
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
             <local:UserSettingsControl x:Name="LogInUser" Height="80" Width="250" 

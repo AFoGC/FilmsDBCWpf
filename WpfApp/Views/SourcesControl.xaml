@@ -10,7 +10,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Style="{StaticResource BlueButton}" Content="Add" Height="20" Width="85" HorizontalAlignment="Left" Click="Button_Click" />
-        <StackPanel x:Name="SourcesPanel" Grid.Row="1"/>
+        <Button Style="{StaticResource BlueButton}" Content="{DynamicResource add_source_btn}" Height="20" Width="85" HorizontalAlignment="Left" Click="Button_Click" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="SourcesPanel"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>

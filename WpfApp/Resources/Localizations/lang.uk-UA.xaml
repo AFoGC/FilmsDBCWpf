@@ -120,4 +120,8 @@
     <v:String x:Key="readed_utt">Прочитано (Бульове значення)</v:String>
     <v:String x:Key="cor_utt">Кількість читань (Ціле число)</v:String>
 
+    <!--InfoPanels-->
+    <v:String x:Key="add_source_btn">Додати</v:String>
+    <v:String x:Key="apply_update_btn">Застосувати</v:String>
+
 </ResourceDictionary>

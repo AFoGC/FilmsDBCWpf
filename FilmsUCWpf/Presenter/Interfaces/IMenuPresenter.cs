@@ -1,25 +1,19 @@
 ﻿using FilmsUCWpf.View.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects.CellDataClasses;
 
-namespace WpfApp.Views.Interfaces
+namespace FilmsUCWpf.Presenter.Interfaces
 {
-    public interface IBaseMenuView
+    public interface IMenuPresenter<T> where T : Cell
     {
-        IList MenuControls { get; }
-        IList GenresControls { get; }
+        IMenuModel<T> Model { get; }
         void OpenMoreInfo(IView uiElement);
         void OpenUpdateInfo(IUpdateControl uiElement);
-        void UpdateInUpdateInfo();
         void OpenSourcesInfo(TLCollection<Source> sources);
-        void CloseAllInfos();
     }
 }

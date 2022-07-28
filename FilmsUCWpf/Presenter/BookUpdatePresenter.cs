@@ -14,10 +14,10 @@ namespace FilmsUCWpf.Presenter
 	{
 		private Book model;
 		private IBookUpdateView view;
-		private IBaseMenu menu;
+		private IMenuPresenter<Book> menu;
 		private TableCollection collection;
 
-		public BookUpdatePresenter(Book model, IBookUpdateView view, IMenu<Book> menu, TableCollection table)
+		public BookUpdatePresenter(Book model, IBookUpdateView view, IMenuPresenter<Book> menu, TableCollection table)
 		{
 			this.model = model;
 			this.view = view;
@@ -66,7 +66,7 @@ namespace FilmsUCWpf.Presenter
 
 		public void OpenSources()
 		{
-			Helper.OpenSources(menu, model.Sources);
+			menu.OpenSourcesInfo(model.Sources);
 		}
 	}
 }

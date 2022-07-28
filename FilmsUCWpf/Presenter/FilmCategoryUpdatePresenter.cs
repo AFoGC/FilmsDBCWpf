@@ -15,10 +15,10 @@ namespace FilmsUCWpf.Presenter
 	{
 		private Category model;
 		private IFilmCategoryUpdateView view;
-		private IMenu<Film> menu;
+		private IMenuModel<Film> menu;
 		private TableCollection tableCollection;
 
-		public FilmCategoryUpdatePresenter(Category model, IFilmCategoryUpdateView view, IMenu<Film> menu, TableCollection tableCollection)
+		public FilmCategoryUpdatePresenter(Category model, IFilmCategoryUpdateView view, IMenuModel<Film> menu, TableCollection tableCollection)
 		{
 			this.model = model;
 			this.view = view;

@@ -3,34 +3,32 @@ using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
 using FilmsUCWpf.View.Interfaces;
-using InfoMenusWpf.MoreInfo;
-using InfoMenusWpf.UpdateInfo;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using TablesLibrary.Interpreter;
+using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
+using TL_Objects.CellDataClasses;
 using TL_Tables;
 using WpfApp.Models;
 using WpfApp.Views.Interfaces;
 
 namespace WpfApp.Presenters
 {
-    public class BooksMenuPresenter
+    public class BooksMenuPresenter : IMenuPresenter<Book>
 	{
 		private BooksMenuModel model;
 		private IBaseMenuView view;
+		IMenuModel<Book> IMenuPresenter<Book>.Model => model;
 
 		public BooksMenuPresenter(BooksMenuModel model, IBaseMenuView view)
 		{
 			this.view = view;
 			this.model = model;
-			this.model.MoreInfoFormVisualizer = new MoreInfoFormVisualizer(view.InfoCanvas);
-			this.model.UpdateFormVisualizer = new UpdateFormVisualizer(view.InfoCanvas);
-			this.model.MoreInfoFormVisualizer.UpdateVisualizer = this.model.UpdateFormVisualizer;
-			this.model.UpdateFormVisualizer.MoreVisualizer = this.model.MoreInfoFormVisualizer;
+			model.Presenter = this;
 
 			model.BookPresenters.CollectionChanged += presentersChanged;
 			model.CategoryPresenters.CollectionChanged += presentersChanged;
@@ -82,6 +80,21 @@ namespace WpfApp.Presenters
 		}
 
 		public void SaveTables() => model.TableCollection.SaveTables();
+
+		public void OpenMoreInfo(IView uiElement)
+        {
+			view.OpenMoreInfo(uiElement);
+        }
+
+		public void OpenUpdateInfo(IUpdateControl uiElement)
+        {
+			view.OpenUpdateInfo(uiElement);
+        }
+
+		public void OpenSourcesInfo(TLCollection<Source> sources)
+        {
+			view.OpenSourcesInfo(sources);
+        }
 
 		public void LoadCategories()
 		{
@@ -223,7 +236,7 @@ namespace WpfApp.Presenters
 
 		public void UpdateVisualizerIfOpen()
 		{
-			model.UpdateFormVisualizer.UpdateControl.Update();
+			view.UpdateInUpdateInfo();
 		}
 
 		private IEnumerable<BookCategoryPresenter> getCategoriesOnView()

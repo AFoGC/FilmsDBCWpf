@@ -19,12 +19,21 @@
             <ColumnDefinition Width="960"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
-        <Canvas Width="940" Height="90" Grid.Column="1" HorizontalAlignment="Left" Margin="1,0,0,0">
-            <Border BorderBrush="White" BorderThickness="1">
-                <Canvas Name="infoCanvas" HorizontalAlignment="Left" Width="938" Height="88" VerticalAlignment="Top"/>
+
+        <StackPanel Height="90" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                </Style>
+            </StackPanel.Resources>
+            <Border Width="940">
+                <Frame x:Name="MainInfoPanel" NavigationUIVisibility="Hidden"/>
             </Border>
-        </Canvas>
+            <Border>
+                <Frame x:Name="SourceInfoPanel" NavigationUIVisibility="Hidden"/>
+            </Border>
+        </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="1,0,0,0">
             <TextBox x:Name="textbox_search" HorizontalAlignment="Left" Margin="0,5" TextWrapping="NoWrap" VerticalAlignment="Top" 

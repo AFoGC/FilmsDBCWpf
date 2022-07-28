@@ -61,10 +61,10 @@
     <Compile Include="ModelBinder\FilmCategoryBinder.cs" />
     <Compile Include="ModelBinder\FilmSimpleBinder.cs" />
     <Compile Include="Presenter\Interfaces\BasePresenter.cs" />
-    <Compile Include="Presenter\Interfaces\IBaseMenu.cs" />
     <Compile Include="Presenter\Interfaces\IBasePresenter.cs" />
     <Compile Include="Presenter\Interfaces\IHasGenre.cs" />
-    <Compile Include="Presenter\Interfaces\IMenu.cs" />
+    <Compile Include="Presenter\Interfaces\IMenuModel.cs" />
+    <Compile Include="Presenter\Interfaces\IMenuPresenter.cs" />
     <Compile Include="Presenter\Interfaces\IToUpdateControl.cs" />
     <Compile Include="Presenter\Interfaces\IUpdatePresenter.cs" />
     <Compile Include="Presenter\BookCategoryPresenter.cs" />
@@ -100,6 +100,7 @@
     <Compile Include="View\Interfaces\IGenreView.cs" />
     <Compile Include="View\Interfaces\IFilmSerieUpdateView.cs" />
     <Compile Include="View\Interfaces\IFilmUpdateView.cs" />
+    <Compile Include="View\Interfaces\IUpdateControl.cs" />
     <Compile Include="View\Interfaces\IView.cs" />
     <Compile Include="View\BookCategoryControl.xaml.cs">
       <DependentUpon>BookCategoryControl.xaml</DependentUpon>
@@ -155,6 +156,9 @@
     <Compile Include="View\FilmPriorityControl.xaml.cs">
       <DependentUpon>FilmPriorityControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SourceControl.xaml.cs">
+      <DependentUpon>SourceControl.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -168,10 +172,6 @@
     <ProjectReference Include="..\CustomButtons\CustomButtons.csproj">
       <Project>{db9a63ca-2850-4e8d-978f-9313be50e4fc}</Project>
       <Name>CustomButtons</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InfoMenusWpf\InfoMenusWpf.csproj">
-      <Project>{8357f60c-35c5-4197-ba0e-a9800bc10765}</Project>
-      <Name>InfoMenusWpf</Name>
     </ProjectReference>
     <ProjectReference Include="..\TLObjects\TL_Objects.csproj">
       <Project>{850e8208-e369-4f93-8a80-8227c5605a6e}</Project>
@@ -252,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FilmPriorityControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SourceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

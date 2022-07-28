@@ -17,9 +17,9 @@ namespace FilmsUCWpf.Presenter
 {
     public class FilmPresenter : BasePresenter<Film>, IHasGenre
 	{
-		protected IMenu<Film> menu;
+		protected IMenuPresenter<Film> menu;
 
-		public FilmPresenter(Film film, IView view, IMenu<Film> menu, TableCollection collection) : base(film, view, collection)
+		public FilmPresenter(Film film, IView view, IMenuPresenter<Film> menu, TableCollection collection) : base(film, view, collection)
 		{
 			this.menu = menu;
 		}
@@ -42,7 +42,7 @@ namespace FilmsUCWpf.Presenter
 
 		public override void SetSelectedElement()
 		{
-			menu.SelectedElement = this;
+			menu.Model.SelectedElement = this;
 			View.SetVisualSelected();
 		}
 
@@ -86,11 +86,11 @@ namespace FilmsUCWpf.Presenter
 			SeriesTable table = (SeriesTable)TableCollection.GetTable<Serie>();
 			if (Model.Genre.IsSerialGenre)
 			{
-				menu.UpdateFormVisualizer.OpenUpdateControl(new FilmSerieUpdateControl(Model, menu, TableCollection));
+				menu.OpenUpdateInfo(new FilmSerieUpdateControl(Model, menu, TableCollection));
 			}
 			else
 			{
-				menu.UpdateFormVisualizer.OpenUpdateControl(new FilmUpdateControl(Model, menu, TableCollection));
+				menu.OpenUpdateInfo(new FilmUpdateControl(Model, menu, TableCollection));
 			}
 		}
 
@@ -104,7 +104,7 @@ namespace FilmsUCWpf.Presenter
 
 			FilmPresenter presenter = new FilmPresenter(Model, view, menu, TableCollection);
 
-			menu.MoreInfoFormVisualizer.OpenMoreInfoForm((Control)presenter.View);
+			menu.OpenMoreInfo(presenter.View);
 		}
 
 		public bool HasSelectedGenre(IGenre[] selectedGenres)
@@ -140,7 +140,7 @@ namespace FilmsUCWpf.Presenter
             if (category != null)
             {
 				category.RemoveFilmFromCategory(Model);
-				menu.AddElement(this.Model);
+				menu.Model.AddElement(this.Model);
             }
 		}
 	}

@@ -15,10 +15,10 @@ namespace FilmsUCWpf.Presenter
 	{
 		private BookCategory model;
 		private IBookCategoryUpdateView view;
-		private IMenu<Book> menu;
+		private IMenuModel<Book> menu;
 		private TableCollection tableCollection;
 
-		public BookCategoryUpdatePresenter(BookCategory model, IBookCategoryUpdateView view, IMenu<Book> menu, TableCollection tableCollection)
+		public BookCategoryUpdatePresenter(BookCategory model, IBookCategoryUpdateView view, IMenuModel<Book> menu, TableCollection tableCollection)
 		{
 			this.model = model;
 			this.view = view;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmsUCWpf.View.Interfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TablesLibrary.Interpreter.TableCell;
+using TL_Objects.CellDataClasses;
 using WpfApp.Models;
 using WpfApp.Presenters;
 using WpfApp.Views.Interfaces;
@@ -28,12 +31,45 @@ namespace WpfApp.Views
         private BooksMenuPresenter presenter;
         public IList MenuControls => controlsPanel.Children;
         public IList GenresControls => genres_panel.Children;
-        public Canvas InfoCanvas => infoCanvas;
+        private readonly MoreInfoControl infoControl;
+        private readonly UpdateControl updateControl;
+        private readonly SourcesControl sourcesControl;
 
         public BooksMenuView(MainWindowModel windowModel)
         {
             InitializeComponent();
             presenter = new BooksMenuPresenter(new BooksMenuModel(windowModel), this);
+
+            infoControl = new MoreInfoControl(this);
+            updateControl = new UpdateControl(this);
+            sourcesControl = new SourcesControl();
+        }
+
+        public void OpenMoreInfo(IView uiElement)
+        {
+            CloseAllInfos();
+            infoControl.Open(uiElement);
+            MainInfoPanel.Content = infoControl;
+        }
+        public void OpenUpdateInfo(IUpdateControl uiElement)
+        {
+            CloseAllInfos();
+            updateControl.Open(uiElement);
+            MainInfoPanel.Content = updateControl;
+        }
+        public void UpdateInUpdateInfo()
+        {
+            updateControl.Update();
+        }
+        public void OpenSourcesInfo(TLCollection<Source> sources)
+        {
+            sourcesControl.Open(sources);
+            SourceInfoPanel.Content = sourcesControl;
+        }
+        public void CloseAllInfos()
+        {
+            MainInfoPanel.Content = null;
+            SourceInfoPanel.Content = null;
         }
 
         private void bringToFront(Grid grid, UIElement element)

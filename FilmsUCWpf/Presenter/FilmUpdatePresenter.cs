@@ -15,9 +15,9 @@ namespace FilmsUCWpf.Presenter
 	{
 		private Film model;
 		private IFilmUpdateView view;
-		private IBaseMenu menu;
+		private IMenuPresenter<Film> menu;
 		private TableCollection collection;
-		public FilmUpdatePresenter(Film model, IFilmUpdateView view, IMenu<Film> menu, TableCollection collection)
+		public FilmUpdatePresenter(Film model, IFilmUpdateView view, IMenuPresenter<Film> menu, TableCollection collection)
 		{
 			this.model = model;
 			this.view = view;
@@ -70,7 +70,7 @@ namespace FilmsUCWpf.Presenter
 
 		public void OpenSources()
         {
-			Helper.OpenSources(menu, model.Sources);
+			menu.OpenSourcesInfo(model.Sources);
         }
     }
 }

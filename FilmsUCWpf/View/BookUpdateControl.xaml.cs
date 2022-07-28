@@ -1,7 +1,6 @@
 ﻿using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View.Interfaces;
-using InfoMenusWpf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +28,7 @@ namespace FilmsUCWpf.View
     public partial class BookUpdateControl : UserControl, IBookUpdateView, IUpdateControl
     {
         private BookUpdatePresenter presenter;
-        public BookUpdateControl(Book book, IMenu<Book> menu, TableCollection table)
+        public BookUpdateControl(Book book, IMenuPresenter<Book> menu, TableCollection table)
         {
             InitializeComponent();
             presenter = new BookUpdatePresenter(book, this, menu, table);

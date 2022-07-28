@@ -16,12 +16,12 @@ namespace FilmsUCWpf.Presenter
 {
     public class BookCategoryPresenter : BasePresenter<BookCategory>, IHasGenre
 	{
-		protected IMenu<Book> menu;
+		protected IMenuPresenter<Book> menu;
 		private List<BookPresenter> presenters;
 
 		new ICategoryView View { get => (ICategoryView)base.View; }
 
-		public BookCategoryPresenter(BookCategory category, ICategoryView view, IMenu<Book> menu, TableCollection collection) : base(category, view, collection)
+		public BookCategoryPresenter(BookCategory category, ICategoryView view, IMenuPresenter<Book> menu, TableCollection collection) : base(category, view, collection)
 		{
 			this.menu = menu;
 			presenters = new List<BookPresenter>();
@@ -140,7 +140,7 @@ namespace FilmsUCWpf.Presenter
 
 		public void OpenUpdateMenu()
 		{
-			menu.UpdateFormVisualizer.OpenUpdateControl(new BookCategoryUpdateControl(Model, menu, TableCollection));
+			menu.OpenUpdateInfo(new BookCategoryUpdateControl(Model, menu.Model, TableCollection));
 		}
 
 		public void CreateBookInCategory()
@@ -150,7 +150,7 @@ namespace FilmsUCWpf.Presenter
 			book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
 			TableCollection.GetTable<Book>().AddElement(book);
 			Model.Books.Add(book);
-			menu.RemoveElement(book);
+			menu.Model.RemoveElement(book);
 		}
 
 		private string getDefaulBookName()
@@ -163,27 +163,27 @@ namespace FilmsUCWpf.Presenter
 
 		public void AddSelected()
 		{
-			if (menu.SelectedElement != null)
+			if (menu.Model.SelectedElement != null)
 			{
-				Book book = menu.SelectedElement.Model;
+				Book book = menu.Model.SelectedElement.Model;
 				if (book.FranshiseId == 0)
 				{
 					Model.Books.Add(book);
-					menu.RemoveElement(menu.SelectedElement.Model);
-					menu.SelectedElement = null;
+					menu.Model.RemoveElement(menu.Model.SelectedElement.Model);
+					menu.Model.SelectedElement = null;
 				}
 			}
 		}
 
 		public void RemoveSelected()
 		{
-			if (menu.SelectedElement != null)
+			if (menu.Model.SelectedElement != null)
 			{
-				Book book = menu.SelectedElement.Model;
+				Book book = menu.Model.SelectedElement.Model;
 				if (Model.RemoveBookFromCategory(book))
                 {
-					menu.AddElement(menu.SelectedElement.Model);
-					menu.SelectedElement = null;
+					menu.Model.AddElement(menu.Model.SelectedElement.Model);
+					menu.Model.SelectedElement = null;
 				}
 			}
 		}

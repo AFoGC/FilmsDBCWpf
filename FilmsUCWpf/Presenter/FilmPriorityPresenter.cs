@@ -14,7 +14,7 @@ namespace FilmsUCWpf.Presenter
     public class FilmPriorityPresenter : FilmPresenter
     {
         public PriorityFilm PriorityModel { get; protected set; }
-        public FilmPriorityPresenter(PriorityFilm priorityFilm, IView view, IMenu<Film> menu, TableCollection tableCollection) : base(priorityFilm.Film, view, menu, tableCollection)
+        public FilmPriorityPresenter(PriorityFilm priorityFilm, IView view, IMenuPresenter<Film> menu, TableCollection tableCollection) : base(priorityFilm.Film, view, menu, tableCollection)
         {
             this.PriorityModel = priorityFilm;
             PriorityModel.CellRemoved += PriorityModel_CellRemoved;

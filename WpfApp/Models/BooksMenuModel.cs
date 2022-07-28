@@ -2,8 +2,6 @@
 using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
-using InfoMenusWpf.MoreInfo;
-using InfoMenusWpf.UpdateInfo;
 using ProfilesConfig;
 using System;
 using System.Collections;
@@ -15,10 +13,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TablesLibrary.Interpreter;
 using TL_Objects;
+using WpfApp.Presenters;
 
 namespace WpfApp.Models
 {
-    public class BooksMenuModel : IMenu<Book>
+    public class BooksMenuModel : IMenuModel<Book>
     {
         public enum MenuCondition
         {
@@ -27,12 +26,11 @@ namespace WpfApp.Models
             PriorityBook = 3
         }
 
+        public IMenuPresenter<Book> Presenter { get; set; }
         public MenuCondition ControlsCondition { get; set; }
-        public MoreInfoFormVisualizer MoreInfoFormVisualizer { get; set; }
-        public UpdateFormVisualizer UpdateFormVisualizer { get; set; }
         public TLTables Tables => mainModel.Tables;
         public TableCollection TableCollection => mainModel.TableCollection;
-        BasePresenter<Book> IMenu<Book>.SelectedElement { get => SelectedElement; set => SelectedElement = (BookPresenter)value; }
+        BasePresenter<Book> IMenuModel<Book>.SelectedElement { get => SelectedElement; set => SelectedElement = (BookPresenter)value; }
 
         private BookPresenter selectedElement = null;
         public BookPresenter SelectedElement
@@ -120,21 +118,21 @@ namespace WpfApp.Models
 
             foreach (BookCategory category in Tables.BookCategoriesTable)
             {
-                CategoryPresenters.Add(new BookCategoryPresenter(category, new BookCategoryControl(), this, TableCollection));
+                CategoryPresenters.Add(new BookCategoryPresenter(category, new BookCategoryControl(), Presenter, TableCollection));
             }
 
             foreach (Book book in Tables.BooksTable)
             {
-                BookPresenters.Add(new BookPresenter(book, new BookControl(), this, TableCollection));
+                BookPresenters.Add(new BookPresenter(book, new BookControl(), Presenter, TableCollection));
                 if (book.FranshiseId == 0)
                 {
-                    CategoryPresenters.Add(new BookPresenter(book, new BookSimpleControl(), this, TableCollection));
+                    CategoryPresenters.Add(new BookPresenter(book, new BookSimpleControl(), Presenter, TableCollection));
                 }
             }
 
             foreach (PriorityBook priorityBook in Tables.PriorityBooksTable)
             {
-                PriorityPresenters.Add(new BookPriorityPresenter(priorityBook, new BookPriorityControl(), this, TableCollection));
+                PriorityPresenters.Add(new BookPriorityPresenter(priorityBook, new BookPriorityControl(), Presenter, TableCollection));
             }
         }
 
@@ -147,7 +145,7 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     priorityBook = (PriorityBook)e.NewItems[0];
-                    PriorityPresenters.Add(new BookPriorityPresenter(priorityBook, new BookPriorityControl(), this, TableCollection));
+                    PriorityPresenters.Add(new BookPriorityPresenter(priorityBook, new BookPriorityControl(), Presenter, TableCollection));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     priorityBook = (PriorityBook)e.OldItems[0];
@@ -168,7 +166,7 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     category = (BookCategory)e.NewItems[0];
-                    CategoryPresenters.Insert(Tables.BookCategoriesTable.Count - 1, new BookCategoryPresenter(category, new BookCategoryControl(), this, TableCollection));
+                    CategoryPresenters.Insert(Tables.BookCategoriesTable.Count - 1, new BookCategoryPresenter(category, new BookCategoryControl(), Presenter, TableCollection));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     CategoryPresenters.Remove(CategoryPresenters.Where(x =>
@@ -196,8 +194,8 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     book = (Book)e.NewItems[0];
-                    BookPresenters.Add(new BookPresenter(book, new BookControl(), this, TableCollection));
-                    CategoryPresenters.Add(new BookPresenter(book, new BookSimpleControl(), this, TableCollection));
+                    BookPresenters.Add(new BookPresenter(book, new BookControl(), Presenter, TableCollection));
+                    CategoryPresenters.Add(new BookPresenter(book, new BookSimpleControl(), Presenter, TableCollection));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     book = (Book)e.OldItems[0];
@@ -260,7 +258,7 @@ namespace WpfApp.Models
                 }
                 i++;
             }
-            BookPresenter bookPresenter = new BookPresenter(book, new BookSimpleControl(), this, TableCollection);
+            BookPresenter bookPresenter = new BookPresenter(book, new BookSimpleControl(), Presenter, TableCollection);
             CategoryPresenters.Insert(i, bookPresenter);
             return true;
         }

@@ -210,7 +210,6 @@
     <Compile Include="Presenters\FilmGenreContainerPresenter.cs" />
     <Compile Include="Presenters\FilmsMenuPresenter.cs" />
     <Compile Include="Presenters\IGenreContainerPresenter.cs" />
-    <Compile Include="Presenters\IMenuPresenter.cs" />
     <Compile Include="Presenters\MainWindowPresenter.cs" />
     <Compile Include="Presenters\ProfileContainerPresenter.cs" />
     <Compile Include="Presenters\ProfilePresenter.cs" />
@@ -245,6 +244,9 @@
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MoreInfoControl.xaml.cs">
+      <DependentUpon>MoreInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NavbarControl.xaml.cs">
       <DependentUpon>NavbarControl.xaml</DependentUpon>
     </Compile>
@@ -262,6 +264,12 @@
     </Compile>
     <Compile Include="Views\SingUpControl.xaml.cs">
       <DependentUpon>SingUpControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SourcesControl.xaml.cs">
+      <DependentUpon>SourcesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateControl.xaml.cs">
+      <DependentUpon>UpdateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserSettingsControl.xaml.cs">
       <DependentUpon>UserSettingsControl.xaml</DependentUpon>
@@ -344,6 +352,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MoreInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NavbarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -365,6 +377,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SingUpControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SourcesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -424,10 +444,6 @@
     <ProjectReference Include="..\FilmsUCWpf\FilmsUCWpf.csproj">
       <Project>{72f34e44-53a4-42b9-b0ce-eee673ccd06e}</Project>
       <Name>FilmsUCWpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InfoMenusWpf\InfoMenusWpf.csproj">
-      <Project>{8357f60c-35c5-4197-ba0e-a9800bc10765}</Project>
-      <Name>InfoMenusWpf</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProfilesConfig\ProfilesConfig.csproj">
       <Project>{88ca77f1-88e7-468e-80a5-b77138f78894}</Project>

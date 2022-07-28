@@ -18,12 +18,12 @@ namespace FilmsUCWpf.Presenter
     public class FilmCategoryPresenter : BasePresenter<Category>, IHasGenre
     {
 
-        protected IMenu<Film> menu;
+        protected IMenuPresenter<Film> menu;
         private List<FilmPresenter> presenters;
 
         new ICategoryView View { get => (ICategoryView)base.View; }
 
-        public FilmCategoryPresenter(Category category, ICategoryView view, IMenu<Film> menu, TableCollection collection) : base(category, view, collection)
+        public FilmCategoryPresenter(Category category, ICategoryView view, IMenuPresenter<Film> menu, TableCollection collection) : base(category, view, collection)
         {
             this.menu = menu;
             presenters = new List<FilmPresenter>();
@@ -142,7 +142,7 @@ namespace FilmsUCWpf.Presenter
 
         public void OpenUpdateMenu()
         {
-            menu.UpdateFormVisualizer.OpenUpdateControl(new FilmCategoryUpdateControl(Model, menu, TableCollection));
+            menu.OpenUpdateInfo(new FilmCategoryUpdateControl(Model, menu.Model, TableCollection));
         }
 
         public void CreateFilmInCategory()
@@ -152,7 +152,7 @@ namespace FilmsUCWpf.Presenter
             film.Genre = TableCollection.GetTable<Genre>()[0];
             TableCollection.GetTable<Film>().AddElement(film);
             Model.Films.Add(film);
-            menu.RemoveElement(film);
+            menu.Model.RemoveElement(film);
         }
 
         private string getDefaulFilmName()
@@ -165,28 +165,28 @@ namespace FilmsUCWpf.Presenter
 
         public void AddSelected()
         {
-            if (menu.SelectedElement != null)
+            if (menu.Model.SelectedElement != null)
             {
-                Film film = menu.SelectedElement.Model;
+                Film film = menu.Model.SelectedElement.Model;
                 if (film.FranshiseId == 0)
                 {
                     
                     Model.Films.Add(film);
-                    menu.RemoveElement(menu.SelectedElement.Model);
-                    menu.SelectedElement = null;
+                    menu.Model.RemoveElement(menu.Model.SelectedElement.Model);
+                    menu.Model.SelectedElement = null;
                 }
             }
         }
 
         public void RemoveSelected()
         {
-            if (menu.SelectedElement != null)
+            if (menu.Model.SelectedElement != null)
             {
-                Film film = menu.SelectedElement.Model;
+                Film film = menu.Model.SelectedElement.Model;
                 if (Model.RemoveFilmFromCategory(film))
                 {
-                    menu.AddElement(menu.SelectedElement.Model);
-                    menu.SelectedElement = null;
+                    menu.Model.AddElement(menu.Model.SelectedElement.Model);
+                    menu.Model.SelectedElement = null;
                 }
             }
         }

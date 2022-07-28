@@ -78,11 +78,6 @@ namespace FilmsUCWpf
 			}
 		}
 
-		internal static void OpenSources(IBaseMenu menu, TLCollection<Source> sources)
-        {
-			menu.UpdateFormVisualizer.SourcesVisualizer.OpenSourceControl(sources);
-        }
-
 		public static List<String> GetAllMarks()
 		{
 			List<String> export = new List<String>();

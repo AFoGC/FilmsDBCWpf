@@ -2,8 +2,6 @@
 using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
-using InfoMenusWpf.MoreInfo;
-using InfoMenusWpf.UpdateInfo;
 using ProfilesConfig;
 using System;
 using System.Collections;
@@ -19,7 +17,7 @@ using TL_Objects;
 
 namespace WpfApp.Models
 {
-    public class FilmsMenuModel : IMenu<Film>
+    public class FilmsMenuModel : IMenuModel<Film>
     {
         public enum MenuCondition
         {
@@ -29,12 +27,11 @@ namespace WpfApp.Models
             PriorityFilm = 4
         }
 
+        public IMenuPresenter<Film> Presenter { get; set; }
         public MenuCondition ControlsCondition { get; set; }
-        public MoreInfoFormVisualizer MoreInfoFormVisualizer { get; set; }
-        public UpdateFormVisualizer UpdateFormVisualizer { get; set; }
         public TLTables Tables => mainModel.Tables;
         public TableCollection TableCollection => mainModel.TableCollection;
-        BasePresenter<Film> IMenu<Film>.SelectedElement { get => SelectedElement; set => SelectedElement = (FilmPresenter)value; }
+        BasePresenter<Film> IMenuModel<Film>.SelectedElement { get => SelectedElement; set => SelectedElement = (FilmPresenter)value; }
         private FilmPresenter selectedElement = null;
         public FilmPresenter SelectedElement
         {
@@ -119,7 +116,7 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     category = (Category)e.NewItems[0];
-                    CategoryPresenters.Insert(Tables.CategoriesTable.Count - 1, new FilmCategoryPresenter(category, new FilmCategoryControl(), this, TableCollection));
+                    CategoryPresenters.Insert(Tables.CategoriesTable.Count - 1, new FilmCategoryPresenter(category, new FilmCategoryControl(), Presenter, TableCollection));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     CategoryPresenters.Remove(CategoryPresenters.Where(x =>
@@ -147,7 +144,7 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     priorityFilm = (PriorityFilm)e.NewItems[0];
-                    PriorityPresenters.Add(new FilmPriorityPresenter(priorityFilm, new FilmPriorityControl(), this, TableCollection));
+                    PriorityPresenters.Add(new FilmPriorityPresenter(priorityFilm, new FilmPriorityControl(), Presenter, TableCollection));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     priorityFilm = (PriorityFilm)e.OldItems[0];
@@ -168,7 +165,7 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     serie = (Serie)e.NewItems[0];
-                    SeriePresenters.Add(new FilmPresenter(serie.Film, new FilmSerieControl(), this, TableCollection));
+                    SeriePresenters.Add(new FilmPresenter(serie.Film, new FilmSerieControl(), Presenter, TableCollection));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     serie = (Serie)e.OldItems[0];
@@ -189,8 +186,8 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     film = (Film)e.NewItems[0];
-                    FilmPresenters.Add(new FilmPresenter(film, new FilmControl(), this, TableCollection));
-                    CategoryPresenters.Add(new FilmPresenter(film, new FilmSimpleControl(), this, TableCollection));
+                    FilmPresenters.Add(new FilmPresenter(film, new FilmControl(), Presenter, TableCollection));
+                    CategoryPresenters.Add(new FilmPresenter(film, new FilmSimpleControl(), Presenter, TableCollection));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     film = (Film)e.OldItems[0];
@@ -235,26 +232,26 @@ namespace WpfApp.Models
 
             foreach (Category category in Tables.CategoriesTable)
             {
-                CategoryPresenters.Add(new FilmCategoryPresenter(category, new FilmCategoryControl(), this, TableCollection));
+                CategoryPresenters.Add(new FilmCategoryPresenter(category, new FilmCategoryControl(), Presenter, TableCollection));
             }
 
             foreach (Film film in Tables.FilmsTable)
             {
-                FilmPresenters.Add(new FilmPresenter(film, new FilmControl(), this, TableCollection));
+                FilmPresenters.Add(new FilmPresenter(film, new FilmControl(), Presenter, TableCollection));
                 if (film.FranshiseId == 0)
                 {
-                    CategoryPresenters.Add(new FilmPresenter(film, new FilmSimpleControl(), this, TableCollection));
+                    CategoryPresenters.Add(new FilmPresenter(film, new FilmSimpleControl(), Presenter, TableCollection));
                 }
             }
 
             foreach (Serie serie in Tables.SeriesTable)
             {
-                SeriePresenters.Add(new FilmPresenter(serie.Film, new FilmSerieControl(), this, TableCollection));
+                SeriePresenters.Add(new FilmPresenter(serie.Film, new FilmSerieControl(), Presenter, TableCollection));
             }
 
             foreach (PriorityFilm priorityFilm in Tables.PriorityFilmsTable)
             {
-                PriorityPresenters.Add(new FilmPriorityPresenter(priorityFilm, new FilmPriorityControl(), this, TableCollection));
+                PriorityPresenters.Add(new FilmPriorityPresenter(priorityFilm, new FilmPriorityControl(), Presenter, TableCollection));
             }
         }
 
@@ -297,7 +294,7 @@ namespace WpfApp.Models
                 }
                 ++i;
             }
-            FilmPresenter filmPresenter = new FilmPresenter(film, new FilmSimpleControl(), this, TableCollection);
+            FilmPresenter filmPresenter = new FilmPresenter(film, new FilmSimpleControl(), Presenter, TableCollection);
             CategoryPresenters.Insert(i, filmPresenter);
             return true;
         }

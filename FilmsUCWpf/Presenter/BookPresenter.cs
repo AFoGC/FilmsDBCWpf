@@ -16,8 +16,8 @@ namespace FilmsUCWpf.Presenter
 {
     public class BookPresenter : BasePresenter<Book>, IHasGenre
 	{
-		protected IMenu<Book> menu;
-		public BookPresenter(Book book, IView view, IMenu<Book> menu, TableCollection collection) : base(book, view, collection)
+		protected IMenuPresenter<Book> menu;
+		public BookPresenter(Book book, IView view, IMenuPresenter<Book> menu, TableCollection collection) : base(book, view, collection)
 		{
 			this.menu = menu;
 		}
@@ -40,7 +40,7 @@ namespace FilmsUCWpf.Presenter
 
 		public override void SetSelectedElement()
 		{
-			menu.SelectedElement = this;
+			menu.Model.SelectedElement = this;
 			View.SetVisualSelected();
 		}
 
@@ -93,14 +93,14 @@ namespace FilmsUCWpf.Presenter
 
 		public void OpenUpdateMenu()
 		{
-			menu.UpdateFormVisualizer.OpenUpdateControl(new BookUpdateControl(Model, menu, TableCollection));
+			menu.OpenUpdateInfo(new BookUpdateControl(Model, menu, TableCollection));
 		}
 
 		public void OpenInfoMenu()
 		{
 			IView view = new BookControl();
 			BookPresenter presenter = new BookPresenter(Model, view, menu, TableCollection);
-			menu.MoreInfoFormVisualizer.OpenMoreInfoForm((Control)presenter.View);
+			menu.OpenMoreInfo(presenter.View);
 		}
 
 		public void UpFranshiseListID()
@@ -124,7 +124,7 @@ namespace FilmsUCWpf.Presenter
 			if (category != null)
 			{
 				category.RemoveBookFromCategory(Model);
-				menu.AddElement(this.Model);
+				menu.Model.AddElement(this.Model);
 			}
 		}
 	}

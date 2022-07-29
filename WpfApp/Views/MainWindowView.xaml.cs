@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -20,7 +21,7 @@ namespace WpfApp.Views
     /// <summary>
     /// Логика взаимодействия для MainWindowView.xaml
     /// </summary>
-    public partial class MainWindowView : Window, IChangeMenu
+    public partial class MainWindowView : Window
     {
         private MainWindowPresenter presenter;
 
@@ -31,7 +32,6 @@ namespace WpfApp.Views
         public MainWindowView()
         {
             InitializeComponent();
-            navbar.Window = this;
 
             MainWindowModel model = new MainWindowModel();
             presenter = new MainWindowPresenter(model);
@@ -40,25 +40,9 @@ namespace WpfApp.Views
             booksMenu = new BooksMenuView(model);
             filmsMenu = new FilmsMenuView(model);
 
-            ChangeMenu(SelectedMenu.FilmsMenu);
+            films_Click(films, new RoutedEventArgs());
 
             model.InfoUnsaved = false;
-        }
-
-        public void ChangeMenu(SelectedMenu menu)
-        {
-            switch (menu)
-            {
-                case SelectedMenu.FilmsMenu:
-                    menus.Navigate(filmsMenu);
-                    break;
-                case SelectedMenu.BooksMenu:
-                    menus.Navigate(booksMenu);
-                    break;
-                case SelectedMenu.SettingMenu:
-                    menus.Navigate(settingsMenu);
-                    break;
-            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -87,6 +71,41 @@ namespace WpfApp.Views
             {
                 presenter.SaveTables();
             }
+        }
+
+        private void changeSelectedButton(object sender)
+        {
+            ToggleButton pressButton = (ToggleButton)sender;
+
+            foreach (ToggleButton button in Navbar.Children)
+            {
+                if (pressButton == button)
+                {
+                    pressButton.IsChecked = true;
+                }
+                else
+                {
+                    button.IsChecked = false;
+                }
+            }
+        }
+
+        private void films_Click(object sender, RoutedEventArgs e)
+        {
+            changeSelectedButton(sender);
+            menus.Navigate(filmsMenu);
+        }
+
+        private void books_Click(object sender, RoutedEventArgs e)
+        {
+            changeSelectedButton(sender);
+            menus.Navigate(booksMenu);
+        }
+
+        private void settings_Click(object sender, RoutedEventArgs e)
+        {
+            changeSelectedButton(sender);
+            menus.Navigate(settingsMenu);
         }
     }
 }

@@ -10,13 +10,48 @@
     <Grid Background="#FF121212">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <local:MainHeaderControl x:Name="mainHeader" VerticalAlignment="Top" Grid.Row="0"/>
-        <local:NavbarControl x:Name="navbar" VerticalAlignment="Top" Grid.Row="1"/>
-        <Frame x:Name="menus" NavigationUIVisibility="Hidden" Grid.Row="2">
-
-        </Frame>
+        <StackPanel x:Name="Navbar" Grid.Row="1" Orientation="Horizontal" Background="#FF1F1F1F">
+            <StackPanel.Resources>
+                <Style TargetType="ToggleButton" BasedOn="{StaticResource NavbarToggleButton}">
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="Width" Value="250"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="5,0,0,0"/>
+                </Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Orientation" Value="Horizontal"/>
+                </Style>
+            </StackPanel.Resources>
+            <ToggleButton x:Name="films" Click="films_Click">
+                <ToggleButton.Content>
+                    <StackPanel>
+                        <Path Style="{StaticResource FilmImage}" Stretch="Uniform" Height="20"/>
+                        <TextBlock Text="{DynamicResource nav_film}"/>
+                    </StackPanel>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="books" Click="books_Click">
+                <ToggleButton.Content>
+                    <StackPanel>
+                        <Path Style="{StaticResource BookImage}" Stretch="Uniform" Height="20"/>
+                        <TextBlock Text="{DynamicResource nav_book}"/>
+                    </StackPanel>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="settings" Click="settings_Click">
+                <ToggleButton.Content>
+                    <StackPanel>
+                        <Path Style="{StaticResource SettingsImage}" Stretch="Uniform" Height="20"/>
+                        <TextBlock Text="{DynamicResource nav_setting}"/>
+                    </StackPanel>
+                </ToggleButton.Content>
+            </ToggleButton>
+        </StackPanel>
+        <Frame x:Name="menus" NavigationUIVisibility="Hidden" Grid.Row="2"/>
     </Grid>
 </Window>

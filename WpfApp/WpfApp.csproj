@@ -237,9 +237,6 @@
     <Compile Include="Views\LogOutWindow.xaml.cs">
       <DependentUpon>LogOutWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainHeaderControl.xaml.cs">
-      <DependentUpon>MainHeaderControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
@@ -337,10 +334,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LogOutWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainHeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

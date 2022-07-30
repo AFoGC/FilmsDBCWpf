@@ -9,12 +9,21 @@
         WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize" Closing="Window_Closing" KeyDown="Window_KeyDown" Closed="Window_Closed">
     <Grid Background="#FF121212">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <local:MainHeaderControl x:Name="mainHeader" VerticalAlignment="Top" Grid.Row="0"/>
-        <StackPanel x:Name="Navbar" Grid.Row="1" Orientation="Horizontal" Background="#FF1F1F1F">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle MouseDown="header_MouseDown" Fill="#FF121212"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <Button Style="{StaticResource GrayButton}" Content="_" Width="40" Click="minimize"/>
+            <Button Style="{StaticResource GrayButton}" Content="#" Width="40" Click="maximize"/>
+            <Button Style="{StaticResource CloseButton}" Content="X" Width="40" Click="close"/>
+        </StackPanel>
+        <StackPanel x:Name="Navbar" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#FF1F1F1F">
             <StackPanel.Resources>
                 <Style TargetType="ToggleButton" BasedOn="{StaticResource NavbarToggleButton}">
                     <Setter Property="FontSize" Value="20"/>
@@ -52,6 +61,6 @@
                 </ToggleButton.Content>
             </ToggleButton>
         </StackPanel>
-        <Frame x:Name="menus" NavigationUIVisibility="Hidden" Grid.Row="2"/>
+        <Frame x:Name="menus" NavigationUIVisibility="Hidden" Grid.Row="2" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

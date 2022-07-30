@@ -51,6 +51,27 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="CloseButton" TargetType="Button" BasedOn="{StaticResource Default}">
+        <Setter Property="Background" Value="#FF1F1F1F"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#E62E4C"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Setter Property="Background" Value="#FFA62036"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="NavbarToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource Default}">
         <Setter Property="Template">
             <Setter.Value>

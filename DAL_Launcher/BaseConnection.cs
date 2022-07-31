@@ -38,11 +38,10 @@ namespace DAL_Launcher
         public static bool IsDatabaseOnline()
         {
             bool isConnected = false;
-            string constr = connectstr;
             SqlConnection connetion = null;
             try
             {
-                connetion = new SqlConnection(constr);
+                connetion = new SqlConnection(connectstr);
                 connetion.Open();
                 isConnected = true;
             }
@@ -57,7 +56,6 @@ namespace DAL_Launcher
                     connetion.Close();
                 }
             }
-
 
             return isConnected;
         }

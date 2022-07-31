@@ -54,8 +54,10 @@ namespace LauncherFDBC.ViewModels
             if (File.Exists(Model.FdbcProgPath))
                 UpdateID = FileVersionInfo.GetVersionInfo(Model.FdbcProgPath).ProductVersion;
             RefreshButtonString();
-            PatchNote = GetPatchNote();
-
+            if (ProgramBL.IsDBOnline())
+            {
+                PatchNote = GetPatchNote();
+            }
             UpdateProgramCommand.CanExecuteChanged += UpdateProgramCommand_CanExecuteChanged;
         }
 
@@ -75,6 +77,8 @@ namespace LauncherFDBC.ViewModels
             }
             return export;
         }
+
+        public bool ProgramFileExist => File.Exists(Model.FdbcProgPath);
 
         public void RefreshButtonString()
         {

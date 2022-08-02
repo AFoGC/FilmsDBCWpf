@@ -204,7 +204,10 @@
     <Compile Include="Models\FilmsMenuModel.cs" />
     <Compile Include="Models\IUserModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
+    <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\ProfileCollection.cs" />
     <Compile Include="Models\SettingsMenuModel.cs" />
+    <Compile Include="Models\TLTables.cs" />
     <Compile Include="Presenters\BookGenreContainerPresenter.cs" />
     <Compile Include="Presenters\BooksMenuPresenter.cs" />
     <Compile Include="Presenters\FilmGenreContainerPresenter.cs" />
@@ -214,6 +217,9 @@
     <Compile Include="Presenters\ProfileContainerPresenter.cs" />
     <Compile Include="Presenters\ProfilePresenter.cs" />
     <Compile Include="Presenters\SettingsMenuPresenter.cs" />
+    <Compile Include="Services\ProgramSettings.cs" />
+    <Compile Include="Services\SettingsFields.cs" />
+    <Compile Include="Services\StartUserInfo.cs" />
     <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
     <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />
@@ -429,10 +435,6 @@
     <ProjectReference Include="..\FilmsUCWpf\FilmsUCWpf.csproj">
       <Project>{72f34e44-53a4-42b9-b0ce-eee673ccd06e}</Project>
       <Name>FilmsUCWpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProfilesConfig\ProfilesConfig.csproj">
-      <Project>{88ca77f1-88e7-468e-80a5-b77138f78894}</Project>
-      <Name>ProfilesConfig</Name>
     </ProjectReference>
     <ProjectReference Include="..\TLObjects\TL_Objects.csproj">
       <Project>{850e8208-e369-4f93-8a80-8227c5605a6e}</Project>

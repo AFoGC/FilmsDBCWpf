@@ -2,7 +2,6 @@
 using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
-using ProfilesConfig;
 using System;
 using System.Collections;
 using System.Collections.Generic;

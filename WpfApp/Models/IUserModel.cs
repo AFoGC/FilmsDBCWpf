@@ -1,10 +1,10 @@
 ﻿using BO_Films;
-using ProfilesConfig;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApp.Services;
 
 namespace WpfApp.Models
 {

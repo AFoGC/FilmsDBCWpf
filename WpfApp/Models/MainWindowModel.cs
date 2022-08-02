@@ -1,6 +1,5 @@
 ﻿using BL_Films;
 using BO_Films;
-using ProfilesConfig;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,6 +14,7 @@ using TablesLibrary.Interpreter.Table;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Tables;
+using WpfApp.Services;
 
 namespace WpfApp.Models
 {

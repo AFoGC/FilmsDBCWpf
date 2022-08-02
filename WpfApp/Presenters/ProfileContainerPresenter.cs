@@ -1,10 +1,11 @@
-﻿using ProfilesConfig;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApp.Models;
+using WpfApp.Services;
 using WpfApp.Views;
 using WpfApp.Views.Interfaces;
 

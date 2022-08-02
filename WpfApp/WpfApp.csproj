@@ -199,7 +199,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="LanguageHelper.cs" />
     <Compile Include="Models\BooksMenuModel.cs" />
     <Compile Include="Models\FilmsMenuModel.cs" />
     <Compile Include="Models\IUserModel.cs" />
@@ -213,6 +212,7 @@
     <Compile Include="Presenters\FilmGenreContainerPresenter.cs" />
     <Compile Include="Presenters\FilmsMenuPresenter.cs" />
     <Compile Include="Presenters\IGenreContainerPresenter.cs" />
+    <Compile Include="Presenters\LanguageSettingsPresenter.cs" />
     <Compile Include="Presenters\MainWindowPresenter.cs" />
     <Compile Include="Presenters\ProfileContainerPresenter.cs" />
     <Compile Include="Presenters\ProfilePresenter.cs" />

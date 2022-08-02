@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Xml.Serialization;
+using WpfApp.Models;
 
-namespace WpfApp
+namespace WpfApp.Presenters
 {
-    public static class LanguageHelper
+    public class LanguageSettingsPresenter
     {
-        static LanguageHelper()
+        public List<CultureInfo> Cultures { get; private set; }
+        private readonly ProgramSettings settings;
+
+        public LanguageSettingsPresenter(ProgramSettings settings)
         {
+            this.settings = settings;
             Cultures = new List<CultureInfo>();
             Cultures.Add(new CultureInfo("ru"));
             Cultures.Add(new CultureInfo("uk-UA"));
@@ -22,21 +25,19 @@ namespace WpfApp
             LoadLang();
         }
 
-        public static List<CultureInfo> Cultures { get; private set; }
-
-        public static CultureInfo Language
+        public CultureInfo Language
         {
             get
             {
-                return System.Threading.Thread.CurrentThread.CurrentUICulture;
+                return Thread.CurrentThread.CurrentUICulture;
             }
             set
             {
                 if (value == null) throw new ArgumentNullException("value");
-                if (value == System.Threading.Thread.CurrentThread.CurrentUICulture) return;
+                if (value == Thread.CurrentThread.CurrentUICulture) return;
 
                 //1. Меняем язык приложения:
-                System.Threading.Thread.CurrentThread.CurrentUICulture = value;
+                Thread.CurrentThread.CurrentUICulture = value;
 
                 //2. Создаём ResourceDictionary для новой культуры
                 ResourceDictionary dict = new ResourceDictionary();
@@ -64,31 +65,20 @@ namespace WpfApp
                     Application.Current.Resources.MergedDictionaries.Add(dict);
                 }
 
-                //4. Вызываем евент для оповещения всех окон.
+                settings.LangCode = Language.Name;
+                settings.SaveSettings();
             }
         }
 
-        private static string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "lang");
-        public static void SaveLang()
+        public void LoadLang()
         {
-            using (StreamWriter fs = new StreamWriter(path, false, Encoding.UTF8))
+            if (settings.LangCode != String.Empty)
             {
-                fs.WriteLine(Language.ToString());
-            }
-        }
-
-        public static void LoadLang()
-        {
-            if (File.Exists(path))
-            {
-                using (StreamReader fs = new StreamReader(path, Encoding.UTF8))
-                {
-                    Language = new CultureInfo(fs.ReadLine());
-                }
+                Language = new CultureInfo(settings.LangCode);
             }
             else
             {
-                Language = Cultures[0];
+                Language = new CultureInfo("en");
             }
         }
     }

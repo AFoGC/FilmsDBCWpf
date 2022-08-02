@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace WpfApp.Models
         public ProfileCollectionModel Profiles { get; private set; }
         public int MarkSystem { get => settingsFields.MarkSystem; set => settingsFields.MarkSystem = value; }
         public StartUserInfo StartUser { get => settingsFields.StartUser; set => settingsFields.StartUser = value; }
+        public String LangCode { get => settingsFields.Lang; set => settingsFields.Lang = value; }
 
 
         private SettingsFields settingsFields;
@@ -102,12 +104,14 @@ namespace WpfApp.Models
         {
             public string UsedProfile { get; set; }
             public int MarkSystem { get; set; }
+            public String Lang { get; set; }
             public StartUserInfo StartUser { get; set; }
 
             public SettingsFields()
             {
                 UsedProfile = string.Empty;
                 MarkSystem = 0;
+                Lang = "en";
                 StartUser = new StartUserInfo();
             }
         }

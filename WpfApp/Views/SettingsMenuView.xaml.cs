@@ -44,7 +44,7 @@ namespace WpfApp.Views
             conteinerView.MenuLabel.SetResourceReference(System.Windows.Controls.Label.ContentProperty, "st_bgenre_title");
             this.SettingsList.Add(conteinerView);
 
-            this.SettingsList.Add(new LanguageSettingsView());
+            this.SettingsList.Add(new LanguageSettingsView(model.Settings));
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)

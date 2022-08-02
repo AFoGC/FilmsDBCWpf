@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp.Models;
+using WpfApp.Presenters;
 
 namespace WpfApp.Views
 {
@@ -22,29 +23,31 @@ namespace WpfApp.Views
     /// </summary>
     public partial class LanguageSettingsView : UserControl
     {
-        public LanguageSettingsView()
+        private readonly LanguageSettingsPresenter presenter;
+        public LanguageSettingsView(ProgramSettings settings)
         {
             InitializeComponent();
+            presenter = new LanguageSettingsPresenter(settings);
             langPanel.Items.Add(new CultureInfo("en").NativeName);
-            foreach (CultureInfo culture in LanguageHelper.Cultures)
+            foreach (CultureInfo culture in presenter.Cultures)
             {
                 langPanel.Items.Add(culture.NativeName);
             }
             langPanel.SelectedIndex = 0;
-            langPanel.SelectedItem = LanguageHelper.Language.NativeName;
+            langPanel.SelectedItem = presenter.Language.NativeName;
         }
 
         private void ChangeLang(object sender, RoutedEventArgs e)
         {
-            foreach (CultureInfo culture in LanguageHelper.Cultures)
+            foreach (CultureInfo culture in presenter.Cultures)
             {
                 if (langPanel.Text == culture.NativeName)
                 {
-                    LanguageHelper.Language = culture;
+                    presenter.Language = culture;
                     return;
                 }
             }
-            LanguageHelper.Language = new CultureInfo("en");
+            presenter.Language = new CultureInfo("en");
         }
     }
 }

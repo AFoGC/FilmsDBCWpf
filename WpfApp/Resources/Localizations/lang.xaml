@@ -97,6 +97,17 @@
     <v:String x:Key="open_more_info_tt">Open more info menu</v:String>
     <v:String x:Key="open_comment_tt">Open comment</v:String>
     
+    <!--Table ContextMenus-->
+    <v:String x:Key="delete_category_cm">Delete Category</v:String>
+    <v:String x:Key="add_selected_cm">Add Selected</v:String>
+    <v:String x:Key="remove_selected_cm">Remove Selected</v:String>
+    <v:String x:Key="delete_this_cm">Delete This</v:String>
+    <v:String x:Key="add_to_prior_cm">Add To Priority</v:String>
+    <v:String x:Key="remove_from_prior_cm">Remove From Priority</v:String>
+    <v:String x:Key="remove_from_category_cm">Remove From Category</v:String>
+    <v:String x:Key="up_in_category_cm">Up</v:String>
+    <v:String x:Key="down_in_category_cm">Down</v:String>
+    
     <!--Update Controls ToolTips-->
     <v:String x:Key="hidename_utt">Hide Name (Text)</v:String>
 

@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_GotFocus">
-                <MenuItem Header="Delete This" Click="MenuItem_Click" />
-                <MenuItem Header="Add To Priority" Click="addToPriority_Click"/>
+                <MenuItem Header="{DynamicResource delete_this_cm}" Click="MenuItem_Click" />
+                <MenuItem Header="{DynamicResource add_to_prior_cm}" Click="addToPriority_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
         <StackPanel Orientation="Horizontal">

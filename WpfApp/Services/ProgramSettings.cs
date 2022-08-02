@@ -14,18 +14,18 @@ namespace WpfApp.Services
 	public class ProgramSettings
 	{
 		public TableCollection TableCollection { get; private set; }
-		public ProfileCollection Profiles { get; private set; }
+		public ProfileCollectionModel Profiles { get; private set; }
 		public int MarkSystem { get => settingsFields.MarkSystem; set => settingsFields.MarkSystem = value; }
 		public StartUserInfo StartUser { get => settingsFields.StartUser; set => settingsFields.StartUser = value; }
 
 
 		private SettingsFields settingsFields;
-		public Profile UsedProfile
+		public ProfileModel UsedProfile
 		{
 			get => Profiles.UsedProfile;
 		}
 
-		public void SetUsedProfile(Profile profile)
+		public void SetUsedProfile(ProfileModel profile)
 		{
 			Profiles.SetUsedProfile(profile);
 			if (TableCollection != null)
@@ -56,7 +56,7 @@ namespace WpfApp.Services
 		private ProgramSettings(TableCollection collection, String profilesDirectoryPath)
 		{
 			TableCollection = collection;
-			this.Profiles = new ProfileCollection(profilesDirectoryPath);
+			this.Profiles = new ProfileCollectionModel(profilesDirectoryPath);
 			this.settingsFields = new SettingsFields();
 		}
 

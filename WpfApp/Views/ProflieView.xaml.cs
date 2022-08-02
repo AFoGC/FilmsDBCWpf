@@ -25,14 +25,14 @@ namespace WpfApp.Views
     public partial class ProflieView : UserControl, IProfileView
     {
         private readonly ProfilePresenter presenter;
-        public ProflieView(Profile profile, ProgramSettings settings, ProfileContainerPresenter parentPresenter)
+        public ProflieView(ProfileModel profile, ProgramSettings settings, ProfileContainerPresenter parentPresenter)
         {
             InitializeComponent();
             presenter = new ProfilePresenter(profile, this, settings, parentPresenter);
             ProfileNameTextBox.Text = profile.Name;
         }
 
-        public void SetSelected(Profile usedProfile) => presenter.SetSelected(usedProfile);
+        public void SetSelected(ProfileModel usedProfile) => presenter.SetSelected(usedProfile);
 
         public void SetVisualDefault()
         {

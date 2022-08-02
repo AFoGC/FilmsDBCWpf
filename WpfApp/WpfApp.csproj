@@ -204,8 +204,8 @@
     <Compile Include="Models\FilmsMenuModel.cs" />
     <Compile Include="Models\IUserModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
-    <Compile Include="Models\Profile.cs" />
-    <Compile Include="Models\ProfileCollection.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
+    <Compile Include="Models\ProfileCollectionModel.cs" />
     <Compile Include="Models\SettingsMenuModel.cs" />
     <Compile Include="Models\TLTables.cs" />
     <Compile Include="Presenters\BookGenreContainerPresenter.cs" />

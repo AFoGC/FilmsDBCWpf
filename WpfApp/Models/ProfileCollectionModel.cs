@@ -8,11 +8,11 @@ using TablesLibrary.Interpreter;
 
 namespace WpfApp.Models
 {
-	public class ProfileCollection : IEnumerable
+	public class ProfileCollectionModel : IEnumerable
 	{
-		private List<Profile> profiles = null;
-		private Profile usedProfile = null;
-		public Profile UsedProfile
+		private List<ProfileModel> profiles = null;
+		private ProfileModel usedProfile = null;
+		public ProfileModel UsedProfile
 		{
 			get
 			{
@@ -20,10 +20,10 @@ namespace WpfApp.Models
 			}
 		}
 
-		public void SetUsedProfile(Profile profile)
+		public void SetUsedProfile(ProfileModel profile)
 		{
 			bool hasInCollection = false;
-			foreach (Profile item in profiles)
+			foreach (ProfileModel item in profiles)
 			{
 				if (item.Name == profile.Name)
 				{
@@ -40,7 +40,7 @@ namespace WpfApp.Models
 		public void SetUsedProfile(String profileName)
 		{
 			bool hasInCollection = false;
-			foreach (Profile item in profiles)
+			foreach (ProfileModel item in profiles)
 			{
 				if (item.Name == profileName)
 				{
@@ -56,28 +56,28 @@ namespace WpfApp.Models
 
 		public String ProfilesPath { get; private set; }
 
-		public ProfileCollection(string path)
+		public ProfileCollectionModel(string path)
 		{
-			profiles = new List<Profile>();
+			profiles = new List<ProfileModel>();
 			ProfilesPath = Path.Combine(path, "Profiles");
 			DirectoryInfo info = Directory.CreateDirectory(ProfilesPath);
 			LoadProfiles();
 			usedProfile = profiles[0];
 		}
 
-		public Profile[] ToArray()
+		public ProfileModel[] ToArray()
 		{
 			return profiles.ToArray();
 		}
 
-		public Profile this[int index]
+		public ProfileModel this[int index]
 		{
 			get { return profiles[index]; }
 		}
 
-		private Profile GetProfileToUsed(String name)
+		private ProfileModel GetProfileToUsed(String name)
 		{
-			foreach (Profile prof in profiles)
+			foreach (ProfileModel prof in profiles)
 			{
 				if (prof.Name == name)
 				{
@@ -88,9 +88,9 @@ namespace WpfApp.Models
 			return profiles[0];
 		}
 
-		private Profile GetProfileToUsed(Profile profile)
+		private ProfileModel GetProfileToUsed(ProfileModel profile)
 		{
-			foreach (Profile prof in profiles)
+			foreach (ProfileModel prof in profiles)
 			{
 				if (prof.Name == profile.Name)
 				{
@@ -104,7 +104,7 @@ namespace WpfApp.Models
 		public void LoadProfiles()
 		{
 			profiles.Clear();
-			foreach (Profile profile in GetAllProfiles)
+			foreach (ProfileModel profile in GetAllProfiles)
 			{
 				profiles.Add(profile);
 				profile.ParentCollection = this;
@@ -113,16 +113,16 @@ namespace WpfApp.Models
 
 		public bool HasProfileName(string name)
 		{
-			foreach (Profile profile in this)
+			foreach (ProfileModel profile in this)
 			{
 				if (profile.Name == name) return true;
 			}
 			return false;
 		}
 
-		public Profile AddProfile(String name)
+		public ProfileModel AddProfile(String name)
 		{
-			Profile profile = new Profile(name);
+			ProfileModel profile = new ProfileModel(name);
 			if (AddProfile(profile))
 			{
 				return profile;
@@ -131,10 +131,10 @@ namespace WpfApp.Models
 
 		}
 
-		public bool AddProfile(Profile newProfile)
+		public bool AddProfile(ProfileModel newProfile)
 		{
 			bool exclusive = true;
-			foreach (Profile prof in this)
+			foreach (ProfileModel prof in this)
 			{
 				if (prof.Name == newProfile.Name) exclusive = false;
 			}
@@ -157,15 +157,15 @@ namespace WpfApp.Models
 			return exclusive;
 		}
 
-		public void AddProfiles(Profile[] import)
+		public void AddProfiles(ProfileModel[] import)
 		{
-			foreach (Profile prof in import)
+			foreach (ProfileModel prof in import)
 			{
 				AddProfile(prof);
 			}
 		}
 
-		public void RemoveProfile(Profile import)
+		public void RemoveProfile(ProfileModel import)
 		{
 			Directory.Delete(import.ProfilePath, true);
 			profiles.Remove(import);
@@ -182,22 +182,22 @@ namespace WpfApp.Models
 
 			foreach (ProfileBO profileBO in DBProfiles)
 			{
-				Profile profile = new Profile(profileBO.Name);
+				ProfileModel profile = new ProfileModel(profileBO.Name);
 				AddProfile(profile);
 				profile.SetMainFile(profileBO.Lastsave);
 			}
 		}
 
-		public Profile[] GetAllProfiles
+		public ProfileModel[] GetAllProfiles
 		{
 			get
 			{
-				List<Profile> export = new List<Profile>();
+				List<ProfileModel> export = new List<ProfileModel>();
 				if (Directory.Exists(ProfilesPath))
 				{
 					foreach (String str in Directory.GetDirectories(ProfilesPath))
 					{
-						export.Add(new Profile(getDirecotryName(str)));
+						export.Add(new ProfileModel(getDirecotryName(str)));
 					}
 					if (export.Count != 0)
 					{
@@ -209,7 +209,7 @@ namespace WpfApp.Models
 					Directory.CreateDirectory(ProfilesPath + "\\Main");
 				}
 
-				export.Add(new Profile("Main"));
+				export.Add(new ProfileModel("Main"));
 				return export.ToArray();
 			}
 		}
@@ -238,7 +238,7 @@ namespace WpfApp.Models
 			ProfileBO[] DBProfiles = new ProfileBO[profiles.Count];
 			int i = 0;
 
-			foreach (Profile profile in profiles)
+			foreach (ProfileModel profile in profiles)
 			{
 				DBProfiles[i++] = profile.ToProfileBO(user);
 			}
@@ -251,7 +251,7 @@ namespace WpfApp.Models
 			ProfileBO[] DBProfiles = new ProfileBO[profiles.Count];
 			int i = 0;
 
-			foreach (Profile profile in profiles)
+			foreach (ProfileModel profile in profiles)
 			{
 				DBProfiles[i++] = profile.ToProfileBO();
 			}
@@ -259,7 +259,7 @@ namespace WpfApp.Models
 			return DBProfiles;
 		}
 
-		public bool Contains(Profile profile) => profiles.Contains(profile);
+		public bool Contains(ProfileModel profile) => profiles.Contains(profile);
 
 		public IEnumerator GetEnumerator()
 		{
@@ -269,7 +269,7 @@ namespace WpfApp.Models
 		private class ProfileEnum : IEnumerator
 		{
 			IEnumerator enumerator;
-			public ProfileEnum(List<Profile> profiles)
+			public ProfileEnum(List<ProfileModel> profiles)
 			{
 				enumerator = profiles.GetEnumerator();
 			}

@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace WpfApp.Models
 {
 	[Serializable]
-	public class Profile
+	public class ProfileModel
 	{
-		internal Profile()
+		internal ProfileModel()
 		{
 			this.name = "Main";
 		}
-		internal Profile(String name)
+		internal ProfileModel(String name)
 		{
 			if (name == String.Empty)
 				this.name = "Main";
@@ -30,7 +30,7 @@ namespace WpfApp.Models
 			set { name = value; }
 		}
 
-		public ProfileCollection ParentCollection { get; internal set; }
+		public ProfileCollectionModel ParentCollection { get; internal set; }
 
 		public String ProfilePath
 		{
@@ -85,14 +85,14 @@ namespace WpfApp.Models
 		{
 			bool export = true;
 
-			foreach (Profile prof in ParentCollection.GetAllProfiles)
+			foreach (ProfileModel prof in ParentCollection.GetAllProfiles)
 			{
 				if (prof.Name == newName) export = false;
 			}
 
 			if (export)
 			{
-				Profile np = new Profile(newName);
+				ProfileModel np = new ProfileModel(newName);
 				Directory.Move(this.ProfilePath, np.ProfilePath);
 				this.name = newName;
 			}

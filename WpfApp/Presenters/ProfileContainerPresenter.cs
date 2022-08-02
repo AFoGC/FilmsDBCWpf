@@ -28,13 +28,13 @@ namespace WpfApp.Presenters
             view.AddProfileText = string.Empty;
             view.ProfileControls.Clear();
 
-            foreach (Profile profile in settings.Profiles)
+            foreach (ProfileModel profile in settings.Profiles)
             {
                 view.ProfileControls.Add(new ProflieView(profile, settings, this));
             }
         }
 
-        public void SetSelectedInfCollection(Profile profile)
+        public void SetSelectedInfCollection(ProfileModel profile)
         {
             foreach (IProfileView profileView in view.ProfileControls)
             {
@@ -44,7 +44,7 @@ namespace WpfApp.Presenters
 
         public void AddProfile()
         {
-            ProfileCollection profileCollection = settings.Profiles;
+            ProfileCollectionModel profileCollection = settings.Profiles;
             if (view.AddProfileText != "")
             {
                 profileCollection.AddProfile(view.AddProfileText);
@@ -54,7 +54,7 @@ namespace WpfApp.Presenters
 
         public void ImportProfile(string filePath)
         {
-            ProfileCollection profColl = settings.Profiles;
+            ProfileCollectionModel profColl = settings.Profiles;
             int i = 1;
             string profName = "import";
             while (profColl.HasProfileName(profName + i))
@@ -62,7 +62,7 @@ namespace WpfApp.Presenters
                 i++;
             }
             profName += i;
-            Profile profile = profColl.AddProfile(profName);
+            ProfileModel profile = profColl.AddProfile(profName);
 
 
             File.Copy(filePath, profile.MainFilePath, true);

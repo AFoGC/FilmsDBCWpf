@@ -11,12 +11,12 @@ namespace WpfApp.Presenters
 {
     public class ProfilePresenter
     {
-        private readonly Profile model;
+        private readonly ProfileModel model;
         private readonly IProfileView view;
         private readonly ProgramSettings settings;
         private readonly ProfileContainerPresenter parentPresenter;
 
-        public ProfilePresenter(Profile model, IProfileView view, ProgramSettings settings, ProfileContainerPresenter parentPresenter)
+        public ProfilePresenter(ProfileModel model, IProfileView view, ProgramSettings settings, ProfileContainerPresenter parentPresenter)
         {
             this.model = model;
             this.view = view;
@@ -25,7 +25,7 @@ namespace WpfApp.Presenters
             SetSelected(settings.UsedProfile);
         }
 
-        public void SetSelected(Profile usedProfile)
+        public void SetSelected(ProfileModel usedProfile)
         {
             if (usedProfile == model)
                 view.SetVisualSelected();

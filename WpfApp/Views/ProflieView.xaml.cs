@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp.Models;
 using WpfApp.Presenters;
-using WpfApp.Services;
 using WpfApp.Views.Interfaces;
 
 namespace WpfApp.Views

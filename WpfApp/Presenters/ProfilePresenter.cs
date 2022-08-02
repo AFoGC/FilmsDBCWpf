@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp.Models;
-using WpfApp.Services;
 using WpfApp.Views.Interfaces;
 
 namespace WpfApp.Presenters

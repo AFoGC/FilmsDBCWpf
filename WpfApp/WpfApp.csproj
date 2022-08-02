@@ -217,9 +217,7 @@
     <Compile Include="Presenters\ProfileContainerPresenter.cs" />
     <Compile Include="Presenters\ProfilePresenter.cs" />
     <Compile Include="Presenters\SettingsMenuPresenter.cs" />
-    <Compile Include="Services\ProgramSettings.cs" />
-    <Compile Include="Services\SettingsFields.cs" />
-    <Compile Include="Services\StartUserInfo.cs" />
+    <Compile Include="Models\ProgramSettings.cs" />
     <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
     <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />

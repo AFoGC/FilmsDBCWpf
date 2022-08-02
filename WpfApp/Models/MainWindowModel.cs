@@ -14,7 +14,6 @@ using TablesLibrary.Interpreter.Table;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Tables;
-using WpfApp.Services;
 
 namespace WpfApp.Models
 {

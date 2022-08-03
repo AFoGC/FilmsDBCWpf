@@ -24,10 +24,10 @@ namespace WpfApp.Views
     public partial class ProflieView : UserControl, IProfileView
     {
         private readonly ProfilePresenter presenter;
-        public ProflieView(ProfileModel profile, ProgramSettings settings, ProfileContainerPresenter parentPresenter)
+        public ProflieView(ProfileModel profile, ProfileCollectionModel profiles, ProfileContainerPresenter parentPresenter)
         {
             InitializeComponent();
-            presenter = new ProfilePresenter(profile, this, settings, parentPresenter);
+            presenter = new ProfilePresenter(profile, this, profiles, parentPresenter);
             ProfileNameTextBox.Text = profile.Name;
         }
 
@@ -57,7 +57,7 @@ namespace WpfApp.Views
 
         private void RenameProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
     }
 }

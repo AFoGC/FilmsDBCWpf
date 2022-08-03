@@ -13,12 +13,14 @@ namespace WpfApp.Presenters
     public class ProfileContainerPresenter
     {
         private readonly IProfileSettingsContainerView view;
+        private readonly ProfileCollectionModel model;
         private readonly ProgramSettings settings;
 
         public ProfileContainerPresenter(IProfileSettingsContainerView view, ProgramSettings settings)
         {
             this.view = view;
             this.settings = settings;
+            this.model = settings.Profiles;
             RefreshControl();
         }
 
@@ -27,9 +29,9 @@ namespace WpfApp.Presenters
             view.AddProfileText = string.Empty;
             view.ProfileControls.Clear();
 
-            foreach (ProfileModel profile in settings.Profiles)
+            foreach (ProfileModel profile in model)
             {
-                view.ProfileControls.Add(new ProflieView(profile, settings, this));
+                view.ProfileControls.Add(new ProflieView(profile, model, this));
             }
         }
 
@@ -39,11 +41,12 @@ namespace WpfApp.Presenters
             {
                 profileView.SetSelected(profile);
             }
+            settings.SaveSettings();
         }
 
         public void AddProfile()
         {
-            ProfileCollectionModel profileCollection = settings.Profiles;
+            ProfileCollectionModel profileCollection = model;
             if (view.AddProfileText != "")
             {
                 profileCollection.AddProfile(view.AddProfileText);
@@ -53,7 +56,7 @@ namespace WpfApp.Presenters
 
         public void ImportProfile(string filePath)
         {
-            ProfileCollectionModel profColl = settings.Profiles;
+            ProfileCollectionModel profColl = model;
             int i = 1;
             string profName = "import";
             while (profColl.HasProfileName(profName + i))
@@ -67,6 +70,6 @@ namespace WpfApp.Presenters
             File.Copy(filePath, profile.MainFilePath, true);
         }
 
-        public string AllProfilesPath => settings.Profiles.ProfilesPath;
+        public string AllProfilesPath => model.ProfilesPath;
     }
 }

@@ -12,16 +12,16 @@ namespace WpfApp.Presenters
     {
         private readonly ProfileModel model;
         private readonly IProfileView view;
-        private readonly ProgramSettings settings;
+        private readonly ProfileCollectionModel profiles;
         private readonly ProfileContainerPresenter parentPresenter;
 
-        public ProfilePresenter(ProfileModel model, IProfileView view, ProgramSettings settings, ProfileContainerPresenter parentPresenter)
+        public ProfilePresenter(ProfileModel model, IProfileView view, ProfileCollectionModel profiles, ProfileContainerPresenter parentPresenter)
         {
             this.model = model;
             this.view = view;
-            this.settings = settings;
+            this.profiles = profiles;
             this.parentPresenter = parentPresenter;
-            SetSelected(settings.Profiles.UsedProfile);
+            SetSelected(profiles.UsedProfile);
         }
 
         public void SetSelected(ProfileModel usedProfile)
@@ -33,16 +33,15 @@ namespace WpfApp.Presenters
 
         public void ChangeProfile()
         {
-            settings.Profiles.SetUsedProfile(model);
-            settings.SaveSettings();
-            parentPresenter.SetSelectedInfCollection(settings.Profiles.UsedProfile);
+            profiles.SetUsedProfile(model);
+            parentPresenter.SetSelectedInfCollection(profiles.UsedProfile);
         }
 
         public void DeleteThisProfile()
         {
-            if (model != settings.Profiles.UsedProfile)
+            if (model != profiles.UsedProfile)
             {
-                settings.Profiles.RemoveProfile(model);
+                profiles.RemoveProfile(model);
                 parentPresenter.RefreshControl();
             }
         }

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using TablesLibrary.Interpreter;
@@ -14,38 +15,8 @@ namespace WpfApp.Models
     {
         public TableCollection TableCollection { get; private set; }
         public ProfileCollectionModel Profiles { get; private set; }
-        public int MarkSystem { get => settingsFields.MarkSystem; set => settingsFields.MarkSystem = value; }
-        public StartUserInfo StartUser { get => settingsFields.StartUser; set => settingsFields.StartUser = value; }
-        public String LangCode { get => settingsFields.Lang; set => settingsFields.Lang = value; }
-
-
-        private SettingsFields settingsFields;
-        public ProfileModel UsedProfile
-        {
-            get => Profiles.UsedProfile;
-        }
-
-        public void SetUsedProfile(ProfileModel profile)
-        {
-            Profiles.SetUsedProfile(profile);
-            if (TableCollection != null)
-            {
-                TableCollection.TableFilePath = UsedProfile.MainFilePath;
-                TableCollection.LoadTables();
-            }
-            settingsFields.UsedProfile = UsedProfile.Name;
-        }
-
-        public void SetUsedProfile(string profileName)
-        {
-            Profiles.SetUsedProfile(profileName);
-            if (TableCollection != null)
-            {
-                TableCollection.TableFilePath = UsedProfile.MainFilePath;
-                TableCollection.LoadTables();
-            }
-            settingsFields.UsedProfile = UsedProfile.Name;
-        }
+        public StartUserInfo StartUser { get; set; }
+        public SettingsFields Settings { get; private set; }
 
         static ProgramSettings()
         {
@@ -56,8 +27,9 @@ namespace WpfApp.Models
         private ProgramSettings(TableCollection collection, string profilesDirectoryPath)
         {
             TableCollection = collection;
+            StartUser = new StartUserInfo();
             Profiles = new ProfileCollectionModel(profilesDirectoryPath);
-            settingsFields = new SettingsFields();
+            Settings = new SettingsFields();
         }
 
         private static ProgramSettings instance;
@@ -66,23 +38,33 @@ namespace WpfApp.Models
         {
             if (instance == null)
             {
+                //Getting start information about program base settings from xml file
                 settingPath = settingsPath;
                 instance = new ProgramSettings(collection, profilesDirectoryPath);
                 if (!File.Exists(settingPath))
-                    instance.settingsFields = new SettingsFields();
-                else instance.settingsFields = LoadSettings();
-            }
+                    instance.Settings = new SettingsFields();
+                else instance.Settings = LoadSettings();
 
-            instance.SetUsedProfile(instance.settingsFields.UsedProfile);
+                //Setting start profile after getting information from xml file
+                instance.Profiles.SetUsedProfile(instance.Settings.UsedProfile);
+                if (instance.TableCollection != null)
+                {
+                    instance.TableCollection.TableFilePath = instance.Profiles.UsedProfile.MainFilePath;
+                    instance.TableCollection.LoadTables();
+                }
+            }
 
             return instance;
         }
 
         public void SaveSettings()
         {
+            Settings.UsedProfile = Profiles.UsedProfile.Name;
+            Settings.Lang = Thread.CurrentThread.CurrentUICulture.Name;
+
             using (StreamWriter fs = new StreamWriter(settingPath, false, Encoding.UTF8))
             {
-                formatter.Serialize(fs, settingsFields);
+                formatter.Serialize(fs, Settings);
             }
         }
 

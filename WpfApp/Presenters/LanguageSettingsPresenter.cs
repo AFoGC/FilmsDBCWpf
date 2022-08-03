@@ -22,7 +22,7 @@ namespace WpfApp.Presenters
             Cultures.Add(new CultureInfo("ru"));
             Cultures.Add(new CultureInfo("uk-UA"));
 
-            LoadLang();
+            Language = new CultureInfo(settings.Settings.Lang);
         }
 
         public CultureInfo Language
@@ -65,20 +65,7 @@ namespace WpfApp.Presenters
                     Application.Current.Resources.MergedDictionaries.Add(dict);
                 }
 
-                settings.LangCode = Language.Name;
                 settings.SaveSettings();
-            }
-        }
-
-        public void LoadLang()
-        {
-            if (settings.LangCode != String.Empty)
-            {
-                Language = new CultureInfo(settings.LangCode);
-            }
-            else
-            {
-                Language = new CultureInfo("en");
             }
         }
     }

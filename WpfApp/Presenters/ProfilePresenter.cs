@@ -21,7 +21,7 @@ namespace WpfApp.Presenters
             this.view = view;
             this.settings = settings;
             this.parentPresenter = parentPresenter;
-            SetSelected(settings.UsedProfile);
+            SetSelected(settings.Profiles.UsedProfile);
         }
 
         public void SetSelected(ProfileModel usedProfile)
@@ -33,14 +33,14 @@ namespace WpfApp.Presenters
 
         public void ChangeProfile()
         {
-            settings.SetUsedProfile(model);
+            settings.Profiles.SetUsedProfile(model);
             settings.SaveSettings();
-            parentPresenter.SetSelectedInfCollection(settings.UsedProfile);
+            parentPresenter.SetSelectedInfCollection(settings.Profiles.UsedProfile);
         }
 
         public void DeleteThisProfile()
         {
-            if (model != settings.UsedProfile)
+            if (model != settings.Profiles.UsedProfile)
             {
                 settings.Profiles.RemoveProfile(model);
                 parentPresenter.RefreshControl();

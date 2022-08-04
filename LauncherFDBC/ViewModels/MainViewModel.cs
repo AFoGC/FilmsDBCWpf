@@ -48,16 +48,16 @@ namespace LauncherFDBC.ViewModels
         public MainViewModel()
         {
             Model = new MainWindowModel();
-            StartCommand = new StartCommand(Model);
             UpdateProgramCommand = new ProgramUpdateCommand(this);
             UpdateLauncherCommand = new LauncherUpdateCommand(this);
+            StartCommand = new StartCommand(this);
+
             if (File.Exists(Model.FdbcProgPath))
                 UpdateID = FileVersionInfo.GetVersionInfo(Model.FdbcProgPath).ProductVersion;
+
             RefreshButtonString();
-            if (ProgramBL.IsDBOnline())
-            {
-                PatchNote = GetPatchNote();
-            }
+            PatchNote = GetPatchNote();
+
             UpdateProgramCommand.CanExecuteChanged += UpdateProgramCommand_CanExecuteChanged;
         }
 
@@ -69,12 +69,16 @@ namespace LauncherFDBC.ViewModels
         public string GetPatchNote()
         {
             String export = String.Empty;
-            List<ProgramBO> programs = ProgramBL.GetPatchNote();
-            foreach (ProgramBO item in programs)
+            if (ProgramBL.IsDBOnline())
             {
-                export += item.UpdateInfo;
-                export += "\n\n\n";
+                List<ProgramBO> programs = ProgramBL.GetPatchNote();
+                foreach (ProgramBO item in programs)
+                {
+                    export += item.UpdateInfo;
+                    export += "\n\n\n";
+                }
             }
+            
             return export;
         }
 

@@ -48,7 +48,7 @@
     <v:String x:Key="add_film_btn">Додати фільм</v:String>
     <v:String x:Key="show_film_btn">Меню фільмів</v:String>
     <v:String x:Key="show_serie_btn">Меню серіалів</v:String>
-    <v:String x:Key="show_fprior_btn">Меню пріорітетних фільмів</v:String>
+    <v:String x:Key="show_fprior_btn">Меню пріорітетів</v:String>
     <v:String x:Key="watched_btn">Переглянуто</v:String>
     <v:String x:Key="unwatched_btn">Непереглянуто</v:String>
 

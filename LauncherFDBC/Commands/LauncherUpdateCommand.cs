@@ -53,7 +53,12 @@ namespace LauncherFDBC.Commands
 
         public bool UpdateUpdater()
         {
-            string localVersion = FileVersionInfo.GetVersionInfo(model.LauncherUpdaterPath).FileVersion;
+            string localVersion = String.Empty;
+            if (IsUpdaterExist())
+            {
+                localVersion = FileVersionInfo.GetVersionInfo(model.LauncherUpdaterPath).FileVersion;
+            }
+            
             if (UpdaterBL.GetLastVersion() != localVersion)
             {
                 UpdaterBO updater = UpdaterBL.GetLastUpdate();

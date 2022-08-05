@@ -21,8 +21,8 @@
     
     <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Genres Settings</v:String>
-    <v:String x:Key="st_fgenre_title">Books Genres Settings</v:String>
-    <v:String x:Key="st_bgenre_title">Films Genres Settings</v:String>
+    <v:String x:Key="st_fgenre_title">Films Genres Settings</v:String>
+    <v:String x:Key="st_bgenre_title">Books Genres Settings</v:String>
     <v:String x:Key="st_add_genre">Add new genre</v:String>
     <v:String x:Key="st_is_serial">Is Serial Genre</v:String>
     <v:String x:Key="st_del_genre">Delete Genre</v:String>

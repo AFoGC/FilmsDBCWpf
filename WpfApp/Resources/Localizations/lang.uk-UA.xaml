@@ -81,7 +81,7 @@
     <v:String x:Key="watched_series_tt">Кількість переглянутих серій</v:String>
     <v:String x:Key="total_series_tt">Всього серій</v:String>
     <v:String x:Key="watched_tt">Переглянуто</v:String>
-    <v:String x:Key="cov_tt">Кількісить переглядів</v:String>
+    <v:String x:Key="cov_tt">Кількість переглядів</v:String>
     <v:String x:Key="comment_tt">Коментар</v:String>
 
     <v:String x:Key="author_tt">Автор</v:String>

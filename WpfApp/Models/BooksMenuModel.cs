@@ -1,5 +1,4 @@
-﻿using CustomButtons;
-using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
 using System;
@@ -45,7 +44,7 @@ namespace WpfApp.Models
         public ObservableCollection<IBasePresenter> CategoryPresenters { get; private set; }
         public ObservableCollection<BookPresenter> BookPresenters { get; private set; }
         public ObservableCollection<BookPriorityPresenter> PriorityPresenters { get; private set; }
-        public ObservableCollection<GenrePressButtonControl> GenreButtons { get; private set; }
+        public ObservableCollection<GenrePressButton> GenreButtons { get; private set; }
 
         public IEnumerable GetCurrentPresenters()
         {
@@ -70,7 +69,7 @@ namespace WpfApp.Models
             CategoryPresenters = new ObservableCollection<IBasePresenter>();
             BookPresenters = new ObservableCollection<BookPresenter>();
             PriorityPresenters = new ObservableCollection<BookPriorityPresenter>();
-            GenreButtons = new ObservableCollection<GenrePressButtonControl>();
+            GenreButtons = new ObservableCollection<GenrePressButton>();
 
             mainModel.TableCollection.TableLoad += TableCollection_TableLoad;
 
@@ -89,7 +88,7 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     genre = (BookGenre)e.NewItems[0];
-                    GenreButtons.Add(new GenrePressButtonControl(genre));
+                    GenreButtons.Add(new GenrePressButton(genre));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     genre = (BookGenre)e.OldItems[0];
@@ -112,7 +111,7 @@ namespace WpfApp.Models
 
             foreach (BookGenre genre in Tables.BookGenresTable)
             {
-                GenreButtons.Add(new GenrePressButtonControl(genre));
+                GenreButtons.Add(new GenrePressButton(genre));
             }
 
             foreach (BookCategory category in Tables.BookCategoriesTable)

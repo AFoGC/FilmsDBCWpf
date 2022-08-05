@@ -1,5 +1,4 @@
-﻿using CustomButtons;
-using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
 using FilmsUCWpf.View.Interfaces;
@@ -167,7 +166,7 @@ namespace WpfApp.Presenters
         private Genre[] GetSelectedGenres()
         {
             List<Genre> genres = new List<Genre>();
-            foreach (GenrePressButtonControl genreButton in view.GenresControls)
+            foreach (GenrePressButton genreButton in view.GenresControls)
             {
                 if (genreButton.IsChecked)
                 {
@@ -244,7 +243,7 @@ namespace WpfApp.Presenters
 
         private void LockNotSerialGenreButtons()
         {
-            foreach (GenrePressButtonControl button in view.GenresControls)
+            foreach (GenrePressButton button in view.GenresControls)
             {
                 Genre genre = (Genre)button.Genre;
                 if (!genre.IsSerialGenre)
@@ -257,7 +256,7 @@ namespace WpfApp.Presenters
 
         private void UnLockGenreButtons()
         {
-            foreach (GenrePressButtonControl button in view.GenresControls)
+            foreach (GenrePressButton button in view.GenresControls)
             {
                 //button.PressButton.ClickLocked = false;
                 button.IsChecked = true;

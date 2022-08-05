@@ -1,5 +1,4 @@
-﻿using CustomButtons;
-using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
 using FilmsUCWpf.View.Interfaces;
@@ -143,7 +142,7 @@ namespace WpfApp.Presenters
 		public BookGenre[] GetSelectedGenres()
 		{
 			List<BookGenre> genres = new List<BookGenre>();
-			foreach (GenrePressButtonControl genreButton in view.GenresControls)
+			foreach (GenrePressButton genreButton in view.GenresControls)
 			{
 				if (genreButton.IsChecked)
 				{

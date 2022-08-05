@@ -93,6 +93,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="View\GenrePressButton.xaml.cs">
+      <DependentUpon>GenrePressButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Interfaces\IBookCategoryUpdateView.cs" />
     <Compile Include="View\Interfaces\IBookUpdateView.cs" />
     <Compile Include="View\Interfaces\ICategoryView.cs" />
@@ -252,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FilmPriorityControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GenrePressButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

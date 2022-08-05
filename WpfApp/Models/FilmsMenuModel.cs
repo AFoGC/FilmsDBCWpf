@@ -1,5 +1,4 @@
-﻿using CustomButtons;
-using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View;
 using System;
@@ -46,7 +45,7 @@ namespace WpfApp.Models
         public ObservableCollection<FilmPresenter> FilmPresenters { get; private set; }
         public ObservableCollection<FilmPresenter> SeriePresenters { get; private set; }
         public ObservableCollection<FilmPriorityPresenter> PriorityPresenters { get; private set; }
-        public ObservableCollection<GenrePressButtonControl> GenreButtons { get; private set; }
+        public ObservableCollection<GenrePressButton> GenreButtons { get; private set; }
 
         public IEnumerable GetCurrentPresenters()
         {
@@ -74,7 +73,7 @@ namespace WpfApp.Models
             FilmPresenters = new ObservableCollection<FilmPresenter>();
             SeriePresenters = new ObservableCollection<FilmPresenter>();
             PriorityPresenters = new ObservableCollection<FilmPriorityPresenter>();
-            GenreButtons = new ObservableCollection<GenrePressButtonControl>();
+            GenreButtons = new ObservableCollection<GenrePressButton>();
 
             mainModel.TableCollection.TableLoad += TableCollection_TableLoad;
 
@@ -94,7 +93,7 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     genre = (Genre)e.NewItems[0];
-                    GenreButtons.Add(new GenrePressButtonControl(genre));
+                    GenreButtons.Add(new GenrePressButton(genre));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     genre = (Genre)e.OldItems[0];
@@ -226,7 +225,7 @@ namespace WpfApp.Models
 
             foreach (Genre genre in Tables.GenresTable)
             {
-                GenreButtons.Add(new GenrePressButtonControl(genre));
+                GenreButtons.Add(new GenrePressButton(genre));
             }
 
             foreach (Category category in Tables.CategoriesTable)

@@ -426,10 +426,6 @@
       <Project>{761496b9-0d95-44d7-be39-c30c0aeced4e}</Project>
       <Name>BO_Films</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CustomButtons\CustomButtons.csproj">
-      <Project>{db9a63ca-2850-4e8d-978f-9313be50e4fc}</Project>
-      <Name>CustomButtons</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FilmsUCWpf\FilmsUCWpf.csproj">
       <Project>{72f34e44-53a4-42b9-b0ce-eee673ccd06e}</Project>
       <Name>FilmsUCWpf</Name>

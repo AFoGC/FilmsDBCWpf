@@ -145,7 +145,7 @@ namespace WpfApp.Presenters
 			List<BookGenre> genres = new List<BookGenre>();
 			foreach (GenrePressButtonControl genreButton in view.GenresControls)
 			{
-				if (genreButton.PressButton.Included)
+				if (genreButton.IsChecked)
 				{
 					genres.Add((BookGenre)genreButton.Genre);
 				}

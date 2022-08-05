@@ -22,9 +22,10 @@ namespace CustomButtons
     public partial class GenrePressButtonControl : UserControl
     {
         public IGenre Genre { get; private set; }
-        public PressButton PressButton
+        public bool IsChecked
         {
-            get { return pbtn; }
+            get => (bool)button.IsChecked;
+            set => button.IsChecked = value;
         }
         public GenrePressButtonControl(IGenre genre)
         {

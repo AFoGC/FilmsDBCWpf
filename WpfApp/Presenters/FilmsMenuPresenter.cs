@@ -169,7 +169,7 @@ namespace WpfApp.Presenters
             List<Genre> genres = new List<Genre>();
             foreach (GenrePressButtonControl genreButton in view.GenresControls)
             {
-                if (genreButton.PressButton.Included)
+                if (genreButton.IsChecked)
                 {
                     genres.Add((Genre)genreButton.Genre);
                 }
@@ -249,8 +249,8 @@ namespace WpfApp.Presenters
                 Genre genre = (Genre)button.Genre;
                 if (!genre.IsSerialGenre)
                 {
-                    button.PressButton.Included = false;
-                    button.PressButton.ClickLocked = true;
+                    button.IsChecked = false;
+                    //button.PressButton.ClickLocked = true;
                 }
             }
         }
@@ -259,8 +259,8 @@ namespace WpfApp.Presenters
         {
             foreach (GenrePressButtonControl button in view.GenresControls)
             {
-                button.PressButton.ClickLocked = false;
-                button.PressButton.Included = true;
+                //button.PressButton.ClickLocked = false;
+                button.IsChecked = true;
             }
         }
 

@@ -86,7 +86,7 @@
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background" Value="#FF121212"/>
             </Trigger>
-            
+
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsChecked" Value="True"/>
@@ -94,7 +94,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="#FF212121"/>
             </MultiTrigger>
-            
+
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsChecked" Value="True"/>
@@ -102,8 +102,8 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="#FF080808"/>
             </MultiTrigger>
-            
-            
+
+
             <Trigger Property="IsChecked" Value="False">
                 <Setter Property="Background" Value="#FF1F1F1F"/>
             </Trigger>
@@ -123,7 +123,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="#FF151515"/>
             </MultiTrigger>
-            
+
         </Style.Triggers>
     </Style>
 
@@ -151,6 +151,44 @@
                 <Setter Property="Background" Value="#FF191919"/>
             </MultiTrigger>
             
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="#FF1F1F1F"/>
+            </Trigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True"/>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="#FF2E2E2E"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="RoundedRequestButton" TargetType="ToggleButton" BasedOn="{StaticResource Default}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 5"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Background" Value="#FF121212"/>
+            </Trigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="False"/>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="#FF191919"/>
+            </MultiTrigger>
+
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background" Value="#FF1F1F1F"/>
             </Trigger>

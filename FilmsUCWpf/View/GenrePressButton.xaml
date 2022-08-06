@@ -5,8 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d">
-    <Grid Height="20" Width="131" Margin="1">
-        <ToggleButton x:Name="button" Content="{Binding Name}" 
-                      IsChecked="True" Style="{StaticResource RequestToggleButton}"/>
+    <Grid Height="Auto" Width="Auto" Margin="3">
+        <ToggleButton x:Name="button" Content="{Binding Name}"
+                      IsChecked="True" Style="{StaticResource RoundedRequestButton}">
+            <ToggleButton.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </ToggleButton.Resources>
+        </ToggleButton>
     </Grid>
 </UserControl>

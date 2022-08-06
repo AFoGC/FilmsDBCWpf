@@ -33,7 +33,7 @@
     <v:String x:Key="add_cat_btn">Добавить категорию</v:String>
     <v:String x:Key="show_cat_btn">Меню категорий</v:String>
     <v:String x:Key="filter_title">Опции фильтра</v:String>
-    <v:String x:Key="filter_by_genre">Фильтровать по жанру</v:String>
+    <v:String x:Key="filter_by_genre">Фильтр по жанру</v:String>
 
     <!--SortPanel-->
     <v:String x:Key="id_sort">ID</v:String>

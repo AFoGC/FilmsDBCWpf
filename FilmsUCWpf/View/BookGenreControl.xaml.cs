@@ -34,7 +34,7 @@ namespace FilmsUCWpf.View
 
         public void RemoveFromview()
         {
-            WrapPanel panel = (WrapPanel)Parent;
+            Panel panel = (Panel)Parent;
             panel.Children.Remove(this);
             ((Grid)panel.Parent).Height -= 20;
         }

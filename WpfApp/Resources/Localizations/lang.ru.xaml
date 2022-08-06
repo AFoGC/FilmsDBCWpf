@@ -33,6 +33,7 @@
     <v:String x:Key="add_cat_btn">Добавить категорию</v:String>
     <v:String x:Key="show_cat_btn">Меню категорий</v:String>
     <v:String x:Key="filter_title">Опции фильтра</v:String>
+    <v:String x:Key="filter_by_genre">Фильтровать по жанру</v:String>
 
     <!--SortPanel-->
     <v:String x:Key="id_sort">ID</v:String>
@@ -55,7 +56,7 @@
     <!--Booksmenu ButtonPanel-->
     <v:String x:Key="add_book_btn">Добавить книгу</v:String>
     <v:String x:Key="show_book_btn">Меню книг</v:String>
-    <v:String x:Key="show_bprior_btn">Меню приоритетных книг</v:String>
+    <v:String x:Key="show_bprior_btn">Меню приоритетов</v:String>
     <v:String x:Key="readed_btn">Прочитано</v:String>
     <v:String x:Key="unreaded_btn">Непрочитано</v:String>
 

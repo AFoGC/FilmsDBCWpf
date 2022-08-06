@@ -33,6 +33,7 @@
     <v:String x:Key="add_cat_btn">Add Category</v:String>
     <v:String x:Key="show_cat_btn">Show Categories</v:String>
     <v:String x:Key="filter_title">Filter options</v:String>
+    <v:String x:Key="filter_by_genre">Filter by genre</v:String>
 
     <!--SortPanel-->
     <v:String x:Key="id_sort">ID</v:String>
@@ -46,16 +47,16 @@
 
     <!--Filmsmenu ButtonPanel-->
     <v:String x:Key="add_film_btn">Add Film</v:String>
-    <v:String x:Key="show_film_btn">Show Films</v:String>
-    <v:String x:Key="show_serie_btn">Show Series</v:String>
-    <v:String x:Key="show_fprior_btn">Show Priority Films</v:String>
+    <v:String x:Key="show_film_btn">Films Menu</v:String>
+    <v:String x:Key="show_serie_btn">Series Menu</v:String>
+    <v:String x:Key="show_fprior_btn">Priority Menu</v:String>
     <v:String x:Key="watched_btn">Watched</v:String>
     <v:String x:Key="unwatched_btn">Unwatched</v:String>
 
     <!--Booksmenu ButtonPanel-->
     <v:String x:Key="add_book_btn">Add Book</v:String>
-    <v:String x:Key="show_book_btn">Show Books</v:String>
-    <v:String x:Key="show_bprior_btn">Show Priority Books</v:String>
+    <v:String x:Key="show_book_btn">Books Menu</v:String>
+    <v:String x:Key="show_bprior_btn">Priority Menu</v:String>
     <v:String x:Key="readed_btn">Readed</v:String>
     <v:String x:Key="unreaded_btn">Unreaded</v:String>
     
@@ -91,7 +92,7 @@
     <v:String x:Key="cor_tt">Count of readings</v:String>
 
     <v:String x:Key="add_in_category_tt">Create new element in category</v:String>
-    <v:String x:Key="collapse_category_tt">Сollapse category elements</v:String>
+    <v:String x:Key="collapse_category_tt">Сollapse category</v:String>
     <v:String x:Key="copy_url_tt">Copy url</v:String>
     <v:String x:Key="open_edit_tt">Open edit menu</v:String>
     <v:String x:Key="open_more_info_tt">Open more info menu</v:String>

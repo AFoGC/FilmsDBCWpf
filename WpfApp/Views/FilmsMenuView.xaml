@@ -176,6 +176,7 @@
                         <ToggleButton x:Name="watched" Content="{DynamicResource watched_btn}"/>
                         <ToggleButton x:Name="unwatched" Content="{DynamicResource unwatched_btn}"/>
                     </StackPanel>
+                    <Label Foreground="White" Content="{DynamicResource filter_by_genre}" HorizontalAlignment="Center"/>
                     <WrapPanel Name="genres_panel"/>
                     <Button x:Name="btn_filter" Style="{StaticResource BB}" Content="{DynamicResource serch_btn}"
                             VerticalAlignment="Bottom" Click="btn_filter_Click"

@@ -1,19 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.Table;
+using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 
 namespace TL_Tables
 {
 	public class FilmsTable : Table<Film>
 	{
-		public FilmsTable() : base() { }
-		public FilmsTable(int id) : base(id) { }
-		public FilmsTable(int id, string name) : base(id, name) { }
+		public FilmsTable()
+        {
+			NewMarkSystem = false;
+			MarkSystem = 6;
+        }
 
-		public override void ConnectionsSubload(TableCollection tablesCollection)
+		public bool NewMarkSystem { get; private set; }
+		public int MarkSystem { get; private set; }
+
+        protected override void saveBody(StreamWriter streamWriter)
+        {
+			//streamWriter.Write(Cell.FormatParam("newMarkSystem", NewMarkSystem, false, 1));
+        }
+
+        protected override void loadBody(Comand comand)
+        {
+			/*
+			switch (comand.Paramert)
+			{
+				case "newMarkSystem":
+					NewMarkSystem = Convert.ToBoolean(comand.Value);
+					break;
+
+				default:
+					break;
+			}
+			*/
+		}
+
+        public override void ConnectionsSubload(TableCollection tablesCollection)
 		{
 			Table<Genre> genresTable = tablesCollection.GetTable<Genre>();
 			foreach (Film film in this)

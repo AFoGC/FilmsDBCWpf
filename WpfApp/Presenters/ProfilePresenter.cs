@@ -34,6 +34,8 @@ namespace WpfApp.Presenters
         public void ChangeProfile()
         {
             profiles.SetUsedProfile(model);
+            parentPresenter.TableCollection.TableFilePath = profiles.UsedProfile.MainFilePath;
+            parentPresenter.TableCollection.LoadTables();
             parentPresenter.SetSelectedInfCollection(profiles.UsedProfile);
         }
 

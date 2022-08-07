@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TablesLibrary.Interpreter;
 using WpfApp.Models;
 using WpfApp.Views;
 using WpfApp.Views.Interfaces;
@@ -71,5 +72,6 @@ namespace WpfApp.Presenters
         }
 
         public string AllProfilesPath => model.ProfilesPath;
+        public TableCollection TableCollection => settings.TableCollection;
     }
 }

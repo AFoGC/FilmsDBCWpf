@@ -136,4 +136,9 @@
     <v:String x:Key="add_source_btn">Додати</v:String>
     <v:String x:Key="apply_update_btn">Застосувати</v:String>
 
+    <!--Exit Window-->
+    <v:String x:Key="exit_label">Ви впевнені, що хочете вийти?</v:String>
+    <v:String x:Key="exit_btn">Вийти без збереження</v:String>
+    <v:String x:Key="exit_and_save_btn">Зберегти та вийти</v:String>
+
 </ResourceDictionary>

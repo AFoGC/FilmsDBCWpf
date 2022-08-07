@@ -135,5 +135,10 @@
     <!--InfoPanels-->
     <v:String x:Key="add_source_btn">Add</v:String>
     <v:String x:Key="apply_update_btn">Apply</v:String>
+    
+    <!--Exit Window-->
+    <v:String x:Key="exit_label">Are you sure want to exit?</v:String>
+    <v:String x:Key="exit_btn">Exit without save</v:String>
+    <v:String x:Key="exit_and_save_btn">Save and Exit</v:String>
 
 </ResourceDictionary>

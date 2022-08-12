@@ -31,6 +31,7 @@ namespace WpfApp.Views
             markPanel.Items.Add(6);
             markPanel.Items.Add(10);
             markPanel.Items.Add(12);
+            markPanel.Items.Add(25);
             markPanel.SelectedItem = table.MarkSystem;
         }
 

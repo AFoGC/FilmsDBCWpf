@@ -27,26 +27,45 @@ namespace FilmsUCWpf.Presenter
             {
 				view.Genres.Add(genre);
             }
-            foreach (string mark in Helper.GetAllMarks())
-            {
-				view.Marks.Add(mark);
-            }
+
+            model.FormatedMark.PropertyChanged += FormatedMark_PropertyChanged;
+            
 			RefreshElement();
 		}
 
-		private static Film defFilm = new Film();
+        private void FormatedMark_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(model.FormatedMark.MarkSystem))
+            {
+				refreshComboBox();
+            }
+        }
+
+        private static Film defFilm = new Film();
 		public void RefreshElement()
 		{
+			refreshComboBox();
+
 			view.ID = model.ID.ToString();
 			view.Name = model.Name;
 			view.Genre = model.Genre;
 			view.RealiseYear = Film.FormatToString(model.RealiseYear, defFilm.RealiseYear);
 			view.Wathced = model.Watched;
-			view.Mark = Helper.MarkToText(Film.FormatToString(model.Mark, defFilm.Mark));
 			view.CountOfViews = Film.FormatToString(model.CountOfViews, defFilm.CountOfViews);
 			view.DateOfWatch = model.DateOfWatch;
 			view.Comment = model.Comment;
 		}
+
+		private void refreshComboBox()
+        {
+			view.Marks.Clear();
+			foreach (string mark in model.FormatedMark.GetComboItems())
+			{
+				view.Marks.Add(mark);
+			}
+			view.Mark = model.FormatedMark.ToString();
+		}
+
 		public void UpdateElement()
         {
 			SeriesTable table = (SeriesTable)collection.GetTable<Serie>();
@@ -63,7 +82,7 @@ namespace FilmsUCWpf.Presenter
 			model.RealiseYear = Helper.TextToInt32(view.RealiseYear);
 			model.CountOfViews = Helper.TextToInt32(view.CountOfViews);
 
-			model.Mark = Helper.TextToMark(view.Mark);
+			model.FormatedMark.SetMarkFromString(view.Mark);
 
 			model.DateOfWatch = view.DateOfWatch;
 		}

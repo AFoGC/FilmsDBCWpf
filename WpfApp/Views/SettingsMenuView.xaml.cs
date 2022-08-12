@@ -45,6 +45,8 @@ namespace WpfApp.Views
             this.SettingsList.Add(conteinerView);
 
             this.SettingsList.Add(new LanguageSettingsView(model.Settings));
+
+            this.SettingsList.Add(new MarkSettingsControl(model.Tables.FilmsTable));
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)

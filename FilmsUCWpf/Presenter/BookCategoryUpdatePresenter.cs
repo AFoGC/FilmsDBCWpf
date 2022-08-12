@@ -11,7 +11,7 @@ using TL_Objects;
 
 namespace FilmsUCWpf.Presenter
 {
-    public class BookCategoryUpdatePresenter : IUpdatePresenter
+	public class BookCategoryUpdatePresenter : IUpdatePresenter
 	{
 		private BookCategory model;
 		private IBookCategoryUpdateView view;
@@ -24,11 +24,18 @@ namespace FilmsUCWpf.Presenter
 			this.view = view;
 			this.menu = menu;
 			this.tableCollection = tableCollection;
-            foreach (string mark in Helper.GetAllMarks())
-            {
-				view.Marks.Add(mark);
-			}
+
+			model.FormatedMark.PropertyChanged += FormatedMark_PropertyChanged;
+
 			RefreshElement();
+		}
+
+		private void FormatedMark_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(model.FormatedMark.MarkSystem))
+			{
+				refreshComboBox();
+			}
 		}
 
 		public void AddSelected()
@@ -72,17 +79,28 @@ namespace FilmsUCWpf.Presenter
 		private static BookCategory defCat = new BookCategory();
 		public void RefreshElement()
 		{
+			refreshComboBox();
+
 			view.ID = model.ID.ToString();
 			view.Name = model.Name;
 			view.HideName = model.HideName;
-			view.Mark = Helper.MarkToText(Film.FormatToString(model.Mark, defCat.Mark));
+		}
+
+		private void refreshComboBox()
+		{
+			view.Marks.Clear();
+			foreach (string mark in model.FormatedMark.GetComboItems())
+			{
+				view.Marks.Add(mark);
+			}
+			view.Mark = model.FormatedMark.ToString();
 		}
 
 		public void UpdateElement()
 		{
 			model.Name = view.Name;
 			model.HideName = view.HideName;
-			model.Mark = Helper.TextToMark(view.Mark);
+			model.FormatedMark.SetMarkFromString(view.Mark);
 		}
 	}
 }

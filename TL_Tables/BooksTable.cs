@@ -38,8 +38,8 @@ namespace TL_Tables
         {
 			if (e.Action == NotifyCollectionChangedAction.Add)
 			{
-				Film film = (Film)e.NewItems[0];
-				film.FormatedMark.MarkSystem = MarkSystem;
+				Book book = (Book)e.NewItems[0];
+				book.FormatedMark.MarkSystem = MarkSystem;
 			}
 		}
 

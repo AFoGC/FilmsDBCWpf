@@ -22,9 +22,9 @@ namespace TL_Tables
 			set
 			{
 				markSystem = value;
-				foreach (Film film in this)
+				foreach (Category category in this)
 				{
-					film.FormatedMark.MarkSystem = markSystem;
+					category.FormatedMark.MarkSystem = markSystem;
 				}
 			}
 		}
@@ -39,8 +39,8 @@ namespace TL_Tables
         {
 			if (e.Action == NotifyCollectionChangedAction.Add)
 			{
-				Film film = (Film)e.NewItems[0];
-				film.FormatedMark.MarkSystem = MarkSystem;
+				Category category = (Category)e.NewItems[0];
+				category.FormatedMark.MarkSystem = MarkSystem;
 			}
 		}
 

@@ -1,20 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Text;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.Table;
+using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 
 namespace TL_Tables
 {
 	public class BookCategoriesTable : Table<BookCategory>
 	{
-		public BookCategoriesTable() : base() { }
-		public BookCategoriesTable(int id) : base(id) { }
-		public BookCategoriesTable(int id, string name) : base(id, name) { }
+		private int markSystem;
+		public bool NewMarkSystem { get; private set; }
+		public int MarkSystem
+		{
+			get => markSystem;
+			set
+			{
+				markSystem = value;
+				foreach (BookCategory category in this)
+				{
+					category.FormatedMark.MarkSystem = markSystem;
+				}
+			}
+		}
+		public BookCategoriesTable()
+        {
+			NewMarkSystem = false;
+			MarkSystem = 6;
+			this.CollectionChanged += CategoriesTable_CollectionChanged;
+		}
 
+		private void CategoriesTable_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			if (e.Action == NotifyCollectionChangedAction.Add)
+			{
+				BookCategory book = (BookCategory)e.NewItems[0];
+				book.FormatedMark.MarkSystem = MarkSystem;
+			}
+		}
+
+		protected override void saveBody(StreamWriter streamWriter)
+		{
+			streamWriter.Write(Cell.FormatParam("newMarkSystem", NewMarkSystem, false, 1));
+			streamWriter.Write(Cell.FormatParam("markSystem", MarkSystem, 6, 1));
+		}
+
+		protected override void loadBody(Comand comand)
+		{
+			switch (comand.Paramert)
+			{
+				case "newMarkSystem":
+					NewMarkSystem = Convert.ToBoolean(comand.Value);
+					break;
+				case "markSystem":
+					MarkSystem = Convert.ToInt32(comand.Value);
+					break;
+
+				default:
+					break;
+			}
+		}
 
 		public override void ConnectionsSubload(TableCollection tablesCollection)
 		{
@@ -33,6 +83,21 @@ namespace TL_Tables
 				}
 				sortBooks(category.Books, categoryFilms);
 			}
+
+			if (!this.NewMarkSystem)
+			{
+				changeToNewMarkSystem();
+			}
+		}
+
+		private void changeToNewMarkSystem()
+		{
+			foreach (BookCategory category in this)
+			{
+				category.Mark *= 50;
+			}
+
+			this.NewMarkSystem = true;
 		}
 
 		private void sortBooks(ObservableCollection<Book> categoryBooks, List<Book> source)

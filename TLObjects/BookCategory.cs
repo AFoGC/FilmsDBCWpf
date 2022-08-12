@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
+using TL_Objects.CellDataClasses;
 
 namespace TL_Objects
 {
@@ -14,7 +15,7 @@ namespace TL_Objects
     {
         private string name = "";
         private string hideName = String.Empty;
-        private sbyte mark = -1;
+        private Mark mark = new Mark();
         private int priority = 0;
 
         private ObservableCollection<Book> books = new ObservableCollection<Book>();
@@ -22,6 +23,13 @@ namespace TL_Objects
         public BookCategory() : base()
         {
             books.CollectionChanged += Books_CollectionChanged;
+            mark.PropertyChanged += Mark_PropertyChanged;
+        }
+
+        private void Mark_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(Mark));
+            OnPropertyChanged(nameof(FormatedMark));
         }
 
         private void Books_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -95,7 +103,7 @@ namespace TL_Objects
         {
             streamWriter.Write(FormatParam("name", name, "", 2));
             streamWriter.Write(FormatParam("hideName", hideName, String.Empty, 2));
-            streamWriter.Write(FormatParam("mark", mark, -1, 2));
+            streamWriter.Write(FormatParam("mark", mark.RawMark, 0, 2));
             streamWriter.Write(FormatParam("priority", priority, 0, 2));
         }
 
@@ -110,7 +118,7 @@ namespace TL_Objects
                     hideName = comand.Value;
                     break;
                 case "mark":
-                    mark = Convert.ToSByte(comand.Value);
+                    mark.RawMark = Convert.ToInt32(comand.Value);
                     break;
                 case "priority":
                     priority = Convert.ToInt32(comand.Value);
@@ -141,10 +149,15 @@ namespace TL_Objects
             }
         }
 
-        public sbyte Mark
+        public int Mark
         {
-            get { return mark; }
-            set { mark = value; OnPropertyChanged(nameof(Mark)); }
+            get { return mark.RawMark; }
+            set { mark.RawMark = value; OnPropertyChanged(nameof(Mark)); }
+        }
+
+        public Mark FormatedMark
+        {
+            get => mark;
         }
 
         public int Priority

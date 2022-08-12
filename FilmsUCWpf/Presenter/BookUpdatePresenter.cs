@@ -27,16 +27,15 @@ namespace FilmsUCWpf.Presenter
 			{
 				view.Genres.Add(genre);
 			}
-			foreach (string mark in Helper.GetAllMarks())
-			{
-				view.Marks.Add(mark);
-			}
+
 			RefreshElement();
 		}
 
 		private static Book defBook = new Book();
 		public void RefreshElement()
 		{
+			refreshComboBox();
+
 			view.ID = model.ID.ToString();
 			view.Name = model.Name;
 			view.Genre = model.BookGenre;
@@ -44,9 +43,18 @@ namespace FilmsUCWpf.Presenter
 			view.Readed = model.Readed;
 			view.Author = model.Author;
 			view.FullReadDate = model.FullReadDate;
-			view.Mark = Helper.MarkToText(Book.FormatToString(model.Mark, defBook.Mark));
 			view.CountOfReadings = Book.FormatToString(model.CountOfReadings, defBook.CountOfReadings);
 			view.Bookmark = model.Bookmark;
+		}
+
+		private void refreshComboBox()
+		{
+			view.Marks.Clear();
+			foreach (string mark in model.FormatedMark.GetComboItems())
+			{
+				view.Marks.Add(mark);
+			}
+			view.Mark = model.FormatedMark.ToString();
 		}
 
 		public void UpdateElement()
@@ -61,7 +69,7 @@ namespace FilmsUCWpf.Presenter
 			model.PublicationYear = Helper.TextToInt32(view.RealiseYear);
 			model.CountOfReadings = Helper.TextToInt32(view.CountOfReadings);
 
-			model.Mark = Helper.TextToMark(view.Mark);
+			model.FormatedMark.SetMarkFromString(view.Mark);
 		}
 
 		public void OpenSources()

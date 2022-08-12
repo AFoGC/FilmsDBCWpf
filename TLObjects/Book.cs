@@ -19,7 +19,7 @@ namespace TL_Objects
 		private int publicationYear = 0;
 		private bool readed = false;
 		private DateTime fullReadDate = new DateTime();
-		private sbyte mark = -1;
+		private Mark mark = new Mark();
 		private ObservableCollection<Source> sources = new ObservableCollection<Source>();
 
 		private int countOfReadings = 0;
@@ -28,13 +28,22 @@ namespace TL_Objects
 		private int franshiseId = 0;
 		private sbyte franshiseListIndex = -1;
 
-		public Book() : base() { sources.CollectionChanged += Sources_CollectionChanged; }
+		public Book()
+		{ 
+			sources.CollectionChanged += Sources_CollectionChanged;
+			mark.PropertyChanged += Mark_PropertyChanged;
+		}
+
+		private void Mark_PropertyChanged(object sender, EventArgs e)
+		{
+			OnPropertyChanged(nameof(Mark));
+			OnPropertyChanged(nameof(FormatedMark));
+		}
+
 		private void Sources_CollectionChanged(object sender, EventArgs e)
 		{
 			this.OnPropertyChanged(nameof(Sources));
 		}
-
-
 
 		protected override void loadBody(Comand comand)
 		{
@@ -59,7 +68,7 @@ namespace TL_Objects
 					this.fullReadDate = Convert.ToDateTime(comand.Value);
 					break;
 				case "mark":
-					this.mark = Convert.ToSByte(comand.Value);
+					this.mark.RawMark = Convert.ToInt32(comand.Value);
 					break;
 				case "sourceUrl":
 					this.sources.Add(Source.ToSource(comand.Value));
@@ -85,7 +94,7 @@ namespace TL_Objects
 			streamWriter.Write(FormatParam("publicationYear", publicationYear, 0, 2));
 			streamWriter.Write(FormatParam("readed", readed, false, 2));
 			streamWriter.Write(FormatParam("fullReadDate", fullReadDate, new DateTime(), 2));
-			streamWriter.Write(FormatParam("mark", mark, -1, 2));
+			streamWriter.Write(FormatParam("mark", mark.RawMark, 0, 2));
 			streamWriter.Write(FormatParam("bookmark", bookmark, "", 2));
 			streamWriter.Write(FormatParam("franshiseId", franshiseId, 0, 2));
 			streamWriter.Write(FormatParam("franshiseListIndex", franshiseListIndex, -1, 2));
@@ -161,10 +170,14 @@ namespace TL_Objects
 			get { return fullReadDate; }
 			set { fullReadDate = value; OnPropertyChanged(nameof(FullReadDate)); }
 		}
-		public sbyte Mark
+		public int Mark
 		{
-			get { return mark; }
-			set { mark = value; OnPropertyChanged(nameof(Mark)); }
+			get { return mark.RawMark; }
+			set { mark.RawMark = value; OnPropertyChanged(nameof(Mark)); OnPropertyChanged(nameof(FormatedMark)); }
+		}
+		public Mark FormatedMark
+		{
+			get => mark;
 		}
 		public ObservableCollection<Source> Sources
 		{

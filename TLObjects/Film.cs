@@ -17,7 +17,7 @@ namespace TL_Objects
 		private int genreId	= 0;
 		private int realiseYear	= 0;
 		private bool watched = false;
-		private sbyte mark = -1;
+		private Mark mark = new Mark();
 		private DateTime dateOfWatch = new DateTime();
 
 		private string comment = "";
@@ -29,8 +29,19 @@ namespace TL_Objects
 
 		public Serie Serie { get; internal set; }
 
-		public Film() : base() { sources.CollectionChanged += Sources_CollectionChanged; }
-		private void Sources_CollectionChanged(object sender, EventArgs e)
+		public Film() : base()
+		{ 
+			sources.CollectionChanged += Sources_CollectionChanged;
+            mark.PropertyChanged += Mark_PropertyChanged;
+		}
+
+        private void Mark_PropertyChanged(object sender, EventArgs e)
+        {
+			OnPropertyChanged(nameof(Mark));
+			OnPropertyChanged(nameof(FormatedMark));
+		}
+
+        private void Sources_CollectionChanged(object sender, EventArgs e)
 		{
 			this.OnPropertyChanged(nameof(Sources));
 		}
@@ -59,7 +70,7 @@ namespace TL_Objects
 			streamWriter.Write(FormatParam("genre", genre.ID, 0, 2));
 			streamWriter.Write(FormatParam("realiseYear", realiseYear, 0, 2));
 			streamWriter.Write(FormatParam("watched", watched, false, 2));
-			streamWriter.Write(FormatParam("mark", mark, -1, 2));
+			streamWriter.Write(FormatParam("mark", mark.RawMark, 0, 2));
 			streamWriter.Write(FormatParam("dateOfWatch", dateOfWatch, new DateTime(), 2));
 			streamWriter.Write(FormatParam("comment", comment, "", 2));
 
@@ -90,7 +101,7 @@ namespace TL_Objects
 					watched = Convert.ToBoolean(comand.Value);
 					break;
 				case "mark":
-					mark = Convert.ToSByte(comand.Value);
+					mark.RawMark = Convert.ToInt32(comand.Value);
 					break;
 				case "dateOfWatch":
 					dateOfWatch = Convert.ToDateTime(comand.Value);
@@ -148,11 +159,16 @@ namespace TL_Objects
 			set { watched = value; OnPropertyChanged(nameof(Watched)); }
 		}
 
-		public sbyte Mark
+		public int Mark
 		{
-			get { return mark; }
-			set { mark = value; OnPropertyChanged(nameof(Mark)); }
+			get { return mark.RawMark; }
+			set { mark.RawMark = value; OnPropertyChanged(nameof(Mark)); OnPropertyChanged(nameof(FormatedMark)); }
 		}
+
+		public Mark FormatedMark
+        {
+			get => mark;
+        }
 
 		public DateTime DateOfWatch
 		{

@@ -28,7 +28,7 @@ namespace FilmsUCWpf.ModelBinder
 		public String RealiseYear { get => Film.FormatToString(Model.RealiseYear, defFilm.RealiseYear); set { } }
 		public Boolean Watched { get => Model.Watched; set { } }
 		public String DateOfWatch { get => FormateDate(Model.DateOfWatch); set { } }
-		public String Mark { get => Helper.MarkToText(Film.FormatToString(Model.Mark, defFilm.Mark)); set { } }
+		public String Mark { get => Model.FormatedMark.ToString(); set { } }
 		public String CountOfViews { get => Film.FormatToString(Model.CountOfViews, defFilm.CountOfViews); set { } }
 		public String Comment { get => Model.Comment; set { } }
 		public String Sources { get => Helper.SourcesStateString(Model.Sources); set { } }

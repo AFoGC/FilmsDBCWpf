@@ -112,36 +112,7 @@ namespace TL_Tables
         {
 			foreach (Film film in this)
 			{
-				switch (film.Mark)
-				{
-					case 6:
-						film.Mark = 300;
-						break;
-					case 5:
-						film.Mark = 250;
-						break;
-					case 4:
-						film.Mark = 200;
-						break;
-					case 3:
-						film.Mark = 150;
-						break;
-					case 2:
-						film.Mark = 100;
-						break;
-					case 1:
-						film.Mark = 50;
-						break;
-					case 0:
-						film.Mark = 0;
-						break;
-					case -1:
-						film.Mark = 0;
-						break;
-
-					default:
-						break;
-				}
+				film.Mark *= 50;
 			}
 
 			this.NewMarkSystem = true;

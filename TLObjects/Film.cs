@@ -29,7 +29,7 @@ namespace TL_Objects
 
 		public Serie Serie { get; internal set; }
 
-		public Film() : base()
+		public Film()
 		{ 
 			sources.CollectionChanged += Sources_CollectionChanged;
             mark.PropertyChanged += Mark_PropertyChanged;

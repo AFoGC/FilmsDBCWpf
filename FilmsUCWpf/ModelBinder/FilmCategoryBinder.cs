@@ -14,6 +14,6 @@ namespace FilmsUCWpf.ModelBinder
         private static Category defCat = new Category();
         public String ID { get => Model.ID.ToString(); set { } }
         public String Name { get => Model.Name; set { } }
-        public String Mark { get => Helper.MarkToText(Category.FormatToString(Model.Mark, defCat.Mark)); set { } }
+        public String Mark { get => Model.FormatedMark.ToString(); set { } }
     }
 }

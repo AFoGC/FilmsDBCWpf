@@ -46,7 +46,9 @@ namespace WpfApp.Views
 
             this.SettingsList.Add(new LanguageSettingsView(model.Settings));
 
-            this.SettingsList.Add(new MarkSettingsControl(model.Tables.FilmsTable));
+            this.SettingsList.Add(new MarkSettingsControl(model.Tables.FilmsTable, model.Tables.CategoriesTable));
+
+            this.SettingsList.Add(new MarkSettingsControl(model.Tables.BooksTable, model.Tables.BookCategoriesTable));
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)

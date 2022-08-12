@@ -9,10 +9,11 @@ using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.Table;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
+using TL_Tables.Interfaces;
 
 namespace TL_Tables
 {
-	public class CategoriesTable : Table<Category>
+	public class CategoriesTable : Table<Category>, IHasMarkSystem
 	{
 		private int markSystem;
 		public bool NewMarkSystem { get; private set; }

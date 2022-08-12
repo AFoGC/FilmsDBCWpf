@@ -7,10 +7,11 @@ using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.Table;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
+using TL_Tables.Interfaces;
 
 namespace TL_Tables
 {
-	public class BooksTable : Table<Book>
+	public class BooksTable : Table<Book>, IHasMarkSystem
 	{
 		private int markSystem;
 		public bool NewMarkSystem { get; private set; }
@@ -20,9 +21,9 @@ namespace TL_Tables
 			set
 			{
 				markSystem = value;
-				foreach (Film film in this)
+				foreach (Book book in this)
 				{
-					film.FormatedMark.MarkSystem = markSystem;
+					book.FormatedMark.MarkSystem = markSystem;
 				}
 			}
 		}

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TL_Tables;
+using TL_Tables.Interfaces;
 
 namespace WpfApp.Views
 {
@@ -21,10 +22,12 @@ namespace WpfApp.Views
     /// </summary>
     public partial class MarkSettingsControl : UserControl
     {
-        private readonly FilmsTable table;
-        public MarkSettingsControl(FilmsTable table)
+        private readonly IHasMarkSystem table;
+        private readonly IHasMarkSystem categoryTable;
+        public MarkSettingsControl(IHasMarkSystem table, IHasMarkSystem categoryTable)
         {
             this.table = table;
+            this.categoryTable = categoryTable;
             InitializeComponent();
             markPanel.Items.Add(3);
             markPanel.Items.Add(5);
@@ -37,7 +40,9 @@ namespace WpfApp.Views
 
         private void ChangeMark(object sender, RoutedEventArgs e)
         {
-            table.MarkSystem = (int)markPanel.SelectedItem;
+            int ms = (int)markPanel.SelectedItem;
+            table.MarkSystem = ms;
+            categoryTable.MarkSystem = ms;
         }
     }
 }

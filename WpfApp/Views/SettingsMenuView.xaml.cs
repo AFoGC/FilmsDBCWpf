@@ -33,19 +33,10 @@ namespace WpfApp.Views
             InitializeComponent();
             LogInUser.SetUserModel(model);
 
-            this.SettingsList.Add(new ProfileContainerView(model.Settings));
-            GenreConteinerView conteinerView;
-
-            conteinerView = new GenreConteinerView(model.TableCollection, GenrePresenterEnum.FilmGenre);
-            conteinerView.MenuLabel.SetResourceReference(Label.ContentProperty, "st_fgenre_title");
-            this.SettingsList.Add(conteinerView);
-
-            conteinerView = new GenreConteinerView(model.TableCollection, GenrePresenterEnum.BookGenre);
-            conteinerView.MenuLabel.SetResourceReference(Label.ContentProperty, "st_bgenre_title");
-            this.SettingsList.Add(conteinerView);
-
             this.SettingsList.Add(new LanguageSettingsView(model.Settings));
 
+            this.SettingsList.Add(new ProfileContainerView(model.Settings));
+            GenreConteinerView conteinerView;
             MarkSettingsControl markSettings;
 
             markSettings = new MarkSettingsControl(model.Tables.FilmsTable, model.Tables.CategoriesTable);
@@ -55,6 +46,14 @@ namespace WpfApp.Views
             markSettings = new MarkSettingsControl(model.Tables.BooksTable, model.Tables.BookCategoriesTable);
             markSettings.MenuLabel.SetResourceReference(Label.ContentProperty, "st_bmark_title");
             this.SettingsList.Add(markSettings);
+
+            conteinerView = new GenreConteinerView(model.TableCollection, GenrePresenterEnum.FilmGenre);
+            conteinerView.MenuLabel.SetResourceReference(Label.ContentProperty, "st_fgenre_title");
+            this.SettingsList.Add(conteinerView);
+
+            conteinerView = new GenreConteinerView(model.TableCollection, GenrePresenterEnum.BookGenre);
+            conteinerView.MenuLabel.SetResourceReference(Label.ContentProperty, "st_bgenre_title");
+            this.SettingsList.Add(conteinerView);
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)

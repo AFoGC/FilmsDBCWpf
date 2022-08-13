@@ -28,6 +28,7 @@ namespace FilmsUCWpf.View
             this.source = source;
             source_name.Text = source.Name;
             source_url.Text = source.SourceUrl;
+            this.DataContext = source;
         }
 
         public void UpdateSource()

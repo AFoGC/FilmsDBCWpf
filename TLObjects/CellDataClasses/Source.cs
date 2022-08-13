@@ -11,7 +11,8 @@ namespace TL_Objects.CellDataClasses
 
         public Source()
         {
-
+            Name = String.Empty;
+            SourceUrl = String.Empty;
         }
 
         public static Source ToSource(String import)

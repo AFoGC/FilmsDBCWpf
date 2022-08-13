@@ -67,9 +67,16 @@ namespace TL_Objects.CellDataClasses
 
         public void SetMarkFromString(String str)
         {
-            string cleanedString = str.Substring(0, str.IndexOf('/'));
-            int mark = Convert.ToInt32(cleanedString);
-            FormatedMark = mark;
+            if (str != String.Empty)
+            {
+                string cleanedString = str.Substring(0, str.IndexOf('/'));
+                int mark = Convert.ToInt32(cleanedString);
+                FormatedMark = mark;
+            }
+            else
+            {
+                RawMark = 0;
+            }
         }
 
         public List<String> GetComboItems()
@@ -80,6 +87,8 @@ namespace TL_Objects.CellDataClasses
             {
                 strs.Add($"{i}/{MarkSystem}");
             }
+
+            strs.Add(String.Empty);
 
             return strs;
         }

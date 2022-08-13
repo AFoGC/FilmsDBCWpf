@@ -26,7 +26,13 @@
     <v:String x:Key="st_add_genre">Добавить новый жанр</v:String>
     <v:String x:Key="st_is_serial">Сериальный жанр</v:String>
     <v:String x:Key="st_del_genre">Удалить жанр</v:String>
-    
+
+    <!--Mark Settings-->
+    <v:String x:Key="st_mark_title">Настройка системы оценок</v:String>
+    <v:String x:Key="st_fmark_title">Система оценок фильмов</v:String>
+    <v:String x:Key="st_bmark_title">Система оценок книг</v:String>
+    <v:String x:Key="st_mark_btn">Изменить систему оценок</v:String>
+
     <!--Common Buttons-->
     <v:String x:Key="serch_btn">Поиск</v:String>
     <v:String x:Key="save_tab_btn">Сохранить таблицы</v:String>

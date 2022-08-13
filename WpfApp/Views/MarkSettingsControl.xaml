@@ -10,11 +10,11 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Content="mark-settings" Foreground="White" BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
-        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" >
+        <Label x:Name="MenuLabel" Content="{DynamicResource st_mark_title}"  Foreground="White" BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1">
             <ComboBox x:Name="markPanel" Style="{StaticResource DarkComboBox}" Width="200"/>
             <Rectangle Width="5"/>
-            <Button Style="{StaticResource GrayButton}" Content="chage-system" Width="180" Click="ChangeMark"/>
+            <Button Style="{StaticResource GrayButton}" Content="{DynamicResource st_mark_btn}" Width="180" Click="ChangeMark"/>
         </StackPanel>
     </Grid>
 </UserControl>

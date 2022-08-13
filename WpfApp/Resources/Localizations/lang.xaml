@@ -18,7 +18,7 @@
     <v:String x:Key="st_import_prof">Import File</v:String>
     <v:String x:Key="st_use_prof">Use This Profile</v:String>
     <v:String x:Key="st_del_prof">Delete Profile</v:String>
-    
+
     <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Genres Settings</v:String>
     <v:String x:Key="st_fgenre_title">Films Genres Settings</v:String>
@@ -26,7 +26,13 @@
     <v:String x:Key="st_add_genre">Add new genre</v:String>
     <v:String x:Key="st_is_serial">Is Serial Genre</v:String>
     <v:String x:Key="st_del_genre">Delete Genre</v:String>
-    
+
+    <!--Mark Settings-->
+    <v:String x:Key="st_mark_title">Mark System Settings</v:String>
+    <v:String x:Key="st_fmark_title">Films Mark System</v:String>
+    <v:String x:Key="st_bmark_title">Books Mark System</v:String>
+    <v:String x:Key="st_mark_btn">Change Mark System</v:String>
+
     <!--Common Buttons-->
     <v:String x:Key="serch_btn">Search</v:String>
     <v:String x:Key="save_tab_btn">Save Table</v:String>

@@ -29,20 +29,65 @@ namespace WpfApp.Views
             this.table = table;
             this.categoryTable = categoryTable;
             InitializeComponent();
-            markPanel.Items.Add(3);
-            markPanel.Items.Add(5);
-            markPanel.Items.Add(6);
-            markPanel.Items.Add(10);
-            markPanel.Items.Add(12);
-            markPanel.Items.Add(25);
-            markPanel.SelectedItem = table.MarkSystem;
+            markPanel.Items.Add("3/3");
+            markPanel.Items.Add("5/5");
+            markPanel.Items.Add("6/6");
+            markPanel.Items.Add("10/10");
+            markPanel.Items.Add("12/12");
+            markPanel.Items.Add("25/25");
+
+            switch (table.MarkSystem)
+            {
+                case 3:
+                    markPanel.SelectedIndex = 0;
+                    break;
+                case 5:
+                    markPanel.SelectedIndex = 1;
+                    break;
+                case 6:
+                    markPanel.SelectedIndex = 2;
+                    break;
+                case 10:
+                    markPanel.SelectedIndex = 3;
+                    break;
+                case 12:
+                    markPanel.SelectedIndex = 4;
+                    break;
+                case 25:
+                    markPanel.SelectedIndex = 5;
+                    break;
+            }
         }
 
         private void ChangeMark(object sender, RoutedEventArgs e)
         {
-            int ms = (int)markPanel.SelectedItem;
-            table.MarkSystem = ms;
-            categoryTable.MarkSystem = ms;
+            switch (markPanel.SelectedIndex)
+            {
+                case 0:
+                    table.MarkSystem = 3;
+                    categoryTable.MarkSystem = 3;
+                    break;
+                case 1:
+                    table.MarkSystem = 5;
+                    categoryTable.MarkSystem = 5;
+                    break;
+                case 2:
+                    table.MarkSystem = 6;
+                    categoryTable.MarkSystem = 6;
+                    break;
+                case 3:
+                    table.MarkSystem = 10;
+                    categoryTable.MarkSystem = 10;
+                    break;
+                case 4:
+                    table.MarkSystem = 12;
+                    categoryTable.MarkSystem = 12;
+                    break;
+                case 5:
+                    table.MarkSystem = 25;
+                    categoryTable.MarkSystem = 25;
+                    break;
+            }
         }
     }
 }

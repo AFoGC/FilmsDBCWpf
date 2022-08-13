@@ -37,18 +37,24 @@ namespace WpfApp.Views
             GenreConteinerView conteinerView;
 
             conteinerView = new GenreConteinerView(model.TableCollection, GenrePresenterEnum.FilmGenre);
-            conteinerView.MenuLabel.SetResourceReference(System.Windows.Controls.Label.ContentProperty, "st_fgenre_title");
+            conteinerView.MenuLabel.SetResourceReference(Label.ContentProperty, "st_fgenre_title");
             this.SettingsList.Add(conteinerView);
 
             conteinerView = new GenreConteinerView(model.TableCollection, GenrePresenterEnum.BookGenre);
-            conteinerView.MenuLabel.SetResourceReference(System.Windows.Controls.Label.ContentProperty, "st_bgenre_title");
+            conteinerView.MenuLabel.SetResourceReference(Label.ContentProperty, "st_bgenre_title");
             this.SettingsList.Add(conteinerView);
 
             this.SettingsList.Add(new LanguageSettingsView(model.Settings));
 
-            this.SettingsList.Add(new MarkSettingsControl(model.Tables.FilmsTable, model.Tables.CategoriesTable));
+            MarkSettingsControl markSettings;
 
-            this.SettingsList.Add(new MarkSettingsControl(model.Tables.BooksTable, model.Tables.BookCategoriesTable));
+            markSettings = new MarkSettingsControl(model.Tables.FilmsTable, model.Tables.CategoriesTable);
+            markSettings.MenuLabel.SetResourceReference(Label.ContentProperty, "st_fmark_title");
+            this.SettingsList.Add(markSettings);
+
+            markSettings = new MarkSettingsControl(model.Tables.BooksTable, model.Tables.BookCategoriesTable);
+            markSettings.MenuLabel.SetResourceReference(Label.ContentProperty, "st_bmark_title");
+            this.SettingsList.Add(markSettings);
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)

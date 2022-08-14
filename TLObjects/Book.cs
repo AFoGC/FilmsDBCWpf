@@ -12,26 +12,40 @@ namespace TL_Objects
 	[TableCell("Book")]
 	public class Book : Cell
 	{
-		private String name = "";
-		private String author = "";
-		private BookGenre bookGenre;
-		private int bookGenreId = 0;
-		private int publicationYear = 0;
-		private bool readed = false;
-		private DateTime fullReadDate = new DateTime();
-		private Mark mark = new Mark();
-		private ObservableCollection<Source> sources = new ObservableCollection<Source>();
+		private String _name;
+		private String _author;
+		private BookGenre _bookGenre;
+		private int _bookGenreId;
+		private int _publicationYear;
+		private bool _readed;
+		private DateTime _fullReadDate;
+		private Mark _mark;
+		private ObservableCollection<Source> _sources;
 
-		private int countOfReadings = 0;
-		private String bookmark = "";
+		private int _countOfReadings;
+		private String _bookmark;
 
-		private int franshiseId = 0;
-		private sbyte franshiseListIndex = -1;
+		private int _franshiseId;
+		private sbyte _franshiseListIndex;
 
 		public Book()
-		{ 
-			sources.CollectionChanged += Sources_CollectionChanged;
-			mark.PropertyChanged += Mark_PropertyChanged;
+		{
+			_name = String.Empty;
+			_author = String.Empty;
+			_bookGenre = null;
+			_bookGenreId = 0;
+			_publicationYear = 0;
+			_readed = false;
+			_fullReadDate = new DateTime();
+			_mark = new Mark();
+			_sources = new ObservableCollection<Source>();
+			_countOfReadings = 0;
+			_bookmark = String.Empty;
+			_franshiseId = 0;
+			_franshiseListIndex = -1;
+
+			_sources.CollectionChanged += Sources_CollectionChanged;
+			_mark.PropertyChanged += Mark_PropertyChanged;
 		}
 
 		private void Mark_PropertyChanged(object sender, EventArgs e)
@@ -50,56 +64,58 @@ namespace TL_Objects
 			switch (comand.Paramert)
 			{
 				case "name":
-					this.name = comand.Value;
+					this._name = comand.Value;
 					break;
 				case "author":
-					this.author = comand.Value;
+					this._author = comand.Value;
 					break;
 				case "bookGenreId":
-					this.bookGenreId = Convert.ToInt32(comand.Value);
+					this._bookGenreId = Convert.ToInt32(comand.Value);
 					break;
 				case "publicationYear":
-					this.publicationYear = Convert.ToInt32(comand.Value);
+					this._publicationYear = Convert.ToInt32(comand.Value);
 					break;
 				case "readed":
-					this.readed = Convert.ToBoolean(comand.Value);
+					this._readed = Convert.ToBoolean(comand.Value);
 					break;
 				case "fullReadDate":
-					this.fullReadDate = Convert.ToDateTime(comand.Value);
+					this._fullReadDate = Convert.ToDateTime(comand.Value);
 					break;
 				case "mark":
-					this.mark.RawMark = Convert.ToInt32(comand.Value);
+					this._mark.RawMark = Convert.ToInt32(comand.Value);
 					break;
 				case "sourceUrl":
-					this.sources.Add(Source.ToSource(comand.Value));
+					this._sources.Add(Source.ToSource(comand.Value));
 					break;
 				case "bookmark":
-					this.bookmark = comand.Value;
+					this._bookmark = comand.Value;
 					break;
 				case "franshiseId":
-					this.franshiseId = Convert.ToInt32(comand.Value);
+					this._franshiseId = Convert.ToInt32(comand.Value);
 					break;
 				case "franshiseListIndex":
-					this.franshiseListIndex = Convert.ToSByte(comand.Value);
+					this._franshiseListIndex = Convert.ToSByte(comand.Value);
 					break;
 			}
 		}
 
-		private Source defSource = new Source();
+		private static Source defSource = new Source();
 		protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
 		{
-			streamWriter.Write(FormatParam("name", name, "", 2));
-			streamWriter.Write(FormatParam("author", author, "", 2));
-			streamWriter.Write(FormatParam("bookGenreId", bookGenreId, 0, 2));
-			streamWriter.Write(FormatParam("publicationYear", publicationYear, 0, 2));
-			streamWriter.Write(FormatParam("readed", readed, false, 2));
-			streamWriter.Write(FormatParam("fullReadDate", fullReadDate, new DateTime(), 2));
-			streamWriter.Write(FormatParam("mark", mark.RawMark, 0, 2));
-			streamWriter.Write(FormatParam("bookmark", bookmark, "", 2));
-			streamWriter.Write(FormatParam("franshiseId", franshiseId, 0, 2));
-			streamWriter.Write(FormatParam("franshiseListIndex", franshiseListIndex, -1, 2));
+			Book dbook = (Book)defaultCell;
 
-			foreach (Source source in sources)
+			streamWriter.Write(FormatParam("name", _name, String.Empty, 2));
+			streamWriter.Write(FormatParam("author", _author, String.Empty, 2));
+			streamWriter.Write(FormatParam("bookGenreId", _bookGenreId, 0, 2));
+			streamWriter.Write(FormatParam("publicationYear", _publicationYear, 0, 2));
+			streamWriter.Write(FormatParam("readed", _readed, false, 2));
+			streamWriter.Write(FormatParam("fullReadDate", _fullReadDate, new DateTime(), 2));
+			streamWriter.Write(FormatParam("mark", _mark.RawMark, 0, 2));
+			streamWriter.Write(FormatParam("bookmark", _bookmark, String.Empty, 2));
+			streamWriter.Write(FormatParam("franshiseId", _franshiseId, 0, 2));
+			streamWriter.Write(FormatParam("franshiseListIndex", _franshiseListIndex, -1, 2));
+
+			foreach (Source source in _sources)
 			{
 				streamWriter.Write(FormatParam("sourceUrl", source, defSource, 2));
 			}
@@ -109,35 +125,35 @@ namespace TL_Objects
 		{
 			Book book = (Book)cell;
 
-			this.name = book.name;
-			this.author = book.author;
+			this._name = book._name;
+			this._author = book._author;
 			this.BookGenre = book.BookGenre;
-			this.publicationYear = book.publicationYear;
-			this.readed = book.readed;
-			this.fullReadDate = book.fullReadDate;
-			this.mark = book.mark;
-			this.sources = book.sources;
-			this.bookmark = book.bookmark;
+			this._publicationYear = book._publicationYear;
+			this._readed = book._readed;
+			this._fullReadDate = book._fullReadDate;
+			this._mark = book._mark;
+			this._sources = book._sources;
+			this._bookmark = book._bookmark;
 		}
 
 
 		public String Name
 		{
-			get { return name; }
-			set { name = value; OnPropertyChanged(nameof(Name)); }
+			get { return _name; }
+			set { _name = value; OnPropertyChanged(nameof(Name)); }
 		}
 		public String Author
 		{
-			get { return author; }
-			set { author = value; OnPropertyChanged(nameof(Author)); }
+			get { return _author; }
+			set { _author = value; OnPropertyChanged(nameof(Author)); }
 		}
 		public BookGenre BookGenre
 		{
 			get
 			{
-				if (bookGenre != null)
+				if (_bookGenre != null)
 				{
-					return bookGenre;
+					return _bookGenre;
 				}
 				else
 				{
@@ -146,67 +162,67 @@ namespace TL_Objects
 			}
 			set
 			{
-				bookGenre = value;
-				bookGenreId = bookGenre.ID;
+				_bookGenre = value;
+				_bookGenreId = _bookGenre.ID;
 				OnPropertyChanged(nameof(BookGenre));
 			}
 		}
 		public int BookGenreId
 		{
-			get { return bookGenreId; }
+			get { return _bookGenreId; }
 		}
 		public int PublicationYear
 		{
-			get { return publicationYear; }
-			set { publicationYear = value; OnPropertyChanged(nameof(PublicationYear)); }
+			get { return _publicationYear; }
+			set { _publicationYear = value; OnPropertyChanged(nameof(PublicationYear)); }
 		}
 		public bool Readed
 		{
-			get { return readed; }
-			set { readed = value; OnPropertyChanged(nameof(Readed)); }
+			get { return _readed; }
+			set { _readed = value; OnPropertyChanged(nameof(Readed)); }
 		}
 		public DateTime FullReadDate
 		{
-			get { return fullReadDate; }
-			set { fullReadDate = value; OnPropertyChanged(nameof(FullReadDate)); }
+			get { return _fullReadDate; }
+			set { _fullReadDate = value; OnPropertyChanged(nameof(FullReadDate)); }
 		}
 		public int Mark
 		{
-			get { return mark.RawMark; }
-			set { mark.RawMark = value; OnPropertyChanged(nameof(Mark)); OnPropertyChanged(nameof(FormatedMark)); }
+			get { return _mark.RawMark; }
+			set { _mark.RawMark = value; }
 		}
 		public Mark FormatedMark
 		{
-			get => mark;
+			get => _mark;
 		}
 		public ObservableCollection<Source> Sources
 		{
-			get { return sources; }
-			set { sources = value; OnPropertyChanged(nameof(Sources)); }
+			get { return _sources; }
+			set { _sources = value; OnPropertyChanged(nameof(Sources)); }
 		}
 
 		public int CountOfReadings
 		{
-			get { return countOfReadings; }
-			set { countOfReadings = value; OnPropertyChanged(nameof(CountOfReadings)); }
+			get { return _countOfReadings; }
+			set { _countOfReadings = value; OnPropertyChanged(nameof(CountOfReadings)); }
 		}
 
 		public int FranshiseId
 		{
-			get { return franshiseId; }
-			set { franshiseId = value; OnPropertyChanged(nameof(FranshiseId)); }
+			get { return _franshiseId; }
+			set { _franshiseId = value; OnPropertyChanged(nameof(FranshiseId)); }
 		}
 
 		public sbyte FranshiseListIndex
 		{
-			get { return franshiseListIndex; }
-			set { franshiseListIndex = value; OnPropertyChanged(nameof(FranshiseListIndex)); }
+			get { return _franshiseListIndex; }
+			set { _franshiseListIndex = value; OnPropertyChanged(nameof(FranshiseListIndex)); }
 		}
 
 		public String Bookmark
 		{
-			get { return bookmark; }
-			set { bookmark = value; OnPropertyChanged(nameof(Bookmark)); }
+			get { return _bookmark; }
+			set { _bookmark = value; OnPropertyChanged(nameof(Bookmark)); }
 		}
 	}
 }

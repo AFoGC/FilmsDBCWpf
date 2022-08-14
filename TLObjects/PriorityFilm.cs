@@ -10,17 +10,20 @@ namespace TL_Objects
 	[TableCell("PriorityFilm")]
 	public class PriorityFilm : Cell
 	{
-		private Film film;
-		private int filmId = 0;
+		private Film _film;
+		private int _filmId;
 
-		public PriorityFilm() : base() { }
+		public PriorityFilm()
+		{
+			_filmId = 0;
+		}
 
 		protected override void loadBody(Comand comand)
 		{
 			switch (comand.Paramert)
 			{
 				case "film":
-					filmId = Convert.ToInt32(comand.Value);
+					_filmId = Convert.ToInt32(comand.Value);
 					break;
 
 				default:
@@ -30,7 +33,7 @@ namespace TL_Objects
 
 		protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
 		{
-			streamWriter.Write(FormatParam("film", filmId, 0, 2));
+			streamWriter.Write(FormatParam("film", _filmId, 0, 2));
 		}
 
 		protected override void updateThisBody(Cell cell)
@@ -42,16 +45,16 @@ namespace TL_Objects
 
 		public Film Film
 		{
-			get { return film; }
+			get { return _film; }
 			set
 			{
-                if (film != null)
-                    film.CellRemoved -= Film_CellRemoved;
+                if (_film != null)
+                    _film.CellRemoved -= Film_CellRemoved;
 
-				film = value;
-				filmId = film.ID;
+				_film = value;
+				_filmId = _film.ID;
 
-				film.CellRemoved += Film_CellRemoved;
+				_film.CellRemoved += Film_CellRemoved;
 
 				OnPropertyChanged(nameof(Film));
 			}
@@ -65,7 +68,7 @@ namespace TL_Objects
 
         public int FilmId
 		{
-			get { return filmId; }
+			get { return _filmId; }
 		}
 	}
 }

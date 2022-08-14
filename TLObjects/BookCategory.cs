@@ -13,17 +13,23 @@ namespace TL_Objects
     [TableCell("BookCategory")]
     public class BookCategory : Cell
     {
-        private string name = "";
-        private string hideName = String.Empty;
-        private Mark mark = new Mark();
-        private int priority = 0;
+        private string _name;
+        private string _hideName;
+        private Mark _mark;
+        private int _priority;
 
-        private ObservableCollection<Book> books = new ObservableCollection<Book>();
+        private ObservableCollection<Book> _books;
 
-        public BookCategory() : base()
+        public BookCategory()
         {
-            books.CollectionChanged += Books_CollectionChanged;
-            mark.PropertyChanged += Mark_PropertyChanged;
+            _name = String.Empty;
+            _hideName = String.Empty;
+            _mark = new Mark();
+            _priority = 0;
+            _books = new ObservableCollection<Book>();
+
+            _books.CollectionChanged += Books_CollectionChanged;
+            _mark.PropertyChanged += Mark_PropertyChanged;
         }
 
         private void Mark_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -60,14 +66,14 @@ namespace TL_Objects
 
         public bool RemoveBookFromCategory(Book book)
         {
-            if (books.Contains(book))
+            if (_books.Contains(book))
             {
                 if (book.FranshiseId == this.ID)
                 {
                     book.FranshiseId = 0;
                     book.FranshiseListIndex = -1;
                 }
-                return books.Remove(book);
+                return _books.Remove(book);
             }
             else
             {
@@ -92,19 +98,19 @@ namespace TL_Objects
         {
             BookCategory category = (BookCategory)cell;
 
-            name = category.name;
-            hideName = category.hideName;
-            mark = category.mark;
-            priority = category.priority;
-            books = category.books;
+            _name = category._name;
+            _hideName = category._hideName;
+            _mark = category._mark;
+            _priority = category._priority;
+            _books = category._books;
         }
 
         protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
-            streamWriter.Write(FormatParam("name", name, "", 2));
-            streamWriter.Write(FormatParam("hideName", hideName, String.Empty, 2));
-            streamWriter.Write(FormatParam("mark", mark.RawMark, 0, 2));
-            streamWriter.Write(FormatParam("priority", priority, 0, 2));
+            streamWriter.Write(FormatParam("name", _name, "", 2));
+            streamWriter.Write(FormatParam("hideName", _hideName, String.Empty, 2));
+            streamWriter.Write(FormatParam("mark", _mark.RawMark, 0, 2));
+            streamWriter.Write(FormatParam("priority", _priority, 0, 2));
         }
 
         protected override void loadBody(Comand comand)
@@ -112,16 +118,16 @@ namespace TL_Objects
             switch (comand.Paramert)
             {
                 case "name":
-                    name = comand.Value;
+                    _name = comand.Value;
                     break;
                 case "hideName":
-                    hideName = comand.Value;
+                    _hideName = comand.Value;
                     break;
                 case "mark":
-                    mark.RawMark = Convert.ToInt32(comand.Value);
+                    _mark.RawMark = Convert.ToInt32(comand.Value);
                     break;
                 case "priority":
-                    priority = Convert.ToInt32(comand.Value);
+                    _priority = Convert.ToInt32(comand.Value);
                     break;
 
                 default:
@@ -131,16 +137,16 @@ namespace TL_Objects
 
         public string Name
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(nameof(Name)); }
+            get { return _name; }
+            set { _name = value; OnPropertyChanged(nameof(Name)); }
         }
 
         public string HideName
         {
-            get { return hideName; }
+            get { return _hideName; }
             set 
             { 
-                hideName = value;
+                _hideName = value;
                 foreach (Book book in Books)
                 {
                     book.OnPropertyChanged(nameof(book.Name));
@@ -151,24 +157,24 @@ namespace TL_Objects
 
         public int Mark
         {
-            get { return mark.RawMark; }
-            set { mark.RawMark = value; OnPropertyChanged(nameof(Mark)); }
+            get { return _mark.RawMark; }
+            set { _mark.RawMark = value; OnPropertyChanged(nameof(Mark)); }
         }
 
         public Mark FormatedMark
         {
-            get => mark;
+            get => _mark;
         }
 
         public int Priority
         {
-            get { return priority; }
-            set { priority = value; OnPropertyChanged(nameof(Priority)); }
+            get { return _priority; }
+            set { _priority = value; OnPropertyChanged(nameof(Priority)); }
         }
 
         public ObservableCollection<Book> Books
         {
-            get { return books; }
+            get { return _books; }
         }
     }
 }

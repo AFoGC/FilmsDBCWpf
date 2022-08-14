@@ -13,17 +13,23 @@ namespace TL_Objects
     [TableCell("Category")]
     public class Category : Cell
     {
-        private string name = "";
-        private string hideName = String.Empty;
-        private Mark mark = new Mark();
-        private int priority = 0;
+        private string _name;
+        private string _hideName;
+        private Mark _mark;
+        private int _priority;
 
-        private ObservableCollection<Film> films = new ObservableCollection<Film>();
+        private ObservableCollection<Film> _films;
 
         public Category()
         {
-            films.CollectionChanged += Films_CollectionChanged;
-            mark.PropertyChanged += Mark_PropertyChanged;
+            _name = String.Empty;
+            _hideName = String.Empty;
+            _mark = new Mark();
+            _priority = 0;
+            _films = new ObservableCollection<Film>();
+
+            _films.CollectionChanged += Films_CollectionChanged;
+            _mark.PropertyChanged += Mark_PropertyChanged;
         }
 
         private void Mark_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -60,14 +66,14 @@ namespace TL_Objects
 
         public bool RemoveFilmFromCategory(Film film)
         {
-            if (films.Contains(film))
+            if (_films.Contains(film))
             {
                 if (film.FranshiseId == this.ID)
                 {
                     film.FranshiseId = 0;
                     film.FranshiseListIndex = -1;
                 }
-                return films.Remove(film);
+                return _films.Remove(film);
             }
             else
             {
@@ -94,19 +100,19 @@ namespace TL_Objects
         {
             Category category = (Category)cell;
 
-            name = category.name;
-            hideName = category.hideName;
-            mark = category.mark;
-            priority = category.priority;
-            films = category.films;
+            _name = category._name;
+            _hideName = category._hideName;
+            _mark = category._mark;
+            _priority = category._priority;
+            _films = category._films;
         }
 
         protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
-            streamWriter.Write(FormatParam("name", name, "", 2));
-            streamWriter.Write(FormatParam("hideName", hideName, String.Empty, 2));
-            streamWriter.Write(FormatParam("mark", mark.RawMark, 0, 2));
-            streamWriter.Write(FormatParam("priority", priority, 0, 2));
+            streamWriter.Write(FormatParam("name", _name, String.Empty, 2));
+            streamWriter.Write(FormatParam("hideName", _hideName, String.Empty, 2));
+            streamWriter.Write(FormatParam("mark", _mark.RawMark, 0, 2));
+            streamWriter.Write(FormatParam("priority", _priority, 0, 2));
         }
 
         protected override void loadBody(Comand comand)
@@ -114,16 +120,16 @@ namespace TL_Objects
             switch (comand.Paramert)
             {
                 case "name":
-                    name = comand.Value;
+                    _name = comand.Value;
                     break;
                 case "hideName":
-                    hideName = comand.Value;
+                    _hideName = comand.Value;
                     break;
                 case "mark":
-                    mark.RawMark = Convert.ToInt32(comand.Value);
+                    _mark.RawMark = Convert.ToInt32(comand.Value);
                     break;
                 case "priority":
-                    priority = Convert.ToInt32(comand.Value);
+                    _priority = Convert.ToInt32(comand.Value);
                     break;
 
                 default:
@@ -133,16 +139,16 @@ namespace TL_Objects
 
         public string Name
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(nameof(Name)); }
+            get { return _name; }
+            set { _name = value; OnPropertyChanged(nameof(Name)); }
         }
 
         public string HideName
         {
-            get { return hideName; }
+            get { return _hideName; }
             set 
             { 
-                hideName = value;
+                _hideName = value;
                 foreach (Film film in Films)
                 {
                     film.OnPropertyChanged(nameof(film.Name));
@@ -153,24 +159,24 @@ namespace TL_Objects
 
         public int Mark
         {
-            get { return mark.RawMark; }
-            set { mark.RawMark = value; OnPropertyChanged(nameof(Mark)); }
+            get { return _mark.RawMark; }
+            set { _mark.RawMark = value; OnPropertyChanged(nameof(Mark)); }
         }
 
         public Mark FormatedMark
         {
-            get => mark;
+            get => _mark;
         }
 
         public int Priority
         {
-            get { return priority; }
-            set { priority = value; OnPropertyChanged(nameof(Priority)); }
+            get { return _priority; }
+            set { _priority = value; OnPropertyChanged(nameof(Priority)); }
         }
 
         public ObservableCollection<Film> Films
         {
-            get { return films; }
+            get { return _films; }
         }
     }
 }

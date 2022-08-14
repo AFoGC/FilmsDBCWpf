@@ -12,27 +12,40 @@ namespace TL_Objects
 	[TableCell("Film")]
 	public class Film : Cell
 	{
-		private string name	= "";
-		private Genre genre	= null;
-		private int genreId	= 0;
-		private int realiseYear	= 0;
-		private bool watched = false;
-		private Mark mark = new Mark();
-		private DateTime dateOfWatch = new DateTime();
+		private string _name;
+		private Genre _genre;
+		private int _genreId;
+		private int _realiseYear;
+		private bool _watched;
+		private Mark _mark;
+		private DateTime _dateOfWatch;
 
-		private string comment = "";
-		private ObservableCollection<Source> sources = new ObservableCollection<Source>();
+		private string _comment;
+		private ObservableCollection<Source> _sources;
 
-		private int countOfviews = 0;
-		private int franshiseId = 0;
-		private sbyte franshiseListIndex = -1;
+		private int _countOfviews;
+		private int _franshiseId;
+		private sbyte _franshiseListIndex;
 
 		public Serie Serie { get; internal set; }
 
 		public Film()
-		{ 
-			sources.CollectionChanged += Sources_CollectionChanged;
-            mark.PropertyChanged += Mark_PropertyChanged;
+		{
+			_name = String.Empty;
+			_genre = null;
+			_genreId = 0;
+			_realiseYear = 0;
+			_watched = false;
+			_mark = new Mark();
+			_dateOfWatch = new DateTime();
+			_comment = String.Empty;
+			_sources = new ObservableCollection<Source>();
+			_countOfviews = 0;
+			_franshiseId = 0;
+			_franshiseListIndex = -1;
+
+			_sources.CollectionChanged += Sources_CollectionChanged;
+            _mark.PropertyChanged += Mark_PropertyChanged;
 		}
 
         private void Mark_PropertyChanged(object sender, EventArgs e)
@@ -50,38 +63,38 @@ namespace TL_Objects
 		{
 			Film film = (Film)cell;
 
-			name = film.name;
-			Genre = film.genre;
-			realiseYear = film.realiseYear;
-			watched = film.watched;
-			mark = film.mark;
-			dateOfWatch = film.dateOfWatch;
-			comment = film.comment;
-			sources = film.sources;
-			countOfviews = film.countOfviews;
-			franshiseId = film.franshiseId;
-			franshiseListIndex = film.franshiseListIndex;
+			_name = film._name;
+			Genre = film._genre;
+			_realiseYear = film._realiseYear;
+			_watched = film._watched;
+			_mark = film._mark;
+			_dateOfWatch = film._dateOfWatch;
+			_comment = film._comment;
+			_sources = film._sources;
+			_countOfviews = film._countOfviews;
+			_franshiseId = film._franshiseId;
+			_franshiseListIndex = film._franshiseListIndex;
 		}
 
 		private Source defSource = new Source();
 		protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
 		{
-			streamWriter.Write(FormatParam("name", name, "", 2));
-			streamWriter.Write(FormatParam("genre", genre.ID, 0, 2));
-			streamWriter.Write(FormatParam("realiseYear", realiseYear, 0, 2));
-			streamWriter.Write(FormatParam("watched", watched, false, 2));
-			streamWriter.Write(FormatParam("mark", mark.RawMark, 0, 2));
-			streamWriter.Write(FormatParam("dateOfWatch", dateOfWatch, new DateTime(), 2));
-			streamWriter.Write(FormatParam("comment", comment, "", 2));
+			streamWriter.Write(FormatParam("name", _name, String.Empty, 2));
+			streamWriter.Write(FormatParam("genre", _genre.ID, 0, 2));
+			streamWriter.Write(FormatParam("realiseYear", _realiseYear, 0, 2));
+			streamWriter.Write(FormatParam("watched", _watched, false, 2));
+			streamWriter.Write(FormatParam("mark", _mark.RawMark, 0, 2));
+			streamWriter.Write(FormatParam("dateOfWatch", _dateOfWatch, new DateTime(), 2));
+			streamWriter.Write(FormatParam("comment", _comment, String.Empty, 2));
 
-			foreach (Source source in sources)
+			foreach (Source source in _sources)
 			{
 				streamWriter.Write(FormatParam("sourceUrl", source, defSource, 2));
 			}
 
-			streamWriter.Write(FormatParam("countOfviews", countOfviews, 0, 2));
-			streamWriter.Write(FormatParam("franshiseId", franshiseId, 0, 2));
-			streamWriter.Write(FormatParam("franshiseListIndex", franshiseListIndex, -1, 2));
+			streamWriter.Write(FormatParam("countOfviews", _countOfviews, 0, 2));
+			streamWriter.Write(FormatParam("franshiseId", _franshiseId, 0, 2));
+			streamWriter.Write(FormatParam("franshiseListIndex", _franshiseListIndex, -1, 2));
 		}
 
 		protected override void loadBody(Comand comand)
@@ -89,37 +102,37 @@ namespace TL_Objects
 			switch (comand.Paramert)
 			{
 				case "name":
-					name = comand.Value;
+					_name = comand.Value;
 					break;
 				case "genre":
-					genreId = Convert.ToInt32(comand.Value);
+					_genreId = Convert.ToInt32(comand.Value);
 					break;
 				case "realiseYear":
-					realiseYear = Convert.ToInt32(comand.Value);
+					_realiseYear = Convert.ToInt32(comand.Value);
 					break;
 				case "watched":
-					watched = Convert.ToBoolean(comand.Value);
+					_watched = Convert.ToBoolean(comand.Value);
 					break;
 				case "mark":
-					mark.RawMark = Convert.ToInt32(comand.Value);
+					_mark.RawMark = Convert.ToInt32(comand.Value);
 					break;
 				case "dateOfWatch":
-					dateOfWatch = Convert.ToDateTime(comand.Value);
+					_dateOfWatch = Convert.ToDateTime(comand.Value);
 					break;
 				case "comment":
-					comment = comand.Value;
+					_comment = comand.Value;
 					break;
 				case "sourceUrl":
-					sources.Add(Source.ToSource(comand.Value));
+					_sources.Add(Source.ToSource(comand.Value));
 					break;
 				case "countOfviews":
-					countOfviews = Convert.ToInt32(comand.Value);
+					_countOfviews = Convert.ToInt32(comand.Value);
 					break;
 				case "franshiseId":
-					franshiseId = Convert.ToInt32(comand.Value);
+					_franshiseId = Convert.ToInt32(comand.Value);
 					break;
 				case "franshiseListIndex":
-					franshiseListIndex = Convert.ToSByte(comand.Value);
+					_franshiseListIndex = Convert.ToSByte(comand.Value);
 					break;
 
 				default:
@@ -129,90 +142,90 @@ namespace TL_Objects
 
 		public string Name
 		{
-			get { return name; }
-			set { name = value; OnPropertyChanged(nameof(Name)); }
+			get { return _name; }
+			set { _name = value; OnPropertyChanged(nameof(Name)); }
 		}
 
 		public Genre Genre
 		{
 			get
 			{
-				return genre;
+				return _genre;
 			}
 			set
 			{
-				genre = value;
-				genreId = genre.ID;
+				_genre = value;
+				_genreId = _genre.ID;
 				OnPropertyChanged(nameof(Genre));
 			}
 		}
 
 		public int RealiseYear
 		{
-			get { return realiseYear; }
-			set { realiseYear = value; OnPropertyChanged(nameof(RealiseYear)); }
+			get { return _realiseYear; }
+			set { _realiseYear = value; OnPropertyChanged(nameof(RealiseYear)); }
 		}
 
 		public bool Watched
 		{
-			get { return watched; }
-			set { watched = value; OnPropertyChanged(nameof(Watched)); }
+			get { return _watched; }
+			set { _watched = value; OnPropertyChanged(nameof(Watched)); }
 		}
 
 		public int Mark
 		{
-			get { return mark.RawMark; }
-			set { mark.RawMark = value; OnPropertyChanged(nameof(Mark)); OnPropertyChanged(nameof(FormatedMark)); }
+			get { return _mark.RawMark; }
+			set { _mark.RawMark = value; }
 		}
 
 		public Mark FormatedMark
         {
-			get => mark;
+			get => _mark;
         }
 
 		public DateTime DateOfWatch
 		{
-			get { return dateOfWatch; }
-			set { dateOfWatch = value; OnPropertyChanged(nameof(DateOfWatch)); }
+			get { return _dateOfWatch; }
+			set { _dateOfWatch = value; OnPropertyChanged(nameof(DateOfWatch)); }
 		}
 
 		public string Comment
 		{
-			get { return comment; }
-			set { comment = value; OnPropertyChanged(nameof(Comment)); }
+			get { return _comment; }
+			set { _comment = value; OnPropertyChanged(nameof(Comment)); }
 		}
 
 		public ObservableCollection<Source> Sources
 		{
-			get { return sources; }
-			set { sources = value; OnPropertyChanged(nameof(Sources)); }
+			get { return _sources; }
+			set { _sources = value; OnPropertyChanged(nameof(Sources)); }
 		}
 
 		public int CountOfViews
 		{
-			get { return countOfviews; }
-			set { countOfviews = value; OnPropertyChanged(nameof(CountOfViews)); }
+			get { return _countOfviews; }
+			set { _countOfviews = value; OnPropertyChanged(nameof(CountOfViews)); }
 		}
 
 		public int FranshiseId
 		{
-			get { return franshiseId; }
+			get { return _franshiseId; }
 			set
 			{
-				franshiseId = value;
+				_franshiseId = value;
 				OnPropertyChanged(nameof(FranshiseId));
 			}
 		}
 
 		public sbyte FranshiseListIndex
 		{
-			get { return franshiseListIndex; }
-			set { franshiseListIndex = value; OnPropertyChanged(nameof(FranshiseListIndex)); }
+			get { return _franshiseListIndex; }
+			set { _franshiseListIndex = value; OnPropertyChanged(nameof(FranshiseListIndex)); }
 		}
 
 		public int GenreId
 		{
-			get { return genreId; }
+			get { return _genreId; }
 		}
 	}
 }

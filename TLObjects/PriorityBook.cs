@@ -10,17 +10,20 @@ namespace TL_Objects
     [TableCell("PriorityBook")]
     public class PriorityBook : Cell
     {
-        private Book book;
-        private int bookId = 0;
+        private Book _book;
+        private int _bookId;
 
-        public PriorityBook() : base() { }
+        public PriorityBook()
+        {
+            _bookId = 0;
+        }
 
         protected override void loadBody(Comand comand)
         {
             switch (comand.Paramert)
             {
                 case "book":
-                    bookId = Convert.ToInt32(comand.Value);
+                    _bookId = Convert.ToInt32(comand.Value);
                     break;
 
                 default:
@@ -30,7 +33,7 @@ namespace TL_Objects
 
         protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
-            streamWriter.Write(FormatParam("book", bookId, 0, 2));
+            streamWriter.Write(FormatParam("book", _bookId, 0, 2));
         }
 
         protected override void updateThisBody(Cell cell)
@@ -42,16 +45,16 @@ namespace TL_Objects
 
         public Book Book
         {
-            get { return book; }
+            get { return _book; }
             set
             {
-                if (book != null)
-                    book.CellRemoved -= Book_CellRemoved;
+                if (_book != null)
+                    _book.CellRemoved -= Book_CellRemoved;
 
-                book = value;
-                bookId = book.ID;
+                _book = value;
+                _bookId = _book.ID;
 
-                book.CellRemoved += Book_CellRemoved;
+                _book.CellRemoved += Book_CellRemoved;
 
                 OnPropertyChanged(nameof(Book));
             }
@@ -65,7 +68,7 @@ namespace TL_Objects
 
         public int BookId
         {
-            get { return bookId; }
+            get { return _bookId; }
         }
     }
 }

@@ -11,23 +11,27 @@ namespace TL_Objects
     [TableCell("Genre")]
     public class Genre : Cell, IGenre
     {
-        private string name = "";
-        private bool isSerialGenre = false;
+        private string _name;
+        private bool _isSerialGenre;
 
-        public Genre() : base() { }
+        public Genre()
+        {
+            _name = String.Empty;
+            _isSerialGenre = false;
+        }
 
         protected override void updateThisBody(Cell cell)
         {
             Genre genre = (Genre)cell;
 
-            name = genre.name;
-            isSerialGenre = genre.isSerialGenre;
+            _name = genre._name;
+            _isSerialGenre = genre._isSerialGenre;
         }
 
         protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
-            streamWriter.Write(FormatParam("name", name, "", 2));
-            streamWriter.Write(FormatParam("isSerialGenre", isSerialGenre, false, 2));
+            streamWriter.Write(FormatParam("name", _name, String.Empty, 2));
+            streamWriter.Write(FormatParam("isSerialGenre", _isSerialGenre, false, 2));
         }
         protected override void loadBody(Comand comand)
         {
@@ -35,10 +39,10 @@ namespace TL_Objects
             switch (comand.Paramert)
             {
                 case "name":
-                    name = comand.Value;
+                    _name = comand.Value;
                     break;
                 case "isSerialGenre":
-                    isSerialGenre = Convert.ToBoolean(comand.Value);
+                    _isSerialGenre = Convert.ToBoolean(comand.Value);
                     break;
 
                 default:
@@ -48,19 +52,19 @@ namespace TL_Objects
 
         public string Name
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(nameof(Name)); }
+            get { return _name; }
+            set { _name = value; OnPropertyChanged(nameof(Name)); }
         }
 
         public bool IsSerialGenre
         {
-            get { return isSerialGenre; }
-            set { isSerialGenre = value; OnPropertyChanged(nameof(IsSerialGenre)); }
+            get { return _isSerialGenre; }
+            set { _isSerialGenre = value; OnPropertyChanged(nameof(IsSerialGenre)); }
         }
 
         public override string ToString()
         {
-            return this.name;
+            return this._name;
         }
     }
 }

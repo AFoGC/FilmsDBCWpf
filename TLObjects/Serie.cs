@@ -10,29 +10,36 @@ namespace TL_Objects
     [TableCell("Serie")]
     public class Serie : Cell
     {
-        private int filmId = 0;
-        private Film film = null;
-        private DateTime startWatchDate = new DateTime();
-        private int countOfWatchedSeries = 0;
-        private int totalSeries = 0;
+        private int _filmId;
+        private Film _film;
+        private DateTime _startWatchDate;
+        private int _countOfWatchedSeries;
+        private int _totalSeries;
 
-        public Serie() : base() { }
+        public Serie()
+        {
+            _filmId = 0;
+            _film = null;
+            _startWatchDate = new DateTime();
+            _countOfWatchedSeries = 0;
+            _totalSeries = 0;
+        }
 
         protected override void updateThisBody(Cell cell)
         {
             Serie serie = (Serie)cell;
 
-            startWatchDate = serie.startWatchDate;
-            countOfWatchedSeries = serie.countOfWatchedSeries;
-            totalSeries = serie.totalSeries;
+            _startWatchDate = serie._startWatchDate;
+            _countOfWatchedSeries = serie._countOfWatchedSeries;
+            _totalSeries = serie._totalSeries;
         }
 
         protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
-            streamWriter.Write(FormatParam("filmId", filmId, 0, 2));
-            streamWriter.Write(FormatParam("startWatchDate", startWatchDate, new DateTime(), 2));
-            streamWriter.Write(FormatParam("countOfWatchedSeries", countOfWatchedSeries, 0, 2));
-            streamWriter.Write(FormatParam("totalSeries", totalSeries, 0, 2));
+            streamWriter.Write(FormatParam("filmId", _filmId, 0, 2));
+            streamWriter.Write(FormatParam("startWatchDate", _startWatchDate, new DateTime(), 2));
+            streamWriter.Write(FormatParam("countOfWatchedSeries", _countOfWatchedSeries, 0, 2));
+            streamWriter.Write(FormatParam("totalSeries", _totalSeries, 0, 2));
         }
 
         protected override void loadBody(Comand comand)
@@ -40,16 +47,16 @@ namespace TL_Objects
             switch (comand.Paramert)
             {
                 case "filmId":
-                    filmId = Convert.ToInt32(comand.Value);
+                    _filmId = Convert.ToInt32(comand.Value);
                     break;
                 case "startWatchDate":
-                    startWatchDate = Convert.ToDateTime(comand.Value);
+                    _startWatchDate = Convert.ToDateTime(comand.Value);
                     break;
                 case "countOfWatchedSeries":
-                    countOfWatchedSeries = Convert.ToInt32(comand.Value);
+                    _countOfWatchedSeries = Convert.ToInt32(comand.Value);
                     break;
                 case "totalSeries":
-                    totalSeries = Convert.ToInt32(comand.Value);
+                    _totalSeries = Convert.ToInt32(comand.Value);
                     break;
 
                 default:
@@ -59,26 +66,26 @@ namespace TL_Objects
 
         public int FilmId
         {
-            get { return filmId; }
+            get { return _filmId; }
         }
 
         public Film Film
         {
-            get { return film; }
+            get { return _film; }
             set
             {
                 if (Film != null)
                     Film.Serie = null;
 
-                film = value;
-                if (film != null)
+                _film = value;
+                if (_film != null)
                 {
-                    filmId = film.ID;
-                    film.Serie = this;
+                    _filmId = _film.ID;
+                    _film.Serie = this;
                 }
                 else
                 {
-                    filmId = 0;
+                    _filmId = 0;
                     ParentTable.Remove(this);
                 }
                     
@@ -88,20 +95,20 @@ namespace TL_Objects
 
         public DateTime StartWatchDate
         {
-            get { return startWatchDate; }
-            set { startWatchDate = value; OnPropertyChanged(nameof(StartWatchDate)); }
+            get { return _startWatchDate; }
+            set { _startWatchDate = value; OnPropertyChanged(nameof(StartWatchDate)); }
         }
 
         public int CountOfWatchedSeries
         {
-            get { return countOfWatchedSeries; }
-            set { countOfWatchedSeries = value; OnPropertyChanged(nameof(CountOfWatchedSeries)); }
+            get { return _countOfWatchedSeries; }
+            set { _countOfWatchedSeries = value; OnPropertyChanged(nameof(CountOfWatchedSeries)); }
         }
 
         public int TotalSeries
         {
-            get { return totalSeries; }
-            set { totalSeries = value; OnPropertyChanged(nameof(TotalSeries)); }
+            get { return _totalSeries; }
+            set { _totalSeries = value; OnPropertyChanged(nameof(TotalSeries)); }
         }
     }
 }

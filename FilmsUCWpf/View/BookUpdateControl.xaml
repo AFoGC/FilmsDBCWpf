@@ -22,18 +22,18 @@
             </Style>
         </Grid.Resources>
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="id" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="30"/>
-            <TextBox x:Name="name" ToolTip="{DynamicResource name_utt}" Width="180"/>
-            <ComboBox x:Name="genre" ToolTip="{DynamicResource genre_utt}" Width="100"/>
-            <TextBox x:Name="realiseYear" ToolTip="{DynamicResource year_utt}" Width="30" PreviewTextInput="TextInputIsNumber"/>
-            <CheckBox x:Name="readed" ToolTip="{DynamicResource readed_utt}" Margin="20,1" VerticalAlignment="Center" 
+            <TextBox x:Name="id" ToolTip="{DynamicResource id_utt}" Text="{Binding ID}" IsReadOnly="True" Width="30"/>
+            <TextBox x:Name="name" ToolTip="{DynamicResource name_utt}" Text="{Binding Name}" Width="180"/>
+            <ComboBox x:Name="genre" ToolTip="{DynamicResource genre_utt}" ItemsSource="{Binding GenresCollection}" SelectedItem="{Binding SelectedGenre}" Width="100"/>
+            <TextBox x:Name="realiseYear" ToolTip="{DynamicResource year_utt}" Text="{Binding PublicationYear}" Width="30" PreviewTextInput="TextInputIsNumber"/>
+            <CheckBox x:Name="readed" ToolTip="{DynamicResource readed_utt}" IsChecked="{Binding Readed}" Margin="20,1" VerticalAlignment="Center" 
                       MouseRightButtonDown="watched_MouseRightButtonDown" PreviewMouseLeftButtonDown="readed_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="author" ToolTip="{DynamicResource author_utt}" Width="100"/>
-            <TextBox x:Name="bookmark" ToolTip="{DynamicResource bookmark_utt}" Width="101"/>
+            <TextBox x:Name="author" ToolTip="{DynamicResource author_utt}" Text="{Binding Author}" Width="100"/>
+            <TextBox x:Name="bookmark" ToolTip="{DynamicResource bookmark_utt}" Text="{Binding Bookmark}" Width="101"/>
             <Buttons:DateUpdateControl x:Name="fullReadDate" ToolTip="{DynamicResource end_read_date_utt}" Width="60" 
                                        Background="#FF353535" BorderThickness="1" BorderBrush="#FF7A7A7A"/>
-            <ComboBox x:Name="mark" ToolTip="{DynamicResource mark_utt}" Width="45"/>
-            <TextBox x:Name="countOfReadings" ToolTip="{DynamicResource cor_utt}" Width="30" PreviewTextInput="TextInputIsNumber"/>
+            <ComboBox x:Name="mark" ToolTip="{DynamicResource mark_utt}" SelectedItem="{Binding Mark}" ItemsSource="{Binding Marks}" Width="45"/>
+            <TextBox x:Name="countOfReadings" ToolTip="{DynamicResource cor_utt}" Text="{Binding CountOfReadings}" Width="30" PreviewTextInput="TextInputIsNumber"/>
             <Rectangle Width="2"/>
             <Button x:Name="btn_comment" Content="{DynamicResource comment_btn}" Click="btn_comment_Click"/>
             <Button x:Name="btn_sources" Content="{DynamicResource upd_source_btn}" Click="btn_sources_Click"/>

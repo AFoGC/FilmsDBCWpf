@@ -43,5 +43,21 @@ namespace FilmsUCWpf.ModelBinder
             else
                 return String.Empty;
         }
+
+        protected string formatZero(int import)
+        {
+            return Cell.FormatToString(import, 0);
+        }
+
+        protected int formatEmpty(string import)
+        {
+            int export = 0;
+            if (import != String.Empty)
+            {
+                Int32.TryParse(import, out export);
+            }
+
+            return export;
+        }
     }
 }

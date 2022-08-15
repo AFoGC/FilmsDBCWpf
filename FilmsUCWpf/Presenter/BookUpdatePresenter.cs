@@ -23,13 +23,7 @@ namespace FilmsUCWpf.Presenter
 			this.view = view;
 			this.menu = menu;
 			collection = table;
-			foreach (BookGenre genre in collection.GetTable<BookGenre>())
-			{
-				view.Genres.Add(genre);
-			}
-
-			RefreshElement();
-		}
+        }
 
 		private static Book defBook = new Book();
 		public void RefreshElement()

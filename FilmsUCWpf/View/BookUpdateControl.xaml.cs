@@ -1,4 +1,5 @@
-﻿using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.ModelBinder;
+using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View.Interfaces;
 using System;
@@ -32,6 +33,7 @@ namespace FilmsUCWpf.View
         {
             InitializeComponent();
             presenter = new BookUpdatePresenter(book, this, menu, table);
+            DataContext = new BookBinder(book);
         }
 
         private void btn_comment_Click(object sender, RoutedEventArgs e)

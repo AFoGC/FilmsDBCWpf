@@ -27,23 +27,31 @@ namespace FilmsUCWpf.Presenter
 			{
 				view.Genres.Add(genre);
 			}
-			foreach (string mark in Helper.GetAllMarks())
-			{
-				view.Marks.Add(mark);
-			}
-			RefreshElement();
+
+            model.FormatedMark.PropertyChanged += FormatedMark_PropertyChanged;
+
+            RefreshElement();
 		}
 
-		private static Film defFilm = new Film();
+        private void FormatedMark_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(model.FormatedMark.MarkSystem))
+            {
+                refreshComboBox();
+            }
+        }
+
+        private static Film defFilm = new Film();
 		private static Serie defSerie = new Serie();
 		public void RefreshElement()
 		{
-			view.ID = model.ID.ToString();
+            refreshComboBox();
+
+            view.ID = model.ID.ToString();
 			view.Name = model.Name;
 			view.Genre = model.Genre;
 			view.RealiseYear = Film.FormatToString(model.RealiseYear, defFilm.RealiseYear);
 			view.Wathced = model.Watched;
-			view.Mark = Helper.MarkToText(Film.FormatToString(model.Mark, defFilm.Mark));
 			view.CountOfViews = Film.FormatToString(model.CountOfViews, defFilm.CountOfViews);
 			view.DateOfWatch = model.DateOfWatch;
 			view.Comment = model.Comment;
@@ -53,7 +61,17 @@ namespace FilmsUCWpf.Presenter
 			view.TotalSeries = Serie.FormatToString(model.Serie.TotalSeries, defSerie.TotalSeries);
 		}
 
-		public void UpdateElement()
+        private void refreshComboBox()
+        {
+            view.Marks.Clear();
+            foreach (string mark in model.FormatedMark.GetComboItems())
+            {
+                view.Marks.Add(mark);
+            }
+            view.Mark = model.FormatedMark.ToString();
+        }
+
+        public void UpdateElement()
 		{
 			model.Watched = view.Wathced;
 			model.Name = view.Name;
@@ -65,9 +83,9 @@ namespace FilmsUCWpf.Presenter
 			model.Serie.CountOfWatchedSeries = Helper.TextToInt32(view.CountOfWatchedSeries);
 			model.Serie.TotalSeries = Helper.TextToInt32(view.TotalSeries);
 
-			model.Mark = Helper.TextToMark(view.Mark);
+            model.FormatedMark.SetMarkFromString(view.Mark);
 
-			model.DateOfWatch = view.DateOfWatch;
+            model.DateOfWatch = view.DateOfWatch;
 			model.Serie.StartWatchDate = view.StartWatchDate;
 
 			if(!model.Genre.IsSerialGenre)

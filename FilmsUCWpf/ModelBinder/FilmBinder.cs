@@ -14,6 +14,7 @@ namespace FilmsUCWpf.ModelBinder
     public class FilmBinder : BaseBinder<Film>
     {
         private GenresTable genresTable;
+		protected SeriesTable seriesTable;
         public FilmBinder(Film film) : base(film)
         {
 			film.Genre.PropertyChanged += Genre_PropertyChanged;
@@ -21,6 +22,7 @@ namespace FilmsUCWpf.ModelBinder
 			film.FormatedMark.PropertyChanged += FormatedMark_PropertyChanged;
 
             genresTable = (GenresTable)film.Genre.ParentTable;
+			seriesTable = (SeriesTable)film.ParentTable.TableCollection.GetTable<Serie>();
         }
 
 		private void FormatedMark_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -58,8 +60,6 @@ namespace FilmsUCWpf.ModelBinder
             OnPropertyChanged(nameof(SelectedGenre));
         }
 
-		private static Film defFilm = new Film();
-		private static Serie defSerie = new Serie();
 		public String ID 
 		{ 
 			get => Model.ID.ToString(); 
@@ -78,7 +78,20 @@ namespace FilmsUCWpf.ModelBinder
 		public Genre SelectedGenre
 		{
 			get => Model.Genre;
-			set => Model.Genre = value;
+			set
+			{
+                if (!Model.Genre.IsSerialGenre && value.IsSerialGenre)
+                {
+                    seriesTable.FindAndConnectSerie(Model);
+                }
+
+				if (Model.Genre.IsSerialGenre && !value.IsSerialGenre)
+				{
+					Model.Serie.Film = null;
+				}
+
+                Model.Genre = value;
+            }
 		}
         public INotifyCollectionChanged GenresCollection => genresTable;
         public String RealiseYear 

@@ -163,7 +163,14 @@ namespace WpfApp.Models
             {
                 case NotifyCollectionChangedAction.Add:
                     serie = (Serie)e.NewItems[0];
-                    SeriePresenters.Add(new FilmPresenter(serie.Film, new FilmSerieControl(), Presenter, TableCollection));
+                    FilmPresenter fp = new FilmPresenter(serie.Film, new FilmSerieControl(), Presenter, TableCollection);
+                    int i = 0;
+                    foreach (FilmPresenter item in SeriePresenters)
+                    {
+                        if (item.Model.ID > fp.Model.ID) break;
+                        else i++;
+                    }
+                    SeriePresenters.Insert(i, fp);
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     serie = (Serie)e.OldItems[0];

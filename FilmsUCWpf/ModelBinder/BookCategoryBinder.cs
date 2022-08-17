@@ -9,11 +9,40 @@ namespace FilmsUCWpf.ModelBinder
 {
     public class BookCategoryBinder : BaseBinder<BookCategory>
     {
-        public BookCategoryBinder(BookCategory category) : base(category) { }
+        public BookCategoryBinder(BookCategory category) : base(category)
+        {
+            category.FormatedMark.PropertyChanged += FormatedMark_PropertyChanged;
+        }
 
-        private static BookCategory defCat = new BookCategory();
-        public String ID { get => Model.ID.ToString(); set { } }
-        public String Name { get => Model.Name; set { } }
-        public String Mark { get => Model.FormatedMark.ToString(); set { } }
+        private void FormatedMark_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(Mark));
+            if (e.PropertyName == nameof(Model.FormatedMark.MarkSystem))
+            {
+                OnPropertyChanged(nameof(Marks));
+            }
+        }
+        
+        public String ID
+        { 
+            get => Model.ID.ToString(); 
+            set { } 
+        }
+        public String Name 
+        { 
+            get => Model.Name; 
+            set => Model.Name = value;
+        }
+        public String HideName
+        {
+            get => Model.HideName;
+            set => Model.HideName = value;
+        }
+        public String Mark 
+        { 
+            get => Model.FormatedMark.ToString(); 
+            set => Model.FormatedMark.SetMarkFromString(value);
+        }
+        public List<String> Marks => Model.FormatedMark.GetComboItems();
     }
 }

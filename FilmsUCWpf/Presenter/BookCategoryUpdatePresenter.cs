@@ -11,31 +11,17 @@ using TL_Objects;
 
 namespace FilmsUCWpf.Presenter
 {
-	public class BookCategoryUpdatePresenter : IUpdatePresenter
+	public class BookCategoryUpdatePresenter
 	{
 		private BookCategory model;
-		private IBookCategoryUpdateView view;
 		private IMenuModel<Book> menu;
 		private TableCollection tableCollection;
 
-		public BookCategoryUpdatePresenter(BookCategory model, IBookCategoryUpdateView view, IMenuModel<Book> menu, TableCollection tableCollection)
+		public BookCategoryUpdatePresenter(BookCategory model, IMenuModel<Book> menu, TableCollection tableCollection)
 		{
 			this.model = model;
-			this.view = view;
 			this.menu = menu;
 			this.tableCollection = tableCollection;
-
-			model.FormatedMark.PropertyChanged += FormatedMark_PropertyChanged;
-
-			RefreshElement();
-		}
-
-		private void FormatedMark_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-		{
-			if (e.PropertyName == nameof(model.FormatedMark.MarkSystem))
-			{
-				refreshComboBox();
-			}
 		}
 
 		public void AddSelected()
@@ -74,33 +60,6 @@ namespace FilmsUCWpf.Presenter
 			{
 				cateories.Remove(model);
 			}
-		}
-
-		private static BookCategory defCat = new BookCategory();
-		public void RefreshElement()
-		{
-			refreshComboBox();
-
-			view.ID = model.ID.ToString();
-			view.Name = model.Name;
-			view.HideName = model.HideName;
-		}
-
-		private void refreshComboBox()
-		{
-			view.Marks.Clear();
-			foreach (string mark in model.FormatedMark.GetComboItems())
-			{
-				view.Marks.Add(mark);
-			}
-			view.Mark = model.FormatedMark.ToString();
-		}
-
-		public void UpdateElement()
-		{
-			model.Name = view.Name;
-			model.HideName = view.HideName;
-			model.FormatedMark.SetMarkFromString(view.Mark);
 		}
 	}
 }

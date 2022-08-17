@@ -1,4 +1,5 @@
-﻿using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.ModelBinder;
+using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View.Interfaces;
 using System;
@@ -24,13 +25,14 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для BookCategoryUpdateControl.xaml
     /// </summary>
-    public partial class BookCategoryUpdateControl : UserControl, IBookCategoryUpdateView, IUpdateControl
+    public partial class BookCategoryUpdateControl : UserControl, IUpdateControl
     {
         private BookCategoryUpdatePresenter presenter;
         public BookCategoryUpdateControl(BookCategory model, IMenuModel<Book> menu, TableCollection tableCollection)
         {
             InitializeComponent();
-            presenter = new BookCategoryUpdatePresenter(model, this, menu, tableCollection);
+            presenter = new BookCategoryUpdatePresenter(model, menu, tableCollection);
+            DataContext = new BookCategoryBinder(model);
         }
 
         private void btn_AddSelected_Click(object sender, RoutedEventArgs e)
@@ -45,14 +47,8 @@ namespace FilmsUCWpf.View
 
         public void UpdateElement()
         {
-            presenter.UpdateElement();
+            
         }
-
-        public string ID { set => id.Text = value; }
-        string IBookCategoryUpdateView.Name { get => name.Text; set => name.Text = value; }
-        IList IBookCategoryUpdateView.Marks { get => mark.Items; }
-        string IBookCategoryUpdateView.Mark { get => mark.Text; set => mark.Text = value; }
-        string IBookCategoryUpdateView.HideName { get => name.Text; set => name.Text = value; }
 
         private void btn_DeleteCategory_Click(object sender, RoutedEventArgs e)
         {

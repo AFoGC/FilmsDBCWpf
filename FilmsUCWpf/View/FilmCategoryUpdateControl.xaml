@@ -32,10 +32,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="id" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="28"/>
-            <TextBox x:Name="name" ToolTip="{DynamicResource name_utt}" Width="178"/>
-            <ComboBox x:Name="mark" ToolTip="{DynamicResource mark_utt}"/>
-            <TextBox x:Name="hideName" ToolTip="{DynamicResource hidename_utt}" Width="190"/>
+            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="28"/>
+            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_utt}" Width="178"/>
+            <ComboBox x:Name="mark" ItemsSource="{Binding Marks}" SelectedItem="{Binding Mark}" ToolTip="{DynamicResource mark_utt}"/>
+            <TextBox x:Name="hideName" Text="{Binding HideName}" ToolTip="{DynamicResource hidename_utt}" Width="190"/>
         </StackPanel>
         <Button x:Name="btn_AddSelected" Content="{DynamicResource add_selected_btn}" Grid.Column="1" Click="btn_AddSelected_Click"/>
         <Button x:Name="btn_RemoveSec" Content="{DynamicResource remove_selected_btn}" Grid.Column="1" Grid.Row="1" Click="btn_RemoveSec_Click"/>

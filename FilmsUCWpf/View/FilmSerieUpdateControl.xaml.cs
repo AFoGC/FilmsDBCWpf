@@ -1,4 +1,5 @@
-﻿using FilmsUCWpf.Presenter;
+﻿using FilmsUCWpf.ModelBinder;
+using FilmsUCWpf.Presenter;
 using FilmsUCWpf.Presenter.Interfaces;
 using FilmsUCWpf.View.Interfaces;
 using System;
@@ -25,13 +26,14 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для FilmSerieUpdateControl.xaml
     /// </summary>
-    public partial class FilmSerieUpdateControl : UserControl, IFilmSerieUpdateView, IUpdateControl
+    public partial class FilmSerieUpdateControl : UserControl, IUpdateControl
 	{
 		private FilmSerieUpdatePresenter presenter;
 		public FilmSerieUpdateControl(Film film, IMenuPresenter<Film> menu, TableCollection collection)
 		{
 			InitializeComponent();
-			presenter = new FilmSerieUpdatePresenter(film, this, menu, collection);
+			presenter = new FilmSerieUpdatePresenter(film, menu);
+			DataContext = new FilmSerieBinder(film);
 		}
 
 		private bool commentIsOpen = false;
@@ -111,30 +113,7 @@ namespace FilmsUCWpf.View
 
 		public void UpdateElement()
 		{
-			try
-			{
-				presenter.UpdateElement();
-			}
-			catch
-			{
-				MessageBox.Show("Invalid data type entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-			}
+			
 		}
-
-		public string ID { set => id.Text = value; }
-		string IFilmUpdateView.Name { get => name.Text; set => name.Text = value; }
-		public IList Genres => genre.Items;
-		public Genre Genre { get => (Genre)genre.SelectedItem; set => genre.SelectedItem = value; }
-		public string RealiseYear { get => realiseYear.Text; set => realiseYear.Text = value; }
-		public bool Wathced { get => (bool)watched.IsChecked; set => watched.IsChecked = value; }
-		public IList Marks => mark.Items;
-		public string Mark { get => mark.Text; set => mark.Text = value; }
-		public string CountOfViews { get => countOfViews.Text; set => countOfViews.Text = value; }
-		public DateTime DateOfWatch { get => watchDate.Date; set => watchDate.Date = value; }
-		public string Comment { get => comment.Text; set => comment.Text = value; }
-
-		public DateTime StartWatchDate { get => startWatchDate.Date; set => startWatchDate.Date = value; }
-		public string CountOfWatchedSeries { get => countOfWatchedSeries.Text; set => countOfWatchedSeries.Text = value; }
-		public string TotalSeries { get => totalSeries.Text; set => totalSeries.Text = value; }
     }
 }

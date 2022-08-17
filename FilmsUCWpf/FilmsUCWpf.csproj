@@ -59,6 +59,7 @@
     <Compile Include="ModelBinder\BookSimpleBinder.cs" />
     <Compile Include="ModelBinder\FilmBinder.cs" />
     <Compile Include="ModelBinder\FilmCategoryBinder.cs" />
+    <Compile Include="ModelBinder\FilmSerieBinder.cs" />
     <Compile Include="ModelBinder\FilmSimpleBinder.cs" />
     <Compile Include="Presenter\Interfaces\BasePresenter.cs" />
     <Compile Include="Presenter\Interfaces\IBasePresenter.cs" />
@@ -78,7 +79,6 @@
     <Compile Include="Presenter\FilmPriorityPresenter.cs" />
     <Compile Include="Presenter\FilmSerieUpdatePresenter.cs" />
     <Compile Include="Presenter\FilmUpdatePresenter.cs" />
-    <Compile Include="Presenter\Interfaces\IUpdatePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

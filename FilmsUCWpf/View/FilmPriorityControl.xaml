@@ -23,7 +23,7 @@
             </StackPanel.Resources>
             <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28" PreviewMouseLeftButtonDown="id_Click"/>
             <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178" PreviewMouseLeftButtonDown="id_Click"/>
-            <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="{DynamicResource genre_tt}" Width="98" PreviewMouseLeftButtonDown="id_Click"/>
+            <TextBox x:Name="genre" Text="{Binding GenreText}" ToolTip="{DynamicResource genre_tt}" Width="98" PreviewMouseLeftButtonDown="id_Click"/>
             <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_tt}" Width="28" PreviewMouseLeftButtonDown="id_Click"/>
             <Button x:Name="btn_moreInfo" Content="{DynamicResource more_info_btn}" ToolTip="{DynamicResource open_more_info_tt}" Width="110" Click="btn_moreInfo_Click"/>
             <Button x:Name="btn_update" Content="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}" Width="110" Click="btn_update_Click"/>

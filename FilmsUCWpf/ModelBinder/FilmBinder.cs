@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TL_Objects;
+using TL_Objects.CellDataClasses;
 using TL_Tables;
 
 namespace FilmsUCWpf.ModelBinder
@@ -17,8 +18,18 @@ namespace FilmsUCWpf.ModelBinder
         {
 			film.Genre.PropertyChanged += Genre_PropertyChanged;
 			film.PropertyChanged += Film_PropertyChanged;
+			film.FormatedMark.PropertyChanged += FormatedMark_PropertyChanged;
 
             genresTable = (GenresTable)film.Genre.ParentTable;
+        }
+
+		private void FormatedMark_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+            OnPropertyChanged(nameof(Mark));
+            if (e.PropertyName == nameof(Model.FormatedMark.MarkSystem))
+			{
+                OnPropertyChanged(nameof(Marks));
+            }
         }
 
 		private void Film_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -95,8 +106,9 @@ namespace FilmsUCWpf.ModelBinder
 		{ 
 			get => Model.FormatedMark.ToString();
 			set => Model.FormatedMark.SetMarkFromString(value);
-    }
-		public String CountOfViews 
+		}
+        public List<String> Marks => Model.FormatedMark.GetComboItems();
+        public String CountOfViews 
 		{ 
 			get => formatZero(Model.CountOfViews);
             set => Model.CountOfViews = formatEmpty(value);

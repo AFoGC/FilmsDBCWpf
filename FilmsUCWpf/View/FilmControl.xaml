@@ -26,10 +26,10 @@
             </StackPanel.Resources>
             <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown" />
             <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="genre" Text="{Binding Genre}" ToolTip="{DynamicResource genre_tt}" Width="98"  PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="genre" Text="{Binding GenreText}" ToolTip="{DynamicResource genre_tt}" Width="98"  PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="{DynamicResource watched_tt}" Margin="20,0" IsEnabled="False"/>
-            <TextBox x:Name="watchDate" Text="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_tt}" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="watchDate" Text="{Binding DateOfWatchTxt}" ToolTip="{DynamicResource end_watch_date_tt}" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="43" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <TextBox x:Name="countOfviews" Text="{Binding CountOfViews}" ToolTip="{DynamicResource cov_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
         </StackPanel>

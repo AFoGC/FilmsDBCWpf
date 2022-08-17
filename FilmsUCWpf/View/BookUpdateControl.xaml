@@ -30,8 +30,10 @@
                       MouseRightButtonDown="watched_MouseRightButtonDown" PreviewMouseLeftButtonDown="readed_PreviewMouseLeftButtonDown"/>
             <TextBox x:Name="author" ToolTip="{DynamicResource author_utt}" Text="{Binding Author}" Width="100"/>
             <TextBox x:Name="bookmark" ToolTip="{DynamicResource bookmark_utt}" Text="{Binding Bookmark}" Width="101"/>
-            <Buttons:DateUpdateControl x:Name="fullReadDate" ToolTip="{DynamicResource end_read_date_utt}" Width="60" 
-                                       Background="#FF353535" BorderThickness="1" BorderBrush="#FF7A7A7A"/>
+            
+            <local:DateBox x:Name="fullReadDate" Date="{Binding Date}" ToolTip="{DynamicResource end_read_date_utt}" />
+            
+            
             <ComboBox x:Name="mark" ToolTip="{DynamicResource mark_utt}" SelectedItem="{Binding Mark}" ItemsSource="{Binding Marks}" Width="45"/>
             <TextBox x:Name="countOfReadings" ToolTip="{DynamicResource cor_utt}" Text="{Binding CountOfReadings}" Width="30" PreviewTextInput="TextInputIsNumber"/>
             <Rectangle Width="2"/>

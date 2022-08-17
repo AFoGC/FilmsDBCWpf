@@ -26,13 +26,13 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для BookUpdateControl.xaml
     /// </summary>
-    public partial class BookUpdateControl : UserControl, IBookUpdateView, IUpdateControl
+    public partial class BookUpdateControl : UserControl, IUpdateControl
     {
         private BookUpdatePresenter presenter;
         public BookUpdateControl(Book book, IMenuPresenter<Book> menu, TableCollection table)
         {
             InitializeComponent();
-            presenter = new BookUpdatePresenter(book, this, menu, table);
+            presenter = new BookUpdatePresenter(book, menu);
             DataContext = new BookBinder(book);
         }
 
@@ -55,7 +55,7 @@ namespace FilmsUCWpf.View
                     fullReadDate.Date = DateTime.Today;
                 }
 
-                if (countOfReadings.Text == "")
+                if (countOfReadings.Text == String.Empty)
                 {
                     countOfReadings.Text = "1";
                 }
@@ -72,7 +72,7 @@ namespace FilmsUCWpf.View
                     fullReadDate.Date = DateTime.Today;
                 }
 
-                if (countOfReadings.Text == "")
+                if (countOfReadings.Text == String.Empty)
                 {
                     countOfReadings.Text = "1";
                 }
@@ -87,27 +87,7 @@ namespace FilmsUCWpf.View
 
         public void UpdateElement()
         {
-            try
-            {
-                presenter.UpdateElement();
-            }
-            catch
-            {
-                MessageBox.Show("Invalid data type entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
 
-        public string ID { set => id.Text = value; }
-        string IBookUpdateView.Name { get => name.Text; set => name.Text = value; }
-        public IList Genres { get => genre.Items; }
-        public BookGenre Genre { get => (BookGenre)genre.SelectedItem; set => genre.SelectedItem = value; }
-        public string RealiseYear { get => realiseYear.Text; set => realiseYear.Text = value; }
-        public bool Readed { get => (bool)readed.IsChecked; set => readed.IsChecked = value; }
-        public string Author { get => author.Text; set => author.Text = value; }
-        public DateTime FullReadDate { get => fullReadDate.Date; set => fullReadDate.Date = value; }
-        public IList Marks => mark.Items;
-        public string Mark { get => mark.Text; set => mark.Text = value; }
-        public string CountOfReadings { get => countOfReadings.Text; set => countOfReadings.Text = value; }
-        public string Bookmark { get => bookmark.Text; set => bookmark.Text = value; }
+        }
     }
 }

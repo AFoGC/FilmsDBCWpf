@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using TL_Objects;
 using TL_Tables;
 
@@ -30,7 +31,12 @@ namespace FilmsUCWpf.ModelBinder
                 OnPropertyChanged(nameof(SelectedGenre));
                 return;
             }
-		}
+            if (e.PropertyName == nameof(Model.FullReadDate))
+            {
+                OnPropertyChanged(nameof(Date));
+                return;
+            }
+        }
 
 		private void FormatedMark_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
@@ -90,6 +96,11 @@ namespace FilmsUCWpf.ModelBinder
 			get => FormateDate(Model.FullReadDate); 
 			set { } 
 		}
+        public DateTime Date
+        {
+            get => Model.FullReadDate;
+            set => Model.FullReadDate = value;
+        }
 		public String Mark 
 		{ 
 			get => Model.FormatedMark.ToString();
@@ -111,5 +122,5 @@ namespace FilmsUCWpf.ModelBinder
 			get => Helper.SourcesStateString(Model.Sources); 
 			set { } 
 		}
-	}
+    }
 }

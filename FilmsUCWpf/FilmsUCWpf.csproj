@@ -65,8 +65,6 @@
     <Compile Include="Presenter\Interfaces\IHasGenre.cs" />
     <Compile Include="Presenter\Interfaces\IMenuModel.cs" />
     <Compile Include="Presenter\Interfaces\IMenuPresenter.cs" />
-    <Compile Include="Presenter\Interfaces\IToUpdateControl.cs" />
-    <Compile Include="Presenter\Interfaces\IUpdatePresenter.cs" />
     <Compile Include="Presenter\BookCategoryPresenter.cs" />
     <Compile Include="Presenter\BookCategoryUpdatePresenter.cs" />
     <Compile Include="Presenter\BookGenrePresenter.cs" />
@@ -80,6 +78,7 @@
     <Compile Include="Presenter\FilmPriorityPresenter.cs" />
     <Compile Include="Presenter\FilmSerieUpdatePresenter.cs" />
     <Compile Include="Presenter\FilmUpdatePresenter.cs" />
+    <Compile Include="Presenter\Interfaces\IUpdatePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,6 +91,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="View\DateBox.xaml.cs">
+      <DependentUpon>DateBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GenrePressButton.xaml.cs">
       <DependentUpon>GenrePressButton.xaml</DependentUpon>
@@ -215,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BookUpdateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DateBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

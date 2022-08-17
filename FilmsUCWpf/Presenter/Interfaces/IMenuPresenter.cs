@@ -13,8 +13,7 @@ namespace FilmsUCWpf.Presenter.Interfaces
     public interface IMenuPresenter<T> where T : Cell
     {
         IMenuModel<T> Model { get; }
-        void OpenMoreInfo(IView uiElement);
-        void OpenUpdateInfo(IUpdateControl uiElement);
+        void OpenMoreInfo(Object uiElement);
         void OpenSourcesInfo(ObservableCollection<Source> sources);
     }
 }

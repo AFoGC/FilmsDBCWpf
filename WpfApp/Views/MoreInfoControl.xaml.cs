@@ -29,7 +29,7 @@ namespace WpfApp.Views
             this.menu = menu;
         }
 
-        public void Open(IView uiElmenet)
+        public void Open(Object uiElmenet)
         {
             ElementFrame.Content = uiElmenet;
         }

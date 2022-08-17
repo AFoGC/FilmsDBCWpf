@@ -25,7 +25,7 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для BookCategoryUpdateControl.xaml
     /// </summary>
-    public partial class BookCategoryUpdateControl : UserControl, IUpdateControl
+    public partial class BookCategoryUpdateControl : UserControl
     {
         private BookCategoryUpdatePresenter presenter;
         public BookCategoryUpdateControl(BookCategory model, IMenuModel<Book> menu, TableCollection tableCollection)
@@ -43,11 +43,6 @@ namespace FilmsUCWpf.View
         private void btn_RemoveSec_Click(object sender, RoutedEventArgs e)
         {
             presenter.RemoveSelected();
-        }
-
-        public void UpdateElement()
-        {
-            
         }
 
         private void btn_DeleteCategory_Click(object sender, RoutedEventArgs e)

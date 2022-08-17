@@ -28,7 +28,7 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для FilmUpdateControl.xaml
     /// </summary>
-    public partial class FilmUpdateControl : UserControl, IUpdateControl
+    public partial class FilmUpdateControl : UserControl
 	{
 		private FilmUpdatePresenter presenter;
 		public FilmUpdateControl(Film film, IMenuPresenter<Film> menu, TableCollection table)
@@ -86,11 +86,6 @@ namespace FilmsUCWpf.View
 					countOfViews.Text = "1";
 				}
 			}
-		}
-
-		public void UpdateElement()
-		{
-
 		}
     }
 }

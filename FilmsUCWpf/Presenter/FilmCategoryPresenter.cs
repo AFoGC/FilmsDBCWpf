@@ -142,7 +142,7 @@ namespace FilmsUCWpf.Presenter
 
         public void OpenUpdateMenu()
         {
-            menu.OpenUpdateInfo(new FilmCategoryUpdateControl(Model, menu.Model, TableCollection));
+            menu.OpenMoreInfo(new FilmCategoryUpdateControl(Model, menu.Model, TableCollection));
         }
 
         public void CreateFilmInCategory()

@@ -16,9 +16,7 @@ namespace WpfApp.Views.Interfaces
     {
         IList MenuControls { get; }
         IList GenresControls { get; }
-        void OpenMoreInfo(IView uiElement);
-        void OpenUpdateInfo(IUpdateControl uiElement);
-        void UpdateInUpdateInfo();
+        void OpenMoreInfo(Object uiElement);
         void OpenSourcesInfo(ObservableCollection<Source> sources);
         void CloseAllInfos();
     }

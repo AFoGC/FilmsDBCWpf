@@ -83,14 +83,9 @@ namespace WpfApp.Presenters
 
         public void SaveTables() => model.TableCollection.SaveTables();
 
-        public void OpenMoreInfo(IView uiElement)
+        public void OpenMoreInfo(Object uiElement)
         {
             view.OpenMoreInfo(uiElement);
-        }
-
-        public void OpenUpdateInfo(IUpdateControl uiElement)
-        {
-            view.OpenUpdateInfo(uiElement);
         }
 
         public void OpenSourcesInfo(ObservableCollection<Source> sources)
@@ -288,11 +283,6 @@ namespace WpfApp.Presenters
             Film film = new Film();
             film.Genre = model.Tables.GenresTable[0];
             model.Tables.FilmsTable.AddElement(film);
-        }
-
-        public void UpdateVisualizerIfOpen()
-        {
-            view.UpdateInUpdateInfo();
         }
 
         private IEnumerable<FilmCategoryPresenter> getCategoriesOnView()

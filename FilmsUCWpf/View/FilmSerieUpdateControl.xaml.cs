@@ -26,7 +26,7 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для FilmSerieUpdateControl.xaml
     /// </summary>
-    public partial class FilmSerieUpdateControl : UserControl, IUpdateControl
+    public partial class FilmSerieUpdateControl : UserControl
 	{
 		private FilmSerieUpdatePresenter presenter;
 		public FilmSerieUpdateControl(Film film, IMenuPresenter<Film> menu, TableCollection collection)
@@ -109,11 +109,6 @@ namespace FilmsUCWpf.View
 		{
 			Regex regex = new Regex("[^0-9]+");
 			e.Handled = regex.IsMatch(e.Text);
-		}
-
-		public void UpdateElement()
-		{
-			
 		}
     }
 }

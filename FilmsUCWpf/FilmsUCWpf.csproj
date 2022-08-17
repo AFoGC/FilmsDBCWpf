@@ -105,7 +105,6 @@
     <Compile Include="View\Interfaces\IGenreView.cs" />
     <Compile Include="View\Interfaces\IFilmSerieUpdateView.cs" />
     <Compile Include="View\Interfaces\IFilmUpdateView.cs" />
-    <Compile Include="View\Interfaces\IUpdateControl.cs" />
     <Compile Include="View\Interfaces\IView.cs" />
     <Compile Include="View\BookCategoryControl.xaml.cs">
       <DependentUpon>BookCategoryControl.xaml</DependentUpon>

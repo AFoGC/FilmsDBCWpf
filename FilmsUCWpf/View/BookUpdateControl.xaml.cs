@@ -26,7 +26,7 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для BookUpdateControl.xaml
     /// </summary>
-    public partial class BookUpdateControl : UserControl, IUpdateControl
+    public partial class BookUpdateControl : UserControl
     {
         private BookUpdatePresenter presenter;
         public BookUpdateControl(Book book, IMenuPresenter<Book> menu, TableCollection table)
@@ -83,11 +83,6 @@ namespace FilmsUCWpf.View
         {
             Regex regex = new Regex(@"\D");
             e.Handled = regex.IsMatch(e.Text);
-        }
-
-        public void UpdateElement()
-        {
-
         }
     }
 }

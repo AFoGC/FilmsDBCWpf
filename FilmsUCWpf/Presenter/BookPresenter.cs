@@ -93,7 +93,7 @@ namespace FilmsUCWpf.Presenter
 
 		public void OpenUpdateMenu()
 		{
-			menu.OpenUpdateInfo(new BookUpdateControl(Model, menu, TableCollection));
+			menu.OpenMoreInfo(new BookUpdateControl(Model, menu, TableCollection));
 		}
 
 		public void OpenInfoMenu()

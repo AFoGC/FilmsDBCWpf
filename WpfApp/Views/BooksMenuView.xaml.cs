@@ -33,7 +33,6 @@ namespace WpfApp.Views
         public IList MenuControls => controlsPanel.Children;
         public IList GenresControls => genres_panel.Children;
         private readonly MoreInfoControl infoControl;
-        private readonly UpdateControl updateControl;
         private readonly SourcesControl sourcesControl;
 
         public BooksMenuView(MainWindowModel windowModel)
@@ -42,25 +41,14 @@ namespace WpfApp.Views
             presenter = new BooksMenuPresenter(new BooksMenuModel(windowModel), this);
 
             infoControl = new MoreInfoControl(this);
-            updateControl = new UpdateControl(this);
             sourcesControl = new SourcesControl();
         }
 
-        public void OpenMoreInfo(IView uiElement)
+        public void OpenMoreInfo(Object uiElement)
         {
             CloseAllInfos();
             infoControl.Open(uiElement);
             MainInfoPanel.Children.Add(infoControl);
-        }
-        public void OpenUpdateInfo(IUpdateControl uiElement)
-        {
-            CloseAllInfos();
-            updateControl.Open(uiElement);
-            MainInfoPanel.Children.Add(updateControl);
-        }
-        public void UpdateInUpdateInfo()
-        {
-            updateControl.Update();
         }
         public void OpenSourcesInfo(ObservableCollection<Source> sources)
         {
@@ -128,15 +116,7 @@ namespace WpfApp.Views
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                presenter.UpdateVisualizerIfOpen();
-            }
 
-            if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
-            {
-                presenter.UpdateVisualizerIfOpen();
-            }
         }
 
         private void id_sort(object sender, RoutedEventArgs e)

@@ -86,11 +86,11 @@ namespace FilmsUCWpf.Presenter
 			SeriesTable table = (SeriesTable)TableCollection.GetTable<Serie>();
 			if (Model.Genre.IsSerialGenre)
 			{
-				menu.OpenUpdateInfo(new FilmSerieUpdateControl(Model, menu, TableCollection));
+				menu.OpenMoreInfo(new FilmSerieUpdateControl(Model, menu, TableCollection));
 			}
 			else
 			{
-				menu.OpenUpdateInfo(new FilmUpdateControl(Model, menu, TableCollection));
+				menu.OpenMoreInfo(new FilmUpdateControl(Model, menu, TableCollection));
 			}
 		}
 

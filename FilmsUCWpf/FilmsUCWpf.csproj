@@ -173,10 +173,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomButtons\CustomButtons.csproj">
-      <Project>{db9a63ca-2850-4e8d-978f-9313be50e4fc}</Project>
-      <Name>CustomButtons</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TLObjects\TL_Objects.csproj">
       <Project>{850e8208-e369-4f93-8a80-8227c5605a6e}</Project>
       <Name>TL_Objects</Name>

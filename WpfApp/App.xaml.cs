@@ -18,5 +18,15 @@ namespace WpfApp
         private void Application_Startup(object sender, StartupEventArgs e)
         {
         }
+
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(
+                e.Exception.ToString(), 
+                "Critical Error", 
+                MessageBoxButton.OK, 
+                MessageBoxImage.Error
+                );
+        }
     }
 }

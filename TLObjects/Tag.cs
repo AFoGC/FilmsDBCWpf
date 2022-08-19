@@ -16,11 +16,6 @@ namespace TL_Objects
             _name = String.Empty;
         }
 
-        protected override void updateThisBody(Cell cell)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override void saveBody(StreamWriter streamWriter, Cell defaultCell)
         {
             streamWriter.Write(FormatParam("name", _name, String.Empty, 2));

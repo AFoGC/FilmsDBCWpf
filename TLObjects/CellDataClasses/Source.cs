@@ -1,13 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace TL_Objects.CellDataClasses
 {
-    public class Source
+    public class Source : INotifyPropertyChanged
     {
-        public String Name { get; set; }
-        public String SourceUrl { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string _name;
+        private string _sourceUrl;
+        public String Name 
+        {
+            get => _name;
+            set { _name = value; OnPropertyChanged(nameof(Name)); }
+        }
+        public String SourceUrl 
+        {
+            get => _sourceUrl;
+            set { _sourceUrl = value; OnPropertyChanged(nameof(SourceUrl)); }
+        }
 
         public Source()
         {
@@ -45,6 +58,14 @@ namespace TL_Objects.CellDataClasses
             {
                 return Name + ", " + SourceUrl;
             }
+        }
+
+        public void OnPropertyChanged(String propertyName)
+        {
+            var e = new PropertyChangedEventArgs(propertyName);
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, e);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,19 +23,19 @@ namespace FilmsUCWpf.View
     public partial class SourceControl : UserControl
     {
         private readonly Source source;
-        public SourceControl(Source source)
+        private readonly ObservableCollection<Source> sources;
+        public SourceControl(Source source, ObservableCollection<Source> sources)
         {
             InitializeComponent();
             this.source = source;
-            source_name.Text = source.Name;
-            source_url.Text = source.SourceUrl;
+            this.sources = sources;
             this.DataContext = source;
         }
 
-        public void UpdateSource()
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            source.Name = source_name.Text;
-            source.SourceUrl = source_url.Text;
+            sources.Remove(source);
+            sources.Insert(0, source);
         }
     }
 }

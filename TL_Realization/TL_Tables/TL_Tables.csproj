@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TLObjects\TL_Objects.csproj" />
+    <ProjectReference Include="..\TL_Objects\TL_Objects.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="TablesLibrary">
-      <HintPath>..\TablesLibrary.dll</HintPath>
+      <HintPath>..\..\TablesLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
 

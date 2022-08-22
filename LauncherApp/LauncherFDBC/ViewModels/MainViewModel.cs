@@ -1,5 +1,6 @@
 ﻿using BL_Launcher;
 using BO_Launcher;
+using Caliburn.Micro;
 using LauncherFDBC.Commands;
 using LauncherFDBC.Models;
 using System;
@@ -16,31 +17,39 @@ namespace LauncherFDBC.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public MainWindowModel Model { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string updateID;
-        public string UpdateID
+        private string _updateID;
+        private string _updateButtonText;
+        private bool _isUpdateButtonEnabled;
+        private bool _hasProgramUpdate;
+
+
+        public bool HasProgramUpdate
         {
-            get => updateID;
-            set
-            {
-                updateID = value;
-                OnPropertyChanged(nameof(UpdateID));
-            }
+            get => _hasProgramUpdate;
+            set { _hasProgramUpdate = value; OnPropertyChanged(nameof(HasProgramUpdate)); }
         }
-        private string updateButtonText;
-        public string UpdateButtonText
+        public bool IsProgramFileExist
         {
-            get => updateButtonText;
-            set
-            {
-                updateButtonText = value;
-                OnPropertyChanged(nameof(UpdateButtonText));
-            }
+            get => Model.IsProgramFileExist;
+            set { Model.IsProgramFileExist = value; OnPropertyChanged(nameof(IsProgramFileExist)); }
         }
 
-        public string PatchNote { get; set; }
+        public bool IsUpdateButtonEnabled
+        {
+            get => _isUpdateButtonEnabled;
+            set { _isUpdateButtonEnabled = value; OnPropertyChanged(nameof(IsUpdateButtonEnabled)); }
+        }
+        
+        public string UpdateID
+        {
+            get => _updateID;
+            set { _updateID = value; OnPropertyChanged(nameof(UpdateID)); }
+        }
+
+        public MainWindowModel Model { get; private set; }
+        public BindableCollection<ProgramBO> Patches { get; set; }
         public ICommand UpdateProgramCommand { get; private set; }
         public ICommand UpdateLauncherCommand { get; private set; }
         public ICommand StartCommand { get; private set; }
@@ -51,48 +60,10 @@ namespace LauncherFDBC.ViewModels
             UpdateProgramCommand = new ProgramUpdateCommand(this);
             UpdateLauncherCommand = new LauncherUpdateCommand(this);
             StartCommand = new StartCommand(this);
-
-            if (File.Exists(Model.FdbcProgPath))
-                UpdateID = FileVersionInfo.GetVersionInfo(Model.FdbcProgPath).ProductVersion;
-
-            RefreshButtonString();
-            PatchNote = GetPatchNote();
-
-            UpdateProgramCommand.CanExecuteChanged += UpdateProgramCommand_CanExecuteChanged;
-        }
-
-        private void UpdateProgramCommand_CanExecuteChanged(object sender, EventArgs e)
-        {
-            RefreshButtonString();
-        }
-
-        public string GetPatchNote()
-        {
-            String export = String.Empty;
-            if (ProgramBL.IsDBOnline())
-            {
-                List<ProgramBO> programs = ProgramBL.GetPatchNote();
-                foreach (ProgramBO item in programs)
-                {
-                    export += item.UpdateInfo;
-                    export += "\n\n\n";
-                }
-            }
             
-            return export;
-        }
+            UpdateID = Model.GetFileVersion();
 
-        public bool ProgramFileExist => File.Exists(Model.FdbcProgPath);
-
-        public void RefreshButtonString()
-        {
-            string str;
-            if (UpdateProgramCommand.CanExecute(null))
-                if (File.Exists(Model.FdbcProgPath))
-                    str = "Update";
-                else str = "Download";
-            else str = "Download\nor Update";
-            UpdateButtonText = str;
+            Patches = new BindableCollection<ProgramBO>(Model.GetPatches());
         }
         
         protected void OnPropertyChanged(string name)

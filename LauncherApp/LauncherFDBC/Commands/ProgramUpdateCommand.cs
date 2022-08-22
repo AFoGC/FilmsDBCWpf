@@ -34,7 +34,6 @@ namespace LauncherFDBC.Commands
         public override void Execute(object parameter)
         {
             ProgramBO programBO = ProgramBL.GetLastUpdate();
-            model.LocalUpdate = programBO;
 
             if (!IsProgramExist())
                 Directory.CreateDirectory(model.FdbcPath);

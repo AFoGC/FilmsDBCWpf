@@ -69,7 +69,8 @@ namespace TL_Tables
 
 		public override void ConnectionsSubload(TableCollection tablesCollection)
 		{
-			Table<Film> filmsTable = tablesCollection.GetTable<Film>();
+            MarkSystem = MarkSystem;
+            Table<Film> filmsTable = tablesCollection.GetTable<Film>();
 
 			List<Film> categoryFilms = new List<Film>();
 			foreach (Category category in this)

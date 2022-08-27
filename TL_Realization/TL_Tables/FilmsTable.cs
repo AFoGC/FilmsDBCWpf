@@ -68,6 +68,7 @@ namespace TL_Tables
 
         public override void ConnectionsSubload(TableCollection tablesCollection)
 		{
+			MarkSystem = MarkSystem;
 			Table<Genre> genresTable = tablesCollection.GetTable<Genre>();
 			foreach (Film film in this)
 			{

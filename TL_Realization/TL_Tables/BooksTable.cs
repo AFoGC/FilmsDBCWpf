@@ -68,7 +68,8 @@ namespace TL_Tables
 
 		public override void ConnectionsSubload(TableCollection tablesCollection)
 		{
-			Table<BookGenre> genresTable = tablesCollection.GetTable<BookGenre>();
+            MarkSystem = MarkSystem;
+            Table<BookGenre> genresTable = tablesCollection.GetTable<BookGenre>();
 
 			foreach (Book book in this)
 			{

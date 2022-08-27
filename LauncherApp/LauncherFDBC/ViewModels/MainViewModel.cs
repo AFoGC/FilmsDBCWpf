@@ -20,7 +20,6 @@ namespace LauncherFDBC.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string _updateID;
-        private string _updateButtonText;
         private bool _isUpdateButtonEnabled;
         private bool _hasProgramUpdate;
 

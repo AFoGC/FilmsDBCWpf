@@ -224,6 +224,7 @@
     </Compile>
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\LauncherUpdateCommand.cs" />
+    <Compile Include="Commands\PatchesCommand.cs" />
     <Compile Include="Commands\ProgramUpdateCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\StartCommand.cs" />

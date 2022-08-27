@@ -51,29 +51,32 @@
         </Grid>
 
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Margin="5,0">
-            <ItemsControl ItemsSource="{Binding Patches}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="10">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Foreground" Value="WhiteSmoke"/>
-                                </Style>
-                            </StackPanel.Resources>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Patch " FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding Version}" FontSize="16" FontWeight="Bold"/>
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding Patches}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10">
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Patch " FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Version}" FontSize="16" FontWeight="Bold"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding UpdateInfo}" TextWrapping="Wrap"/>
                             </StackPanel>
-                            <TextBlock Text="{Binding UpdateInfo}" TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Width="200" Height="20" Content="Больше" Style="{StaticResource GrayButton}"/>
+            </StackPanel>
         </ScrollViewer>
         
 

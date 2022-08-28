@@ -52,6 +52,7 @@ namespace LauncherFDBC.ViewModels
         public ICommand UpdateProgramCommand { get; private set; }
         public ICommand UpdateLauncherCommand { get; private set; }
         public ICommand StartCommand { get; private set; }
+        public ICommand LoadPatches { get; private set; }
 
         public MainViewModel()
         {
@@ -59,6 +60,7 @@ namespace LauncherFDBC.ViewModels
             UpdateProgramCommand = new ProgramUpdateCommand(this);
             UpdateLauncherCommand = new LauncherUpdateCommand(this);
             StartCommand = new StartCommand(this);
+            LoadPatches = new PatchesCommand(this);
             
             UpdateID = Model.GetFileVersion();
 

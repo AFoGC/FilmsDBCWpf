@@ -59,17 +59,18 @@ namespace DAL_Launcher
 
 		public List<ProgramBO> GetPatchNotes()
         {
-			List<ProgramBO> programs = new List<ProgramBO>();
-			command.CommandText = "get_last_update_info";
-			SqlDataReader objReader = command.ExecuteReader();
-			ProgramBO program;
-			while (objReader.Read())
+            List<ProgramBO> programs = new List<ProgramBO>();
+            command.CommandText = "get_last_update_info";
+            SqlDataReader objReader = command.ExecuteReader();
+            ProgramBO program;
+            while (objReader.Read())
 			{
 				program = new ProgramBO
 				{
 					UpdateInfo = objReader.GetString(0),
-					Version = objReader.GetString(1)
-				};
+					Version = objReader.GetString(1),
+                    ID = objReader.GetInt64(2)
+                };
 				programs.Add(program);
 			}
 			connection.Close();
@@ -77,7 +78,33 @@ namespace DAL_Launcher
 			return programs;
 		}
 
-		public string GetLastVersion()
+		public List<ProgramBO> GetNextPatchNotes(long last_id)
+		{
+			List<ProgramBO> programs = new List<ProgramBO>();
+            command.CommandText = "get_next_patch_notes";
+
+            SqlParameter objParam = command.Parameters.Add("@start_index", SqlDbType.BigInt);
+            objParam.Value = last_id;
+
+            SqlDataReader objReader = command.ExecuteReader();
+            ProgramBO program;
+            while (objReader.Read())
+            {
+                program = new ProgramBO
+                {
+                    UpdateInfo = objReader.GetString(0),
+                    Version = objReader.GetString(1),
+					ID = objReader.GetInt64(2)
+                };
+                programs.Add(program);
+            }
+            connection.Close();
+
+            return programs;
+        }
+
+
+        public string GetLastVersion()
         {
 			command.CommandText = "get_last_prog_version";
 			SqlDataReader objReader = command.ExecuteReader();

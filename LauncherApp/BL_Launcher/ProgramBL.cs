@@ -36,6 +36,11 @@ namespace BL_Launcher
             return new ProgramDAL().GetPatchNotes();
         }
 
+        public static List<ProgramBO> GetPatchNote(ProgramBO last_patch)
+        {
+            return new ProgramDAL().GetNextPatchNotes(last_patch.ID);
+        }
+
         public static string GetLastVersion()
         {
             return new ProgramDAL().GetLastVersion();

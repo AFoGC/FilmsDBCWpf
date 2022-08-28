@@ -75,7 +75,8 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <Button Width="200" Height="20" Content="Больше" Style="{StaticResource GrayButton}"/>
+                <Button Width="200" Height="20" Content="Больше" Style="{StaticResource GrayButton}" 
+                        Command="{Binding LoadPatches}"/>
             </StackPanel>
         </ScrollViewer>
         

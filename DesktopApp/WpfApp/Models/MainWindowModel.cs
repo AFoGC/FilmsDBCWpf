@@ -19,7 +19,6 @@ namespace WpfApp.Models
 {
     public class MainWindowModel : IUserModel
     {
-        public bool InfoUnsaved { get; set; }
         public TableCollection TableCollection { get; private set; }
         public ProgramSettings Settings { get; private set; }
         public TLTables Tables { get; private set; }
@@ -47,12 +46,8 @@ namespace WpfApp.Models
 
         public MainWindowModel()
         {
-            InfoUnsaved = false;
-
             TableCollection = new TableCollection();
             Tables = new TLTables(TableCollection);
-            TableCollection.TableSave += boolSaved;
-            TableCollection.CellInTablesChanged += TableCollection_CellInTablesChanged;
 
             string localPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
@@ -63,17 +58,6 @@ namespace WpfApp.Models
             }
 
             TableCollection.FileEncoding = Encoding.UTF8;
-            InfoUnsaved = false;
-        }
-
-        private void TableCollection_CellInTablesChanged(object sender, EventArgs e)
-        {
-            InfoUnsaved = true;
-        }
-
-        private void boolSaved(object sender, EventArgs e)
-        {
-            InfoUnsaved = false;
         }
     }
 }

@@ -44,8 +44,6 @@ namespace WpfApp.Views
             filmsMenu = new FilmsMenuView(model);
 
             films_Click(films, new RoutedEventArgs());
-
-            model.InfoUnsaved = false;
         }
 
         private void Window_Closed(object sender, EventArgs e)

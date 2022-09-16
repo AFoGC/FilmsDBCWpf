@@ -18,7 +18,7 @@ namespace WpfApp.Presenters
             this.model = model;
         }
 
-        public bool InfoUnsaved => model.InfoUnsaved;
+        public bool InfoUnsaved => model.TableCollection.IsInfoUnsaved;
 
         public void WindowClosed()
         {

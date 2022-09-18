@@ -7,6 +7,11 @@
     <v:String x:Key="nav_book">Books</v:String>
     <v:String x:Key="nav_setting">Settings</v:String>
     
+    <!--Statusbar-->
+    <v:String x:Key="sb_default"> </v:String>
+    <v:String x:Key="sb_saved">Saved</v:String>
+    <v:String x:Key="sb_unsaved">Unsaved</v:String>
+    
     <!--Language Settings-->
     <v:String x:Key="st_lang_title">Language Settings</v:String>
     <v:String x:Key="st_lang_btn">Change language</v:String>

@@ -6,7 +6,11 @@
     <v:String x:Key="nav_film">Фільми</v:String>
     <v:String x:Key="nav_book">Книжки</v:String>
     <v:String x:Key="nav_setting">Налаштування</v:String>
-    
+
+    <!--Statusbar-->
+    <v:String x:Key="sb_saved">Збережено</v:String>
+    <v:String x:Key="sb_unsaved">Не збережено</v:String>
+
     <!--Language Settings-->
     <v:String x:Key="st_lang_title">Налаштування мови</v:String>
     <v:String x:Key="st_lang_btn">Змінити мову</v:String>

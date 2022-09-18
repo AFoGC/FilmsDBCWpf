@@ -8,6 +8,6 @@ namespace WpfApp.Views.Interfaces
 {
     public interface IMainWindowView
     {
-        StatusEnum Status { get; set; }
+        StatusInfo Status { get; set; }
     }
 }

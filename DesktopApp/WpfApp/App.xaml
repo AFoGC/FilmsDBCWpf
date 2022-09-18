@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Resources/Dictionaries/TextBoxDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/ComboBoxDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/ContextMenuDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/ColorsDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Localizations/lang.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

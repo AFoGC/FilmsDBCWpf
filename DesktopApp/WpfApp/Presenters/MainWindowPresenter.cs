@@ -38,16 +38,16 @@ namespace WpfApp.Presenters
 
         private void OnTablesChanged(object sender, EventArgs e)
         {
-            StatusInfo status = new StatusInfo(StatusEnum.UnSaved, view);
-            view.Status = status.Status;
+            StatusInfo status = StatusInfo.GetInfo(StatusEnum.UnSaved, view);
+            view.Status = status;
             saveTimer.Stop();
             saveTimer.Start();
         }
 
         private void OnSaveStatus(object sender, EventArgs e)
         {
-            StatusInfo status = new StatusInfo(StatusEnum.Saved, view);
-            view.Status = status.Status;
+            StatusInfo status = StatusInfo.GetInfo(StatusEnum.Saved, view);
+            view.Status = status;
         }
 
         public bool InfoUnsaved => model.TableCollection.IsInfoUnsaved;

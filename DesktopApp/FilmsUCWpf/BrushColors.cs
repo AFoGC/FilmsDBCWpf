@@ -19,7 +19,6 @@ namespace FilmsUCWpf
             SelectColor = new SolidColorBrush(Color.FromRgb(0, 176, 72));
             DefaultColor = new SolidColorBrush(Color.FromRgb(53, 53, 53));
             FindColor = new SolidColorBrush(Color.FromRgb(0, 116, 229));
-            //CategorySelectColor = 
         }
     }
 }

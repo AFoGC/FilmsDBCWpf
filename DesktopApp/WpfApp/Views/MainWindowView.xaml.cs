@@ -27,7 +27,7 @@ namespace WpfApp.Views
     public partial class MainWindowView : Window, IMainWindowView
     {
         private MainWindowPresenter presenter;
-        private StatusEnum status;
+        private StatusInfo status;
 
         private readonly SettingsMenuView settingsMenu;
         private readonly BooksMenuView booksMenu;
@@ -43,32 +43,21 @@ namespace WpfApp.Views
             settingsMenu = new SettingsMenuView(model);
             booksMenu = new BooksMenuView(model);
             filmsMenu = new FilmsMenuView(model);
-            status = StatusEnum.Normal;
+
+            status = StatusInfo.GetInfo(StatusEnum.Normal, this);
 
             films_Click(films, new RoutedEventArgs());
         }
 
-        public StatusEnum Status
+        public StatusInfo Status
         {
             get => status;
             set
             {
                 status = value;
-                switch (status)
-                {
-                    case StatusEnum.Saved:
-                        statusText.Text = "Saved";
-                        statusGround.Fill = new SolidColorBrush(Color.FromRgb(0, 176, 72));
-                        break;
-                    case StatusEnum.Normal:
-                        statusText.Text = String.Empty;
-                        statusGround.Fill = new SolidColorBrush(Color.FromRgb(31, 31, 31));
-                        break;
-                    case StatusEnum.UnSaved:
-                        statusText.Text = "Unsaved";
-                        statusGround.Fill = new SolidColorBrush(Color.FromRgb(230, 46, 76));
-                        break;
-                }
+                
+                this.statusText.SetResourceReference(TextBlock.TextProperty, status.DictionaryString);
+                this.statusGround.Fill = status.SatusColor;
             }
         }
 

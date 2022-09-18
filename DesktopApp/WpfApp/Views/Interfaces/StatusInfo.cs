@@ -24,7 +24,7 @@ namespace WpfApp.Views.Interfaces
         public String DictionaryString { get; private set; }
         public SolidColorBrush SatusColor { get; private set; }
 
-        public StatusInfo(StatusEnum @enum, IMainWindowView view)
+        private StatusInfo(StatusEnum @enum, IMainWindowView view)
         {
             this.view = view;
             Status = @enum;
@@ -45,8 +45,31 @@ namespace WpfApp.Views.Interfaces
         private void MessageEnd(object sender, EventArgs e)
         {
             timer.Stop();
-            if (view.Status == Status)
-                view.Status = StatusEnum.Normal;
+            if (view.Status.Status == Status)
+                view.Status = GetInfo(StatusEnum.Normal, view);
+        }
+
+        public static StatusInfo GetInfo(StatusEnum @enum, IMainWindowView view)
+        {
+            StatusInfo status = new StatusInfo(@enum, view);
+            switch (@enum)
+            {
+                case StatusEnum.Normal:
+                    status.DictionaryString = String.Empty;
+                    status.SatusColor = new SolidColorBrush(Color.FromRgb(31, 31, 31));
+                    break;
+                case StatusEnum.Saved:
+                    status.DictionaryString = "sb_saved";
+                    status.SatusColor = new SolidColorBrush(Color.FromRgb(0, 176, 72));
+                    break;
+                case StatusEnum.UnSaved:
+                    status.DictionaryString = "sb_unsaved";
+                    status.SatusColor = new SolidColorBrush(Color.FromRgb(230, 46, 76));
+                    break;
+                default:
+                    return null;
+            }
+            return status;
         }
     }
 }

@@ -220,6 +220,7 @@
     <Compile Include="Models\ProgramSettings.cs" />
     <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
     <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
+    <Compile Include="Views\Interfaces\IMainWindowView.cs" />
     <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileView.cs" />
     <Compile Include="Views\Interfaces\ISettingsMenuView.cs" />

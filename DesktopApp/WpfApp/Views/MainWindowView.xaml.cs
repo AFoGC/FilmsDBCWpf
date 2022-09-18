@@ -24,7 +24,7 @@ namespace WpfApp.Views
     /// <summary>
     /// Логика взаимодействия для MainWindowView.xaml
     /// </summary>
-    public partial class MainWindowView : Window
+    public partial class MainWindowView : Window, IMainWindowView
     {
         private MainWindowPresenter presenter;
 
@@ -37,13 +37,32 @@ namespace WpfApp.Views
             InitializeComponent();
 
             MainWindowModel model = new MainWindowModel();
-            presenter = new MainWindowPresenter(model);
+            presenter = new MainWindowPresenter(model, this);
 
             settingsMenu = new SettingsMenuView(model);
             booksMenu = new BooksMenuView(model);
             filmsMenu = new FilmsMenuView(model);
 
             films_Click(films, new RoutedEventArgs());
+        }
+
+        public void SetStatus(StatusEnum status)
+        {
+            switch (status)
+            {
+                case StatusEnum.Normal:
+                    statusText.Text = "Saved";
+                    statusGround.Fill = new SolidColorBrush(Color.FromRgb(0, 176, 72));
+                    break;
+                case StatusEnum.Saved:
+                    statusText.Text = String.Empty;
+                    statusGround.Fill = new SolidColorBrush(Color.FromRgb(31, 31, 31));
+                    break;
+                case StatusEnum.UnSaved:
+                    statusText.Text = "Unsaved";
+                    statusGround.Fill = new SolidColorBrush(Colors.OrangeRed);
+                    break;
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)

@@ -6,15 +6,8 @@ using System.Threading.Tasks;
 
 namespace WpfApp.Views.Interfaces
 {
-    public enum StatusEnum
-    {
-        Normal,
-        Saved,
-        UnSaved
-    }
-
     public interface IMainWindowView
     {
-        void SetStatus(StatusEnum status);
+        StatusEnum Status { get; set; }
     }
 }

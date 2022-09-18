@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 using WpfApp.Models;
 using WpfApp.Views.Interfaces;
 
@@ -14,11 +15,39 @@ namespace WpfApp.Presenters
     {
         private readonly MainWindowModel model;
         private readonly IMainWindowView view;
+        private readonly DispatcherTimer saveTimer;
 
         public MainWindowPresenter(MainWindowModel model, IMainWindowView view)
         {
             this.model = model;
             this.view = view;
+
+            saveTimer = new DispatcherTimer();
+            saveTimer.Interval = TimeSpan.FromSeconds(10);
+            saveTimer.Tick += OnTimerSave;
+
+            model.TableCollection.TableSave += OnSaveStatus;
+            model.TableCollection.CellInTablesChanged += OnTablesChanged;
+        }
+
+        private void OnTimerSave(object sender, EventArgs e)
+        {
+            model.TableCollection.SaveTables();
+            saveTimer.Stop();
+        }
+
+        private void OnTablesChanged(object sender, EventArgs e)
+        {
+            StatusInfo status = new StatusInfo(StatusEnum.UnSaved, view);
+            view.Status = status.Status;
+            saveTimer.Stop();
+            saveTimer.Start();
+        }
+
+        private void OnSaveStatus(object sender, EventArgs e)
+        {
+            StatusInfo status = new StatusInfo(StatusEnum.Saved, view);
+            view.Status = status.Status;
         }
 
         public bool InfoUnsaved => model.TableCollection.IsInfoUnsaved;

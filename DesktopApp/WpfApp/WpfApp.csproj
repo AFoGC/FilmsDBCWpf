@@ -236,6 +236,7 @@
     <Compile Include="Views\GenreConteinerView.xaml.cs">
       <DependentUpon>GenreConteinerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Interfaces\StatusInfo.cs" />
     <Compile Include="Views\LanguageSettingsView.xaml.cs">
       <DependentUpon>LanguageSettingsView.xaml</DependentUpon>
     </Compile>

@@ -57,7 +57,7 @@ namespace WpfApp.Views
                 status = value;
                 
                 this.statusText.SetResourceReference(TextBlock.TextProperty, status.DictionaryString);
-                this.statusGround.Fill = status.SatusColor;
+                this.statusGround.SetResourceReference(Rectangle.FillProperty, status.DictionaryColor);
             }
         }
 

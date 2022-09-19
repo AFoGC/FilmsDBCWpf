@@ -22,7 +22,7 @@ namespace WpfApp.Views.Interfaces
 
         public StatusEnum Status { get; private set; }
         public String DictionaryString { get; private set; }
-        public SolidColorBrush SatusColor { get; private set; }
+        public String DictionaryColor { get; private set; }
 
         private StatusInfo(StatusEnum @enum, IMainWindowView view)
         {
@@ -56,15 +56,15 @@ namespace WpfApp.Views.Interfaces
             {
                 case StatusEnum.Normal:
                     status.DictionaryString = String.Empty;
-                    status.SatusColor = new SolidColorBrush(Color.FromRgb(31, 31, 31));
+                    status.DictionaryColor = "ButtonDarkGray";
                     break;
                 case StatusEnum.Saved:
                     status.DictionaryString = "sb_saved";
-                    status.SatusColor = new SolidColorBrush(Color.FromRgb(0, 176, 72));
+                    status.DictionaryColor = "ButtonGreen";
                     break;
                 case StatusEnum.UnSaved:
                     status.DictionaryString = "sb_unsaved";
-                    status.SatusColor = new SolidColorBrush(Color.FromRgb(230, 46, 76));
+                    status.DictionaryColor = "ButtonRed";
                     break;
                 default:
                     return null;

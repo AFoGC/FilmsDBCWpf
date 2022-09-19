@@ -11,7 +11,7 @@
         <Setter Property="FontSize" Value="12"/>
     </Style>
     <Style x:Key="BlueButton" TargetType="Button" BasedOn="{StaticResource Default}">
-        <Setter Property="Background" Value="#0074e5"/>
+        <Setter Property="Background" Value="{StaticResource BlueButtonColor}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -23,18 +23,18 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FF1381EC"/>
+                <Setter Property="Background" Value="{StaticResource BlueButtonColorMO}"/>
             </Trigger>
             <Trigger Property="IsMouseCaptureWithin" Value="True">
-                <Setter Property="Background" Value="#FF0064C5"/>
+                <Setter Property="Background" Value="{StaticResource BlueButtonColorMCW}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="#FFDDDDDD"/>
+                <Setter Property="Background" Value="{StaticResource NotEnabledColor}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="GrayButton" TargetType="Button" BasedOn="{StaticResource Default}">
-        <Setter Property="Background" Value="#FF1F1F1F"/>
+        <Setter Property="Background" Value="{StaticResource DefaultButtonColor}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -46,16 +46,16 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FF2E2E2E"/>
+                <Setter Property="Background" Value="{StaticResource DefaultButtonColorMO}"/>
             </Trigger>
             <Trigger Property="IsMouseCaptureWithin" Value="True">
-                <Setter Property="Background" Value="#FF151515"/>
+                <Setter Property="Background" Value="{StaticResource DefaultButtonColorMCW}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="CloseButton" TargetType="Button" BasedOn="{StaticResource Default}">
-        <Setter Property="Background" Value="#FF1F1F1F"/>
+        <Setter Property="Background" Value="{StaticResource DefaultButtonColor}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -67,10 +67,10 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#E62E4C"/>
+                <Setter Property="Background" Value="{StaticResource CloseButtonColorMO}"/>
             </Trigger>
             <Trigger Property="IsMouseCaptureWithin" Value="True">
-                <Setter Property="Background" Value="#FFA62036"/>
+                <Setter Property="Background" Value="{StaticResource CloseButtonColorMCW}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -87,28 +87,11 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#FF121212"/>
+                <Setter Property="Background" Value="{StaticResource PDefaultButtonColor}"/>
             </Trigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsChecked" Value="True"/>
-                    <Condition Property="IsMouseOver" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="#FF212121"/>
-            </MultiTrigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsChecked" Value="True"/>
-                    <Condition Property="IsMouseCaptureWithin" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="#FF080808"/>
-            </MultiTrigger>
-
 
             <Trigger Property="IsChecked" Value="False">
-                <Setter Property="Background" Value="#FF1F1F1F"/>
+                <Setter Property="Background" Value="{StaticResource DefaultButtonColor}"/>
             </Trigger>
 
             <MultiTrigger>
@@ -116,7 +99,7 @@
                     <Condition Property="IsChecked" Value="False"/>
                     <Condition Property="IsMouseOver" Value="True"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="#FF2E2E2E"/>
+                <Setter Property="Background" Value="{StaticResource DefaultButtonColorMO}"/>
             </MultiTrigger>
 
             <MultiTrigger>
@@ -124,13 +107,41 @@
                     <Condition Property="IsChecked" Value="False"/>
                     <Condition Property="IsMouseCaptureWithin" Value="True"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="#FF151515"/>
+                <Setter Property="Background" Value="{StaticResource DefaultButtonColorMCW}"/>
             </MultiTrigger>
 
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="RequestToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource Default}">
+    <Style x:Key="BaseRequestToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource Default}">
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Background" Value="{StaticResource PDefaultButtonColor}"/>
+            </Trigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="False"/>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource PDefaultButtonColorMO}"/>
+            </MultiTrigger>
+
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="{StaticResource DefaultButtonColor}"/>
+            </Trigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True"/>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource DefaultButtonColorMO}"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="RequestToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource BaseRequestToggleButton}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -140,35 +151,9 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            
-            <Trigger Property="IsChecked" Value="False">
-                <Setter Property="Background" Value="#FF121212"/>
-            </Trigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsChecked" Value="False"/>
-                    <Condition Property="IsMouseOver" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="#FF191919"/>
-            </MultiTrigger>
-            
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#FF1F1F1F"/>
-            </Trigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsChecked" Value="True"/>
-                    <Condition Property="IsMouseOver" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="#FF2E2E2E"/>
-            </MultiTrigger>
-        </Style.Triggers>
     </Style>
 
-    <Style x:Key="RoundedRequestButton" TargetType="ToggleButton" BasedOn="{StaticResource Default}">
+    <Style x:Key="RoundedRequestButton" TargetType="ToggleButton" BasedOn="{StaticResource BaseRequestToggleButton}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -178,31 +163,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-
-            <Trigger Property="IsChecked" Value="False">
-                <Setter Property="Background" Value="#FF121212"/>
-            </Trigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsChecked" Value="False"/>
-                    <Condition Property="IsMouseOver" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="#FF191919"/>
-            </MultiTrigger>
-
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#FF1F1F1F"/>
-            </Trigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsChecked" Value="True"/>
-                    <Condition Property="IsMouseOver" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="#FF2E2E2E"/>
-            </MultiTrigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>

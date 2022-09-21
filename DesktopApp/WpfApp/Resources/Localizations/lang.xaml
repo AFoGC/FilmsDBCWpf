@@ -8,7 +8,6 @@
     <v:String x:Key="nav_setting">Settings</v:String>
     
     <!--Statusbar-->
-    <v:String x:Key="sb_default"> </v:String>
     <v:String x:Key="sb_saved">Saved</v:String>
     <v:String x:Key="sb_unsaved">Unsaved</v:String>
     
@@ -119,6 +118,7 @@
     <v:String x:Key="remove_from_category_cm">Remove From Category</v:String>
     <v:String x:Key="up_in_category_cm">Move Up</v:String>
     <v:String x:Key="down_in_category_cm">Move Down</v:String>
+    <v:String x:Key="in_category_cm">In Category</v:String>
     
     <!--Update Controls ToolTips-->
     <v:String x:Key="hidename_utt">Hide Name (Text)</v:String>

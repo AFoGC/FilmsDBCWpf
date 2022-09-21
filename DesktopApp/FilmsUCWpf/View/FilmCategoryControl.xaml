@@ -17,9 +17,9 @@
         </Grid.ColumnDefinitions>
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="cm_Opened" Closed="cm_Closed">
-                <MenuItem Header="{DynamicResource delete_category_cm}" Click="delete_Click"/>
                 <MenuItem Header="{DynamicResource add_selected_cm}" Click="addSelected_Click"/>
                 <MenuItem Header="{DynamicResource remove_selected_cm}" Click="removeSelected_Click"/>
+                <MenuItem Header="{DynamicResource delete_category_cm}" Click="delete_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
         <Grid.Resources>

@@ -8,11 +8,13 @@
     <Grid Height="15" Width="590" HorizontalAlignment="Left">
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
-                <MenuItem Header="{DynamicResource delete_this_cm}" Click="MenuItem_Click" />
                 <MenuItem Header="{DynamicResource add_to_prior_cm}" Click="addToPriority_Click"/>
-                <MenuItem Header="{DynamicResource remove_from_category_cm}" Click="Remove_Click" />
-                <MenuItem Header="{DynamicResource up_in_category_cm}" Click="Up_Click" />
-                <MenuItem Header="{DynamicResource down_in_category_cm}" Click="Down_Click" />
+                <MenuItem Header="{DynamicResource in_category_cm}">
+                    <MenuItem Header="{DynamicResource up_in_category_cm}" Click="Up_Click" />
+                    <MenuItem Header="{DynamicResource down_in_category_cm}" Click="Down_Click" />
+                    <MenuItem Header="{DynamicResource remove_from_category_cm}" Click="Remove_Click" />
+                </MenuItem>
+                <MenuItem Header="{DynamicResource delete_this_cm}" Click="MenuItem_Click" />
             </ContextMenu>
         </Grid.ContextMenu>
         <StackPanel Orientation="Horizontal">

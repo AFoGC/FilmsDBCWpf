@@ -48,6 +48,7 @@ namespace WpfApp.Presenters
         {
             StatusInfo status = StatusInfo.GetInfo(StatusEnum.Saved, view);
             view.Status = status;
+            saveTimer.Stop();
         }
 
         public bool InfoUnsaved => model.TableCollection.IsInfoUnsaved;

@@ -118,6 +118,7 @@
     <v:String x:Key="remove_from_category_cm">Прибрати з категорії</v:String>
     <v:String x:Key="up_in_category_cm">Пересунути вверх</v:String>
     <v:String x:Key="down_in_category_cm">Пересунути вниз</v:String>
+    <v:String x:Key="in_category_cm">У категорії</v:String>
 
     <!--Update Controls ToolTips-->
     <v:String x:Key="hidename_utt">Приховане ім'я (Текст)</v:String>

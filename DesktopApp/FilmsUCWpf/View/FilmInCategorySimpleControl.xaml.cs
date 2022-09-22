@@ -123,5 +123,5 @@ namespace FilmsUCWpf.View
         {
 			presenter.RemoveThisFromCategory();
         }
-    }
+	}
 }

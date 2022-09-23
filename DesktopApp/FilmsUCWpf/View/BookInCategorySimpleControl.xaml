@@ -11,11 +11,11 @@
                 <MenuItem Header="{DynamicResource more_info_btn}" ToolTip="{DynamicResource open_more_info_tt}" Click="btn_moreInfo_Click" />
                 <MenuItem Header="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}" Click="btn_update_Click"/>
                 <MenuItem Header="{DynamicResource add_to_prior_cm}" Click="addToPriority_Click"/>
-                <MenuItem Header="{DynamicResource in_category_cm}">
-                    <MenuItem Header="{DynamicResource remove_from_category_cm}" Click="Remove_Click" />
-                    <MenuItem Header="{DynamicResource up_in_category_cm}" Click="Up_Click" />
-                    <MenuItem Header="{DynamicResource down_in_category_cm}" Click="Down_Click" />
-                </MenuItem>
+                <Separator />
+                <MenuItem Header="{DynamicResource remove_from_category_cm}" Click="Remove_Click" />
+                <MenuItem Header="{DynamicResource up_in_category_cm}" Click="Up_Click" />
+                <MenuItem Header="{DynamicResource down_in_category_cm}" Click="Down_Click" />
+                <Separator />
                 <MenuItem Header="{DynamicResource delete_this_cm}" Click="MenuItem_Click" />
             </ContextMenu>
         </Grid.ContextMenu>

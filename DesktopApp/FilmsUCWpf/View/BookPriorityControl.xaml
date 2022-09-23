@@ -11,6 +11,7 @@
                 <MenuItem Header="{DynamicResource more_info_btn}" ToolTip="{DynamicResource open_more_info_tt}" Click="btn_moreInfo_Click"/>
                 <MenuItem Header="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}" Click="btn_update_Click"/>
                 <MenuItem Header="{DynamicResource remove_from_prior_cm}" Click="removeFromPriority_Click"/>
+                <Separator />
                 <MenuItem Header="{DynamicResource delete_this_cm}" Click="MenuItem_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>

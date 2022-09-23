@@ -18,8 +18,10 @@
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="cm_Opened" Closed="cm_Closed">
                 <MenuItem Header="{DynamicResource edit_category_btn}" ToolTip="{DynamicResource open_edit_tt}" Click="btn_update_Click"/>
+                <Separator />
                 <MenuItem Header="{DynamicResource add_selected_cm}" Click="addSelected_Click"/>
                 <MenuItem Header="{DynamicResource remove_selected_cm}" Click="removeSelected_Click"/>
+                <Separator />
                 <MenuItem Header="{DynamicResource delete_category_cm}" Click="delete_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>

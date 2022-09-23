@@ -67,9 +67,9 @@ namespace WpfApp.Views
         {
             foreach (UIElement item in grid.Children)
             {
-                Grid.SetZIndex(item, Grid.GetZIndex(item) - 1);
+                item.Visibility = Visibility.Hidden;
             }
-            Grid.SetZIndex(element, 0);
+            element.Visibility = Visibility.Visible;
         }
 
         private void btn_saveTable_Click(object sender, RoutedEventArgs e)

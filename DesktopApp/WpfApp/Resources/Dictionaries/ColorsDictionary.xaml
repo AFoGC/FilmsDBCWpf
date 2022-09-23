@@ -22,6 +22,7 @@
     <!--Common Colors-->
     <SolidColorBrush x:Key="NotEnabledColor" Color="#DDDDDD"/>
     <SolidColorBrush x:Key="MainBackground" Color="#121212"/>
+    <SolidColorBrush x:Key="BackImageColor" Color="#141414"/>
     <SolidColorBrush x:Key="ButtonDarkGray" Color="#1F1F1F"/>
     <SolidColorBrush x:Key="ButtonRed" Color="#A62036"/>
     <SolidColorBrush x:Key="ButtonBlue" Color="#0074E5"/>

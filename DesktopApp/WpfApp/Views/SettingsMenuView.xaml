@@ -17,10 +17,14 @@
             <RowDefinition/>
             <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
+
+        <Path Style="{StaticResource SettingsMenuBack}" Stretch="Uniform" 
+                  Grid.Column="1" Grid.RowSpan="3" Margin="30"/>
+
         <ScrollViewer Grid.Row="1" Grid.Column="1">
-            <StackPanel x:Name="SettingsListPanel" Background="#FF121212" Orientation="Vertical"/>
+            <StackPanel x:Name="SettingsListPanel" Orientation="Vertical"/>
         </ScrollViewer>
-        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Visibility="Collapsed">
             <local:UserSettingsControl x:Name="LogInUser" Height="80" Width="250" 
                                        HorizontalAlignment="Left"/>
             <Grid Width="76" Height="80" Margin="5,0,0,0">
@@ -30,6 +34,5 @@
                         VerticalAlignment="Bottom" Click="SendToDB_Click"/>
             </Grid>
         </StackPanel>
-        <Rectangle Fill="#FF121212" Grid.Column="1" Grid.Row="2"/>
     </Grid>
 </UserControl>

@@ -35,6 +35,9 @@
             </Border>
         </StackPanel>
 
+        <Path Style="{StaticResource FilmsMenuBack}" Stretch="Uniform" 
+                  Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Margin="30"/>
+
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="1,0,0,0">
             <TextBox x:Name="textbox_search" HorizontalAlignment="Left" Margin="0,5" TextWrapping="NoWrap" VerticalAlignment="Top" 
                  Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
@@ -51,17 +54,16 @@
                     <Setter Property="Margin" Value="1,0"/>
                 </Style>
                 <Style TargetType="StackPanel">
-                    <Setter Property="Background" Value="#FF121212"/>
                     <Setter Property="Orientation" Value="Horizontal"/>
                 </Style>
             </Grid.Resources>
-            <StackPanel x:Name="sort_priority">
+            <StackPanel x:Name="sort_priority" Visibility="Hidden">
                 <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
                 <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
                 <Button Width="98" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
                 <Button Width="28" Content="{DynamicResource year_sort}" ToolTip="{DynamicResource year_tt}" Click="year_sort"/>
             </StackPanel>
-            <StackPanel x:Name="sort_films">
+            <StackPanel x:Name="sort_films" Visibility="Hidden">
                 <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
                 <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
                 <Button Width="98" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
@@ -75,7 +77,7 @@
                     </Button.Content>
                 </Button>
             </StackPanel>
-            <StackPanel x:Name="sort_series">
+            <StackPanel x:Name="sort_series" Visibility="Hidden">
                 <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
                 <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
                 <Button Width="98" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
@@ -100,7 +102,7 @@
                     </Button.Content>
                 </Button>
             </StackPanel>
-            <StackPanel x:Name="sort_category">
+            <StackPanel x:Name="sort_category" Visibility="Visible">
                 <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
                 <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
                 <Button Width="42" Content="{DynamicResource mark_sort}" ToolTip="{DynamicResource mark_tt}" Click="mark_sort"/>

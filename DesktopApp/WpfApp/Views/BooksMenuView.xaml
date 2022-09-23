@@ -5,8 +5,8 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:WpfApp.Views"
 			 mc:Ignorable="d" 
-			 d:DesignHeight="705" d:DesignWidth="1265" Focusable="True" KeyDown="UserControl_KeyDown">
-    <Grid Background="#FF121212">
+			 d:DesignHeight="705" d:DesignWidth="1265" Focusable="True" KeyDown="UserControl_KeyDown" Background="{StaticResource MainBackground}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -34,6 +34,9 @@
             </Border>
         </StackPanel>
 
+        <Path Style="{StaticResource BookMenuBack}" Stretch="Uniform" 
+                  Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Margin="30"/>
+
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="1,0,0,0">
             <TextBox x:Name="textbox_search" HorizontalAlignment="Left" Margin="0,5" TextWrapping="NoWrap" VerticalAlignment="Top" 
                  Width="180" Height="20" Background="#FF353535" BorderBrush="#FF7A7A7A" Foreground="WhiteSmoke"/>
@@ -49,11 +52,10 @@
                     <Setter Property="Margin" Value="1,0"/>
                 </Style>
                 <Style TargetType="StackPanel">
-                    <Setter Property="Background" Value="#FF121212"/>
                     <Setter Property="Orientation" Value="Horizontal"/>
                 </Style>
             </Grid.Resources>
-            <StackPanel x:Name="sort_books">
+            <StackPanel x:Name="sort_books" Visibility="Hidden">
                 <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
                 <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
                 <Button Width="98" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
@@ -69,13 +71,13 @@
                     </Button.Content>
                 </Button>
             </StackPanel>
-            <StackPanel x:Name="sort_priority">
+            <StackPanel x:Name="sort_priority" Visibility="Hidden">
                 <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
                 <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
                 <Button Width="98" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
                 <Button Width="28" Content="{DynamicResource year_sort}" ToolTip="{DynamicResource year_tt}" Click="year_sort"/>
             </StackPanel>
-            <StackPanel x:Name="sort_category">
+            <StackPanel x:Name="sort_category" Visibility="Visible">
                 <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
                 <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
                 <Button Width="42" Content="{DynamicResource mark_sort}" ToolTip="{DynamicResource mark_tt}" Click="mark_sort"/>
@@ -88,7 +90,7 @@
 
         <Border BorderBrush="White" BorderThickness="1" Width="268"
                 Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"
-                VerticalAlignment="Top" HorizontalAlignment="Left">
+                VerticalAlignment="Top" HorizontalAlignment="Left" Background="{StaticResource MainBackground}">
             <Border.Resources>
                 <Style x:Key="BB" TargetType="Button" BasedOn="{StaticResource BlueButton}">
                     <Setter Property="Height" Value="23"/>
@@ -155,6 +157,5 @@
                 </StackPanel>
             </Grid>
         </Border>
-
     </Grid>
 </UserControl>

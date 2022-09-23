@@ -22,6 +22,11 @@
     <v:String x:Key="st_import_prof">Import File</v:String>
     <v:String x:Key="st_use_prof">Use This Profile</v:String>
     <v:String x:Key="st_del_prof">Delete Profile</v:String>
+    
+    <!--Autosave Settings-->
+    <v:String x:Key="st_autosave_label">Autosave Settings</v:String>
+    <v:String x:Key="st_autosave_enable">Autosave enabled</v:String>
+    <v:String x:Key="st_seconds"> seconds</v:String>
 
     <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Genres Settings</v:String>

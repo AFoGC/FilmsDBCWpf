@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using System.Xml.Serialization;
 using TablesLibrary.Interpreter;
 
@@ -16,7 +18,14 @@ namespace WpfApp.Models
         public TableCollection TableCollection { get; private set; }
         public ProfileCollectionModel Profiles { get; private set; }
         public StartUserInfo StartUser { get; set; }
-        public SettingsFields Settings { get; private set; }
+        public DispatcherTimer SaveTimer { get; private set; }
+        public bool IsSaveTimerEnabled { get; set; }
+        public String Lang 
+        { 
+            get => Settings.Lang; 
+            set => Settings.Lang = value; 
+        }
+        private SettingsFields Settings { get; set; }
 
         static ProgramSettings()
         {
@@ -30,6 +39,7 @@ namespace WpfApp.Models
             StartUser = new StartUserInfo();
             Profiles = new ProfileCollectionModel(profilesDirectoryPath);
             Settings = new SettingsFields();
+            SaveTimer = new DispatcherTimer();
         }
 
         private static ProgramSettings instance;
@@ -52,6 +62,10 @@ namespace WpfApp.Models
                     instance.TableCollection.TableFilePath = instance.Profiles.UsedProfile.MainFilePath;
                     instance.TableCollection.LoadTables();
                 }
+
+                //Setting save timer interval
+                instance.IsSaveTimerEnabled = instance.Settings.IsSaveTimerEnabled;
+                instance.SaveTimer.Interval = TimeSpan.FromSeconds(instance.Settings.SaveTimerSeconds);
             }
 
             return instance;
@@ -61,6 +75,8 @@ namespace WpfApp.Models
         {
             Settings.UsedProfile = Profiles.UsedProfile.Name;
             Settings.Lang = Thread.CurrentThread.CurrentUICulture.Name;
+            Settings.SaveTimerSeconds = SaveTimer.Interval.TotalSeconds;
+            Settings.IsSaveTimerEnabled = IsSaveTimerEnabled;
 
             using (StreamWriter fs = new StreamWriter(settingPath, false, Encoding.UTF8))
             {
@@ -68,7 +84,7 @@ namespace WpfApp.Models
             }
         }
 
-        public static SettingsFields LoadSettings()
+        private static SettingsFields LoadSettings()
         {
             SettingsFields settings = new SettingsFields();
             using (StreamReader fs = new StreamReader(settingPath, Encoding.UTF8))
@@ -88,6 +104,8 @@ namespace WpfApp.Models
             public int MarkSystem { get; set; }
             public String Lang { get; set; }
             public StartUserInfo StartUser { get; set; }
+            public double SaveTimerSeconds { get; set; }
+            public bool IsSaveTimerEnabled { get; set; }
 
             public SettingsFields()
             {
@@ -95,6 +113,8 @@ namespace WpfApp.Models
                 MarkSystem = 0;
                 Lang = "en";
                 StartUser = new StartUserInfo();
+                SaveTimerSeconds = 30;
+                IsSaveTimerEnabled = true;
             }
         }
 

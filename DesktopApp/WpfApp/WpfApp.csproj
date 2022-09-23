@@ -207,6 +207,7 @@
     <Compile Include="Models\ProfileCollectionModel.cs" />
     <Compile Include="Models\SettingsMenuModel.cs" />
     <Compile Include="Models\TLTables.cs" />
+    <Compile Include="Presenters\AutosaveSettingsPresenter.cs" />
     <Compile Include="Presenters\BookGenreContainerPresenter.cs" />
     <Compile Include="Presenters\BooksMenuPresenter.cs" />
     <Compile Include="Presenters\FilmGenreContainerPresenter.cs" />
@@ -218,6 +219,9 @@
     <Compile Include="Presenters\ProfilePresenter.cs" />
     <Compile Include="Presenters\SettingsMenuPresenter.cs" />
     <Compile Include="Models\ProgramSettings.cs" />
+    <Compile Include="Views\AutosaveSettingView.xaml.cs">
+      <DependentUpon>AutosaveSettingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
     <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IMainWindowView.cs" />
@@ -324,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Localizations\lang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AutosaveSettingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,7 +22,7 @@ namespace WpfApp.Presenters
             Cultures.Add(new CultureInfo("ru"));
             Cultures.Add(new CultureInfo("uk-UA"));
 
-            Language = new CultureInfo(settings.Settings.Lang);
+            Language = new CultureInfo(settings.Lang);
         }
 
         public CultureInfo Language

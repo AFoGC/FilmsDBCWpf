@@ -34,11 +34,10 @@ namespace WpfApp.Views
             LogInUser.SetUserModel(model);
 
             this.SettingsList.Add(new LanguageSettingsView(model.Settings));
-
             this.SettingsList.Add(new ProfileContainerView(model.Settings));
-            GenreConteinerView conteinerView;
-            MarkSettingsControl markSettings;
+            this.SettingsList.Add(new AutosaveSettingView(model.Settings));
 
+            MarkSettingsControl markSettings;
             markSettings = new MarkSettingsControl(model.Tables.FilmsTable, model.Tables.CategoriesTable);
             markSettings.MenuLabel.SetResourceReference(Label.ContentProperty, "st_fmark_title");
             this.SettingsList.Add(markSettings);
@@ -47,6 +46,7 @@ namespace WpfApp.Views
             markSettings.MenuLabel.SetResourceReference(Label.ContentProperty, "st_bmark_title");
             this.SettingsList.Add(markSettings);
 
+            GenreConteinerView conteinerView;
             conteinerView = new GenreConteinerView(model.TableCollection, GenrePresenterEnum.FilmGenre);
             conteinerView.MenuLabel.SetResourceReference(Label.ContentProperty, "st_fgenre_title");
             this.SettingsList.Add(conteinerView);

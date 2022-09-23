@@ -22,7 +22,12 @@
     <v:String x:Key="st_import_prof">Импорт файла</v:String>
     <v:String x:Key="st_use_prof">Использовать профиль</v:String>
     <v:String x:Key="st_del_prof">Удалить профиль</v:String>
-    
+
+    <!--Autosave Settings-->
+    <v:String x:Key="st_autosave_label">Настройки автосохранения</v:String>
+    <v:String x:Key="st_autosave_enable">Автосохранение включено</v:String>
+    <v:String x:Key="st_seconds"> секунд</v:String>
+
     <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Настройки жанров</v:String>
     <v:String x:Key="st_fgenre_title">Настройки жанров фильмов</v:String>

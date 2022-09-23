@@ -15,16 +15,14 @@ namespace WpfApp.Presenters
     {
         private readonly MainWindowModel model;
         private readonly IMainWindowView view;
-        private readonly DispatcherTimer saveTimer;
+        private DispatcherTimer SaveTimer => model.Settings.SaveTimer;
 
         public MainWindowPresenter(MainWindowModel model, IMainWindowView view)
         {
             this.model = model;
             this.view = view;
 
-            saveTimer = new DispatcherTimer();
-            saveTimer.Interval = TimeSpan.FromSeconds(10);
-            saveTimer.Tick += OnTimerSave;
+            model.Settings.SaveTimer.Tick += OnTimerSave;
 
             model.TableCollection.TableSave += OnSaveStatus;
             model.TableCollection.CellInTablesChanged += OnTablesChanged;
@@ -33,22 +31,25 @@ namespace WpfApp.Presenters
         private void OnTimerSave(object sender, EventArgs e)
         {
             model.TableCollection.SaveTables();
-            saveTimer.Stop();
+            SaveTimer.Stop();
         }
 
         private void OnTablesChanged(object sender, EventArgs e)
         {
             StatusInfo status = StatusInfo.GetInfo(StatusEnum.UnSaved, view);
             view.Status = status;
-            saveTimer.Stop();
-            saveTimer.Start();
+            if (model.Settings.IsSaveTimerEnabled)
+            {
+                SaveTimer.Stop();
+                SaveTimer.Start();
+            }
         }
 
         private void OnSaveStatus(object sender, EventArgs e)
         {
             StatusInfo status = StatusInfo.GetInfo(StatusEnum.Saved, view);
             view.Status = status;
-            saveTimer.Stop();
+            SaveTimer.Stop();
         }
 
         public bool InfoUnsaved => model.TableCollection.IsInfoUnsaved;
@@ -59,6 +60,7 @@ namespace WpfApp.Presenters
             {
                 model.Settings.Profiles.SendProfilesToDB(model.LoggedInUser);
             }
+            model.Settings.SaveSettings();
         }
 
         public void SaveTables()

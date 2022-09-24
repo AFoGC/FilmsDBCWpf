@@ -124,6 +124,7 @@
     <v:String x:Key="up_in_category_cm">Перенести выше</v:String>
     <v:String x:Key="down_in_category_cm">Перенести ниже</v:String>
     <v:String x:Key="in_category_cm">В категории</v:String>
+    <v:String x:Key="del_source_cm">Удалить источник</v:String>
 
     <!--Update Controls ToolTips-->
     <v:String x:Key="hidename_utt">Скрытое имя (Текст)</v:String>

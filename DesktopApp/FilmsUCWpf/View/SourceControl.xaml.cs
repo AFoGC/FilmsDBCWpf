@@ -37,5 +37,15 @@ namespace FilmsUCWpf.View
             sources.Remove(source);
             sources.Insert(0, source);
         }
+
+        private void OpenCM(object sender, MouseButtonEventArgs e)
+        {
+            cm.IsOpen = true;
+        }
+
+        private void RemoveThis(object sender, RoutedEventArgs e)
+        {
+            sources.Remove(source);
+        }
     }
 }

@@ -124,7 +124,8 @@
     <v:String x:Key="up_in_category_cm">Move Up</v:String>
     <v:String x:Key="down_in_category_cm">Move Down</v:String>
     <v:String x:Key="in_category_cm">In Category</v:String>
-    
+    <v:String x:Key="del_source_cm">Delete Source</v:String>
+
     <!--Update Controls ToolTips-->
     <v:String x:Key="hidename_utt">Hide Name (Text)</v:String>
 

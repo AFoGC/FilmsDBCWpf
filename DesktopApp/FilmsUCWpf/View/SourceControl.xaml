@@ -7,6 +7,12 @@
              mc:Ignorable="d" 
              d:DesignWidth="800">
     <Grid Height="20">
+        <Grid.ContextMenu>
+            <ContextMenu x:Name="cm">
+                <MenuItem Header="{DynamicResource del_source_cm}" Click="RemoveThis"/>
+                <MenuItem Header="{DynamicResource up_in_category_cm}" Click="Button_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition MinWidth="100" MaxWidth="400"/>
@@ -37,8 +43,8 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
-        <TextBox x:Name="source_name" Text="{Binding Name}"/>
-        <TextBox x:Name="source_url" Text="{Binding SourceUrl}" Grid.Column="1"/>
+        <TextBox x:Name="source_name" Text="{Binding Name}" PreviewMouseRightButtonDown="OpenCM"/>
+        <TextBox x:Name="source_url" Text="{Binding SourceUrl}" PreviewMouseRightButtonDown="OpenCM" Grid.Column="1"/>
         <Button Content="A" Grid.Column="2" Margin="10,0,0,0" Click="Button_Click" />
     </Grid>
 </UserControl>

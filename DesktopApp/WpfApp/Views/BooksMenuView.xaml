@@ -76,6 +76,8 @@
                 <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
                 <Button Width="98" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
                 <Button Width="28" Content="{DynamicResource year_sort}" ToolTip="{DynamicResource year_tt}" Click="year_sort"/>
+                <Rectangle Width="56"/>
+                <Button Width="43" Content="{DynamicResource mark_sort}" ToolTip="{DynamicResource mark_tt}" Click="mark_sort" />
             </StackPanel>
             <StackPanel x:Name="sort_category" Visibility="Visible">
                 <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>

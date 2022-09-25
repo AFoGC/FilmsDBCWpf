@@ -28,6 +28,8 @@
             <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178" PreviewMouseLeftButtonDown="id_Click"/>
             <TextBox x:Name="genre" Text="{Binding GenreText}" ToolTip="{DynamicResource genre_tt}" Width="98" PreviewMouseLeftButtonDown="id_Click"/>
             <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_tt}" Width="28" PreviewMouseLeftButtonDown="id_Click"/>
+            <CheckBox x:Name="readed" IsChecked="{Binding Watched}" ToolTip="{DynamicResource readed_tt}" Margin="20,0" IsEnabled="False"/>
+            <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="43" PreviewMouseLeftButtonDown="id_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" d:DesignHeight="35">
-    <Grid Width="830" x:Name="grid" HorizontalAlignment="Left">
+    <Grid x:Name="grid" HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" x:Name="lowerRow"/>
@@ -13,7 +13,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
-            <ColumnDefinition Width="404"/>
         </Grid.ColumnDefinitions>
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="cm_Opened" Closed="cm_Closed">
@@ -30,22 +29,21 @@
         </Grid.Resources>
         <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28"/>
         <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                    <Setter Property="Height" Value="13"/>
+                    <Setter Property="FontSize" Value="10"/>
+                    <Setter Property="Margin" Value="1"/>
+                </Style>
+            </StackPanel.Resources>
             <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178"/>
             <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="42"/>
+            <Button x:Name="btn_show_hide" Content="v" Width="13" ToolTip="{DynamicResource collapse_category_tt}" Click="hide_show_Cilck"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <WrapPanel x:Name="cat_panel" Orientation="Vertical"/>
             <Button x:Name="btn_plus" Style="{StaticResource GrayButton}" ToolTip="{DynamicResource add_in_category_tt}" Content="+" Width="15" Height="14" 
                     Margin="1,1,1,5" FontSize="10" HorizontalAlignment="Left" Click="btn_plus_Click"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="3">
-            <StackPanel.Resources>
-                <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
-                    <Setter Property="Height" Value="13"/>
-                    <Setter Property="FontSize" Value="10"/>
-                </Style>
-            </StackPanel.Resources>
-            <Button x:Name="btn_show_hide" Content="v" Width="13" ToolTip="{DynamicResource collapse_category_tt}" Click="hide_show_Cilck"/>
         </StackPanel>
     </Grid>
 </UserControl>

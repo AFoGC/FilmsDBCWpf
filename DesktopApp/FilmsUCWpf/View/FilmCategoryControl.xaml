@@ -39,6 +39,7 @@
             <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178"/>
             <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="42"/>
             <Button x:Name="btn_show_hide" Content="v" Width="13" ToolTip="{DynamicResource collapse_category_tt}" Click="hide_show_Cilck"/>
+            <Button Width="13" Margin="1" Content="⋮" Click="OpenCM"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <WrapPanel x:Name="cat_panel" Orientation="Vertical"/>

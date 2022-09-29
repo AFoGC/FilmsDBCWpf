@@ -123,5 +123,10 @@ namespace FilmsUCWpf.View
         {
 			presenter.RemoveThisFromCategory();
         }
-    }
+
+		private void OpenCM(object sender, RoutedEventArgs e)
+		{
+			cm.IsOpen = true;
+		}
+	}
 }

@@ -115,5 +115,10 @@ namespace FilmsUCWpf.View
 
 		private void removeSelected_Click(object sender, RoutedEventArgs e)
 			=> presenter.RemoveSelected();
-    }
+
+		private void OpenCM(object sender, RoutedEventArgs e)
+		{
+			cm.IsOpen = true;
+		}
+	}
 }

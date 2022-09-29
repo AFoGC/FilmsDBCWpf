@@ -116,5 +116,10 @@ namespace FilmsUCWpf.View
 		private void cm_Opened(object sender, RoutedEventArgs e) => SetVisualSelected();
 
 		private void cm_Closed(object sender, RoutedEventArgs e) => SetVisualDefault();
-    }
+
+		private void OpenCM(object sender, RoutedEventArgs e)
+		{
+			cm.IsOpen = true;
+		}
+	}
 }

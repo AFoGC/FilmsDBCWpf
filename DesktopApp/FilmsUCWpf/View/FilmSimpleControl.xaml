@@ -29,6 +29,7 @@
             <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="{DynamicResource watched_tt}" Margin="20,0" IsEnabled="False"/>
             <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="43" PreviewMouseLeftButtonDown="id_Click"/>
+            <Button Width="13" Margin="1" Content="⋮" Click="OpenCM"/>
         </StackPanel>
     </Grid>
 </UserControl>

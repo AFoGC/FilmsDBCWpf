@@ -107,5 +107,10 @@ namespace FilmsUCWpf.View
         {
             presenter.OpenUpdateMenu();
         }
+
+        private void OpenCM(object sender, RoutedEventArgs e)
+        {
+            cm.IsOpen = true;
+        }
     }
 }

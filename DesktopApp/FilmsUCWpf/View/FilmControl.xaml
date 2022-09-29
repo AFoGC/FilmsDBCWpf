@@ -23,6 +23,10 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel.Resources>
                 <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}"/>
+                <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                    <Setter Property="Height" Value="13"/>
+                    <Setter Property="FontSize" Value="10"/>
+                </Style>
             </StackPanel.Resources>
             <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown" />
             <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
@@ -32,6 +36,7 @@
             <TextBox x:Name="watchDate" Text="{Binding DateOfWatchTxt}" ToolTip="{DynamicResource end_watch_date_tt}" Width="58" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="43" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
             <TextBox x:Name="countOfviews" Text="{Binding CountOfViews}" ToolTip="{DynamicResource cov_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <Button Width="13" Margin="1" Content="⋮" Click="OpenCM"/>
         </StackPanel>
         <TextBox x:Name="comment" Style="{StaticResource ROtextbox}" Margin="31,1,1,1" HorizontalAlignment="Left" ToolTip="{DynamicResource comment_tt}" Width="499" Grid.Row="1"/>
 

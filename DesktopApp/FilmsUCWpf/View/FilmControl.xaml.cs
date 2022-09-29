@@ -128,5 +128,10 @@ namespace FilmsUCWpf.View
         {
 			presenter.AddToPriority();
         }
-    }
+
+		private void OpenCM(object sender, RoutedEventArgs e)
+		{
+            cm.IsOpen = true;
+        }
+	}
 }

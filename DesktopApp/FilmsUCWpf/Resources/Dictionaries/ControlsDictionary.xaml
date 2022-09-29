@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+    <Style x:Key="SmallControl" TargetType="Control">
+        <Setter Property="Height" Value="15"/>
+        <Style.Resources>
+            <Style BasedOn="{StaticResource GrayButton}" TargetType="Button"/>
+        </Style.Resources>
+    </Style>
+</ResourceDictionary>

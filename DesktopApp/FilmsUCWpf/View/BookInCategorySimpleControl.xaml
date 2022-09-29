@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d">
-    <Grid Height="15" HorizontalAlignment="Left">
+    <Grid Style="{DynamicResource TControl}" HorizontalAlignment="Left">
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
                 <MenuItem Header="{DynamicResource more_info_btn}" ToolTip="{DynamicResource open_more_info_tt}" Click="btn_moreInfo_Click" />
@@ -20,20 +20,25 @@
             </ContextMenu>
         </Grid.ContextMenu>
         <StackPanel Orientation="Horizontal">
-            <StackPanel.Resources>
-                <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}"/>
-                <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
-                    <Setter Property="Height" Value="13"/>
-                    <Setter Property="FontSize" Value="10"/>
-                </Style>
-            </StackPanel.Resources>
-            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="genre" Text="{Binding BookGenreText}" ToolTip="{DynamicResource genre_tt}" Width="98" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="realiseYear" Text="{Binding PublicationYear}" ToolTip="{DynamicResource year_tt}" Width="28" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <CheckBox x:Name="readed" IsChecked="{Binding Readed}" ToolTip="{DynamicResource readed_tt}" Margin="20,0" IsEnabled="False"/>
-            <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="43" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <Button Width="13" Margin="1" Content="⋮" Click="OpenCM"/>
+            <TextBox x:Name="id" 
+                     Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
+                     Width="{DynamicResource id_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="name" 
+                     Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" 
+                     Width="{DynamicResource name_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="genre" 
+                     Text="{Binding BookGenreText}" ToolTip="{DynamicResource genre_tt}" 
+                     Width="{DynamicResource genre_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <TextBox x:Name="realiseYear" 
+                     Text="{Binding PublicationYear}" ToolTip="{DynamicResource year_tt}" 
+                     Width="{DynamicResource id_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <CheckBox x:Name="readed" 
+                      IsChecked="{Binding Readed}" ToolTip="{DynamicResource readed_tt}" 
+                      Margin="20,0" IsEnabled="False"/>
+            <TextBox x:Name="mark" 
+                     Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" 
+                     Width="{DynamicResource mark_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            <Button Content="⋮" Click="OpenCM"/>
         </StackPanel>
     </Grid>
 </UserControl>

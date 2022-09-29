@@ -36,10 +36,10 @@ namespace WpfApp.Presenters
                 if (value == null) throw new ArgumentNullException("value");
                 if (value == Thread.CurrentThread.CurrentUICulture) return;
 
-                //1. Меняем язык приложения:
+                //1. Change Application Language:
                 Thread.CurrentThread.CurrentUICulture = value;
 
-                //2. Создаём ResourceDictionary для новой культуры
+                //2. Creating ResourceDictionary for new culture
                 ResourceDictionary dict = new ResourceDictionary();
                 if (Cultures.Contains(value))
                 {
@@ -50,7 +50,7 @@ namespace WpfApp.Presenters
                     dict.Source = new Uri("Resources/Localizations/lang.xaml", UriKind.Relative);
                 }
 
-                //3. Находим старую ResourceDictionary и удаляем его и добавляем новую ResourceDictionary
+                //3. Find old ResourceDictionary delete it and add new ResourceDictionary
                 ResourceDictionary oldDict = (from d in Application.Current.Resources.MergedDictionaries
                                               where d.Source != null && d.Source.OriginalString.StartsWith("Resources/Localizations/lang.")
                                               select d).First();

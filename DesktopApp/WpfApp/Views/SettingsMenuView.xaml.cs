@@ -34,6 +34,7 @@ namespace WpfApp.Views
             LogInUser.SetUserModel(model);
 
             this.SettingsList.Add(new LanguageSettingsView(model.Settings));
+            this.SettingsList.Add(new ScaleSettingsView(model.Settings));
             this.SettingsList.Add(new ProfileContainerView(model.Settings));
             this.SettingsList.Add(new AutosaveSettingView(model.Settings));
 

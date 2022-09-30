@@ -14,7 +14,12 @@
     <!--Language Settings-->
     <v:String x:Key="st_lang_title">Настройки языка</v:String>
     <v:String x:Key="st_lang_btn">Изменить яызк</v:String>
-    
+
+    <!--Scale Settings-->
+    <v:String x:Key="st_scale_title">Настройки масштаба интерфейса</v:String>
+    <v:String x:Key="st_small_item">Маленький</v:String>
+    <v:String x:Key="st_medium_item">Средний</v:String>
+
     <!--Profiles Settings-->
     <v:String x:Key="st_prof_title">Настройки профилей</v:String>
     <v:String x:Key="st_add_prof">Добавить новый профиль</v:String>
@@ -26,7 +31,7 @@
     <!--Autosave Settings-->
     <v:String x:Key="st_autosave_label">Настройки автосохранения</v:String>
     <v:String x:Key="st_autosave_enable">Автосохранение включено</v:String>
-    <v:String x:Key="st_seconds"> секунд</v:String>
+    <v:String x:Key="st_seconds">секунд</v:String>
 
     <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Настройки жанров</v:String>

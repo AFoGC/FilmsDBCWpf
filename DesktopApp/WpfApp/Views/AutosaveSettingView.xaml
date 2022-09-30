@@ -14,6 +14,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding}"/>
+                            <TextBlock Text=" "/>
                             <TextBlock Text="{DynamicResource st_seconds}"/>
                         </StackPanel>
                     </DataTemplate>

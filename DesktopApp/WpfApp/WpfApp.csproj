@@ -217,6 +217,7 @@
     <Compile Include="Presenters\MainWindowPresenter.cs" />
     <Compile Include="Presenters\ProfileContainerPresenter.cs" />
     <Compile Include="Presenters\ProfilePresenter.cs" />
+    <Compile Include="Presenters\ScaleSettingsPresenter.cs" />
     <Compile Include="Presenters\SettingsMenuPresenter.cs" />
     <Compile Include="Models\ProgramSettings.cs" />
     <Compile Include="Views\AutosaveSettingView.xaml.cs">
@@ -264,6 +265,9 @@
     </Compile>
     <Compile Include="Views\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScaleSettingsView.xaml.cs">
+      <DependentUpon>ScaleSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsMenuView.xaml.cs">
       <DependentUpon>SettingsMenuView.xaml</DependentUpon>
@@ -315,11 +319,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\TableControls\Scale.1.xaml">
+    <Page Include="Resources\Dictionaries\TableControls\Scale.0.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\TableControls\Scale.2.xaml">
+    <Page Include="Resources\Dictionaries\TableControls\Scale.1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -388,6 +392,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ScaleSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -25,6 +25,11 @@ namespace WpfApp.Models
             get => Settings.Lang; 
             set => Settings.Lang = value; 
         }
+        public int Scale
+        {
+            get => Settings.Scale;
+            set => Settings.Scale = value;
+        }
         private SettingsFields Settings { get; set; }
 
         static ProgramSettings()
@@ -106,6 +111,7 @@ namespace WpfApp.Models
             public StartUserInfo StartUser { get; set; }
             public double SaveTimerSeconds { get; set; }
             public bool IsSaveTimerEnabled { get; set; }
+            public int Scale { get; set; }
 
             public SettingsFields()
             {
@@ -115,6 +121,7 @@ namespace WpfApp.Models
                 StartUser = new StartUserInfo();
                 SaveTimerSeconds = 30;
                 IsSaveTimerEnabled = true;
+                Scale = 1;
             }
         }
 

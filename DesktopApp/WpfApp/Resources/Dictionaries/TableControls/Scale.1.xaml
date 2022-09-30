@@ -1,14 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
-    <v:Double x:Key="id_width">28</v:Double>
-    <v:Double x:Key="name_width">178</v:Double>
-    <v:Double x:Key="genre_width">98</v:Double>
+    <v:Double x:Key="id_width">38</v:Double>
+    <v:Double x:Key="name_width">210</v:Double>
+    <v:Double x:Key="genre_width">108</v:Double>
     <v:Double x:Key="bookmark_width">84</v:Double>
-    <v:Double x:Key="date_width">58</v:Double>
-    <v:Double x:Key="mark_width">43</v:Double>
+    <v:Double x:Key="date_width">80</v:Double>
+    <v:Double x:Key="mark_width">45</v:Double>
 
-    <v:Double x:Key="control_height">15</v:Double>
+    <v:Double x:Key="control_height">20</v:Double>
 
     <Style x:Key="TControl" TargetType="Grid">
         <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -18,12 +18,15 @@
                 <Setter Property="Width" Value="16"/>
                 <Setter Property="Height" Value="15"/>
             </Style>
-            <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}"/>
+            <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Height" Value="18"/>
+            </Style>
             <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
                 <Setter Property="Margin" Value="1"/>
-                <Setter Property="Height" Value="13"/>
-                <Setter Property="Width" Value="13"/>
-                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="Height" Value="18"/>
+                <Setter Property="Width" Value="18"/>
+                <Setter Property="FontSize" Value="14"/>
             </Style>
         </Style.Resources>
     </Style>

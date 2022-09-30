@@ -15,6 +15,11 @@
     <v:String x:Key="st_lang_title">Language Settings</v:String>
     <v:String x:Key="st_lang_btn">Change language</v:String>
     
+    <!--Scale Settings-->
+    <v:String x:Key="st_scale_title">Interface Scale Settings</v:String>
+    <v:String x:Key="st_small_item">Small</v:String>
+    <v:String x:Key="st_medium_item">Medium</v:String>
+    
     <!--Profiles Settings-->
     <v:String x:Key="st_prof_title">Profiles Settings</v:String>
     <v:String x:Key="st_add_prof">Add new profile</v:String>
@@ -26,7 +31,7 @@
     <!--Autosave Settings-->
     <v:String x:Key="st_autosave_label">Autosave Settings</v:String>
     <v:String x:Key="st_autosave_enable">Autosave enabled</v:String>
-    <v:String x:Key="st_seconds"> seconds</v:String>
+    <v:String x:Key="st_seconds">seconds</v:String>
 
     <!--Genre Settings-->
     <v:String x:Key="st_genre_title">Genres Settings</v:String>

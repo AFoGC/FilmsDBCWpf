@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="WpfApp.Views.ScaleSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp.Views"
+             mc:Ignorable="d">
+    <StackPanel>
+        <Label Content="{DynamicResource st_scale_title}" Foreground="White" BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+        <ComboBox SelectedIndex="{Binding Scale}" Style="{StaticResource DarkComboBox}" Width="200" Margin="0,5" HorizontalAlignment="Left">
+            <ComboBoxItem Content="{DynamicResource st_small_item}"/>
+            <ComboBoxItem Content="{DynamicResource st_medium_item}"/>
+        </ComboBox>
+    </StackPanel>
+</UserControl>

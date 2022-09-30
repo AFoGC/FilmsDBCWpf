@@ -25,22 +25,4 @@
             </Style>
         </Style.Resources>
     </Style>
-    <Style x:Key="CategoryTControl" TargetType="Grid">
-        <Setter Property="Height" Value="20"/>
-        <Style.Resources>
-            <Style TargetType="CheckBox">
-                <Setter Property="VerticalAlignment" Value="Center"/>
-            </Style>
-            <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}">
-                <Setter Property="FontSize" Value="16"/>
-                <Setter Property="Height" Value="18"/>
-            </Style>
-            <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
-                <Setter Property="Margin" Value="1"/>
-                <Setter Property="Height" Value="18"/>
-                <Setter Property="Width" Value="18"/>
-                <Setter Property="FontSize" Value="14"/>
-            </Style>
-        </Style.Resources>
-    </Style>
 </ResourceDictionary>

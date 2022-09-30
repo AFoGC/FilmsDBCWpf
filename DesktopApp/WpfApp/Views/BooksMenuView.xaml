@@ -56,33 +56,33 @@
                 </Style>
             </Grid.Resources>
             <StackPanel x:Name="sort_books" Visibility="Hidden">
-                <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
-                <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
-                <Button Width="98" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
-                <Button Width="28" Content="{DynamicResource year_sort}" ToolTip="{DynamicResource year_tt}" Click="year_sort"/>
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
+                <Button Width="{DynamicResource name_width}" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
+                <Button Width="{DynamicResource genre_width}" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource year_sort}" ToolTip="{DynamicResource year_tt}" Click="year_sort"/>
                 <Rectangle Width="56"/>
-                <Button Width="98" Content="{DynamicResource author_sort}" ToolTip="{DynamicResource author_tt}" Click="author_sort"/>
-                <Button Width="84" Content="{DynamicResource bookmark_sort}" ToolTip="{DynamicResource bookmark_tt}" Click="bookmark_sort"/>
-                <Button Width="58" Content="{DynamicResource date_sort}" ToolTip="{DynamicResource end_read_date_tt}" Click="date_sort"/>
-                <Button Width="43" Content="{DynamicResource mark_sort}" ToolTip="{DynamicResource mark_tt}" Click="mark_sort"/>
-                <Button Width="28" Click="countOfReadings_sort">
+                <Button Width="{DynamicResource genre_width}" Content="{DynamicResource author_sort}" ToolTip="{DynamicResource author_tt}" Click="author_sort"/>
+                <Button Width="{DynamicResource bookmark_width}" Content="{DynamicResource bookmark_sort}" ToolTip="{DynamicResource bookmark_tt}" Click="bookmark_sort"/>
+                <Button Width="{DynamicResource date_width}" Content="{DynamicResource date_sort}" ToolTip="{DynamicResource end_read_date_tt}" Click="date_sort"/>
+                <Button Width="{DynamicResource mark_width}" Content="{DynamicResource mark_sort}" ToolTip="{DynamicResource mark_tt}" Click="mark_sort"/>
+                <Button Width="{DynamicResource id_width}" Click="countOfReadings_sort">
                     <Button.Content>
                         <Path Style="{StaticResource ArrowDownImage}"/>
                     </Button.Content>
                 </Button>
             </StackPanel>
             <StackPanel x:Name="sort_priority" Visibility="Hidden">
-                <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
-                <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
-                <Button Width="98" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
-                <Button Width="28" Content="{DynamicResource year_sort}" ToolTip="{DynamicResource year_tt}" Click="year_sort"/>
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
+                <Button Width="{DynamicResource name_width}" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
+                <Button Width="{DynamicResource genre_width}" Content="{DynamicResource genre_sort}" ToolTip="{DynamicResource genre_tt}" Click="genre_sort"/>
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource year_sort}" ToolTip="{DynamicResource year_tt}" Click="year_sort"/>
                 <Rectangle Width="56"/>
-                <Button Width="43" Content="{DynamicResource mark_sort}" ToolTip="{DynamicResource mark_tt}" Click="mark_sort" />
+                <Button Width="{DynamicResource mark_width}" Content="{DynamicResource mark_sort}" ToolTip="{DynamicResource mark_tt}" Click="mark_sort" />
             </StackPanel>
             <StackPanel x:Name="sort_category" Visibility="Visible">
-                <Button Width="28" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
-                <Button Width="178" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
-                <Button Width="42" Content="{DynamicResource mark_sort}" ToolTip="{DynamicResource mark_tt}" Click="mark_sort"/>
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" ToolTip="{DynamicResource id_tt}" Click="id_sort"/>
+                <Button Width="{DynamicResource name_width}" Content="{DynamicResource name_sort}" ToolTip="{DynamicResource name_tt}" Click="name_sort"/>
+                <Button Width="{DynamicResource mark_width}" Content="{DynamicResource mark_sort}" ToolTip="{DynamicResource mark_tt}" Click="mark_sort"/>
             </StackPanel>
         </Grid>
 

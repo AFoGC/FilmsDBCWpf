@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d">
-    <Grid Style="{DynamicResource TControl}" HorizontalAlignment="Left">
+    <Grid Style="{DynamicResource TControl}">
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
                 <MenuItem Header="{Binding Sources}" ToolTip="{DynamicResource copy_url_tt}" Click="btn_copyUrl_Click" />

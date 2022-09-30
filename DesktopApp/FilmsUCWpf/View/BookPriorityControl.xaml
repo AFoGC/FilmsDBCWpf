@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d">
-    <Grid Style="{DynamicResource TControl}" HorizontalAlignment="Left">
+    <Grid Style="{DynamicResource TControl}" Height="{DynamicResource control_height}">
         <Grid.ContextMenu>
             <ContextMenu Name="cm" StaysOpen="true" Opened="id_Click">
                 <MenuItem Header="{DynamicResource more_info_btn}" ToolTip="{DynamicResource open_more_info_tt}" Click="btn_moreInfo_Click"/>

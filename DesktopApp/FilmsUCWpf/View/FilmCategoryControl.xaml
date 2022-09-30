@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
-             mc:Ignorable="d" d:DesignHeight="35">
-    <Grid x:Name="grid" HorizontalAlignment="Left">
+             mc:Ignorable="d">
+    <Grid Style="{DynamicResource TControl}" Height="Auto" HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" x:Name="lowerRow"/>
@@ -24,27 +24,17 @@
                 <MenuItem Header="{DynamicResource delete_category_cm}" Click="delete_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <Grid.Resources>
-            <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}"/>
-        </Grid.Resources>
-        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="28"/>
+        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="{DynamicResource id_width}"/>
         <StackPanel Orientation="Horizontal" Grid.Column="1">
-            <StackPanel.Resources>
-                <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
-                    <Setter Property="Height" Value="13"/>
-                    <Setter Property="FontSize" Value="10"/>
-                    <Setter Property="Margin" Value="1"/>
-                </Style>
-            </StackPanel.Resources>
-            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="178"/>
-            <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="42"/>
-            <Button x:Name="btn_show_hide" Content="v" Width="13" ToolTip="{DynamicResource collapse_category_tt}" Click="hide_show_Cilck"/>
-            <Button Width="13" Margin="1" Content="⋮" Click="OpenCM"/>
+            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="{DynamicResource name_width}"/>
+            <TextBox x:Name="mark" Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="{DynamicResource mark_width}"/>
+            <Button x:Name="btn_show_hide" Content="v" ToolTip="{DynamicResource collapse_category_tt}" Click="hide_show_Cilck"/>
+            <Button Content="⋮" Click="OpenCM"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <WrapPanel x:Name="cat_panel" Orientation="Vertical"/>
-            <Button x:Name="btn_plus" Style="{StaticResource GrayButton}" ToolTip="{DynamicResource add_in_category_tt}" Content="+" Width="15" Height="14" 
-                    Margin="1,1,1,5" FontSize="10" HorizontalAlignment="Left" Click="btn_plus_Click"/>
+            <Button x:Name="btn_plus" ToolTip="{DynamicResource add_in_category_tt}" Content="+"
+                    Margin="1,1,1,5" HorizontalAlignment="Left" Click="btn_plus_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

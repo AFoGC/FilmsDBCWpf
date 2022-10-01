@@ -29,9 +29,13 @@ namespace FilmsUCWpf.View
     public partial class FilmSerieUpdateControl : UserControl
 	{
 		private FilmSerieUpdatePresenter presenter;
+		private readonly Film film;
+		private readonly Serie serie;
 		public FilmSerieUpdateControl(Film film, IMenuPresenter<Film> menu, TableCollection collection)
 		{
 			InitializeComponent();
+			this.film = film;
+			this.serie = film.Serie;
 			presenter = new FilmSerieUpdatePresenter(film, menu);
 			DataContext = new FilmSerieBinder(film);
 		}
@@ -54,53 +58,38 @@ namespace FilmsUCWpf.View
 
 		private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
-            if (watched.IsChecked == false)
+            if (film.Watched == false)
             {
 				if (watchDate.IsEmpty)
 				{
-					watchDate.Date = DateTime.Today;
+					film.DateOfWatch = DateTime.Today;
 				}
 
 				if (startWatchDate.IsEmpty)
 				{
-					startWatchDate.Date = DateTime.Today;
+					serie.StartWatchDate = DateTime.Today;
 				}
 
-				int cows = 0;
-				int ts = 0;
-				bool emptyTotal = true;
-
-				if (countOfWatchedSeries.Text != "")
+				if (serie.CountOfWatchedSeries < serie.TotalSeries)
 				{
-					cows = Convert.ToInt32(countOfWatchedSeries.Text);
+					serie.CountOfWatchedSeries = serie.TotalSeries;
 				}
 
-				if (totalSeries.Text != "")
+				if (film.CountOfViews == 0)
 				{
-					ts = Convert.ToInt32(totalSeries.Text);
-					emptyTotal = false;
+                    film.CountOfViews = 1;
 				}
-
-				if (cows < ts && emptyTotal == false)
-				{
-					countOfWatchedSeries.Text = totalSeries.Text;
-				}
-
-				if (countOfViews.Text == "")
-				{
-					countOfViews.Text = "1";
-				}
-				watched.IsChecked = !watched.IsChecked;
+				film.Watched = !film.Watched;
 			}
 		}
 
 		private void watched_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (watched.IsChecked == false)
+			if (film.Watched == false)
 			{
-				if (countOfViews.Text == "")
+				if (film.CountOfViews == 0)
 				{
-					countOfViews.Text = "1";
+					film.CountOfViews = 1;
 				}
 			}
 		}

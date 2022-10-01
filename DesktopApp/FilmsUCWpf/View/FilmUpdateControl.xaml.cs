@@ -31,9 +31,11 @@ namespace FilmsUCWpf.View
     public partial class FilmUpdateControl : UserControl
 	{
 		private FilmUpdatePresenter presenter;
+		private readonly Film film;
 		public FilmUpdateControl(Film film, IMenuPresenter<Film> menu, TableCollection table)
 		{
 			InitializeComponent();
+			this.film = film;
 			presenter = new FilmUpdatePresenter(film, menu);
 			DataContext = new FilmBinder(film);
 		}
@@ -62,16 +64,16 @@ namespace FilmsUCWpf.View
 
 		private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
-            if (watched.IsChecked == false)
+            if (film.Watched == false)
             {
 				if (watchDate.IsEmpty)
 				{
-					watchDate.Date = DateTime.Today;
+                    film.DateOfWatch = DateTime.Today;
 				}
 
-				if (countOfViews.Text == "")
+				if (film.CountOfViews == 0)
 				{
-					countOfViews.Text = "1";
+					film.CountOfViews = 1;
 				}
 			}
 			watched.IsChecked = !watched.IsChecked;
@@ -79,12 +81,12 @@ namespace FilmsUCWpf.View
 
 		private void watched_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (watched.IsChecked == false)
+			if (film.Watched == false)
 			{
-				if (countOfViews.Text == "")
+				if (film.CountOfViews == 0)
 				{
-					countOfViews.Text = "1";
-				}
+                    film.CountOfViews = 1;
+                }
 			}
 		}
     }

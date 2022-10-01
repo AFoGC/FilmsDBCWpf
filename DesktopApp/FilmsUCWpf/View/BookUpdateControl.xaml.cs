@@ -29,9 +29,11 @@ namespace FilmsUCWpf.View
     public partial class BookUpdateControl : UserControl
     {
         private BookUpdatePresenter presenter;
+        private readonly Book book;
         public BookUpdateControl(Book book, IMenuPresenter<Book> menu, TableCollection table)
         {
             InitializeComponent();
+            this.book = book;
             presenter = new BookUpdatePresenter(book, menu);
             DataContext = new BookBinder(book);
         }
@@ -48,7 +50,7 @@ namespace FilmsUCWpf.View
 
         private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (readed.IsChecked == false)
+            if (book.Readed == false)
             {
                 if (fullReadDate.IsEmpty)
                 {
@@ -65,16 +67,16 @@ namespace FilmsUCWpf.View
 
         private void readed_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (readed.IsChecked == false)
+            if (book.Readed == false)
             {
                 if (fullReadDate.IsEmpty)
                 {
-                    fullReadDate.Date = DateTime.Today;
+                    book.FullReadDate = DateTime.Today;
                 }
 
                 if (countOfReadings.Text == String.Empty)
                 {
-                    countOfReadings.Text = "1";
+                    book.CountOfReadings = 1;
                 }
             }
         }

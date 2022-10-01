@@ -23,6 +23,7 @@ namespace FilmsUCWpf.ModelBinder
                 OnPropertyChanged(nameof(StartWatchDateTxt));
                 return;
             }
+            OnPropertyChanged(e);
         }
 
         public String StartWatchDateTxt

@@ -42,6 +42,16 @@ namespace TL_Tables
 				Book book = (Book)e.NewItems[0];
 				book.FormatedMark.MarkSystem = MarkSystem;
 			}
+			if (e.Action == NotifyCollectionChangedAction.Remove)
+			{
+				Book book = (Book)e.OldItems[0];
+				if (book.FranshiseId != 0)
+				{
+                    BookCategoriesTable categoriesTable = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+                    BookCategory category = categoriesTable.GetCategoryByBook(book);
+                    category.Books.Remove(book);
+                }
+			}
 		}
 
 		protected override void saveBody(StreamWriter streamWriter)

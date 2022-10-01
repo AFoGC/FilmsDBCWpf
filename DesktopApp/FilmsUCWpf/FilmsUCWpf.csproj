@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrushColors.cs" />
+    <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="ModelBinder\BaseBinder.cs" />
     <Compile Include="ModelBinder\BookBinder.cs" />
@@ -92,6 +93,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModel\Interfaces\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BookViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IBaseViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IHasCheckedProperty.cs" />
+    <Compile Include="ViewModel\Interfaces\IHasGenre.cs" />
+    <Compile Include="ViewModel\Interfaces\IMenuViewModel.cs" />
     <Compile Include="View\DateBox.xaml.cs">
       <DependentUpon>DateBox.xaml</DependentUpon>
     </Compile>

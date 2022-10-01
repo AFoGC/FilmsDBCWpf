@@ -24,12 +24,6 @@ namespace FilmsUCWpf.ViewModel
 			genresTable = (BookGenresTable)model.BookGenre.ParentTable;
 		}
 
-		public void SetSelected()
-		{
-			SetVisualSelected();
-			menu.SelectedElement = this;
-		}
-
 		public bool SetFinded(string search)
 		{
 			if (Model.Name.ToLowerInvariant().Contains(search))
@@ -67,6 +61,136 @@ namespace FilmsUCWpf.ViewModel
 				{
 					SetVisualSelected();
 					menu.SelectedElement = this;
+				}));
+			}
+		}
+
+		private RelayCommand copyUrlCommand;
+		public RelayCommand CopyUrlCommand
+		{
+			get
+			{
+				return copyUrlCommand ??
+				(copyUrlCommand = new RelayCommand(obj =>
+				{
+					Helper.CopyFirstSource(Model.Sources);
+				}));
+			}
+		}
+
+		private RelayCommand openUpdateCommand;
+		public RelayCommand OpenUpdateCommand
+		{
+			get
+			{
+				return openUpdateCommand ??
+				(openUpdateCommand = new RelayCommand(obj =>
+				{
+					throw new NotImplementedException();
+				}));
+			}
+		}
+
+		private RelayCommand openInfoCommand;
+		public RelayCommand OpenInfoCommand
+		{
+			get
+			{
+				return openInfoCommand ??
+				(openInfoCommand = new RelayCommand(obj =>
+				{
+					throw new NotImplementedException();
+				}));
+			}
+		}
+
+		private RelayCommand openSourceCommand;
+		public RelayCommand OpenSourceCommand
+        {
+            get
+            {
+                return openSourceCommand ??
+                (openSourceCommand = new RelayCommand(obj =>
+                {
+                    throw new NotImplementedException();
+                }));
+            }
+        }
+
+		public RelayCommand addToPriorityCommand;
+		public RelayCommand AddToPriorityCommand
+		{
+            get
+            {
+                return addToPriorityCommand ??
+                (addToPriorityCommand = new RelayCommand(obj =>
+                {
+                    PriorityBooksTable priorityBooks = (PriorityBooksTable)TableCollection.GetTable<PriorityBook>();
+                    if (!priorityBooks.ContainBook(Model))
+                    {
+                        PriorityBook priority = new PriorityBook();
+                        priority.Book = Model;
+                        priorityBooks.AddElement(priority);
+                    }
+                }));
+            }
+        }
+
+		private RelayCommand upInCategoryIDCommand;
+		public RelayCommand UpInCategoryIDCommand
+		{
+			get
+			{
+				return upInCategoryIDCommand ??
+				(upInCategoryIDCommand = new RelayCommand(obj =>
+				{
+					BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+					BookCategory category = categories.GetCategoryByBook(Model);
+					category.ChangeBookPositionBy(Model, -1);
+				}));
+			}
+		}
+
+		private RelayCommand downInCategoryIDCommand;
+		public RelayCommand DownInCategoryIDCommand
+		{
+			get
+			{
+				return downInCategoryIDCommand ??
+				(downInCategoryIDCommand = new RelayCommand(obj =>
+				{
+					BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+					BookCategory category = categories.GetCategoryByBook(Model);
+					category.ChangeBookPositionBy(Model, 1);
+				}));
+			}
+		}
+
+		private RelayCommand removeFromCategoryCommand;
+		public RelayCommand RemoveFromCategoryCommand
+		{
+			get
+			{
+				return removeFromCategoryCommand ??
+				(removeFromCategoryCommand = new RelayCommand(obj =>
+				{
+					BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+					BookCategory category = categories.GetCategoryByBook(Model);
+					if (category != null)
+					{
+						category.Books.Remove(Model);
+						//menu.AddElement(this.Model);
+						//Jira FDBC-59
+
+						/*
+						 надо переделать чтобы меню само знало, что нужно добавить в таблицу при удалении элемента
+						 из категории. Это можно реализовать через обработку события изменения коллекции книг в категории.
+						 Если из книг категории будет удалена книга и она будет оставаться в основной таблице книг, 
+						 то обработчик события добавит эту книгу в список книг без категории.
+						*/
+
+						throw new NotImplementedException();
+					}
 				}));
 			}
 		}

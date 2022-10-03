@@ -1,17 +1,21 @@
 ﻿using BO_Films;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WpfApp.Models
 {
 	[Serializable]
-	public class ProfileModel
+	public class ProfileModel : INotifyPropertyChanged
 	{
-		internal ProfileModel()
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        internal ProfileModel()
 		{
 			this.name = "Main";
 		}
@@ -20,14 +24,20 @@ namespace WpfApp.Models
 			if (name == String.Empty)
 				this.name = "Main";
 			else this.name = name;
-
+			isSelected = false;
 		}
 
-		private String name = "";
+		private String name;
 		public String Name
 		{
 			get { return name; }
-			set { name = value; }
+			set { name = value; OnPropertyChanged(); }
+		}
+		private bool isSelected;
+		public bool IsSelected
+		{
+			get => isSelected;
+			internal set { isSelected = value; OnPropertyChanged(); }
 		}
 
 		public ProfileCollectionModel ParentCollection { get; internal set; }
@@ -119,5 +129,13 @@ namespace WpfApp.Models
 		{
 			return name;
 		}
-	}
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+			var e = new PropertyChangedEventArgs(propertyName);
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, e);
+        }
+    }
 }

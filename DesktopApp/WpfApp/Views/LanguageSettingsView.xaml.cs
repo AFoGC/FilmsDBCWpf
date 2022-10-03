@@ -24,7 +24,7 @@ namespace WpfApp.Views
     public partial class LanguageSettingsView : UserControl
     {
         private readonly LanguageSettingsPresenter presenter;
-        public LanguageSettingsView(ProgramSettings settings)
+        public LanguageSettingsView(SettingsModel settings)
         {
             InitializeComponent();
             presenter = new LanguageSettingsPresenter(settings);

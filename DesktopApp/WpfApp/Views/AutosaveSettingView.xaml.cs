@@ -22,7 +22,7 @@ namespace WpfApp.Views
     /// </summary>
     public partial class AutosaveSettingView : UserControl
     {
-        public AutosaveSettingView(ProgramSettings settings)
+        public AutosaveSettingView(SettingsModel settings)
         {
             InitializeComponent();
             DataContext = new AutosaveSettingsPresenter(settings);

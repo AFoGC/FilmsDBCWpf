@@ -26,7 +26,7 @@ namespace WpfApp.Views
     public partial class ProfileContainerView : UserControl, IProfileSettingsContainerView
     {
         private readonly ProfileContainerPresenter presenter;
-        public ProfileContainerView(ProgramSettings settings)
+        public ProfileContainerView(SettingsModel settings)
         {
             InitializeComponent();
             presenter = new ProfileContainerPresenter(this, settings);

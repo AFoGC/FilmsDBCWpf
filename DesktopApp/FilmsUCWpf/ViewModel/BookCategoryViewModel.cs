@@ -124,6 +124,28 @@ namespace FilmsUCWpf.ViewModel
                 return Model.HideName;
         }
 
+        private RelayCommand addSelectedCommand;
+        public RelayCommand AddSelectedCommand
+        {
+            get
+            {
+                return addSelectedCommand ??
+                (addSelectedCommand = new RelayCommand(obj =>
+                {
+                    if (menu.SelectedElement != null)
+                    {
+                        Book book = menu.SelectedElement.Model;
+                        if (book.FranshiseId == 0)
+                        {
+                            Model.Books.Add(book);
+                            //menu.RemoveElement(menu.Model.SelectedElement.Model);
+                            menu.SelectedElement = null;
+                        }
+                    }
+                }));
+            }
+        }
+
         private void BooksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Book book;

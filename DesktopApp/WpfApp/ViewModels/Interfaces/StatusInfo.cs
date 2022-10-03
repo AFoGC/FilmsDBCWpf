@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace WpfApp.Views.Interfaces
+namespace WpfApp.ViewModels.Interfaces
 {
     public enum StatusEnum
     {
@@ -18,15 +18,15 @@ namespace WpfApp.Views.Interfaces
     public class StatusInfo
     {
         private DispatcherTimer timer;
-        private readonly IMainWindowView view;
+        private readonly IMainViewModel viewModel;
 
         public StatusEnum Status { get; private set; }
         public String DictionaryString { get; private set; }
         public String DictionaryColor { get; private set; }
 
-        private StatusInfo(StatusEnum @enum, IMainWindowView view)
+        private StatusInfo(StatusEnum @enum, IMainViewModel viewModel)
         {
-            this.view = view;
+            this.viewModel = viewModel;
             Status = @enum;
             if (Status == StatusEnum.Saved)
             {
@@ -45,13 +45,13 @@ namespace WpfApp.Views.Interfaces
         private void MessageEnd(object sender, EventArgs e)
         {
             timer.Stop();
-            if (view.Status.Status == Status)
-                view.Status = GetInfo(StatusEnum.Normal, view);
+            if (viewModel.Status.Status == Status)
+                viewModel.Status = GetInfo(StatusEnum.Normal, viewModel);
         }
 
-        public static StatusInfo GetInfo(StatusEnum @enum, IMainWindowView view)
+        public static StatusInfo GetInfo(StatusEnum @enum, IMainViewModel viewModel)
         {
-            StatusInfo status = new StatusInfo(@enum, view);
+            StatusInfo status = new StatusInfo(@enum, viewModel);
             switch (@enum)
             {
                 case StatusEnum.Normal:

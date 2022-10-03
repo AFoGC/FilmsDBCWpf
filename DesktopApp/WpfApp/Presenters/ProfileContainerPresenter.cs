@@ -15,9 +15,9 @@ namespace WpfApp.Presenters
     {
         private readonly IProfileSettingsContainerView view;
         private readonly ProfileCollectionModel model;
-        private readonly ProgramSettings settings;
+        private readonly SettingsModel settings;
 
-        public ProfileContainerPresenter(IProfileSettingsContainerView view, ProgramSettings settings)
+        public ProfileContainerPresenter(IProfileSettingsContainerView view, SettingsModel settings)
         {
             this.view = view;
             this.settings = settings;

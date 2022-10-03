@@ -3,67 +3,86 @@ using BO_Films;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using TablesLibrary.Interpreter;
 
 namespace WpfApp.Models
 {
-	public class ProfileCollectionModel : IEnumerable
+	public class ProfileCollectionModel : IEnumerable, INotifyPropertyChanged, INotifyCollectionChanged
 	{
-		private List<ProfileModel> profiles = null;
+        public event PropertyChangedEventHandler PropertyChanged;
+		public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+		private ObservableCollection<ProfileModel> profiles = null;
 		private ProfileModel usedProfile = null;
+
 		public ProfileModel UsedProfile
 		{
 			get
 			{
 				return usedProfile;
 			}
+			set
+			{
+                bool hasInCollection = false;
+                UsedProfile.IsSelected = false;
+                if (value != null)
+                {
+                    foreach (ProfileModel item in profiles)
+                    {
+                        if (item.Name == value.Name)
+                        {
+                            usedProfile = item;
+                            hasInCollection = true;
+                            break;
+                        }
+                    }
+                }
+                if (!hasInCollection)
+                {
+                    usedProfile = profiles[0];
+                }
+                UsedProfile.IsSelected = true;
+				OnPropertyChanged();
+            }
 		}
 
 		public void SetUsedProfile(ProfileModel profile)
 		{
-			bool hasInCollection = false;
-			foreach (ProfileModel item in profiles)
-			{
-				if (item.Name == profile.Name)
-				{
-					usedProfile = item;
-					hasInCollection = true;
-				}
-			}
-			if (!hasInCollection)
-			{
-				usedProfile = profiles[0];
-			}
-		}
+			UsedProfile = profile;
+        }
 
 		public void SetUsedProfile(String profileName)
 		{
-			bool hasInCollection = false;
-			foreach (ProfileModel item in profiles)
-			{
-				if (item.Name == profileName)
-				{
-					usedProfile = item;
-					hasInCollection = true;
-				}
-			}
-			if (!hasInCollection)
-			{
-				usedProfile = profiles[0];
-			}
+			ProfileModel profile = profiles.Where(o => o.Name == profileName).FirstOrDefault();
+			UsedProfile = profile;
 		}
 
 		public String ProfilesPath { get; private set; }
 
 		public ProfileCollectionModel(string path)
 		{
-			profiles = new List<ProfileModel>();
+			profiles = new ObservableCollection<ProfileModel>();
 			ProfilesPath = Path.Combine(path, "Profiles");
-			DirectoryInfo info = Directory.CreateDirectory(ProfilesPath);
+			Directory.CreateDirectory(ProfilesPath);
+
+			profiles.CollectionChanged += ProfilesChanged;
+
 			LoadProfiles();
 			usedProfile = profiles[0];
 		}
+
+		private void ProfilesChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+            NotifyCollectionChangedEventHandler handler = CollectionChanged;
+            if (handler != null)
+                handler(this, e);
+        }
 
 		public ProfileModel[] ToArray()
 		{
@@ -261,30 +280,14 @@ namespace WpfApp.Models
 
 		public bool Contains(ProfileModel profile) => profiles.Contains(profile);
 
-		public IEnumerator GetEnumerator()
-		{
-			return new ProfileEnum(profiles);
-		}
+		public IEnumerator GetEnumerator() => profiles.GetEnumerator();
 
-		private class ProfileEnum : IEnumerator
-		{
-			IEnumerator enumerator;
-			public ProfileEnum(List<ProfileModel> profiles)
-			{
-				enumerator = profiles.GetEnumerator();
-			}
-
-			public object Current => enumerator.Current;
-
-			public bool MoveNext()
-			{
-				return enumerator.MoveNext();
-			}
-
-			public void Reset()
-			{
-				enumerator.Reset();
-			}
-		}
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            var e = new PropertyChangedEventArgs(propertyName);
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, e);
+        }
 	}
 }

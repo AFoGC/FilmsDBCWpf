@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApp.Models
+namespace WpfApp.Services
 {
-    public class SettingsMenuModel
+    public interface IMessageService
     {
-
+        void Show(string message);
     }
 }

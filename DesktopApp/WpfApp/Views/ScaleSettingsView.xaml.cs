@@ -22,7 +22,7 @@ namespace WpfApp.Views
     /// </summary>
     public partial class ScaleSettingsView : UserControl
     {
-        public ScaleSettingsView(ProgramSettings settings)
+        public ScaleSettingsView(SettingsModel settings)
         {
             InitializeComponent();
             DataContext = new ScaleSettingsPresenter(settings);

@@ -17,47 +17,15 @@ using TL_Tables;
 
 namespace WpfApp.Models
 {
-    public class MainWindowModel : IUserModel
+    public class MainWindowModel
     {
         public TableCollection TableCollection { get; private set; }
-        public ProgramSettings Settings { get; private set; }
+        public SettingsModel Settings { get; private set; }
         public TLTables Tables { get; private set; }
-
-        public event EventHandler UserChanged;
-        private UserBO userBO;
-
-        public bool IsLoggedIn
-        {
-            get
-            {
-                return LoggedInUser != null;
-            }
-        }
-        public UserBO LoggedInUser
-        {
-            get { return userBO; }
-            set
-            {
-                userBO = value;
-                EventHandler handler = UserChanged;
-                if (null != handler) handler(userBO, EventArgs.Empty);
-            }
-        }
 
         public MainWindowModel()
         {
-            TableCollection = new TableCollection();
-            Tables = new TLTables(TableCollection);
-
-            string localPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-            Settings = ProgramSettings.Initialize(TableCollection, localPath, Path.Combine(localPath, "ProgramSetting.xml"));
-            if (Settings.StartUser.LoggedIn)
-            {
-                LoggedInUser = UserBL.LogIn(Settings.StartUser.Email, Settings.StartUser.Email);
-            }
-
-            TableCollection.FileEncoding = Encoding.UTF8;
+            
         }
     }
 }

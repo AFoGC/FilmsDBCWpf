@@ -11,6 +11,6 @@ namespace WpfApp.Models
     {
         event EventHandler UserChanged;
         UserBO LoggedInUser { get; set; }
-        ProgramSettings Settings { get; }
+        SettingsModel Settings { get; }
     }
 }

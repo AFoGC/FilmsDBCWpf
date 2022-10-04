@@ -22,17 +22,161 @@
                   Grid.Column="1" Grid.RowSpan="3" Margin="30"/>
 
         <ScrollViewer Grid.Row="1" Grid.Column="1">
-            <StackPanel x:Name="SettingsListPanel" Orientation="Vertical"/>
+            <StackPanel Orientation="Vertical">
+                <!--Language Settings-->
+                <StackPanel>
+                    <Label Content="{DynamicResource st_lang_title}" Foreground="White" 
+                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                    <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding Language}" 
+                              Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"/>
+                </StackPanel>
+                
+                <!--Scale Settings-->
+                <StackPanel>
+                    <Label Content="{DynamicResource st_scale_title}" Foreground="White" 
+                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                    <ComboBox SelectedIndex="{Binding IndexOfScale}" Style="{StaticResource DarkComboBox}" 
+                              Width="200" Margin="0,5" HorizontalAlignment="Left">
+                        <ComboBoxItem Content="{DynamicResource st_small_item}"/>
+                        <ComboBoxItem Content="{DynamicResource st_medium_item}"/>
+                    </ComboBox>
+                </StackPanel>
+                
+                <!--Autosave Settings-->
+                <StackPanel>
+                    <Label Content="{DynamicResource st_autosave_label}" Foreground="White" 
+                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                    <CheckBox IsChecked="{Binding TimerIsEnabled}" Content="{DynamicResource st_autosave_enable}" 
+                              Foreground="WhiteSmoke" Margin="0,5,0,0" />
+                    <ComboBox ItemsSource="{Binding Timers}" SelectedItem="{Binding SelectedTimer}" 
+                              Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left" Margin="0,5">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{DynamicResource st_seconds}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                
+                <!--Profiles Settings-->
+                <StackPanel>
+                    <Label Content="{DynamicResource st_prof_title}" Foreground="White" 
+                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                    <ItemsControl ItemsSource="{Binding Profiles}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Height="20" Orientation="Horizontal">
+                                    <TextBox Text="{Binding Name}" Width="200" IsReadOnly="True"/>
+                                    <Rectangle Width="30"/>
+                                    <Button Content="{DynamicResource st_use_prof}" Padding="20,0" 
+                                            Command="{Binding Path=DataContext.ChangeProfileCommand, 
+                                            RelativeSource={RelativeSource AncestorType=ScrollViewer}, Mode=Default}"
+                                            CommandParameter="{Binding}"/>
+                                    <Rectangle Width="30"/>
+                                    <Button Content="{DynamicResource st_del_prof}" Padding="20,0"
+                                            Command="{Binding Path=DataContext.DeleteProfileCommand, 
+                                            RelativeSource={RelativeSource AncestorType=ScrollViewer}, Mode=Default}"
+                                            CommandParameter="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Orientation="Horizontal" Height="20" Margin="0,5">
+                        <Button Content="{DynamicResource st_add_prof}" Style="{StaticResource GrayButton}" 
+                                Width="200" Command="{Binding AddProfileCommand}"/>
+                        <Rectangle Width="5"/>
+                        <TextBox Text="{Binding NewProfileName}" Style="{StaticResource Wtextbox}" Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="20">
+                        <Button Content="{DynamicResource st_prof_dir}" Style="{StaticResource GrayButton}" 
+                                Width="220" Command="{Binding OpenExplorerCommand}"/>
+                        <Rectangle Width="5"/>
+                        <Button Content="{DynamicResource st_import_prof}" Style="{StaticResource GrayButton}"
+                                Width="130" Command="{Binding ImportProfileCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+                
+                <!--Films Mark System Settings-->
+                <StackPanel>
+                    <Label Content="{DynamicResource st_fmark_title}" Foreground="White" 
+                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                    <ComboBox Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"
+                              SelectedIndex="{Binding IndexOfFilmMarkSystem}" ItemsSource="{Binding MarkSystems}"/>
+                </StackPanel>
+
+                <!--Books Mark System Settings-->
+                <StackPanel>
+                    <Label Content="{DynamicResource st_bmark_title}" Foreground="White" 
+                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                    <ComboBox Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"
+                              SelectedIndex="{Binding IndexOfBookMarkSystem}" ItemsSource="{Binding MarkSystems}"/>
+                </StackPanel>
+                
+                <!--Films Genres-->
+                <StackPanel>
+                    <Label Content="{DynamicResource st_fgenre_title}" Foreground="White" 
+                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                    <ItemsControl ItemsSource="{Binding FilmGenresTable}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Text="{Binding Name}" Width="200"/>
+                                    <Rectangle Width="200"/>
+                                    <Button Content="{DynamicResource st_del_genre}" Padding="20,0"
+                                            Command="{Binding Path=DataContext.DeleteFilmGenreCommand, 
+                                            RelativeSource={RelativeSource AncestorType=ScrollViewer}, Mode=Default}"
+                                            CommandParameter="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button Style="{StaticResource GrayButton}" Content="{DynamicResource st_add_genre}"
+                            HorizontalAlignment="Left" Width="200" Height="20" Margin="0 5 0 0"
+                            Command="{Binding AddFilmGenreCommand}"/>
+                </StackPanel>
+
+                <!--Books Genres-->
+                <StackPanel>
+                    <Label Content="{DynamicResource st_bgenre_title}" Foreground="White" 
+                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                    <ItemsControl ItemsSource="{Binding BookGenresTable}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Text="{Binding Name}" Width="200"/>
+                                    <CheckBox IsChecked="{Binding IsSerialGenre}" Width="200"/>
+                                    <Button Content="{DynamicResource st_del_genre}" Padding="20,0"
+                                            Command="{Binding Path=DataContext.DeleteBookGenreCommand, 
+                                            RelativeSource={RelativeSource AncestorType=ScrollViewer}, Mode=Default}"
+                                            CommandParameter="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button Style="{StaticResource GrayButton}" Content="{DynamicResource st_add_genre}"
+                            HorizontalAlignment="Left" Width="200" Height="20" Margin="0 5 0 0"
+                            Command="{Binding AddBookGenreCommand}"/>
+                </StackPanel>
+            </StackPanel>
         </ScrollViewer>
-        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Visibility="Collapsed">
-            <local:UserSettingsControl x:Name="LogInUser" Height="80" Width="250" 
-                                       HorizontalAlignment="Left"/>
-            <Grid Width="76" Height="80" Margin="5,0,0,0">
-                <Button x:Name="GetFromDB" Content="Get From DB" Width="76" Height="20" Style="{StaticResource GrayButton}" 
-                        VerticalAlignment="Top" Click="GetFromDB_Click"/>
-                <Button x:Name="SendToDB" Content="Send To DB" Width="76" Height="20" Style="{StaticResource GrayButton}"
-                        VerticalAlignment="Bottom" Click="SendToDB_Click"/>
-            </Grid>
-        </StackPanel>
     </Grid>
 </UserControl>

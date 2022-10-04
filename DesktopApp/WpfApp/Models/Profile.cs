@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 namespace WpfApp.Models
 {
 	[Serializable]
-	public class ProfileModel : INotifyPropertyChanged
+	public class Profile : INotifyPropertyChanged
 	{
         public event PropertyChangedEventHandler PropertyChanged;
 
-        internal ProfileModel()
+        internal Profile()
 		{
 			this.name = "Main";
 		}
-		internal ProfileModel(String name)
+		internal Profile(String name)
 		{
 			if (name == String.Empty)
 				this.name = "Main";
@@ -40,7 +40,7 @@ namespace WpfApp.Models
 			internal set { isSelected = value; OnPropertyChanged(); }
 		}
 
-		public ProfileCollectionModel ParentCollection { get; internal set; }
+		public ProfileCollection ParentCollection { get; internal set; }
 
 		public String ProfilePath
 		{
@@ -95,14 +95,14 @@ namespace WpfApp.Models
 		{
 			bool export = true;
 
-			foreach (ProfileModel prof in ParentCollection.GetAllProfiles)
+			foreach (Profile prof in ParentCollection.GetAllProfiles)
 			{
 				if (prof.Name == newName) export = false;
 			}
 
 			if (export)
 			{
-				ProfileModel np = new ProfileModel(newName);
+				Profile np = new Profile(newName);
 				Directory.Move(this.ProfilePath, np.ProfilePath);
 				this.name = newName;
 			}

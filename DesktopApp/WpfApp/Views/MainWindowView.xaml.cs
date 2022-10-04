@@ -24,7 +24,7 @@ namespace WpfApp.Views
     /// <summary>
     /// Логика взаимодействия для MainWindowView.xaml
     /// </summary>
-    public partial class MainWindowView : Window, IMainWindowView
+    public partial class MainWindowView : Window
     {
         private MainWindowPresenter presenter;
         private StatusInfo status;

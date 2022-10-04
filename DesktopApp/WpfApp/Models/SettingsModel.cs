@@ -18,7 +18,7 @@ namespace WpfApp.Models
     public class SettingsModel
     {
         public TableCollection TableCollection { get; private set; }
-        public ProfileCollectionModel Profiles { get; private set; }
+        public ProfileCollection Profiles { get; private set; }
         public StartUserInfo StartUser { get; set; }
         public DispatcherTimer SaveTimer { get; private set; }
         private SettingsFields Settings { get; set; }
@@ -114,7 +114,7 @@ namespace WpfApp.Models
 
             TableCollection = collection;
             StartUser = new StartUserInfo();
-            Profiles = new ProfileCollectionModel(profilesDirectoryPath);
+            Profiles = new ProfileCollection(profilesDirectoryPath);
             Settings = new SettingsFields();
             SaveTimer = new DispatcherTimer();
 

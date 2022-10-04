@@ -11,6 +11,6 @@ namespace WpfApp.Views.Interfaces
     {
         void SetVisualSelected();
         void SetVisualDefault();
-        void SetSelected(ProfileModel usedProfile);
+        void SetSelected(Profile usedProfile);
     }
 }

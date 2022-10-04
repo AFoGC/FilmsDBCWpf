@@ -204,17 +204,12 @@
     <Compile Include="Models\FilmsMenuModel.cs" />
     <Compile Include="Models\IUserModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
-    <Compile Include="Models\ProfileModel.cs" />
-    <Compile Include="Models\ProfileCollectionModel.cs" />
+    <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\ProfileCollection.cs" />
     <Compile Include="Models\TLTables.cs" />
-    <Compile Include="Presenters\BookGenreContainerPresenter.cs" />
     <Compile Include="Presenters\BooksMenuPresenter.cs" />
-    <Compile Include="Presenters\FilmGenreContainerPresenter.cs" />
     <Compile Include="Presenters\FilmsMenuPresenter.cs" />
-    <Compile Include="Presenters\IGenreContainerPresenter.cs" />
     <Compile Include="Presenters\MainWindowPresenter.cs" />
-    <Compile Include="Presenters\ProfileContainerPresenter.cs" />
-    <Compile Include="Presenters\ProfilePresenter.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Services\ExplorerService.cs" />
     <Compile Include="Services\IDialogService.cs" />
@@ -227,12 +222,8 @@
     <Compile Include="ViewModels\Interfaces\StatusInfo.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="Views\AutosaveSettingView.xaml.cs">
-      <DependentUpon>AutosaveSettingView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
     <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
-    <Compile Include="Views\Interfaces\IMainWindowView.cs" />
     <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileView.cs" />
     <Compile Include="Views\Interfaces\ISettingsMenuView.cs" />
@@ -245,35 +236,17 @@
     <Compile Include="Views\FilmsMenuView.xaml.cs">
       <DependentUpon>FilmsMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GenreConteinerView.xaml.cs">
-      <DependentUpon>GenreConteinerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LanguageSettingsView.xaml.cs">
-      <DependentUpon>LanguageSettingsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LogOutWindow.xaml.cs">
       <DependentUpon>LogOutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MarkSettingsControl.xaml.cs">
-      <DependentUpon>MarkSettingsControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MoreInfoControl.xaml.cs">
       <DependentUpon>MoreInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProfileContainerView.xaml.cs">
-      <DependentUpon>ProfileContainerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProflieView.xaml.cs">
-      <DependentUpon>ProflieView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ScaleSettingsView.xaml.cs">
-      <DependentUpon>ScaleSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsMenuView.xaml.cs">
       <DependentUpon>SettingsMenuView.xaml</DependentUpon>
@@ -283,9 +256,6 @@
     </Compile>
     <Compile Include="Views\SourcesControl.xaml.cs">
       <DependentUpon>SourcesControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserSettingsControl.xaml.cs">
-      <DependentUpon>UserSettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.ru.Designer.cs">
       <DependentUpon>Resources.ru.resx</DependentUpon>
@@ -349,10 +319,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AutosaveSettingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\BooksMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -365,14 +331,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GenreConteinerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\LanguageSettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\LogOutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -381,27 +339,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MarkSettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MoreInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProfileContainerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ProflieView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\RegistrationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ScaleSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -414,10 +356,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SourcesControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

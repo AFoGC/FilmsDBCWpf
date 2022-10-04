@@ -129,6 +129,8 @@ namespace WpfApp.ViewModels
 			}
 		}
 
+		public List<String> MarkSystems { get; private set; }
+
 		private int _indexOfFilmMarkSystem;
 		public int IndexOfFilmMarkSystem
 		{
@@ -205,7 +207,7 @@ namespace WpfApp.ViewModels
 			}
 		}
 
-		public ProfileCollectionModel Profiles => Model.Profiles;
+		public ProfileCollection Profiles => Model.Profiles;
 		private String _newProfileName = String.Empty;
 		public String NewProfileName
 		{
@@ -221,7 +223,7 @@ namespace WpfApp.ViewModels
 				return changeProfileCommand ??
 				(changeProfileCommand = new Command(obj =>
 				{
-					ProfileModel profile = obj as ProfileModel;
+					Profile profile = obj as Profile;
 					Profiles.UsedProfile = profile;
 				}));
 			}
@@ -235,7 +237,7 @@ namespace WpfApp.ViewModels
 				return deleteProfileCommand ??
 				(deleteProfileCommand = new Command(obj =>
 				{
-					ProfileModel profile = obj as ProfileModel;
+					Profile profile = obj as Profile;
 					Profiles.RemoveProfile(profile);
 				}));
 			}
@@ -282,7 +284,7 @@ namespace WpfApp.ViewModels
 						i++;
 					}
 					profName += i;
-					ProfileModel profile = Profiles.AddProfile(profName);
+					Profile profile = Profiles.AddProfile(profName);
 
 					if (importFileService.OpenFileDialog())
 					{
@@ -330,8 +332,17 @@ namespace WpfApp.ViewModels
 			Timers.Add(360);
 			Timers.Add(600);
 
-			//Initialize index of mark systems
-			_indexOfFilmMarkSystem = getMarkSystemIndex(FilmsTable);
+			//Initialize mark systems list
+			MarkSystems = new List<string>();
+            MarkSystems.Add("3/3");
+            MarkSystems.Add("5/5");
+            MarkSystems.Add("6/6");
+            MarkSystems.Add("10/10");
+            MarkSystems.Add("12/12");
+            MarkSystems.Add("25/25");
+
+            //Initialize index of mark systems
+            _indexOfFilmMarkSystem = getMarkSystemIndex(FilmsTable);
 			_indexOfBookMarkSystem = getMarkSystemIndex(BooksTable);
 		}
 

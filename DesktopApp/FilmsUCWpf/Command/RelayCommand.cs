@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace FilmsUCWpf.Command
 {
-    public class RelayCommand
+    public class RelayCommand : ICommand
     {
         private Action<object> execute; //execution logic
         private Func<object, bool> canExecute; //detects whether command can be executed

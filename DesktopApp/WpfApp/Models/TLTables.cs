@@ -21,18 +21,22 @@ namespace WpfApp.Models
 		public TLTables(TableCollection collection)
 		{
 			tcoll = collection;
-			tcoll.FileEncoding = Encoding.UTF8;
-
-			tcoll.AddTable(new CategoriesTable());
-			tcoll.AddTable(GenresTable.GetDefaultGenresTable());
-			tcoll.AddTable(new FilmsTable());
-			tcoll.AddTable(new SeriesTable());
-			tcoll.AddTable(new PriorityFilmsTable());
-			tcoll.AddTable(BookGenresTable.GetDefaultGenresTable());
-			tcoll.AddTable(new BooksTable());
-			tcoll.AddTable(new BookCategoriesTable());
-			tcoll.AddTable(new PriorityBooksTable());
 		}
+
+		public void Initialize()
+		{
+            tcoll.FileEncoding = Encoding.UTF8;
+
+            tcoll.AddTable(new CategoriesTable());
+            tcoll.AddTable(GenresTable.GetDefaultGenresTable());
+            tcoll.AddTable(new FilmsTable());
+            tcoll.AddTable(new SeriesTable());
+            tcoll.AddTable(new PriorityFilmsTable());
+            tcoll.AddTable(BookGenresTable.GetDefaultGenresTable());
+            tcoll.AddTable(new BooksTable());
+            tcoll.AddTable(new BookCategoriesTable());
+            tcoll.AddTable(new PriorityBooksTable());
+        }
 
 		public static TableCollection GetDefaultTableCollectionData()
 		{

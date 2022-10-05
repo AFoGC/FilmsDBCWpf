@@ -8,6 +8,6 @@ namespace WpfApp.ViewModels.Interfaces
 {
     public interface IMainViewModel
     {
-        StatusInfo Status { get; set; }
+        StatusEnum Status { get; set; }
     }
 }

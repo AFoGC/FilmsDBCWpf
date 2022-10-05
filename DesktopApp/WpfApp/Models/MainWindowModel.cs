@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.Table;
 using TablesLibrary.Interpreter.TableCell;
@@ -20,12 +21,16 @@ namespace WpfApp.Models
     public class MainWindowModel
     {
         public TableCollection TableCollection { get; private set; }
-        public SettingsModel Settings { get; private set; }
-        public TLTables Tables { get; private set; }
+        public DispatcherTimer SaveTimer { get; private set; }
 
+        public Action SaveSettings { get; private set; }
         public MainWindowModel()
         {
-            
+            SettingsModel settings = SettingsModel.Initialize();
+            SaveTimer = settings.SaveTimer;
+            TableCollection = settings.TableCollection;
+
+            SaveSettings = settings.SaveSettings;
         }
     }
 }

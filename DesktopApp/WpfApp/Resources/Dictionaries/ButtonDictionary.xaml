@@ -7,7 +7,6 @@
     <Style x:Key="Default" TargetType="ButtonBase">
         <Setter Property="Foreground" Value="WhiteSmoke"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
-        <Setter Property="ClickMode" Value="Release"/>
         <Setter Property="FontSize" Value="12"/>
     </Style>
     <Style x:Key="BlueButton" TargetType="Button" BasedOn="{StaticResource Default}">
@@ -88,6 +87,7 @@
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background" Value="{StaticResource PDefaultButtonColor}"/>
+                <Setter Property="IsEnabled" Value="False"/>
             </Trigger>
 
             <Trigger Property="IsChecked" Value="False">

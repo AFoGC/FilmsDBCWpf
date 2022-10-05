@@ -4,9 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.Views"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm="clr-namespace:WpfApp.ViewModels"
         mc:Ignorable="d"
         Title="MainWindowView" Height="775" Width="1265"
-        WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize" Closing="Window_Closing" KeyDown="Window_KeyDown" Closed="Window_Closed">
+        WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="KeyDown">
+            <i:InvokeCommandAction Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SaveAndExitCommand}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding SaveSettingsCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Background="#FF121212">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -16,9 +32,12 @@
         </Grid.RowDefinitions>
         <Rectangle MouseDown="header_MouseDown" Fill="#FF121212"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Style="{StaticResource GrayButton}" Content="_" Width="40" Click="minimize"/>
-            <Button Style="{StaticResource GrayButton}" Content="#" Width="40" Click="maximize"/>
-            <Button Style="{StaticResource CloseButton}" Content="X" Width="40" Click="close"/>
+            <Button Style="{StaticResource GrayButton}" Content="_" Width="40" 
+                    Command="{Binding MinimizeCommand}"/>
+            <Button Style="{StaticResource GrayButton}" Content="#" Width="40" 
+                    Command="{Binding MaximizeCommand}"/>
+            <Button Style="{StaticResource CloseButton}" Content="X" Width="40" 
+                    Command="{Binding CloseCmmand}"/>
         </StackPanel>
         <StackPanel x:Name="Navbar" Grid.Row="1" Orientation="Horizontal" Background="#FF1F1F1F">
             <StackPanel.Resources>
@@ -33,7 +52,7 @@
                     <Setter Property="Orientation" Value="Horizontal"/>
                 </Style>
             </StackPanel.Resources>
-            <ToggleButton x:Name="films" Click="films_Click">
+            <ToggleButton IsChecked="{Binding FilmsSelected}">
                 <ToggleButton.Content>
                     <StackPanel>
                         <Path Style="{StaticResource FilmImage}" Stretch="Uniform" Height="20"/>
@@ -41,7 +60,7 @@
                     </StackPanel>
                 </ToggleButton.Content>
             </ToggleButton>
-            <ToggleButton x:Name="books" Click="books_Click">
+            <ToggleButton IsChecked="{Binding BooksSelected}">
                 <ToggleButton.Content>
                     <StackPanel>
                         <Path Style="{StaticResource BookImage}" Stretch="Uniform" Height="20"/>
@@ -49,7 +68,7 @@
                     </StackPanel>
                 </ToggleButton.Content>
             </ToggleButton>
-            <ToggleButton x:Name="settings" Click="settings_Click">
+            <ToggleButton IsChecked="{Binding SettingsSelected}">
                 <ToggleButton.Content>
                     <StackPanel>
                         <Path Style="{StaticResource SettingsImage}" Stretch="Uniform" Height="20"/>
@@ -58,13 +77,42 @@
                 </ToggleButton.Content>
             </ToggleButton>
         </StackPanel>
-        <Frame x:Name="menus" NavigationUIVisibility="Hidden" Grid.Row="2"/>
 
-        <Rectangle x:Name="statusGround" Grid.Row="3" Fill="#FF1F1F1F"/>
+        <Grid Grid.Row="2" Visibility="{Binding SettingsVisibility}">
+            <local:SettingsMenuView />
+        </Grid>
+
+        <!--Status Bar-->
         <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Background" Value="{DynamicResource ButtonDarkGray}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Status}" Value="Saved">
+                            <Setter Property="Background" Value="{DynamicResource ButtonGreen}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Status}" Value="UnSaved">
+                            <Setter Property="Background" Value="{DynamicResource ButtonRed}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
             <Rectangle Width="20"/>
-            <TextBlock x:Name="statusText" Foreground="WhiteSmoke" VerticalAlignment="Center"/>
+            <TextBlock Foreground="WhiteSmoke" VerticalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Status}" Value="Saved">
+                                <Setter Property="Text" Value="{DynamicResource sb_saved}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=Status}" Value="UnSaved">
+                                <Setter Property="Text" Value="{DynamicResource sb_unsaved}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </StackPanel>
-        
+
     </Grid>
 </Window>

@@ -50,6 +50,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
@@ -200,17 +203,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Models\BooksMenuModel.cs" />
-    <Compile Include="Models\FilmsMenuModel.cs" />
     <Compile Include="Models\IUserModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileCollection.cs" />
     <Compile Include="Models\TLTables.cs" />
-    <Compile Include="Presenters\BooksMenuPresenter.cs" />
-    <Compile Include="Presenters\FilmsMenuPresenter.cs" />
-    <Compile Include="Presenters\MainWindowPresenter.cs" />
     <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="Services\ExitService.cs" />
     <Compile Include="Services\ExplorerService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IExplorerService.cs" />
@@ -219,22 +218,16 @@
     <Compile Include="Services\ShowMessageService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IMainViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\StatusInfo.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\StatusTimer.cs" />
     <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
     <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileView.cs" />
     <Compile Include="Views\Interfaces\ISettingsMenuView.cs" />
-    <Compile Include="Views\BooksMenuView.xaml.cs">
-      <DependentUpon>BooksMenuView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ExitWindow.xaml.cs">
       <DependentUpon>ExitWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FilmsMenuView.xaml.cs">
-      <DependentUpon>FilmsMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogOutWindow.xaml.cs">
       <DependentUpon>LogOutWindow.xaml</DependentUpon>
@@ -319,15 +312,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BooksMenuView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\ExitWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\FilmsMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

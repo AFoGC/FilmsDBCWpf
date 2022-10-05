@@ -4,8 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
 using TL_Tables.Interfaces;
@@ -22,7 +20,7 @@ namespace WpfApp.ViewModels
 	{
 		public SettingsModel Model { get; private set; }
 		
-		public LangInfo Language
+		public CultureInfo Language
 		{
 			get => Model.Language;
 			set
@@ -31,7 +29,7 @@ namespace WpfApp.ViewModels
 				OnPropertyChanged(); 
 			}
 		}
-		public List<LangInfo> Languages => Model.Cultures;
+		public List<CultureInfo> Languages => Model.Cultures;
 		public List<double> Timers { get; private set; }
 		public bool TimerIsEnabled
 		{
@@ -90,7 +88,7 @@ namespace WpfApp.ViewModels
 				(deleteBookGenreCommand = new Command(obj =>
 				{
 					BookGenre genre = obj as BookGenre;
-					if (BooksTable.GenreHasBook(genre))
+					if (!BooksTable.GenreHasBook(genre))
 					{
 						BookGenresTable.Remove(genre);
 					}
@@ -121,7 +119,7 @@ namespace WpfApp.ViewModels
 				(deleteFilmGenreCommand = new Command(obj =>
 				{
 					Genre genre = obj as Genre;
-					if (FilmsTable.GenreHasFilm(genre))
+					if (!FilmsTable.GenreHasFilm(genre))
 					{
 						FilmGenresTable.Remove(genre);
 					}
@@ -277,17 +275,17 @@ namespace WpfApp.ViewModels
 				return importProfileCommand ??
 				(importProfileCommand = new Command(obj =>
 				{
-					int i = 1;
-					string profName = "import";
-					while (Profiles.HasProfileName(profName + i))
-					{
-						i++;
-					}
-					profName += i;
-					Profile profile = Profiles.AddProfile(profName);
-
 					if (importFileService.OpenFileDialog())
 					{
+                        int i = 1;
+                        string profName = "import";
+                        while (Profiles.HasProfileName(profName + i))
+                        {
+                            i++;
+                        }
+                        profName += i;
+                        Profile profile = Profiles.AddProfile(profName);
+
                         File.Copy(importFileService.FileName, profile.MainFilePath, true);
                     }
 				}));

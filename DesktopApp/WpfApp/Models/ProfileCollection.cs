@@ -52,11 +52,6 @@ namespace WpfApp.Models
             }
 		}
 
-		public void SetUsedProfile(Profile profile)
-		{
-			UsedProfile = profile;
-        }
-
 		public void SetUsedProfile(String profileName)
 		{
 			Profile profile = profiles.Where(o => o.Name == profileName).FirstOrDefault();

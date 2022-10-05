@@ -4,8 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Views"
+             xmlns:vm="clr-namespace:WpfApp.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1265">
+    
+    <UserControl.DataContext>
+        <vm:SettingsViewModel />
+    </UserControl.DataContext>
+    
     <Grid Background="#FF121212">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -26,9 +33,15 @@
                 <!--Language Settings-->
                 <StackPanel>
                     <Label Content="{DynamicResource st_lang_title}" Foreground="White" 
-                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                           BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
                     <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding Language}" 
-                              Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"/>
+                              Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding NativeName}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
                 
                 <!--Scale Settings-->
@@ -65,7 +78,7 @@
                 <!--Profiles Settings-->
                 <StackPanel>
                     <Label Content="{DynamicResource st_prof_title}" Foreground="White" 
-                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                           BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
                     <ItemsControl ItemsSource="{Binding Profiles}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -75,14 +88,17 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Height="20" Orientation="Horizontal">
-                                    <TextBox Text="{Binding Name}" Width="200" IsReadOnly="True"/>
+                                    <TextBox Text="{Binding Name}" Style="{StaticResource Wtextbox}" 
+                                             Width="200" IsReadOnly="True"/>
                                     <Rectangle Width="30"/>
-                                    <Button Content="{DynamicResource st_use_prof}" Padding="20,0" 
+                                    <Button Style="{StaticResource GrayButton}"
+                                            Content="{DynamicResource st_use_prof}" Width="134" 
                                             Command="{Binding Path=DataContext.ChangeProfileCommand, 
                                             RelativeSource={RelativeSource AncestorType=ScrollViewer}, Mode=Default}"
                                             CommandParameter="{Binding}"/>
                                     <Rectangle Width="30"/>
-                                    <Button Content="{DynamicResource st_del_prof}" Padding="20,0"
+                                    <Button Style="{StaticResource GrayButton}"
+                                            Content="{DynamicResource st_del_prof}" Width="100"
                                             Command="{Binding Path=DataContext.DeleteProfileCommand, 
                                             RelativeSource={RelativeSource AncestorType=ScrollViewer}, Mode=Default}"
                                             CommandParameter="{Binding}"/>
@@ -108,7 +124,7 @@
                 <!--Films Mark System Settings-->
                 <StackPanel>
                     <Label Content="{DynamicResource st_fmark_title}" Foreground="White" 
-                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                           BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
                     <ComboBox Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"
                               SelectedIndex="{Binding IndexOfFilmMarkSystem}" ItemsSource="{Binding MarkSystems}"/>
                 </StackPanel>
@@ -116,7 +132,7 @@
                 <!--Books Mark System Settings-->
                 <StackPanel>
                     <Label Content="{DynamicResource st_bmark_title}" Foreground="White" 
-                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                           BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
                     <ComboBox Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"
                               SelectedIndex="{Binding IndexOfBookMarkSystem}" ItemsSource="{Binding MarkSystems}"/>
                 </StackPanel>
@@ -124,7 +140,7 @@
                 <!--Films Genres-->
                 <StackPanel>
                     <Label Content="{DynamicResource st_fgenre_title}" Foreground="White" 
-                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                           BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
                     <ItemsControl ItemsSource="{Binding FilmGenresTable}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -133,10 +149,14 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBox Text="{Binding Name}" Width="200"/>
-                                    <Rectangle Width="200"/>
-                                    <Button Content="{DynamicResource st_del_genre}" Padding="20,0"
+                                <StackPanel Height="20" Orientation="Horizontal">
+                                    <TextBox Text="{Binding Name}" Width="200" Style="{StaticResource Wtextbox}"/>
+                                    <Grid Width="200">
+                                        <CheckBox IsChecked="{Binding IsSerialGenre}" Content="{DynamicResource st_is_serial}" 
+                                              Foreground="WhiteSmoke" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Button Style="{StaticResource GrayButton}"
+                                            Content="{DynamicResource st_del_genre}" Width="100"
                                             Command="{Binding Path=DataContext.DeleteFilmGenreCommand, 
                                             RelativeSource={RelativeSource AncestorType=ScrollViewer}, Mode=Default}"
                                             CommandParameter="{Binding}"/>
@@ -152,7 +172,7 @@
                 <!--Books Genres-->
                 <StackPanel>
                     <Label Content="{DynamicResource st_bgenre_title}" Foreground="White" 
-                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                           BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
                     <ItemsControl ItemsSource="{Binding BookGenresTable}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -161,10 +181,11 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBox Text="{Binding Name}" Width="200"/>
-                                    <CheckBox IsChecked="{Binding IsSerialGenre}" Width="200"/>
-                                    <Button Content="{DynamicResource st_del_genre}" Padding="20,0"
+                                <StackPanel Height="20" Orientation="Horizontal">
+                                    <TextBox Text="{Binding Name}" Width="200" Style="{StaticResource Wtextbox}"/>
+                                    <Rectangle Width="200"/>
+                                    <Button Style="{StaticResource GrayButton}"
+                                            Content="{DynamicResource st_del_genre}" Width="100"
                                             Command="{Binding Path=DataContext.DeleteBookGenreCommand, 
                                             RelativeSource={RelativeSource AncestorType=ScrollViewer}, Mode=Default}"
                                             CommandParameter="{Binding}"/>
@@ -174,7 +195,7 @@
                     </ItemsControl>
                     <Button Style="{StaticResource GrayButton}" Content="{DynamicResource st_add_genre}"
                             HorizontalAlignment="Left" Width="200" Height="20" Margin="0 5 0 0"
-                            Command="{Binding AddBookGenreCommand}"/>
+                            Command="{Binding AddBookGenreCommand}" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

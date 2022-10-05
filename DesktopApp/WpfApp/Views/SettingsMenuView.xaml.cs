@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp.Models;
-using WpfApp.Presenters;
+using WpfApp.ViewModels;
 using WpfApp.Views.Interfaces;
 
 namespace WpfApp.Views
@@ -26,7 +26,7 @@ namespace WpfApp.Views
     {
         public SettingsMenuView()
         {
-
+            InitializeComponent();
         }
     }
 }

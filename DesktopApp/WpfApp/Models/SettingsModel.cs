@@ -22,12 +22,12 @@ namespace WpfApp.Models
         public StartUserInfo StartUser { get; set; }
         public DispatcherTimer SaveTimer { get; private set; }
         private SettingsFields Settings { get; set; }
-        public List<LangInfo> Cultures { get; private set; }
-        public LangInfo Language
+        public List<CultureInfo> Cultures { get; private set; }
+        public CultureInfo Language
         {
             get
             {
-                return (LangInfo)Thread.CurrentThread.CurrentUICulture;
+                return Thread.CurrentThread.CurrentUICulture;
             }
             set
             {
@@ -39,7 +39,7 @@ namespace WpfApp.Models
 
                 //2. Creating ResourceDictionary for new culture
                 ResourceDictionary dict = new ResourceDictionary();
-                if (Cultures.Contains(value))
+                if (Cultures.Contains(value) && value.Name != "en")
                 {
                     dict.Source = new Uri(String.Format("Resources/Localizations/lang.{0}.xaml", value.Name), UriKind.Relative);
                 }
@@ -106,11 +106,10 @@ namespace WpfApp.Models
         private SettingsModel()
         {
             //Initializing tables collection and settings file path
-            TableCollection collection = new TableCollection();
+            TableCollection collection = TLTables.GetDefaultTableCollectionData();
             string profilesDirectoryPath =
                 Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             settingPath = Path.Combine(profilesDirectoryPath, "ProgramSetting.xml");
-            collection.FileEncoding = Encoding.UTF8;
 
             TableCollection = collection;
             StartUser = new StartUserInfo();
@@ -119,10 +118,10 @@ namespace WpfApp.Models
             SaveTimer = new DispatcherTimer();
 
             //Initializing Languages
-            Cultures = new List<LangInfo>();
-            Cultures.Add(new LangInfo("en"));
-            Cultures.Add(new LangInfo("ru"));
-            Cultures.Add(new LangInfo("uk-UA"));
+            Cultures = new List<CultureInfo>();
+            Cultures.Add(new CultureInfo("en"));
+            Cultures.Add(new CultureInfo("ru"));
+            Cultures.Add(new CultureInfo("uk-UA"));
         }
 
         private static SettingsModel instance;
@@ -139,18 +138,15 @@ namespace WpfApp.Models
 
                 //Setting start profile after getting information from xml file
                 instance.Profiles.SetUsedProfile(instance.Settings.UsedProfile);
-                if (instance.TableCollection != null)
-                {
-                    instance.TableCollection.TableFilePath = instance.Profiles.UsedProfile.MainFilePath;
-                    instance.TableCollection.LoadTables();
-                }
+                instance.TableCollection.TableFilePath = instance.Profiles.UsedProfile.MainFilePath;
+                instance.TableCollection.LoadTables();
 
                 //Setting save timer interval
                 instance.SaveTimer.IsEnabled = instance.Settings.IsSaveTimerEnabled;
                 instance.SaveTimer.Interval = TimeSpan.FromSeconds(instance.Settings.SaveTimerSeconds);
 
                 //Set Launguage
-                instance.Language = new LangInfo(instance.Settings.Lang);
+                instance.Language = new CultureInfo(instance.Settings.Lang);
             }
 
             return instance;
@@ -224,14 +220,5 @@ namespace WpfApp.Models
     {
         Small = 0,
         Medium = 1
-    }
-
-    public class LangInfo : CultureInfo
-    {
-        public LangInfo(string name) : base(name) { }
-        public override string ToString()
-        {
-            return NativeName;
-        }
     }
 }

@@ -1,7 +1,4 @@
-﻿using FilmsUCWpf.ModelBinder;
-using FilmsUCWpf.Presenter;
-using FilmsUCWpf.Presenter.Interfaces;
-using FilmsUCWpf.View.Interfaces;
+﻿using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,27 +24,24 @@ namespace FilmsUCWpf.View
     /// </summary>
     public partial class FilmCategoryUpdateControl : UserControl
     {
-        private FilmCategoryUpdatePresenter presenter;
-        public FilmCategoryUpdateControl(Category category, IMenuModel<Film> menu, TableCollection tableCollection)
+        public FilmCategoryUpdateControl()
         {
-            InitializeComponent(); 
-            presenter = new FilmCategoryUpdatePresenter(category, menu, tableCollection);
-            DataContext = new FilmCategoryBinder(category);
+            InitializeComponent();
         }
 
         private void btn_AddSelected_Click(object sender, RoutedEventArgs e)
         {
-            presenter.AddSelected();
+            
         }
 
         private void btn_RemoveSec_Click(object sender, RoutedEventArgs e)
         {
-            presenter.RemoveSelected();
+            
         }
 
         private void btn_DeleteCategory_Click(object sender, RoutedEventArgs e)
         {
-            presenter.DeleteThisCategory();
+            
         }
     }
 }

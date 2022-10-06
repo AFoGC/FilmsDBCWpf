@@ -1,7 +1,4 @@
-﻿using FilmsUCWpf.ModelBinder;
-using FilmsUCWpf.Presenter;
-using FilmsUCWpf.Presenter.Interfaces;
-using FilmsUCWpf.View.Interfaces;
+﻿using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,50 +21,15 @@ namespace FilmsUCWpf.View
     /// <summary>
     /// Логика взаимодействия для FilmCategoryControl.xaml
     /// </summary>
-    public partial class FilmCategoryControl : UserControl, ICategoryView
+    public partial class FilmCategoryControl : UserControl
 	{
-		private FilmCategoryPresenter presenter;
-		public IBasePresenter Presenter => presenter;
 		public FilmCategoryControl()
 		{
 			InitializeComponent();
 		}
-
-        public IList CategoryCollection => cat_panel.Children;
-		public void SelfRemove()
-		{
-			Panel panel = (Panel)this.Parent;
-			if (panel != null)
-				panel.Children.Remove(this);
-		}
-
-		public bool SetPresenter(IBasePresenter presenter)
-		{
-			if (this.presenter == null)
-			{
-				this.presenter = (FilmCategoryPresenter)presenter;
-				DataContext = new FilmCategoryBinder(this.presenter.Model);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
-		private bool isOpen = true;
 		private void hide_show_Cilck(object sender, RoutedEventArgs e)
 		{
-			if (isOpen)
-			{
-				lowerRow.Height = new GridLength(0);
-				isOpen = false;
-			}
-			else
-			{
-				lowerRow.Height = GridLength.Auto;
-				isOpen = true;
-			}
+			
 		}
 
 		public void SetVisualDefault()
@@ -96,29 +58,26 @@ namespace FilmsUCWpf.View
 
 		private void btn_update_Click(object sender, RoutedEventArgs e)
 		{
-			presenter.OpenUpdateMenu();
+			
 		}
 
         private void btn_plus_Click(object sender, RoutedEventArgs e)
         {
-			presenter.CreateFilmInCategory();
+			
         }
 
         private void cm_Opened(object sender, RoutedEventArgs e) => SetVisualSelected();
         private void cm_Closed(object sender, RoutedEventArgs e) => SetVisualDefault();
 
-		private void delete_Click(object sender, RoutedEventArgs e) 
-			=> presenter.DeleteThisCategory();
+		private void delete_Click(object sender, RoutedEventArgs e) { }
 
-		private void addSelected_Click(object sender, RoutedEventArgs e)
-			=> presenter.AddSelected();
+		private void addSelected_Click(object sender, RoutedEventArgs e) { }
 
-		private void removeSelected_Click(object sender, RoutedEventArgs e)
-			=> presenter.RemoveSelected();
+        private void removeSelected_Click(object sender, RoutedEventArgs e) { }
 
-		private void OpenCM(object sender, RoutedEventArgs e)
+        private void OpenCM(object sender, RoutedEventArgs e)
 		{
-			cm.IsOpen = true;
+			
 		}
 	}
 }

@@ -1,7 +1,4 @@
-﻿using FilmsUCWpf.ModelBinder;
-using FilmsUCWpf.Presenter;
-using FilmsUCWpf.Presenter.Interfaces;
-using FilmsUCWpf.View.Interfaces;
+﻿using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,30 +27,18 @@ namespace FilmsUCWpf.View
     /// </summary>
     public partial class FilmUpdateControl : UserControl
 	{
-		private FilmUpdatePresenter presenter;
-		private readonly Film film;
-		public FilmUpdateControl(Film film, IMenuPresenter<Film> menu, TableCollection table)
+		public FilmUpdateControl()
 		{
 			InitializeComponent();
-			this.film = film;
-			presenter = new FilmUpdatePresenter(film, menu);
-			DataContext = new FilmBinder(film);
 		}
-
-		private bool commentIsOpen = false;
 		private void btn_comment_Click(object sender, RoutedEventArgs e)
 		{
-			if (commentIsOpen)
-				lowerRow.Height = new GridLength(0);
-			else
-				lowerRow.Height = GridLength.Auto;
-
-			commentIsOpen = !commentIsOpen;
+			
 		}
 
 		private void btn_sources_Click(object sender, RoutedEventArgs e)
 		{
-			presenter.OpenSources();
+			
 		}
 
 		private void TextInputIsNumber(object sender, TextCompositionEventArgs e)
@@ -64,30 +49,12 @@ namespace FilmsUCWpf.View
 
 		private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
-            if (film.Watched == false)
-            {
-				if (watchDate.IsEmpty)
-				{
-                    film.DateOfWatch = DateTime.Today;
-				}
-
-				if (film.CountOfViews == 0)
-				{
-					film.CountOfViews = 1;
-				}
-			}
-			watched.IsChecked = !watched.IsChecked;
+            
 		}
 
 		private void watched_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (film.Watched == false)
-			{
-				if (film.CountOfViews == 0)
-				{
-                    film.CountOfViews = 1;
-                }
-			}
+			
 		}
     }
 }

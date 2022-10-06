@@ -5,36 +5,51 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d">
-    <Grid Style="{DynamicResource TControl}" Height="Auto" HorizontalAlignment="Left">
+    <Grid Style="{DynamicResource TControl}" Height="Auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" x:Name="lowerRow"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.ContextMenu>
-            <ContextMenu Name="cm" StaysOpen="true" Opened="cm_Opened" Closed="cm_Closed">
-                <MenuItem Header="{DynamicResource edit_category_btn}" ToolTip="{DynamicResource open_edit_tt}" Click="btn_update_Click"/>
+            <ContextMenu IsOpen="{Binding IsCMOpen}">
+                <MenuItem Header="{DynamicResource edit_category_btn}" 
+                          ToolTip="{DynamicResource open_edit_tt}"/>
                 <Separator />
-                <MenuItem Header="{DynamicResource add_selected_cm}" Click="addSelected_Click"/>
-                <MenuItem Header="{DynamicResource remove_selected_cm}" Click="removeSelected_Click"/>
+                <MenuItem Header="{DynamicResource add_selected_cm}"/>
+                <MenuItem Header="{DynamicResource remove_selected_cm}"/>
                 <Separator />
-                <MenuItem Header="{DynamicResource delete_category_cm}" Click="delete_Click"/>
+                <MenuItem Header="{DynamicResource delete_category_cm}"/>
             </ContextMenu>
         </Grid.ContextMenu>
-        <TextBox x:Name="id" Text="{Binding ID}" ToolTip="ID" Width="{DynamicResource id_width}"/>
+        <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="{DynamicResource id_width}"/>
+        
         <StackPanel Orientation="Horizontal" Grid.Column="1">
-            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="Name" Width="{DynamicResource name_width}"/>
-            <TextBox x:Name="mark" Text="{Binding Mark}"  ToolTip="Mark" Width="{DynamicResource mark_width}"/>
-            <Button x:Name="btn_show_hide" Content="v" ToolTip="{DynamicResource collapse_category_tt}" Click="hide_show_Cilck"/>
-            <Button Content="⋮" Click="OpenCM"/>
+            <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="{DynamicResource name_width}"/>
+            <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="{DynamicResource mark_width}"/>
+            <Button Content="V" ToolTip="{DynamicResource collapse_category_tt}"/>
+            <Button Content="⋮"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <WrapPanel x:Name="cat_panel" Orientation="Vertical"/>
-            <Button x:Name="btn_plus" ToolTip="{DynamicResource add_in_category_tt}" Content="+"
-                    Margin="1,1,1,5" HorizontalAlignment="Left" Click="btn_plus_Click"/>
+        
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                    Visibility="{Binding CollectionVisiblility}">
+            <ItemsControl ItemsSource="{Binding BooksVMs}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:BookInCategorySimpleControl />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button ToolTip="{DynamicResource add_in_category_tt}" Content="+"
+                    Margin="1,1,1,5" HorizontalAlignment="Left"/>
         </StackPanel>
     </Grid>
 </UserControl>

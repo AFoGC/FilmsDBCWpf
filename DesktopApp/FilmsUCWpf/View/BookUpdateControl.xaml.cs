@@ -1,7 +1,4 @@
-﻿using FilmsUCWpf.ModelBinder;
-using FilmsUCWpf.Presenter;
-using FilmsUCWpf.Presenter.Interfaces;
-using FilmsUCWpf.View.Interfaces;
+﻿using FilmsUCWpf.View.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,14 +25,9 @@ namespace FilmsUCWpf.View
     /// </summary>
     public partial class BookUpdateControl : UserControl
     {
-        private BookUpdatePresenter presenter;
-        private readonly Book book;
-        public BookUpdateControl(Book book, IMenuPresenter<Book> menu, TableCollection table)
+        public BookUpdateControl()
         {
             InitializeComponent();
-            this.book = book;
-            presenter = new BookUpdatePresenter(book, menu);
-            DataContext = new BookBinder(book);
         }
 
         private void btn_comment_Click(object sender, RoutedEventArgs e)
@@ -45,40 +37,17 @@ namespace FilmsUCWpf.View
 
         private void btn_sources_Click(object sender, RoutedEventArgs e)
         {
-            presenter.OpenSources();
+            
         }
 
         private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (book.Readed == false)
-            {
-                if (fullReadDate.IsEmpty)
-                {
-                    fullReadDate.Date = DateTime.Today;
-                }
 
-                if (countOfReadings.Text == String.Empty)
-                {
-                    countOfReadings.Text = "1";
-                }
-            }
-            readed.IsChecked = !readed.IsChecked;
         }
 
         private void readed_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (book.Readed == false)
-            {
-                if (fullReadDate.IsEmpty)
-                {
-                    book.FullReadDate = DateTime.Today;
-                }
 
-                if (countOfReadings.Text == String.Empty)
-                {
-                    book.CountOfReadings = 1;
-                }
-            }
         }
 
         private void TextInputIsNumber(object sender, TextCompositionEventArgs e)

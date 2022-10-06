@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TL_Objects;
 using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
@@ -17,9 +18,9 @@ namespace FilmsUCWpf.ViewModel
     public class BookCategoryViewModel : BaseViewModel<BookCategory>, IHasGenre, IHasCheckedProperty
     {
         private readonly IMenuViewModel<Book> menu;
-        public BookCategoryViewModel(BookCategory model, IMenuViewModel<Book> menu) : base(model)
+        public BookCategoryViewModel(BookCategory model) : base(model)
         {
-            this.menu = menu;
+            //this.menu = menu;
             BooksVMs = new ObservableCollection<BookInCategoryViewModel>();
 
             model.PropertyChanged += ModelPropertyChanged;
@@ -31,7 +32,6 @@ namespace FilmsUCWpf.ViewModel
 
         private void fillCategoryBooks()
         {
-            //BooksVMs.Clear();
             foreach (Book book in Model.Books)
             {
                 BookInCategoryViewModel vm = new BookInCategoryViewModel(book, menu);
@@ -70,7 +70,7 @@ namespace FilmsUCWpf.ViewModel
             bool export = false;
             if (Model.Name.ToLowerInvariant().Contains(search))
             {
-                SetVisualFinded();
+                IsFinded = true;
             }
 
             foreach (BookInCategoryViewModel vm in BooksVMs)
@@ -195,6 +195,13 @@ namespace FilmsUCWpf.ViewModel
         private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e);
+        }
+
+        private Visibility _collectionVisibility = Visibility.Visible;
+        public Visibility CollectionVisiblility
+        {
+            get => _collectionVisibility;
+            set { _collectionVisibility = value; OnPropertyChanged(); }
         }
 
         public String ID

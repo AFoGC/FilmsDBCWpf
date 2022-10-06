@@ -75,7 +75,7 @@ namespace WpfApp.Models
                 {
                     Settings.Scale = (int)value;
                     ResourceDictionary dict = new ResourceDictionary();
-                    dict.Source = new Uri(String.Format("Resources/Dictionaries/TableControls/Scale.{0}.xaml", value), UriKind.Relative);
+                    dict.Source = new Uri(String.Format("Resources/Dictionaries/TableControls/Scale.{0}.xaml", (int)value), UriKind.Relative);
 
                     ResourceDictionary oldDict =
                         (from d in Application.Current.Resources.MergedDictionaries
@@ -147,6 +147,12 @@ namespace WpfApp.Models
 
                 //Set Launguage
                 instance.Language = new CultureInfo(instance.Settings.Lang);
+
+                //Set Scale
+                if (Enum.IsDefined(typeof(ScaleEnum), instance.Settings.Scale))
+                {
+                    instance.Scale = (ScaleEnum)instance.Settings.Scale;
+                }
             }
 
             return instance;

@@ -5,24 +5,40 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Media;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
 
 namespace FilmsUCWpf.ViewModel.Interfaces
 {
-    public abstract class BaseViewModel<T> : INotifyPropertyChanged, IBaseViewModel where T : Cell
+    public abstract class BaseViewModel<T> : INotifyPropertyChanged where T : Cell
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private readonly DateTime defaultDate = new DateTime();
-        private SolidColorBrush textGround;
 
         public T Model { get; protected set; }
         protected TableCollection TableCollection { get; private set; }
-        public SolidColorBrush TextGround
+
+        private bool _isSelected;
+        public bool IsSelected
         {
-            get => textGround;
-            set { textGround = value; OnPropertyChanged(); }
+            get => _isSelected;
+            set { _isSelected = value; OnPropertyChanged(); }
+        }
+
+        private bool _isFinded;
+        public bool IsFinded
+        {
+            get => _isFinded;
+            set { _isSelected = value; OnPropertyChanged(); }
+        }
+
+        private bool _isCMOpen;
+        public bool IsCMOpen
+        {
+            get => _isCMOpen;
+            set { _isCMOpen = value; OnPropertyChanged(); }
         }
 
         public BaseViewModel(T model)
@@ -65,21 +81,6 @@ namespace FilmsUCWpf.ViewModel.Interfaces
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
-        }
-
-        public void SetVisualDefault()
-        {
-            TextGround = BrushColors.DefaultColor;
-        }
-
-        public void SetVisualSelected()
-        {
-            TextGround = BrushColors.SelectColor;
-        }
-
-        public void SetVisualFinded()
-        {
-            TextGround = BrushColors.FindColor;
         }
     }
 }

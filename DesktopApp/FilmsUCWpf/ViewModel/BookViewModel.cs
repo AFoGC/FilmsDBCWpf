@@ -17,21 +17,16 @@ namespace FilmsUCWpf.ViewModel
 	{
 		private readonly BookGenresTable genresTable;
 		private readonly IMenuViewModel<Book> menu;
-		public BookViewModel(Book model, IMenuViewModel<Book> menu) : base(model)
+		public BookViewModel(Book model) : base(model)
 		{
 			model.PropertyChanged += ModelPropertyChanged;
-			this.menu = menu;
+			//this.menu = menu;
 			genresTable = (BookGenresTable)model.BookGenre.ParentTable;
 		}
 
 		public bool SetFinded(string search)
 		{
-			if (Model.Name.ToLowerInvariant().Contains(search))
-			{
-				SetVisualFinded();
-				return true;
-			}
-			return false;
+			return IsFinded = Model.Name.ToLowerInvariant().Contains(search);
 		}
 
 		public bool HasSelectedGenre(IGenre[] selectedGenres)
@@ -59,7 +54,7 @@ namespace FilmsUCWpf.ViewModel
 				return selectCommand ??
 				(selectCommand = new RelayCommand(obj =>
 				{
-					SetVisualSelected();
+					IsSelected = true;
 					menu.SelectedElement = this;
 				}));
 			}

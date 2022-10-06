@@ -203,6 +203,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Models\BooksModel.cs" />
     <Compile Include="Models\IUserModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -217,10 +218,14 @@
     <Compile Include="Services\ImportFileDialogService.cs" />
     <Compile Include="Services\ShowMessageService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BooksViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IMainViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StatusTimer.cs" />
+    <Compile Include="Views\BooksMenuView.xaml.cs">
+      <DependentUpon>BooksMenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
     <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />
@@ -246,9 +251,6 @@
     </Compile>
     <Compile Include="Views\SingUpControl.xaml.cs">
       <DependentUpon>SingUpControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SourcesControl.xaml.cs">
-      <DependentUpon>SourcesControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.ru.Designer.cs">
       <DependentUpon>Resources.ru.resx</DependentUpon>
@@ -312,6 +314,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BooksMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ExitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -337,10 +343,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SingUpControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SourcesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

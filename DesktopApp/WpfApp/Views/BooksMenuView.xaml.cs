@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TL_Objects.Interfaces;
 
-namespace FilmsUCWpf.View
+namespace WpfApp.Views
 {
     /// <summary>
-    /// Логика взаимодействия для GenrePressButton.xaml
+    /// Логика взаимодействия для BooksMenuView.xaml
     /// </summary>
-    public partial class GenrePressButton : UserControl
+    public partial class BooksMenuView : UserControl
     {
-        public IGenre Genre { get; private set; }
-        public bool IsChecked
-        {
-            get => (bool)button.IsChecked;
-            set => button.IsChecked = value;
-        }
-        public GenrePressButton(IGenre genre)
+        public BooksMenuView()
         {
             InitializeComponent();
-            this.Genre = genre;
-            this.DataContext = genre;
         }
     }
 }

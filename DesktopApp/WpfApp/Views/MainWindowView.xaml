@@ -78,10 +78,21 @@
             </ToggleButton>
         </StackPanel>
 
-        <Grid Grid.Row="2" Visibility="{Binding SettingsVisibility}">
-            <local:SettingsMenuView />
+        <!--Menu sector-->
+        <Grid Grid.Row="2" >
+            <Grid Visibility="{Binding SettingsVisibility}">
+                <local:SettingsMenuView />
+            </Grid>
+            <Grid Visibility="{Binding BooksVisibility}">
+                <local:BooksMenuView />
+            </Grid>
+            
+            
+            
         </Grid>
+        <!--Menu sector End-->
 
+        
         <!--Status Bar-->
         <StackPanel Grid.Row="3" Orientation="Horizontal">
             <StackPanel.Style>

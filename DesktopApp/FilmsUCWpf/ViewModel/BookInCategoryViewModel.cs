@@ -13,7 +13,7 @@ namespace FilmsUCWpf.ViewModel
     public class BookInCategoryViewModel : BookViewModel
     {
         private readonly BookCategoriesTable bookCategories;
-        public BookInCategoryViewModel(Book model, IMenuViewModel<Book> menu) : base(model, menu)
+        public BookInCategoryViewModel(Book model, IMenuViewModel<Book> menu) : base(model)
         {
             TableCollection tableCollection = model.ParentTable.TableCollection;
             bookCategories = (BookCategoriesTable)tableCollection.GetTable<BookCategory>();

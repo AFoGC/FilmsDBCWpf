@@ -17,10 +17,10 @@ namespace FilmsUCWpf.ViewModel
 	{
 		private readonly BookGenresTable genresTable;
 		private readonly IMenuViewModel<Book> menu;
-		public BookViewModel(Book model) : base(model)
+		public BookViewModel(Book model, IMenuViewModel<Book> menu) : base(model)
 		{
 			model.PropertyChanged += ModelPropertyChanged;
-			//this.menu = menu;
+			this.menu = menu;
 			genresTable = (BookGenresTable)model.BookGenre.ParentTable;
 		}
 
@@ -81,7 +81,7 @@ namespace FilmsUCWpf.ViewModel
 				return openUpdateCommand ??
 				(openUpdateCommand = new RelayCommand(obj =>
 				{
-					throw new NotImplementedException();
+					menu.OpenUpdateMenu(Model);
 				}));
 			}
 		}
@@ -94,7 +94,7 @@ namespace FilmsUCWpf.ViewModel
 				return openInfoCommand ??
 				(openInfoCommand = new RelayCommand(obj =>
 				{
-					throw new NotImplementedException();
+					menu.OpenInfoMenu(Model);
 				}));
 			}
 		}
@@ -107,7 +107,7 @@ namespace FilmsUCWpf.ViewModel
                 return openSourceCommand ??
                 (openSourceCommand = new RelayCommand(obj =>
                 {
-                    throw new NotImplementedException();
+					menu.OpenSourcesMenu(Model.Sources);
                 }));
             }
         }
@@ -174,23 +174,39 @@ namespace FilmsUCWpf.ViewModel
 					if (category != null)
 					{
 						category.Books.Remove(Model);
-						//menu.AddElement(this.Model);
-						//Jira FDBC-59
-
-						/*
-						 надо переделать чтобы меню само знало, что нужно добавить в таблицу при удалении элемента
-						 из категории. Это можно реализовать через обработку события изменения коллекции книг в категории.
-						 Если из книг категории будет удалена книга и она будет оставаться в основной таблице книг, 
-						 то обработчик события добавит эту книгу в список книг без категории.
-						*/
-
-						throw new NotImplementedException();
 					}
 				}));
 			}
 		}
 
-		private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private RelayCommand deleteBookCommand;
+        public RelayCommand DeleteBookCommand
+        {
+            get
+            {
+                return deleteBookCommand ??
+                (deleteBookCommand = new RelayCommand(obj =>
+                {
+					BooksTable booksTable = (BooksTable)TableCollection.GetTable<Book>();
+                    booksTable.Remove(Model);
+                }));
+            }
+        }
+
+        private RelayCommand openCMCommand;
+        public RelayCommand OpenCMCommand
+        {
+            get
+            {
+                return openCMCommand ??
+                (openCMCommand = new RelayCommand(obj =>
+                {
+					IsCMOpen = true;
+                }));
+            }
+        }
+
+        private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == nameof(Model.BookGenre))
 			{

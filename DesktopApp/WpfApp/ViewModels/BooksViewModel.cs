@@ -1,5 +1,6 @@
 ﻿using FilmsUCWpf.View;
 using FilmsUCWpf.ViewModel;
+using FilmsUCWpf.ViewModel.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,13 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TablesLibrary.Interpreter;
+using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
+using TL_Objects.CellDataClasses;
 using TL_Tables;
 using WpfApp.Models;
 
 namespace WpfApp.ViewModels
 {
-    public class BooksViewModel : BaseViewModel
+    public class BooksViewModel : BaseViewModel, IMenuViewModel<Book>
     {
         public BooksModel Model { get; private set; }
         public BookGenresTable GenresTable => Model.BookGenresTable;
@@ -58,6 +61,16 @@ namespace WpfApp.ViewModels
             }
         }
 
+        private BaseViewModel<Book> _selectedElement;
+        public BaseViewModel<Book> SelectedElement 
+        { 
+            get => _selectedElement;
+            set
+            {
+                if (_selectedElement != null) _selectedElement.IsSelected = false;
+                _selectedElement = value;
+            } 
+        }
 
         public BooksViewModel()
         {
@@ -85,7 +98,7 @@ namespace WpfApp.ViewModels
             {
                 case NotifyCollectionChangedAction.Add:
                     priorityBook = (PriorityBook)e.NewItems[0];
-                    PriorityBooksMenu.Add(new BookViewModel(priorityBook.Book));
+                    PriorityBooksMenu.Add(new BookViewModel(priorityBook.Book, this));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     priorityBook = (PriorityBook)e.OldItems[0];
@@ -106,14 +119,37 @@ namespace WpfApp.ViewModels
             {
                 case NotifyCollectionChangedAction.Add:
                     category = (BookCategory)e.NewItems[0];
-                    CategoriesMenu.Add(new BookCategoryViewModel(category));
+                    CategoriesMenu.Add(new BookCategoryViewModel(category, this));
+                    category.Books.CollectionChanged += CategoryChanged;
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     category = (BookCategory)e.OldItems[0];
                     CategoriesMenu.Remove(CategoriesMenu.Where(x => x.Model == category).FirstOrDefault());
+                    category.Books.CollectionChanged -= CategoryChanged;
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     CategoriesMenu.Clear();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void CategoryChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Book book;
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    book = (Book)e.NewItems[0];
+                    SimpleBooksMenu.Remove(SimpleBooksMenu.Where(x => x.Model == book).FirstOrDefault());
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    book = (Book)e.OldItems[0];
+                    if (Model.BooksTable.Contains(book))
+                    {
+                        SimpleBooksMenu.Add(new BookViewModel(book, this));
+                    }
                     break;
                 default:
                     break;
@@ -127,8 +163,8 @@ namespace WpfApp.ViewModels
             {
                 case NotifyCollectionChangedAction.Add:
                     book = (Book)e.NewItems[0];
-                    BooksMenu.Add(new BookViewModel(book));
-                    SimpleBooksMenu.Add(new BookViewModel(book));
+                    BooksMenu.Add(new BookViewModel(book, this));
+                    SimpleBooksMenu.Add(new BookViewModel(book, this));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     book = (Book)e.OldItems[0];
@@ -154,22 +190,38 @@ namespace WpfApp.ViewModels
 
             foreach (BookCategory category in Model.BookCategoriesTable)
             {
-                CategoriesMenu.Add(new BookCategoryViewModel(category));
+                CategoriesMenu.Add(new BookCategoryViewModel(category, this));
+                category.Books.CollectionChanged += CategoryChanged;
             }
 
             foreach (Book book in Model.BooksTable)
             {
-                BooksMenu.Add(new BookViewModel(book));
+                BooksMenu.Add(new BookViewModel(book, this));
                 if (book.FranshiseId == 0)
                 {
-                    SimpleBooksMenu.Add(new BookViewModel(book));
+                    SimpleBooksMenu.Add(new BookViewModel(book, this));
                 }
             }
 
             foreach (PriorityBook book in Model.PriorityBooksTable)
             {
-                PriorityBooksMenu.Add(new BookViewModel(book.Book));
+                PriorityBooksMenu.Add(new BookViewModel(book.Book, this));
             }
+        }
+
+        public void OpenInfoMenu(Cell model)
+        {
+            
+        }
+
+        public void OpenUpdateMenu(Cell model)
+        {
+            
+        }
+
+        public void OpenSourcesMenu(ObservableCollection<Source> sources)
+        {
+            
         }
     }
 }

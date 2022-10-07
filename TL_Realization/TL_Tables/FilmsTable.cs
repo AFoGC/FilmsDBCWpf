@@ -42,6 +42,16 @@ namespace TL_Tables
 				Film film = (Film)e.NewItems[0];
 				film.FormatedMark.MarkSystem = MarkSystem;
             }
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                Film film = (Film)e.OldItems[0];
+                if (film.FranshiseId != 0)
+                {
+                    CategoriesTable categoriesTable = (CategoriesTable)TableCollection.GetTable<Category>();
+                    Category category = categoriesTable.GetCategoryByFilm(film);
+                    category.Films.Remove(film);
+                }
+            }
         }
 
         protected override void saveBody(StreamWriter streamWriter)

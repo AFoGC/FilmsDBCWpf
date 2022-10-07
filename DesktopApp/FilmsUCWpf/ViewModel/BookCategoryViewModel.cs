@@ -12,15 +12,16 @@ using System.Windows;
 using TL_Objects;
 using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
+using TL_Tables;
 
 namespace FilmsUCWpf.ViewModel
 {
     public class BookCategoryViewModel : BaseViewModel<BookCategory>, IHasGenre, IHasCheckedProperty
     {
         private readonly IMenuViewModel<Book> menu;
-        public BookCategoryViewModel(BookCategory model) : base(model)
+        public BookCategoryViewModel(BookCategory model, IMenuViewModel<Book> menu) : base(model)
         {
-            //this.menu = menu;
+            this.menu = menu;
             BooksVMs = new ObservableCollection<BookInCategoryViewModel>();
 
             model.PropertyChanged += ModelPropertyChanged;
@@ -67,7 +68,6 @@ namespace FilmsUCWpf.ViewModel
 
         public bool SetFinded(string search)
         {
-            bool export = false;
             if (Model.Name.ToLowerInvariant().Contains(search))
             {
                 IsFinded = true;
@@ -78,7 +78,7 @@ namespace FilmsUCWpf.ViewModel
                 vm.SetFinded(search);
             }
 
-            return export;
+            return IsFinded;
         }
 
         private RelayCommand openUpdateCommand;
@@ -89,7 +89,7 @@ namespace FilmsUCWpf.ViewModel
                 return openUpdateCommand ??
                 (openUpdateCommand = new RelayCommand(obj =>
                 {
-                    throw new NotImplementedException();
+                    menu.OpenUpdateMenu(Model);
                 }));
             }
         }
@@ -107,11 +107,6 @@ namespace FilmsUCWpf.ViewModel
                     book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
                     TableCollection.GetTable<Book>().AddElement(book);
                     Model.Books.Add(book);
-
-                    //menu.RemoveElement(book);
-                    //Jira FDBC-59
-
-                    throw new NotImplementedException();
                 }));
             }
         }
@@ -138,10 +133,98 @@ namespace FilmsUCWpf.ViewModel
                         if (book.FranshiseId == 0)
                         {
                             Model.Books.Add(book);
-                            //menu.RemoveElement(menu.Model.SelectedElement.Model);
                             menu.SelectedElement = null;
                         }
                     }
+                }));
+            }
+        }
+
+        private RelayCommand removeSelectedCommand;
+        public RelayCommand RemoveSelectedCommand
+        {
+            get
+            {
+                return removeSelectedCommand ??
+                (removeSelectedCommand = new RelayCommand(obj =>
+                {
+                    Book book = menu.SelectedElement.Model;
+                    if (Model.Books.Remove(book))
+                    {
+                        menu.SelectedElement = null;
+                    }
+                }));
+            }
+        }
+
+        private RelayCommand deleteCategoryCommand;
+        public RelayCommand DeleteCategoryCommand
+        {
+            get
+            {
+                return deleteCategoryCommand ??
+                (deleteCategoryCommand = new RelayCommand(obj =>
+                {
+                    if (Model.Books.Count == 0)
+                    {
+                        BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+                        categories.Remove(Model);
+                    }
+                }));
+            }
+        }
+
+        private RelayCommand collapseCommand;
+        public RelayCommand CollapseCommand
+        {
+            get
+            {
+                return collapseCommand ??
+                (collapseCommand = new RelayCommand(obj =>
+                {
+                    if (CollectionVisiblility == Visibility.Visible) 
+                        CollectionVisiblility = Visibility.Collapsed;
+                    else 
+                        CollectionVisiblility = Visibility.Visible;
+                }));
+            }
+        }
+
+        private RelayCommand openCMCommand;
+        public RelayCommand OpenCMCommand
+        {
+            get
+            {
+                return openCMCommand ??
+                (openCMCommand = new RelayCommand(obj =>
+                {
+                    IsCMOpen = true;
+                }));
+            }
+        }
+
+        private RelayCommand _CMOpenedCommand;
+        public RelayCommand CMOpenedCommand
+        {
+            get
+            {
+                return _CMOpenedCommand ??
+                (_CMOpenedCommand = new RelayCommand(obj =>
+                {
+                    IsSelected = true;
+                }));
+            }
+        }
+
+        private RelayCommand _CMClosedCommand;
+        public RelayCommand CMClosedCommand
+        {
+            get
+            {
+                return _CMClosedCommand ??
+                (_CMClosedCommand = new RelayCommand(obj =>
+                {
+                    IsSelected = false;
                 }));
             }
         }

@@ -4,17 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:vm="clr-namespace:FilmsUCWpf.ViewModel"
              mc:Ignorable="d">
     <Grid Style="{DynamicResource TControl}" Height="{DynamicResource control_height}">
-        <Grid.ContextMenu>
-            <ContextMenu IsOpen="{Binding IsCMOpen}">
-                <MenuItem Header="{DynamicResource more_info_btn}" ToolTip="{DynamicResource open_more_info_tt}"/>
-                <MenuItem Header="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}"/>
-                <MenuItem Header="{DynamicResource add_to_prior_cm}"/>
-                <Separator />
-                <MenuItem Header="{DynamicResource delete_this_cm}"/>
-            </ContextMenu>
-        </Grid.ContextMenu>
+        <Grid.Resources>
+            
+            
+        </Grid.Resources>
+        
         <StackPanel Orientation="Horizontal">
             <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
                      Width="{DynamicResource id_width}"/>
@@ -33,8 +31,8 @@
             
             <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" 
                      Width="{DynamicResource mark_width}"/>
-            
-            <Button Content="⋮"/>
+
+            <Button Content="⋮" Command="{Binding OpenCMCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -20,21 +20,21 @@ namespace FilmsUCWpf.ViewModel.Interfaces
         public T Model { get; protected set; }
         protected TableCollection TableCollection { get; private set; }
 
-        private bool _isSelected;
+        private bool _isSelected = false;
         public bool IsSelected
         {
             get => _isSelected;
             set { _isSelected = value; OnPropertyChanged(); }
         }
 
-        private bool _isFinded;
+        private bool _isFinded = false;
         public bool IsFinded
         {
             get => _isFinded;
             set { _isSelected = value; OnPropertyChanged(); }
         }
 
-        private bool _isCMOpen;
+        private bool _isCMOpen = false;
         public bool IsCMOpen
         {
             get => _isCMOpen;

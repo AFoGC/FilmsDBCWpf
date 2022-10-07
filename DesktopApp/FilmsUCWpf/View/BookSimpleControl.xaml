@@ -6,14 +6,41 @@
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:vm="clr-namespace:FilmsUCWpf.ViewModel"
-             mc:Ignorable="d">
+             mc:Ignorable="d" >
     <Grid Style="{DynamicResource TControl}" Height="{DynamicResource control_height}">
         <Grid.Resources>
-            
-            
+            <vm:BindingProxy x:Key="proxy" Data="{Binding}"/>
+            <ContextMenu x:Key="cm" IsOpen="{Binding Path=Data.IsCMOpen, Mode=TwoWay, Source={StaticResource proxy}}">
+                
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Opened">
+                        <i:InvokeCommandAction Command="{Binding Path=Data.SelectCommand, Source={StaticResource proxy}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <MenuItem Header="{DynamicResource more_info_btn}" ToolTip="{DynamicResource open_more_info_tt}"
+                          Command="{Binding Path=Data.OpenInfoCommand, Source={StaticResource proxy}}"/>
+                
+                <MenuItem Header="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}"
+                          Command="{Binding Path=Data.OpenUpdateCommand, Source={StaticResource proxy}}"/>
+                
+                <MenuItem Header="{DynamicResource add_to_prior_cm}"
+                          Command="{Binding Path=Data.AddToPriorityCommand, Source={StaticResource proxy}}"/>
+                
+                <Separator />
+                <MenuItem Header="{DynamicResource delete_this_cm}"
+                          Command="{Binding Path=Data.DeleteBookCommand, Source={StaticResource proxy}}"/>
+            </ContextMenu>
+
         </Grid.Resources>
-        
-        <StackPanel Orientation="Horizontal">
+
+        <StackPanel Orientation="Horizontal" ContextMenu="{StaticResource cm}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding SelectCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            
             <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
                      Width="{DynamicResource id_width}"/>
             

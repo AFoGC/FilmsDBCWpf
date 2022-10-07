@@ -54,7 +54,6 @@ namespace FilmsUCWpf.ViewModel
 				return selectCommand ??
 				(selectCommand = new RelayCommand(obj =>
 				{
-					IsSelected = true;
 					menu.SelectedElement = this;
 				}));
 			}

@@ -69,6 +69,7 @@ namespace WpfApp.ViewModels
             {
                 if (_selectedElement != null) _selectedElement.IsSelected = false;
                 _selectedElement = value;
+                _selectedElement.IsSelected = true;
             } 
         }
 

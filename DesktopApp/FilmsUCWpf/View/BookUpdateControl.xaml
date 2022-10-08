@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
             d:DesignHeight="20" d:DesignWidth="940">
     <Grid Height="20">
@@ -21,23 +22,46 @@
             </Style>
         </Grid.Resources>
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="id" ToolTip="{DynamicResource id_utt}" Text="{Binding ID}" IsReadOnly="True" Width="30"/>
-            <TextBox x:Name="name" ToolTip="{DynamicResource name_utt}" Text="{Binding Name}" Width="180"/>
-            <ComboBox x:Name="genre" ToolTip="{DynamicResource genre_utt}" ItemsSource="{Binding GenresCollection}" SelectedItem="{Binding SelectedGenre}" Width="100"/>
-            <TextBox x:Name="realiseYear" ToolTip="{DynamicResource year_utt}" Text="{Binding PublicationYear}" Width="30" PreviewTextInput="TextInputIsNumber"/>
-            <CheckBox x:Name="readed" ToolTip="{DynamicResource readed_utt}" IsChecked="{Binding Readed}" Margin="20,1" VerticalAlignment="Center" 
-                      MouseRightButtonDown="watched_MouseRightButtonDown" PreviewMouseLeftButtonDown="readed_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="author" ToolTip="{DynamicResource author_utt}" Text="{Binding Author}" Width="100"/>
-            <TextBox x:Name="bookmark" ToolTip="{DynamicResource bookmark_utt}" Text="{Binding Bookmark}" Width="101"/>
-            
+            <TextBox ToolTip="{DynamicResource id_utt}" Text="{Binding ID}" IsReadOnly="True" Width="30"/>
+            <TextBox ToolTip="{DynamicResource name_utt}" Text="{Binding Name}" Width="180"/>
+            <ComboBox ToolTip="{DynamicResource genre_utt}" ItemsSource="{Binding GenresCollection}" SelectedItem="{Binding SelectedGenre}" Width="100"/>
+            <TextBox ToolTip="{DynamicResource year_utt}" Text="{Binding PublicationYear}" Width="30">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <i:InvokeCommandAction Command="TextIsNumberCommand" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+            <CheckBox ToolTip="{DynamicResource readed_utt}" IsChecked="{Binding Readed}" Margin="20,1" VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding BaseAutoFill}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseRightButtonDown">
+                        <i:InvokeCommandAction Command="{Binding FullAutoFill}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+            <TextBox ToolTip="{DynamicResource author_utt}" Text="{Binding Author}" Width="100"/>
+            <TextBox ToolTip="{DynamicResource bookmark_utt}" Text="{Binding Bookmark}" Width="101"/>
+
             <local:DateBox x:Name="fullReadDate" Date="{Binding Date}" ToolTip="{DynamicResource end_read_date_utt}" />
-            
-            
-            <ComboBox x:Name="mark" ToolTip="{DynamicResource mark_utt}" SelectedItem="{Binding Mark}" ItemsSource="{Binding Marks}" Width="45"/>
-            <TextBox x:Name="countOfReadings" ToolTip="{DynamicResource cor_utt}" Text="{Binding CountOfReadings}" Width="30" PreviewTextInput="TextInputIsNumber"/>
+
+            <ComboBox ToolTip="{DynamicResource mark_utt}" SelectedItem="{Binding Mark}" ItemsSource="{Binding Marks}" Width="45"/>
+            <TextBox ToolTip="{DynamicResource cor_utt}" Text="{Binding CountOfReadings}" Width="30">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <i:InvokeCommandAction Command="TextIsNumberCommand" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+
             <Rectangle Width="2"/>
-            <Button x:Name="btn_comment" Content="{DynamicResource comment_btn}" Click="btn_comment_Click"/>
-            <Button x:Name="btn_sources" Content="{DynamicResource upd_source_btn}" Click="btn_sources_Click"/>
+            
+            <Button Content="{DynamicResource comment_btn}" IsEnabled="False"/>
+            
+            <Button Content="{DynamicResource upd_source_btn}"
+                    Command="{Binding OpenSourceCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

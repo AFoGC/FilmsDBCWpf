@@ -5,11 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:vm="clr-namespace:FilmsUCWpf.ViewModel"
              mc:Ignorable="d" >
     <Grid Style="{DynamicResource TControl}" Height="{DynamicResource control_height}">
         <Grid.Resources>
-            <vm:BindingProxy x:Key="proxy" Data="{Binding}"/>
+            <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
             <ContextMenu x:Key="cm" IsOpen="{Binding Path=Data.IsCMOpen, Mode=TwoWay, Source={StaticResource proxy}}">
                 
                 <i:Interaction.Triggers>
@@ -40,6 +39,13 @@
                     <i:InvokeCommandAction Command="{Binding SelectCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
+            
+            <!--
+            <StackPanel.ToolTip>
+                <local:BookControl />
+            </StackPanel.ToolTip>
+            -->
+            
             
             <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
                      Width="{DynamicResource id_width}"/>

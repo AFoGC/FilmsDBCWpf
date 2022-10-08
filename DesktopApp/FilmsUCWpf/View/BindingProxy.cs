@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace FilmsUCWpf.ViewModel
+namespace FilmsUCWpf.View
 {
     public class BindingProxy : Freezable
     {

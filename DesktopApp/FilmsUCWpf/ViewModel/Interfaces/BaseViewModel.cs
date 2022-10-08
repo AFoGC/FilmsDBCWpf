@@ -15,7 +15,7 @@ namespace FilmsUCWpf.ViewModel.Interfaces
     public abstract class BaseViewModel<T> : INotifyPropertyChanged where T : Cell
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private readonly DateTime defaultDate = new DateTime();
+        protected readonly DateTime defaultDate = new DateTime();
 
         public T Model { get; protected set; }
         protected TableCollection TableCollection { get; private set; }

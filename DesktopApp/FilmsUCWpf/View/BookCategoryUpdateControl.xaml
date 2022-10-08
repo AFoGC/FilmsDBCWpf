@@ -32,14 +32,20 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="28"/>
-            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_utt}" Width="178"/>
-            <ComboBox x:Name="mark" ItemsSource="{Binding Marks}" SelectedItem="{Binding Mark}" ToolTip="{DynamicResource mark_utt}"/>
-            <TextBox x:Name="hideName" Text="{Binding HideName}" ToolTip="{DynamicResource hidename_utt}" Width="190"/>
+            <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="28"/>
+            <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_utt}" Width="178"/>
+            <ComboBox ItemsSource="{Binding Marks}" SelectedItem="{Binding Mark}" ToolTip="{DynamicResource mark_utt}"/>
+            <TextBox Text="{Binding HideName}" ToolTip="{DynamicResource hidename_utt}" Width="190"/>
         </StackPanel>
-        <Button x:Name="btn_AddSelected" Content="{DynamicResource add_selected_btn}" Grid.Column="1" Click="btn_AddSelected_Click"/>
-        <Button x:Name="btn_RemoveSec" Content="{DynamicResource remove_selected_btn}" Grid.Column="1" Grid.Row="1" Click="btn_RemoveSec_Click"/>
-        <Button x:Name="btn_DeleteCategory" Content="{DynamicResource del_category_btn}" Grid.Column="2" Grid.RowSpan="2" Height="Auto" Click="btn_DeleteCategory_Click"/>
+        
+        <Button Content="{DynamicResource add_selected_btn}" Grid.Column="1" 
+                Command="{Binding AddSelectedCommand}"/>
+        
+        <Button Content="{DynamicResource remove_selected_btn}" Grid.Column="1" Grid.Row="1" 
+                Command="{Binding RemoveSelectedCommand}"/>
+        
+        <Button Content="{DynamicResource del_category_btn}" Grid.Column="2" Grid.RowSpan="2" Height="Auto" 
+                Command="{Binding DeleteCategoryCommand}"/>
 
 
     </Grid>

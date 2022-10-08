@@ -6,7 +6,9 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TL_Objects;
 using TL_Objects.Interfaces;
 using TL_Tables;
@@ -100,35 +102,50 @@ namespace FilmsUCWpf.ViewModel
 
 		private RelayCommand openSourceCommand;
 		public RelayCommand OpenSourceCommand
-        {
-            get
-            {
-                return openSourceCommand ??
-                (openSourceCommand = new RelayCommand(obj =>
-                {
+		{
+			get
+			{
+				return openSourceCommand ??
+				(openSourceCommand = new RelayCommand(obj =>
+				{
 					menu.OpenSourcesMenu(Model.Sources);
-                }));
-            }
-        }
+				}));
+			}
+		}
 
 		public RelayCommand addToPriorityCommand;
 		public RelayCommand AddToPriorityCommand
 		{
-            get
-            {
-                return addToPriorityCommand ??
-                (addToPriorityCommand = new RelayCommand(obj =>
-                {
-                    PriorityBooksTable priorityBooks = (PriorityBooksTable)TableCollection.GetTable<PriorityBook>();
-                    if (!priorityBooks.ContainBook(Model))
-                    {
-                        PriorityBook priority = new PriorityBook();
-                        priority.Book = Model;
-                        priorityBooks.AddElement(priority);
-                    }
-                }));
-            }
-        }
+			get
+			{
+				return addToPriorityCommand ??
+				(addToPriorityCommand = new RelayCommand(obj =>
+				{
+					PriorityBooksTable priorityBooks = (PriorityBooksTable)TableCollection.GetTable<PriorityBook>();
+					if (!priorityBooks.ContainBook(Model))
+					{
+						PriorityBook priority = new PriorityBook();
+						priority.Book = Model;
+						priorityBooks.AddElement(priority);
+					}
+				}));
+			}
+		}
+
+		public RelayCommand removeFromPriorityCommand;
+		public RelayCommand RemoveFromPriorityCommand
+		{
+			get
+			{
+				return removeFromPriorityCommand ??
+				(removeFromPriorityCommand = new RelayCommand(obj =>
+				{
+					PriorityBooksTable priorityBooks = (PriorityBooksTable)TableCollection.GetTable<PriorityBook>();
+					IEnumerable<PriorityBook> enumerable = priorityBooks as IEnumerable<PriorityBook>;
+					priorityBooks?.Remove(enumerable.Where(x => x.Book == Model).FirstOrDefault());
+				}));
+			}
+		}
 
 		private RelayCommand upInCategoryIDCommand;
 		public RelayCommand UpInCategoryIDCommand
@@ -178,29 +195,85 @@ namespace FilmsUCWpf.ViewModel
 			}
 		}
 
-        private RelayCommand deleteBookCommand;
-        public RelayCommand DeleteBookCommand
-        {
+		private RelayCommand deleteBookCommand;
+		public RelayCommand DeleteBookCommand
+		{
+			get
+			{
+				return deleteBookCommand ??
+				(deleteBookCommand = new RelayCommand(obj =>
+				{
+					BooksTable booksTable = (BooksTable)TableCollection.GetTable<Book>();
+					booksTable.Remove(Model);
+				}));
+			}
+		}
+
+		private RelayCommand openCMCommand;
+		public RelayCommand OpenCMCommand
+		{
+			get
+			{
+				return openCMCommand ??
+				(openCMCommand = new RelayCommand(obj =>
+				{
+					IsCMOpen = true;
+				}));
+			}
+		}
+
+		private static readonly Regex regex = new Regex(@"\D");
+		private RelayCommand textIsNumberCommand;
+		public RelayCommand TextIsNumberCommand
+		{
+			get
+			{
+				return textIsNumberCommand ??
+				(textIsNumberCommand = new RelayCommand(obj =>
+				{
+					TextCompositionEventArgs e = obj as TextCompositionEventArgs;
+					e.Handled = regex.IsMatch(e.Text);
+				}));
+			}
+		}
+
+		private RelayCommand baseAutoFill;
+		public RelayCommand BaseAutoFill
+		{
             get
             {
-                return deleteBookCommand ??
-                (deleteBookCommand = new RelayCommand(obj =>
+                return baseAutoFill ??
+                (baseAutoFill = new RelayCommand(obj =>
                 {
-					BooksTable booksTable = (BooksTable)TableCollection.GetTable<Book>();
-                    booksTable.Remove(Model);
+					if (Model.Readed == false)
+					{
+						if (Model.CountOfReadings == 0)
+						{
+							Model.CountOfReadings = 1;
+						}
+					}
                 }));
             }
         }
 
-        private RelayCommand openCMCommand;
-        public RelayCommand OpenCMCommand
-        {
+		private RelayCommand fullAutoFill;
+		public RelayCommand FullAutoFill
+		{
             get
             {
-                return openCMCommand ??
-                (openCMCommand = new RelayCommand(obj =>
+                return fullAutoFill ??
+                (fullAutoFill = new RelayCommand(obj =>
                 {
-					IsCMOpen = true;
+                    BaseAutoFill.Execute(obj);
+                    if (Model.Readed == false)
+                    {
+                        if (Model.CountOfReadings == 0)
+                        {
+                            Model.CountOfReadings = 1;
+                        }
+
+						Model.Readed = true;
+                    }
                 }));
             }
         }

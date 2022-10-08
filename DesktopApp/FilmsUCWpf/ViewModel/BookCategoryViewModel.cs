@@ -16,7 +16,7 @@ using TL_Tables;
 
 namespace FilmsUCWpf.ViewModel
 {
-    public class BookCategoryViewModel : BaseViewModel<BookCategory>, IHasGenre, IHasCheckedProperty
+    public class BookCategoryViewModel : BaseViewModel<BookCategory>, IHasGenre, IFilter
     {
         private readonly IMenuViewModel<Book> menu;
         public BookCategoryViewModel(BookCategory model, IMenuViewModel<Book> menu) : base(model)
@@ -53,17 +53,27 @@ namespace FilmsUCWpf.ViewModel
             return false;
         }
 
-        public bool HasCheckedProperty(bool isReaded)
+        public bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
         {
-            foreach (BookInCategoryViewModel vm in BooksVMs)
+            bool passedFilter = false;
+
+            if (HasSelectedGenre(selectedGenres))
             {
-                if (vm.HasCheckedProperty(isReaded))
+                foreach (var vm in BooksVMs)
                 {
-                    return true;
+                    if (vm.Filter(selectedGenres, isReadedChecked, isUnReadedChecked))
+                    {
+                        passedFilter = true;
+                    }
                 }
             }
 
-            return false;
+            if (passedFilter)
+                Visibility = Visibility.Visible;
+            else
+                Visibility = Visibility.Collapsed;
+
+            return passedFilter;
         }
 
         public bool SetFinded(string search)
@@ -285,6 +295,17 @@ namespace FilmsUCWpf.ViewModel
         {
             get => _collectionVisibility;
             set { _collectionVisibility = value; OnPropertyChanged(); }
+        }
+
+        private Visibility _visiblity = Visibility.Visible;
+        public Visibility Visibility
+        {
+            get => _visiblity;
+            set
+            {
+                _visiblity = value;
+                OnPropertyChanged();
+            }
         }
 
         public String ID

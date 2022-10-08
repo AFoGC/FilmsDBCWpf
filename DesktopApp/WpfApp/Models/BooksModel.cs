@@ -27,5 +27,19 @@ namespace WpfApp.Models
             BookGenresTable = (BookGenresTable)collection.GetTable<BookGenre>();
             PriorityBooksTable = (PriorityBooksTable)collection.GetTable<PriorityBook>();
         }
+
+        public void AddCategory()
+        {
+            BookCategoriesTable.AddElement(new BookCategory());
+        }
+
+        public void AddBook()
+        {
+            Book book = new Book();
+            book.BookGenre = BookGenresTable[0];
+            BooksTable.AddElement(book);
+        }
+
+        public void SaveTables() => TableCollection.SaveTables();
     }
 }

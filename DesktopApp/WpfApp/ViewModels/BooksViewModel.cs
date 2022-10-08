@@ -2,6 +2,7 @@
 using FilmsUCWpf.ViewModel;
 using FilmsUCWpf.ViewModel.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -13,7 +14,9 @@ using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Objects.CellDataClasses;
+using TL_Objects.Interfaces;
 using TL_Tables;
+using WpfApp.Commands;
 using WpfApp.Models;
 
 namespace WpfApp.ViewModels
@@ -21,8 +24,8 @@ namespace WpfApp.ViewModels
     public class BooksViewModel : BaseViewModel, IMenuViewModel<Book>
     {
         public BooksModel Model { get; private set; }
-        public BookGenresTable GenresTable => Model.BookGenresTable;
 
+        public ObservableCollection<GenreButtonViewModel> GenresTable { get; private set; }
         public ObservableCollection<BookCategoryViewModel> CategoriesMenu { get; private set; }
         public ObservableCollection<BookViewModel> SimpleBooksMenu { get; private set; }
         public ObservableCollection<BookViewModel> BooksMenu { get; private set; }
@@ -61,6 +64,34 @@ namespace WpfApp.ViewModels
             }
         }
 
+        private bool _isReadedChecked = true;
+        public bool IsReadedChecked
+        {
+            get => _isReadedChecked;
+            set
+            {
+                if (IsUnReadedChecked != false || value != false)
+                {
+                    _isReadedChecked = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _isUnReadedChecked = true;
+        public bool IsUnReadedChecked
+        {
+            get => _isUnReadedChecked;
+            set
+            {
+                if (IsReadedChecked != false || value != false)
+                {
+                    _isUnReadedChecked = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private BaseViewModel<Book> _selectedElement;
         public BaseViewModel<Book> SelectedElement 
         { 
@@ -73,10 +104,125 @@ namespace WpfApp.ViewModels
             } 
         }
 
+        private Command showCategoriesCommand;
+        public Command ShowCategoriesCommand
+        {
+            get
+            {
+                return showCategoriesCommand ??
+                (showCategoriesCommand = new Command(obj =>
+                {
+                    CategoryVisibility = Visibility.Visible;
+                    BooksVisibility = Visibility.Collapsed;
+                    PriorityVisibility = Visibility.Collapsed;
+                }));
+            }
+        }
+
+        private Command showBooksCommand;
+        public Command ShowBooksCommand
+        {
+            get
+            {
+                return showBooksCommand ??
+                (showBooksCommand = new Command(obj =>
+                {
+                    CategoryVisibility = Visibility.Collapsed;
+                    BooksVisibility = Visibility.Visible;
+                    PriorityVisibility = Visibility.Collapsed;
+                }));
+            }
+        }
+
+        private Command showPriorityCommand;
+        public Command ShowPriorityCommand
+        {
+            get
+            {
+                return showPriorityCommand ??
+                (showPriorityCommand = new Command(obj =>
+                {
+                    CategoryVisibility = Visibility.Collapsed;
+                    BooksVisibility = Visibility.Collapsed;
+                    PriorityVisibility = Visibility.Visible;
+                }));
+            }
+        }
+
+        private Command addCategoryCommand;
+        public Command AddCategoryCommand
+        {
+            get
+            {
+                return addCategoryCommand ??
+                (addCategoryCommand = new Command(obj => Model.AddCategory()));
+            }
+        }
+
+        private Command addBookCommand;
+        public Command AddBookCommand
+        {
+            get
+            {
+                return addBookCommand ??
+                (addBookCommand = new Command(obj => Model.AddBook()));
+            }
+        }
+
+        private Command saveTablesCommand;
+        public Command SaveTablesCommand
+        {
+            get
+            {
+                return saveTablesCommand ??
+                (saveTablesCommand = new Command(obj => Model.SaveTables()));
+            }
+        }
+
+        private Command filterCommand;
+        public Command FilterCommand
+        {
+            get
+            {
+                return filterCommand ??
+                (filterCommand = new Command(obj =>
+                {
+                    IGenre[] genres = getSelectedGenres();
+                    FilterTable(CategoriesMenu, genres);
+                    FilterTable(SimpleBooksMenu, genres);
+                    FilterTable(BooksMenu, genres);
+                    FilterTable(PriorityBooksMenu, genres);
+
+                }));
+            }
+        }
+
+        private void FilterTable(IEnumerable table, IGenre[] genres)
+        {
+            foreach (IFilter vm in table)
+            {
+                vm.Filter(genres, IsReadedChecked, IsUnReadedChecked);
+            }
+        }
+
+        private IGenre[] getSelectedGenres()
+        {
+            List<IGenre> genres = new List<IGenre>();
+            foreach (var genre in GenresTable)
+            {
+                if (genre.IsChecked)
+                {
+                    genres.Add(genre.Model);
+                }
+            }
+            return genres.ToArray();
+        }
+
         public BooksViewModel()
         {
             Model = new BooksModel();
 
+            GenresTable = new ObservableCollection<GenreButtonViewModel>();
             CategoriesMenu = new ObservableCollection<BookCategoryViewModel>();
             SimpleBooksMenu = new ObservableCollection<BookViewModel>();
             BooksMenu = new ObservableCollection<BookViewModel>();
@@ -84,12 +230,34 @@ namespace WpfApp.ViewModels
 
             Model.TableCollection.TableLoad += TableLoad;
 
+            Model.BookGenresTable.CollectionChanged += GenresChanged;
             Model.BooksTable.CollectionChanged += BooksChanged;
             Model.BookCategoriesTable.CollectionChanged += CategoriesChanged;
             Model.PriorityBooksTable.CollectionChanged += PriorityChanged;
 
             CategoryVisibility = Visibility.Visible;
             TableLoad(this, null);
+        }
+
+        private void GenresChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            BookGenre genre;
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    genre = (BookGenre)e.NewItems[0];
+                    GenresTable.Add(new GenreButtonViewModel(genre));
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    genre = (BookGenre)e.OldItems[0];
+                    GenresTable.Remove(GenresTable.Where(x => x.Model == genre).FirstOrDefault());
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    GenresTable.Clear();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void PriorityChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -188,6 +356,12 @@ namespace WpfApp.ViewModels
             SimpleBooksMenu.Clear();
             BooksMenu.Clear();
             PriorityBooksMenu.Clear();
+            GenresTable.Clear();
+
+            foreach (BookGenre genre in Model.BookGenresTable)
+            {
+                GenresTable.Add(new GenreButtonViewModel(genre));
+            }
 
             foreach (BookCategory category in Model.BookCategoriesTable)
             {

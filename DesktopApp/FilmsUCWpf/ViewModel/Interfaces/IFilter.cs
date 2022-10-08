@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TL_Objects.Interfaces;
 
 namespace FilmsUCWpf.ViewModel.Interfaces
 {
-    public interface IHasCheckedProperty
+    public interface IFilter
     {
-        bool HasCheckedProperty(bool isReaded);
+        bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked);
     }
 }

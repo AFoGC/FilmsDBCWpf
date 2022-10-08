@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TL_Objects;
 using TL_Objects.Interfaces;
@@ -15,7 +16,7 @@ using TL_Tables;
 
 namespace FilmsUCWpf.ViewModel
 {
-	public class BookViewModel : BaseViewModel<Book>, IHasGenre, IHasCheckedProperty
+	public class BookViewModel : BaseViewModel<Book>, IHasGenre, IFilter
 	{
 		private readonly BookGenresTable genresTable;
 		private readonly IMenuViewModel<Book> menu;
@@ -43,12 +44,24 @@ namespace FilmsUCWpf.ViewModel
 			return false;
 		}
 
-		public bool HasCheckedProperty(bool isReaded)
+        public bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
 		{
-			return isReaded == Model.Readed;
+			bool passedFilter = false;
+
+			if (HasSelectedGenre(selectedGenres))
+			{
+				passedFilter = Model.Readed == isReadedChecked || Model.Readed != isUnReadedChecked;
+			}
+
+			if (passedFilter)
+				Visibility = Visibility.Visible;
+			else
+				Visibility = Visibility.Collapsed;
+
+			return passedFilter;
 		}
 
-		private RelayCommand selectCommand;
+        private RelayCommand selectCommand;
 		public RelayCommand SelectCommand
 		{
 			get
@@ -155,7 +168,8 @@ namespace FilmsUCWpf.ViewModel
 				return upInCategoryIDCommand ??
 				(upInCategoryIDCommand = new RelayCommand(obj =>
 				{
-					BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+                    IsCMOpen = false;
+                    BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
 					BookCategory category = categories.GetCategoryByBook(Model);
 					category.ChangeBookPositionBy(Model, -1);
 				}));
@@ -170,9 +184,10 @@ namespace FilmsUCWpf.ViewModel
 				return downInCategoryIDCommand ??
 				(downInCategoryIDCommand = new RelayCommand(obj =>
 				{
-					BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+                    IsCMOpen = false;
+                    BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
 					BookCategory category = categories.GetCategoryByBook(Model);
-					category.ChangeBookPositionBy(Model, 1);
+                    category.ChangeBookPositionBy(Model, 1);
 				}));
 			}
 		}
@@ -293,6 +308,17 @@ namespace FilmsUCWpf.ViewModel
 			}
 
 			OnPropertyChanged(e);
+		}
+
+		private Visibility _visiblity = Visibility.Visible;
+		public Visibility Visibility
+		{
+			get => _visiblity;
+			set
+			{
+				_visiblity = value;
+				OnPropertyChanged();
+			}
 		}
 
 		public String ID

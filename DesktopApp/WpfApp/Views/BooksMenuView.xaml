@@ -34,7 +34,8 @@
         <StackPanel Grid.Column="1" Grid.Row="1" Height="20" Margin="1,5" Orientation="Horizontal">
             <TextBox Style="{StaticResource Wtextbox}" Width="180"/>
             <Rectangle Width="5"/>
-            <Button Style="{StaticResource GrayButton}" Content="{DynamicResource serch_btn}" Width="75"/>
+            <Button Style="{StaticResource GrayButton}" Content="{DynamicResource serch_btn}" Width="75"
+                    />
         </StackPanel>
 
         <Grid Grid.Column="1" Grid.Row="2" Height="20">
@@ -105,8 +106,98 @@
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
+
             
-            
+
         </Grid>
+
+        <Border BorderBrush="White" BorderThickness="1" Width="268"
+                Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Border.Resources>
+                <Style x:Key="BB" TargetType="Button" BasedOn="{StaticResource BlueButton}">
+                    <Setter Property="Height" Value="23"/>
+                </Style>
+                <Style x:Key="GB" TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                    <Setter Property="Height" Value="23"/>
+                </Style>
+            </Border.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="28"/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource BB}" Content="{DynamicResource save_tab_btn}"
+							VerticalAlignment="Top" Command="{Binding SaveTablesCommand}"
+                            Grid.ColumnSpan="3" Margin="60,0,60,0"/>
+                    
+                    <Button Style="{StaticResource GB}" Content="{DynamicResource add_cat_btn}"
+                            VerticalAlignment="Top" Command="{Binding AddCategoryCommand}"
+                            Grid.Column="0" Grid.Row="1"/>
+                    
+                    <Button Content="{DynamicResource add_book_btn}" Style="{StaticResource GB}"
+                            VerticalAlignment="Top" Command="{Binding AddBookCommand}"
+                            Grid.Column="0" Grid.Row="2"/>
+                    
+                    <Button Style="{StaticResource GB}" Content="{DynamicResource show_cat_btn}"
+                            VerticalAlignment="Top" Command="{Binding ShowCategoriesCommand}"
+                            Grid.Column="2" Grid.Row="1"/>
+                    
+                    <Button Content="{DynamicResource show_book_btn}" Style="{StaticResource GB}"
+                            VerticalAlignment="Top" Command="{Binding ShowBooksCommand}"
+                            Grid.Column="2" Grid.Row="2"/>
+                    
+                    <Button Content="{DynamicResource show_bprior_btn}" Style="{StaticResource GB}" 
+                            VerticalAlignment="Top" Command="{Binding ShowPriorityCommand}"
+                            Grid.Column="2" Grid.Row="3"/>
+                </Grid>
+                <StackPanel Grid.Row="1">
+                    <StackPanel.Resources>
+                        <Style TargetType="ToggleButton" BasedOn="{StaticResource RequestToggleButton}">
+                            <Setter Property="Width" Value="131"/>
+                            <Setter Property="Margin" Value="1,0"/>
+                            <Setter Property="IsChecked" Value="True"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Separator Background="White"/>
+                    <Label Foreground="White" Content="{DynamicResource filter_title}" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    <StackPanel Orientation="Horizontal" Height="20" Margin="0,0,0,5">
+                        <ToggleButton IsChecked="{Binding IsReadedChecked}" Content="{DynamicResource readed_btn}"
+                                      Command="{Binding FilterCommand}"/>
+                        <ToggleButton IsChecked="{Binding IsUnReadedChecked}" Content="{DynamicResource unreaded_btn}"
+                                      Command="{Binding FilterCommand}"/>
+                    </StackPanel>
+                    <Label Foreground="White" Content="{DynamicResource filter_by_genre}" HorizontalAlignment="Center"/>
+                    <ItemsControl ItemsSource="{Binding GenresTable}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <views:GenreButtonView Command="{Binding Path=DataContext.FilterCommand, RelativeSource={RelativeSource AncestorType=Grid}, Mode=Default}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button Style="{StaticResource BB}" Content="{DynamicResource serch_btn}"
+							VerticalAlignment="Bottom" Command="{Binding FilterCommand}"
+                            Margin="60,5,60,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
     </Grid>
 </UserControl>

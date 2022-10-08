@@ -70,16 +70,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModel\GenreButtonViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IFilter.cs" />
     <Compile Include="View\BindingProxy.cs" />
     <Compile Include="ViewModel\BookCategoryViewModel.cs" />
     <Compile Include="ViewModel\BookInCategoryViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\BaseViewModel.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
-    <Compile Include="ViewModel\Interfaces\IHasCheckedProperty.cs" />
     <Compile Include="ViewModel\Interfaces\IHasGenre.cs" />
     <Compile Include="ViewModel\Interfaces\IMenuViewModel.cs" />
     <Compile Include="View\DateBox.xaml.cs">
       <DependentUpon>DateBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GenreButtonView.xaml.cs">
+      <DependentUpon>GenreButtonView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Interfaces\IBookCategoryUpdateView.cs" />
     <Compile Include="View\Interfaces\IBookUpdateView.cs" />
@@ -221,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FilmPriorityControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GenreButtonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

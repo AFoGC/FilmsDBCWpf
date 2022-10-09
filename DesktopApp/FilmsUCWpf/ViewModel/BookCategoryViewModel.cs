@@ -259,17 +259,7 @@ namespace FilmsUCWpf.ViewModel
                     BooksVMs.Clear();
                     break;
                 case NotifyCollectionChangedAction.Move:
-                    vm = null;
-                    foreach (BookInCategoryViewModel item in BooksVMs)
-                    {
-                        if (item.Model == e.OldItems[0])
-                        {
-                            vm = item;
-                            break;
-                        }
-                    }
-                    BooksVMs.Remove(vm);
-                    BooksVMs.Insert(e.NewStartingIndex, vm);
+                    BooksVMs.Move(e.OldStartingIndex, e.NewStartingIndex);
                     break;
                 default:
                     break;

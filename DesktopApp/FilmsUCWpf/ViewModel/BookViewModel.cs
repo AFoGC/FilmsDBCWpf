@@ -168,7 +168,6 @@ namespace FilmsUCWpf.ViewModel
 				return upInCategoryIDCommand ??
 				(upInCategoryIDCommand = new RelayCommand(obj =>
 				{
-                    IsCMOpen = false;
                     BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
 					BookCategory category = categories.GetCategoryByBook(Model);
 					category.ChangeBookPositionBy(Model, -1);
@@ -184,7 +183,6 @@ namespace FilmsUCWpf.ViewModel
 				return downInCategoryIDCommand ??
 				(downInCategoryIDCommand = new RelayCommand(obj =>
 				{
-                    IsCMOpen = false;
                     BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
 					BookCategory category = categories.GetCategoryByBook(Model);
                     category.ChangeBookPositionBy(Model, 1);

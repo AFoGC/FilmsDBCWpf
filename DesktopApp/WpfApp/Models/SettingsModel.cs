@@ -18,6 +18,7 @@ namespace WpfApp.Models
     public class SettingsModel
     {
         public TableCollection TableCollection { get; private set; }
+        public TLTables Tables { get; private set; }
         public ProfileCollection Profiles { get; private set; }
         public StartUserInfo StartUser { get; set; }
         public DispatcherTimer SaveTimer { get; private set; }
@@ -112,16 +113,27 @@ namespace WpfApp.Models
             settingPath = Path.Combine(profilesDirectoryPath, "ProgramSetting.xml");
 
             TableCollection = collection;
+            Tables = new TLTables(collection);
+
             StartUser = new StartUserInfo();
-            Profiles = new ProfileCollection(profilesDirectoryPath);
             Settings = new SettingsFields();
             SaveTimer = new DispatcherTimer();
+
+            //Profiles Initialization
+            Profiles = new ProfileCollection(profilesDirectoryPath);
+            Profiles.UsedProfileChanged += UsedProfileChanged;
 
             //Initializing Languages
             Cultures = new List<CultureInfo>();
             Cultures.Add(new CultureInfo("en"));
             Cultures.Add(new CultureInfo("ru"));
             Cultures.Add(new CultureInfo("uk-UA"));
+        }
+
+        private void UsedProfileChanged(object sender)
+        {
+            TableCollection.TableFilePath = Profiles.UsedProfile.MainFilePath;
+            TableCollection.LoadTables();
         }
 
         private static SettingsModel instance;

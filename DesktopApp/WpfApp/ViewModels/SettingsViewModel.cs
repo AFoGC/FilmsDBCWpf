@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -14,8 +16,6 @@ using WpfApp.Services;
 
 namespace WpfApp.ViewModels
 {
-	
-
 	public class SettingsViewModel : BaseViewModel
 	{
 		public SettingsModel Model { get; private set; }
@@ -58,14 +58,11 @@ namespace WpfApp.ViewModels
 				OnPropertyChanged();
 			}
 		}
-		public GenresTable FilmGenresTable { get; private set; }
-		public BookGenresTable BookGenresTable { get; private set; }
-		public BooksTable BooksTable { get; private set; }
-		public FilmsTable FilmsTable { get; private set; }
-		public BookCategoriesTable BookCategoriesTable { get; private set; }
-		public CategoriesTable FilmCategoriesTable { get; private set; }
 
-		private Command addBookGenreCommand;
+		public ObservableCollection<Genre> FilmGenres { get; private set; }
+        public ObservableCollection<BookGenre> BookGenres { get; private set; }
+
+        private Command addBookGenreCommand;
 		public Command AddBookGenreCommand
 		{
 			get
@@ -74,7 +71,7 @@ namespace WpfApp.ViewModels
 				(addBookGenreCommand = new Command(obj =>
 				{
 					BookGenre genre = new BookGenre();
-					BookGenresTable.AddElement(genre);
+					Model.Tables.BookGenresTable.AddElement(genre);
 					genre.Name = $"Genre{genre.ID}";
 				}));
 			}
@@ -88,9 +85,9 @@ namespace WpfApp.ViewModels
 				(deleteBookGenreCommand = new Command(obj =>
 				{
 					BookGenre genre = obj as BookGenre;
-					if (!BooksTable.GenreHasBook(genre))
+					if (!Model.Tables.BooksTable.GenreHasBook(genre))
 					{
-						BookGenresTable.Remove(genre);
+                        Model.Tables.BookGenresTable.Remove(genre);
 					}
 				}));
 			}
@@ -105,7 +102,7 @@ namespace WpfApp.ViewModels
 				(addFilmGenreCommand = new Command(obj =>
 				{
 					Genre genre = new Genre();
-					FilmGenresTable.AddElement(genre);
+                    Model.Tables.FilmGenresTable.AddElement(genre);
 					genre.Name = $"Genre{genre.ID}";
 				}));
 			}
@@ -119,9 +116,9 @@ namespace WpfApp.ViewModels
 				(deleteFilmGenreCommand = new Command(obj =>
 				{
 					Genre genre = obj as Genre;
-					if (!FilmsTable.GenreHasFilm(genre))
+					if (!Model.Tables.FilmsTable.GenreHasFilm(genre))
 					{
-						FilmGenresTable.Remove(genre);
+                        Model.Tables.FilmGenresTable.Remove(genre);
 					}
 				}));
 			}
@@ -139,28 +136,28 @@ namespace WpfApp.ViewModels
 				switch (_indexOfFilmMarkSystem)
 				{
 					case 0:
-						FilmsTable.MarkSystem = 3;
-						FilmCategoriesTable.MarkSystem = 3;
+                        Model.Tables.FilmsTable.MarkSystem = 3;
+                        Model.Tables.FilmCategoriesTable.MarkSystem = 3;
 						break;
 					case 1:
-						FilmsTable.MarkSystem = 5;
-						FilmCategoriesTable.MarkSystem = 5;
+                        Model.Tables.FilmsTable.MarkSystem = 5;
+                        Model.Tables.FilmCategoriesTable.MarkSystem = 5;
 						break;
 					case 2:
-						FilmsTable.MarkSystem = 6;
-						FilmCategoriesTable.MarkSystem = 6;
+                        Model.Tables.FilmsTable.MarkSystem = 6;
+                        Model.Tables.FilmCategoriesTable.MarkSystem = 6;
 						break;
 					case 3:
-						FilmsTable.MarkSystem = 10;
-						FilmCategoriesTable.MarkSystem = 10;
+                        Model.Tables.FilmsTable.MarkSystem = 10;
+                        Model.Tables.FilmCategoriesTable.MarkSystem = 10;
 						break;
 					case 4:
-						FilmsTable.MarkSystem = 12;
-						FilmCategoriesTable.MarkSystem = 12;
+                        Model.Tables.FilmsTable.MarkSystem = 12;
+                        Model.Tables.FilmCategoriesTable.MarkSystem = 12;
 						break;
 					case 5:
-						FilmsTable.MarkSystem = 25;
-						FilmCategoriesTable.MarkSystem = 25;
+                        Model.Tables.FilmsTable.MarkSystem = 25;
+                        Model.Tables.FilmCategoriesTable.MarkSystem = 25;
 						break;
 				}
 				OnPropertyChanged();
@@ -177,28 +174,28 @@ namespace WpfApp.ViewModels
 				switch (_indexOfBookMarkSystem)
 				{
 					case 0:
-						BooksTable.MarkSystem = 3;
-						BookCategoriesTable.MarkSystem = 3;
+                        Model.Tables.BooksTable.MarkSystem = 3;
+                        Model.Tables.BookCategoriesTable.MarkSystem = 3;
 						break;
 					case 1:
-						BooksTable.MarkSystem = 5;
-						BookCategoriesTable.MarkSystem = 5;
+                        Model.Tables.BooksTable.MarkSystem = 5;
+                        Model.Tables.BookCategoriesTable.MarkSystem = 5;
 						break;
 					case 2:
-						BooksTable.MarkSystem = 6;
-						BookCategoriesTable.MarkSystem = 6;
+                        Model.Tables.BooksTable.MarkSystem = 6;
+                        Model.Tables.BookCategoriesTable.MarkSystem = 6;
 						break;
 					case 3:
-						BooksTable.MarkSystem = 10;
-						BookCategoriesTable.MarkSystem = 10;
+                        Model.Tables.BooksTable.MarkSystem = 10;
+                        Model.Tables.BookCategoriesTable.MarkSystem = 10;
 						break;
 					case 4:
-						BooksTable.MarkSystem = 12;
-						BookCategoriesTable.MarkSystem = 12;
+                        Model.Tables.BooksTable.MarkSystem = 12;
+                        Model.Tables.BookCategoriesTable.MarkSystem = 12;
 						break;
 					case 5:
-						BooksTable.MarkSystem = 25;
-						BookCategoriesTable.MarkSystem = 25;
+                        Model.Tables.BooksTable.MarkSystem = 25;
+                        Model.Tables.BookCategoriesTable.MarkSystem = 25;
 						break;
 				}
 				OnPropertyChanged();
@@ -313,16 +310,16 @@ namespace WpfApp.ViewModels
 			messageService = new ShowMessageService();
 			explorerService = new ExplorerService();
 
-			FilmGenresTable = (GenresTable)Model.TableCollection.GetTable<Genre>();
-			FilmCategoriesTable = (CategoriesTable)Model.TableCollection.GetTable<Category>();
-			FilmsTable = (FilmsTable)Model.TableCollection.GetTable<Film>();
+			FilmGenres = new ObservableCollection<Genre>();
+			BookGenres = new ObservableCollection<BookGenre>();
+			TablesLoad(Model.TableCollection, null);
 
-			BookGenresTable = (BookGenresTable)Model.TableCollection.GetTable<BookGenre>();
-			BookCategoriesTable = (BookCategoriesTable)Model.TableCollection.GetTable<BookCategory>();
-			BooksTable = (BooksTable)Model.TableCollection.GetTable<Book>();
+			Model.TableCollection.TableLoad += TablesLoad;
+			Model.Tables.BookGenresTable.CollectionChanged += BooksChanged;
+			Model.Tables.FilmGenresTable.CollectionChanged += FilmsChanged; ;
 
-			//Initialize timers list
-			Timers = new List<double>();
+            //Initialize timers list
+            Timers = new List<double>();
 			Timers.Add(10);
 			Timers.Add(15);
 			Timers.Add(30);
@@ -340,8 +337,60 @@ namespace WpfApp.ViewModels
             MarkSystems.Add("25/25");
 
             //Initialize index of mark systems
-            _indexOfFilmMarkSystem = getMarkSystemIndex(FilmsTable);
-			_indexOfBookMarkSystem = getMarkSystemIndex(BooksTable);
+            _indexOfFilmMarkSystem = getMarkSystemIndex(Model.Tables.FilmsTable);
+			_indexOfBookMarkSystem = getMarkSystemIndex(Model.Tables.BooksTable);
+		}
+
+		private void FilmsChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			Genre genre;
+			switch (e.Action)
+			{
+				case NotifyCollectionChangedAction.Add:
+					genre = e.NewItems[0] as Genre;
+                    FilmGenres.Add(genre);
+					break;
+                case NotifyCollectionChangedAction.Remove:
+					genre = e.OldItems[0] as Genre;
+					FilmGenres.Remove(genre);
+                    break;
+                case NotifyCollectionChangedAction.Move:
+					FilmGenres.Move(e.OldStartingIndex, e.NewStartingIndex);
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+					FilmGenres.Clear();
+                    break;
+            }
+		}
+
+		private void BooksChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+            BookGenre genre;
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    genre = e.NewItems[0] as BookGenre;
+                    BookGenres.Add(genre);
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    genre = e.OldItems[0] as BookGenre;
+                    BookGenres.Remove(genre);
+                    break;
+                case NotifyCollectionChangedAction.Move:
+                    BookGenres.Move(e.OldStartingIndex, e.NewStartingIndex);
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    BookGenres.Clear();
+                    break;
+            }
+        }
+
+		private void TablesLoad(object sender, EventArgs e)
+		{
+			FilmGenres.Clear();
+			BookGenres.Clear();
+			foreach (var genre in Model.Tables.FilmGenresTable) FilmGenres.Add(genre);
+			foreach (var genre in Model.Tables.BookGenresTable) BookGenres.Add(genre);
 		}
 
 		private int getMarkSystemIndex(IHasMarkSystem table)

@@ -13,10 +13,12 @@ using TablesLibrary.Interpreter;
 
 namespace WpfApp.Models
 {
-	public class ProfileCollection : IEnumerable, INotifyPropertyChanged, INotifyCollectionChanged
+    public delegate void UsedProfileChangedEventHandler(object sender);
+
+    public class ProfileCollection : IEnumerable, INotifyCollectionChanged
 	{
-        public event PropertyChangedEventHandler PropertyChanged;
 		public event NotifyCollectionChangedEventHandler CollectionChanged;
+		public event UsedProfileChangedEventHandler UsedProfileChanged;
 
 		private ObservableCollection<Profile> profiles = null;
 		private Profile usedProfile = null;
@@ -48,7 +50,7 @@ namespace WpfApp.Models
                     usedProfile = profiles[0];
                 }
                 UsedProfile.IsSelected = true;
-				OnPropertyChanged();
+				UsedProfileChanged?.Invoke(this);
             }
 		}
 
@@ -276,13 +278,5 @@ namespace WpfApp.Models
 		public bool Contains(Profile profile) => profiles.Contains(profile);
 
 		public IEnumerator GetEnumerator() => profiles.GetEnumerator();
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var e = new PropertyChangedEventArgs(propertyName);
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, e);
-        }
 	}
 }

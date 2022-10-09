@@ -7,8 +7,8 @@ namespace WpfApp.Models
 {
 	public class TLTables
 	{
-		public CategoriesTable CategoriesTable => (CategoriesTable)tcoll.GetTable<Category>();
-		public GenresTable GenresTable => (GenresTable)tcoll.GetTable<Genre>();
+		public CategoriesTable FilmCategoriesTable => (CategoriesTable)tcoll.GetTable<Category>();
+		public GenresTable FilmGenresTable => (GenresTable)tcoll.GetTable<Genre>();
 		public FilmsTable FilmsTable => (FilmsTable)tcoll.GetTable<Film>();
 		public SeriesTable SeriesTable => (SeriesTable)tcoll.GetTable<Serie>();
 		public PriorityFilmsTable PriorityFilmsTable => (PriorityFilmsTable)tcoll.GetTable<PriorityFilm>();
@@ -22,21 +22,6 @@ namespace WpfApp.Models
 		{
 			tcoll = collection;
 		}
-
-		public void Initialize()
-		{
-            tcoll.FileEncoding = Encoding.UTF8;
-
-            tcoll.AddTable(new CategoriesTable());
-            tcoll.AddTable(GenresTable.GetDefaultGenresTable());
-            tcoll.AddTable(new FilmsTable());
-            tcoll.AddTable(new SeriesTable());
-            tcoll.AddTable(new PriorityFilmsTable());
-            tcoll.AddTable(BookGenresTable.GetDefaultGenresTable());
-            tcoll.AddTable(new BooksTable());
-            tcoll.AddTable(new BookCategoriesTable());
-            tcoll.AddTable(new PriorityBooksTable());
-        }
 
 		public static TableCollection GetDefaultTableCollectionData()
 		{

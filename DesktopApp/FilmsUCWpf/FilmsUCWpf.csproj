@@ -85,12 +85,6 @@
     <Compile Include="View\GenreButtonView.xaml.cs">
       <DependentUpon>GenreButtonView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Interfaces\IBookCategoryUpdateView.cs" />
-    <Compile Include="View\Interfaces\IBookUpdateView.cs" />
-    <Compile Include="View\Interfaces\IFilmCategoryUpdateView.cs" />
-    <Compile Include="View\Interfaces\IGenreView.cs" />
-    <Compile Include="View\Interfaces\IFilmSerieUpdateView.cs" />
-    <Compile Include="View\Interfaces\IFilmUpdateView.cs" />
     <Compile Include="View\BookCategoryControl.xaml.cs">
       <DependentUpon>BookCategoryControl.xaml</DependentUpon>
     </Compile>
@@ -233,6 +227,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="View\Interfaces\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

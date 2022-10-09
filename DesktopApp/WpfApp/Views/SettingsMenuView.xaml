@@ -88,7 +88,17 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Height="20" Orientation="Horizontal">
-                                    <TextBox Text="{Binding Name}" Style="{StaticResource Wtextbox}" 
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBox" BasedOn="{StaticResource Wtextbox}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="Background" Value="#353553"/>
+                                                    <Setter Property="BorderBrush" Value="#7A7AB6"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <TextBox Text="{Binding Name}" 
                                              Width="200" IsReadOnly="True"/>
                                     <Rectangle Width="30"/>
                                     <Button Style="{StaticResource GrayButton}"
@@ -141,7 +151,7 @@
                 <StackPanel>
                     <Label Content="{DynamicResource st_fgenre_title}" Foreground="White" 
                            BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
-                    <ItemsControl ItemsSource="{Binding FilmGenresTable}">
+                    <ItemsControl ItemsSource="{Binding FilmGenres}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel />
@@ -173,7 +183,7 @@
                 <StackPanel>
                     <Label Content="{DynamicResource st_bgenre_title}" Foreground="White" 
                            BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
-                    <ItemsControl ItemsSource="{Binding BookGenresTable}">
+                    <ItemsControl ItemsSource="{Binding BookGenres}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel />

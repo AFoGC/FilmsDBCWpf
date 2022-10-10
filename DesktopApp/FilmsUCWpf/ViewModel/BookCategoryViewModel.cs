@@ -16,7 +16,7 @@ using TL_Tables;
 
 namespace FilmsUCWpf.ViewModel
 {
-    public class BookCategoryViewModel : BaseViewModel<BookCategory>, IHasGenre, IFilter
+    public class BookCategoryViewModel : BaseViewModel<BookCategory>, IHasGenre, IFilter, IFinded
     {
         private readonly IMenuViewModel<Book> menu;
         public BookCategoryViewModel(BookCategory model, IMenuViewModel<Book> menu) : base(model)
@@ -68,24 +68,20 @@ namespace FilmsUCWpf.ViewModel
                 }
             }
 
-            if (passedFilter)
-                Visibility = Visibility.Visible;
-            else
-                Visibility = Visibility.Collapsed;
-
+            IsFiltered = passedFilter;
             return passedFilter;
         }
 
         public bool SetFinded(string search)
         {
-            if (Model.Name.ToLowerInvariant().Contains(search))
-            {
-                IsFinded = true;
-            }
+            IsFinded = Model.Name.ToLower().Contains(search);
 
             foreach (BookInCategoryViewModel vm in BooksVMs)
             {
-                vm.SetFinded(search);
+                if (vm.SetFinded(search))
+                {
+                    IsFinded = true;
+                }
             }
 
             return IsFinded;
@@ -287,13 +283,13 @@ namespace FilmsUCWpf.ViewModel
             set { _collectionVisibility = value; OnPropertyChanged(); }
         }
 
-        private Visibility _visiblity = Visibility.Visible;
-        public Visibility Visibility
+        private bool _isFiltered = true;
+        public bool IsFiltered
         {
-            get => _visiblity;
+            get => _isFiltered;
             set
             {
-                _visiblity = value;
+                _isFiltered = value;
                 OnPropertyChanged();
             }
         }

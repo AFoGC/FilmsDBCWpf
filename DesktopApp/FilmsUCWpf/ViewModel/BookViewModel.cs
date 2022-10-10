@@ -16,7 +16,7 @@ using TL_Tables;
 
 namespace FilmsUCWpf.ViewModel
 {
-	public class BookViewModel : BaseViewModel<Book>, IHasGenre, IFilter
+	public class BookViewModel : BaseViewModel<Book>, IHasGenre, IFilter, IFinded
 	{
 		private readonly BookGenresTable genresTable;
 		private readonly IMenuViewModel<Book> menu;
@@ -29,7 +29,8 @@ namespace FilmsUCWpf.ViewModel
 
 		public bool SetFinded(string search)
 		{
-			return IsFinded = Model.Name.ToLowerInvariant().Contains(search);
+			IsFinded = Model.Name.ToLowerInvariant().Contains(search);
+            return IsFinded ;
 		}
 
 		public bool HasSelectedGenre(IGenre[] selectedGenres)
@@ -44,7 +45,7 @@ namespace FilmsUCWpf.ViewModel
 			return false;
 		}
 
-        public bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
+		public bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
 		{
 			bool passedFilter = false;
 
@@ -53,15 +54,11 @@ namespace FilmsUCWpf.ViewModel
 				passedFilter = Model.Readed == isReadedChecked || Model.Readed != isUnReadedChecked;
 			}
 
-			if (passedFilter)
-				Visibility = Visibility.Visible;
-			else
-				Visibility = Visibility.Collapsed;
-
+			IsFiltered = passedFilter;
 			return passedFilter;
 		}
 
-        private RelayCommand selectCommand;
+		private RelayCommand selectCommand;
 		public RelayCommand SelectCommand
 		{
 			get
@@ -168,7 +165,7 @@ namespace FilmsUCWpf.ViewModel
 				return upInCategoryIDCommand ??
 				(upInCategoryIDCommand = new RelayCommand(obj =>
 				{
-                    BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+					BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
 					BookCategory category = categories.GetCategoryByBook(Model);
 					category.ChangeBookPositionBy(Model, -1);
 				}));
@@ -183,9 +180,9 @@ namespace FilmsUCWpf.ViewModel
 				return downInCategoryIDCommand ??
 				(downInCategoryIDCommand = new RelayCommand(obj =>
 				{
-                    BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+					BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
 					BookCategory category = categories.GetCategoryByBook(Model);
-                    category.ChangeBookPositionBy(Model, 1);
+					category.ChangeBookPositionBy(Model, 1);
 				}));
 			}
 		}
@@ -253,11 +250,11 @@ namespace FilmsUCWpf.ViewModel
 		private RelayCommand baseAutoFill;
 		public RelayCommand BaseAutoFill
 		{
-            get
-            {
-                return baseAutoFill ??
-                (baseAutoFill = new RelayCommand(obj =>
-                {
+			get
+			{
+				return baseAutoFill ??
+				(baseAutoFill = new RelayCommand(obj =>
+				{
 					if (Model.Readed == false)
 					{
 						if (Model.CountOfReadings == 0)
@@ -265,33 +262,33 @@ namespace FilmsUCWpf.ViewModel
 							Model.CountOfReadings = 1;
 						}
 					}
-                }));
-            }
-        }
+				}));
+			}
+		}
 
 		private RelayCommand fullAutoFill;
 		public RelayCommand FullAutoFill
 		{
-            get
-            {
-                return fullAutoFill ??
-                (fullAutoFill = new RelayCommand(obj =>
-                {
-                    BaseAutoFill.Execute(obj);
-                    if (Model.Readed == false)
-                    {
-                        if (Model.CountOfReadings == 0)
-                        {
-                            Model.CountOfReadings = 1;
-                        }
+			get
+			{
+				return fullAutoFill ??
+				(fullAutoFill = new RelayCommand(obj =>
+				{
+					BaseAutoFill.Execute(obj);
+					if (Model.Readed == false)
+					{
+						if (Model.CountOfReadings == 0)
+						{
+							Model.CountOfReadings = 1;
+						}
 
 						Model.Readed = true;
-                    }
-                }));
-            }
-        }
+					}
+				}));
+			}
+		}
 
-        private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+		private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == nameof(Model.BookGenre))
 			{
@@ -308,13 +305,13 @@ namespace FilmsUCWpf.ViewModel
 			OnPropertyChanged(e);
 		}
 
-		private Visibility _visiblity = Visibility.Visible;
-		public Visibility Visibility
+		private bool _isFiltered = true;
+		public bool IsFiltered
 		{
-			get => _visiblity;
+			get => _isFiltered;
 			set
 			{
-				_visiblity = value;
+				_isFiltered = value;
 				OnPropertyChanged();
 			}
 		}

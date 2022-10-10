@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="ViewModel\GenreButtonViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\IFilter.cs" />
+    <Compile Include="ViewModel\Interfaces\IFinded.cs" />
     <Compile Include="View\BindingProxy.cs" />
     <Compile Include="ViewModel\BookCategoryViewModel.cs" />
     <Compile Include="ViewModel\BookInCategoryViewModel.cs" />

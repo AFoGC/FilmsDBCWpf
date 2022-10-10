@@ -104,6 +104,17 @@ namespace WpfApp.ViewModels
             } 
         }
 
+        private String _searchText;
+        public String SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Command showCategoriesCommand;
         public Command ShowCategoriesCommand
         {
@@ -202,6 +213,31 @@ namespace WpfApp.ViewModels
             foreach (IFilter vm in table)
             {
                 vm.Filter(genres, IsReadedChecked, IsUnReadedChecked);
+            }
+        }
+
+        private Command searchCommand;
+        public Command SearchCommand
+        {
+            get
+            {
+                return searchCommand ??
+                (searchCommand = new Command(obj =>
+                {
+                    SercherTable(CategoriesMenu);
+                    SercherTable(SimpleBooksMenu);
+                    SercherTable(BooksMenu);
+                    SercherTable(PriorityBooksMenu);
+                }));
+            }
+        }
+
+        private void SercherTable(IEnumerable table)
+        {
+            string search = SearchText.ToLower();
+            foreach (IFinded vm in table)
+            {
+                vm.SetFinded(search);
             }
         }
 

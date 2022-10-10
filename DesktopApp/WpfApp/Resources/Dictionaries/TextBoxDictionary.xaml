@@ -24,4 +24,33 @@
         <Setter Property="BorderBrush" Value="#FF7A7A7A"/>
         <Setter Property="Foreground" Value="WhiteSmoke"/>
     </Style>
+
+    
+    <!-- Didn`t work. Do not use-->
+    <Style TargetType="TextBox" x:Key="SearchTextBox" BasedOn="{StaticResource Wtextbox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <TextBlock>
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=DataContext.Text, 
+                                                         RelativeSource={RelativeSource AncestorType=TextBox}}" Value="">
+                                                <Setter Property="Text" Value="Search String"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <ContentControl/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

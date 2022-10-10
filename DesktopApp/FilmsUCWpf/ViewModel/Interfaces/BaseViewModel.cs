@@ -27,11 +27,11 @@ namespace FilmsUCWpf.ViewModel.Interfaces
             set { _isSelected = value; OnPropertyChanged(); }
         }
 
-        private bool _isFinded = false;
+        private bool _isFinded = true;
         public bool IsFinded
         {
             get => _isFinded;
-            set { _isSelected = value; OnPropertyChanged(); }
+            set { _isFinded = value; OnPropertyChanged(); }
         }
 
         private bool _isCMOpen = false;

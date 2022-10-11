@@ -359,6 +359,13 @@ namespace WpfApp.ViewModels
             CVSChangeSort(PriorityBooksCVS, "Model.Mark", ListSortDirection.Descending);
         }));
 
+        private Command closeInfoCommand;
+        public Command CloseInfoCommand =>
+        closeInfoCommand ?? (closeInfoCommand = new Command(obj =>
+        {
+            InfoMenuCondition = InfoMenuCondition.Closed;
+        }));
+
         private void CVSChangeSort(CollectionViewSource cvs, string property, ListSortDirection direction)
         {
             cvs.SortDescriptions.Clear();
@@ -419,10 +426,13 @@ namespace WpfApp.ViewModels
             CategoryCVS = new CollectionViewSource();
             BooksCVS = new CollectionViewSource();
             PriorityBooksCVS = new CollectionViewSource();
+
             SimpleBooksCVS.Source = SimpleBooksMenu;
             CategoryCVS.Source = CategoriesMenu;
             BooksCVS.Source = BooksMenu;
             PriorityBooksCVS.Source = PriorityBooksMenu;
+
+            SourcesCVS = new CollectionViewSource();
         }
 
         private void GenresChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -570,19 +580,72 @@ namespace WpfApp.ViewModels
             }
         }
 
+        private InfoMenuCondition infoMenuCondition;
+        public InfoMenuCondition InfoMenuCondition
+        {
+            get => infoMenuCondition;
+            set
+            {
+                infoMenuCondition = value;
+                if (infoMenuCondition == InfoMenuCondition.Closed)
+                    InfoMenuDataContext = null;
+                OnPropertyChanged();
+            }
+        }
+
+        private Object _infoMenuDataContext;
+        public Object InfoMenuDataContext
+        {
+            get => _infoMenuDataContext;
+            set
+            {
+                _infoMenuDataContext = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void OpenInfoMenu(Cell model)
         {
-            
+            SourcesCVS.Source = null;
+            InfoMenuCondition = InfoMenuCondition.Closed;
+            if (model.GetType() == typeof(Book))
+            {
+                Book book = model as Book;
+                InfoMenuDataContext = new BookViewModel(book, this);
+                InfoMenuCondition = InfoMenuCondition.BookInfo;
+            }
         }
 
         public void OpenUpdateMenu(Cell model)
         {
-            
+            SourcesCVS.Source = null;
+            InfoMenuCondition = InfoMenuCondition.Closed;
+            if (model.GetType() == typeof(Book))
+            {
+                Book book = model as Book;
+                InfoMenuDataContext = new BookViewModel(book, this);
+                InfoMenuCondition = InfoMenuCondition.BookUpdate;
+            }
+            if (model.GetType() == typeof(BookCategory))
+            {
+                BookCategory category = model as BookCategory;
+                InfoMenuDataContext = new BookCategoryViewModel(category, this);
+                InfoMenuCondition = InfoMenuCondition.CategoryUpdate;
+            }
         }
 
+        public CollectionViewSource SourcesCVS { get; private set; }
         public void OpenSourcesMenu(ObservableCollection<Source> sources)
         {
-            
+            SourcesCVS.Source = sources;
         }
+    }
+
+    public enum InfoMenuCondition
+    {
+        Closed,
+        BookInfo,
+        BookUpdate,
+        CategoryUpdate
     }
 }

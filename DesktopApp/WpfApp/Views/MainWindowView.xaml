@@ -86,9 +86,6 @@
             <Grid Visibility="{Binding BooksVisibility}">
                 <local:BooksMenuView />
             </Grid>
-            
-            
-            
         </Grid>
         <!--Menu sector End-->
 

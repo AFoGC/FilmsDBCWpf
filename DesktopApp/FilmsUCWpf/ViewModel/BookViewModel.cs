@@ -277,9 +277,9 @@ namespace FilmsUCWpf.ViewModel
 					BaseAutoFill.Execute(obj);
 					if (Model.Readed == false)
 					{
-						if (Model.CountOfReadings == 0)
+						if (Model.FullReadDate == defaultDate)
 						{
-							Model.CountOfReadings = 1;
+							Model.FullReadDate = DateTime.Today;
 						}
 
 						Model.Readed = true;

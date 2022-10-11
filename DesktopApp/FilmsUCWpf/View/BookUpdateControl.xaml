@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              mc:Ignorable="d" 
             d:DesignHeight="20" d:DesignWidth="940">
     <Grid Height="20">
@@ -25,13 +26,7 @@
             <TextBox ToolTip="{DynamicResource id_utt}" Text="{Binding ID}" IsReadOnly="True" Width="30"/>
             <TextBox ToolTip="{DynamicResource name_utt}" Text="{Binding Name}" Width="180"/>
             <ComboBox ToolTip="{DynamicResource genre_utt}" ItemsSource="{Binding GenresCollection}" SelectedItem="{Binding SelectedGenre}" Width="100"/>
-            <TextBox ToolTip="{DynamicResource year_utt}" Text="{Binding PublicationYear}" Width="30">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="PreviewTextInput">
-                        <i:InvokeCommandAction Command="TextIsNumberCommand" PassEventArgsToCommand="True"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </TextBox>
+            <TextBox ToolTip="{DynamicResource year_utt}" Text="{Binding PublicationYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>
             <CheckBox ToolTip="{DynamicResource readed_utt}" IsChecked="{Binding Readed}" Margin="20,1" VerticalAlignment="Center">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
@@ -48,13 +43,7 @@
             <local:DateBox x:Name="fullReadDate" Date="{Binding Date}" ToolTip="{DynamicResource end_read_date_utt}" />
 
             <ComboBox ToolTip="{DynamicResource mark_utt}" SelectedItem="{Binding Mark}" ItemsSource="{Binding Marks}" Width="45"/>
-            <TextBox ToolTip="{DynamicResource cor_utt}" Text="{Binding CountOfReadings}" Width="30">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="PreviewTextInput">
-                        <i:InvokeCommandAction Command="TextIsNumberCommand" PassEventArgsToCommand="True"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </TextBox>
+            <TextBox ToolTip="{DynamicResource cor_utt}" Text="{Binding CountOfReadings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>
 
             <Rectangle Width="2"/>
             

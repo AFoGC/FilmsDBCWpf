@@ -15,34 +15,36 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Grid.ContextMenu>
-            <ContextMenu StaysOpen="True" IsOpen="{Binding IsCMOpen}">
+        <Grid.Resources>
+            <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
+            <ContextMenu x:Key="cm" StaysOpen="True" IsOpen="{Binding Path=Data.IsCMOpen, Mode=TwoWay, Source={StaticResource proxy}}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Opened">
-                        <i:InvokeCommandAction Command="{Binding CMOpenedCommand}"/>
+                        <i:InvokeCommandAction Command="{Binding Path=Data.CMOpenedCommand, Source={StaticResource proxy}}"/>
                     </i:EventTrigger>
                     <i:EventTrigger EventName="Closed">
-                        <i:InvokeCommandAction Command="{Binding CMClosedCommand}"/>
+                        <i:InvokeCommandAction Command="{Binding Path=Data.CMClosedCommand, Source={StaticResource proxy}}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <MenuItem Header="{DynamicResource edit_category_btn}" ToolTip="{DynamicResource open_edit_tt}"
-                          Command="{Binding OpenUpdateCommand}"/>
+                          Command="{Binding Path=Data.OpenUpdateCommand, Source={StaticResource proxy}}"/>
 
                 <Separator/>
                 <MenuItem Header="{DynamicResource add_selected_cm}"
-                          Command="{Binding AddSelectedCommand}"/>
-                
+                          Command="{Binding Path=Data.AddSelectedCommand, Source={StaticResource proxy}}"/>
+
                 <MenuItem Header="{DynamicResource remove_selected_cm}"
-                          Command="{Binding RemoveSelectedCommand}"/>
-                
+                          Command="{Binding Path=Data.RemoveSelectedCommand, Source={StaticResource proxy}}"/>
+
                 <Separator/>
                 <MenuItem Header="{DynamicResource delete_category_cm}"
-                          Command="{Binding DeleteCategoryCommand}"/>
+                          Command="{Binding Path=Data.DeleteCategoryCommand, Source={StaticResource proxy}}"/>
             </ContextMenu>
-        </Grid.ContextMenu>
-        <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="{DynamicResource id_width}"/>
-        
-        <StackPanel Orientation="Horizontal" Grid.Column="1">
+        </Grid.Resources>
+        <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="{DynamicResource id_width}"
+                 ContextMenu="{StaticResource cm}"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" ContextMenu="{StaticResource cm}">
             <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="{DynamicResource name_width}"/>
             <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="{DynamicResource mark_width}"/>
             

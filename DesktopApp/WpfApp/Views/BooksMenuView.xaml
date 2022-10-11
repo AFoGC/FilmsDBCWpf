@@ -28,10 +28,66 @@
 
         <Border Height="90" Width="940" Grid.Column="1" Grid.ColumnSpan="2" 
                 BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left">
+            <ContentControl Content="{Binding InfoMenuDataContext}">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding InfoMenuCondition}" Value="BookInfo">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Button Content="⨉" Style="{StaticResource GrayButton}" 
+                                                        VerticalAlignment="Top" HorizontalAlignment="Right"
+                                                        Height="20" Width="20" 
+                                                        Command="{Binding Path=DataContext.CloseInfoCommand, 
+                                                        RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
+                                                <views:BookControl />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding InfoMenuCondition}" Value="BookUpdate">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Button Content="⨉" Style="{StaticResource GrayButton}" 
+                                                        VerticalAlignment="Top" HorizontalAlignment="Right"
+                                                        Height="20" Width="20" 
+                                                        Command="{Binding Path=DataContext.CloseInfoCommand, 
+                                                        RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
+                                                <views:BookUpdateControl />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding InfoMenuCondition}" Value="CategoryUpdate">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Button Content="⨉" Style="{StaticResource GrayButton}" 
+                                                        VerticalAlignment="Top" HorizontalAlignment="Right"
+                                                        Height="20" Width="20"
+                                                        Command="{Binding Path=DataContext.CloseInfoCommand, 
+                                                        RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
+                                                <views:BookCategoryUpdateControl />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
         </Border>
 
         <Path Style="{StaticResource BookMenuBack}" Stretch="Uniform" 
-              Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Margin="30"/>
+              Grid.Column="1" Grid.Row="3" Margin="10"/>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Height="20" Margin="1,5" Orientation="Horizontal">
             <TextBox Style="{StaticResource Wtextbox}" Width="180" Text="{Binding SearchText}"/>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
              d:DesignHeight="44" d:DesignWidth="830">
-    <Grid>
+    <Grid Height="44">
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource Wtextbox}">
                 <Setter Property="Height" Value="20"/>

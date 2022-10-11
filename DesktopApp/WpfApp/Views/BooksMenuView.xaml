@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:WpfApp.Views"
              xmlns:views="clr-namespace:FilmsUCWpf.View;assembly=FilmsUCWpf"
              xmlns:vm="clr-namespace:WpfApp.ViewModels"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1265" Focusable="True">
     <UserControl.DataContext>
@@ -38,16 +40,89 @@
                     Command="{Binding SearchCommand}"/>
         </StackPanel>
 
-        <Grid Grid.Column="1" Grid.Row="2" Height="20">
+        <Grid Grid.Column="1" Grid.Row="2" Height="20" Margin="0,0,0,1">
+            <Grid.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                    <Setter Property="Height" Value="20"/>
+                    <Setter Property="Margin" Value="1,0"/>
+                </Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Orientation" Value="Horizontal"/>
+                </Style>
+            </Grid.Resources>
+            <StackPanel Visibility="{Binding CategoryVisibility}">
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" 
+                        ToolTip="{DynamicResource id_tt}" Command="{Binding SortCategoryByID}"/>
+
+                <Button Width="{DynamicResource name_width}" Content="{DynamicResource name_sort}" 
+                        ToolTip="{DynamicResource name_tt}" Command="{Binding SortCategoryByName}"/>
+
+                <Button Width="{DynamicResource mark_width}" Content="{DynamicResource mark_sort}" 
+                        ToolTip="{DynamicResource mark_tt}" Command="{Binding SortCategoryByMark}"/>
+            </StackPanel>
             
+            <StackPanel Visibility="{Binding BooksVisibility}">
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" 
+                        ToolTip="{DynamicResource id_tt}" Command="{Binding SortBooksByID}"/>
+                
+                <Button Width="{DynamicResource name_width}" Content="{DynamicResource name_sort}" 
+                        ToolTip="{DynamicResource name_tt}" Command="{Binding SortBooksByName}"/>
+                
+                <Button Width="{DynamicResource genre_width}" Content="{DynamicResource genre_sort}" 
+                        ToolTip="{DynamicResource genre_tt}" Command="{Binding SortBooksByGenre}"/>
+                
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource year_sort}" 
+                        ToolTip="{DynamicResource year_tt}" Command="{Binding SortBooksByYear}"/>
+                
+                <Rectangle Width="56"/>
+                <Button Width="{DynamicResource genre_width}" Content="{DynamicResource author_sort}" 
+                        ToolTip="{DynamicResource author_tt}" Command="{Binding SortBooksByAuthor}"/>
+                
+                <Button Width="{DynamicResource bookmark_width}" Content="{DynamicResource bookmark_sort}" 
+                        ToolTip="{DynamicResource bookmark_tt}" Command="{Binding SortBooksByBookmark}"/>
+                
+                <Button Width="{DynamicResource date_width}" Content="{DynamicResource date_sort}" 
+                        ToolTip="{DynamicResource end_read_date_tt}" Command="{Binding SortBooksByDate}"/>
+                
+                <Button Width="{DynamicResource mark_width}" Content="{DynamicResource mark_sort}" 
+                        ToolTip="{DynamicResource mark_tt}" Command="{Binding SortBooksByMark}"/>
+                
+                <Button Width="{DynamicResource id_width}" Command="{Binding SortBooksByCoR}">
+                    <Button.Content>
+                        <Path Style="{StaticResource ArrowDownImage}"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Visibility="{Binding PriorityVisibility}">
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" 
+                        ToolTip="{DynamicResource id_tt}" Command="{Binding SortPriorityByID}"/>
+                
+                <Button Width="{DynamicResource name_width}" Content="{DynamicResource name_sort}" 
+                        ToolTip="{DynamicResource name_tt}" Command="{Binding SortPriorityByName}"/>
+                
+                <Button Width="{DynamicResource genre_width}" Content="{DynamicResource genre_sort}" 
+                        ToolTip="{DynamicResource genre_tt}" Command="{Binding SortPriorityByGenre}"/>
+                
+                <Button Width="{DynamicResource id_width}" Content="{DynamicResource year_sort}" 
+                        ToolTip="{DynamicResource year_tt}" Command="{Binding SortPriorityByYear}"/>
+                
+                <Rectangle Width="56"/>
+                <Button Width="{DynamicResource mark_width}" Content="{DynamicResource mark_sort}" 
+                        ToolTip="{DynamicResource mark_tt}" Command="{Binding SortPriorityByMark}"/>
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="3">
-            <ScrollViewer>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="343*"/>
+                <ColumnDefinition Width="617*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.ColumnSpan="2">
                 <StackPanel>
                     <!--Categories Menu-->
                     <StackPanel Visibility="{Binding CategoryVisibility}">
-                        <ItemsControl ItemsSource="{Binding CategoriesMenu}">
+                        <ItemsControl ItemsSource="{Binding CategoryCVS.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -59,7 +134,7 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <ItemsControl ItemsSource="{Binding SimpleBooksMenu}">
+                        <ItemsControl ItemsSource="{Binding SimpleBooksCVS.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -72,10 +147,10 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
-                    
+
                     <!--Books Menu-->
                     <StackPanel Visibility="{Binding BooksVisibility}">
-                        <ItemsControl ItemsSource="{Binding BooksMenu}">
+                        <ItemsControl ItemsSource="{Binding BooksCVS.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -91,7 +166,7 @@
 
                     <!--Priority Menu-->
                     <StackPanel Visibility="{Binding PriorityVisibility}">
-                        <ItemsControl ItemsSource="{Binding PriorityBooksMenu}">
+                        <ItemsControl ItemsSource="{Binding PriorityBooksCVS.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -106,9 +181,6 @@
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
-
-            
-
         </Grid>
 
         <Border BorderBrush="White" BorderThickness="1" Width="268"
@@ -142,23 +214,23 @@
                     <Button Style="{StaticResource BB}" Content="{DynamicResource save_tab_btn}"
 							VerticalAlignment="Top" Command="{Binding SaveTablesCommand}"
                             Grid.ColumnSpan="3" Margin="60,0,60,0"/>
-                    
+
                     <Button Style="{StaticResource GB}" Content="{DynamicResource add_cat_btn}"
                             VerticalAlignment="Top" Command="{Binding AddCategoryCommand}"
                             Grid.Column="0" Grid.Row="1"/>
-                    
+
                     <Button Content="{DynamicResource add_book_btn}" Style="{StaticResource GB}"
                             VerticalAlignment="Top" Command="{Binding AddBookCommand}"
                             Grid.Column="0" Grid.Row="2"/>
-                    
+
                     <Button Style="{StaticResource GB}" Content="{DynamicResource show_cat_btn}"
                             VerticalAlignment="Top" Command="{Binding ShowCategoriesCommand}"
                             Grid.Column="2" Grid.Row="1"/>
-                    
+
                     <Button Content="{DynamicResource show_book_btn}" Style="{StaticResource GB}"
                             VerticalAlignment="Top" Command="{Binding ShowBooksCommand}"
                             Grid.Column="2" Grid.Row="2"/>
-                    
+
                     <Button Content="{DynamicResource show_bprior_btn}" Style="{StaticResource GB}" 
                             VerticalAlignment="Top" Command="{Binding ShowPriorityCommand}"
                             Grid.Column="2" Grid.Row="3"/>
@@ -183,7 +255,7 @@
                     <ItemsControl ItemsSource="{Binding GenresTable}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel />
+                                <WrapPanel/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
@@ -192,9 +264,7 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <Button Style="{StaticResource BB}" Content="{DynamicResource serch_btn}"
-							VerticalAlignment="Bottom" Command="{Binding FilterCommand}"
-                            Margin="60,5,60,0"/>
+                    <Rectangle Height="23"/>
                 </StackPanel>
             </Grid>
         </Border>

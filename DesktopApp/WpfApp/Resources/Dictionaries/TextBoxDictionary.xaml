@@ -25,6 +25,16 @@
         <Setter Property="Foreground" Value="WhiteSmoke"/>
     </Style>
 
+    <!--
+    <Style TargetType="TextBlock" x:Key="GrayTextBlock">
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Background" Value="{StaticResource TextBoxColor}"/>
+        <Setter Property="Margin" Value="1"/>
+    </Style>
+    -->
+
     
     <!-- Didn`t work. Do not use-->
     <Style TargetType="TextBox" x:Key="SearchTextBox" BasedOn="{StaticResource Wtextbox}">

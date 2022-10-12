@@ -19,7 +19,22 @@
             <Style TargetType="CheckBox" BasedOn="{StaticResource BaseCheckBox}"/>
 
             <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}"/>
-            
+
+            <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="Height" Value="13"/>
+                <Setter Property="Width" Value="13"/>
+                <Setter Property="FontSize" Value="10"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="ToolTipControl" TargetType="Grid">
+        <Style.Resources>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource BaseCheckBox}"/>
+
+            <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}"/>
+
             <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
                 <Setter Property="Margin" Value="1"/>
                 <Setter Property="Height" Value="13"/>

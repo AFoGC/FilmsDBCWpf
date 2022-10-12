@@ -80,6 +80,9 @@
     <Compile Include="ViewModel\BookViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\IHasGenre.cs" />
     <Compile Include="ViewModel\Interfaces\IMenuViewModel.cs" />
+    <Compile Include="View\BookToolTip.xaml.cs">
+      <DependentUpon>BookToolTip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DateBox.xaml.cs">
       <DependentUpon>DateBox.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BookSimpleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BookToolTip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

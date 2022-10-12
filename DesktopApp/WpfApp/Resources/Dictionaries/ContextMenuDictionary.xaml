@@ -71,4 +71,11 @@
             </Grid>
         </Border>
     </ControlTemplate>
+
+    <Style TargetType="ToolTip">
+        <Setter Property="Background" Value="{StaticResource ButtonDarkGray}"/>
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="BorderBrush" Value="DarkGray"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
 </ResourceDictionary>

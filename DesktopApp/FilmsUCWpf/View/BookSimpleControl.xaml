@@ -39,14 +39,7 @@
                     <i:InvokeCommandAction Command="{Binding SelectCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            
-            <!--
-            <StackPanel.ToolTip>
-                <local:BookControl />
-            </StackPanel.ToolTip>
-            -->
-            
-            
+
             <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
                      Width="{DynamicResource id_width}"/>
             
@@ -65,7 +58,11 @@
             <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" 
                      Width="{DynamicResource mark_width}"/>
 
-            <Button Content="⋮" Command="{Binding OpenCMCommand}"/>
+            <Button Content="⋮" Command="{Binding OpenCMCommand}">
+                <Button.ToolTip>
+                    <local:BookToolTip />
+                </Button.ToolTip>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

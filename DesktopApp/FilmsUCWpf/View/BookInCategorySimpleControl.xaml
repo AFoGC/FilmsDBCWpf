@@ -65,7 +65,11 @@
             <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" 
                      Width="{DynamicResource mark_width}"/>
 
-            <Button Content="⋮" Command="{Binding OpenCMCommand}"/>
+            <Button Content="⋮" Command="{Binding OpenCMCommand}">
+                <Button.ToolTip>
+                    <local:BookToolTip />
+                </Button.ToolTip>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

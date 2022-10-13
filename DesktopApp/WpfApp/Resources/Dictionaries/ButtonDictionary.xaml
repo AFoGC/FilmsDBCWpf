@@ -164,4 +164,27 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="Button" x:Key="SourceUpButton">
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="Background" Value="#FF400000"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF540000"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Setter Property="Background" Value="#FF360000"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

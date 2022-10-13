@@ -359,13 +359,6 @@ namespace WpfApp.ViewModels
             CVSChangeSort(PriorityBooksCVS, "Model.Mark", ListSortDirection.Descending);
         }));
 
-        private Command closeInfoCommand;
-        public Command CloseInfoCommand =>
-        closeInfoCommand ?? (closeInfoCommand = new Command(obj =>
-        {
-            InfoMenuCondition = InfoMenuCondition.Closed;
-        }));
-
         private void CVSChangeSort(CollectionViewSource cvs, string property, ListSortDirection direction)
         {
             cvs.SortDescriptions.Clear();
@@ -588,7 +581,11 @@ namespace WpfApp.ViewModels
             {
                 infoMenuCondition = value;
                 if (infoMenuCondition == InfoMenuCondition.Closed)
+                {
                     InfoMenuDataContext = null;
+                    SourcesCVS.Source = null;
+                }
+                    
                 OnPropertyChanged();
             }
         }
@@ -639,6 +636,48 @@ namespace WpfApp.ViewModels
         {
             SourcesCVS.Source = sources;
         }
+
+        private Command removeSourceCommand;
+        public Command RemoveSourceCommand =>
+        removeSourceCommand ?? (removeSourceCommand = new Command(obj =>
+        {
+            if (SourcesCVS.Source != null)
+            {
+                Source source = obj as Source;
+                ObservableCollection<Source> sources = SourcesCVS.Source as ObservableCollection<Source>;
+                sources.Remove(source);
+            }
+        }));
+
+        private Command addSourceCommand;
+        public Command AddSourceCommand =>
+        addSourceCommand ?? (addSourceCommand = new Command(obj =>
+        {
+            if (SourcesCVS.Source != null)
+            {
+                ObservableCollection<Source> sources = SourcesCVS.Source as ObservableCollection<Source>;
+                sources.Add(new Source());
+            }
+        }));
+
+        private Command moveUpSourceCommand;
+        public Command MoveUpSourceCommand =>
+        moveUpSourceCommand ?? (moveUpSourceCommand = new Command(obj =>
+        {
+            if (SourcesCVS.Source != null)
+            {
+                Source source = obj as Source;
+                ObservableCollection<Source> sources = SourcesCVS.Source as ObservableCollection<Source>;
+                sources.Move(sources.IndexOf(source), 0);
+            }
+        }));
+
+        private Command closeInfoCommand;
+        public Command CloseInfoCommand =>
+        closeInfoCommand ?? (closeInfoCommand = new Command(obj =>
+        {
+            InfoMenuCondition = InfoMenuCondition.Closed;
+        }));
     }
 
     public enum InfoMenuCondition

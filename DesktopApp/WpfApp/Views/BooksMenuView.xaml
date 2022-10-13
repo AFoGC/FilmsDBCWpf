@@ -26,65 +26,129 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Border Height="90" Width="940" Grid.Column="1" Grid.ColumnSpan="2" 
+        <StackPanel Height="90" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Border Width="940"  
                 BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left">
-            <ContentControl Content="{Binding InfoMenuDataContext}">
-                <ContentControl.Style>
-                    <Style TargetType="ContentControl">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding InfoMenuCondition}" Value="BookInfo">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Button Content="⨉" Style="{StaticResource GrayButton}" 
+                <ContentControl Content="{Binding InfoMenuDataContext}">
+                    <ContentControl.Style>
+                        <Style TargetType="ContentControl">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding InfoMenuCondition}" Value="BookInfo">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Button Content="⨉" Style="{StaticResource GrayButton}" 
                                                         VerticalAlignment="Top" HorizontalAlignment="Right"
                                                         Height="20" Width="20" 
                                                         Command="{Binding Path=DataContext.CloseInfoCommand, 
                                                         RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
-                                                <views:BookControl />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding InfoMenuCondition}" Value="BookUpdate">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Button Content="⨉" Style="{StaticResource GrayButton}" 
+                                                    <views:BookControl />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding InfoMenuCondition}" Value="BookUpdate">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Button Content="⨉" Style="{StaticResource GrayButton}" 
                                                         VerticalAlignment="Top" HorizontalAlignment="Right"
                                                         Height="20" Width="20" 
                                                         Command="{Binding Path=DataContext.CloseInfoCommand, 
                                                         RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
-                                                <views:BookUpdateControl />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding InfoMenuCondition}" Value="CategoryUpdate">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Button Content="⨉" Style="{StaticResource GrayButton}" 
+                                                    <views:BookUpdateControl />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding InfoMenuCondition}" Value="CategoryUpdate">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Button Content="⨉" Style="{StaticResource GrayButton}" 
                                                         VerticalAlignment="Top" HorizontalAlignment="Right"
                                                         Height="20" Width="20"
                                                         Command="{Binding Path=DataContext.CloseInfoCommand, 
                                                         RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
-                                                <views:BookCategoryUpdateControl />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ContentControl.Style>
-            </ContentControl>
-        </Border>
+                                                    <views:BookCategoryUpdateControl />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentControl.Style>
+                </ContentControl>
+            </Border>
+            <Border BorderBrush="White" BorderThickness="1" Grid.Column="3" Width="288">
+                <Border.Resources>
+                    <views:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                    <ContextMenu x:Key="sourceCM">
+                        <MenuItem Header="{DynamicResource del_source_cm}"
+                                  Command="{Binding Path=Data.RemoveSourceCommand, 
+                                  Source={StaticResource proxy}, Mode=Default}"
+                                  CommandParameter="{Binding}"/>
+
+                        <MenuItem Header="{DynamicResource up_in_category_cm}"
+                                  Command="{Binding Path=Data.MoveUpSourceCommand, 
+                                  Source={StaticResource proxy}, Mode=Default}"
+                                  CommandParameter="{Binding}"/>
+                    </ContextMenu>
+                </Border.Resources>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Width="85" HorizontalAlignment="Left" Content="{DynamicResource add_source_btn}"
+                            Command="{Binding Path=DataContext.AddSourceCommand, 
+                            RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource BlueButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SourcesCVS.Source}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <ScrollViewer Grid.Row="1">
+                        <ItemsControl ItemsSource="{Binding SourcesCVS.View}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" ContextMenu="{StaticResource sourceCM}">
+                                        <TextBox Text="{Binding Name}" Style="{StaticResource Wtextbox}" Width="70" 
+                                             ContextMenu="{StaticResource sourceCM}"/>
+
+                                        <TextBox Text="{Binding SourceUrl}" Style="{StaticResource Wtextbox}" Width="160" 
+                                             ContextMenu="{StaticResource sourceCM}"/>
+
+                                        <Button Content="A" Style="{StaticResource SourceUpButton}" 
+                                            Width="20" Margin="10,0,0,0" 
+                                            Command="{Binding Path=DataContext.MoveUpSourceCommand, 
+                                            RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"
+                                            CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+                
+            </Border>
+        </StackPanel>
 
         <Path Style="{StaticResource BookMenuBack}" Stretch="Uniform" 
               Grid.Column="1" Grid.Row="3" Margin="10"/>

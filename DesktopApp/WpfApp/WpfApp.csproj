@@ -204,6 +204,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Models\BooksModel.cs" />
+    <Compile Include="Models\FilmsModel.cs" />
     <Compile Include="Models\IUserModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -219,12 +220,16 @@
     <Compile Include="Services\ShowMessageService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BooksViewModel.cs" />
+    <Compile Include="ViewModels\FilmsViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IMainViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StatusTimer.cs" />
     <Compile Include="Views\BooksMenuView.xaml.cs">
       <DependentUpon>BooksMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FilmsMenuView.xaml.cs">
+      <DependentUpon>FilmsMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
     <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
@@ -323,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ExitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FilmsMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

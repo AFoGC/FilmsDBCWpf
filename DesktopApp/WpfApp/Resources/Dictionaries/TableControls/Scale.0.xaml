@@ -33,7 +33,7 @@
         <Style.Resources>
             <Style TargetType="CheckBox" BasedOn="{StaticResource BaseCheckBox}"/>
 
-            <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}"/>
+            <Style TargetType="TextBox" BasedOn="{StaticResource ROtextbox}"/>
 
             <Style TargetType="Button" BasedOn="{StaticResource GrayButton}">
                 <Setter Property="Margin" Value="1"/>

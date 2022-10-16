@@ -21,7 +21,7 @@
                           Command="{Binding Path=Data.CopyUrlCommand, Source={StaticResource proxy}}"/>
 
                 <MenuItem Header="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}" 
-                          Command="{Binding Path=Data.OpenInfoCommand, Source={StaticResource proxy}}"/>
+                          Command="{Binding Path=Data.OpenUpdateCommand, Source={StaticResource proxy}}"/>
 
                 <MenuItem Header="{DynamicResource add_to_prior_cm}" 
                           Command="{Binding Path=Data.AddToPriorityCommand, Source={StaticResource proxy}}"/>

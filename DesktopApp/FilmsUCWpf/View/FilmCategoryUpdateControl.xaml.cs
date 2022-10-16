@@ -27,20 +27,5 @@ namespace FilmsUCWpf.View
         {
             InitializeComponent();
         }
-
-        private void btn_AddSelected_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void btn_RemoveSec_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void btn_DeleteCategory_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

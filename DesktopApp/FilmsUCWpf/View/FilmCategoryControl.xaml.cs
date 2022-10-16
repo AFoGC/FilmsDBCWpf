@@ -26,57 +26,5 @@ namespace FilmsUCWpf.View
 		{
 			InitializeComponent();
 		}
-		private void hide_show_Cilck(object sender, RoutedEventArgs e)
-		{
-			
-		}
-
-		public void SetVisualDefault()
-		{
-			SolidColorBrush myBrush = BrushColors.DefaultColor;
-			this.id.Background = myBrush;
-			this.name.Background = myBrush;
-			this.mark.Background = myBrush;
-		}
-
-		public void SetVisualFinded()
-		{
-			SolidColorBrush myBrush = BrushColors.FindColor;
-			this.id.Background = myBrush;
-			this.name.Background = myBrush;
-			this.mark.Background = myBrush;
-		}
-
-		public void SetVisualSelected()
-		{
-			SolidColorBrush myBrush = BrushColors.SelectColor;
-			this.id.Background = myBrush;
-			this.name.Background = myBrush;
-			this.mark.Background = myBrush;
-		}
-
-		private void btn_update_Click(object sender, RoutedEventArgs e)
-		{
-			
-		}
-
-        private void btn_plus_Click(object sender, RoutedEventArgs e)
-        {
-			
-        }
-
-        private void cm_Opened(object sender, RoutedEventArgs e) => SetVisualSelected();
-        private void cm_Closed(object sender, RoutedEventArgs e) => SetVisualDefault();
-
-		private void delete_Click(object sender, RoutedEventArgs e) { }
-
-		private void addSelected_Click(object sender, RoutedEventArgs e) { }
-
-        private void removeSelected_Click(object sender, RoutedEventArgs e) { }
-
-        private void OpenCM(object sender, RoutedEventArgs e)
-		{
-			
-		}
 	}
 }

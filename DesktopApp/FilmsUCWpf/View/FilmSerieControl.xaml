@@ -4,68 +4,97 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d">
     <Grid Style="{DynamicResource TControl}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="0" x:Name="lowerRow"/>
+            <RowDefinition Height="{DynamicResource row_height}"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Grid.ContextMenu>
-            <ContextMenu Name="cm" StaysOpen="true" Opened="id_GotFocus">
-                <MenuItem Header="{DynamicResource comment_btn}" ToolTip="{DynamicResource open_comment_tt}" Click="btn_comment_Click"/>
-                <MenuItem Header="{Binding Sources}" ToolTip="{DynamicResource copy_url_tt}" Click="btn_copyUrl_Click"/>
-                <MenuItem Header="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}" Click="btn_update_Click"/>
-                <MenuItem Header="{DynamicResource add_to_prior_cm}" Click="addToPriority_Click"/>
-                <Separator />
-                <MenuItem Header="{DynamicResource delete_this_cm}" Click="MenuItem_Click" />
-            </ContextMenu>
-        </Grid.ContextMenu>
+        <Grid.Resources>
+            <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
+            <ContextMenu x:Key="cm" IsOpen="{Binding Path=Data.IsCMOpen, Mode=TwoWay, Source={StaticResource proxy}}">
 
-        <TextBox x:Name="id" 
-                 Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
-                 Width="{DynamicResource id_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Opened">
+                        <i:InvokeCommandAction Command="{Binding Path=Data.SelectCommand, Source={StaticResource proxy}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <MenuItem Header="{DynamicResource comment_btn}" ToolTip="{DynamicResource open_comment_tt}"
+                          Command="{Binding Path=Data.OpenComment, Source={StaticResource proxy}}"/>
+
+                <MenuItem Header="{Binding Sources}" ToolTip="{DynamicResource copy_url_tt}"
+                          Command="{Binding Path=Data.CopyUrlCommand, Source={StaticResource proxy}}"/>
+
+                <MenuItem Header="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}"
+                          Command="{Binding Path=Data.OpenUpdateCommand, Source={StaticResource proxy}}"/>
+
+                <MenuItem Header="{DynamicResource add_to_prior_cm}"
+                          Command="{Binding Path=Data.AddToPriorityCommand, Source={StaticResource proxy}}"/>
+
+                <Separator />
+                <MenuItem Header="{DynamicResource delete_this_cm}"
+                          Command="{Binding Path=Data.DeleteFilmCommand, Source={StaticResource proxy}}"/>
+            </ContextMenu>
+        </Grid.Resources>
+
+        <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
+                 Width="{DynamicResource id_width}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding SelectCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1">
-            <TextBox x:Name="name" 
-                     Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" 
-                     Width="{DynamicResource name_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="genre" 
-                     Text="{Binding GenreText}" ToolTip="{DynamicResource genre_tt}" 
-                     Width="{DynamicResource genre_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="realiseYear" 
-                     Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_tt}" 
-                     Width="{DynamicResource id_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <CheckBox x:Name="watched" 
-                      IsChecked="{Binding Watched}" ToolTip="{DynamicResource watched_tt}" 
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding SelectCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            
+            <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" 
+                     Width="{DynamicResource name_width}"/>
+            
+            <TextBox Text="{Binding GenreText}" ToolTip="{DynamicResource genre_tt}" 
+                     Width="{DynamicResource genre_width}"/>
+            
+            <TextBox Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_tt}" 
+                     Width="{DynamicResource id_width}"/>
+            
+            <CheckBox IsChecked="{Binding Watched}" ToolTip="{DynamicResource watched_tt}" 
                       Margin="20,0" IsEnabled="False"/>
-            <TextBox x:Name="startWatchDate" 
-                     Text="{Binding StartWatchDateTxt}" ToolTip="{DynamicResource start_watch_date_tt}" 
-                     Width="{DynamicResource date_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="countOfWatchedSeries" 
-                     Text="{Binding CountOfWatchedSeries}" ToolTip="{DynamicResource watched_series_tt}" 
-                     Width="{DynamicResource id_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="watchDate" 
-                     Text="{Binding DateOfWatchTxt}" ToolTip="{DynamicResource end_watch_date_tt}" 
-                     Width="{DynamicResource date_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="totalSeries" 
-                     Text="{Binding TotalSeries}" ToolTip="{DynamicResource total_series_tt}" 
-                     Width="{DynamicResource id_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="mark" 
-                     Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" 
-                     Width="{DynamicResource mark_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
-            <TextBox x:Name="countOfviews" 
-                     Text="{Binding CountOfViews}" ToolTip="{DynamicResource cov_tt}" 
-                     Width="{DynamicResource id_width}" PreviewMouseLeftButtonDown="id_PreviewMouseLeftButtonDown"/>
+            
+            <TextBox Text="{Binding StartWatchDateTxt}" ToolTip="{DynamicResource start_watch_date_tt}" 
+                     Width="{DynamicResource date_width}"/>
+            
+            <TextBox Text="{Binding CountOfWatchedSeries}" ToolTip="{DynamicResource watched_series_tt}" 
+                     Width="{DynamicResource id_width}"/>
+            
+            <TextBox Text="{Binding DateOfWatchTxt}" ToolTip="{DynamicResource end_watch_date_tt}" 
+                     Width="{DynamicResource date_width}"/>
+            
+            <TextBox Text="{Binding TotalSeries}" ToolTip="{DynamicResource total_series_tt}" 
+                     Width="{DynamicResource id_width}"/>
+            
+            <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" 
+                     Width="{DynamicResource mark_width}"/>
+            
+            <TextBox Text="{Binding CountOfViews}" ToolTip="{DynamicResource cov_tt}" 
+                     Width="{DynamicResource id_width}"/>
         </StackPanel>
 
-        <Button Content="⋮" Grid.Column="2" Click="OpenCM"/>
+        <Button Content="⋮" Grid.Column="2" Command="{Binding OpenCMCommand}"/>
         
-        <TextBox x:Name="comment" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"
+                 ToolTip="{DynamicResource comment_tt}" Visibility="{Binding CommentVisibility}"/>
 
     </Grid>
 </UserControl>

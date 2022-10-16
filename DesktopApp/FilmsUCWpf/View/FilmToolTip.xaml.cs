@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 namespace FilmsUCWpf.View
 {
     /// <summary>
-    /// Логика взаимодействия для FilmInCategorySimpleControl.xaml
+    /// Логика взаимодействия для FilmToolTip.xaml
     /// </summary>
-    public partial class FilmInCategorySimpleControl : UserControl
+    public partial class FilmToolTip : UserControl
     {
-		public FilmInCategorySimpleControl()
-		{
-			InitializeComponent();
-		}
-	}
+        public FilmToolTip()
+        {
+            InitializeComponent();
+        }
+    }
 }

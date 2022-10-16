@@ -71,6 +71,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModel\FilmCategoryViewModel.cs" />
+    <Compile Include="ViewModel\FilmInCategoryViewModel.cs" />
+    <Compile Include="ViewModel\FilmSerieViewModel.cs" />
     <Compile Include="ViewModel\FilmViewModel.cs" />
     <Compile Include="ViewModel\GenreButtonViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\IFilter.cs" />
@@ -87,6 +89,9 @@
     </Compile>
     <Compile Include="View\DateBox.xaml.cs">
       <DependentUpon>DateBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FilmToolTip.xaml.cs">
+      <DependentUpon>FilmToolTip.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GenreButtonView.xaml.cs">
       <DependentUpon>GenreButtonView.xaml</DependentUpon>
@@ -221,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FilmSerieControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FilmToolTip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

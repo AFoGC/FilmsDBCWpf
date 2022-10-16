@@ -13,6 +13,7 @@
     <v:Double x:Key="mark_width">43</v:Double>
 
     <v:Double x:Key="control_height">15</v:Double>
+    <GridLength x:Key="row_height">15</GridLength>
 
     <Style x:Key="TControl" TargetType="Grid" BasedOn="{StaticResource BaseTControl}">
         <Style.Resources>

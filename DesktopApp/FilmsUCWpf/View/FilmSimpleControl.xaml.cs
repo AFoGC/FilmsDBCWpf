@@ -24,40 +24,5 @@ namespace FilmsUCWpf.View
 		{
 			InitializeComponent();
 		}
-
-		private void id_Click(object sender, RoutedEventArgs e)
-		{
-			
-		}
-
-		private void id_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			
-		}
-
-		private void btn_moreInfo_Click(object sender, RoutedEventArgs e)
-		{
-			
-		}
-
-        private void btn_update_Click(object sender, RoutedEventArgs e)
-        {
-			
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-			
-        }
-
-        private void addToPriority_Click(object sender, RoutedEventArgs e)
-        {
-			
-        }
-
-		private void OpenCM(object sender, RoutedEventArgs e)
-		{
-			
-		}
 	}
 }

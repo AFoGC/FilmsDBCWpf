@@ -28,31 +28,5 @@ namespace FilmsUCWpf.View
 		{
 			InitializeComponent();
 		}
-
-		private void btn_comment_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void btn_sources_Click(object sender, RoutedEventArgs e)
-		{
-			
-		}
-
-		private void watched_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-		{
-            
-		}
-
-		private void watched_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			
-		}
-
-		private void TextInputIsNumber(object sender, TextCompositionEventArgs e)
-		{
-			Regex regex = new Regex("[^0-9]+");
-			e.Handled = regex.IsMatch(e.Text);
-		}
     }
 }

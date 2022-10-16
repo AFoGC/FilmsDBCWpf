@@ -8,6 +8,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Documents;
 using TL_Objects;
 using TL_Objects.Interfaces;
 using TL_Tables;
@@ -19,6 +21,7 @@ namespace FilmsUCWpf.ViewModel
         private readonly GenresTable genresTable;
         private readonly SeriesTable seriesTable;
         private readonly IMenuViewModel<Film> menu;
+
         public FilmViewModel(Film model, IMenuViewModel<Film> menu) : base(model)
         {
             model.PropertyChanged += ModelPropertyChanged;
@@ -242,6 +245,26 @@ namespace FilmsUCWpf.ViewModel
             }
         }
 
+        private RelayCommand openComment;
+        public RelayCommand OpenComment
+        {
+            get
+            {
+                return openComment ??
+                (openComment = new RelayCommand(obj => 
+                {
+                    if (CommentVisibility == Visibility.Visible)
+                    {
+                        CommentVisibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        CommentVisibility = Visibility.Visible;
+                    }
+                }));
+            }
+        }
+
         public bool SetFinded(string search)
         {
             IsFinded = Model.Name.ToLowerInvariant().Contains(search);
@@ -334,7 +357,19 @@ namespace FilmsUCWpf.ViewModel
                 Model.Genre = value;
             }
         }
+
         public INotifyCollectionChanged GenresCollection => genresTable;
+
+        private Visibility commentVisibility = Visibility.Collapsed;
+        public Visibility CommentVisibility
+        {
+            get => commentVisibility;
+            set
+            {
+                commentVisibility = value;
+                OnPropertyChanged();
+            }
+        }
         public String RealiseYear
         {
             get => formatZero(Model.RealiseYear);

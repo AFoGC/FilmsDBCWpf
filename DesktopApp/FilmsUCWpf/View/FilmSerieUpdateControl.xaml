@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
             d:DesignWidth="940" d:DesignHeight="40">
-    <Grid x:Name="grid" HorizontalAlignment="Center" Width="940" VerticalAlignment="Top">
+    <Grid HorizontalAlignment="Center" Width="940" VerticalAlignment="Top">
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource Wtextbox}">
                 <Setter Property="Height" Value="20"/>
@@ -22,25 +22,32 @@
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="0" x:Name="lowerRow"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="id" Text="{Binding ID}" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="30"/>
-            <TextBox x:Name="name" Text="{Binding Name}" ToolTip="{DynamicResource name_utt}" Width="180"/>
-            <ComboBox x:Name="genre" ItemsSource="{Binding GenresCollection}" SelectedItem="{Binding SelectedGenre}" ToolTip="{DynamicResource genre_utt}" Width="100"/>
-            <TextBox x:Name="realiseYear" Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_utt}" Width="30" MaxLength="4" PreviewTextInput="TextInputIsNumber"/>
-            <CheckBox x:Name="watched" IsChecked="{Binding Watched}" ToolTip="{DynamicResource watched_utt}" Margin="20,1" VerticalAlignment="Center"
-                  MouseRightButtonDown="watched_MouseRightButtonDown" PreviewMouseLeftButtonDown="watched_PreviewMouseLeftButtonDown"/>
-            <local:DateBox x:Name="startWatchDate" Date="{Binding StartWatchDate}" ToolTip="{DynamicResource start_watch_date_utt}"/>
-            <TextBox x:Name="countOfWatchedSeries" Text="{Binding CountOfWatchedSeries}" ToolTip="{DynamicResource watched_series_utt}" Width="30" PreviewTextInput="TextInputIsNumber"/>
-            <local:DateBox x:Name="watchDate" Date="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_utt}"/>
-            <TextBox x:Name="totalSeries" Text="{Binding TotalSeries}" ToolTip="{DynamicResource total_series_utt}" Width="30" PreviewTextInput="TextInputIsNumber"/>
-            <ComboBox x:Name="mark" ItemsSource="{Binding Marks}" SelectedItem="{Binding Mark}" ToolTip="{DynamicResource mark_utt}" Width="45"/>
-            <TextBox x:Name="countOfViews" Text="{Binding CountOfViews}" ToolTip="{DynamicResource cov_utt}" Width="30" PreviewTextInput="TextInputIsNumber"/>
+            <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="30"/>
+            <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_utt}" Width="180"/>
+            <ComboBox ItemsSource="{Binding GenresCollection}" SelectedItem="{Binding SelectedGenre}" ToolTip="{DynamicResource genre_utt}" Width="100"/>
+            <TextBox Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_utt}" Width="30" MaxLength="4"/>
+            <CheckBox IsChecked="{Binding Watched}" ToolTip="{DynamicResource watched_utt}" Margin="20,1" VerticalAlignment="Center">
+                
+            </CheckBox>
+            <local:DateBox Date="{Binding StartWatchDate}" ToolTip="{DynamicResource start_watch_date_utt}"/>
+            <TextBox Text="{Binding CountOfWatchedSeries}" ToolTip="{DynamicResource watched_series_utt}" Width="30"/>
+            <local:DateBox Date="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_utt}"/>
+            <TextBox Text="{Binding TotalSeries}" ToolTip="{DynamicResource total_series_utt}" Width="30"/>
+            <ComboBox ItemsSource="{Binding Marks}" SelectedItem="{Binding Mark}" ToolTip="{DynamicResource mark_utt}" Width="45"/>
+            <TextBox Text="{Binding CountOfViews}" ToolTip="{DynamicResource cov_utt}" Width="30"/>
             <Rectangle Width="15"/>
-            <Button x:Name="btn_comment" Content="{DynamicResource comment_btn}" Click="btn_comment_Click"/>
-            <Button x:Name="btn_sources" Content="{DynamicResource upd_source_btn}" Click="btn_sources_Click"/>
+            
+            <Button Content="{DynamicResource comment_btn}" 
+                    Command="{Binding OpenComment}"/>
+
+            <Button Content="{DynamicResource upd_source_btn}" 
+                    Command="{Binding OpenSourceCommand}"/>
+            
         </StackPanel>
-        <TextBox x:Name="comment" Text="{Binding Comment}" ToolTip="{DynamicResource comment_utt}" Width="655" Grid.Row="1" HorizontalAlignment="Left"/>
+        <TextBox Text="{Binding Comment}" Visibility="{Binding CommentVisibility}" ToolTip="{DynamicResource comment_utt}" 
+                 Width="655" Grid.Row="1" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

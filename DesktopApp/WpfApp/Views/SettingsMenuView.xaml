@@ -30,50 +30,59 @@
 
         <ScrollViewer Grid.Row="1" Grid.Column="1">
             <StackPanel Orientation="Vertical">
-                <!--Language Settings-->
-                <StackPanel>
-                    <Label Content="{DynamicResource st_lang_title}" Foreground="White" 
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--Language Settings-->
+                    <StackPanel>
+                        <Label Content="{DynamicResource st_lang_title}" Foreground="White" 
                            BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
-                    <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding Language}" 
+                        <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding Language}" 
                               Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding NativeName}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </StackPanel>
-                
-                <!--Scale Settings-->
-                <StackPanel>
-                    <Label Content="{DynamicResource st_scale_title}" Foreground="White" 
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding NativeName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!--Scale Settings-->
+                    <StackPanel Grid.Column="1">
+                        <Label Content="{DynamicResource st_scale_title}" Foreground="White" 
                            BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
-                    <ComboBox SelectedIndex="{Binding IndexOfScale}" Style="{StaticResource DarkComboBox}" 
+                        <ComboBox SelectedIndex="{Binding IndexOfScale}" Style="{StaticResource DarkComboBox}" 
                               Width="200" Margin="0,5" HorizontalAlignment="Left">
-                        <ComboBoxItem Content="{DynamicResource st_small_item}"/>
-                        <ComboBoxItem Content="{DynamicResource st_medium_item}"/>
-                    </ComboBox>
-                </StackPanel>
-                
-                <!--Autosave Settings-->
-                <StackPanel>
-                    <Label Content="{DynamicResource st_autosave_label}" Foreground="White" 
+                            <ComboBoxItem Content="{DynamicResource st_small_item}"/>
+                            <ComboBoxItem Content="{DynamicResource st_medium_item}"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!--Autosave Settings-->
+                    <StackPanel Grid.Column="2">
+                        <Label Content="{DynamicResource st_autosave_label}" Foreground="White" 
                            BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
-                    <CheckBox IsChecked="{Binding TimerIsEnabled}" Content="{DynamicResource st_autosave_enable}" 
-                              Foreground="WhiteSmoke" Margin="0,5,0,0" />
-                    <ComboBox ItemsSource="{Binding Timers}" SelectedItem="{Binding SelectedTimer}" 
+                        <ComboBox ItemsSource="{Binding Timers}" SelectedItem="{Binding SelectedTimer}" IsEnabled="{Binding TimerIsEnabled}"
                               Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left" Margin="0,5">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding}"/>
-                                    <TextBlock Text=" "/>
-                                    <TextBlock Text="{DynamicResource st_seconds}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </StackPanel>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding}"/>
+                                        <TextBlock Text=" "/>
+                                        <TextBlock Text="{DynamicResource st_seconds}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <CheckBox IsChecked="{Binding TimerIsEnabled}" Content="{DynamicResource st_autosave_enable}" 
+                              Foreground="WhiteSmoke" Margin="0,5,0,0" />
+                    </StackPanel>
+                </Grid>
+                
                 
                 <!--Profiles Settings-->
                 <StackPanel>

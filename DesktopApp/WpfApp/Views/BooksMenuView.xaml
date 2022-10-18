@@ -172,42 +172,54 @@
             </Grid.Resources>
             <StackPanel Visibility="{Binding CategoryVisibility}">
                 <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" 
-                        ToolTip="{DynamicResource id_tt}" Command="{Binding SortCategoryByID}"/>
+                        ToolTip="{DynamicResource id_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.ID"/>
 
                 <Button Width="{DynamicResource name_width}" Content="{DynamicResource name_sort}" 
-                        ToolTip="{DynamicResource name_tt}" Command="{Binding SortCategoryByName}"/>
+                        ToolTip="{DynamicResource name_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.Name"/>
 
                 <Button Width="{DynamicResource mark_width}" Content="{DynamicResource mark_sort}" 
-                        ToolTip="{DynamicResource mark_tt}" Command="{Binding SortCategoryByMark}"/>
+                        ToolTip="{DynamicResource mark_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.Mark"/>
             </StackPanel>
             
             <StackPanel Visibility="{Binding BooksVisibility}">
                 <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" 
-                        ToolTip="{DynamicResource id_tt}" Command="{Binding SortBooksByID}"/>
+                        ToolTip="{DynamicResource id_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.ID"/>
                 
                 <Button Width="{DynamicResource name_width}" Content="{DynamicResource name_sort}" 
-                        ToolTip="{DynamicResource name_tt}" Command="{Binding SortBooksByName}"/>
+                        ToolTip="{DynamicResource name_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.Name"/>
                 
                 <Button Width="{DynamicResource genre_width}" Content="{DynamicResource genre_sort}" 
-                        ToolTip="{DynamicResource genre_tt}" Command="{Binding SortBooksByGenre}"/>
+                        ToolTip="{DynamicResource genre_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.BookGenre.Name"/>
                 
                 <Button Width="{DynamicResource id_width}" Content="{DynamicResource year_sort}" 
-                        ToolTip="{DynamicResource year_tt}" Command="{Binding SortBooksByYear}"/>
+                        ToolTip="{DynamicResource year_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.PublicationYear"/>
                 
                 <Rectangle Width="56"/>
                 <Button Width="{DynamicResource genre_width}" Content="{DynamicResource author_sort}" 
-                        ToolTip="{DynamicResource author_tt}" Command="{Binding SortBooksByAuthor}"/>
+                        ToolTip="{DynamicResource author_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.Author"/>
                 
                 <Button Width="{DynamicResource bookmark_width}" Content="{DynamicResource bookmark_sort}" 
-                        ToolTip="{DynamicResource bookmark_tt}" Command="{Binding SortBooksByBookmark}"/>
+                        ToolTip="{DynamicResource bookmark_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.Bookmark"/>
                 
                 <Button Width="{DynamicResource date_width}" Content="{DynamicResource date_sort}" 
-                        ToolTip="{DynamicResource end_read_date_tt}" Command="{Binding SortBooksByDate}"/>
+                        ToolTip="{DynamicResource end_read_date_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.FullReadDate"/>
                 
                 <Button Width="{DynamicResource mark_width}" Content="{DynamicResource mark_sort}" 
-                        ToolTip="{DynamicResource mark_tt}" Command="{Binding SortBooksByMark}"/>
+                        ToolTip="{DynamicResource mark_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.Mark"/>
                 
-                <Button Width="{DynamicResource id_width}" Command="{Binding SortBooksByCoR}">
+                <Button Width="{DynamicResource id_width}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.CountOfReadings">
                     <Button.Content>
                         <Path Style="{StaticResource ArrowDownImage}"/>
                     </Button.Content>
@@ -216,20 +228,25 @@
 
             <StackPanel Visibility="{Binding PriorityVisibility}">
                 <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" 
-                        ToolTip="{DynamicResource id_tt}" Command="{Binding SortPriorityByID}"/>
+                        ToolTip="{DynamicResource id_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.ID"/>
                 
                 <Button Width="{DynamicResource name_width}" Content="{DynamicResource name_sort}" 
-                        ToolTip="{DynamicResource name_tt}" Command="{Binding SortPriorityByName}"/>
+                        ToolTip="{DynamicResource name_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.Name"/>
                 
                 <Button Width="{DynamicResource genre_width}" Content="{DynamicResource genre_sort}" 
-                        ToolTip="{DynamicResource genre_tt}" Command="{Binding SortPriorityByGenre}"/>
+                        ToolTip="{DynamicResource genre_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.BookGenre.Name"/>
                 
                 <Button Width="{DynamicResource id_width}" Content="{DynamicResource year_sort}" 
-                        ToolTip="{DynamicResource year_tt}" Command="{Binding SortPriorityByYear}"/>
+                        ToolTip="{DynamicResource year_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.PublicationYear"/>
                 
                 <Rectangle Width="56"/>
                 <Button Width="{DynamicResource mark_width}" Content="{DynamicResource mark_sort}" 
-                        ToolTip="{DynamicResource mark_tt}" Command="{Binding SortPriorityByMark}"/>
+                        ToolTip="{DynamicResource mark_tt}" 
+                        Command="{Binding SortTable}" CommandParameter="Model.Mark"/>
             </StackPanel>
         </Grid>
 

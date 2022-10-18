@@ -231,133 +231,62 @@ namespace WpfApp.ViewModels
         public CollectionViewSource BooksCVS { get; private set; }
         public CollectionViewSource PriorityBooksCVS { get; private set; }
 
-        //Categories Sort Commands
-
-        private Command sortCategoryByID;
-        public Command SortCategoryByID =>
-        sortCategoryByID ?? (sortCategoryByID = new Command(obj => 
+        private Command sortTable;
+        public Command SortTable =>
+        sortTable ?? (sortTable = new Command(obj =>
         {
-            CVSChangeSort(CategoryCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(SimpleBooksCVS, "Model.ID", ListSortDirection.Ascending);
+            string str = obj as string;
+            ListSortDirection direction = getSortDirection(str);
+            CollectionViewSource[] sources = getVisibleCVS();
+
+            foreach (CollectionViewSource item in sources)
+            {
+                CVSChangeSort(item, str, direction);
+            }
         }));
 
-        private Command sortCategoryByName;
-        public Command SortCategoryByName =>
-        sortCategoryByName ?? (sortCategoryByName = new Command(obj => 
+        private ListSortDirection getSortDirection(string paramenter)
         {
-            CVSChangeSort(CategoryCVS, "Model.Name", ListSortDirection.Ascending);
-            CVSChangeSort(SimpleBooksCVS, "Model.Name", ListSortDirection.Ascending);
-        }));
+            switch (paramenter)
+            {
+                case "Model.Mark":
+                    return ListSortDirection.Descending;
+                case "Model.PublicationYear":
+                    return ListSortDirection.Descending;
+                case "Model.Author":
+                    return ListSortDirection.Descending;
+                case "Model.Bookmark":
+                    return ListSortDirection.Descending;
+                case "Model.FullReadDate":
+                    return ListSortDirection.Descending;
+                case "Model.CountOfReadings":
+                    return ListSortDirection.Descending;
 
-        private Command sortCategoryByMark;
-        public Command SortCategoryByMark =>
-        sortCategoryByMark ?? (sortCategoryByMark = new Command(obj =>
+                default:
+                    return ListSortDirection.Ascending;
+            }
+        }
+
+        private CollectionViewSource[] getVisibleCVS()
         {
-            CVSChangeSort(CategoryCVS, "Model.Mark", ListSortDirection.Descending);
-            CVSChangeSort(SimpleBooksCVS, "Model.Mark", ListSortDirection.Descending);
-        }));
+            List<CollectionViewSource> sources = new List<CollectionViewSource>();
 
-        //Books Sort Commands
+            if (CategoryVisibility == Visibility.Visible)
+            {
+                sources.Add(CategoryCVS);
+                sources.Add(SimpleBooksCVS);
+            }
+            if (BooksVisibility == Visibility.Visible)
+            {
+                sources.Add(BooksCVS);
+            }
+            if (PriorityVisibility == Visibility.Visible)
+            {
+                sources.Add(PriorityBooksCVS);
+            }
 
-        private Command sortBooksByID;
-        public Command SortBooksByID =>
-        sortBooksByID ?? (sortBooksByID = new Command(obj =>
-        {
-            CVSChangeSort(BooksCVS, "Model.ID", ListSortDirection.Ascending);
-        }));
-
-        private Command sortBooksByName;
-        public Command SortBooksByName =>
-        sortBooksByName ?? (sortBooksByName = new Command(obj =>
-        {
-            CVSChangeSort(BooksCVS, "Model.Name", ListSortDirection.Ascending);
-        }));
-
-        private Command sortBooksByGenre;
-        public Command SortBooksByGenre =>
-        sortBooksByGenre ?? (sortBooksByGenre = new Command(obj =>
-        {
-            CVSChangeSort(BooksCVS, "Model.BookGenre.Name", ListSortDirection.Ascending);
-        }));
-
-        private Command sortBooksByYear;
-        public Command SortBooksByYear =>
-        sortBooksByYear ?? (sortBooksByYear = new Command(obj =>
-        {
-            CVSChangeSort(BooksCVS, "Model.PublicationYear", ListSortDirection.Descending);
-        }));
-
-        private Command sortBooksByAuthor;
-        public Command SortBooksByAuthor =>
-        sortBooksByAuthor ?? (sortBooksByAuthor = new Command(obj =>
-        {
-            CVSChangeSort(BooksCVS, "Model.Author", ListSortDirection.Descending);
-        }));
-
-        private Command sortBooksByBookmark;
-        public Command SortBooksByBookmark =>
-        sortBooksByBookmark ?? (sortBooksByBookmark = new Command(obj =>
-        {
-            CVSChangeSort(BooksCVS, "Model.Bookmark", ListSortDirection.Descending);
-        }));
-
-        private Command sortBooksByDate;
-        public Command SortBooksByDate =>
-        sortBooksByDate ?? (sortBooksByDate = new Command(obj =>
-        {
-            CVSChangeSort(BooksCVS, "Model.FullReadDate", ListSortDirection.Descending);
-        }));
-
-        private Command sortBooksByMark;
-        public Command SortBooksByMark =>
-        sortBooksByMark ?? (sortBooksByMark = new Command(obj =>
-        {
-            CVSChangeSort(BooksCVS, "Model.Mark", ListSortDirection.Descending);
-        }));
-
-        private Command sortBooksByCoR;
-        public Command SortBooksByCoR =>
-        sortBooksByCoR ?? (sortBooksByCoR = new Command(obj =>
-        {
-            CVSChangeSort(BooksCVS, "Model.CountOfReadings", ListSortDirection.Descending);
-        }));
-
-        //Priority Books Sort Commands
-
-        private Command sortPriorityByID;
-        public Command SortPriorityByID =>
-        sortPriorityByID ?? (sortPriorityByID = new Command(obj =>
-        {
-            CVSChangeSort(PriorityBooksCVS, "Model.ID", ListSortDirection.Ascending);
-        }));
-
-        private Command sortPriorityByName;
-        public Command SortPriorityByName =>
-        sortPriorityByName ?? (sortPriorityByName = new Command(obj =>
-        {
-            CVSChangeSort(PriorityBooksCVS, "Model.Name", ListSortDirection.Ascending);
-        }));
-
-        private Command sortPriorityByGenre;
-        public Command SortPriorityByGenre =>
-        sortPriorityByGenre ?? (sortPriorityByGenre = new Command(obj =>
-        {
-            CVSChangeSort(PriorityBooksCVS, "Model.BookGenre.Name", ListSortDirection.Ascending);
-        }));
-
-        private Command sortPriorityByYear;
-        public Command SortPriorityByYear =>
-        sortPriorityByYear ?? (sortPriorityByYear = new Command(obj =>
-        {
-            CVSChangeSort(PriorityBooksCVS, "Model.PublicationYear", ListSortDirection.Descending);
-        }));
-
-        private Command sortPriorityByMark;
-        public Command SortPriorityByMark =>
-        sortPriorityByMark ?? (sortPriorityByMark = new Command(obj =>
-        {
-            CVSChangeSort(PriorityBooksCVS, "Model.Mark", ListSortDirection.Descending);
-        }));
+            return sources.ToArray();
+        }
 
         private void CVSChangeSort(CollectionViewSource cvs, string property, ListSortDirection direction)
         {

@@ -257,56 +257,11 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private CollectionViewSource categoryCVS;
-        private CollectionViewSource simpleFilmsCVS;
-        private CollectionViewSource filmsCVS;
-        private CollectionViewSource seriesCVS;
-        private CollectionViewSource priorityFilmsCVS;
-        public CollectionViewSource CategoryCVS 
-        { 
-            get => categoryCVS; 
-            set
-            {
-                categoryCVS = value;
-                OnPropertyChanged();
-            }
-        }
-        public CollectionViewSource SimpleFilmsCVS 
-        { 
-            get => simpleFilmsCVS; 
-            set
-            {
-                simpleFilmsCVS = value;
-                OnPropertyChanged();
-            }
-        }
-        public CollectionViewSource FilmsCVS 
-        { 
-            get => filmsCVS; 
-            set
-            {
-                filmsCVS = value;
-                OnPropertyChanged();
-            }
-        }
-        public CollectionViewSource SeriesCVS 
-        { 
-            get => seriesCVS; 
-            set
-            {
-                seriesCVS = value;
-                OnPropertyChanged();
-            }
-        }
-        public CollectionViewSource PriorityFilmsCVS 
-        { 
-            get => priorityFilmsCVS; 
-            set
-            {
-                priorityFilmsCVS = value;
-                OnPropertyChanged();
-            }
-        }
+        public CollectionViewSource CategoryCVS { get; private set; }
+        public CollectionViewSource SimpleFilmsCVS { get; private set; }
+        public CollectionViewSource FilmsCVS { get; private set; }
+        public CollectionViewSource SeriesCVS { get; private set; }
+        public CollectionViewSource PriorityFilmsCVS { get; private set; }
 
         private Command sortTable;
         public Command SortTable =>
@@ -319,31 +274,8 @@ namespace WpfApp.ViewModels
             foreach (CollectionViewSource item in sources)
             {
                 CVSChangeSort(item, str, direction);
-                //item.View.;
             }
-
-            Costyl();
         }));
-
-        private void Costyl()
-        {
-            if (CategoryVisibility == Visibility.Visible)
-            {
-                CategoryCVS = CategoryCVS;
-            }
-            if (FilmsVisibility == Visibility.Visible)
-            {
-                FilmsCVS = FilmsCVS;
-            }
-            if (SeriesVisibility == Visibility.Visible)
-            {
-                SeriesCVS = SeriesCVS;
-            }
-            if (PriorityVisibility == Visibility.Visible)
-            {
-                PriorityFilmsCVS = PriorityFilmsCVS;
-            }
-        }
 
         private ListSortDirection getSortDirection(string paramenter)
         {

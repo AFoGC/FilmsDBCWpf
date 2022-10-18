@@ -218,10 +218,10 @@ namespace WpfApp.ViewModels
                 return searchCommand ??
                 (searchCommand = new Command(obj =>
                 {
-                    SercherTable(CategoriesMenu);
-                    SercherTable(SimpleBooksMenu);
-                    SercherTable(BooksMenu);
-                    SercherTable(PriorityBooksMenu);
+                    SearcherTable(CategoriesMenu);
+                    SearcherTable(SimpleBooksMenu);
+                    SearcherTable(BooksMenu);
+                    SearcherTable(PriorityBooksMenu);
                 }));
             }
         }
@@ -373,7 +373,7 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private void SercherTable(IEnumerable table)
+        private void SearcherTable(IEnumerable table)
         {
             string search = SearchText.ToLower();
             foreach (IFinded vm in table)
@@ -573,14 +573,14 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private InfoMenuCondition infoMenuCondition;
-        public InfoMenuCondition InfoMenuCondition
+        private BookInfoMenuCondition infoMenuCondition;
+        public BookInfoMenuCondition InfoMenuCondition
         {
             get => infoMenuCondition;
             set
             {
                 infoMenuCondition = value;
-                if (infoMenuCondition == InfoMenuCondition.Closed)
+                if (infoMenuCondition == BookInfoMenuCondition.Closed)
                 {
                     InfoMenuDataContext = null;
                     SourcesCVS.Source = null;
@@ -604,30 +604,30 @@ namespace WpfApp.ViewModels
         public void OpenInfoMenu(Cell model)
         {
             SourcesCVS.Source = null;
-            InfoMenuCondition = InfoMenuCondition.Closed;
+            InfoMenuCondition = BookInfoMenuCondition.Closed;
             if (model.GetType() == typeof(Book))
             {
                 Book book = model as Book;
                 InfoMenuDataContext = new BookViewModel(book, this);
-                InfoMenuCondition = InfoMenuCondition.BookInfo;
+                InfoMenuCondition = BookInfoMenuCondition.BookInfo;
             }
         }
 
         public void OpenUpdateMenu(Cell model)
         {
             SourcesCVS.Source = null;
-            InfoMenuCondition = InfoMenuCondition.Closed;
+            InfoMenuCondition = BookInfoMenuCondition.Closed;
             if (model.GetType() == typeof(Book))
             {
                 Book book = model as Book;
                 InfoMenuDataContext = new BookViewModel(book, this);
-                InfoMenuCondition = InfoMenuCondition.BookUpdate;
+                InfoMenuCondition = BookInfoMenuCondition.BookUpdate;
             }
             if (model.GetType() == typeof(BookCategory))
             {
                 BookCategory category = model as BookCategory;
                 InfoMenuDataContext = new BookCategoryViewModel(category, this);
-                InfoMenuCondition = InfoMenuCondition.CategoryUpdate;
+                InfoMenuCondition = BookInfoMenuCondition.CategoryUpdate;
             }
         }
 
@@ -676,11 +676,11 @@ namespace WpfApp.ViewModels
         public Command CloseInfoCommand =>
         closeInfoCommand ?? (closeInfoCommand = new Command(obj =>
         {
-            InfoMenuCondition = InfoMenuCondition.Closed;
+            InfoMenuCondition = BookInfoMenuCondition.Closed;
         }));
     }
 
-    public enum InfoMenuCondition
+    public enum BookInfoMenuCondition
     {
         Closed,
         BookInfo,

@@ -191,19 +191,6 @@ namespace FilmsUCWpf.ViewModel
             }
         }
 
-        private RelayCommand openCMCommand;
-        public RelayCommand OpenCMCommand
-        {
-            get
-            {
-                return openCMCommand ??
-                (openCMCommand = new RelayCommand(obj =>
-                {
-                    IsCMOpen = true;
-                }));
-            }
-        }
-
         private RelayCommand baseAutoFill;
         public RelayCommand BaseAutoFill
         {
@@ -344,6 +331,7 @@ namespace FilmsUCWpf.ViewModel
             get => Model.Genre;
             set
             {
+                /*
                 if (!Model.Genre.IsSerialGenre && value.IsSerialGenre)
                 {
                     seriesTable.FindAndConnectSerie(Model);
@@ -353,6 +341,7 @@ namespace FilmsUCWpf.ViewModel
                 {
                     Model.Serie.Film = null;
                 }
+                */
 
                 Model.Genre = value;
             }

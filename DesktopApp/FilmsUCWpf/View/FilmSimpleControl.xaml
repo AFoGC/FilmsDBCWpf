@@ -9,8 +9,9 @@
     <Grid Style="{DynamicResource TControl}" Height="{DynamicResource control_height}">
         <Grid.Resources>
             <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
-            <ContextMenu x:Key="cm" IsOpen="{Binding Path=Data.IsCMOpen, Mode=TwoWay, Source={StaticResource proxy}}">
-
+        </Grid.Resources>
+        <Grid.ContextMenu>
+            <ContextMenu x:Name="cm">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Opened">
                         <i:InvokeCommandAction Command="{Binding Path=Data.SelectCommand, Source={StaticResource proxy}}"/>
@@ -30,8 +31,8 @@
                 <MenuItem Header="{DynamicResource delete_this_cm}"
                           Command="{Binding Path=Data.DeleteFilmCommand, Source={StaticResource proxy}}"/>
             </ContextMenu>
-        </Grid.Resources>
-        <StackPanel Orientation="Horizontal" ContextMenu="{StaticResource cm}">
+        </Grid.ContextMenu>
+        <StackPanel Orientation="Horizontal">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
                     <i:InvokeCommandAction Command="{Binding SelectCommand}"/>
@@ -56,7 +57,7 @@
             <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" 
                      Width="{DynamicResource mark_width}"/>
 
-            <Button Content="⋮" Command="{Binding OpenCMCommand}"/>
+            <Button Content="⋮" Click="OpenCM"/>
         </StackPanel>
     </Grid>
 </UserControl>

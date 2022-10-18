@@ -18,7 +18,10 @@
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
-            <ContextMenu x:Key="cm" IsOpen="{Binding Path=Data.IsCMOpen, Mode=TwoWay, Source={StaticResource proxy}}">
+            
+        </Grid.Resources>
+        <Grid.ContextMenu>
+            <ContextMenu x:Name="cm">
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Opened">
@@ -28,7 +31,7 @@
 
                 <MenuItem Header="{DynamicResource comment_btn}" ToolTip="{DynamicResource open_comment_tt}"
                           Command="{Binding Path=Data.OpenComment, Source={StaticResource proxy}}"/>
-                
+
                 <MenuItem Header="{Binding Sources}" ToolTip="{DynamicResource copy_url_tt}"
                           Command="{Binding Path=Data.CopyUrlCommand, Source={StaticResource proxy}}"/>
 
@@ -42,7 +45,7 @@
                 <MenuItem Header="{DynamicResource delete_this_cm}"
                           Command="{Binding Path=Data.DeleteFilmCommand, Source={StaticResource proxy}}"/>
             </ContextMenu>
-        </Grid.Resources>
+        </Grid.ContextMenu>
         <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
                  Width="{DynamicResource id_width}">
             <i:Interaction.Triggers>
@@ -52,7 +55,7 @@
             </i:Interaction.Triggers>
         </TextBox>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" ContextMenu="{StaticResource cm}">
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
                     <i:InvokeCommandAction Command="{Binding SelectCommand}"/>
@@ -81,7 +84,7 @@
                      Width="{DynamicResource id_width}"/>
         </StackPanel>
 
-        <Button Content="⋮" Grid.Column="2" Command="{Binding OpenCMCommand}"/>
+        <Button Content="⋮" Grid.Column="2" Click="OpenCM"/>
 
         <TextBox HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"
                  ToolTip="{DynamicResource comment_tt}" Visibility="{Binding CommentVisibility}"/>

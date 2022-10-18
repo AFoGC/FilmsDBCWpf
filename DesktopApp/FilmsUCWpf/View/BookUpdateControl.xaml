@@ -24,7 +24,7 @@
         </Grid.Resources>
         <StackPanel Orientation="Horizontal">
             <TextBox ToolTip="{DynamicResource id_utt}" Text="{Binding ID}" IsReadOnly="True" Width="30"/>
-            <TextBox ToolTip="{DynamicResource name_utt}" Text="{Binding Name}" Width="180"/>
+            <TextBox ToolTip="{DynamicResource name_utt}" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="180"/>
             <ComboBox ToolTip="{DynamicResource genre_utt}" ItemsSource="{Binding GenresCollection}" SelectedItem="{Binding SelectedGenre}" Width="100"/>
             <TextBox ToolTip="{DynamicResource year_utt}" Text="{Binding PublicationYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>
             <CheckBox ToolTip="{DynamicResource readed_utt}" IsChecked="{Binding Readed}" Margin="20,1" VerticalAlignment="Center">
@@ -37,8 +37,8 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </CheckBox>
-            <TextBox ToolTip="{DynamicResource author_utt}" Text="{Binding Author}" Width="100"/>
-            <TextBox ToolTip="{DynamicResource bookmark_utt}" Text="{Binding Bookmark}" Width="101"/>
+            <TextBox ToolTip="{DynamicResource author_utt}" Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+            <TextBox ToolTip="{DynamicResource bookmark_utt}" Text="{Binding Bookmark, UpdateSourceTrigger=PropertyChanged}" Width="101"/>
 
             <local:DateBox x:Name="fullReadDate" Date="{Binding Date}" ToolTip="{DynamicResource end_read_date_utt}" />
 

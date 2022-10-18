@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
+    </UserControl.Resources>
     <Grid Style="{DynamicResource TControl}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{DynamicResource row_height}"/>
@@ -16,9 +19,8 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Grid.Resources>
-            <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
-            <ContextMenu x:Key="cm" IsOpen="{Binding Path=Data.IsCMOpen, Mode=TwoWay, Source={StaticResource proxy}}">
+        <Grid.ContextMenu>
+            <ContextMenu x:Name="cm">
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Opened">
@@ -29,7 +31,7 @@
                 <MenuItem Header="{DynamicResource comment_btn}" ToolTip="{DynamicResource open_comment_tt}"
                           Command="{Binding Path=Data.OpenComment, Source={StaticResource proxy}}"/>
 
-                <MenuItem Header="{Binding Sources}" ToolTip="{DynamicResource copy_url_tt}"
+                <MenuItem Header="{Binding Path=Data.Sources, Source={StaticResource proxy}}" ToolTip="{DynamicResource copy_url_tt}"
                           Command="{Binding Path=Data.CopyUrlCommand, Source={StaticResource proxy}}"/>
 
                 <MenuItem Header="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}"
@@ -42,7 +44,7 @@
                 <MenuItem Header="{DynamicResource delete_this_cm}"
                           Command="{Binding Path=Data.DeleteFilmCommand, Source={StaticResource proxy}}"/>
             </ContextMenu>
-        </Grid.Resources>
+        </Grid.ContextMenu>
 
         <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
                  Width="{DynamicResource id_width}">
@@ -91,7 +93,7 @@
                      Width="{DynamicResource id_width}"/>
         </StackPanel>
 
-        <Button Content="⋮" Grid.Column="2" Command="{Binding OpenCMCommand}"/>
+        <Button Content="⋮" Grid.Column="2" Click="OpenCM"/>
         
         <TextBox HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"
                  ToolTip="{DynamicResource comment_tt}" Visibility="{Binding CommentVisibility}"/>

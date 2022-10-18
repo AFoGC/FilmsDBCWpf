@@ -195,19 +195,6 @@ namespace FilmsUCWpf.ViewModel
             }
         }
 
-        private RelayCommand openCMCommand;
-        public RelayCommand OpenCMCommand
-        {
-            get
-            {
-                return openCMCommand ??
-                (openCMCommand = new RelayCommand(obj =>
-                {
-                    IsCMOpen = true;
-                }));
-            }
-        }
-
         private RelayCommand _CMOpenedCommand;
         public RelayCommand CMOpenedCommand
         {

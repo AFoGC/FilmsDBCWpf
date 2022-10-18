@@ -219,19 +219,6 @@ namespace FilmsUCWpf.ViewModel
 			}
 		}
 
-		private RelayCommand openCMCommand;
-		public RelayCommand OpenCMCommand
-		{
-			get
-			{
-				return openCMCommand ??
-				(openCMCommand = new RelayCommand(obj =>
-				{
-					IsCMOpen = true;
-				}));
-			}
-		}
-
 		private static readonly Regex regex = new Regex(@"\D");
 		private RelayCommand textIsNumberCommand;
 		public RelayCommand TextIsNumberCommand

@@ -16,7 +16,10 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.Resources>
-            <ContextMenu x:Key="cm">
+            <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
+        </Grid.Resources>
+        <Grid.ContextMenu>
+            <ContextMenu x:Name="cm">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Opened">
                         <i:InvokeCommandAction Command="{Binding Path=Data.CMOpenedCommand, Source={StaticResource proxy}}"/>
@@ -40,19 +43,18 @@
                 <MenuItem Header="{DynamicResource delete_category_cm}"
                           Command="{Binding Path=Data.DeleteCategoryCommand, Source={StaticResource proxy}}"/>
             </ContextMenu>
-        </Grid.Resources>
+        </Grid.ContextMenu>
         
-        <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="{DynamicResource id_width}"
-                 ContextMenu="{StaticResource cm}"/>
+        <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="{DynamicResource id_width}"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" ContextMenu="{StaticResource cm}">
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
             <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="{DynamicResource name_width}"/>
             <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="{DynamicResource mark_width}"/>
             
             <Button Content="v" ToolTip="{DynamicResource collapse_category_tt}"
                     Command="{Binding CollapseCommand}"/>
             
-            <Button Content="⋮" Command="{Binding OpenCMCommand}"/>
+            <Button Content="⋮" Click="OpenCM"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"

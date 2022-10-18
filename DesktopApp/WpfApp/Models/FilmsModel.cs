@@ -13,6 +13,7 @@ namespace WpfApp.Models
     {
         public TableCollection TableCollection { get; private set; }
         public FilmsTable FilmsTable { get; private set; }
+        public SeriesTable SeriesTable { get; private set; }
         public CategoriesTable CategoriesTable { get; private set; }
         public GenresTable GenresTable { get; private set; }
         public PriorityFilmsTable PriorityFilmsTable { get; private set; }
@@ -23,6 +24,7 @@ namespace WpfApp.Models
             TableCollection = collection;
 
             FilmsTable = (FilmsTable)collection.GetTable<Film>();
+            SeriesTable = (SeriesTable)collection.GetTable<Serie>();
             CategoriesTable = (CategoriesTable)collection.GetTable<Category>();
             GenresTable = (GenresTable)collection.GetTable<Genre>();
             PriorityFilmsTable = (PriorityFilmsTable)collection.GetTable<PriorityFilm>();

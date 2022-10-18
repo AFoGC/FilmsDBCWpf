@@ -25,5 +25,10 @@ namespace FilmsUCWpf.View
 		{
 			InitializeComponent();
 		}
+
+		private void OpenCM(object sender, RoutedEventArgs e)
+		{
+			cm.IsOpen = true;
+		}
 	}
 }

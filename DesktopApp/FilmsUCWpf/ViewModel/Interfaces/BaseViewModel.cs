@@ -34,13 +34,6 @@ namespace FilmsUCWpf.ViewModel.Interfaces
             set { _isFinded = value; OnPropertyChanged(); }
         }
 
-        private bool _isCMOpen = false;
-        public bool IsCMOpen
-        {
-            get => _isCMOpen;
-            set { _isCMOpen = value; OnPropertyChanged(); }
-        }
-
         public BaseViewModel(T model)
         {
             Model = model;

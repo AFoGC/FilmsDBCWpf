@@ -15,14 +15,13 @@
     
     <Grid Background="#FF121212">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="35"/>
             <ColumnDefinition Width="818"/>
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition/>
-            <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
 
         <Path Style="{StaticResource SettingsMenuBack}" Stretch="Uniform" 

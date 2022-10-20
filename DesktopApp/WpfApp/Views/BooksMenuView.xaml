@@ -251,11 +251,7 @@
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="343*"/>
-                <ColumnDefinition Width="617*"/>
-            </Grid.ColumnDefinitions>
-            <ScrollViewer Grid.ColumnSpan="2">
+            <ScrollViewer>
                 <StackPanel>
                     <!--Categories Menu-->
                     <StackPanel Visibility="{Binding CategoryVisibility}">

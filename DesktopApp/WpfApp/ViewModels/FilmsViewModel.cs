@@ -509,14 +509,13 @@ namespace WpfApp.ViewModels
                     if (serieVM == null)
                     {
                         Serie serie = Model.SeriesTable.FindAndConnectSerie(film);
-                        SeriesMenu.Add(new FilmSerieViewModel(serie, this));
                     }
                 }
                 else
                 {
                     if (serieVM != null)
                     {
-                        SeriesMenu.Remove(serieVM);
+                        Model.SeriesTable.Remove(serieVM.Serie);
                     }
                 }
             }

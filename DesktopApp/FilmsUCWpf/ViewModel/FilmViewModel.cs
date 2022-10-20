@@ -331,18 +331,6 @@ namespace FilmsUCWpf.ViewModel
             get => Model.Genre;
             set
             {
-                /*
-                if (!Model.Genre.IsSerialGenre && value.IsSerialGenre)
-                {
-                    seriesTable.FindAndConnectSerie(Model);
-                }
-
-                if (Model.Genre.IsSerialGenre && !value.IsSerialGenre)
-                {
-                    Model.Serie.Film = null;
-                }
-                */
-
                 Model.Genre = value;
             }
         }

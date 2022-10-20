@@ -12,6 +12,7 @@ namespace FilmsUCWpf.ViewModel
     public class FilmSerieViewModel : FilmViewModel
     {
         private readonly Serie serie;
+        public Serie Serie => serie;
         public FilmSerieViewModel(Serie serie, IMenuViewModel<Film> menu) : base(serie.Film, menu)
         {
             this.serie = serie;

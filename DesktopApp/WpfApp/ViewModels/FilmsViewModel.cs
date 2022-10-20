@@ -112,7 +112,8 @@ namespace WpfApp.ViewModels
             {
                 if (_selectedElement != null) _selectedElement.IsSelected = false;
                 _selectedElement = value;
-                _selectedElement.IsSelected = true;
+
+                if (_selectedElement != null) _selectedElement.IsSelected = true;
             }
         }
 
@@ -396,7 +397,11 @@ namespace WpfApp.ViewModels
             SeriesCVS.Source = SeriesMenu;
             PriorityFilmsCVS.Source = PriorityFilmsMenu;
 
+            CVSChangeSort(CategoryCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(SimpleFilmsCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(FilmsCVS, "Model.ID", ListSortDirection.Ascending);
             CVSChangeSort(SeriesCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(PriorityFilmsCVS, "Model.ID", ListSortDirection.Ascending);
 
             SourcesCVS = new CollectionViewSource();
         }

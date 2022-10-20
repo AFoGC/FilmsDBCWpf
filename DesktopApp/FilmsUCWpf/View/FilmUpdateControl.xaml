@@ -27,9 +27,9 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBox ToolTip="{DynamicResource id_utt}" Text="{Binding ID}" IsReadOnly="True" Width="30"/>
-            <TextBox ToolTip="{DynamicResource name_utt}" Text="{Binding Name}" Width="180"/>
+            <TextBox ToolTip="{DynamicResource name_utt}" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="180"/>
             <ComboBox ToolTip="{DynamicResource genre_utt}" ItemsSource="{Binding GenresCollection}" SelectedItem="{Binding SelectedGenre}" Width="100"/>
-            <TextBox ToolTip="{DynamicResource year_utt}" Text="{Binding RealiseYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30" MaxLength="4"/>
+            <TextBox ToolTip="{DynamicResource year_utt}" Text="{Binding RealiseYear, UpdateSourceTrigger=PropertyChanged}" Width="30" MaxLength="4"/>
             <CheckBox ToolTip="{DynamicResource watched_utt}" IsChecked="{Binding Watched}" Margin="20,1" VerticalAlignment="Center">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
@@ -42,7 +42,7 @@
             </CheckBox>
             <local:DateBox Date="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_utt}" />
             <ComboBox SelectedItem="{Binding Mark}" ItemsSource="{Binding Marks}" ToolTip="{DynamicResource mark_utt}" Width="45"/>
-            <TextBox Text="{Binding CountOfViews, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource cov_utt}" Width="30"/>
+            <TextBox Text="{Binding CountOfViews, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource cov_utt}" Width="30"/>
             
             <Rectangle Width="137"/>
             
@@ -53,7 +53,7 @@
                     Command="{Binding OpenSourceCommand}"/>
 
         </StackPanel>
-        <TextBox Text="{Binding Comment}" Visibility="{Binding CommentVisibility}" ToolTip="{DynamicResource comment_tt}" 
+        <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding CommentVisibility}" ToolTip="{DynamicResource comment_tt}" 
                  Width="533" HorizontalAlignment="Left" Grid.Row="1"/>
     </Grid>
 </UserControl>

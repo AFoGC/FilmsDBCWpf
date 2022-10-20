@@ -33,9 +33,9 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="28"/>
-            <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_utt}" Width="178"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource name_utt}" Width="178"/>
             <ComboBox ItemsSource="{Binding Marks}" SelectedItem="{Binding Mark}" ToolTip="{DynamicResource mark_utt}"/>
-            <TextBox Text="{Binding HideName}" ToolTip="{DynamicResource hidename_utt}" Width="190"/>
+            <TextBox Text="{Binding HideName, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource hidename_utt}" Width="190"/>
         </StackPanel>
         <Button Content="{DynamicResource add_selected_btn}" Grid.Column="1" 
                 Command="{Binding AddSelectedCommand}"/>

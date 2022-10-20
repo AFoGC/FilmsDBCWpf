@@ -26,18 +26,18 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_utt}" IsReadOnly="True" Width="30"/>
-            <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_utt}" Width="180"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource name_utt}" Width="180"/>
             <ComboBox ItemsSource="{Binding GenresCollection}" SelectedItem="{Binding SelectedGenre}" ToolTip="{DynamicResource genre_utt}" Width="100"/>
-            <TextBox Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_utt}" Width="30" MaxLength="4"/>
+            <TextBox Text="{Binding RealiseYear, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource year_utt}" Width="30" MaxLength="4"/>
             <CheckBox IsChecked="{Binding Watched}" ToolTip="{DynamicResource watched_utt}" Margin="20,1" VerticalAlignment="Center">
                 
             </CheckBox>
             <local:DateBox Date="{Binding StartWatchDate}" ToolTip="{DynamicResource start_watch_date_utt}"/>
-            <TextBox Text="{Binding CountOfWatchedSeries}" ToolTip="{DynamicResource watched_series_utt}" Width="30"/>
+            <TextBox Text="{Binding CountOfWatchedSeries, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource watched_series_utt}" Width="30"/>
             <local:DateBox Date="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_utt}"/>
-            <TextBox Text="{Binding TotalSeries}" ToolTip="{DynamicResource total_series_utt}" Width="30"/>
+            <TextBox Text="{Binding TotalSeries, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource total_series_utt}" Width="30"/>
             <ComboBox ItemsSource="{Binding Marks}" SelectedItem="{Binding Mark}" ToolTip="{DynamicResource mark_utt}" Width="45"/>
-            <TextBox Text="{Binding CountOfViews}" ToolTip="{DynamicResource cov_utt}" Width="30"/>
+            <TextBox Text="{Binding CountOfViews, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource cov_utt}" Width="30"/>
             <Rectangle Width="15"/>
             
             <Button Content="{DynamicResource comment_btn}" 
@@ -47,7 +47,7 @@
                     Command="{Binding OpenSourceCommand}"/>
             
         </StackPanel>
-        <TextBox Text="{Binding Comment}" Visibility="{Binding CommentVisibility}" ToolTip="{DynamicResource comment_utt}" 
+        <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding CommentVisibility}" ToolTip="{DynamicResource comment_utt}" 
                  Width="655" Grid.Row="1" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

@@ -354,6 +354,11 @@ namespace WpfApp.ViewModels
             BooksCVS.Source = BooksMenu;
             PriorityBooksCVS.Source = PriorityBooksMenu;
 
+            CVSChangeSort(CategoryCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(SimpleBooksCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(BooksCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(PriorityBooksCVS, "Model.ID", ListSortDirection.Ascending);
+
             SourcesCVS = new CollectionViewSource();
         }
 

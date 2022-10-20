@@ -36,9 +36,20 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    
-                    <!--Language Settings-->
+
+                    <!--Scale Settings-->
                     <StackPanel>
+                        <Label Content="{DynamicResource st_scale_title}" Foreground="White" 
+                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
+                        <ComboBox SelectedIndex="{Binding IndexOfScale}" Style="{StaticResource DarkComboBox}" 
+                              Width="200" Margin="0,5" HorizontalAlignment="Left">
+                            <ComboBoxItem Content="{DynamicResource st_small_item}"/>
+                            <ComboBoxItem Content="{DynamicResource st_medium_item}"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!--Language Settings-->
+                    <StackPanel Grid.Column="1">
                         <Label Content="{DynamicResource st_lang_title}" Foreground="White" 
                            BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
                         <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding Language}" 
@@ -48,17 +59,6 @@
                                     <TextBlock Text="{Binding NativeName}"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-
-                    <!--Scale Settings-->
-                    <StackPanel Grid.Column="1">
-                        <Label Content="{DynamicResource st_scale_title}" Foreground="White" 
-                           BorderThickness="0 0 0 1" BorderBrush="#FF7A7A7A"/>
-                        <ComboBox SelectedIndex="{Binding IndexOfScale}" Style="{StaticResource DarkComboBox}" 
-                              Width="200" Margin="0,5" HorizontalAlignment="Left">
-                            <ComboBoxItem Content="{DynamicResource st_small_item}"/>
-                            <ComboBoxItem Content="{DynamicResource st_medium_item}"/>
                         </ComboBox>
                     </StackPanel>
 
@@ -139,22 +139,30 @@
                                 Width="130" Command="{Binding ImportProfileCommand}"/>
                     </StackPanel>
                 </StackPanel>
-                
-                <!--Films Mark System Settings-->
-                <StackPanel>
-                    <Label Content="{DynamicResource st_fmark_title}" Foreground="White" 
-                           BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
-                    <ComboBox Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"
-                              SelectedIndex="{Binding IndexOfFilmMarkSystem}" ItemsSource="{Binding MarkSystems}"/>
-                </StackPanel>
 
-                <!--Books Mark System Settings-->
-                <StackPanel>
-                    <Label Content="{DynamicResource st_bmark_title}" Foreground="White" 
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Films Mark System Settings-->
+                    <StackPanel>
+                        <Label Content="{DynamicResource st_fmark_title}" Foreground="White" 
                            BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
-                    <ComboBox Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"
+                        <ComboBox Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"
+                              SelectedIndex="{Binding IndexOfFilmMarkSystem}" ItemsSource="{Binding MarkSystems}"/>
+                    </StackPanel>
+
+                    <!--Books Mark System Settings-->
+                    <StackPanel Grid.Column="1">
+                        <Label Content="{DynamicResource st_bmark_title}" Foreground="White" 
+                           BorderThickness="0 0 0 1" Margin="0,0,0,5" BorderBrush="#FF7A7A7A"/>
+                        <ComboBox Style="{StaticResource DarkComboBox}" Width="200" HorizontalAlignment="Left"
                               SelectedIndex="{Binding IndexOfBookMarkSystem}" ItemsSource="{Binding MarkSystems}"/>
-                </StackPanel>
+                    </StackPanel>
+                </Grid>
+                
                 
                 <!--Films Genres-->
                 <StackPanel>
@@ -172,7 +180,17 @@
                                     <TextBox Text="{Binding Name}" Width="200" Style="{StaticResource Wtextbox}"/>
                                     <Grid Width="200">
                                         <CheckBox IsChecked="{Binding IsSerialGenre}" Content="{DynamicResource st_is_serial}" 
-                                              Foreground="WhiteSmoke" HorizontalAlignment="Center"/>
+                                              Foreground="WhiteSmoke" HorizontalAlignment="Center">
+                                            <i:Interaction.Triggers>
+
+                                                <i:EventTrigger EventName="Unchecked">
+                                                    <i:InvokeCommandAction 
+                                                        Command="{Binding DataContext.UncheckFilmGenreCommand, 
+                                                        RelativeSource={RelativeSource AncestorType=ScrollViewer}}" 
+                                                        CommandParameter="{Binding}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
                                     </Grid>
                                     <Button Style="{StaticResource GrayButton}"
                                             Content="{DynamicResource st_del_genre}" Width="100"

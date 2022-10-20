@@ -19,14 +19,14 @@ namespace WpfApp.ViewModels
 	public class SettingsViewModel : BaseViewModel
 	{
 		public SettingsModel Model { get; private set; }
-		
+
 		public CultureInfo Language
 		{
 			get => Model.Language;
 			set
 			{
-				Model.Language = value; 
-				OnPropertyChanged(); 
+				Model.Language = value;
+				OnPropertyChanged();
 			}
 		}
 		public List<CultureInfo> Languages => Model.Cultures;
@@ -60,9 +60,9 @@ namespace WpfApp.ViewModels
 		}
 
 		public ObservableCollection<Genre> FilmGenres { get; private set; }
-        public ObservableCollection<BookGenre> BookGenres { get; private set; }
+		public ObservableCollection<BookGenre> BookGenres { get; private set; }
 
-        private Command addBookGenreCommand;
+		private Command addBookGenreCommand;
 		public Command AddBookGenreCommand
 		{
 			get
@@ -87,7 +87,7 @@ namespace WpfApp.ViewModels
 					BookGenre genre = obj as BookGenre;
 					if (!Model.Tables.BooksTable.GenreHasBook(genre))
 					{
-                        Model.Tables.BookGenresTable.Remove(genre);
+						Model.Tables.BookGenresTable.Remove(genre);
 					}
 				}));
 			}
@@ -102,7 +102,7 @@ namespace WpfApp.ViewModels
 				(addFilmGenreCommand = new Command(obj =>
 				{
 					Genre genre = new Genre();
-                    Model.Tables.FilmGenresTable.AddElement(genre);
+					Model.Tables.FilmGenresTable.AddElement(genre);
 					genre.Name = $"Genre{genre.ID}";
 				}));
 			}
@@ -118,13 +118,29 @@ namespace WpfApp.ViewModels
 					Genre genre = obj as Genre;
 					if (!Model.Tables.FilmsTable.GenreHasFilm(genre))
 					{
-                        Model.Tables.FilmGenresTable.Remove(genre);
+						Model.Tables.FilmGenresTable.Remove(genre);
+					}
+				}));
+			}
+		}
+		private Command uncheckFilmGenreCommand;
+		public Command UncheckFilmGenreCommand
+		{
+			get
+			{
+				return uncheckFilmGenreCommand ??
+				(uncheckFilmGenreCommand = new Command(obj =>
+				{
+					Genre genre = obj as Genre;
+					if (Model.Tables.FilmsTable.GenreHasFilm(genre))
+					{
+						genre.IsSerialGenre = true;
 					}
 				}));
 			}
 		}
 
-		public List<String> MarkSystems { get; private set; }
+        public List<String> MarkSystems { get; private set; }
 
 		private int _indexOfFilmMarkSystem;
 		public int IndexOfFilmMarkSystem

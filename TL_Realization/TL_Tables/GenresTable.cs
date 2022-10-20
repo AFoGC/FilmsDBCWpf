@@ -53,18 +53,8 @@ namespace TL_Tables
             series.IsSerialGenre = true;
             series.Name = "series";
 
-            Genre cartoon = new Genre();
-            cartoon.IsSerialGenre = false;
-            cartoon.Name = "cartoon";
-
-            Genre animated_series = new Genre();
-            animated_series.IsSerialGenre = true;
-            animated_series.Name = "animated_series";
-
             export.AddElement(film);
             export.AddElement(series);
-            export.AddElement(cartoon);
-            export.AddElement(animated_series);
 
             return export;
         }

@@ -57,7 +57,11 @@
             <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" 
                      Width="{DynamicResource mark_width}"/>
 
-            <Button Content="⋮" Click="OpenCM"/>
+            <Button Content="⋮" Click="OpenCM">
+                <Button.ToolTip>
+                    <local:FilmToolTip/>
+                </Button.ToolTip>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

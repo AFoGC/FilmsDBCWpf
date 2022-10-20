@@ -113,31 +113,4 @@
         </Setter>
     </Style>
 
-    <!--
-    <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" x:Key="DarkComboBox">
-        <Style.Resources>
-            <Style TargetType="Path">
-                
-            </Style>
-        </Style.Resources>
-        <Setter Property="ItemContainerStyle">
-            <Setter.Value>
-                <Style TargetType="{x:Type ComboBoxItem}">
-                    <Setter Property="Background" Value="#FF353535"/>
-                    <Setter Property="BorderBrush" Value="#FF353535"/>
-                </Style>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Foreground" Value="WhiteSmoke"/>
-        <Setter Property="Background" Value="#FF353535"/>
-        <Setter Property="BorderBrush" Value="#FF7A7A7A"/>
-        <Setter Property="Margin" Value="0"/>
-    </Style>
-
-    <Style TargetType="Path">
-        <Setter Property="Fill" Value="WhiteSmoke"/>
-        <Setter Property="Data" Value="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z"/>
-    </Style>
-    -->
-
 </ResourceDictionary>

@@ -23,7 +23,7 @@ namespace TL_Tables
             BookGenresTable export = new BookGenresTable();
 
             BookGenre genre = new BookGenre();
-            genre.Name = "BookGenre1";
+            genre.Name = "Book";
 
             export.AddElement(genre);
 

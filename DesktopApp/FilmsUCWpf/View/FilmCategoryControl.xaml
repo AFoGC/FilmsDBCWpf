@@ -48,7 +48,7 @@
         <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" Width="{DynamicResource id_width}"/>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1">
-            <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" Width="{DynamicResource name_width}"/>
+            <TextBox Text="{Binding Name}" ToolTip="{StaticResource NameToolTip}" Width="{DynamicResource name_width}"/>
             <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="{DynamicResource mark_width}"/>
             
             <Button Content="v" ToolTip="{DynamicResource collapse_category_tt}"

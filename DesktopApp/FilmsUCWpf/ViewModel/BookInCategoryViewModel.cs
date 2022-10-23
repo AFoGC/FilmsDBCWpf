@@ -19,7 +19,7 @@ namespace FilmsUCWpf.ViewModel
             bookCategories = (BookCategoriesTable)tableCollection.GetTable<BookCategory>();
         }
 
-        public override String Name
+        public String ShortName
         {
             get
             {
@@ -41,7 +41,6 @@ namespace FilmsUCWpf.ViewModel
                 }
                 return Model.Name;
             }
-            set { }
         }
     }
 }

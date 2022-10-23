@@ -62,10 +62,10 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             
-            <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" 
+            <TextBox Text="{Binding Name}" ToolTip="{StaticResource NameToolTip}" 
                      Width="{DynamicResource name_width}"/>
             
-            <TextBox Text="{Binding GenreText}" ToolTip="{DynamicResource genre_tt}" 
+            <TextBox Text="{Binding GenreText}" ToolTip="{StaticResource FilmGenreToolTip}" 
                      Width="{DynamicResource genre_width}"/>
             
             <TextBox Text="{Binding RealiseYear}" ToolTip="{DynamicResource year_tt}" 

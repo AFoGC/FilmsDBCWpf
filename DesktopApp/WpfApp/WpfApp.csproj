@@ -312,6 +312,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Dictionaries\ToolTipDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Localizations\lang.ru.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

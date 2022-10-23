@@ -47,10 +47,10 @@
             <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
                      Width="{DynamicResource id_width}"/>
             
-            <TextBox Text="{Binding Name}" ToolTip="{DynamicResource name_tt}" 
+            <TextBox Text="{Binding Name}" ToolTip="{StaticResource NameToolTip}" 
                      Width="{DynamicResource name_width}"/>
             
-            <TextBox Text="{Binding BookGenreText}" ToolTip="{DynamicResource genre_tt}" 
+            <TextBox Text="{Binding BookGenreText}" ToolTip="{StaticResource BookGenreToolTip}" 
                      Width="{DynamicResource genre_width}" />
             
             <TextBox Text="{Binding PublicationYear}" ToolTip="{DynamicResource year_tt}" 

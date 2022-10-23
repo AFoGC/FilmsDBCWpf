@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="Resources/Dictionaries/ContextMenuDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/ColorsDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Dictionaries/TableControls/Scale.0.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/ToolTipDictionary.xaml"/>
                 <ResourceDictionary Source="Resources/Localizations/lang.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

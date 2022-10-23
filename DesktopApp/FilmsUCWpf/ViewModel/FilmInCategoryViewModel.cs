@@ -15,7 +15,7 @@ namespace FilmsUCWpf.ViewModel
             categories = (CategoriesTable)tableCollection.GetTable<Category>();
         }
 
-        public override string Name 
+        public string ShortName
         {
             get
             {
@@ -37,7 +37,6 @@ namespace FilmsUCWpf.ViewModel
                 }
                 return Model.Name;
             }
-            set => base.Name = value; 
         }
     }
 }

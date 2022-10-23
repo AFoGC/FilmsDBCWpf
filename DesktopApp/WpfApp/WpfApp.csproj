@@ -300,11 +300,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\TableControls\Scale.0.xaml">
+    <Page Include="Resources\Dictionaries\TableControls\Scale.Small.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\TableControls\Scale.1.xaml">
+    <Page Include="Resources\Dictionaries\TableControls\Scale.Medium.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

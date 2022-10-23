@@ -55,8 +55,8 @@
             
             <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
                      Width="{DynamicResource id_width}"/>
-            
-            <TextBox Text="{Binding ShortName}" ToolTip="{StaticResource NameToolTip}" 
+
+            <TextBox Text="{Binding ShortName, Mode=OneWay}" ToolTip="{StaticResource NameToolTip}" 
                      Width="{DynamicResource name_width}"/>
             
             <TextBox Text="{Binding BookGenreText}" ToolTip="{StaticResource BookGenreToolTip}" 

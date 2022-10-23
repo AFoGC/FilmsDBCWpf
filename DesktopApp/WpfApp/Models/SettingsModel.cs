@@ -76,7 +76,7 @@ namespace WpfApp.Models
                 {
                     Settings.Scale = (int)value;
                     ResourceDictionary dict = new ResourceDictionary();
-                    dict.Source = new Uri(String.Format("Resources/Dictionaries/TableControls/Scale.{0}.xaml", (int)value), UriKind.Relative);
+                    dict.Source = new Uri(String.Format("Resources/Dictionaries/TableControls/Scale.{0}.xaml", value), UriKind.Relative);
 
                     ResourceDictionary oldDict =
                         (from d in Application.Current.Resources.MergedDictionaries

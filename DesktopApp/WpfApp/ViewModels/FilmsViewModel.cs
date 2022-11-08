@@ -124,7 +124,21 @@ namespace WpfApp.ViewModels
             set
             {
                 _searchText = value;
+                SearchInTable(CategoriesMenu);
+                SearchInTable(SimpleFilmsMenu);
+                SearchInTable(FilmsMenu);
+                SearchInTable(SeriesMenu);
+                SearchInTable(PriorityFilmsMenu);
                 OnPropertyChanged();
+            }
+        }
+
+        private void SearchInTable(IEnumerable table)
+        {
+            string search = SearchText.ToLower();
+            foreach (IFinded vm in table)
+            {
+                vm.SetFinded(search);
             }
         }
 
@@ -241,23 +255,6 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private Command searchCommand;
-        public Command SearchCommand
-        {
-            get
-            {
-                return searchCommand ??
-                (searchCommand = new Command(obj =>
-                {
-                    SearcherTable(CategoriesMenu);
-                    SearcherTable(SimpleFilmsMenu);
-                    SearcherTable(FilmsMenu);
-                    SearcherTable(SeriesMenu);
-                    SearcherTable(PriorityFilmsMenu);
-                }));
-            }
-        }
-
         public CollectionViewSource CategoryCVS { get; private set; }
         public CollectionViewSource SimpleFilmsCVS { get; private set; }
         public CollectionViewSource FilmsCVS { get; private set; }
@@ -338,15 +335,6 @@ namespace WpfApp.ViewModels
             foreach (IFilter vm in table)
             {
                 vm.Filter(genres, IsReadedChecked, IsUnReadedChecked);
-            }
-        }
-
-        private void SearcherTable(IEnumerable table)
-        {
-            string search = SearchText.ToLower();
-            foreach (IFinded vm in table)
-            {
-                vm.SetFinded(search);
             }
         }
 

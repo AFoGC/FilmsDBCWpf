@@ -113,7 +113,20 @@ namespace WpfApp.ViewModels
             set
             {
                 _searchText = value;
+                SearchInTable(CategoriesMenu);
+                SearchInTable(SimpleBooksMenu);
+                SearchInTable(BooksMenu);
+                SearchInTable(PriorityBooksMenu);
                 OnPropertyChanged();
+            }
+        }
+
+        private void SearchInTable(IEnumerable table)
+        {
+            string search = SearchText.ToLower();
+            foreach (IFinded vm in table)
+            {
+                vm.SetFinded(search);
             }
         }
 

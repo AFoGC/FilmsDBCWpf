@@ -51,7 +51,7 @@
             <TextBox Text="{Binding Name}" ToolTip="{StaticResource NameToolTip}" Width="{DynamicResource name_width}"/>
             <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" Width="{DynamicResource mark_width}"/>
             
-            <Button Content="v" ToolTip="{DynamicResource collapse_category_tt}"
+            <Button Content="V" ToolTip="{DynamicResource collapse_category_tt}"
                     Command="{Binding CollapseCommand}"/>
             
             <Button Content="⋮" Click="OpenCM"/>

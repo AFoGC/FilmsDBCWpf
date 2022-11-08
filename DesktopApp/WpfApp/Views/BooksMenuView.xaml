@@ -154,10 +154,11 @@
               Grid.Column="1" Grid.Row="3" Margin="10"/>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Height="20" Margin="1,5" Orientation="Horizontal">
-            <TextBox Style="{StaticResource Wtextbox}" Width="180" Text="{Binding SearchText}"/>
-            <Rectangle Width="5"/>
-            <Button Style="{StaticResource GrayButton}" Content="{DynamicResource serch_btn}" Width="75"
-                    Command="{Binding SearchCommand}"/>
+            <Grid  Width="180">
+                <TextBox Text="{DynamicResource serch_btn}" Foreground="WhiteSmoke" IsReadOnly="True"
+                           Background="{StaticResource TextBoxColor}"/>
+                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SearchTextBox}"/>
+            </Grid>
         </StackPanel>
 
         <Grid Grid.Column="1" Grid.Row="2" Height="20" Margin="0,0,0,1">

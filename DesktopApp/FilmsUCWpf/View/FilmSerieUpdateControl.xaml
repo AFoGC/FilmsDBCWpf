@@ -48,6 +48,6 @@
             
         </StackPanel>
         <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding CommentVisibility}" ToolTip="{DynamicResource comment_utt}" 
-                 Width="655" Grid.Row="1" HorizontalAlignment="Left"/>
+                 Width="655" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

@@ -94,8 +94,8 @@
         </StackPanel>
 
         <Button Content="⋮" Grid.Column="2" Click="OpenCM"/>
-        
-        <TextBox HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"
+
+        <TextBox HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Text="{Binding Comment}"
                  ToolTip="{DynamicResource comment_tt}" Visibility="{Binding CommentVisibility}"/>
 
     </Grid>

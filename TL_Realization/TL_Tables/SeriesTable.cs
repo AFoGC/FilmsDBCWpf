@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.Table;
 using TL_Objects;
@@ -25,30 +24,28 @@ namespace TL_Tables
                 }
             }
 
-            foreach (Serie serie in this)
+            Serie[] EmptySeries = this.Where(x => x.Film == null).ToArray();
+            foreach (Serie serie in EmptySeries)
             {
-                if (serie.Film == null)
-                {
-                    serie.Film = filmsTable.GetElementByIndex(serie.FilmId);
-                }
+                this.Remove(serie);
             }
         }
 
         public Serie FindAndConnectSerie(Film film)
         {
-            foreach (Serie serie in this)
+            Serie serie = this.Where(x => x.FilmId == film.ID).FirstOrDefault();
+
+            if (serie != null)
             {
-                if (serie.FilmId == film.ID)
-                {
-                    return serie;
-                }
+                serie.Film = film;
+                return serie;
             }
 
-            Serie ser = new Serie();
-            ser.Film = film;
-            this.AddElement(ser);
+            serie = new Serie();
+            serie.Film = film;
+            this.AddElement(serie);
 
-            return ser;
+            return serie;
         }
     }
 }

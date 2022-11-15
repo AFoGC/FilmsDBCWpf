@@ -13,6 +13,13 @@ namespace FilmsUCWpf.ViewModel
         {
             TableCollection tableCollection = model.ParentTable.TableCollection;
             categories = (CategoriesTable)tableCollection.GetTable<Category>();
+            PropertyChanged += NamePropertyChanged;
+        }
+
+        private void NamePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Name))
+                OnPropertyChanged(nameof(ShortName));
         }
 
         public string ShortName

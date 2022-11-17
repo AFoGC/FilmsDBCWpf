@@ -237,7 +237,7 @@
     <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileView.cs" />
     <Compile Include="Views\Interfaces\ISettingsMenuView.cs" />
-    <Compile Include="Views\ExitWindow.xaml.cs">
+    <Compile Include="Windows\ExitWindow.xaml.cs">
       <DependentUpon>ExitWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogOutWindow.xaml.cs">
@@ -249,13 +249,13 @@
     <Compile Include="Views\MoreInfoControl.xaml.cs">
       <DependentUpon>MoreInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RegistrationWindow.xaml.cs">
+    <Compile Include="Windows\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsMenuView.xaml.cs">
       <DependentUpon>SettingsMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SingUpControl.xaml.cs">
+    <Compile Include="Controls\SingUpControl.xaml.cs">
       <DependentUpon>SingUpControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.ru.Designer.cs">
@@ -332,7 +332,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ExitWindow.xaml">
+    <Page Include="Windows\ExitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -352,7 +352,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RegistrationWindow.xaml">
+    <Page Include="Windows\RegistrationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -360,7 +360,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SingUpControl.xaml">
+    <Page Include="Controls\SingUpControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,7 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfApp.Models;
 
-namespace WpfApp.Views
+namespace WpfApp.Windows
 {
     /// <summary>
     /// Логика взаимодействия для RegistrationWindow.xaml

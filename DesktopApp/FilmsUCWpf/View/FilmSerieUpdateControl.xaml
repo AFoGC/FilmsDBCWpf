@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:FilmsUCWpf.Controls"
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
             d:DesignWidth="940" d:DesignHeight="40">
@@ -32,9 +33,9 @@
             <CheckBox IsChecked="{Binding Watched}" ToolTip="{DynamicResource watched_utt}" Margin="20,1" VerticalAlignment="Center">
                 
             </CheckBox>
-            <local:DateBox Date="{Binding StartWatchDate}" ToolTip="{DynamicResource start_watch_date_utt}"/>
+            <c:DateBox Date="{Binding StartWatchDate}" ToolTip="{DynamicResource start_watch_date_utt}"/>
             <TextBox Text="{Binding CountOfWatchedSeries, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource watched_series_utt}" Width="30"/>
-            <local:DateBox Date="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_utt}"/>
+            <c:DateBox Date="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_utt}"/>
             <TextBox Text="{Binding TotalSeries, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource total_series_utt}" Width="30"/>
             <ComboBox ItemsSource="{Binding Marks}" SelectedItem="{Binding Mark}" ToolTip="{DynamicResource mark_utt}" Width="45"/>
             <TextBox Text="{Binding CountOfViews, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource cov_utt}" Width="30"/>

@@ -16,7 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TablesLibrary.Interpreter.Table;
 
-namespace FilmsUCWpf.View
+namespace FilmsUCWpf.Controls
 {
     /// <summary>
     /// Логика взаимодействия для DateBox.xaml

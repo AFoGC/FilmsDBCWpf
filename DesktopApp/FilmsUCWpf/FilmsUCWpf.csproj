@@ -86,7 +86,7 @@
     <Compile Include="View\BookToolTip.xaml.cs">
       <DependentUpon>BookToolTip.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DateBox.xaml.cs">
+    <Compile Include="Controls\DateBox.xaml.cs">
       <DependentUpon>DateBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FilmToolTip.xaml.cs">
@@ -196,7 +196,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DateBox.xaml">
+    <Page Include="Controls\DateBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

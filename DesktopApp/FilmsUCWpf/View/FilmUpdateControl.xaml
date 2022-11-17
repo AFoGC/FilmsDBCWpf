@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:c="clr-namespace:FilmsUCWpf.Controls"
              xmlns:local="clr-namespace:FilmsUCWpf.View"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="940">
@@ -40,7 +41,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </CheckBox>
-            <local:DateBox Date="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_utt}" />
+            <c:DateBox Date="{Binding DateOfWatch}" ToolTip="{DynamicResource end_watch_date_utt}" />
             <ComboBox SelectedItem="{Binding Mark}" ItemsSource="{Binding Marks}" ToolTip="{DynamicResource mark_utt}" Width="45"/>
             <TextBox Text="{Binding CountOfViews, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource cov_utt}" Width="30"/>
             

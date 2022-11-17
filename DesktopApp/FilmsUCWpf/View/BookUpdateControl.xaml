@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmsUCWpf.View"
+             xmlns:c="clr-namespace:FilmsUCWpf.Controls"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              mc:Ignorable="d" 
@@ -40,7 +41,7 @@
             <TextBox ToolTip="{DynamicResource author_utt}" Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
             <TextBox ToolTip="{DynamicResource bookmark_utt}" Text="{Binding Bookmark, UpdateSourceTrigger=PropertyChanged}" Width="101"/>
 
-            <local:DateBox x:Name="fullReadDate" Date="{Binding Date}" ToolTip="{DynamicResource end_read_date_utt}" />
+            <c:DateBox x:Name="fullReadDate" Date="{Binding Date}" ToolTip="{DynamicResource end_read_date_utt}" />
 
             <ComboBox ToolTip="{DynamicResource mark_utt}" SelectedItem="{Binding Mark}" ItemsSource="{Binding Marks}" Width="45"/>
             <TextBox ToolTip="{DynamicResource cor_utt}" Text="{Binding CountOfReadings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>

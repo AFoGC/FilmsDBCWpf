@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp.Views
+namespace WpfApp.Controls
 {
     /// <summary>
     /// Логика взаимодействия для SingUpControl.xaml

@@ -4,15 +4,12 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using TL_Objects;
-using TL_Tables;
 using TL_Tables.Interfaces;
 using WpfApp.Commands;
 using WpfApp.Models;
-using WpfApp.Properties;
 using WpfApp.Services;
+using WpfApp.Services.Interfaces;
 
 namespace WpfApp.ViewModels
 {

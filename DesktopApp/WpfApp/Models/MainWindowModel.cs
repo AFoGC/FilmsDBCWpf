@@ -22,15 +22,16 @@ namespace WpfApp.Models
     {
         public TableCollection TableCollection { get; private set; }
         public DispatcherTimer SaveTimer { get; private set; }
+        public void SaveSettings() => _settings.SaveSettings();
+        private ISettingsModel _settings;
 
-        public Action SaveSettings { get; private set; }
         public MainWindowModel()
         {
             SettingsModel settings = SettingsModel.Initialize();
             SaveTimer = settings.SaveTimer;
             TableCollection = settings.TableCollection;
 
-            SaveSettings = settings.SaveSettings;
+            _settings = settings;
         }
     }
 }

@@ -15,7 +15,7 @@ using WpfApp.Properties;
 
 namespace WpfApp.Models
 {
-    public class SettingsModel
+    public class SettingsModel : ISettingsModel
     {
         public TableCollection TableCollection { get; private set; }
         public TLTables Tables { get; private set; }

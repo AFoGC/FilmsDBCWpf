@@ -214,9 +214,10 @@
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Services\ExitService.cs" />
     <Compile Include="Services\ExplorerService.cs" />
-    <Compile Include="Services\IDialogService.cs" />
-    <Compile Include="Services\IExplorerService.cs" />
-    <Compile Include="Services\IMessageService.cs" />
+    <Compile Include="Services\Interfaces\IDialogService.cs" />
+    <Compile Include="Services\Interfaces\IExitService.cs" />
+    <Compile Include="Services\Interfaces\IExplorerService.cs" />
+    <Compile Include="Services\Interfaces\IMessageService.cs" />
     <Compile Include="Services\ImportFileDialogService.cs" />
     <Compile Include="Services\ShowMessageService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

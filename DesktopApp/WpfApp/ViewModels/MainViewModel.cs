@@ -10,6 +10,7 @@ using System.Windows.Threading;
 using WpfApp.Commands;
 using WpfApp.Models;
 using WpfApp.Services;
+using WpfApp.Services.Interfaces;
 using WpfApp.ViewModels.Interfaces;
 
 namespace WpfApp.ViewModels
@@ -150,7 +151,7 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private ExitService exitService;
+        private IExitService _exitService;
         private Command _saveAndExitCommand;
         public Command SaveAndExitCommand
         {
@@ -162,12 +163,12 @@ namespace WpfApp.ViewModels
                     if (Model.TableCollection.IsInfoUnsaved)
                     {
                         CancelEventArgs e = obj as CancelEventArgs;
-                        exitService.ShowDialog();
-                        if (exitService.Save)
+                        _exitService.ShowDialog();
+                        if (_exitService.Save)
                         {
                             Model.TableCollection.SaveTables();
                         }
-                        e.Cancel = !exitService.Close;
+                        e.Cancel = !_exitService.Close;
                     }
                 }));
             }
@@ -235,7 +236,7 @@ namespace WpfApp.ViewModels
         public MainViewModel()
         {
             Model = new MainWindowModel();
-            exitService = new ExitService();
+            _exitService = new ExitService();
 
             Model.SaveTimer.Tick += OnTimerSave;
             Model.TableCollection.TableSave += OnSaveStatus;

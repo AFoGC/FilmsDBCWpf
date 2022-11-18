@@ -1,8 +1,9 @@
-﻿using WpfApp.Windows;
+﻿using WpfApp.Services.Interfaces;
+using WpfApp.Windows;
 
 namespace WpfApp.Services
 {
-    public class ExitService
+    public class ExitService : IExitService
     {
         private ExitWindow window;
         public bool? ShowDialog()

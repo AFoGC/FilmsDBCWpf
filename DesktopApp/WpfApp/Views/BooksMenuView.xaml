@@ -30,6 +30,17 @@
             <Border Width="940"  
                 BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left">
                 <ContentControl Content="{Binding InfoMenuDataContext}">
+                    <ContentControl.Resources>
+                        <Style x:Key="cButton" TargetType="Button" BasedOn="{StaticResource GrayButton}">
+                            <Setter Property="Content" Value="⨉"/>
+                            <Setter Property="VerticalAlignment" Value="Top"/>
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="Height" Value="20"/>
+                            <Setter Property="Width" Value="20"/>
+                            <Setter Property="Command" Value="{Binding Path=DataContext.CloseInfoCommand, 
+                                    RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
+                        </Style>
+                    </ContentControl.Resources>
                     <ContentControl.Style>
                         <Style TargetType="ContentControl">
                             <Style.Triggers>
@@ -38,11 +49,7 @@
                                         <Setter.Value>
                                             <DataTemplate>
                                                 <Grid>
-                                                    <Button Content="⨉" Style="{StaticResource GrayButton}" 
-                                                        VerticalAlignment="Top" HorizontalAlignment="Right"
-                                                        Height="20" Width="20" 
-                                                        Command="{Binding Path=DataContext.CloseInfoCommand, 
-                                                        RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
+                                                    <Button Style="{StaticResource cButton}"/>
                                                     <views:BookControl />
                                                 </Grid>
                                             </DataTemplate>
@@ -54,11 +61,7 @@
                                         <Setter.Value>
                                             <DataTemplate>
                                                 <Grid>
-                                                    <Button Content="⨉" Style="{StaticResource GrayButton}" 
-                                                        VerticalAlignment="Top" HorizontalAlignment="Right"
-                                                        Height="20" Width="20" 
-                                                        Command="{Binding Path=DataContext.CloseInfoCommand, 
-                                                        RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
+                                                    <Button Style="{StaticResource cButton}"/>
                                                     <views:BookUpdateControl />
                                                 </Grid>
                                             </DataTemplate>
@@ -70,11 +73,7 @@
                                         <Setter.Value>
                                             <DataTemplate>
                                                 <Grid>
-                                                    <Button Content="⨉" Style="{StaticResource GrayButton}" 
-                                                        VerticalAlignment="Top" HorizontalAlignment="Right"
-                                                        Height="20" Width="20"
-                                                        Command="{Binding Path=DataContext.CloseInfoCommand, 
-                                                        RelativeSource={RelativeSource AncestorType=Border}, Mode=Default}"/>
+                                                    <Button Style="{StaticResource cButton}"/>
                                                     <views:BookCategoryUpdateControl />
                                                 </Grid>
                                             </DataTemplate>

@@ -257,13 +257,13 @@
     <Compile Include="Windows\ExitWindow.xaml.cs">
       <DependentUpon>ExitWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LogOutWindow.xaml.cs">
+    <Compile Include="Windows\LogOutWindow.xaml.cs">
       <DependentUpon>LogOutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MoreInfoControl.xaml.cs">
+    <Compile Include="Controls\MoreInfoControl.xaml.cs">
       <DependentUpon>MoreInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\RegistrationWindow.xaml.cs">
@@ -357,7 +357,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LogOutWindow.xaml">
+    <Page Include="Windows\LogOutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -365,7 +365,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MoreInfoControl.xaml">
+    <Page Include="Controls\MoreInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

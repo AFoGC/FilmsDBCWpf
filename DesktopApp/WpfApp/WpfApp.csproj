@@ -226,6 +226,7 @@
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileCollection.cs" />
+    <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\TLTables.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Services\ExitService.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="ViewModels\Interfaces\IMainViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\StatusTimer.cs" />
     <Compile Include="Views\BooksMenuView.xaml.cs">
       <DependentUpon>BooksMenuView.xaml</DependentUpon>
@@ -254,6 +256,9 @@
     <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileView.cs" />
     <Compile Include="Views\Interfaces\ISettingsMenuView.cs" />
+    <Compile Include="Views\SignInView.xaml.cs">
+      <DependentUpon>SignInView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ExitWindow.xaml.cs">
       <DependentUpon>ExitWindow.xaml</DependentUpon>
     </Compile>
@@ -346,6 +351,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BooksMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignInView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

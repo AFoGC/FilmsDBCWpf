@@ -8,11 +8,6 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1265">
-    
-    <UserControl.DataContext>
-        <vm:SettingsViewModel />
-    </UserControl.DataContext>
-    
     <Grid Background="#FF121212">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35"/>
@@ -106,7 +101,7 @@
                                             </Style.Triggers>
                                         </Style>
                                     </StackPanel.Resources>
-                                    <TextBox Text="{Binding Name}" 
+                                    <TextBox Text="{Binding Name, Mode=OneWay}" 
                                              Width="200" IsReadOnly="True"/>
                                     <Rectangle Width="30"/>
                                     <Button Style="{StaticResource GrayButton}"

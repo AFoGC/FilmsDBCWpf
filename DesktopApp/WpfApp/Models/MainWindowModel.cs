@@ -1,37 +1,21 @@
-﻿using BL_Films;
-using BO_Films;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
+﻿using System.Windows.Threading;
 using TablesLibrary.Interpreter;
-using TablesLibrary.Interpreter.Table;
-using TablesLibrary.Interpreter.TableCell;
-using TL_Objects;
-using TL_Tables;
+using WpfApp.Services;
 
 namespace WpfApp.Models
 {
     public class MainWindowModel
     {
-        public TableCollection TableCollection { get; private set; }
-        public DispatcherTimer SaveTimer { get; private set; }
-        public void SaveSettings() => _settings.SaveSettings();
-        private ISettingsModel _settings;
+        private readonly SettingsService _settingsService;
 
-        public MainWindowModel()
+        public MainWindowModel(SettingsService settingsService)
         {
-            SettingsModel settings = SettingsModel.Initialize();
-            SaveTimer = settings.SaveTimer;
-            TableCollection = settings.TableCollection;
-
-            _settings = settings;
+            _settingsService = settingsService;
         }
+
+        public TableCollection TableCollection => 
+               _settingsService.TablesService.TablesCollection;
+
+        public void SaveSettings() => _settingsService.SaveSettings();
     }
 }

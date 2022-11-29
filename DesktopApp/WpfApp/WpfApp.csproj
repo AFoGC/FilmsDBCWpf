@@ -219,13 +219,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Helper\PathHelper.cs" />
     <Compile Include="Models\BooksModel.cs" />
     <Compile Include="Models\FilmsModel.cs" />
     <Compile Include="Models\ISettingsModel.cs" />
     <Compile Include="Models\IUserModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
-    <Compile Include="Models\Profile.cs" />
-    <Compile Include="Models\ProfileCollection.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
+    <Compile Include="Models\ProfilesModel.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\TLTables.cs" />
     <Compile Include="Models\SettingsModel.cs" />
@@ -236,6 +237,11 @@
     <Compile Include="Services\Interfaces\IExplorerService.cs" />
     <Compile Include="Services\Interfaces\IMessageService.cs" />
     <Compile Include="Services\ImportFileDialogService.cs" />
+    <Compile Include="Services\LanguageService.cs" />
+    <Compile Include="Services\ProfilesService.cs" />
+    <Compile Include="Services\TablesFileService.cs" />
+    <Compile Include="Services\ScaleService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\ShowMessageService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BooksViewModel.cs" />
@@ -254,7 +260,6 @@
     <Compile Include="Views\Interfaces\IBaseMenuView.cs" />
     <Compile Include="Views\Interfaces\IGenreSettingsContainerView.cs" />
     <Compile Include="Views\Interfaces\IProfileSettingsContainerView.cs" />
-    <Compile Include="Views\Interfaces\IProfileView.cs" />
     <Compile Include="Views\Interfaces\ISettingsMenuView.cs" />
     <Compile Include="Views\SignInView.xaml.cs">
       <DependentUpon>SignInView.xaml</DependentUpon>
@@ -463,6 +468,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.5.5\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.5\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -9,9 +9,6 @@
              xmlns:local="clr-namespace:WpfApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1265" Focusable="True">
-    <UserControl.DataContext>
-        <vm:FilmsViewModel />
-    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

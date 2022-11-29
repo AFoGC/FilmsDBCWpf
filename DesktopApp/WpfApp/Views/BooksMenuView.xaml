@@ -10,9 +10,6 @@
              xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1265" Focusable="True">
-    <UserControl.DataContext>
-        <vm:BooksViewModel />
-    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

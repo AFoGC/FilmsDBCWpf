@@ -20,6 +20,7 @@ using TL_Objects.Interfaces;
 using TL_Tables;
 using WpfApp.Commands;
 using WpfApp.Models;
+using WpfApp.Services;
 
 namespace WpfApp.ViewModels
 {
@@ -338,9 +339,9 @@ namespace WpfApp.ViewModels
             return genres.ToArray();
         }
 
-        public BooksViewModel()
+        public BooksViewModel(TablesFileService tablesService)
         {
-            Model = new BooksModel();
+            Model = new BooksModel(tablesService);
 
             GenresTable = new ObservableCollection<GenreButtonViewModel>();
             CategoriesMenu = new ObservableCollection<BookCategoryViewModel>();
@@ -348,7 +349,7 @@ namespace WpfApp.ViewModels
             BooksMenu = new ObservableCollection<BookViewModel>();
             PriorityBooksMenu = new ObservableCollection<BookViewModel>();
 
-            Model.TableCollection.TableLoad += TableLoad;
+            Model.TablesLoaded += TableLoad;
 
             Model.BookGenresTable.CollectionChanged += GenresChanged;
             Model.BooksTable.CollectionChanged += BooksChanged;
@@ -356,7 +357,7 @@ namespace WpfApp.ViewModels
             Model.PriorityBooksTable.CollectionChanged += PriorityChanged;
 
             CategoryVisibility = Visibility.Visible;
-            TableLoad(this, null);
+            TableLoad();
 
             SimpleBooksCVS = new CollectionViewSource();
             CategoryCVS = new CollectionViewSource();
@@ -487,7 +488,7 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private void TableLoad(object sender, EventArgs e)
+        private void TableLoad()
         {
             CategoriesMenu.Clear();
             SimpleBooksMenu.Clear();

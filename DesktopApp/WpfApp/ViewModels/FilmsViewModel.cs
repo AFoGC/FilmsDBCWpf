@@ -7,32 +7,106 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
-using TL_Tables;
 using WpfApp.Commands;
 using WpfApp.Models;
+using WpfApp.Services;
 
 namespace WpfApp.ViewModels
 {
     public class FilmsViewModel : BaseViewModel, IMenuViewModel<Film>
     {
-        public FilmsModel Model { get; private set; }
+        private readonly FilmsModel _model;
 
+        private BaseViewModel<Film> _selectedElement;
+
+        private Visibility _categoryVisibility = Visibility.Collapsed;
+        private Visibility _filmsVisibility = Visibility.Collapsed;
+        private Visibility _seriesVisibility = Visibility.Collapsed;
+        private Visibility _priorityVisibility = Visibility.Collapsed;
+
+        private bool _isReadedChecked = true;
+        private bool _isUnReadedChecked = true;
+        private string _searchText = string.Empty;
+
+        private Command showCategoriesCommand;
+        private Command showFilmsCommand;
+        private Command showSeriesCommand;
+        private Command showPriorityCommand;
+        private Command addCategoryCommand;
+        private Command addBookCommand;
+        private Command saveTablesCommand;
+        private Command filterCommand;
+        private Command sortTable;
+        private Command removeSourceCommand;
+        private Command addSourceCommand;
+        private Command moveUpSourceCommand;
+        private Command closeInfoCommand;
+
+        private FilmInfoMenuCondition infoMenuCondition;
+        private Object _infoMenuDataContext;
+        
         public ObservableCollection<GenreButtonViewModel> GenresTable { get; private set; }
         public ObservableCollection<FilmCategoryViewModel> CategoriesMenu { get; private set; }
         public ObservableCollection<FilmViewModel> SimpleFilmsMenu { get; private set; }
         public ObservableCollection<FilmViewModel> FilmsMenu { get; private set; }
         public ObservableCollection<FilmSerieViewModel> SeriesMenu { get; private set; }
         public ObservableCollection<FilmViewModel> PriorityFilmsMenu { get; private set; }
+        public CollectionViewSource SourcesCVS { get; private set; }
+        public CollectionViewSource CategoryCVS { get; private set; }
+        public CollectionViewSource SimpleFilmsCVS { get; private set; }
+        public CollectionViewSource FilmsCVS { get; private set; }
+        public CollectionViewSource SeriesCVS { get; private set; }
+        public CollectionViewSource PriorityFilmsCVS { get; private set; }
 
-        private Visibility _categoryVisibility = Visibility.Collapsed;
+        public FilmsViewModel(TablesFileService tablesService)
+        {
+            _model = new FilmsModel(tablesService);
+
+            GenresTable = new ObservableCollection<GenreButtonViewModel>();
+            CategoriesMenu = new ObservableCollection<FilmCategoryViewModel>();
+            SimpleFilmsMenu = new ObservableCollection<FilmViewModel>();
+            FilmsMenu = new ObservableCollection<FilmViewModel>();
+            SeriesMenu = new ObservableCollection<FilmSerieViewModel>();
+            PriorityFilmsMenu = new ObservableCollection<FilmViewModel>();
+
+            _model.TablesLoaded += TableLoad;
+
+            _model.GenresTable.CollectionChanged += GenresChanged;
+            _model.FilmsTable.CollectionChanged += FilmsChanged;
+            _model.CategoriesTable.CollectionChanged += CategoriesChanged;
+            _model.SeriesTable.CollectionChanged += SeriesChanged;
+            _model.PriorityFilmsTable.CollectionChanged += PriorityChanged;
+
+            CategoryVisibility = Visibility.Visible;
+            TableLoad();
+
+            SimpleFilmsCVS = new CollectionViewSource();
+            CategoryCVS = new CollectionViewSource();
+            FilmsCVS = new CollectionViewSource();
+            SeriesCVS = new CollectionViewSource();
+            PriorityFilmsCVS = new CollectionViewSource();
+
+            SimpleFilmsCVS.Source = SimpleFilmsMenu;
+            CategoryCVS.Source = CategoriesMenu;
+            FilmsCVS.Source = FilmsMenu;
+            SeriesCVS.Source = SeriesMenu;
+            PriorityFilmsCVS.Source = PriorityFilmsMenu;
+
+            CVSChangeSort(CategoryCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(SimpleFilmsCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(FilmsCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(SeriesCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(PriorityFilmsCVS, "Model.ID", ListSortDirection.Ascending);
+
+            SourcesCVS = new CollectionViewSource();
+        }
+
         public Visibility CategoryVisibility
         {
             get => _categoryVisibility;
@@ -43,7 +117,6 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private Visibility _filmsVisibility = Visibility.Collapsed;
         public Visibility FilmsVisibility
         {
             get => _filmsVisibility;
@@ -54,7 +127,6 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private Visibility _seriesVisibility = Visibility.Collapsed;
         public Visibility SeriesVisibility
         {
             get => _seriesVisibility;
@@ -64,8 +136,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Visibility _priorityVisibility = Visibility.Collapsed;
+        
         public Visibility PriorityVisibility
         {
             get => _priorityVisibility;
@@ -75,8 +146,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private bool _isReadedChecked = true;
+        
         public bool IsReadedChecked
         {
             get => _isReadedChecked;
@@ -89,8 +159,7 @@ namespace WpfApp.ViewModels
                 }
             }
         }
-
-        private bool _isUnReadedChecked = true;
+        
         public bool IsUnReadedChecked
         {
             get => _isUnReadedChecked;
@@ -103,21 +172,22 @@ namespace WpfApp.ViewModels
                 }
             }
         }
-
-        private BaseViewModel<Film> _selectedElement;
+        
         public BaseViewModel<Film> SelectedElement
         {
             get => _selectedElement;
             set
             {
-                if (_selectedElement != null) _selectedElement.IsSelected = false;
+                if (_selectedElement != null) 
+                    _selectedElement.IsSelected = false;
+
                 _selectedElement = value;
 
-                if (_selectedElement != null) _selectedElement.IsSelected = true;
+                if (_selectedElement != null) 
+                    _selectedElement.IsSelected = true;
             }
         }
-
-        private String _searchText = String.Empty;
+        
         public String SearchText
         {
             get => _searchText;
@@ -141,8 +211,7 @@ namespace WpfApp.ViewModels
                 vm.SetFinded(search);
             }
         }
-
-        private Command showCategoriesCommand;
+        
         public Command ShowCategoriesCommand
         {
             get
@@ -157,8 +226,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command showFilmsCommand;
+        
         public Command ShowFilmsCommand
         {
             get
@@ -173,8 +241,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command showSeriesCommand;
+        
         public Command ShowSeriesCommand
         {
             get
@@ -189,8 +256,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command showPriorityCommand;
+        
         public Command ShowPriorityCommand
         {
             get
@@ -205,38 +271,34 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command addCategoryCommand;
+        
         public Command AddCategoryCommand
         {
             get
             {
                 return addCategoryCommand ??
-                (addCategoryCommand = new Command(obj => Model.AddCategory()));
+                (addCategoryCommand = new Command(obj => _model.AddCategory()));
             }
         }
-
-        private Command addBookCommand;
+        
         public Command AddBookCommand
         {
             get
             {
                 return addBookCommand ??
-                (addBookCommand = new Command(obj => Model.AddFilm()));
+                (addBookCommand = new Command(obj => _model.AddFilm()));
             }
         }
-
-        private Command saveTablesCommand;
+        
         public Command SaveTablesCommand
         {
             get
             {
                 return saveTablesCommand ??
-                (saveTablesCommand = new Command(obj => Model.SaveTables()));
+                (saveTablesCommand = new Command(obj => _model.SaveTables()));
             }
         }
-
-        private Command filterCommand;
+        
         public Command FilterCommand
         {
             get
@@ -255,13 +317,6 @@ namespace WpfApp.ViewModels
             }
         }
 
-        public CollectionViewSource CategoryCVS { get; private set; }
-        public CollectionViewSource SimpleFilmsCVS { get; private set; }
-        public CollectionViewSource FilmsCVS { get; private set; }
-        public CollectionViewSource SeriesCVS { get; private set; }
-        public CollectionViewSource PriorityFilmsCVS { get; private set; }
-
-        private Command sortTable;
         public Command SortTable =>
         sortTable ?? (sortTable = new Command(obj =>
         {
@@ -350,51 +405,6 @@ namespace WpfApp.ViewModels
             }
             return genres.ToArray();
         }
-
-        public FilmsViewModel()
-        {
-            Model = new FilmsModel();
-
-            GenresTable = new ObservableCollection<GenreButtonViewModel>();
-            CategoriesMenu = new ObservableCollection<FilmCategoryViewModel>();
-            SimpleFilmsMenu = new ObservableCollection<FilmViewModel>();
-            FilmsMenu = new ObservableCollection<FilmViewModel>();
-            SeriesMenu = new ObservableCollection<FilmSerieViewModel>();
-            PriorityFilmsMenu = new ObservableCollection<FilmViewModel>();
-
-            Model.TableCollection.TableLoad += TableLoad;
-
-            Model.GenresTable.CollectionChanged += GenresChanged;
-            Model.FilmsTable.CollectionChanged += FilmsChanged;
-            Model.CategoriesTable.CollectionChanged += CategoriesChanged;
-            Model.SeriesTable.CollectionChanged += SeriesChanged;
-            Model.PriorityFilmsTable.CollectionChanged += PriorityChanged;
-
-            CategoryVisibility = Visibility.Visible;
-            TableLoad(this, null);
-
-            SimpleFilmsCVS = new CollectionViewSource();
-            CategoryCVS = new CollectionViewSource();
-            FilmsCVS = new CollectionViewSource();
-            SeriesCVS = new CollectionViewSource();
-            PriorityFilmsCVS = new CollectionViewSource();
-
-            SimpleFilmsCVS.Source = SimpleFilmsMenu;
-            CategoryCVS.Source = CategoriesMenu;
-            FilmsCVS.Source = FilmsMenu;
-            SeriesCVS.Source = SeriesMenu;
-            PriorityFilmsCVS.Source = PriorityFilmsMenu;
-
-            CVSChangeSort(CategoryCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(SimpleFilmsCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(FilmsCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(SeriesCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(PriorityFilmsCVS, "Model.ID", ListSortDirection.Ascending);
-
-            SourcesCVS = new CollectionViewSource();
-        }
-
-
         
         private void SeriesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -501,14 +511,14 @@ namespace WpfApp.ViewModels
                 {
                     if (serieVM == null)
                     {
-                        Serie serie = Model.SeriesTable.FindAndConnectSerie(film);
+                        Serie serie = _model.SeriesTable.FindAndConnectSerie(film);
                     }
                 }
                 else
                 {
                     if (serieVM != null)
                     {
-                        Model.SeriesTable.Remove(serieVM.Serie);
+                        _model.SeriesTable.Remove(serieVM.Serie);
                     }
                 }
             }
@@ -535,7 +545,7 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private void TableLoad(object sender, EventArgs e)
+        private void TableLoad()
         {
             CategoriesMenu.Clear();
             SimpleFilmsMenu.Clear();
@@ -544,18 +554,18 @@ namespace WpfApp.ViewModels
             PriorityFilmsMenu.Clear();
             GenresTable.Clear();
 
-            foreach (Genre genre in Model.GenresTable)
+            foreach (Genre genre in _model.GenresTable)
             {
                 GenresTable.Add(new GenreButtonViewModel(genre));
             }
 
-            foreach (Category category in Model.CategoriesTable)
+            foreach (Category category in _model.CategoriesTable)
             {
                 CategoriesMenu.Add(new FilmCategoryViewModel(category, this));
                 category.Films.CollectionChanged += CategoryChanged;
             }
 
-            foreach (Film film in Model.FilmsTable)
+            foreach (Film film in _model.FilmsTable)
             {
                 film.PropertyChanged += FilmPropertyChanged;
 
@@ -566,12 +576,12 @@ namespace WpfApp.ViewModels
                 }
             }
 
-            foreach (Serie serie in Model.SeriesTable)
+            foreach (Serie serie in _model.SeriesTable)
             {
                 SeriesMenu.Add(new FilmSerieViewModel(serie, this));
             }
 
-            foreach (PriorityFilm book in Model.PriorityFilmsTable)
+            foreach (PriorityFilm book in _model.PriorityFilmsTable)
             {
                 PriorityFilmsMenu.Add(new FilmViewModel(book.Film, this));
             }
@@ -588,7 +598,7 @@ namespace WpfApp.ViewModels
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     film = (Film)e.OldItems[0];
-                    if (Model.FilmsTable.Contains(film))
+                    if (_model.FilmsTable.Contains(film))
                     {
                         SimpleFilmsMenu.Add(new FilmViewModel(film, this));
                     }
@@ -598,7 +608,6 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private FilmInfoMenuCondition infoMenuCondition;
         public FilmInfoMenuCondition InfoMenuCondition
         {
             get => infoMenuCondition;
@@ -615,7 +624,6 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private Object _infoMenuDataContext;
         public Object InfoMenuDataContext
         {
             get => _infoMenuDataContext;
@@ -643,11 +651,9 @@ namespace WpfApp.ViewModels
                     InfoMenuDataContext = new FilmSerieViewModel(film.Serie, this);
                     InfoMenuCondition = FilmInfoMenuCondition.SerieInfo;
                 }
-                
             }
         }
-
-        public CollectionViewSource SourcesCVS { get; private set; }
+        
         public void OpenSourcesMenu(ObservableCollection<Source> sources)
         {
             SourcesCVS.Source = sources;
@@ -678,8 +684,7 @@ namespace WpfApp.ViewModels
                 InfoMenuCondition = FilmInfoMenuCondition.CategoryUpdate;
             }
         }
-
-        private Command removeSourceCommand;
+        
         public Command RemoveSourceCommand =>
         removeSourceCommand ?? (removeSourceCommand = new Command(obj =>
         {
@@ -690,8 +695,7 @@ namespace WpfApp.ViewModels
                 sources.Remove(source);
             }
         }));
-
-        private Command addSourceCommand;
+        
         public Command AddSourceCommand =>
         addSourceCommand ?? (addSourceCommand = new Command(obj =>
         {
@@ -701,8 +705,7 @@ namespace WpfApp.ViewModels
                 sources.Add(new Source());
             }
         }));
-
-        private Command moveUpSourceCommand;
+        
         public Command MoveUpSourceCommand =>
         moveUpSourceCommand ?? (moveUpSourceCommand = new Command(obj =>
         {
@@ -713,8 +716,7 @@ namespace WpfApp.ViewModels
                 sources.Move(sources.IndexOf(source), 0);
             }
         }));
-
-        private Command closeInfoCommand;
+        
         public Command CloseInfoCommand =>
         closeInfoCommand ?? (closeInfoCommand = new Command(obj =>
         {

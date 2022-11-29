@@ -81,13 +81,13 @@
         <!--Menu sector-->
         <Grid Grid.Row="2" >
             <Grid Visibility="{Binding SettingsVisibility}">
-                <local:SettingsMenuView />
+                <local:SettingsMenuView DataContext="{Binding SettingsVM}"/>
             </Grid>
             <Grid Visibility="{Binding BooksVisibility}">
-                <local:BooksMenuView />
+                <local:BooksMenuView DataContext="{Binding BooksVM}"/>
             </Grid>
             <Grid Visibility="{Binding FilmsVisibility}">
-                <local:FilmsMenuView />
+                <local:FilmsMenuView DataContext="{Binding FilmsVM}"/>
             </Grid>
         </Grid>
         <!--Menu sector End-->

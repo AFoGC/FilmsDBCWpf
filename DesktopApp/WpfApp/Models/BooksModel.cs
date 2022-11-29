@@ -6,27 +6,31 @@ using System.Threading.Tasks;
 using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
+using WpfApp.Services;
 
 namespace WpfApp.Models
 {
     public class BooksModel
     {
-        public TableCollection TableCollection { get; private set; }
-        public BooksTable BooksTable { get; private set; }
-        public BookCategoriesTable BookCategoriesTable { get; private set; }
-        public BookGenresTable BookGenresTable { get; private set; }
-        public PriorityBooksTable PriorityBooksTable { get; private set; }
+        private readonly TablesFileService _tablesService;
 
-        public BooksModel()
+        public event Action TablesLoaded;
+
+        public BooksModel(TablesFileService tablesService)
         {
-            TableCollection collection = SettingsModel.Initialize().TableCollection;
-            TableCollection = collection;
-
-            BooksTable = (BooksTable)collection.GetTable<Book>();
-            BookCategoriesTable = (BookCategoriesTable)collection.GetTable<BookCategory>();
-            BookGenresTable = (BookGenresTable)collection.GetTable<BookGenre>();
-            PriorityBooksTable = (PriorityBooksTable)collection.GetTable<PriorityBook>();
+            _tablesService = tablesService;
+            _tablesService.TablesCollection.TableLoad += OnTableLoad;
         }
+
+        private void OnTableLoad(object sender, EventArgs e)
+        {
+            TablesLoaded?.Invoke();
+        }
+
+        public BooksTable BooksTable => _tablesService.BooksTable;
+        public BookCategoriesTable BookCategoriesTable => _tablesService.BookCategoriesTable;
+        public BookGenresTable BookGenresTable => _tablesService.BookGenresTable;
+        public PriorityBooksTable PriorityBooksTable => _tablesService.PriorityBooksTable;
 
         public void AddCategory()
         {
@@ -40,6 +44,6 @@ namespace WpfApp.Models
             BooksTable.AddElement(book);
         }
 
-        public void SaveTables() => TableCollection.SaveTables();
+        public void SaveTables() => _tablesService.TablesCollection.SaveTables();
     }
 }

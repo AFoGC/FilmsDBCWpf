@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 using WpfApp.Commands;
 using WpfApp.Models;
 using WpfApp.Services;
@@ -17,9 +12,55 @@ namespace WpfApp.ViewModels
 {
     public class MainViewModel : BaseViewModel, IMainViewModel
     {
-        public MainWindowModel Model { get; private set; }
+        private readonly MainWindowModel _model;
 
+        private readonly FilmsViewModel _filmsVM;
+        private readonly BooksViewModel _booksVM;
+        private readonly SettingsViewModel _settingsVM;
+
+        private readonly IExitService _exitService;
+
+        private bool? _filmsSelected = false;
+        private bool? _booksSelected = false;
+        private bool? _settingsSelected = false;
+
+        private Visibility _filmsVisibility;
+        private Visibility _booksVisibility;
+        private Visibility _settingsVisibility;
+
+        private Command _keyDownCommand;
+        private Command _saveAndExitCommand;
+        private Command _saveSettingsCommand;
+        private Command _minimizeCommand;
+        private Command _maximizeCommand;
+        private Command _closeCmmand;
+
+        
         private StatusEnum _status;
+
+        public MainViewModel()
+        {
+            SettingsService settingsService = CreateSettingsService();
+            _model = new MainWindowModel(settingsService);
+
+            _filmsVM = new FilmsViewModel(settingsService.TablesService);
+            _booksVM = new BooksViewModel(settingsService.TablesService);
+            _settingsVM = new SettingsViewModel(settingsService);
+
+            _exitService = new ExitService();
+
+            _model.TableCollection.TableSave += OnSaveStatus;
+            _model.TableCollection.CellInTablesChanged += OnTablesChanged;
+
+            FilmsSelected = true;
+            Status = StatusEnum.Normal;
+        }
+
+        public FilmsViewModel FilmsVM => _filmsVM;
+        public BooksViewModel BooksVM => _booksVM;
+        public SettingsViewModel SettingsVM => _settingsVM;
+        
+
         public StatusEnum Status
         {
             get => _status;
@@ -34,8 +75,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private bool? _filmsSelected = false;
+        
         public bool? FilmsSelected
         {
             get => _filmsSelected;
@@ -51,8 +91,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private bool? _booksSelected = false;
+        
         public bool? BooksSelected
         {
             get => _booksSelected;
@@ -68,8 +107,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private bool? _settingsSelected = false;
+        
         public bool? SettingsSelected
         {
             get => _settingsSelected;
@@ -85,8 +123,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Visibility _filmsVisibility;
+        
         public Visibility FilmsVisibility
         {
             get => _filmsVisibility;
@@ -101,8 +138,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Visibility _booksVisibility;
+        
         public Visibility BooksVisibility
         {
             get => _booksVisibility;
@@ -117,8 +153,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Visibility _settingsVisibility;
+        
         public Visibility SettingsVisibility
         {
             get => _settingsVisibility;
@@ -133,8 +168,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Command _keyDownCommand;
+        
         public Command KeyDownCommand
         {
             get
@@ -145,14 +179,12 @@ namespace WpfApp.ViewModels
                     KeyEventArgs e = obj as KeyEventArgs;
                     if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
                     {
-                        Model.TableCollection.SaveTables();
+                        _model.TableCollection.SaveTables();
                     }
                 }));
             }
         }
-
-        private IExitService _exitService;
-        private Command _saveAndExitCommand;
+        
         public Command SaveAndExitCommand
         {
             get
@@ -160,21 +192,20 @@ namespace WpfApp.ViewModels
                 return _saveAndExitCommand ??
                 (_saveAndExitCommand = new Command(obj =>
                 {
-                    if (Model.TableCollection.IsInfoUnsaved)
+                    if (_model.TableCollection.IsInfoUnsaved)
                     {
                         CancelEventArgs e = obj as CancelEventArgs;
                         _exitService.ShowDialog();
                         if (_exitService.Save)
                         {
-                            Model.TableCollection.SaveTables();
+                            _model.TableCollection.SaveTables();
                         }
                         e.Cancel = !_exitService.Close;
                     }
                 }));
             }
         }
-
-        private Command _saveSettingsCommand;
+        
         public Command SaveSettingsCommand
         {
             get
@@ -182,12 +213,11 @@ namespace WpfApp.ViewModels
                 return _saveSettingsCommand ??
                 (_saveSettingsCommand = new Command(obj =>
                 {
-                    Model.SaveSettings();
+                    _model.SaveSettings();
                 }));
             }
         }
-
-        private Command _minimizeCommand;
+        
         public Command MinimizeCommand
         {
             get
@@ -199,8 +229,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command _maximizeCommand;
+        
         public Command MaximizeCommand
         {
             get
@@ -219,8 +248,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command _closeCmmand;
+        
         public Command CloseCmmand
         {
             get
@@ -233,39 +261,25 @@ namespace WpfApp.ViewModels
             }
         }
 
-        public MainViewModel()
+        private SettingsService CreateSettingsService()
         {
-            Model = new MainWindowModel();
-            _exitService = new ExitService();
+            TablesFileService tablesService = new TablesFileService();
+            LanguageService languageService = new LanguageService();
+            ProfilesService profilesService = new ProfilesService();
+            ScaleService scaleService = new ScaleService();
 
-            Model.SaveTimer.Tick += OnTimerSave;
-            Model.TableCollection.TableSave += OnSaveStatus;
-            Model.TableCollection.CellInTablesChanged += OnTablesChanged;
-
-            FilmsSelected = true;
-            Status = StatusEnum.Normal;
-        }
-
-        private void OnTimerSave(object sender, EventArgs e)
-        {
-            Model.TableCollection.SaveTables();
-            Model.SaveTimer.Stop();
+            return new SettingsService(tablesService, languageService,
+                                        profilesService, scaleService);
         }
 
         private void OnTablesChanged(object sender, EventArgs e)
         {
             Status = StatusEnum.UnSaved;
-            if (Model.SaveTimer.IsEnabled)
-            {
-                Model.SaveTimer.Stop();
-                Model.SaveTimer.Start();
-            }
         }
 
         private void OnSaveStatus(object sender, EventArgs e)
         {
             Status = StatusEnum.Saved;
-            Model.SaveTimer.Stop();
         }
     }
 }

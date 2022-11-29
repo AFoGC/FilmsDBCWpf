@@ -6,28 +6,31 @@ using System.Threading.Tasks;
 using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
+using WpfApp.Services;
 
 namespace WpfApp.Models
 {
     public class FilmsModel
     {
-        public TableCollection TableCollection { get; private set; }
-        public FilmsTable FilmsTable { get; private set; }
-        public SeriesTable SeriesTable { get; private set; }
-        public CategoriesTable CategoriesTable { get; private set; }
-        public GenresTable GenresTable { get; private set; }
-        public PriorityFilmsTable PriorityFilmsTable { get; private set; }
+        private readonly TablesFileService _tablesService;
 
-        public FilmsModel()
+        public event Action TablesLoaded;
+
+        public FilmsModel(TablesFileService tablesService)
         {
-            TableCollection collection = SettingsModel.Initialize().TableCollection;
-            TableCollection = collection;
+            _tablesService = tablesService;
+            _tablesService.TablesCollection.TableLoad += OnTableLoad;
+        }
 
-            FilmsTable = (FilmsTable)collection.GetTable<Film>();
-            SeriesTable = (SeriesTable)collection.GetTable<Serie>();
-            CategoriesTable = (CategoriesTable)collection.GetTable<Category>();
-            GenresTable = (GenresTable)collection.GetTable<Genre>();
-            PriorityFilmsTable = (PriorityFilmsTable)collection.GetTable<PriorityFilm>();
+        public FilmsTable FilmsTable => _tablesService.FilmsTable;
+        public SeriesTable SeriesTable => _tablesService.SeriesTable;
+        public CategoriesTable CategoriesTable => _tablesService.FilmCategoriesTable;
+        public GenresTable GenresTable => _tablesService.FilmGenresTable;
+        public PriorityFilmsTable PriorityFilmsTable => _tablesService.PriorityFilmsTable;
+
+        private void OnTableLoad(object sender, EventArgs e)
+        {
+            TablesLoaded?.Invoke();
         }
 
         public void AddCategory()
@@ -42,6 +45,6 @@ namespace WpfApp.Models
             FilmsTable.AddElement(film);
         }
 
-        public void SaveTables() => TableCollection.SaveTables();
+        public void SaveTables() => _tablesService.TablesCollection.SaveTables();
     }
 }

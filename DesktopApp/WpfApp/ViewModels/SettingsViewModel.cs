@@ -3,345 +3,71 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
-using System.IO;
 using TL_Objects;
-using TL_Tables.Interfaces;
 using WpfApp.Commands;
+using WpfApp.Helper;
 using WpfApp.Models;
 using WpfApp.Services;
 using WpfApp.Services.Interfaces;
 
 namespace WpfApp.ViewModels
 {
-	public class SettingsViewModel : BaseViewModel
-	{
-		public SettingsModel Model { get; private set; }
+    public class SettingsViewModel : BaseViewModel
+    {
+        private readonly ProfilesModel _profilesModel;
+        private readonly SettingsModel _model;
 
-		public CultureInfo Language
-		{
-			get => Model.Language;
-			set
-			{
-				Model.Language = value;
-				OnPropertyChanged();
-			}
-		}
-		public List<CultureInfo> Languages => Model.Cultures;
-		public List<double> Timers { get; private set; }
-		public bool TimerIsEnabled
-		{
-			get => Model.SaveTimer.IsEnabled;
-			set
-			{
-				Model.SaveTimer.IsEnabled = value;
-				OnPropertyChanged();
-			}
-		}
-		public double SelectedTimer
-		{
-			get => Model.SaveTimer.Interval.TotalSeconds;
-			set
-			{
-				Model.SaveTimer.Interval = TimeSpan.FromSeconds(value);
-				OnPropertyChanged();
-			}
-		}
-		public int IndexOfScale
-		{
-			get => (int)Model.Scale;
-			set
-			{
-				Model.Scale = (ScaleEnum)value;
-				OnPropertyChanged();
-			}
-		}
+        private IMessageService messageService;
+        private IDialogService importFileService;
+        private IExplorerService explorerService;
 
-		public ObservableCollection<Genre> FilmGenres { get; private set; }
-		public ObservableCollection<BookGenre> BookGenres { get; private set; }
+        private int _indexOfFilmMarkSystem;
+        private int _indexOfBookMarkSystem;
+        private String _newProfileName = String.Empty;
 
-		private Command addBookGenreCommand;
-		public Command AddBookGenreCommand
-		{
-			get
-			{
-				return addBookGenreCommand ??
-				(addBookGenreCommand = new Command(obj =>
-				{
-					BookGenre genre = new BookGenre();
-					Model.Tables.BookGenresTable.AddElement(genre);
-					genre.Name = $"Genre{genre.ID}";
-				}));
-			}
-		}
-		private Command deleteBookGenreCommand;
-		public Command DeleteBookGenreCommand
-		{
-			get
-			{
-				return deleteBookGenreCommand ??
-				(deleteBookGenreCommand = new Command(obj =>
-				{
-					BookGenre genre = obj as BookGenre;
-					if (!Model.Tables.BooksTable.GenreHasBook(genre))
-					{
-						Model.Tables.BookGenresTable.Remove(genre);
-					}
-				}));
-			}
-		}
-
-		private Command addFilmGenreCommand;
-		public Command AddFilmGenreCommand
-		{
-			get
-			{
-				return addFilmGenreCommand ??
-				(addFilmGenreCommand = new Command(obj =>
-				{
-					Genre genre = new Genre();
-					Model.Tables.FilmGenresTable.AddElement(genre);
-					genre.Name = $"Genre{genre.ID}";
-				}));
-			}
-		}
-		private Command deleteFilmGenreCommand;
-		public Command DeleteFilmGenreCommand
-		{
-			get
-			{
-				return deleteFilmGenreCommand ??
-				(deleteFilmGenreCommand = new Command(obj =>
-				{
-					Genre genre = obj as Genre;
-					if (!Model.Tables.FilmsTable.GenreHasFilm(genre))
-					{
-						Model.Tables.FilmGenresTable.Remove(genre);
-					}
-				}));
-			}
-		}
-		private Command uncheckFilmGenreCommand;
-		public Command UncheckFilmGenreCommand
-		{
-			get
-			{
-				return uncheckFilmGenreCommand ??
-				(uncheckFilmGenreCommand = new Command(obj =>
-				{
-					Genre genre = obj as Genre;
-					if (Model.Tables.FilmsTable.GenreHasFilm(genre))
-					{
-						genre.IsSerialGenre = true;
-					}
-				}));
-			}
-		}
-
-        public List<String> MarkSystems { get; private set; }
-
-		private int _indexOfFilmMarkSystem;
-		public int IndexOfFilmMarkSystem
-		{
-			get => _indexOfFilmMarkSystem;
-			set
-			{
-				_indexOfFilmMarkSystem = value;
-				switch (_indexOfFilmMarkSystem)
-				{
-					case 0:
-                        Model.Tables.FilmsTable.MarkSystem = 3;
-                        Model.Tables.FilmCategoriesTable.MarkSystem = 3;
-						break;
-					case 1:
-                        Model.Tables.FilmsTable.MarkSystem = 5;
-                        Model.Tables.FilmCategoriesTable.MarkSystem = 5;
-						break;
-					case 2:
-                        Model.Tables.FilmsTable.MarkSystem = 6;
-                        Model.Tables.FilmCategoriesTable.MarkSystem = 6;
-						break;
-					case 3:
-                        Model.Tables.FilmsTable.MarkSystem = 10;
-                        Model.Tables.FilmCategoriesTable.MarkSystem = 10;
-						break;
-					case 4:
-                        Model.Tables.FilmsTable.MarkSystem = 12;
-                        Model.Tables.FilmCategoriesTable.MarkSystem = 12;
-						break;
-					case 5:
-                        Model.Tables.FilmsTable.MarkSystem = 25;
-                        Model.Tables.FilmCategoriesTable.MarkSystem = 25;
-						break;
-				}
-				OnPropertyChanged();
-			}
-		}
-
-		private int _indexOfBookMarkSystem;
-		public int IndexOfBookMarkSystem
-		{
-			get => _indexOfBookMarkSystem;
-			set
-			{
-				_indexOfBookMarkSystem = value;
-				switch (_indexOfBookMarkSystem)
-				{
-					case 0:
-                        Model.Tables.BooksTable.MarkSystem = 3;
-                        Model.Tables.BookCategoriesTable.MarkSystem = 3;
-						break;
-					case 1:
-                        Model.Tables.BooksTable.MarkSystem = 5;
-                        Model.Tables.BookCategoriesTable.MarkSystem = 5;
-						break;
-					case 2:
-                        Model.Tables.BooksTable.MarkSystem = 6;
-                        Model.Tables.BookCategoriesTable.MarkSystem = 6;
-						break;
-					case 3:
-                        Model.Tables.BooksTable.MarkSystem = 10;
-                        Model.Tables.BookCategoriesTable.MarkSystem = 10;
-						break;
-					case 4:
-                        Model.Tables.BooksTable.MarkSystem = 12;
-                        Model.Tables.BookCategoriesTable.MarkSystem = 12;
-						break;
-					case 5:
-                        Model.Tables.BooksTable.MarkSystem = 25;
-                        Model.Tables.BookCategoriesTable.MarkSystem = 25;
-						break;
-				}
-				OnPropertyChanged();
-			}
-		}
-
-		public ProfileCollection Profiles => Model.Profiles;
-		private String _newProfileName = String.Empty;
-		public String NewProfileName
-		{
-			get => _newProfileName;
-			set { _newProfileName = value; OnPropertyChanged(); }
-		}
-
-		private Command changeProfileCommand;
-		public Command ChangeProfileCommand
-		{
-			get
-			{
-				return changeProfileCommand ??
-				(changeProfileCommand = new Command(obj =>
-				{
-					Profile profile = obj as Profile;
-					Profiles.UsedProfile = profile;
-				}));
-			}
-		}
-
-		private Command deleteProfileCommand;
-		public Command DeleteProfileCommand
-		{
-			get
-			{
-				return deleteProfileCommand ??
-				(deleteProfileCommand = new Command(obj =>
-				{
-					Profile profile = obj as Profile;
-					Profiles.RemoveProfile(profile);
-				}));
-			}
-		}
-
-        private static readonly char[] symbols = new char[] { '"', '\\', '/', ':', '|', '<', '>', '*', '?' };
-		private IMessageService messageService;
+        private Command addBookGenreCommand;
+        private Command deleteBookGenreCommand;
+        private Command addFilmGenreCommand;
+        private Command deleteFilmGenreCommand;
+        private Command uncheckFilmGenreCommand;
+        private Command changeProfileCommand;
+        private Command deleteProfileCommand;
+        private Command importProfileCommand;
         private Command addProfileCommand;
-		public Command AddProfileCommand
-		{
-			get
-			{
-				return addProfileCommand ??
-				(addProfileCommand = new Command(obj =>
-				{
-					if (NewProfileName.IndexOfAny(symbols) == -1)
-					{
-                        if (NewProfileName != String.Empty)
-                        {
-                            Profiles.AddProfile(NewProfileName);
-                        }
-                    }
-					else
-					{
-						messageService.Show("The following characters are not allowed: \" \\ / : | < > * ? ");
-					}
-				}));
-			}
-		}
-
-		private IDialogService importFileService;
-		private Command importProfileCommand;
-		public Command ImportProfileCommand
-		{
-			get
-			{
-				return importProfileCommand ??
-				(importProfileCommand = new Command(obj =>
-				{
-					if (importFileService.OpenFileDialog())
-					{
-                        int i = 1;
-                        string profName = "import";
-                        while (Profiles.HasProfileName(profName + i))
-                        {
-                            i++;
-                        }
-                        profName += i;
-                        Profile profile = Profiles.AddProfile(profName);
-
-                        File.Copy(importFileService.FileName, profile.MainFilePath, true);
-                    }
-				}));
-			}
-		}
-
-		private IExplorerService explorerService;
         private Command openExplorerCommand;
-        public Command OpenExplorerCommand
+
+        private static readonly char[] symbols = new char[] 
+        { '"', '\\', '/', ':', '|', '<', '>', '*', '?' };
+
+        public SettingsViewModel(SettingsService settingsService)
         {
-            get
-            {
-                return openExplorerCommand ??
-                (openExplorerCommand = new Command(obj =>
-                {
-                    explorerService.OpenExplorer(Profiles.ProfilesPath);
-                }));
-            }
-        }
+            _model = new SettingsModel(settingsService);
+            _profilesModel = new ProfilesModel(settingsService.TablesService, 
+                                               settingsService.ProfilesService);
 
-        public SettingsViewModel()
-		{
-			Model = SettingsModel.Initialize();
-			importFileService = new ImportFileDialogService();
-			messageService = new ShowMessageService();
-			explorerService = new ExplorerService();
+            importFileService = new ImportFileDialogService();
+            messageService = new ShowMessageService();
+            explorerService = new ExplorerService();
 
-			FilmGenres = new ObservableCollection<Genre>();
-			BookGenres = new ObservableCollection<BookGenre>();
-			TablesLoad(Model.TableCollection, null);
+            FilmGenres = new ObservableCollection<Genre>();
+            BookGenres = new ObservableCollection<BookGenre>();
+            OnTablesLoad();
 
-			Model.TableCollection.TableLoad += TablesLoad;
-			Model.Tables.BookGenresTable.CollectionChanged += BooksChanged;
-			Model.Tables.FilmGenresTable.CollectionChanged += FilmsChanged; ;
+            _model.TablesLoaded += OnTablesLoad;
+            _model.BookGenresTable.CollectionChanged += BooksChanged;
+            _model.FilmGenresTable.CollectionChanged += FilmsChanged;
 
             //Initialize timers list
             Timers = new List<double>();
-			Timers.Add(10);
-			Timers.Add(15);
-			Timers.Add(30);
-			Timers.Add(60);
-			Timers.Add(360);
-			Timers.Add(600);
+            Timers.Add(10);
+            Timers.Add(15);
+            Timers.Add(30);
+            Timers.Add(60);
+            Timers.Add(360);
+            Timers.Add(600);
 
-			//Initialize mark systems list
-			MarkSystems = new List<string>();
+            //Initialize mark systems list
+            MarkSystems = new List<string>();
             MarkSystems.Add("3/3");
             MarkSystems.Add("5/5");
             MarkSystems.Add("6/6");
@@ -350,34 +76,285 @@ namespace WpfApp.ViewModels
             MarkSystems.Add("25/25");
 
             //Initialize index of mark systems
-            _indexOfFilmMarkSystem = getMarkSystemIndex(Model.Tables.FilmsTable);
-			_indexOfBookMarkSystem = getMarkSystemIndex(Model.Tables.BooksTable);
-		}
+            _indexOfFilmMarkSystem = getMarkSystemIndex(_model.FilmsMarkSystem);
+            _indexOfBookMarkSystem = getMarkSystemIndex(_model.BooksMarkSystem);
 
-		private void FilmsChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			Genre genre;
-			switch (e.Action)
-			{
-				case NotifyCollectionChangedAction.Add:
-					genre = e.NewItems[0] as Genre;
+            _model.LoadSettings();
+        }
+
+        public ObservableCollection<Genre> FilmGenres { get; private set; }
+        public ObservableCollection<BookGenre> BookGenres { get; private set; }
+        public List<double> Timers { get; private set; }
+        public List<String> MarkSystems { get; private set; }
+        public IEnumerable<ProfileModel> Profiles => _model.Profiles;
+        public IEnumerable<CultureInfo> Languages => _model.Languages;
+
+        public CultureInfo Language
+        {
+            get => _model.Language;
+            set
+            {
+                _model.Language = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public bool TimerIsEnabled
+        {
+            get => _model.IsTimerEnable;
+            set
+            {
+                _model.IsTimerEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double SelectedTimer
+        {
+            get => _model.TimerInterval;
+            set
+            {
+                _model.TimerInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int IndexOfScale
+        {
+            get => (int)_model.Scale;
+            set
+            {
+                _model.Scale = (ScaleEnum)value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public Command AddBookGenreCommand
+        {
+            get
+            {
+                return addBookGenreCommand ??
+                (addBookGenreCommand = new Command(obj =>
+                {
+                    _model.AddBookGenre();
+                }));
+            }
+        }
+        
+        public Command DeleteBookGenreCommand
+        {
+            get
+            {
+                return deleteBookGenreCommand ??
+                (deleteBookGenreCommand = new Command(obj =>
+                {
+                    _model.RemoveBookGenre(obj as BookGenre);
+                }));
+            }
+        }
+        
+        public Command AddFilmGenreCommand
+        {
+            get
+            {
+                return addFilmGenreCommand ??
+                (addFilmGenreCommand = new Command(obj =>
+                {
+                    _model.AddFilmGenre();
+                }));
+            }
+        }
+        
+        public Command DeleteFilmGenreCommand
+        {
+            get
+            {
+                return deleteFilmGenreCommand ??
+                (deleteFilmGenreCommand = new Command(obj =>
+                {
+                    _model.RemoveFilmGenre(obj as Genre);
+                }));
+            }
+        }
+        
+        //TODO change Method Name and change call of the command in view 
+        public Command UncheckFilmGenreCommand
+        {
+            get
+            {
+                return uncheckFilmGenreCommand ??
+                (uncheckFilmGenreCommand = new Command(obj =>
+                {
+                    _model.ChangeCheckFilmGenre(obj as Genre);
+                }));
+            }
+        }
+        
+        public int IndexOfFilmMarkSystem
+        {
+            get => _indexOfFilmMarkSystem;
+            set
+            {
+                _indexOfFilmMarkSystem = value;
+                switch (_indexOfFilmMarkSystem)
+                {
+                    case 0:
+                        _model.FilmsMarkSystem = 3;
+                        break;
+                    case 1:
+                        _model.FilmsMarkSystem = 5;
+                        break;
+                    case 2:
+                        _model.FilmsMarkSystem = 6;
+                        break;
+                    case 3:
+                        _model.FilmsMarkSystem = 10;
+                        break;
+                    case 4:
+                        _model.FilmsMarkSystem = 12;
+                        break;
+                    case 5:
+                        _model.FilmsMarkSystem = 25;
+                        break;
+                }
+                OnPropertyChanged();
+            }
+        }
+        
+        public int IndexOfBookMarkSystem
+        {
+            get => _indexOfBookMarkSystem;
+            set
+            {
+                _indexOfBookMarkSystem = value;
+                switch (_indexOfBookMarkSystem)
+                {
+                    case 0:
+                        _model.BooksMarkSystem = 3;
+                        break;
+                    case 1:
+                        _model.BooksMarkSystem = 5;
+                        break;
+                    case 2:
+                        _model.BooksMarkSystem = 6;
+                        break;
+                    case 3:
+                        _model.BooksMarkSystem = 10;
+                        break;
+                    case 4:
+                        _model.BooksMarkSystem = 12;
+                        break;
+                    case 5:
+                        _model.BooksMarkSystem = 25;
+                        break;
+                }
+                OnPropertyChanged();
+            }
+        }
+        
+        public String NewProfileName
+        {
+            get => _newProfileName;
+            set { _newProfileName = value; OnPropertyChanged(); }
+        }
+        
+        public Command ChangeProfileCommand
+        {
+            get
+            {
+                return changeProfileCommand ??
+                (changeProfileCommand = new Command(obj =>
+                {
+                    _profilesModel.SetUsedProfile(obj as ProfileModel);
+                }));
+            }
+        }
+        
+        public Command DeleteProfileCommand
+        {
+            get
+            {
+                return deleteProfileCommand ??
+                (deleteProfileCommand = new Command(obj =>
+                {
+                    _profilesModel.RemoveProfile(obj as ProfileModel);
+                }));
+            }
+        }
+        
+        public Command AddProfileCommand
+        {
+            get
+            {
+                return addProfileCommand ??
+                (addProfileCommand = new Command(obj =>
+                {
+                    if (NewProfileName.IndexOfAny(symbols) == -1)
+                    {
+                        if (NewProfileName != String.Empty)
+                        {
+                            _profilesModel.AddProfile(NewProfileName);
+                        }
+                    }
+                    else
+                    {
+                        messageService.Show("The following characters are not allowed: \" \\ / : | < > * ? ");
+                    }
+                }));
+            }
+        }
+        
+        public Command ImportProfileCommand
+        {
+            get
+            {
+                return importProfileCommand ??
+                (importProfileCommand = new Command(obj =>
+                {
+                    if (importFileService.OpenFileDialog())
+                    {
+                        _profilesModel.ImportProfile(importFileService.FileName);
+                    }
+                }));
+            }
+        }
+        
+        public Command OpenExplorerCommand
+        {
+            get
+            {
+                return openExplorerCommand ??
+                (openExplorerCommand = new Command(obj =>
+                {
+                    explorerService.OpenExplorer(PathHelper.ProfilesPath);
+                }));
+            }
+        }
+
+        private void FilmsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Genre genre;
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    genre = e.NewItems[0] as Genre;
                     FilmGenres.Add(genre);
-					break;
+                    break;
                 case NotifyCollectionChangedAction.Remove:
-					genre = e.OldItems[0] as Genre;
-					FilmGenres.Remove(genre);
+                    genre = e.OldItems[0] as Genre;
+                    FilmGenres.Remove(genre);
                     break;
                 case NotifyCollectionChangedAction.Move:
-					FilmGenres.Move(e.OldStartingIndex, e.NewStartingIndex);
+                    FilmGenres.Move(e.OldStartingIndex, e.NewStartingIndex);
                     break;
                 case NotifyCollectionChangedAction.Reset:
-					FilmGenres.Clear();
+                    FilmGenres.Clear();
                     break;
             }
-		}
+        }
 
-		private void BooksChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
+        private void BooksChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
             BookGenre genre;
             switch (e.Action)
             {
@@ -398,34 +375,34 @@ namespace WpfApp.ViewModels
             }
         }
 
-		private void TablesLoad(object sender, EventArgs e)
-		{
-			FilmGenres.Clear();
-			BookGenres.Clear();
-			foreach (var genre in Model.Tables.FilmGenresTable) FilmGenres.Add(genre);
-			foreach (var genre in Model.Tables.BookGenresTable) BookGenres.Add(genre);
-		}
+        private void OnTablesLoad()
+        {
+            FilmGenres.Clear();
+            BookGenres.Clear();
+            foreach (var genre in _model.FilmGenresTable) FilmGenres.Add(genre);
+            foreach (var genre in _model.BookGenresTable) BookGenres.Add(genre);
+        }
 
-		private int getMarkSystemIndex(IHasMarkSystem table)
-		{
-			switch (table.MarkSystem)
-			{
-				case 3:
-					return 0;
-				case 5:
-					return 1;
-				case 6:
-					return 2;
-				case 10:
-					return 3;
-				case 12:
-					return 4;
-				case 25:
-					return 5;
+        private int getMarkSystemIndex(int markSystem)
+        {
+            switch (markSystem)
+            {
+                case 3:
+                    return 0;
+                case 5:
+                    return 1;
+                case 6:
+                    return 2;
+                case 10:
+                    return 3;
+                case 12:
+                    return 4;
+                case 25:
+                    return 5;
 
-				default:
-					return 0;
-			}
-		}
-	}
+                default:
+                    return 0;
+            }
+        }
+    }
 }

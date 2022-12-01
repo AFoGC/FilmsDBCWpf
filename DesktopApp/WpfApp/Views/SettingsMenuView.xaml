@@ -8,7 +8,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1265">
-    <Grid Background="#FF121212">
+    <Grid Background="{StaticResource MainBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35"/>
             <ColumnDefinition Width="818"/>

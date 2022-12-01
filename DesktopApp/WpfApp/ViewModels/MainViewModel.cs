@@ -34,18 +34,17 @@ namespace WpfApp.ViewModels
         private Command _minimizeCommand;
         private Command _maximizeCommand;
         private Command _closeCmmand;
-
         
         private StatusEnum _status;
 
-        public MainViewModel()
+        public MainViewModel(MainWindowModel model, FilmsViewModel filmsVM, BooksViewModel booksVM, SettingsViewModel settingsVM)
         {
             SettingsService settingsService = CreateSettingsService();
-            _model = new MainWindowModel(settingsService);
+            _model = model;
 
-            _filmsVM = new FilmsViewModel(settingsService.TablesService);
-            _booksVM = new BooksViewModel(settingsService.TablesService);
-            _settingsVM = new SettingsViewModel(settingsService);
+            _filmsVM = filmsVM;
+            _booksVM = booksVM;
+            _settingsVM = settingsVM;
 
             _exitService = new ExitService();
 

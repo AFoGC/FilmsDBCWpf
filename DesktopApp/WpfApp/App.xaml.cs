@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Documents;
 using WpfApp.Models;
 using WpfApp.Properties;
+using WpfApp.Services;
+using WpfApp.ViewModels;
+using WpfApp.Views;
 
 namespace WpfApp
 {
@@ -15,11 +20,59 @@ namespace WpfApp
     /// </summary>
     public partial class App : Application
     {
-        private void Application_Startup(object sender, StartupEventArgs e)
+        private readonly IServiceProvider _serviceProvider;
+
+        public App()
         {
-            //SettingsModel settings = SettingsModel.Initialize();
-            //settings.LanguageChanged += LanguageChanged;
-            //settings.ScaleChanged += ScaleChanged;
+            IServiceCollection services = new ServiceCollection();
+
+            services.AddSingleton<TablesFileService>();
+            services.AddSingleton<ProfilesService>();
+            services.AddSingleton<LanguageService>();
+            services.AddSingleton<ScaleService>();
+            services.AddSingleton<SettingsService>();
+
+            services.AddTransient<FilmsModel>();
+            services.AddTransient<BooksModel>();
+            services.AddTransient<SettingsModel>();
+            services.AddTransient<ProfilesModel>();
+            services.AddTransient<MainWindowModel>();
+
+            services.AddTransient<SettingsViewModel>();
+            services.AddTransient<FilmsViewModel>();
+            services.AddTransient<BooksViewModel>();
+            services.AddTransient<MainViewModel>();
+
+            services.AddSingleton<MainWindowView>(s => new MainWindowView()
+            {
+                DataContext = s.GetRequiredService<MainViewModel>()
+            });
+
+            _serviceProvider = services.BuildServiceProvider();
+
+            InitializeComponent();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainWindow = _serviceProvider.GetRequiredService<MainWindowView>();
+
+            SettingsService settings = _serviceProvider.GetRequiredService<SettingsService>();
+            settings.LoadSettings();
+
+            MainWindow.Show();
+
+            base.OnStartup(e);
+        }
+
+        private SettingsService CreateSettingsService()
+        {
+            TablesFileService tablesService = new TablesFileService();
+            ProfilesService profilesService = new ProfilesService();
+            LanguageService languageService = new LanguageService();
+            ScaleService scaleService = new ScaleService();
+
+            return new SettingsService(tablesService, languageService, profilesService, scaleService);
         }
 
         private void ScaleChanged(ScaleEnum value)

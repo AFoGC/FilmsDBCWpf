@@ -9,7 +9,7 @@
              xmlns:local="clr-namespace:WpfApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1265" Focusable="True">
-    <Grid>
+    <Grid Background="{StaticResource MainBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>

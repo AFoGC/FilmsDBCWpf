@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using WpfApp.ViewModels;
 
 namespace WpfApp.Views
 {
@@ -11,6 +12,7 @@ namespace WpfApp.Views
         public MainWindowView()
         {
             InitializeComponent();
+            //DataContext = new MainViewModel();
         }
 
         private void header_MouseDown(object sender, MouseButtonEventArgs e)

@@ -9,9 +9,6 @@
         mc:Ignorable="d"
         Title="MainWindowView" Height="775" Width="1265"
         WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize">
-    <Window.DataContext>
-        <vm:MainViewModel />
-    </Window.DataContext>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="KeyDown">
             <i:InvokeCommandAction Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>

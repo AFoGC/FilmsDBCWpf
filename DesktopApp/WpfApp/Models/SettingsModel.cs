@@ -13,7 +13,7 @@ namespace WpfApp.Models
 
         public event Action TablesLoaded;
 
-        public SettingsModel( SettingsService settingsService)
+        public SettingsModel(SettingsService settingsService)
         {
             _settingsService = settingsService;
             TablesService.TablesCollection.TableLoad += OnTableLoad;

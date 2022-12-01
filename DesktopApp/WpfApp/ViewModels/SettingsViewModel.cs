@@ -39,11 +39,17 @@ namespace WpfApp.ViewModels
         private static readonly char[] symbols = new char[] 
         { '"', '\\', '/', ':', '|', '<', '>', '*', '?' };
 
-        public SettingsViewModel(SettingsService settingsService)
+        public ObservableCollection<Genre> FilmGenres { get; private set; }
+        public ObservableCollection<BookGenre> BookGenres { get; private set; }
+        public List<double> Timers { get; private set; }
+        public List<String> MarkSystems { get; private set; }
+        public IEnumerable<ProfileModel> Profiles => _model.Profiles;
+        public IEnumerable<CultureInfo> Languages => _model.Languages;
+
+        public SettingsViewModel(SettingsModel model, ProfilesModel profilesModel)
         {
-            _model = new SettingsModel(settingsService);
-            _profilesModel = new ProfilesModel(settingsService.TablesService, 
-                                               settingsService.ProfilesService);
+            _model = model;
+            _profilesModel = profilesModel;
 
             importFileService = new ImportFileDialogService();
             messageService = new ShowMessageService();
@@ -79,15 +85,8 @@ namespace WpfApp.ViewModels
             _indexOfFilmMarkSystem = getMarkSystemIndex(_model.FilmsMarkSystem);
             _indexOfBookMarkSystem = getMarkSystemIndex(_model.BooksMarkSystem);
 
-            _model.LoadSettings();
+            //_model.LoadSettings();
         }
-
-        public ObservableCollection<Genre> FilmGenres { get; private set; }
-        public ObservableCollection<BookGenre> BookGenres { get; private set; }
-        public List<double> Timers { get; private set; }
-        public List<String> MarkSystems { get; private set; }
-        public IEnumerable<ProfileModel> Profiles => _model.Profiles;
-        public IEnumerable<CultureInfo> Languages => _model.Languages;
 
         public CultureInfo Language
         {

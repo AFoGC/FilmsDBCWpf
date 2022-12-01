@@ -1,5 +1,4 @@
-﻿using FilmsUCWpf.View;
-using FilmsUCWpf.ViewModel;
+﻿using FilmsUCWpf.ViewModel;
 using FilmsUCWpf.ViewModel.Interfaces;
 using System;
 using System.Collections;
@@ -8,33 +7,97 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
-using TL_Tables;
 using WpfApp.Commands;
 using WpfApp.Models;
-using WpfApp.Services;
 
 namespace WpfApp.ViewModels
 {
     public class BooksViewModel : BaseViewModel, IMenuViewModel<Book>
     {
-        public BooksModel Model { get; private set; }
+        private readonly BooksModel _model;
+
+        private BaseViewModel<Book> _selectedElement;
+
+        private Visibility _categoryVisibility = Visibility.Collapsed;
+        private Visibility _booksVisibility = Visibility.Collapsed;
+        private Visibility _priorityVisibility = Visibility.Collapsed;
+
+        private bool _isReadedChecked = true;
+        private bool _isUnReadedChecked = true;
+        private string _searchText = string.Empty;
+
+        private Command showCategoriesCommand;
+        private Command showBooksCommand;
+        private Command showPriorityCommand;
+        private Command addCategoryCommand;
+        private Command addBookCommand;
+        private Command saveTablesCommand;
+        private Command filterCommand;
+        private Command searchCommand;
+        private Command sortTable;
+        private Command removeSourceCommand;
+        private Command addSourceCommand;
+        private Command moveUpSourceCommand;
+        private Command closeInfoCommand;
+
+        private BookInfoMenuCondition infoMenuCondition;
+        private Object _infoMenuDataContext;
 
         public ObservableCollection<GenreButtonViewModel> GenresTable { get; private set; }
         public ObservableCollection<BookCategoryViewModel> CategoriesMenu { get; private set; }
         public ObservableCollection<BookViewModel> SimpleBooksMenu { get; private set; }
         public ObservableCollection<BookViewModel> BooksMenu { get; private set; }
         public ObservableCollection<BookViewModel> PriorityBooksMenu { get; private set; }
+        public CollectionViewSource SourcesCVS { get; private set; }
+        public CollectionViewSource CategoryCVS { get; private set; }
+        public CollectionViewSource SimpleBooksCVS { get; private set; }
+        public CollectionViewSource BooksCVS { get; private set; }
+        public CollectionViewSource PriorityBooksCVS { get; private set; }
 
-        private Visibility _categoryVisibility = Visibility.Collapsed;
+        public BooksViewModel(BooksModel model)
+        {
+            _model = model;
+
+            GenresTable = new ObservableCollection<GenreButtonViewModel>();
+            CategoriesMenu = new ObservableCollection<BookCategoryViewModel>();
+            SimpleBooksMenu = new ObservableCollection<BookViewModel>();
+            BooksMenu = new ObservableCollection<BookViewModel>();
+            PriorityBooksMenu = new ObservableCollection<BookViewModel>();
+
+            _model.TablesLoaded += TableLoad;
+
+            _model.BookGenresTable.CollectionChanged += GenresChanged;
+            _model.BooksTable.CollectionChanged += BooksChanged;
+            _model.BookCategoriesTable.CollectionChanged += CategoriesChanged;
+            _model.PriorityBooksTable.CollectionChanged += PriorityChanged;
+
+            CategoryVisibility = Visibility.Visible;
+            TableLoad();
+
+            SimpleBooksCVS = new CollectionViewSource();
+            CategoryCVS = new CollectionViewSource();
+            BooksCVS = new CollectionViewSource();
+            PriorityBooksCVS = new CollectionViewSource();
+
+            SimpleBooksCVS.Source = SimpleBooksMenu;
+            CategoryCVS.Source = CategoriesMenu;
+            BooksCVS.Source = BooksMenu;
+            PriorityBooksCVS.Source = PriorityBooksMenu;
+
+            CVSChangeSort(CategoryCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(SimpleBooksCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(BooksCVS, "Model.ID", ListSortDirection.Ascending);
+            CVSChangeSort(PriorityBooksCVS, "Model.ID", ListSortDirection.Ascending);
+
+            SourcesCVS = new CollectionViewSource();
+        }
+        
         public Visibility CategoryVisibility
         {
             get => _categoryVisibility;
@@ -44,8 +107,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Visibility _booksVisibility = Visibility.Collapsed;
+        
         public Visibility BooksVisibility
         {
             get => _booksVisibility;
@@ -55,8 +117,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Visibility _priorityVisibility = Visibility.Collapsed;
+        
         public Visibility PriorityVisibility
         {
             get => _priorityVisibility;
@@ -66,8 +127,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private bool _isReadedChecked = true;
+        
         public bool IsReadedChecked
         {
             get => _isReadedChecked;
@@ -80,8 +140,7 @@ namespace WpfApp.ViewModels
                 }
             }
         }
-
-        private bool _isUnReadedChecked = true;
+        
         public bool IsUnReadedChecked
         {
             get => _isUnReadedChecked;
@@ -94,8 +153,7 @@ namespace WpfApp.ViewModels
                 }
             }
         }
-
-        private BaseViewModel<Book> _selectedElement;
+        
         public BaseViewModel<Book> SelectedElement 
         { 
             get => _selectedElement;
@@ -107,8 +165,7 @@ namespace WpfApp.ViewModels
                 if (_selectedElement != null) _selectedElement.IsSelected = true;
             } 
         }
-
-        private String _searchText = String.Empty;
+        
         public String SearchText
         {
             get => _searchText;
@@ -131,8 +188,7 @@ namespace WpfApp.ViewModels
                 vm.SetFinded(search);
             }
         }
-
-        private Command showCategoriesCommand;
+        
         public Command ShowCategoriesCommand
         {
             get
@@ -146,8 +202,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command showBooksCommand;
+        
         public Command ShowBooksCommand
         {
             get
@@ -161,8 +216,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command showPriorityCommand;
+        
         public Command ShowPriorityCommand
         {
             get
@@ -176,38 +230,34 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command addCategoryCommand;
+        
         public Command AddCategoryCommand
         {
             get
             {
                 return addCategoryCommand ??
-                (addCategoryCommand = new Command(obj => Model.AddCategory()));
+                (addCategoryCommand = new Command(obj => _model.AddCategory()));
             }
         }
-
-        private Command addBookCommand;
+        
         public Command AddBookCommand
         {
             get
             {
                 return addBookCommand ??
-                (addBookCommand = new Command(obj => Model.AddBook()));
+                (addBookCommand = new Command(obj => _model.AddBook()));
             }
         }
-
-        private Command saveTablesCommand;
+        
         public Command SaveTablesCommand
         {
             get
             {
                 return saveTablesCommand ??
-                (saveTablesCommand = new Command(obj => Model.SaveTables()));
+                (saveTablesCommand = new Command(obj => _model.SaveTables()));
             }
         }
-
-        private Command filterCommand;
+        
         public Command FilterCommand
         {
             get
@@ -224,8 +274,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        private Command searchCommand;
+        
         public Command SearchCommand
         {
             get
@@ -240,13 +289,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-
-        public CollectionViewSource CategoryCVS { get; private set; }
-        public CollectionViewSource SimpleBooksCVS { get; private set; }
-        public CollectionViewSource BooksCVS { get; private set; }
-        public CollectionViewSource PriorityBooksCVS { get; private set; }
-
-        private Command sortTable;
+        
         public Command SortTable =>
         sortTable ?? (sortTable = new Command(obj =>
         {
@@ -339,44 +382,6 @@ namespace WpfApp.ViewModels
             return genres.ToArray();
         }
 
-        public BooksViewModel(TablesFileService tablesService)
-        {
-            Model = new BooksModel(tablesService);
-
-            GenresTable = new ObservableCollection<GenreButtonViewModel>();
-            CategoriesMenu = new ObservableCollection<BookCategoryViewModel>();
-            SimpleBooksMenu = new ObservableCollection<BookViewModel>();
-            BooksMenu = new ObservableCollection<BookViewModel>();
-            PriorityBooksMenu = new ObservableCollection<BookViewModel>();
-
-            Model.TablesLoaded += TableLoad;
-
-            Model.BookGenresTable.CollectionChanged += GenresChanged;
-            Model.BooksTable.CollectionChanged += BooksChanged;
-            Model.BookCategoriesTable.CollectionChanged += CategoriesChanged;
-            Model.PriorityBooksTable.CollectionChanged += PriorityChanged;
-
-            CategoryVisibility = Visibility.Visible;
-            TableLoad();
-
-            SimpleBooksCVS = new CollectionViewSource();
-            CategoryCVS = new CollectionViewSource();
-            BooksCVS = new CollectionViewSource();
-            PriorityBooksCVS = new CollectionViewSource();
-
-            SimpleBooksCVS.Source = SimpleBooksMenu;
-            CategoryCVS.Source = CategoriesMenu;
-            BooksCVS.Source = BooksMenu;
-            PriorityBooksCVS.Source = PriorityBooksMenu;
-
-            CVSChangeSort(CategoryCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(SimpleBooksCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(BooksCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(PriorityBooksCVS, "Model.ID", ListSortDirection.Ascending);
-
-            SourcesCVS = new CollectionViewSource();
-        }
-
         private void GenresChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             BookGenre genre;
@@ -453,7 +458,7 @@ namespace WpfApp.ViewModels
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     book = (Book)e.OldItems[0];
-                    if (Model.BooksTable.Contains(book))
+                    if (_model.BooksTable.Contains(book))
                     {
                         SimpleBooksMenu.Add(new BookViewModel(book, this));
                     }
@@ -496,18 +501,18 @@ namespace WpfApp.ViewModels
             PriorityBooksMenu.Clear();
             GenresTable.Clear();
 
-            foreach (BookGenre genre in Model.BookGenresTable)
+            foreach (BookGenre genre in _model.BookGenresTable)
             {
                 GenresTable.Add(new GenreButtonViewModel(genre));
             }
 
-            foreach (BookCategory category in Model.BookCategoriesTable)
+            foreach (BookCategory category in _model.BookCategoriesTable)
             {
                 CategoriesMenu.Add(new BookCategoryViewModel(category, this));
                 category.Books.CollectionChanged += CategoryChanged;
             }
 
-            foreach (Book book in Model.BooksTable)
+            foreach (Book book in _model.BooksTable)
             {
                 BooksMenu.Add(new BookViewModel(book, this));
                 if (book.FranshiseId == 0)
@@ -516,13 +521,12 @@ namespace WpfApp.ViewModels
                 }
             }
 
-            foreach (PriorityBook book in Model.PriorityBooksTable)
+            foreach (PriorityBook book in _model.PriorityBooksTable)
             {
                 PriorityBooksMenu.Add(new BookViewModel(book.Book, this));
             }
         }
-
-        private BookInfoMenuCondition infoMenuCondition;
+        
         public BookInfoMenuCondition InfoMenuCondition
         {
             get => infoMenuCondition;
@@ -538,8 +542,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Object _infoMenuDataContext;
+        
         public Object InfoMenuDataContext
         {
             get => _infoMenuDataContext;
@@ -579,14 +582,12 @@ namespace WpfApp.ViewModels
                 InfoMenuCondition = BookInfoMenuCondition.CategoryUpdate;
             }
         }
-
-        public CollectionViewSource SourcesCVS { get; private set; }
+        
         public void OpenSourcesMenu(ObservableCollection<Source> sources)
         {
             SourcesCVS.Source = sources;
         }
-
-        private Command removeSourceCommand;
+        
         public Command RemoveSourceCommand =>
         removeSourceCommand ?? (removeSourceCommand = new Command(obj =>
         {
@@ -597,8 +598,7 @@ namespace WpfApp.ViewModels
                 sources.Remove(source);
             }
         }));
-
-        private Command addSourceCommand;
+        
         public Command AddSourceCommand =>
         addSourceCommand ?? (addSourceCommand = new Command(obj =>
         {
@@ -608,8 +608,7 @@ namespace WpfApp.ViewModels
                 sources.Add(new Source());
             }
         }));
-
-        private Command moveUpSourceCommand;
+        
         public Command MoveUpSourceCommand =>
         moveUpSourceCommand ?? (moveUpSourceCommand = new Command(obj =>
         {
@@ -620,8 +619,7 @@ namespace WpfApp.ViewModels
                 sources.Move(sources.IndexOf(source), 0);
             }
         }));
-
-        private Command closeInfoCommand;
+        
         public Command CloseInfoCommand =>
         closeInfoCommand ?? (closeInfoCommand = new Command(obj =>
         {

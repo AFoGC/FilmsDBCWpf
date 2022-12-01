@@ -15,7 +15,6 @@ using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
 using WpfApp.Commands;
 using WpfApp.Models;
-using WpfApp.Services;
 
 namespace WpfApp.ViewModels
 {
@@ -64,9 +63,9 @@ namespace WpfApp.ViewModels
         public CollectionViewSource SeriesCVS { get; private set; }
         public CollectionViewSource PriorityFilmsCVS { get; private set; }
 
-        public FilmsViewModel(TablesFileService tablesService)
+        public FilmsViewModel(FilmsModel model)
         {
-            _model = new FilmsModel(tablesService);
+            _model = model;
 
             GenresTable = new ObservableCollection<GenreButtonViewModel>();
             CategoriesMenu = new ObservableCollection<FilmCategoryViewModel>();

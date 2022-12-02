@@ -2,7 +2,6 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using WpfApp.Models;
 using WpfApp.Services;
@@ -67,60 +66,37 @@ namespace WpfApp
             base.OnStartup(e);
         }
 
-        private void ScaleChanged(ScaleEnum value)
+        private void ScaleChanged(ScaleEnum scale)
         {
-            if (Enum.IsDefined(typeof(ScaleEnum), value))
-            {
-                ResourceDictionary dict = new ResourceDictionary();
-                dict.Source = new Uri(String.Format("Resources/Dictionaries/TableControls/Scale.{0}.xaml", value), UriKind.Relative);
-
-                ResourceDictionary oldDict =
-                    (from d in Application.Current.Resources.MergedDictionaries
-                     where d.Source != null && d.Source.OriginalString.StartsWith("Resources/Dictionaries/TableControls/Scale.")
-                     select d).First();
-
-                if (oldDict != null)
-                {
-                    int ind = Application.Current.Resources.MergedDictionaries.IndexOf(oldDict);
-                    Application.Current.Resources.MergedDictionaries.Remove(oldDict);
-                    Application.Current.Resources.MergedDictionaries.Insert(ind, dict);
-                }
-                else
-                {
-                    Application.Current.Resources.MergedDictionaries.Add(dict);
-                }
-            }
+            string nameStart = "Resources/Dictionaries/TableControls/Scale.";
+            ReplaceSource(nameStart, scale.ToString());
         }
 
-        private void LanguageChanged(CultureInfo value)
+        private void LanguageChanged(CultureInfo culture)
         {
-            //1. Change Application Language:
-            Thread.CurrentThread.CurrentUICulture = value;
+            string nameStart = "Resources/Localizations/lang.";
+            ReplaceSource(nameStart, culture.ToString());
+        }
 
-            //2. Creating ResourceDictionary for new culture
+        private void ReplaceSource(string resourceNameStart, string resourceNameEnd)
+        {
             ResourceDictionary dict = new ResourceDictionary();
-            if (value.Name != "en")
-            {
-                dict.Source = new Uri(String.Format("Resources/Localizations/lang.{0}.xaml", value.Name), UriKind.Relative);
-            }
-            else
-            {
-                dict.Source = new Uri("Resources/Localizations/lang.xaml", UriKind.Relative);
-            }
+            dict.Source = new Uri(resourceNameStart + resourceNameEnd + ".xaml", UriKind.Relative);
 
-            //3. Find old ResourceDictionary delete it and add new ResourceDictionary
-            ResourceDictionary oldDict = (from d in Application.Current.Resources.MergedDictionaries
-                                          where d.Source != null && d.Source.OriginalString.StartsWith("Resources/Localizations/lang.")
-                                          select d).First();
+            ResourceDictionary oldDict =
+                (from d in Resources.MergedDictionaries
+                 where d.Source != null && d.Source.OriginalString.StartsWith(resourceNameStart)
+                 select d).First();
+
             if (oldDict != null)
             {
-                int ind = Application.Current.Resources.MergedDictionaries.IndexOf(oldDict);
-                Application.Current.Resources.MergedDictionaries.Remove(oldDict);
-                Application.Current.Resources.MergedDictionaries.Insert(ind, dict);
+                int ind = Resources.MergedDictionaries.IndexOf(oldDict);
+                Resources.MergedDictionaries.Remove(oldDict);
+                Resources.MergedDictionaries.Insert(ind, dict);
             }
             else
             {
-                Application.Current.Resources.MergedDictionaries.Add(dict);
+                Resources.MergedDictionaries.Add(dict);
             }
         }
 

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
 using WpfApp.Services;

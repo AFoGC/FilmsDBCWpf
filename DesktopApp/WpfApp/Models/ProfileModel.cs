@@ -1,6 +1,4 @@
-﻿
-
-namespace WpfApp.Models
+﻿namespace WpfApp.Models
 {
     public class ProfileModel
     {

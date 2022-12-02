@@ -1,21 +1,10 @@
-﻿using BL_Films;
-using BO_Films;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfApp.Models;
 
 namespace WpfApp.Windows
@@ -119,11 +108,9 @@ namespace WpfApp.Windows
             RegistrationMenu.Visibility = Visibility.Hidden;
 
         }
-
-        public UserBO UserBO { get; private set; }
+        
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            model.LoggedInUser = UserBL.LogIn(Email.Text, Password.Text);
             this.Close();
         }
 

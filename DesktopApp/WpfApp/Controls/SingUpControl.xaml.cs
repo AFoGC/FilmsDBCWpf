@@ -1,27 +1,17 @@
-﻿using BL_Films;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp.Controls
 {
-    /// <summary>
-    /// Логика взаимодействия для SingUpControl.xaml
-    /// </summary>
-    public partial class SingUpControl : UserControl
+	/// <summary>
+	/// Логика взаимодействия для SingUpControl.xaml
+	/// </summary>
+	public partial class SingUpControl : UserControl
     {
 		public SingUpControl()
 		{
@@ -212,7 +202,7 @@ namespace WpfApp.Controls
 		{
 			if (checkEmail())
 			{
-				UserBL.Add_User(Email.Text, Username.Text, Password.Text);
+				
 			}
 		}
 

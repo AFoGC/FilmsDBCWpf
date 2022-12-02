@@ -1,14 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
-using System.Windows.Documents;
 using WpfApp.Models;
-using WpfApp.Properties;
 using WpfApp.Services;
 using WpfApp.ViewModels;
 using WpfApp.Views;

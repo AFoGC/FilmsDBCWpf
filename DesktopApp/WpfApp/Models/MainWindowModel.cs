@@ -1,5 +1,4 @@
-﻿using System.Windows.Threading;
-using TablesLibrary.Interpreter;
+﻿using TablesLibrary.Interpreter;
 using WpfApp.Services;
 
 namespace WpfApp.Models

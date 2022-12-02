@@ -18,3 +18,13 @@
         CategoryUpdate
     }
 }
+
+namespace WpfApp.Services
+{
+    public enum StatusEnum
+    {
+        Normal,
+        Saved,
+        UnSaved
+    }
+}

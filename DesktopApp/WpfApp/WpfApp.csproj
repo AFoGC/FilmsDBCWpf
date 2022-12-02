@@ -254,6 +254,7 @@
     <Compile Include="Services\ImportFileDialogService.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\ProfilesService.cs" />
+    <Compile Include="Services\StatusService.cs" />
     <Compile Include="Services\TablesFileService.cs" />
     <Compile Include="Services\ScaleService.cs" />
     <Compile Include="Services\SettingsService.cs" />

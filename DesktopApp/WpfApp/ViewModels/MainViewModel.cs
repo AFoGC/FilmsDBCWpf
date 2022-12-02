@@ -39,7 +39,6 @@ namespace WpfApp.ViewModels
 
         public MainViewModel(MainWindowModel model, FilmsViewModel filmsVM, BooksViewModel booksVM, SettingsViewModel settingsVM)
         {
-            SettingsService settingsService = CreateSettingsService();
             _model = model;
 
             _filmsVM = filmsVM;
@@ -258,17 +257,6 @@ namespace WpfApp.ViewModels
                     App.Current.MainWindow.Close();
                 }));
             }
-        }
-
-        private SettingsService CreateSettingsService()
-        {
-            TablesFileService tablesService = new TablesFileService();
-            LanguageService languageService = new LanguageService();
-            ProfilesService profilesService = new ProfilesService();
-            ScaleService scaleService = new ScaleService();
-
-            return new SettingsService(tablesService, languageService,
-                                        profilesService, scaleService);
         }
 
         private void OnTablesChanged(object sender, EventArgs e)

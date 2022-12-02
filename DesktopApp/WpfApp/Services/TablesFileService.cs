@@ -113,7 +113,12 @@ namespace WpfApp.Services
         {
             string path = PathHelper.GetProfileFilePath(profileName);
             if (File.Exists(path) == false)
+            {
+                string dir = Path.GetDirectoryName(path);
+                Directory.CreateDirectory(dir);
                 File.Create(path).Dispose();
+            }
+                
 
             return path;
         }

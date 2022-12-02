@@ -176,8 +176,7 @@ namespace WpfApp.ViewModels
             }
         }
         
-        //TODO change Method Name and change call of the command in view 
-        public Command UncheckFilmGenreCommand
+        public Command ChangeFilmGenreIsSerialCommand
         {
             get
             {

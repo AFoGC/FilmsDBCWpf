@@ -58,6 +58,10 @@ namespace WpfApp
             MainWindow = _serviceProvider.GetRequiredService<MainWindowView>();
 
             SettingsService settings = _serviceProvider.GetRequiredService<SettingsService>();
+
+            settings.ScaleService.ScaleChanged += ScaleChanged;
+            settings.LanguageService.LanguageChanged += LanguageChanged;
+
             settings.LoadSettings();
 
             MainWindow.Show();
@@ -100,17 +104,14 @@ namespace WpfApp
             }
         }
 
-        private void LanguageChanged(CultureInfo value, List<CultureInfo> cultures)
+        private void LanguageChanged(CultureInfo value)
         {
-            if (value == null) throw new ArgumentNullException("value");
-            if (value == Thread.CurrentThread.CurrentUICulture) return;
-
             //1. Change Application Language:
             Thread.CurrentThread.CurrentUICulture = value;
 
             //2. Creating ResourceDictionary for new culture
             ResourceDictionary dict = new ResourceDictionary();
-            if (cultures.Contains(value) && value.Name != "en")
+            if (value.Name != "en")
             {
                 dict.Source = new Uri(String.Format("Resources/Localizations/lang.{0}.xaml", value.Name), UriKind.Relative);
             }

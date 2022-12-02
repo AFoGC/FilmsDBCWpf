@@ -722,14 +722,4 @@ namespace WpfApp.ViewModels
             InfoMenuCondition = FilmInfoMenuCondition.Closed;
         }));
     }
-
-    public enum FilmInfoMenuCondition
-    {
-        Closed,
-        FilmInfo,
-        FilmUpdate,
-        SerieInfo,
-        SerieUpdate,
-        CategoryUpdate
-    }
 }

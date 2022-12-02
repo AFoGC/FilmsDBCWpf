@@ -47,7 +47,7 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="TablesLibrary">
-      <HintPath>..\TablesLibrary.dll</HintPath>
+      <HintPath>..\..\TablesLibrary.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

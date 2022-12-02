@@ -626,12 +626,4 @@ namespace WpfApp.ViewModels
             InfoMenuCondition = BookInfoMenuCondition.Closed;
         }));
     }
-
-    public enum BookInfoMenuCondition
-    {
-        Closed,
-        BookInfo,
-        BookUpdate,
-        CategoryUpdate
-    }
 }

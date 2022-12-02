@@ -174,16 +174,10 @@
                                     <TextBox Text="{Binding Name}" Width="200" Style="{StaticResource Wtextbox}"/>
                                     <Grid Width="200">
                                         <CheckBox IsChecked="{Binding IsSerialGenre}" Content="{DynamicResource st_is_serial}" 
-                                              Foreground="WhiteSmoke" HorizontalAlignment="Center">
-                                            <i:Interaction.Triggers>
-
-                                                <i:EventTrigger EventName="Unchecked">
-                                                    <i:InvokeCommandAction 
-                                                        Command="{Binding DataContext.UncheckFilmGenreCommand, 
-                                                        RelativeSource={RelativeSource AncestorType=ScrollViewer}}" 
-                                                        CommandParameter="{Binding}"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
+                                              Foreground="WhiteSmoke" HorizontalAlignment="Center" 
+                                              Command="{Binding DataContext.ChangeFilmGenreIsSerialCommand, 
+                                              RelativeSource={RelativeSource AncestorType=ScrollViewer}}" 
+                                              CommandParameter="{Binding}">
                                         </CheckBox>
                                     </Grid>
                                     <Button Style="{StaticResource GrayButton}"

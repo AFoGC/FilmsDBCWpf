@@ -6,13 +6,13 @@ using WpfApp.Commands;
 using WpfApp.Models;
 using WpfApp.Services;
 using WpfApp.Services.Interfaces;
-using WpfApp.ViewModels.Interfaces;
 
 namespace WpfApp.ViewModels
 {
-    public class MainViewModel : BaseViewModel, IMainViewModel
+    public class MainViewModel : BaseViewModel
     {
-        private readonly MainWindowModel _model;
+        private readonly SettingsService _settingsService;
+        private readonly StatusService _statusService;
 
         private readonly FilmsViewModel _filmsVM;
         private readonly BooksViewModel _booksVM;
@@ -37,27 +37,25 @@ namespace WpfApp.ViewModels
         
         private StatusEnum _status;
 
-        public MainViewModel(MainWindowModel model, FilmsViewModel filmsVM, BooksViewModel booksVM, SettingsViewModel settingsVM)
+        public MainViewModel(StatusService statusService, SettingsService settingsService, 
+                             FilmsViewModel filmsVM, BooksViewModel booksVM, SettingsViewModel settingsVM)
         {
-            _model = model;
+            _settingsService = settingsService;
+            _statusService = statusService;
 
             _filmsVM = filmsVM;
             _booksVM = booksVM;
             _settingsVM = settingsVM;
 
             _exitService = new ExitService();
-
-            _model.TableCollection.TableSave += OnSaveStatus;
-            _model.TableCollection.CellInTablesChanged += OnTablesChanged;
+            _statusService.StatusChanged += OnStatusChange;
 
             FilmsSelected = true;
-            Status = StatusEnum.Normal;
         }
 
         public FilmsViewModel FilmsVM => _filmsVM;
         public BooksViewModel BooksVM => _booksVM;
         public SettingsViewModel SettingsVM => _settingsVM;
-        
 
         public StatusEnum Status
         {
@@ -65,15 +63,15 @@ namespace WpfApp.ViewModels
             set
             { 
                 _status = value;
-                if (value == StatusEnum.Saved)
-                {
-                    new StatusTimer(value, this);
-                }
-                
                 OnPropertyChanged();
             }
         }
-        
+
+        private void OnStatusChange(StatusEnum status)
+        {
+            Status = status;
+        }
+
         public bool? FilmsSelected
         {
             get => _filmsSelected;
@@ -177,7 +175,7 @@ namespace WpfApp.ViewModels
                     KeyEventArgs e = obj as KeyEventArgs;
                     if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
                     {
-                        _model.TableCollection.SaveTables();
+                        _settingsService.TablesService.TablesCollection.SaveTables();
                     }
                 }));
             }
@@ -190,13 +188,13 @@ namespace WpfApp.ViewModels
                 return _saveAndExitCommand ??
                 (_saveAndExitCommand = new Command(obj =>
                 {
-                    if (_model.TableCollection.IsInfoUnsaved)
+                    if (_settingsService.TablesService.TablesCollection.IsInfoUnsaved)
                     {
                         CancelEventArgs e = obj as CancelEventArgs;
                         _exitService.ShowDialog();
                         if (_exitService.Save)
                         {
-                            _model.TableCollection.SaveTables();
+                            _settingsService.TablesService.TablesCollection.SaveTables();
                         }
                         e.Cancel = !_exitService.Close;
                     }
@@ -211,7 +209,7 @@ namespace WpfApp.ViewModels
                 return _saveSettingsCommand ??
                 (_saveSettingsCommand = new Command(obj =>
                 {
-                    _model.SaveSettings();
+                    _settingsService.SaveSettings();
                 }));
             }
         }
@@ -257,16 +255,6 @@ namespace WpfApp.ViewModels
                     App.Current.MainWindow.Close();
                 }));
             }
-        }
-
-        private void OnTablesChanged(object sender, EventArgs e)
-        {
-            Status = StatusEnum.UnSaved;
-        }
-
-        private void OnSaveStatus(object sender, EventArgs e)
-        {
-            Status = StatusEnum.Saved;
         }
     }
 }

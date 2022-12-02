@@ -28,6 +28,8 @@ namespace WpfApp
             services.AddSingleton<ScaleService>();
             services.AddSingleton<SettingsService>();
 
+            services.AddTransient<StatusService>();
+
             services.AddTransient<FilmsModel>();
             services.AddTransient<BooksModel>();
             services.AddTransient<SettingsModel>();
@@ -63,16 +65,6 @@ namespace WpfApp
             MainWindow.Show();
 
             base.OnStartup(e);
-        }
-
-        private SettingsService CreateSettingsService()
-        {
-            TablesFileService tablesService = new TablesFileService();
-            ProfilesService profilesService = new ProfilesService();
-            LanguageService languageService = new LanguageService();
-            ScaleService scaleService = new ScaleService();
-
-            return new SettingsService(tablesService, languageService, profilesService, scaleService);
         }
 
         private void ScaleChanged(ScaleEnum value)

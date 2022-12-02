@@ -7,20 +7,35 @@ namespace WpfApp.Services
     {
         public event Action<StatusEnum> StatusChanged;
 
+        private readonly TablesFileService _tablesService;
+
         private DispatcherTimer _statusTimer;
         private StatusEnum _currentStatus;
 
         public StatusEnum CurrentStatus => _currentStatus;
 
-        public StatusService()
+        public StatusService(TablesFileService tablesService)
         {
+            _tablesService = tablesService;
             _currentStatus = StatusEnum.Normal;
 
             _statusTimer = new DispatcherTimer();
             _statusTimer.Interval = TimeSpan.FromSeconds(2);
             _statusTimer.Tick += StatusTimerTick;
+
+            _tablesService.TablesCollection.TableSave += OnSaveStatus;
+            _tablesService.TablesCollection.CellInTablesChanged += OnUnsaveStatus;
         }
 
+        private void OnSaveStatus(object sender, EventArgs e)
+        {
+            SetStatus(StatusEnum.Saved);
+        }
+
+        private void OnUnsaveStatus(object sender, EventArgs e)
+        {
+            SetStatus(StatusEnum.UnSaved);
+        }
 
         public void SetStatus(StatusEnum status)
         {

@@ -3,8 +3,10 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
+using System.Windows.Navigation;
 using WpfApp.Models;
 using WpfApp.Services;
+using WpfApp.Services.Interfaces;
 using WpfApp.ViewModels;
 using WpfApp.Views;
 
@@ -28,6 +30,7 @@ namespace WpfApp
             services.AddSingleton<SettingsService>();
 
             services.AddTransient<StatusService>();
+            services.AddScoped<ExitService>();
 
             services.AddTransient<FilmsModel>();
             services.AddTransient<BooksModel>();

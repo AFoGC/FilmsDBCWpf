@@ -11,7 +11,6 @@ namespace WpfApp.Views
         public MainWindowView()
         {
             InitializeComponent();
-            //DataContext = new MainViewModel();
         }
 
         private void header_MouseDown(object sender, MouseButtonEventArgs e)
@@ -20,6 +19,28 @@ namespace WpfApp.Views
             {
                 this.DragMove();
             }
+        }
+
+        private void MinimizeWindow(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void MaximizeWindow(object sender, RoutedEventArgs e)
+        {
+            if (WindowState != WindowState.Maximized)
+            {
+                WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                WindowState = WindowState.Normal;
+            }
+        }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

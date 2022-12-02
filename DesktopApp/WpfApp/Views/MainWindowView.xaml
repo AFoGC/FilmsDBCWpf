@@ -30,11 +30,11 @@
         <Rectangle MouseDown="header_MouseDown" Fill="#FF121212"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Style="{StaticResource GrayButton}" Content="_" Width="40" 
-                    Command="{Binding MinimizeCommand}"/>
+                    Click="MinimizeWindow"/>
             <Button Style="{StaticResource GrayButton}" Content="#" Width="40" 
-                    Command="{Binding MaximizeCommand}"/>
+                    Click="MaximizeWindow"/>
             <Button Style="{StaticResource CloseButton}" Content="X" Width="40" 
-                    Command="{Binding CloseCmmand}"/>
+                    Click="CloseWindow"/>
         </StackPanel>
         <StackPanel x:Name="Navbar" Grid.Row="1" Orientation="Horizontal" Background="#FF1F1F1F">
             <StackPanel.Resources>

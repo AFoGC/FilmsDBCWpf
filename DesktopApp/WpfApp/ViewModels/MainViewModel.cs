@@ -31,9 +31,6 @@ namespace WpfApp.ViewModels
         private Command _keyDownCommand;
         private Command _saveAndExitCommand;
         private Command _saveSettingsCommand;
-        private Command _minimizeCommand;
-        private Command _maximizeCommand;
-        private Command _closeCmmand;
         
         private StatusEnum _status;
 
@@ -210,49 +207,6 @@ namespace WpfApp.ViewModels
                 (_saveSettingsCommand = new Command(obj =>
                 {
                     _settingsService.SaveSettings();
-                }));
-            }
-        }
-        
-        public Command MinimizeCommand
-        {
-            get
-            {
-                return _minimizeCommand ??
-                (_minimizeCommand = new Command(obj =>
-                {
-                    Application.Current.MainWindow.WindowState = WindowState.Minimized;
-                }));
-            }
-        }
-        
-        public Command MaximizeCommand
-        {
-            get
-            {
-                return _maximizeCommand ??
-                (_maximizeCommand = new Command(obj =>
-                {
-                    if (App.Current.MainWindow.WindowState != WindowState.Maximized)
-                    {
-                        Application.Current.MainWindow.WindowState = WindowState.Maximized;
-                    }
-                    else
-                    {
-                        Application.Current.MainWindow.WindowState = WindowState.Normal;
-                    }
-                }));
-            }
-        }
-        
-        public Command CloseCmmand
-        {
-            get
-            {
-                return _closeCmmand ??
-                (_closeCmmand = new Command(obj =>
-                {
-                    App.Current.MainWindow.Close();
                 }));
             }
         }

@@ -84,8 +84,6 @@ namespace WpfApp.ViewModels
             //Initialize index of mark systems
             _indexOfFilmMarkSystem = getMarkSystemIndex(_model.FilmsMarkSystem);
             _indexOfBookMarkSystem = getMarkSystemIndex(_model.BooksMarkSystem);
-
-            //_model.LoadSettings();
         }
 
         public CultureInfo Language

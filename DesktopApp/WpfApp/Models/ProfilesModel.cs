@@ -6,12 +6,12 @@ namespace WpfApp.Models
     public class ProfilesModel
     {
         private readonly ProfilesService _profilesService;
-        private readonly TablesFileService _tablesService;
+        private readonly TablesService _tablesService;
 
         public IEnumerable<ProfileModel> Profiles => _profilesService.Profiles;
         public ProfileModel UsedProfile => _profilesService.UsedProfile;
 
-        public ProfilesModel(TablesFileService tablesFileService, ProfilesService profilesService)
+        public ProfilesModel(TablesService tablesFileService, ProfilesService profilesService)
         {
             _profilesService = profilesService;
             _tablesService = tablesFileService;

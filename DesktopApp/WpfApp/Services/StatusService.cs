@@ -7,14 +7,14 @@ namespace WpfApp.Services
     {
         public event Action<StatusEnum> StatusChanged;
 
-        private readonly TablesFileService _tablesService;
+        private readonly TablesService _tablesService;
 
         private DispatcherTimer _statusTimer;
         private StatusEnum _currentStatus;
 
         public StatusEnum CurrentStatus => _currentStatus;
 
-        public StatusService(TablesFileService tablesService)
+        public StatusService(TablesService tablesService)
         {
             _tablesService = tablesService;
             _currentStatus = StatusEnum.Normal;

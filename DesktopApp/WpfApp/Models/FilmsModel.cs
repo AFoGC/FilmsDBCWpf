@@ -7,11 +7,11 @@ namespace WpfApp.Models
 {
     public class FilmsModel
     {
-        private readonly TablesFileService _tablesService;
+        private readonly TablesService _tablesService;
 
         public event Action TablesLoaded;
 
-        public FilmsModel(TablesFileService tablesService)
+        public FilmsModel(TablesService tablesService)
         {
             _tablesService = tablesService;
             _tablesService.TablesCollection.TableLoad += OnTableLoad;

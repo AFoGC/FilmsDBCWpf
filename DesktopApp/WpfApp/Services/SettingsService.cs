@@ -15,12 +15,12 @@ namespace WpfApp.Services
         private const string autosaveSecondsNodeName = "SaveTimerSeconds";
 
         private readonly XmlDocument _settingsXml;
-        private TablesFileService _tablesService;
+        private TablesService _tablesService;
         private ProfilesService _profilesService;
         private LanguageService _languageService;
         private ScaleService _scaleService;
 
-        public SettingsService( TablesFileService tablesService, 
+        public SettingsService( TablesService tablesService, 
                                 LanguageService languageService,
                                 ProfilesService profilesService,
                                 ScaleService scaleService )
@@ -40,7 +40,7 @@ namespace WpfApp.Services
             _scaleService.ScaleChanged += (scale) => OnScaleChanged();
         }
 
-        public TablesFileService TablesService => _tablesService;
+        public TablesService TablesService => _tablesService;
         public ProfilesService ProfilesService => _profilesService;
         public LanguageService LanguageService => _languageService;
         public ScaleService ScaleService => _scaleService;

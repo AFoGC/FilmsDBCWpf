@@ -9,7 +9,7 @@ using WpfApp.Helper;
 
 namespace WpfApp.Services
 {
-    public class TablesFileService
+    public class TablesService
     {
         public event Action AutosaveIsEnableChanged;
         public event Action AutosaveIntervalChanged;
@@ -21,7 +21,7 @@ namespace WpfApp.Services
         private bool _isAutosaveEnable = false;
         private double _autosaveInterval = 30;
 
-        public TablesFileService()
+        public TablesService()
         {
             _saveTimer = new DispatcherTimer();
 

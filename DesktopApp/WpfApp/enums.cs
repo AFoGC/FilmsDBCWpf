@@ -27,4 +27,10 @@ namespace WpfApp.Services
         Saved,
         UnSaved
     }
+
+    public enum ScaleEnum
+    {
+        Small = 0,
+        Medium = 1
+    }
 }

@@ -21,7 +21,7 @@ namespace WpfApp
         {
             IServiceCollection services = new ServiceCollection();
 
-            services.AddSingleton<TablesFileService>();
+            services.AddSingleton<TablesService>();
             services.AddSingleton<ProfilesService>();
             services.AddSingleton<LanguageService>();
             services.AddSingleton<ScaleService>();

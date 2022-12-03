@@ -19,7 +19,7 @@ namespace WpfApp.Models
             TablesService.TablesCollection.TableLoad += OnTableLoad;
         }
 
-        private TablesFileService TablesService => _settingsService.TablesService;
+        private TablesService TablesService => _settingsService.TablesService;
         public IEnumerable<ProfileModel> Profiles => _settingsService.ProfilesService.Profiles;
         public IEnumerable<CultureInfo> Languages => _settingsService.LanguageService.Languages;
         public GenresTable FilmGenresTable => TablesService.FilmGenresTable;
@@ -112,16 +112,5 @@ namespace WpfApp.Models
         {
             _settingsService.SaveSettings();
         }
-
-        public void LoadSettings()
-        {
-            _settingsService.LoadSettings();
-        }
-    }
-
-    public enum ScaleEnum
-    {
-        Small = 0,
-        Medium = 1
     }
 }

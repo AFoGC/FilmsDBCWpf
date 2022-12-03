@@ -34,17 +34,17 @@ namespace WpfApp.ViewModels
         
         private StatusEnum _status;
 
-        public MainViewModel(StatusService statusService, MainWindowModel model,
+        public MainViewModel(MainWindowModel model, StatusService statusService, ExitService exitService,
                              FilmsViewModel filmsVM, BooksViewModel booksVM, SettingsViewModel settingsVM)
         {
             _model = model;
             _statusService = statusService;
+            _exitService = exitService;
 
             _filmsVM = filmsVM;
             _booksVM = booksVM;
             _settingsVM = settingsVM;
-
-            _exitService = new ExitService();
+            
             _statusService.StatusChanged += OnStatusChange;
 
             FilmsSelected = true;

@@ -3,10 +3,8 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
-using System.Windows.Navigation;
 using WpfApp.Models;
 using WpfApp.Services;
-using WpfApp.Services.Interfaces;
 using WpfApp.ViewModels;
 using WpfApp.Views;
 
@@ -58,9 +56,11 @@ namespace WpfApp
             MainWindow = _serviceProvider.GetRequiredService<MainWindowView>();
 
             SettingsService settings = _serviceProvider.GetRequiredService<SettingsService>();
+            LanguageService language = _serviceProvider.GetRequiredService<LanguageService>();
+            ScaleService scale = _serviceProvider.GetRequiredService<ScaleService>();
 
-            settings.ScaleService.ScaleChanged += ScaleChanged;
-            settings.LanguageService.LanguageChanged += LanguageChanged;
+            language.LanguageChanged += LanguageChanged;
+            scale.ScaleChanged += ScaleChanged;
 
             settings.LoadSettings();
 

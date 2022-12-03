@@ -11,14 +11,14 @@ namespace WpfApp.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private readonly SettingsService _settingsService;
+        private readonly MainWindowModel _model;
+
         private readonly StatusService _statusService;
+        private readonly IExitService _exitService;
 
         private readonly FilmsViewModel _filmsVM;
         private readonly BooksViewModel _booksVM;
         private readonly SettingsViewModel _settingsVM;
-
-        private readonly IExitService _exitService;
 
         private bool? _filmsSelected = false;
         private bool? _booksSelected = false;
@@ -34,10 +34,10 @@ namespace WpfApp.ViewModels
         
         private StatusEnum _status;
 
-        public MainViewModel(StatusService statusService, SettingsService settingsService, 
+        public MainViewModel(StatusService statusService, MainWindowModel model,
                              FilmsViewModel filmsVM, BooksViewModel booksVM, SettingsViewModel settingsVM)
         {
-            _settingsService = settingsService;
+            _model = model;
             _statusService = statusService;
 
             _filmsVM = filmsVM;
@@ -172,7 +172,7 @@ namespace WpfApp.ViewModels
                     KeyEventArgs e = obj as KeyEventArgs;
                     if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
                     {
-                        _settingsService.TablesService.TablesCollection.SaveTables();
+                        _model.SaveTables();
                     }
                 }));
             }
@@ -185,14 +185,14 @@ namespace WpfApp.ViewModels
                 return _saveAndExitCommand ??
                 (_saveAndExitCommand = new Command(obj =>
                 {
-                    if (_settingsService.TablesService.TablesCollection.IsInfoUnsaved)
+                    if (_model.IsInfoUnsaved)
                     {
                         CancelEventArgs e = obj as CancelEventArgs;
                         _exitService.ShowDialog();
+
                         if (_exitService.Save)
-                        {
-                            _settingsService.TablesService.TablesCollection.SaveTables();
-                        }
+                            _model.SaveTables();
+
                         e.Cancel = !_exitService.Close;
                     }
                 }));
@@ -206,7 +206,7 @@ namespace WpfApp.ViewModels
                 return _saveSettingsCommand ??
                 (_saveSettingsCommand = new Command(obj =>
                 {
-                    _settingsService.SaveSettings();
+                    _model.SaveSettings();
                 }));
             }
         }

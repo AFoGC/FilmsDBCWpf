@@ -32,12 +32,12 @@ namespace WpfApp.Services
 
             _settingsXml = new XmlDocument();
 
-            ProfilesService.UsedProfileChanged += OnProfileChanged;
-            TablesService.AutosaveIsEnableChanged += OnAutosaveEnableChanged;
-            TablesService.AutosaveIntervalChanged += OnAutosaveIntervalChanged;
+            _profilesService.UsedProfileChanged += OnProfileChanged;
+            _tablesService.AutosaveIsEnableChanged += OnAutosaveEnableChanged;
+            _tablesService.AutosaveIntervalChanged += OnAutosaveIntervalChanged;
 
-            LanguageService.LanguageChanged += (culture) => OnLanguageChanged();
-            ScaleService.ScaleChanged += (scale) => OnScaleChanged();
+            _languageService.LanguageChanged += (culture) => OnLanguageChanged();
+            _scaleService.ScaleChanged += (scale) => OnScaleChanged();
         }
 
         public TablesFileService TablesService => _tablesService;
@@ -48,32 +48,32 @@ namespace WpfApp.Services
         private void OnScaleChanged()
         {
             XmlNode node = GetXmlNode(scaleNodeName);
-            int scaleCode = (int)ScaleService.CurrentScale;
+            int scaleCode = (int)_scaleService.CurrentScale;
             node.InnerText = scaleCode.ToString();
         }
 
         private void OnLanguageChanged()
         {
             XmlNode node = GetXmlNode(langNodeName);
-            node.InnerText = LanguageService.CurrentLanguage.Name;
+            node.InnerText = _languageService.CurrentLanguage.Name;
         }
 
         private void OnProfileChanged()
         {
             XmlNode node = GetXmlNode(profileNodeName);
-            node.InnerText = ProfilesService.UsedProfile.Name;
+            node.InnerText = _profilesService.UsedProfile.Name;
         }
 
         private void OnAutosaveEnableChanged()
         {
             XmlNode node = GetXmlNode(autosaveNodeName);
-            node.InnerText = TablesService.IsAutosaveEnable.ToString();
+            node.InnerText = _tablesService.IsAutosaveEnable.ToString();
         }
 
         private void OnAutosaveIntervalChanged()
         {
             XmlNode node = GetXmlNode(autosaveSecondsNodeName);
-            node.InnerText = TablesService.SaveTimerInterval.ToString();
+            node.InnerText = _tablesService.SaveTimerInterval.ToString();
         }
 
         public void SaveSettings()
@@ -113,32 +113,32 @@ namespace WpfApp.Services
         private void GetXmlProfile()
         {
             XmlNode node = GetXmlNode(profileNodeName);
-            ProfilesService.SetUsedProfile(node.InnerText);
+            _profilesService.SetUsedProfile(node.InnerText);
         }
 
         private void GetXmlLang()
         {
             XmlNode node = GetXmlNode(langNodeName);
-            LanguageService.SetLanguage(node.InnerText);
+            _languageService.SetLanguage(node.InnerText);
         }
 
         private void GetXmlScale()
         {
             XmlNode node = GetXmlNode(scaleNodeName);
             int scaleCode = Int32.Parse(node.InnerText);
-            ScaleService.SetScale(scaleCode);
+            _scaleService.SetScale(scaleCode);
         }
 
         private void GetXmlAutosaveEnabled()
         {
             XmlNode node = GetXmlNode(autosaveNodeName);
-            TablesService.IsAutosaveEnable = Boolean.Parse(node.InnerText);
+            _tablesService.IsAutosaveEnable = Boolean.Parse(node.InnerText);
         }
 
         private void GetXmlAutosaveSeconds()
         {
             XmlNode node = GetXmlNode(autosaveSecondsNodeName);
-            TablesService.SaveTimerInterval = Double.Parse(node.InnerText);
+            _tablesService.SaveTimerInterval = Double.Parse(node.InnerText);
         }
 
         private XmlNode GetXmlNode(string name)

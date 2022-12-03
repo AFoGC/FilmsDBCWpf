@@ -28,9 +28,9 @@ namespace WpfApp.ViewModels
         private Visibility _booksVisibility;
         private Visibility _settingsVisibility;
 
-        private Command _keyDownCommand;
-        private Command _saveAndExitCommand;
-        private Command _saveSettingsCommand;
+        private RelayCommand _keyDownCommand;
+        private RelayCommand _saveAndExitCommand;
+        private RelayCommand _saveSettingsCommand;
         
         private StatusEnum _status;
 
@@ -162,12 +162,12 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command KeyDownCommand
+        public RelayCommand KeyDownCommand
         {
             get
             {
                 return _keyDownCommand ??
-                (_keyDownCommand = new Command(obj =>
+                (_keyDownCommand = new RelayCommand(obj =>
                 {
                     KeyEventArgs e = obj as KeyEventArgs;
                     if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
@@ -178,12 +178,12 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command SaveAndExitCommand
+        public RelayCommand SaveAndExitCommand
         {
             get
             {
                 return _saveAndExitCommand ??
-                (_saveAndExitCommand = new Command(obj =>
+                (_saveAndExitCommand = new RelayCommand(obj =>
                 {
                     if (_model.IsInfoUnsaved)
                     {
@@ -199,12 +199,12 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command SaveSettingsCommand
+        public RelayCommand SaveSettingsCommand
         {
             get
             {
                 return _saveSettingsCommand ??
-                (_saveSettingsCommand = new Command(obj =>
+                (_saveSettingsCommand = new RelayCommand(obj =>
                 {
                     _model.SaveSettings();
                 }));

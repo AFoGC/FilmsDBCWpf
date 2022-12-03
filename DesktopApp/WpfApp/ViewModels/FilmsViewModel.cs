@@ -1,6 +1,4 @@
-﻿using FilmsUCWpf.ViewModel;
-using FilmsUCWpf.ViewModel.Interfaces;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +13,8 @@ using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
 using WpfApp.Commands;
 using WpfApp.Models;
+using WpfApp.TableViewModels;
+using WpfApp.TableViewModels.Interfaces;
 
 namespace WpfApp.ViewModels
 {
@@ -33,19 +33,19 @@ namespace WpfApp.ViewModels
         private bool _isUnReadedChecked = true;
         private string _searchText = string.Empty;
 
-        private Command showCategoriesCommand;
-        private Command showFilmsCommand;
-        private Command showSeriesCommand;
-        private Command showPriorityCommand;
-        private Command addCategoryCommand;
-        private Command addBookCommand;
-        private Command saveTablesCommand;
-        private Command filterCommand;
-        private Command sortTable;
-        private Command removeSourceCommand;
-        private Command addSourceCommand;
-        private Command moveUpSourceCommand;
-        private Command closeInfoCommand;
+        private RelayCommand showCategoriesCommand;
+        private RelayCommand showFilmsCommand;
+        private RelayCommand showSeriesCommand;
+        private RelayCommand showPriorityCommand;
+        private RelayCommand addCategoryCommand;
+        private RelayCommand addBookCommand;
+        private RelayCommand saveTablesCommand;
+        private RelayCommand filterCommand;
+        private RelayCommand sortTable;
+        private RelayCommand removeSourceCommand;
+        private RelayCommand addSourceCommand;
+        private RelayCommand moveUpSourceCommand;
+        private RelayCommand closeInfoCommand;
 
         private FilmInfoMenuCondition infoMenuCondition;
         private Object _infoMenuDataContext;
@@ -211,12 +211,12 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command ShowCategoriesCommand
+        public RelayCommand ShowCategoriesCommand
         {
             get
             {
                 return showCategoriesCommand ??
-                (showCategoriesCommand = new Command(obj =>
+                (showCategoriesCommand = new RelayCommand(obj =>
                 {
                     CategoryVisibility = Visibility.Visible;
                     FilmsVisibility = Visibility.Collapsed;
@@ -226,12 +226,12 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command ShowFilmsCommand
+        public RelayCommand ShowFilmsCommand
         {
             get
             {
                 return showFilmsCommand ??
-                (showFilmsCommand = new Command(obj =>
+                (showFilmsCommand = new RelayCommand(obj =>
                 {
                     CategoryVisibility = Visibility.Collapsed;
                     FilmsVisibility = Visibility.Visible;
@@ -241,12 +241,12 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command ShowSeriesCommand
+        public RelayCommand ShowSeriesCommand
         {
             get
             {
                 return showSeriesCommand ??
-                (showSeriesCommand = new Command(obj =>
+                (showSeriesCommand = new RelayCommand(obj =>
                 {
                     CategoryVisibility = Visibility.Collapsed;
                     FilmsVisibility = Visibility.Collapsed;
@@ -256,12 +256,12 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command ShowPriorityCommand
+        public RelayCommand ShowPriorityCommand
         {
             get
             {
                 return showPriorityCommand ??
-                (showPriorityCommand = new Command(obj =>
+                (showPriorityCommand = new RelayCommand(obj =>
                 {
                     CategoryVisibility = Visibility.Collapsed;
                     FilmsVisibility = Visibility.Collapsed;
@@ -271,39 +271,39 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command AddCategoryCommand
+        public RelayCommand AddCategoryCommand
         {
             get
             {
                 return addCategoryCommand ??
-                (addCategoryCommand = new Command(obj => _model.AddCategory()));
+                (addCategoryCommand = new RelayCommand(obj => _model.AddCategory()));
             }
         }
         
-        public Command AddBookCommand
+        public RelayCommand AddBookCommand
         {
             get
             {
                 return addBookCommand ??
-                (addBookCommand = new Command(obj => _model.AddFilm()));
+                (addBookCommand = new RelayCommand(obj => _model.AddFilm()));
             }
         }
         
-        public Command SaveTablesCommand
+        public RelayCommand SaveTablesCommand
         {
             get
             {
                 return saveTablesCommand ??
-                (saveTablesCommand = new Command(obj => _model.SaveTables()));
+                (saveTablesCommand = new RelayCommand(obj => _model.SaveTables()));
             }
         }
         
-        public Command FilterCommand
+        public RelayCommand FilterCommand
         {
             get
             {
                 return filterCommand ??
-                (filterCommand = new Command(obj =>
+                (filterCommand = new RelayCommand(obj =>
                 {
                     IGenre[] genres = getSelectedGenres();
                     FilterTable(CategoriesMenu, genres);
@@ -316,8 +316,8 @@ namespace WpfApp.ViewModels
             }
         }
 
-        public Command SortTable =>
-        sortTable ?? (sortTable = new Command(obj =>
+        public RelayCommand SortTable =>
+        sortTable ?? (sortTable = new RelayCommand(obj =>
         {
             string str = obj as string;
             ListSortDirection direction = getSortDirection(str);
@@ -684,8 +684,8 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command RemoveSourceCommand =>
-        removeSourceCommand ?? (removeSourceCommand = new Command(obj =>
+        public RelayCommand RemoveSourceCommand =>
+        removeSourceCommand ?? (removeSourceCommand = new RelayCommand(obj =>
         {
             if (SourcesCVS.Source != null)
             {
@@ -695,8 +695,8 @@ namespace WpfApp.ViewModels
             }
         }));
         
-        public Command AddSourceCommand =>
-        addSourceCommand ?? (addSourceCommand = new Command(obj =>
+        public RelayCommand AddSourceCommand =>
+        addSourceCommand ?? (addSourceCommand = new RelayCommand(obj =>
         {
             if (SourcesCVS.Source != null)
             {
@@ -705,8 +705,8 @@ namespace WpfApp.ViewModels
             }
         }));
         
-        public Command MoveUpSourceCommand =>
-        moveUpSourceCommand ?? (moveUpSourceCommand = new Command(obj =>
+        public RelayCommand MoveUpSourceCommand =>
+        moveUpSourceCommand ?? (moveUpSourceCommand = new RelayCommand(obj =>
         {
             if (SourcesCVS.Source != null)
             {
@@ -716,8 +716,8 @@ namespace WpfApp.ViewModels
             }
         }));
         
-        public Command CloseInfoCommand =>
-        closeInfoCommand ?? (closeInfoCommand = new Command(obj =>
+        public RelayCommand CloseInfoCommand =>
+        closeInfoCommand ?? (closeInfoCommand = new RelayCommand(obj =>
         {
             InfoMenuCondition = FilmInfoMenuCondition.Closed;
         }));

@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="WpfApp.TableViews.BookPriorityControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp.TableViews"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d">
+    <Grid Style="{DynamicResource TControl}" Height="{DynamicResource control_height}">
+        <Grid.Resources>
+            <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
+        </Grid.Resources>
+        <Grid.ContextMenu>
+            <ContextMenu x:Name="cm">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Opened">
+                        <i:InvokeCommandAction Command="{Binding Path=Data.SelectCommand, Source={StaticResource proxy}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <MenuItem Header="{DynamicResource more_info_btn}" ToolTip="{DynamicResource open_more_info_tt}"
+                          Command="{Binding Path=Data.OpenInfoCommand, Source={StaticResource proxy}}"/>
+
+                <MenuItem Header="{DynamicResource edit_btn}" ToolTip="{DynamicResource open_edit_tt}"
+                          Command="{Binding Path=Data.OpenUpdateCommand, Source={StaticResource proxy}}"/>
+
+                <MenuItem Header="{Binding Path=Data.Sources, Source={StaticResource proxy}}" ToolTip="{DynamicResource copy_url_tt}" 
+                          Command="{Binding Path=Data.CopyUrlCommand, Source={StaticResource proxy}}"/>
+
+                <MenuItem Header="{DynamicResource remove_from_prior_cm}"
+                          Command="{Binding Path=Data.RemoveFromPriorityCommand, Source={StaticResource proxy}}"/>
+
+                <Separator />
+                <MenuItem Header="{DynamicResource delete_this_cm}"
+                          Command="{Binding Path=Data.DeleteBookCommand, Source={StaticResource proxy}}"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        
+        <StackPanel Orientation="Horizontal">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding SelectCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            
+            <TextBox Text="{Binding ID}" ToolTip="{DynamicResource id_tt}" 
+                     Width="{DynamicResource id_width}"/>
+            
+            <TextBox Text="{Binding Name}" ToolTip="{StaticResource NameToolTip}" 
+                     Width="{DynamicResource name_width}"/>
+            
+            <TextBox Text="{Binding BookGenreText}" ToolTip="{DynamicResource BookGenreToolTip}" 
+                     Width="{DynamicResource genre_width}"/>
+            
+            <TextBox Text="{Binding PublicationYear}" ToolTip="{DynamicResource year_tt}" 
+                     Width="{DynamicResource id_width}"/>
+            
+            <CheckBox IsChecked="{Binding Readed}" ToolTip="{DynamicResource readed_tt}" 
+                      Margin="20,0" IsEnabled="False"/>
+            
+            <TextBox Text="{Binding Mark}" ToolTip="{DynamicResource mark_tt}" 
+                     Width="{DynamicResource mark_width}"/>
+
+            <Button Content="⋮" Click="OpenCM">
+                <Button.ToolTip>
+                    <local:BookToolTip />
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

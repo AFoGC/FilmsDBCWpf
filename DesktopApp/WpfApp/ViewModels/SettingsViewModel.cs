@@ -25,16 +25,16 @@ namespace WpfApp.ViewModels
         private int _indexOfBookMarkSystem;
         private String _newProfileName = String.Empty;
 
-        private Command addBookGenreCommand;
-        private Command deleteBookGenreCommand;
-        private Command addFilmGenreCommand;
-        private Command deleteFilmGenreCommand;
-        private Command uncheckFilmGenreCommand;
-        private Command changeProfileCommand;
-        private Command deleteProfileCommand;
-        private Command importProfileCommand;
-        private Command addProfileCommand;
-        private Command openExplorerCommand;
+        private RelayCommand addBookGenreCommand;
+        private RelayCommand deleteBookGenreCommand;
+        private RelayCommand addFilmGenreCommand;
+        private RelayCommand deleteFilmGenreCommand;
+        private RelayCommand uncheckFilmGenreCommand;
+        private RelayCommand changeProfileCommand;
+        private RelayCommand deleteProfileCommand;
+        private RelayCommand importProfileCommand;
+        private RelayCommand addProfileCommand;
+        private RelayCommand openExplorerCommand;
 
         private static readonly char[] symbols = new char[] 
         { '"', '\\', '/', ':', '|', '<', '>', '*', '?' };
@@ -128,60 +128,60 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command AddBookGenreCommand
+        public RelayCommand AddBookGenreCommand
         {
             get
             {
                 return addBookGenreCommand ??
-                (addBookGenreCommand = new Command(obj =>
+                (addBookGenreCommand = new RelayCommand(obj =>
                 {
                     _model.AddBookGenre();
                 }));
             }
         }
         
-        public Command DeleteBookGenreCommand
+        public RelayCommand DeleteBookGenreCommand
         {
             get
             {
                 return deleteBookGenreCommand ??
-                (deleteBookGenreCommand = new Command(obj =>
+                (deleteBookGenreCommand = new RelayCommand(obj =>
                 {
                     _model.RemoveBookGenre(obj as BookGenre);
                 }));
             }
         }
         
-        public Command AddFilmGenreCommand
+        public RelayCommand AddFilmGenreCommand
         {
             get
             {
                 return addFilmGenreCommand ??
-                (addFilmGenreCommand = new Command(obj =>
+                (addFilmGenreCommand = new RelayCommand(obj =>
                 {
                     _model.AddFilmGenre();
                 }));
             }
         }
         
-        public Command DeleteFilmGenreCommand
+        public RelayCommand DeleteFilmGenreCommand
         {
             get
             {
                 return deleteFilmGenreCommand ??
-                (deleteFilmGenreCommand = new Command(obj =>
+                (deleteFilmGenreCommand = new RelayCommand(obj =>
                 {
                     _model.RemoveFilmGenre(obj as Genre);
                 }));
             }
         }
         
-        public Command ChangeFilmGenreIsSerialCommand
+        public RelayCommand ChangeFilmGenreIsSerialCommand
         {
             get
             {
                 return uncheckFilmGenreCommand ??
-                (uncheckFilmGenreCommand = new Command(obj =>
+                (uncheckFilmGenreCommand = new RelayCommand(obj =>
                 {
                     _model.ChangeCheckFilmGenre(obj as Genre);
                 }));
@@ -256,36 +256,36 @@ namespace WpfApp.ViewModels
             set { _newProfileName = value; OnPropertyChanged(); }
         }
         
-        public Command ChangeProfileCommand
+        public RelayCommand ChangeProfileCommand
         {
             get
             {
                 return changeProfileCommand ??
-                (changeProfileCommand = new Command(obj =>
+                (changeProfileCommand = new RelayCommand(obj =>
                 {
                     _profilesModel.SetUsedProfile(obj as ProfileModel);
                 }));
             }
         }
         
-        public Command DeleteProfileCommand
+        public RelayCommand DeleteProfileCommand
         {
             get
             {
                 return deleteProfileCommand ??
-                (deleteProfileCommand = new Command(obj =>
+                (deleteProfileCommand = new RelayCommand(obj =>
                 {
                     _profilesModel.RemoveProfile(obj as ProfileModel);
                 }));
             }
         }
         
-        public Command AddProfileCommand
+        public RelayCommand AddProfileCommand
         {
             get
             {
                 return addProfileCommand ??
-                (addProfileCommand = new Command(obj =>
+                (addProfileCommand = new RelayCommand(obj =>
                 {
                     if (NewProfileName.IndexOfAny(symbols) == -1)
                     {
@@ -302,12 +302,12 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command ImportProfileCommand
+        public RelayCommand ImportProfileCommand
         {
             get
             {
                 return importProfileCommand ??
-                (importProfileCommand = new Command(obj =>
+                (importProfileCommand = new RelayCommand(obj =>
                 {
                     if (importFileService.OpenFileDialog())
                     {
@@ -317,12 +317,12 @@ namespace WpfApp.ViewModels
             }
         }
         
-        public Command OpenExplorerCommand
+        public RelayCommand OpenExplorerCommand
         {
             get
             {
                 return openExplorerCommand ??
-                (openExplorerCommand = new Command(obj =>
+                (openExplorerCommand = new RelayCommand(obj =>
                 {
                     explorerService.OpenExplorer(PathHelper.ProfilesPath);
                 }));

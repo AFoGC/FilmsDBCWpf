@@ -37,7 +37,7 @@ namespace WpfApp.ViewModels
             get
             {
                 return _signInCommand ??
-                (_signInCommand = new Command(obj =>
+                (_signInCommand = new RelayCommand(obj =>
                 {
                     Model.SignIn(Username, Password);
                 }));

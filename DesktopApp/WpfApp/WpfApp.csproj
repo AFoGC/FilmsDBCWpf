@@ -233,7 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\DateBox.xaml.cs">
+      <DependentUpon>DateBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="enums.cs" />
     <Compile Include="Helper\PathHelper.cs" />
     <Compile Include="Models\BooksModel.cs" />
@@ -259,6 +262,78 @@
     <Compile Include="Services\ScaleService.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\ShowMessageService.cs" />
+    <Compile Include="TableViewModels\BookCategoryViewModel.cs" />
+    <Compile Include="TableViewModels\BookInCategoryViewModel.cs" />
+    <Compile Include="TableViewModels\BookViewModel.cs" />
+    <Compile Include="TableViewModels\FilmCategoryViewModel.cs" />
+    <Compile Include="TableViewModels\FilmInCategoryViewModel.cs" />
+    <Compile Include="TableViewModels\FilmSerieViewModel.cs" />
+    <Compile Include="TableViewModels\FilmViewModel.cs" />
+    <Compile Include="TableViewModels\GenreButtonViewModel.cs" />
+    <Compile Include="TableViewModels\Helper.cs" />
+    <Compile Include="TableViewModels\Interfaces\BaseViewModel.cs" />
+    <Compile Include="TableViewModels\Interfaces\IFilter.cs" />
+    <Compile Include="TableViewModels\Interfaces\IFinded.cs" />
+    <Compile Include="TableViewModels\Interfaces\IHasGenre.cs" />
+    <Compile Include="TableViewModels\Interfaces\IMenuViewModel.cs" />
+    <Compile Include="TableViews\BindingProxy.cs" />
+    <Compile Include="TableViews\BookCategoryControl.xaml.cs">
+      <DependentUpon>BookCategoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\BookCategoryUpdateControl.xaml.cs">
+      <DependentUpon>BookCategoryUpdateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\BookControl.xaml.cs">
+      <DependentUpon>BookControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\BookInCategorySimpleControl.xaml.cs">
+      <DependentUpon>BookInCategorySimpleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\BookPriorityControl.xaml.cs">
+      <DependentUpon>BookPriorityControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\BookSimpleControl.xaml.cs">
+      <DependentUpon>BookSimpleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\BookToolTip.xaml.cs">
+      <DependentUpon>BookToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\BookUpdateControl.xaml.cs">
+      <DependentUpon>BookUpdateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmCategoryControl.xaml.cs">
+      <DependentUpon>FilmCategoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmCategoryUpdateControl.xaml.cs">
+      <DependentUpon>FilmCategoryUpdateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmControl.xaml.cs">
+      <DependentUpon>FilmControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmInCategorySimpleControl.xaml.cs">
+      <DependentUpon>FilmInCategorySimpleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmPriorityControl.xaml.cs">
+      <DependentUpon>FilmPriorityControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmSerieControl.xaml.cs">
+      <DependentUpon>FilmSerieControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmSerieUpdateControl.xaml.cs">
+      <DependentUpon>FilmSerieUpdateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmSimpleControl.xaml.cs">
+      <DependentUpon>FilmSimpleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmToolTip.xaml.cs">
+      <DependentUpon>FilmToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\FilmUpdateControl.xaml.cs">
+      <DependentUpon>FilmUpdateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableViews\GenreButtonView.xaml.cs">
+      <DependentUpon>GenreButtonView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BooksViewModel.cs" />
     <Compile Include="ViewModels\FilmsViewModel.cs" />
@@ -313,6 +388,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Controls\DateBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Dictionaries\ButtonDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -368,6 +447,82 @@
     <Page Include="Resources\Localizations\lang.en.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TableViews\BookCategoryControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\BookCategoryUpdateControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\BookControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\BookInCategorySimpleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\BookPriorityControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\BookSimpleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\BookToolTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\BookUpdateControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmCategoryControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmCategoryUpdateControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmInCategorySimpleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmPriorityControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmSerieControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmSerieUpdateControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmSimpleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmToolTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\FilmUpdateControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TableViews\GenreButtonView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BooksMenuView.xaml">
       <SubType>Designer</SubType>
@@ -446,10 +601,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FilmsUCWpf\FilmsUCWpf.csproj">
-      <Project>{72f34e44-53a4-42b9-b0ce-eee673ccd06e}</Project>
-      <Name>FilmsUCWpf</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\TL_Realization\TL_Objects\TL_Objects.csproj">
       <Project>{850e8208-e369-4f93-8a80-8227c5605a6e}</Project>
       <Name>TL_Objects</Name>

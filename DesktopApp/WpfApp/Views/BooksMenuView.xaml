@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Views"
-             xmlns:views="clr-namespace:FilmsUCWpf.View;assembly=FilmsUCWpf"
+             xmlns:views="clr-namespace:WpfApp.TableViews"
              xmlns:vm="clr-namespace:WpfApp.ViewModels"
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework"

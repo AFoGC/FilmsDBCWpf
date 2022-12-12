@@ -47,9 +47,9 @@ namespace WpfApp.ViewModels
         private RelayCommand moveUpSourceCommand;
         private RelayCommand closeInfoCommand;
 
-        private FilmInfoMenuCondition infoMenuCondition;
+        private FilmInfoMenuCondition _infoMenuCondition;
         private Object _infoMenuDataContext;
-        
+
         public ObservableCollection<GenreButtonViewModel> GenresTable { get; private set; }
         public ObservableCollection<FilmCategoryViewModel> CategoriesMenu { get; private set; }
         public ObservableCollection<FilmViewModel> SimpleFilmsMenu { get; private set; }
@@ -135,7 +135,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public Visibility PriorityVisibility
         {
             get => _priorityVisibility;
@@ -145,7 +145,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public bool IsReadedChecked
         {
             get => _isReadedChecked;
@@ -158,7 +158,7 @@ namespace WpfApp.ViewModels
                 }
             }
         }
-        
+
         public bool IsUnReadedChecked
         {
             get => _isUnReadedChecked;
@@ -171,22 +171,22 @@ namespace WpfApp.ViewModels
                 }
             }
         }
-        
+
         public BaseViewModel<Film> SelectedElement
         {
             get => _selectedElement;
             set
             {
-                if (_selectedElement != null) 
+                if (_selectedElement != null)
                     _selectedElement.IsSelected = false;
 
                 _selectedElement = value;
 
-                if (_selectedElement != null) 
+                if (_selectedElement != null)
                     _selectedElement.IsSelected = true;
             }
         }
-        
+
         public String SearchText
         {
             get => _searchText;
@@ -205,12 +205,11 @@ namespace WpfApp.ViewModels
         private void SearchInTable(IEnumerable table)
         {
             string search = SearchText.ToLower();
+
             foreach (IFinded vm in table)
-            {
                 vm.SetFinded(search);
-            }
         }
-        
+
         public RelayCommand ShowCategoriesCommand
         {
             get
@@ -225,7 +224,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand ShowFilmsCommand
         {
             get
@@ -240,12 +239,12 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand ShowSeriesCommand
         {
             get
             {
-                return showSeriesCommand ??
+                return showSeriesCommand ?? 
                 (showSeriesCommand = new RelayCommand(obj =>
                 {
                     CategoryVisibility = Visibility.Collapsed;
@@ -255,12 +254,13 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+            
+
         public RelayCommand ShowPriorityCommand
         {
             get
             {
-                return showPriorityCommand ??
+                return showPriorityCommand ?? 
                 (showPriorityCommand = new RelayCommand(obj =>
                 {
                     CategoryVisibility = Visibility.Collapsed;
@@ -270,66 +270,55 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
-        public RelayCommand AddCategoryCommand
-        {
-            get
-            {
-                return addCategoryCommand ??
-                (addCategoryCommand = new RelayCommand(obj => _model.AddCategory()));
-            }
-        }
-        
-        public RelayCommand AddBookCommand
-        {
-            get
-            {
-                return addBookCommand ??
-                (addBookCommand = new RelayCommand(obj => _model.AddFilm()));
-            }
-        }
-        
-        public RelayCommand SaveTablesCommand
-        {
-            get
-            {
-                return saveTablesCommand ??
-                (saveTablesCommand = new RelayCommand(obj => _model.SaveTables()));
-            }
-        }
-        
+            
+
+        public RelayCommand AddCategoryCommand =>
+            addCategoryCommand ?? (addCategoryCommand = new RelayCommand(obj => 
+                _model.AddCategory()));
+
+        public RelayCommand AddBookCommand =>
+            addBookCommand ?? (addBookCommand = new RelayCommand(obj => 
+                _model.AddFilm()));
+
+        public RelayCommand SaveTablesCommand =>
+            saveTablesCommand ?? (saveTablesCommand = new RelayCommand(obj => 
+                _model.SaveTables()));
+
         public RelayCommand FilterCommand
         {
             get
             {
-                return filterCommand ??
-                (filterCommand = new RelayCommand(obj =>
+                return filterCommand ?? (filterCommand = new RelayCommand(obj =>
                 {
-                    IGenre[] genres = getSelectedGenres();
+                    IGenre[] genres = GetSelectedGenres();
                     FilterTable(CategoriesMenu, genres);
                     FilterTable(SimpleFilmsMenu, genres);
                     FilterTable(FilmsMenu, genres);
                     FilterTable(SeriesMenu, genres);
                     FilterTable(PriorityFilmsMenu, genres);
-
                 }));
             }
         }
+            
 
-        public RelayCommand SortTable =>
-        sortTable ?? (sortTable = new RelayCommand(obj =>
+        public RelayCommand SortTable
         {
-            string str = obj as string;
-            ListSortDirection direction = getSortDirection(str);
-            CollectionViewSource[] sources = getVisibleCVS();
-
-            foreach (CollectionViewSource item in sources)
+            get
             {
-                CVSChangeSort(item, str, direction);
-            }
-        }));
+                return sortTable ?? (sortTable = new RelayCommand(obj =>
+                {
+                    string str = obj as string;
+                    ListSortDirection direction = GetSortDirection(str);
+                    CollectionViewSource[] sources = GetVisibleCVS();
 
-        private ListSortDirection getSortDirection(string paramenter)
+                    foreach (CollectionViewSource item in sources)
+                        CVSChangeSort(item, str, direction);
+                }));
+            }
+        }
+            
+
+        private ListSortDirection GetSortDirection(string paramenter)
         {
             switch (paramenter)
             {
@@ -353,7 +342,7 @@ namespace WpfApp.ViewModels
             }
         }
 
-        private CollectionViewSource[] getVisibleCVS()
+        private CollectionViewSource[] GetVisibleCVS()
         {
             List<CollectionViewSource> sources = new List<CollectionViewSource>();
 
@@ -387,24 +376,20 @@ namespace WpfApp.ViewModels
         private void FilterTable(IEnumerable table, IGenre[] genres)
         {
             foreach (IFilter vm in table)
-            {
                 vm.Filter(genres, IsReadedChecked, IsUnReadedChecked);
-            }
         }
 
-        private IGenre[] getSelectedGenres()
+        private IGenre[] GetSelectedGenres()
         {
             List<IGenre> genres = new List<IGenre>();
+
             foreach (var genre in GenresTable)
-            {
                 if (genre.IsChecked)
-                {
                     genres.Add(genre.Model);
-                }
-            }
+
             return genres.ToArray();
         }
-        
+
         private void SeriesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Serie serie;
@@ -598,9 +583,7 @@ namespace WpfApp.ViewModels
                 case NotifyCollectionChangedAction.Remove:
                     film = (Film)e.OldItems[0];
                     if (_model.FilmsTable.Contains(film))
-                    {
                         SimpleFilmsMenu.Add(new FilmViewModel(film, this));
-                    }
                     break;
                 default:
                     break;
@@ -609,11 +592,11 @@ namespace WpfApp.ViewModels
 
         public FilmInfoMenuCondition InfoMenuCondition
         {
-            get => infoMenuCondition;
+            get => _infoMenuCondition;
             set
             {
-                infoMenuCondition = value;
-                if (infoMenuCondition == FilmInfoMenuCondition.Closed)
+                _infoMenuCondition = value;
+                if (_infoMenuCondition == FilmInfoMenuCondition.Closed)
                 {
                     InfoMenuDataContext = null;
                     SourcesCVS.Source = null;
@@ -652,7 +635,7 @@ namespace WpfApp.ViewModels
                 }
             }
         }
-        
+
         public void OpenSourcesMenu(ObservableCollection<Source> sources)
         {
             SourcesCVS.Source = sources;
@@ -683,7 +666,7 @@ namespace WpfApp.ViewModels
                 InfoMenuCondition = FilmInfoMenuCondition.CategoryUpdate;
             }
         }
-        
+
         public RelayCommand RemoveSourceCommand =>
         removeSourceCommand ?? (removeSourceCommand = new RelayCommand(obj =>
         {
@@ -694,7 +677,7 @@ namespace WpfApp.ViewModels
                 sources.Remove(source);
             }
         }));
-        
+
         public RelayCommand AddSourceCommand =>
         addSourceCommand ?? (addSourceCommand = new RelayCommand(obj =>
         {
@@ -704,7 +687,7 @@ namespace WpfApp.ViewModels
                 sources.Add(new Source());
             }
         }));
-        
+
         public RelayCommand MoveUpSourceCommand =>
         moveUpSourceCommand ?? (moveUpSourceCommand = new RelayCommand(obj =>
         {
@@ -715,7 +698,7 @@ namespace WpfApp.ViewModels
                 sources.Move(sources.IndexOf(source), 0);
             }
         }));
-        
+
         public RelayCommand CloseInfoCommand =>
         closeInfoCommand ?? (closeInfoCommand = new RelayCommand(obj =>
         {

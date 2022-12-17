@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Threading;
-
-namespace WpfApp.Services
+﻿namespace WpfApp.Services
 {
     public class StatusService
     {

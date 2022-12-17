@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -8,7 +9,7 @@ using WpfApp.Services;
 using WpfApp.ViewModels;
 using WpfApp.Views;
 
-namespace WpfApp
+namespace FilmsDBC.Wpf
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -106,9 +107,9 @@ namespace WpfApp
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             MessageBox.Show(
-                e.Exception.ToString(), 
-                "Critical Error", 
-                MessageBoxButton.OK, 
+                e.Exception.ToString(),
+                "Critical Error",
+                MessageBoxButton.OK,
                 MessageBoxImage.Error
                 );
         }

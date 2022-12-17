@@ -34,7 +34,7 @@ namespace WpfApp.ViewModels
         
         private StatusEnum _status;
 
-        public MainViewModel(MainWindowModel model, StatusService statusService, ExitService exitService,
+        public MainViewModel(MainWindowModel model, StatusService statusService, IExitService exitService,
                              FilmsViewModel filmsVM, BooksViewModel booksVM, SettingsViewModel settingsVM)
         {
             _model = model;

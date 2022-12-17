@@ -24,10 +24,6 @@ namespace WpfApp.ViewModels
         private bool? _booksSelected = false;
         private bool? _settingsSelected = false;
 
-        private Visibility _filmsVisibility;
-        private Visibility _booksVisibility;
-        private Visibility _settingsVisibility;
-
         private RelayCommand _keyDownCommand;
         private RelayCommand _saveAndExitCommand;
         private RelayCommand _saveSettingsCommand;
@@ -79,7 +75,6 @@ namespace WpfApp.ViewModels
                 {
                     BooksSelected = false;
                     SettingsSelected = false;
-                    FilmsVisibility = Visibility.Visible;
                 }
                 OnPropertyChanged();
             }
@@ -95,7 +90,6 @@ namespace WpfApp.ViewModels
                 {
                     FilmsSelected = false;
                     SettingsSelected = false;
-                    BooksVisibility = Visibility.Visible;
                 }
                 OnPropertyChanged();
             }
@@ -111,52 +105,6 @@ namespace WpfApp.ViewModels
                 {
                     FilmsSelected = false;
                     BooksSelected = false;
-                    SettingsVisibility = Visibility.Visible;
-                }
-                OnPropertyChanged();
-            }
-        }
-        
-        public Visibility FilmsVisibility
-        {
-            get => _filmsVisibility;
-            set
-            {
-                _filmsVisibility = value;
-                if (_filmsVisibility == Visibility.Visible)
-                {
-                    BooksVisibility = Visibility.Hidden;
-                    SettingsVisibility = Visibility.Hidden;
-                }
-                OnPropertyChanged();
-            }
-        }
-        
-        public Visibility BooksVisibility
-        {
-            get => _booksVisibility;
-            set
-            {
-                _booksVisibility = value;
-                if (_booksVisibility == Visibility.Visible)
-                {
-                    FilmsVisibility = Visibility.Hidden;
-                    SettingsVisibility = Visibility.Hidden;
-                }
-                OnPropertyChanged();
-            }
-        }
-        
-        public Visibility SettingsVisibility
-        {
-            get => _settingsVisibility;
-            set
-            {
-                _settingsVisibility = value;
-                if (_settingsVisibility == Visibility.Visible)
-                {
-                    FilmsVisibility = Visibility.Hidden;
-                    BooksVisibility = Visibility.Hidden;
                 }
                 OnPropertyChanged();
             }

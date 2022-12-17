@@ -77,13 +77,45 @@
 
         <!--Menu sector-->
         <Grid Grid.Row="2" >
-            <Grid Visibility="{Binding SettingsVisibility}">
+            <Grid>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SettingsSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
                 <local:SettingsMenuView DataContext="{Binding SettingsVM}"/>
             </Grid>
-            <Grid Visibility="{Binding BooksVisibility}">
+            
+            <Grid>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding BooksSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
                 <local:BooksMenuView DataContext="{Binding BooksVM}"/>
             </Grid>
-            <Grid Visibility="{Binding FilmsVisibility}">
+            
+            <Grid>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FilmsSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
                 <local:FilmsMenuView DataContext="{Binding FilmsVM}"/>
             </Grid>
         </Grid>

@@ -1,0 +1,126 @@
+﻿<Window x:Class="WpfApp.Views.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp.Views"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm="clr-namespace:WpfApp.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindowView" Height="775" Width="1265"
+        WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="KeyDown">
+            <i:InvokeCommandAction Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SaveAndExitCommand}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding SaveSettingsCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Background="#FF121212">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Rectangle MouseDown="header_MouseDown" Fill="#FF121212"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Style="{StaticResource GrayButton}" Content="_" Width="40" 
+                    Click="MinimizeWindow"/>
+            <Button Style="{StaticResource GrayButton}" Content="#" Width="40" 
+                    Click="MaximizeWindow"/>
+            <Button Style="{StaticResource CloseButton}" Content="X" Width="40" 
+                    Click="CloseWindow"/>
+        </StackPanel>
+        <StackPanel x:Name="Navbar" Grid.Row="1" Orientation="Horizontal" Background="#FF1F1F1F">
+            <StackPanel.Resources>
+                <Style TargetType="ToggleButton" BasedOn="{StaticResource NavbarToggleButton}">
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="Width" Value="250"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="5,0,0,0"/>
+                </Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Orientation" Value="Horizontal"/>
+                </Style>
+            </StackPanel.Resources>
+            <ToggleButton IsChecked="{Binding FilmsSelected}">
+                <ToggleButton.Content>
+                    <StackPanel>
+                        <Path Style="{StaticResource FilmImage}" Stretch="Uniform" Height="20"/>
+                        <TextBlock Text="{DynamicResource nav_film}"/>
+                    </StackPanel>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton IsChecked="{Binding BooksSelected}">
+                <ToggleButton.Content>
+                    <StackPanel>
+                        <Path Style="{StaticResource BookImage}" Stretch="Uniform" Height="20"/>
+                        <TextBlock Text="{DynamicResource nav_book}"/>
+                    </StackPanel>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton IsChecked="{Binding SettingsSelected}">
+                <ToggleButton.Content>
+                    <StackPanel>
+                        <Path Style="{StaticResource SettingsImage}" Stretch="Uniform" Height="20"/>
+                        <TextBlock Text="{DynamicResource nav_setting}"/>
+                    </StackPanel>
+                </ToggleButton.Content>
+            </ToggleButton>
+        </StackPanel>
+
+        <!--Menu sector-->
+        <Grid Grid.Row="2" >
+            <Grid Visibility="{Binding SettingsVisibility}">
+                <local:SettingsMenuView DataContext="{Binding SettingsVM}"/>
+            </Grid>
+            <Grid Visibility="{Binding BooksVisibility}">
+                <local:BooksMenuView DataContext="{Binding BooksVM}"/>
+            </Grid>
+            <Grid Visibility="{Binding FilmsVisibility}">
+                <local:FilmsMenuView DataContext="{Binding FilmsVM}"/>
+            </Grid>
+        </Grid>
+        <!--Menu sector End-->
+
+        
+        <!--Status Bar-->
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Background" Value="{DynamicResource ButtonDarkGray}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Status}" Value="Saved">
+                            <Setter Property="Background" Value="{DynamicResource ButtonGreen}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Status}" Value="UnSaved">
+                            <Setter Property="Background" Value="{DynamicResource ButtonRed}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <Rectangle Width="20"/>
+            <TextBlock Foreground="WhiteSmoke" VerticalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Status}" Value="Saved">
+                                <Setter Property="Text" Value="{DynamicResource sb_saved}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=Status}" Value="UnSaved">
+                                <Setter Property="Text" Value="{DynamicResource sb_unsaved}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -1,0 +1,166 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfApp.Localizations.Resources"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <!--Navbar-->
+    <v:String x:Key="nav_film">Films</v:String>
+    <v:String x:Key="nav_book">Books</v:String>
+    <v:String x:Key="nav_setting">Settings</v:String>
+    
+    <!--Statusbar-->
+    <v:String x:Key="sb_saved">Saved</v:String>
+    <v:String x:Key="sb_unsaved">Unsaved</v:String>
+    
+    <!--Language Settings-->
+    <v:String x:Key="st_lang_title">Language Settings</v:String>
+    <v:String x:Key="st_lang_btn">Change language</v:String>
+    
+    <!--Scale Settings-->
+    <v:String x:Key="st_scale_title">Interface Scale Settings</v:String>
+    <v:String x:Key="st_small_item">Small</v:String>
+    <v:String x:Key="st_medium_item">Medium</v:String>
+    
+    <!--Profiles Settings-->
+    <v:String x:Key="st_prof_title">Profiles Settings</v:String>
+    <v:String x:Key="st_add_prof">Add new profile</v:String>
+    <v:String x:Key="st_prof_dir">Open profiles directory</v:String>
+    <v:String x:Key="st_import_prof">Import File</v:String>
+    <v:String x:Key="st_use_prof">Use This Profile</v:String>
+    <v:String x:Key="st_del_prof">Delete Profile</v:String>
+    
+    <!--Autosave Settings-->
+    <v:String x:Key="st_autosave_label">Autosave Settings</v:String>
+    <v:String x:Key="st_autosave_enable">Autosave enabled</v:String>
+    <v:String x:Key="st_seconds">seconds</v:String>
+
+    <!--Genre Settings-->
+    <v:String x:Key="st_genre_title">Genres Settings</v:String>
+    <v:String x:Key="st_fgenre_title">Films Genres Settings</v:String>
+    <v:String x:Key="st_bgenre_title">Books Genres Settings</v:String>
+    <v:String x:Key="st_add_genre">Add new genre</v:String>
+    <v:String x:Key="st_is_serial">Is Serial Genre</v:String>
+    <v:String x:Key="st_del_genre">Delete Genre</v:String>
+
+    <!--Mark Settings-->
+    <v:String x:Key="st_mark_title">Mark System Settings</v:String>
+    <v:String x:Key="st_fmark_title">Films Mark System</v:String>
+    <v:String x:Key="st_bmark_title">Books Mark System</v:String>
+    <v:String x:Key="st_mark_btn">Change Mark System</v:String>
+
+    <!--Common Buttons-->
+    <v:String x:Key="serch_btn">Search</v:String>
+    <v:String x:Key="save_tab_btn">Save Table</v:String>
+    <v:String x:Key="add_cat_btn">Add Category</v:String>
+    <v:String x:Key="show_cat_btn">Show Categories</v:String>
+    <v:String x:Key="filter_title">Filter options</v:String>
+    <v:String x:Key="filter_by_genre">Filter by genre</v:String>
+
+    <!--SortPanel-->
+    <v:String x:Key="id_sort">ID</v:String>
+    <v:String x:Key="name_sort">Name</v:String>
+    <v:String x:Key="genre_sort">Genre</v:String>
+    <v:String x:Key="year_sort">Year</v:String>
+    <v:String x:Key="date_sort">Date</v:String>
+    <v:String x:Key="mark_sort">Mark</v:String>
+    <v:String x:Key="author_sort">Author</v:String>
+    <v:String x:Key="bookmark_sort">Bookmark</v:String>
+
+    <!--Filmsmenu ButtonPanel-->
+    <v:String x:Key="add_film_btn">Add Film</v:String>
+    <v:String x:Key="show_film_btn">Films Menu</v:String>
+    <v:String x:Key="show_serie_btn">Series Menu</v:String>
+    <v:String x:Key="show_fprior_btn">Priority Menu</v:String>
+    <v:String x:Key="watched_btn">Watched</v:String>
+    <v:String x:Key="unwatched_btn">Unwatched</v:String>
+
+    <!--Booksmenu ButtonPanel-->
+    <v:String x:Key="add_book_btn">Add Book</v:String>
+    <v:String x:Key="show_book_btn">Books Menu</v:String>
+    <v:String x:Key="show_bprior_btn">Priority Menu</v:String>
+    <v:String x:Key="readed_btn">Readed</v:String>
+    <v:String x:Key="unreaded_btn">Unreaded</v:String>
+    
+    <!--Tables Controls Buttons-->
+    <v:String x:Key="edit_btn">Edit</v:String>
+    <v:String x:Key="edit_category_btn">Edit Category</v:String>
+    <v:String x:Key="comment_btn">Comment</v:String>
+    <v:String x:Key="more_info_btn">More Info</v:String>
+    <v:String x:Key="upd_source_btn">Update Source</v:String>
+    <v:String x:Key="add_selected_btn">Add Selected</v:String>
+    <v:String x:Key="remove_selected_btn">Remove Selected</v:String>
+    <v:String x:Key="del_category_btn">Delete Category</v:String>
+
+    <!--Table ToolTips-->
+    <v:String x:Key="id_tt">ID</v:String>
+    <v:String x:Key="name_tt">Name</v:String>
+    <v:String x:Key="genre_tt">Genre</v:String>
+    <v:String x:Key="year_tt">Realise Year</v:String>
+    <v:String x:Key="mark_tt">Mark</v:String>
+
+    <v:String x:Key="start_watch_date_tt">Start Watch Date</v:String>
+    <v:String x:Key="end_watch_date_tt">End Watch Date</v:String>
+    <v:String x:Key="watched_series_tt">Count Of Watched Series</v:String>
+    <v:String x:Key="total_series_tt">Total Series</v:String>
+    <v:String x:Key="watched_tt">Watched</v:String>
+    <v:String x:Key="cov_tt">Count of views</v:String>
+    <v:String x:Key="comment_tt">Comment</v:String>
+
+    <v:String x:Key="author_tt">Author</v:String>
+    <v:String x:Key="bookmark_tt">Bookmark</v:String>
+    <v:String x:Key="end_read_date_tt">End Read Date</v:String>
+    <v:String x:Key="readed_tt">Readed</v:String>
+    <v:String x:Key="cor_tt">Count of readings</v:String>
+
+    <v:String x:Key="add_in_category_tt">Create new element in category</v:String>
+    <v:String x:Key="collapse_category_tt">Сollapse category</v:String>
+    <v:String x:Key="copy_url_tt">Copy url</v:String>
+    <v:String x:Key="open_edit_tt">Open edit menu</v:String>
+    <v:String x:Key="open_more_info_tt">Open more info menu</v:String>
+    <v:String x:Key="open_comment_tt">Open comment</v:String>
+    
+    <!--Table ContextMenus-->
+    <v:String x:Key="delete_category_cm">Delete Category</v:String>
+    <v:String x:Key="add_selected_cm">Add Selected</v:String>
+    <v:String x:Key="remove_selected_cm">Remove Selected</v:String>
+    <v:String x:Key="delete_this_cm">Delete This</v:String>
+    <v:String x:Key="add_to_prior_cm">Add To Priority</v:String>
+    <v:String x:Key="remove_from_prior_cm">Remove From Priority</v:String>
+    <v:String x:Key="remove_from_category_cm">Remove From Category</v:String>
+    <v:String x:Key="up_in_category_cm">Move Up</v:String>
+    <v:String x:Key="down_in_category_cm">Move Down</v:String>
+    <v:String x:Key="in_category_cm">In Category</v:String>
+    <v:String x:Key="del_source_cm">Delete Source</v:String>
+
+    <!--Update Controls ToolTips-->
+    <v:String x:Key="hidename_utt">Hide Name (Text)</v:String>
+
+    <v:String x:Key="id_utt">ID (cannot be changed)</v:String>
+    <v:String x:Key="name_utt">Name (Text)</v:String>
+    <v:String x:Key="genre_utt">Genre</v:String>
+    <v:String x:Key="year_utt">Realise Year (Integer number)</v:String>
+    <v:String x:Key="mark_utt">Mark</v:String>
+
+    <v:String x:Key="start_watch_date_utt">Start Watch Date (Date(dd.mm.yyyy))</v:String>
+    <v:String x:Key="end_watch_date_utt">End Watch Date (Date(dd.mm.yyyy))</v:String>
+    <v:String x:Key="watched_series_utt">Count Of Watched Series (Integer number)</v:String>
+    <v:String x:Key="total_series_utt">Total Series (Integer number)</v:String>
+    <v:String x:Key="watched_utt">Watched (Boolean)</v:String>
+    <v:String x:Key="cov_utt">Count of views (Integer number)</v:String>
+    <v:String x:Key="comment_utt">Comment (Text)</v:String>
+
+    <v:String x:Key="author_utt">Author (Text)</v:String>
+    <v:String x:Key="bookmark_utt">Bookmark (Text)</v:String>
+    <v:String x:Key="end_read_date_utt">End Read Date (Date(dd.mm.yyyy))</v:String>
+    <v:String x:Key="readed_utt">Readed (Boolean)</v:String>
+    <v:String x:Key="cor_utt">Count of readings (Integer number)</v:String>
+    
+    <!--InfoPanels-->
+    <v:String x:Key="add_source_btn">Add</v:String>
+    <v:String x:Key="apply_update_btn">Apply</v:String>
+    
+    <!--Exit Window-->
+    <v:String x:Key="exit_label">Are you sure want to exit?</v:String>
+    <v:String x:Key="exit_btn">Exit without save</v:String>
+    <v:String x:Key="exit_and_save_btn">Save and Exit</v:String>
+
+</ResourceDictionary>

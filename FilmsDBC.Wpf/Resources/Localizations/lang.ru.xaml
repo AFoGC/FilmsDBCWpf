@@ -1,0 +1,166 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfApp.Localizations.Resources"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <!--Navbar-->
+    <v:String x:Key="nav_film">Фильмы</v:String>
+    <v:String x:Key="nav_book">Книги</v:String>
+    <v:String x:Key="nav_setting">Настройки</v:String>
+
+    <!--Statusbar-->
+    <v:String x:Key="sb_saved">Сохранено</v:String>
+    <v:String x:Key="sb_unsaved">Не сохранено</v:String>
+
+    <!--Language Settings-->
+    <v:String x:Key="st_lang_title">Настройки языка</v:String>
+    <v:String x:Key="st_lang_btn">Изменить яызк</v:String>
+
+    <!--Scale Settings-->
+    <v:String x:Key="st_scale_title">Настройки масштаба интерфейса</v:String>
+    <v:String x:Key="st_small_item">Маленький</v:String>
+    <v:String x:Key="st_medium_item">Средний</v:String>
+
+    <!--Profiles Settings-->
+    <v:String x:Key="st_prof_title">Настройки профилей</v:String>
+    <v:String x:Key="st_add_prof">Добавить новый профиль</v:String>
+    <v:String x:Key="st_prof_dir">Открыть директорию профилей</v:String>
+    <v:String x:Key="st_import_prof">Импорт файла</v:String>
+    <v:String x:Key="st_use_prof">Использовать профиль</v:String>
+    <v:String x:Key="st_del_prof">Удалить профиль</v:String>
+
+    <!--Autosave Settings-->
+    <v:String x:Key="st_autosave_label">Настройки автосохранения</v:String>
+    <v:String x:Key="st_autosave_enable">Автосохранение включено</v:String>
+    <v:String x:Key="st_seconds">секунд</v:String>
+
+    <!--Genre Settings-->
+    <v:String x:Key="st_genre_title">Настройки жанров</v:String>
+    <v:String x:Key="st_fgenre_title">Настройки жанров фильмов</v:String>
+    <v:String x:Key="st_bgenre_title">Настройки жанров книг</v:String>
+    <v:String x:Key="st_add_genre">Добавить новый жанр</v:String>
+    <v:String x:Key="st_is_serial">Сериальный жанр</v:String>
+    <v:String x:Key="st_del_genre">Удалить жанр</v:String>
+
+    <!--Mark Settings-->
+    <v:String x:Key="st_mark_title">Настройка системы оценок</v:String>
+    <v:String x:Key="st_fmark_title">Система оценок фильмов</v:String>
+    <v:String x:Key="st_bmark_title">Система оценок книг</v:String>
+    <v:String x:Key="st_mark_btn">Изменить систему оценок</v:String>
+
+    <!--Common Buttons-->
+    <v:String x:Key="serch_btn">Поиск</v:String>
+    <v:String x:Key="save_tab_btn">Сохранить таблицы</v:String>
+    <v:String x:Key="add_cat_btn">Добавить категорию</v:String>
+    <v:String x:Key="show_cat_btn">Меню категорий</v:String>
+    <v:String x:Key="filter_title">Опции фильтра</v:String>
+    <v:String x:Key="filter_by_genre">Фильтр по жанру</v:String>
+
+    <!--SortPanel-->
+    <v:String x:Key="id_sort">ID</v:String>
+    <v:String x:Key="name_sort">Название</v:String>
+    <v:String x:Key="genre_sort">Жанр</v:String>
+    <v:String x:Key="year_sort">Год</v:String>
+    <v:String x:Key="date_sort">Дата</v:String>
+    <v:String x:Key="mark_sort">Оценка</v:String>
+    <v:String x:Key="author_sort">Автор</v:String>
+    <v:String x:Key="bookmark_sort">Закладка</v:String>
+
+    <!--Filmsmenu ButtonPanel-->
+    <v:String x:Key="add_film_btn">Добавить фильм</v:String>
+    <v:String x:Key="show_film_btn">Меню фильмов</v:String>
+    <v:String x:Key="show_serie_btn">Меню сериалов</v:String>
+    <v:String x:Key="show_fprior_btn">Меню приоритетов</v:String>
+    <v:String x:Key="watched_btn">Просмотрено</v:String>
+    <v:String x:Key="unwatched_btn">Непросмотрено</v:String>
+
+    <!--Booksmenu ButtonPanel-->
+    <v:String x:Key="add_book_btn">Добавить книгу</v:String>
+    <v:String x:Key="show_book_btn">Меню книг</v:String>
+    <v:String x:Key="show_bprior_btn">Меню приоритетов</v:String>
+    <v:String x:Key="readed_btn">Прочитано</v:String>
+    <v:String x:Key="unreaded_btn">Непрочитано</v:String>
+
+    <!--Tables Controls Buttons-->
+    <v:String x:Key="edit_btn">Изменить</v:String>
+    <v:String x:Key="edit_category_btn">Изменить категорию</v:String>
+    <v:String x:Key="comment_btn">Комментарий</v:String>
+    <v:String x:Key="more_info_btn">Более детально</v:String>
+    <v:String x:Key="upd_source_btn">Источник</v:String>
+    <v:String x:Key="add_selected_btn">Добавить выбранное</v:String>
+    <v:String x:Key="remove_selected_btn">Убрать выбранное</v:String>
+    <v:String x:Key="del_category_btn">Удалить категорию</v:String>
+
+    <!--Table ToolTips-->
+    <v:String x:Key="id_tt">ID</v:String>
+    <v:String x:Key="name_tt">Название</v:String>
+    <v:String x:Key="genre_tt">Жанр</v:String>
+    <v:String x:Key="year_tt">Год выпуска</v:String>
+    <v:String x:Key="mark_tt">Оценка</v:String>
+
+    <v:String x:Key="start_watch_date_tt">Дата начала просмотра</v:String>
+    <v:String x:Key="end_watch_date_tt">Дата окончания просмотра</v:String>
+    <v:String x:Key="watched_series_tt">Количество просмотренных серий</v:String>
+    <v:String x:Key="total_series_tt">Всего серий</v:String>
+    <v:String x:Key="watched_tt">Просмотрено</v:String>
+    <v:String x:Key="cov_tt">Количество просмотров</v:String>
+    <v:String x:Key="comment_tt">Комментарий</v:String>
+
+    <v:String x:Key="author_tt">Автор</v:String>
+    <v:String x:Key="bookmark_tt">Закладка</v:String>
+    <v:String x:Key="end_read_date_tt">Дата окончания чтения</v:String>
+    <v:String x:Key="readed_tt">Прочтено</v:String>
+    <v:String x:Key="cor_tt">Количество прочтений</v:String>
+
+    <v:String x:Key="add_in_category_tt">Создать новый элемент в категории</v:String>
+    <v:String x:Key="collapse_category_tt">Свернуть элементы категории</v:String>
+    <v:String x:Key="copy_url_tt">Скопировать ссылку</v:String>
+    <v:String x:Key="open_edit_tt">Открыть меню изменений</v:String>
+    <v:String x:Key="open_more_info_tt">Открыть меню полной информации</v:String>
+    <v:String x:Key="open_comment_tt">Открыть комментарий</v:String>
+
+    <!--Table ContextMenus-->
+    <v:String x:Key="delete_category_cm">Удалить категорию</v:String>
+    <v:String x:Key="add_selected_cm">Добавить выбранный элемент</v:String>
+    <v:String x:Key="remove_selected_cm">Убрать выбранный элемент</v:String>
+    <v:String x:Key="delete_this_cm">Удалить этот элемент</v:String>
+    <v:String x:Key="add_to_prior_cm">Добавить в приоритет</v:String>
+    <v:String x:Key="remove_from_prior_cm">Убрать из приоритета</v:String>
+    <v:String x:Key="remove_from_category_cm">Убрать из категории</v:String>
+    <v:String x:Key="up_in_category_cm">Перенести выше</v:String>
+    <v:String x:Key="down_in_category_cm">Перенести ниже</v:String>
+    <v:String x:Key="in_category_cm">В категории</v:String>
+    <v:String x:Key="del_source_cm">Удалить источник</v:String>
+
+    <!--Update Controls ToolTips-->
+    <v:String x:Key="hidename_utt">Скрытое имя (Текст)</v:String>
+
+    <v:String x:Key="id_utt">ID (не может быть изменено)</v:String>
+    <v:String x:Key="name_utt">Название (Текст)</v:String>
+    <v:String x:Key="genre_utt">Жанр</v:String>
+    <v:String x:Key="year_utt">Год выпуска (Целое число)</v:String>
+    <v:String x:Key="mark_utt">Оценка</v:String>
+
+    <v:String x:Key="start_watch_date_utt">Дата начала просмотра (Дата(дд.мм.гггг))</v:String>
+    <v:String x:Key="end_watch_date_utt">Дата окончания просмотра (Дата(дд.мм.гггг))</v:String>
+    <v:String x:Key="watched_series_utt">Количество просмотренных серий (Целое число)</v:String>
+    <v:String x:Key="total_series_utt">Всего серий (Целое число)</v:String>
+    <v:String x:Key="watched_utt">Просмотрено (Булевое значение)</v:String>
+    <v:String x:Key="cov_utt">Количество просмотров (Целое число)</v:String>
+    <v:String x:Key="comment_utt">Комментарий (Текст)</v:String>
+
+    <v:String x:Key="author_utt">Автор (Текст)</v:String>
+    <v:String x:Key="bookmark_utt">Закладка (Текст)</v:String>
+    <v:String x:Key="end_read_date_utt">Дата окончания чтения (Дата(дд.мм.гггг))</v:String>
+    <v:String x:Key="readed_utt">Прочтено (Булевое значение)</v:String>
+    <v:String x:Key="cor_utt">Количество прочтений (Целое число)</v:String>
+
+    <!--InfoPanels-->
+    <v:String x:Key="add_source_btn">Добавить</v:String>
+    <v:String x:Key="apply_update_btn">Применить</v:String>
+
+    <!--Exit Window-->
+    <v:String x:Key="exit_label">Вы уверенны, что хотите выйти?</v:String>
+    <v:String x:Key="exit_btn">Выйти без сохранения</v:String>
+    <v:String x:Key="exit_and_save_btn">Сохранить и выйти</v:String>
+
+</ResourceDictionary>

@@ -1,0 +1,166 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfApp.Localizations.Resources"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <!--Navbar-->
+    <v:String x:Key="nav_film">Фільми</v:String>
+    <v:String x:Key="nav_book">Книжки</v:String>
+    <v:String x:Key="nav_setting">Налаштування</v:String>
+
+    <!--Statusbar-->
+    <v:String x:Key="sb_saved">Збережено</v:String>
+    <v:String x:Key="sb_unsaved">Не збережено</v:String>
+
+    <!--Language Settings-->
+    <v:String x:Key="st_lang_title">Налаштування мови</v:String>
+    <v:String x:Key="st_lang_btn">Змінити мову</v:String>
+
+    <!--Scale Settings-->
+    <v:String x:Key="st_scale_title">Налаштування масштабу інтерфейсу</v:String>
+    <v:String x:Key="st_small_item">Маленький</v:String>
+    <v:String x:Key="st_medium_item">Середній</v:String>
+
+    <!--Profiles Settings-->
+    <v:String x:Key="st_prof_title">Налаштування профілів</v:String>
+    <v:String x:Key="st_add_prof">Додати новий профіль</v:String>
+    <v:String x:Key="st_prof_dir">Відкрити директорію профілів</v:String>
+    <v:String x:Key="st_import_prof">Імпорт файлу</v:String>
+    <v:String x:Key="st_use_prof">Використати профіль</v:String>
+    <v:String x:Key="st_del_prof">Видалити профіль</v:String>
+
+    <!--Autosave Settings-->
+    <v:String x:Key="st_autosave_label">Налаштування автозбереження</v:String>
+    <v:String x:Key="st_autosave_enable">Автозбереження ввімкнено</v:String>
+    <v:String x:Key="st_seconds">секунд</v:String>
+
+    <!--Genre Settings-->
+    <v:String x:Key="st_genre_title">Налаштування жанрів</v:String>
+    <v:String x:Key="st_fgenre_title">Налаштування жанрів фільмів</v:String>
+    <v:String x:Key="st_bgenre_title">Налаштування жанрів книжок</v:String>
+    <v:String x:Key="st_add_genre">Додати новий жанр</v:String>
+    <v:String x:Key="st_is_serial">Серіальний жанр</v:String>
+    <v:String x:Key="st_del_genre">Видалити жанр</v:String>
+
+    <!--Mark Settings-->
+    <v:String x:Key="st_mark_title">Налаштування системи оцінок</v:String>
+    <v:String x:Key="st_fmark_title">Система оцінок фільмів</v:String>
+    <v:String x:Key="st_bmark_title">Система оцінок книг</v:String>
+    <v:String x:Key="st_mark_btn">Змінити систему оцінок</v:String>
+
+    <!--Common Buttons-->
+    <v:String x:Key="serch_btn">Пошук</v:String>
+    <v:String x:Key="save_tab_btn">Зберегти таблиці</v:String>
+    <v:String x:Key="add_cat_btn">Додати категорію</v:String>
+    <v:String x:Key="show_cat_btn">Меню категорій</v:String>
+    <v:String x:Key="filter_title">Опції фільтру</v:String>
+    <v:String x:Key="filter_by_genre">Фільтр за жанром</v:String>
+
+    <!--SortPanel-->
+    <v:String x:Key="id_sort">ID</v:String>
+    <v:String x:Key="name_sort">Назва</v:String>
+    <v:String x:Key="genre_sort">Жанр</v:String>
+    <v:String x:Key="year_sort">Рік</v:String>
+    <v:String x:Key="date_sort">Дата</v:String>
+    <v:String x:Key="mark_sort">Оцінка</v:String>
+    <v:String x:Key="author_sort">Автор</v:String>
+    <v:String x:Key="bookmark_sort">Закладка</v:String>
+
+    <!--Filmsmenu ButtonPanel-->
+    <v:String x:Key="add_film_btn">Додати фільм</v:String>
+    <v:String x:Key="show_film_btn">Меню фільмів</v:String>
+    <v:String x:Key="show_serie_btn">Меню серіалів</v:String>
+    <v:String x:Key="show_fprior_btn">Меню пріорітетів</v:String>
+    <v:String x:Key="watched_btn">Переглянуто</v:String>
+    <v:String x:Key="unwatched_btn">Непереглянуто</v:String>
+
+    <!--Booksmenu ButtonPanel-->
+    <v:String x:Key="add_book_btn">Додати книжку</v:String>
+    <v:String x:Key="show_book_btn">Меню книжок</v:String>
+    <v:String x:Key="show_bprior_btn">Меню пріорітетів</v:String>
+    <v:String x:Key="readed_btn">Прочитано</v:String>
+    <v:String x:Key="unreaded_btn">Непрочитано</v:String>
+    
+    <!--Tables Controls Buttons-->
+    <v:String x:Key="edit_btn">Змінити</v:String>
+    <v:String x:Key="edit_category_btn">Змінити категорію</v:String>
+    <v:String x:Key="comment_btn">Коментар</v:String>
+    <v:String x:Key="more_info_btn">Більш детально</v:String>
+    <v:String x:Key="upd_source_btn">Джерело</v:String>
+    <v:String x:Key="add_selected_btn">Додати вибране</v:String>
+    <v:String x:Key="remove_selected_btn">Прибрати вибране</v:String>
+    <v:String x:Key="del_category_btn">Видалити категорію</v:String>
+
+    <!--Table ToolTips-->
+    <v:String x:Key="id_tt">ID</v:String>
+    <v:String x:Key="name_tt">Назва</v:String>
+    <v:String x:Key="genre_tt">Жанр</v:String>
+    <v:String x:Key="year_tt">Рік випуску</v:String>
+    <v:String x:Key="mark_tt">Оцінка</v:String>
+
+    <v:String x:Key="start_watch_date_tt">Дата початку перегляду</v:String>
+    <v:String x:Key="end_watch_date_tt">Дата закінчення перегляду</v:String>
+    <v:String x:Key="watched_series_tt">Кількість переглянутих серій</v:String>
+    <v:String x:Key="total_series_tt">Всього серій</v:String>
+    <v:String x:Key="watched_tt">Переглянуто</v:String>
+    <v:String x:Key="cov_tt">Кількість переглядів</v:String>
+    <v:String x:Key="comment_tt">Коментар</v:String>
+
+    <v:String x:Key="author_tt">Автор</v:String>
+    <v:String x:Key="bookmark_tt">Закладка</v:String>
+    <v:String x:Key="end_read_date_tt">Дата закінчення читання</v:String>
+    <v:String x:Key="readed_tt">Прочитано</v:String>
+    <v:String x:Key="cor_tt">Кількість читань</v:String>
+    
+    <v:String x:Key="add_in_category_tt">Створити новий елемент в категорії</v:String>
+    <v:String x:Key="collapse_category_tt">Згорнути елементи категорії</v:String>
+    <v:String x:Key="copy_url_tt">Скопіювати посилання</v:String>
+    <v:String x:Key="open_edit_tt">Відкрити меню змін</v:String>
+    <v:String x:Key="open_more_info_tt">Відкрити меню повної інформації</v:String>
+    <v:String x:Key="open_comment_tt">Відкрити коментар</v:String>
+
+    <!--Table ContextMenus-->
+    <v:String x:Key="delete_category_cm">Видалити категорию</v:String>
+    <v:String x:Key="add_selected_cm">Додати вибраний елемент</v:String>
+    <v:String x:Key="remove_selected_cm">Прибрати вибраний елемент</v:String>
+    <v:String x:Key="delete_this_cm">Видалити цей елемент</v:String>
+    <v:String x:Key="add_to_prior_cm">Додати до пріорітету</v:String>
+    <v:String x:Key="remove_from_prior_cm">Прибрати з пріорітету</v:String>
+    <v:String x:Key="remove_from_category_cm">Прибрати з категорії</v:String>
+    <v:String x:Key="up_in_category_cm">Пересунути вверх</v:String>
+    <v:String x:Key="down_in_category_cm">Пересунути вниз</v:String>
+    <v:String x:Key="in_category_cm">У категорії</v:String>
+    <v:String x:Key="del_source_cm">Видалити джерело</v:String>
+
+    <!--Update Controls ToolTips-->
+    <v:String x:Key="hidename_utt">Приховане ім'я (Текст)</v:String>
+
+    <v:String x:Key="id_utt">ID (не може бути змінено)</v:String>
+    <v:String x:Key="name_utt">Назва (Текст)</v:String>
+    <v:String x:Key="genre_utt">Жанр</v:String>
+    <v:String x:Key="year_utt">Рік випуску (Ціле число)</v:String>
+    <v:String x:Key="mark_utt">Оцінка</v:String>
+
+    <v:String x:Key="start_watch_date_utt">Дата початку перегляду (Дата(дд.мм.рррр))</v:String>
+    <v:String x:Key="end_watch_date_utt">Дата закінчення перегляду (Дата(дд.мм.рррр))</v:String>
+    <v:String x:Key="watched_series_utt">Кількість переглянутих серій (Ціле число)</v:String>
+    <v:String x:Key="total_series_utt">Всього серій (Ціле число)</v:String>
+    <v:String x:Key="watched_utt">Переглянуто (Бульове значення)</v:String>
+    <v:String x:Key="cov_utt">Кількісить переглядів (Ціле число)</v:String>
+    <v:String x:Key="comment_utt">Коментар (Текст)</v:String>
+
+    <v:String x:Key="author_utt">Автор (Текст)</v:String>
+    <v:String x:Key="bookmark_utt">Закладка (Текст)</v:String>
+    <v:String x:Key="end_read_date_utt">Дата закінчення читання (Дата(дд.мм.рррр))</v:String>
+    <v:String x:Key="readed_utt">Прочитано (Бульове значення)</v:String>
+    <v:String x:Key="cor_utt">Кількість читань (Ціле число)</v:String>
+
+    <!--InfoPanels-->
+    <v:String x:Key="add_source_btn">Додати</v:String>
+    <v:String x:Key="apply_update_btn">Застосувати</v:String>
+
+    <!--Exit Window-->
+    <v:String x:Key="exit_label">Ви впевнені, що хочете вийти?</v:String>
+    <v:String x:Key="exit_btn">Вийти без збереження</v:String>
+    <v:String x:Key="exit_and_save_btn">Зберегти та вийти</v:String>
+
+</ResourceDictionary>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TL_Realization\TL_Objects\TL_Objects.csproj" />
+    <ProjectReference Include="..\TL_Realization\TL_Tables\TL_Tables.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TablesLibrary">
+      <HintPath>..\TablesLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

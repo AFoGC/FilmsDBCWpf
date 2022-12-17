@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Windows;
+using System.Windows.Data;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Objects.CellDataClasses;

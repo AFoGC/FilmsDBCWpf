@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Windows.Threading;
 using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
@@ -17,19 +16,19 @@ namespace WpfApp.Services
 
         private readonly TableCollection _tablesCollection;
 
-        private DispatcherTimer _saveTimer;
+        private System.Timers.Timer _saveTimer;
         private bool _isAutosaveEnable = false;
         private double _autosaveInterval = 30;
 
         public TablesService()
         {
-            _saveTimer = new DispatcherTimer();
+            _saveTimer = new System.Timers.Timer();
 
             _tablesCollection = GetDefaultTableCollection();
 
             _tablesCollection.CellInTablesChanged += (s, e) => StartSaveTimer();
             _tablesCollection.TableSave += (s, e) => StopSaveTimer();
-            _saveTimer.Tick += (s, e) => Autosave();
+            _saveTimer.Elapsed += (s, e) => Autosave();
         }
 
         public TableCollection TablesCollection => _tablesCollection;
@@ -39,7 +38,7 @@ namespace WpfApp.Services
             set
             {
                 _autosaveInterval = value;
-                _saveTimer.Interval = TimeSpan.FromSeconds(value);
+                _saveTimer.Interval = value * 1000;
                 AutosaveIntervalChanged?.Invoke();
             }
 
@@ -136,7 +135,7 @@ namespace WpfApp.Services
 
         private void StartSaveTimer()
         {
-            if (_saveTimer.IsEnabled)
+            if (_saveTimer.Enabled)
                 _saveTimer.Stop();
 
             if (IsAutosaveEnable)

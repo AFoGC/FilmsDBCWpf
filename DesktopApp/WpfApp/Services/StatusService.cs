@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Threading;
 
 namespace WpfApp.Services
 {
@@ -9,7 +8,7 @@ namespace WpfApp.Services
 
         private readonly TablesService _tablesService;
 
-        private DispatcherTimer _statusTimer;
+        private System.Timers.Timer _statusTimer;
         private StatusEnum _currentStatus;
 
         public StatusEnum CurrentStatus => _currentStatus;
@@ -19,9 +18,9 @@ namespace WpfApp.Services
             _tablesService = tablesService;
             _currentStatus = StatusEnum.Normal;
 
-            _statusTimer = new DispatcherTimer();
-            _statusTimer.Interval = TimeSpan.FromSeconds(2);
-            _statusTimer.Tick += StatusTimerTick;
+            _statusTimer = new System.Timers.Timer();
+            _statusTimer.Interval = 2000;
+            _statusTimer.Elapsed += StatusTimerTick;
 
             _tablesService.TablesCollection.TableSave += OnSaveStatus;
             _tablesService.TablesCollection.CellInTablesChanged += OnUnsaveStatus;
@@ -39,7 +38,7 @@ namespace WpfApp.Services
 
         public void SetStatus(StatusEnum status)
         {
-            if(_statusTimer.IsEnabled)
+            if(_statusTimer.Enabled)
                 _statusTimer.Stop();
 
             if (IsStatusWithTimeDelay(status))

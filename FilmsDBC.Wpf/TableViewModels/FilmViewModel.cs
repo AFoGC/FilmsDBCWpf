@@ -17,9 +17,10 @@ namespace WpfApp.TableViewModels
         private readonly GenresTable genresTable;
         private readonly SeriesTable seriesTable;
 
-        private Visibility commentVisibility = Visibility.Collapsed;
         private readonly IMenuViewModel<Film> menu;
+        private bool _isCommentVisible = false;
         private bool _isFiltered = true;
+        
 
         private RelayCommand selectCommand;
         private RelayCommand copyUrlCommand;
@@ -240,14 +241,7 @@ namespace WpfApp.TableViewModels
                 return openComment ??
                 (openComment = new RelayCommand(obj => 
                 {
-                    if (CommentVisibility == Visibility.Visible)
-                    {
-                        CommentVisibility = Visibility.Collapsed;
-                    }
-                    else
-                    {
-                        CommentVisibility = Visibility.Visible;
-                    }
+                    IsCommentVisible = !IsCommentVisible;
                 }));
             }
         }
@@ -336,12 +330,13 @@ namespace WpfApp.TableViewModels
 
         public INotifyCollectionChanged GenresCollection => genresTable;
 
-        public Visibility CommentVisibility
+        public bool IsCommentVisible
         {
-            get => commentVisibility;
+
+            get => _isCommentVisible;
             set
             {
-                commentVisibility = value;
+                _isCommentVisible = value;
                 OnPropertyChanged();
             }
         }

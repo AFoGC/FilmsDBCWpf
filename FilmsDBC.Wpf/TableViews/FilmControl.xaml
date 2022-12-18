@@ -9,7 +9,18 @@
     <Grid Style="{DynamicResource TControl}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{DynamicResource row_height}"/>
-            <RowDefinition />
+            <RowDefinition>
+                <RowDefinition.Style>
+                    <Style TargetType="RowDefinition">
+                        <Setter Property="Height" Value="0"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsCommentVisible}" Value="True">
+                                <Setter Property="Height" Value="Auto"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RowDefinition.Style>
+            </RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -18,7 +29,6 @@
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
-            
         </Grid.Resources>
         <Grid.ContextMenu>
             <ContextMenu x:Name="cm">
@@ -87,7 +97,6 @@
         <Button Content="⋮" Grid.Column="2" Click="OpenCM"/>
 
         <TextBox HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Text="{Binding Comment}"
-                 ToolTip="{DynamicResource comment_tt}" Visibility="{Binding CommentVisibility}"/>
-
+                 ToolTip="{DynamicResource comment_tt}"/>
     </Grid>
 </UserControl>

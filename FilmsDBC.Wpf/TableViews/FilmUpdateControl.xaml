@@ -24,7 +24,18 @@
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition />
+            <RowDefinition>
+                <RowDefinition.Style>
+                    <Style TargetType="RowDefinition">
+                        <Setter Property="Height" Value="0"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsCommentVisible}" Value="True">
+                                <Setter Property="Height" Value="Auto"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RowDefinition.Style>
+            </RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBox ToolTip="{DynamicResource id_utt}" Text="{Binding ID}" IsReadOnly="True" Width="30"/>

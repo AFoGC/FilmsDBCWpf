@@ -7,10 +7,18 @@ namespace WpfApp.TableViewModels
 {
     public class GenreButtonViewModel: INotifyPropertyChanged
     {
+        private bool _isChecked = true;
+
+        public GenreButtonViewModel(IGenre genre)
+        {
+            Model = genre;
+            Model.PropertyChanged += ModelPropertyChanged;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public IGenre Model { get; private set; }
+        public String Name => Model.Name;
 
-        private bool _isChecked = true;
         public bool IsChecked
         { 
             get => _isChecked; 
@@ -20,26 +28,20 @@ namespace WpfApp.TableViewModels
                 OnPropertyChanged();
             }
         }
-        public String Name => Model.Name;
-        public GenreButtonViewModel(IGenre genre)
-        {
-            Model = genre;
-            Model.PropertyChanged += ModelPropertyChanged;
-        }
 
         private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e);
         }
 
-        public void OnPropertyChanged(PropertyChangedEventArgs e)
+        private void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
                 handler(this, e);
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }

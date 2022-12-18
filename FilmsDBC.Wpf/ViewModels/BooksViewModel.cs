@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using TablesLibrary.Interpreter.TableCell;
@@ -44,7 +47,7 @@ namespace WpfApp.ViewModels
         private RelayCommand closeInfoCommand;
 
         private BookInfoMenuCondition infoMenuCondition;
-        private object _infoMenuDataContext;
+        private Object _infoMenuDataContext;
 
         public ObservableCollection<GenreButtonViewModel> GenresTable { get; private set; }
         public ObservableCollection<BookCategoryViewModel> CategoriesMenu { get; private set; }

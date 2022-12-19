@@ -9,7 +9,18 @@
     <Grid Style="{DynamicResource TControl}" Height="Auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="{DynamicResource row_height}"/>
-            <RowDefinition />
+            <RowDefinition>
+                <RowDefinition.Style>
+                    <Style TargetType="RowDefinition">
+                        <Setter Property="Height" Value="Auto"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsCollectionVisible}" Value="False">
+                                <Setter Property="Height" Value="0"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RowDefinition.Style>
+            </RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -57,8 +68,7 @@
             <Button Content="⋮" Click="OpenCM"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
-                    Visibility="{Binding CollectionVisiblility}">
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <ItemsControl ItemsSource="{Binding FilmsVMs}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

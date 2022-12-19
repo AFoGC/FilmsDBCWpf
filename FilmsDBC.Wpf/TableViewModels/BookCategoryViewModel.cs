@@ -17,8 +17,7 @@ namespace WpfApp.TableViewModels
     {
         private readonly IMenuViewModel<Book> menu;
 
-        private Visibility _collectionVisibility = Visibility.Visible;
-
+        private bool _isCollectionVisible = true;
         private bool _isFiltered = true;
 
         private RelayCommand openUpdateCommand;
@@ -27,8 +26,8 @@ namespace WpfApp.TableViewModels
         private RelayCommand removeSelectedCommand;
         private RelayCommand deleteCategoryCommand;
         private RelayCommand collapseCommand;
-        private RelayCommand _CMOpenedCommand;
-        private RelayCommand _CMClosedCommand;
+        private RelayCommand contextMenuOpenedCommand;
+        private RelayCommand contextMenuClosedCommand;
 
         public BookCategoryViewModel(BookCategory model, IMenuViewModel<Book> menu) : base(model)
         {
@@ -39,10 +38,10 @@ namespace WpfApp.TableViewModels
             model.FormatedMark.PropertyChanged += MarkPropertyChanged;
             model.Books.CollectionChanged += BooksCollectionChanged;
 
-            fillCategoryBooks();
+            FillCategoryBooks();
         }
 
-        private void fillCategoryBooks()
+        private void FillCategoryBooks()
         {
             foreach (Book book in Model.Books)
             {
@@ -118,7 +117,7 @@ namespace WpfApp.TableViewModels
                 (createBookCommand = new RelayCommand(obj =>
                 {
                     Book book = new Book();
-                    book.Name = getDefaulBookName();
+                    book.Name = GetDefaulBookName();
                     book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
                     TableCollection.GetTable<Book>().AddElement(book);
                     Model.Books.Add(book);
@@ -126,7 +125,7 @@ namespace WpfApp.TableViewModels
             }
         }
 
-        private string getDefaulBookName()
+        private string GetDefaulBookName()
         {
             if (Model.HideName == string.Empty)
                 return Model.Name;
@@ -193,10 +192,7 @@ namespace WpfApp.TableViewModels
                 return collapseCommand ??
                 (collapseCommand = new RelayCommand(obj =>
                 {
-                    if (CollectionVisiblility == Visibility.Visible) 
-                        CollectionVisiblility = Visibility.Collapsed;
-                    else 
-                        CollectionVisiblility = Visibility.Visible;
+                    IsCollectionVisible = !IsCollectionVisible;
                 }));
             }
         }
@@ -205,8 +201,8 @@ namespace WpfApp.TableViewModels
         {
             get
             {
-                return _CMOpenedCommand ??
-                (_CMOpenedCommand = new RelayCommand(obj =>
+                return contextMenuOpenedCommand ??
+                (contextMenuOpenedCommand = new RelayCommand(obj =>
                 {
                     IsSelected = true;
                 }));
@@ -217,8 +213,8 @@ namespace WpfApp.TableViewModels
         {
             get
             {
-                return _CMClosedCommand ??
-                (_CMClosedCommand = new RelayCommand(obj =>
+                return contextMenuClosedCommand ??
+                (contextMenuClosedCommand = new RelayCommand(obj =>
                 {
                     IsSelected = false;
                 }));
@@ -266,12 +262,16 @@ namespace WpfApp.TableViewModels
             OnPropertyChanged(e);
         }
         
-        public Visibility CollectionVisiblility
+        public bool IsCollectionVisible
         {
-            get => _collectionVisibility;
-            set { _collectionVisibility = value; OnPropertyChanged(); }
+            get => _isCollectionVisible;
+            set
+            {
+                _isCollectionVisible = value;
+                OnPropertyChanged();
+            }
         }
-        
+
         public bool IsFiltered
         {
             get => _isFiltered;

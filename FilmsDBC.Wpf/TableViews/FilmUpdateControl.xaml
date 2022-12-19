@@ -65,7 +65,7 @@
                     Command="{Binding OpenSourceCommand}"/>
 
         </StackPanel>
-        <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding CommentVisibility}" ToolTip="{DynamicResource comment_tt}" 
+        <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" ToolTip="{DynamicResource comment_tt}" 
                  Width="533" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

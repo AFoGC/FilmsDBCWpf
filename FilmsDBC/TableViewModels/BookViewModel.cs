@@ -9,6 +9,7 @@ using TL_Objects;
 using TL_Objects.Interfaces;
 using TL_Tables;
 using WpfApp.Commands;
+using WpfApp.Helper;
 using WpfApp.TableViewModels.Interfaces;
 
 namespace WpfApp.TableViewModels
@@ -91,7 +92,7 @@ namespace WpfApp.TableViewModels
 				return copyUrlCommand ??
 				(copyUrlCommand = new RelayCommand(obj =>
 				{
-					Helper.CopyFirstSource(Model.Sources);
+                    SourcesHelper.CopyFirstSource(Model.Sources);
 				}));
 			}
 		}
@@ -354,7 +355,7 @@ namespace WpfApp.TableViewModels
 		}
 		public String Sources
 		{
-			get => Helper.SourcesStateString(Model.Sources);
+			get => SourcesHelper.SourcesStateString(Model.Sources);
 			set { }
 		}
 	}

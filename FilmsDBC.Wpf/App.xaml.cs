@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FilmsDBC.Wpf.Helper;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Data;
 using System.Globalization;
@@ -20,6 +21,8 @@ namespace FilmsDBC.Wpf
 
         public App()
         {
+            InitClipboardHelper();
+
             IServiceCollection services = new ServiceCollection();
 
             services.AddSingleton<TablesService>();
@@ -50,6 +53,11 @@ namespace FilmsDBC.Wpf
             _serviceProvider = services.BuildServiceProvider();
 
             InitializeComponent();
+        }
+
+        private void InitClipboardHelper()
+        {
+            ClipboardHelper.SetText = delegate (string text) { Clipboard.SetText(text); };
         }
 
         protected override void OnStartup(StartupEventArgs e)

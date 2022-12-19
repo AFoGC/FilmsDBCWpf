@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FilmsDBC.Wpf.Helper;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using TL_Objects.CellDataClasses;
 
-namespace WpfApp.TableViewModels
+namespace WpfApp.Helper
 {
-    public static class Helper
+    public static class SourcesHelper
     {
 		public static String SourcesStateString(ObservableCollection<Source> sources)
         {
@@ -30,7 +31,7 @@ namespace WpfApp.TableViewModels
         {
             if (sources.Count != 0)
             {
-                Clipboard.SetText(sources[0].SourceUrl);
+                ClipboardHelper.SetText(sources[0].SourceUrl);
             }
         }
 	}

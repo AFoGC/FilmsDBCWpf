@@ -16,7 +16,26 @@ namespace WpfApp.TableViewModels
     {
         private readonly GenresTable genresTable;
         private readonly SeriesTable seriesTable;
+
         private readonly IMenuViewModel<Film> menu;
+        private bool _isCommentVisible = false;
+        private bool _isFiltered = true;
+        
+
+        private RelayCommand selectCommand;
+        private RelayCommand copyUrlCommand;
+        private RelayCommand openUpdateCommand;
+        private RelayCommand openInfoCommand;
+        private RelayCommand openSourceCommand;
+        private RelayCommand addToPriorityCommand;
+        private RelayCommand removeFromPriorityCommand;
+        private RelayCommand upInCategoryIDCommand;
+        private RelayCommand downInCategoryIDCommand;
+        private RelayCommand removeFromCategoryCommand;
+        private RelayCommand deleteFilmCommand;
+        private RelayCommand baseAutoFill;
+        private RelayCommand fullAutoFill;
+        private RelayCommand openComment;
 
         public FilmViewModel(Film model, IMenuViewModel<Film> menu) : base(model)
         {
@@ -25,8 +44,7 @@ namespace WpfApp.TableViewModels
             genresTable = (GenresTable)model.Genre.ParentTable;
             seriesTable = (SeriesTable)Model.ParentTable.TableCollection.GetTable<Serie>();
         }
-
-        private RelayCommand selectCommand;
+        
         public RelayCommand SelectCommand
         {
             get
@@ -38,8 +56,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand copyUrlCommand;
+        
         public RelayCommand CopyUrlCommand
         {
             get
@@ -51,8 +68,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand openUpdateCommand;
+        
         public RelayCommand OpenUpdateCommand
         {
             get
@@ -64,8 +80,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand openInfoCommand;
+        
         public RelayCommand OpenInfoCommand
         {
             get
@@ -77,8 +92,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand openSourceCommand;
+        
         public RelayCommand OpenSourceCommand
         {
             get
@@ -90,8 +104,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        public RelayCommand addToPriorityCommand;
+        
         public RelayCommand AddToPriorityCommand
         {
             get
@@ -109,8 +122,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        public RelayCommand removeFromPriorityCommand;
+        
         public RelayCommand RemoveFromPriorityCommand
         {
             get
@@ -124,8 +136,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand upInCategoryIDCommand;
+        
         public RelayCommand UpInCategoryIDCommand
         {
             get
@@ -139,8 +150,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand downInCategoryIDCommand;
+        
         public RelayCommand DownInCategoryIDCommand
         {
             get
@@ -154,8 +164,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand removeFromCategoryCommand;
+        
         public RelayCommand RemoveFromCategoryCommand
         {
             get
@@ -172,8 +181,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand deleteFilmCommand;
+        
         public RelayCommand DeleteFilmCommand
         {
             get
@@ -186,8 +194,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand baseAutoFill;
+        
         public RelayCommand BaseAutoFill
         {
             get
@@ -205,8 +212,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand fullAutoFill;
+        
         public RelayCommand FullAutoFill
         {
             get
@@ -227,8 +233,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand openComment;
+        
         public RelayCommand OpenComment
         {
             get
@@ -236,14 +241,7 @@ namespace WpfApp.TableViewModels
                 return openComment ??
                 (openComment = new RelayCommand(obj => 
                 {
-                    if (CommentVisibility == Visibility.Visible)
-                    {
-                        CommentVisibility = Visibility.Collapsed;
-                    }
-                    else
-                    {
-                        CommentVisibility = Visibility.Visible;
-                    }
+                    IsCommentVisible = !IsCommentVisible;
                 }));
             }
         }
@@ -295,8 +293,7 @@ namespace WpfApp.TableViewModels
 
             OnPropertyChanged(e);
         }
-
-        private bool _isFiltered = true;
+        
         public bool IsFiltered
         {
             get => _isFiltered;
@@ -333,13 +330,13 @@ namespace WpfApp.TableViewModels
 
         public INotifyCollectionChanged GenresCollection => genresTable;
 
-        private Visibility commentVisibility = Visibility.Collapsed;
-        public Visibility CommentVisibility
+        public bool IsCommentVisible
         {
-            get => commentVisibility;
+
+            get => _isCommentVisible;
             set
             {
-                commentVisibility = value;
+                _isCommentVisible = value;
                 OnPropertyChanged();
             }
         }

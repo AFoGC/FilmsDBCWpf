@@ -17,7 +17,24 @@ namespace WpfApp.TableViewModels
 	{
 		private readonly BookGenresTable genresTable;
 		private readonly IMenuViewModel<Book> menu;
-		public BookViewModel(Book model, IMenuViewModel<Book> menu) : base(model)
+
+        private bool _isFiltered = true;
+
+        private RelayCommand selectCommand;
+        private RelayCommand copyUrlCommand;
+        private RelayCommand openUpdateCommand;
+        private RelayCommand openInfoCommand;
+        private RelayCommand openSourceCommand;
+        private RelayCommand addToPriorityCommand;
+        private RelayCommand removeFromPriorityCommand;
+        private RelayCommand upInCategoryIDCommand;
+        private RelayCommand downInCategoryIDCommand;
+        private RelayCommand removeFromCategoryCommand;
+        private RelayCommand deleteBookCommand;
+        private RelayCommand baseAutoFill;
+        private RelayCommand fullAutoFill;
+
+        public BookViewModel(Book model, IMenuViewModel<Book> menu) : base(model)
 		{
 			model.PropertyChanged += ModelPropertyChanged;
 			this.menu = menu;
@@ -54,8 +71,7 @@ namespace WpfApp.TableViewModels
 			IsFiltered = passedFilter;
 			return passedFilter;
 		}
-
-		private RelayCommand selectCommand;
+		
 		public RelayCommand SelectCommand
 		{
 			get
@@ -67,8 +83,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private RelayCommand copyUrlCommand;
+		
 		public RelayCommand CopyUrlCommand
 		{
 			get
@@ -80,8 +95,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private RelayCommand openUpdateCommand;
+		
 		public RelayCommand OpenUpdateCommand
 		{
 			get
@@ -93,8 +107,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private RelayCommand openInfoCommand;
+		
 		public RelayCommand OpenInfoCommand
 		{
 			get
@@ -106,8 +119,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private RelayCommand openSourceCommand;
+		
 		public RelayCommand OpenSourceCommand
 		{
 			get
@@ -119,8 +131,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		public RelayCommand addToPriorityCommand;
+		
 		public RelayCommand AddToPriorityCommand
 		{
 			get
@@ -138,8 +149,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		public RelayCommand removeFromPriorityCommand;
+		
 		public RelayCommand RemoveFromPriorityCommand
 		{
 			get
@@ -153,8 +163,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private RelayCommand upInCategoryIDCommand;
+		
 		public RelayCommand UpInCategoryIDCommand
 		{
 			get
@@ -168,8 +177,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private RelayCommand downInCategoryIDCommand;
+		
 		public RelayCommand DownInCategoryIDCommand
 		{
 			get
@@ -183,8 +191,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private RelayCommand removeFromCategoryCommand;
+		
 		public RelayCommand RemoveFromCategoryCommand
 		{
 			get
@@ -201,8 +208,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private RelayCommand deleteBookCommand;
+		
 		public RelayCommand DeleteBookCommand
 		{
 			get
@@ -215,23 +221,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private static readonly Regex regex = new Regex(@"\D");
-		private RelayCommand textIsNumberCommand;
-		public RelayCommand TextIsNumberCommand
-		{
-			get
-			{
-				return textIsNumberCommand ??
-				(textIsNumberCommand = new RelayCommand(obj =>
-				{
-					TextCompositionEventArgs e = obj as TextCompositionEventArgs;
-					e.Handled = regex.IsMatch(e.Text);
-				}));
-			}
-		}
-
-		private RelayCommand baseAutoFill;
+		
 		public RelayCommand BaseAutoFill
 		{
 			get
@@ -249,8 +239,7 @@ namespace WpfApp.TableViewModels
 				}));
 			}
 		}
-
-		private RelayCommand fullAutoFill;
+		
 		public RelayCommand FullAutoFill
 		{
 			get
@@ -288,8 +277,7 @@ namespace WpfApp.TableViewModels
 
 			OnPropertyChanged(e);
 		}
-
-		private bool _isFiltered = true;
+		
 		public bool IsFiltered
 		{
 			get => _isFiltered;

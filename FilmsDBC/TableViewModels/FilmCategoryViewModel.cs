@@ -16,6 +16,19 @@ namespace WpfApp.TableViewModels
     public class FilmCategoryViewModel : BaseViewModel<Category>, IHasGenre, IFilter, IFinded
     {
         private readonly IMenuViewModel<Film> menu;
+
+        private bool _isCollectionVisible = true;
+        private bool _isFiltered = true;
+
+        private RelayCommand openUpdateCommand;
+        private RelayCommand createBookCommand;
+        private RelayCommand addSelectedCommand;
+        private RelayCommand removeSelectedCommand;
+        private RelayCommand deleteCategoryCommand;
+        private RelayCommand collapseCommand;
+        private RelayCommand contextMenuOpenedCommand;
+        private RelayCommand contextMenuClosedCommand;
+
         public FilmCategoryViewModel(Category model, IMenuViewModel<Film> menu) : base(model)
         {
             this.menu = menu;
@@ -25,10 +38,10 @@ namespace WpfApp.TableViewModels
             model.FormatedMark.PropertyChanged += MarkPropertyChanged;
             model.Films.CollectionChanged += BooksCollectionChanged;
 
-            fillCategoryFilms();
+            FillCategoryFilms();
         }
 
-        private void fillCategoryFilms()
+        private void FillCategoryFilms()
         {
             foreach (Film film in Model.Films)
             {
@@ -83,8 +96,7 @@ namespace WpfApp.TableViewModels
 
             return IsFinded;
         }
-
-        private RelayCommand openUpdateCommand;
+        
         public RelayCommand OpenUpdateCommand
         {
             get
@@ -96,8 +108,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand createBookCommand;
+        
         public RelayCommand CreateBookCommand
         {
             get
@@ -106,7 +117,7 @@ namespace WpfApp.TableViewModels
                 (createBookCommand = new RelayCommand(obj =>
                 {
                     Film film = new Film();
-                    film.Name = getDefaulBookName();
+                    film.Name = GetDefaulBookName();
                     film.Genre = TableCollection.GetTable<Genre>()[0];
                     TableCollection.GetTable<Film>().AddElement(film);
                     Model.Films.Add(film);
@@ -114,15 +125,14 @@ namespace WpfApp.TableViewModels
             }
         }
 
-        private string getDefaulBookName()
+        private string GetDefaulBookName()
         {
             if (Model.HideName == string.Empty)
                 return Model.Name;
             else
                 return Model.HideName;
         }
-
-        private RelayCommand addSelectedCommand;
+        
         public RelayCommand AddSelectedCommand
         {
             get
@@ -142,8 +152,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand removeSelectedCommand;
+        
         public RelayCommand RemoveSelectedCommand
         {
             get
@@ -159,8 +168,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand deleteCategoryCommand;
+        
         public RelayCommand DeleteCategoryCommand
         {
             get
@@ -176,8 +184,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-
-        private RelayCommand collapseCommand;
+        
         public RelayCommand CollapseCommand
         {
             get
@@ -185,34 +192,29 @@ namespace WpfApp.TableViewModels
                 return collapseCommand ??
                 (collapseCommand = new RelayCommand(obj =>
                 {
-                    if (CollectionVisiblility == Visibility.Visible)
-                        CollectionVisiblility = Visibility.Collapsed;
-                    else
-                        CollectionVisiblility = Visibility.Visible;
+                    IsCollectionVisible = !IsCollectionVisible;
                 }));
             }
         }
-
-        private RelayCommand _CMOpenedCommand;
+        
         public RelayCommand CMOpenedCommand
         {
             get
             {
-                return _CMOpenedCommand ??
-                (_CMOpenedCommand = new RelayCommand(obj =>
+                return contextMenuOpenedCommand ??
+                (contextMenuOpenedCommand = new RelayCommand(obj =>
                 {
                     IsSelected = true;
                 }));
             }
         }
-
-        private RelayCommand _CMClosedCommand;
+        
         public RelayCommand CMClosedCommand
         {
             get
             {
-                return _CMClosedCommand ??
-                (_CMClosedCommand = new RelayCommand(obj =>
+                return contextMenuClosedCommand ??
+                (contextMenuClosedCommand = new RelayCommand(obj =>
                 {
                     IsSelected = false;
                 }));
@@ -259,15 +261,17 @@ namespace WpfApp.TableViewModels
         {
             OnPropertyChanged(e);
         }
-
-        private Visibility _collectionVisibility = Visibility.Visible;
-        public Visibility CollectionVisiblility
+        
+        public bool IsCollectionVisible
         {
-            get => _collectionVisibility;
-            set { _collectionVisibility = value; OnPropertyChanged(); }
+            get => _isCollectionVisible;
+            set
+            {
+                _isCollectionVisible = value;
+                OnPropertyChanged();
+            }
         }
-
-        private bool _isFiltered = true;
+        
         public bool IsFiltered
         {
             get => _isFiltered;

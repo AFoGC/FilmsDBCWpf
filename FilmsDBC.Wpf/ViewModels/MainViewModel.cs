@@ -27,7 +27,8 @@ namespace WpfApp.ViewModels
         private RelayCommand _keyDownCommand;
         private RelayCommand _saveAndExitCommand;
         private RelayCommand _saveSettingsCommand;
-        
+
+        private object _currentViewModel;
         private StatusEnum _status;
 
         public MainViewModel(MainWindowModel model, StatusService statusService, ExitService exitService,
@@ -75,6 +76,7 @@ namespace WpfApp.ViewModels
                 {
                     BooksSelected = false;
                     SettingsSelected = false;
+                    CurrentViewModel = FilmsVM;
                 }
                 OnPropertyChanged();
             }
@@ -90,6 +92,7 @@ namespace WpfApp.ViewModels
                 {
                     FilmsSelected = false;
                     SettingsSelected = false;
+                    CurrentViewModel = BooksVM;
                 }
                 OnPropertyChanged();
             }
@@ -105,7 +108,18 @@ namespace WpfApp.ViewModels
                 {
                     FilmsSelected = false;
                     BooksSelected = false;
+                    CurrentViewModel = SettingsVM;
                 }
+                OnPropertyChanged();
+            }
+        }
+
+        public object CurrentViewModel
+        {
+            get => _currentViewModel;
+            set
+            {
+                _currentViewModel = value; 
                 OnPropertyChanged();
             }
         }

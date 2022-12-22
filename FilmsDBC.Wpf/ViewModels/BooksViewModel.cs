@@ -12,6 +12,7 @@ using TL_Objects;
 using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
 using WpfApp.Commands;
+using WpfApp.Factories;
 using WpfApp.Models;
 using WpfApp.TableViewModels;
 using WpfApp.TableViewModels.Interfaces;
@@ -47,20 +48,20 @@ namespace WpfApp.ViewModels
         private RelayCommand closeInfoCommand;
 
         private BookInfoMenuCondition infoMenuCondition;
-        private Object _infoMenuDataContext;
+        private object _infoMenuDataContext;
 
         public ObservableCollection<GenreButtonViewModel> GenresTable { get; private set; }
         public ObservableCollection<BookCategoryViewModel> CategoriesMenu { get; private set; }
         public ObservableCollection<BookViewModel> SimpleBooksMenu { get; private set; }
         public ObservableCollection<BookViewModel> BooksMenu { get; private set; }
         public ObservableCollection<BookViewModel> PriorityBooksMenu { get; private set; }
-        public CollectionViewSource SourcesCVS { get; private set; }
-        public CollectionViewSource CategoryCVS { get; private set; }
-        public CollectionViewSource SimpleBooksCVS { get; private set; }
-        public CollectionViewSource BooksCVS { get; private set; }
-        public CollectionViewSource PriorityBooksCVS { get; private set; }
+        public ObservableCollection<Source> SelectedSources { get; private set; }
+        public IViewCollection CategoriesViewCollection { get; private set; }
+        public IViewCollection SimpleBooksViewCollection { get; private set; }
+        public IViewCollection BooksViewCollection { get; private set; }
+        public IViewCollection PriorityViewCollection { get; private set; }
 
-        public BooksViewModel(BooksModel model)
+        public BooksViewModel(BooksModel model, IViewCollectionFactory viewCollectionFactory)
         {
             _model = model;
 
@@ -80,24 +81,28 @@ namespace WpfApp.ViewModels
             CategoryVisibility = Visibility.Visible;
             TableLoad();
 
-            SimpleBooksCVS = new CollectionViewSource();
-            CategoryCVS = new CollectionViewSource();
-            BooksCVS = new CollectionViewSource();
-            PriorityBooksCVS = new CollectionViewSource();
+            viewCollectionFactory.SetDescendingProperties(GetDescendingProperties());
+            CategoriesViewCollection = viewCollectionFactory.CreateViewCollection(CategoriesMenu);
+            SimpleBooksViewCollection = viewCollectionFactory.CreateViewCollection(SimpleBooksMenu);
+            BooksViewCollection = viewCollectionFactory.CreateViewCollection(BooksMenu);
+            PriorityViewCollection = viewCollectionFactory.CreateViewCollection(PriorityBooksMenu);
 
-            SimpleBooksCVS.Source = SimpleBooksMenu;
-            CategoryCVS.Source = CategoriesMenu;
-            BooksCVS.Source = BooksMenu;
-            PriorityBooksCVS.Source = PriorityBooksMenu;
-
-            CVSChangeSort(CategoryCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(SimpleBooksCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(BooksCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(PriorityBooksCVS, "Model.ID", ListSortDirection.Ascending);
-
-            SourcesCVS = new CollectionViewSource();
+            CategoriesViewCollection.ChangeSortProperty("Model.ID");
+            SimpleBooksViewCollection.ChangeSortProperty("Model.ID");
+            BooksViewCollection.ChangeSortProperty("Model.ID");
+            PriorityViewCollection.ChangeSortProperty("Model.ID");
         }
-        
+
+        private IEnumerable<string> GetDescendingProperties()
+        {
+            yield return "Model.Mark";
+            yield return "Model.PublicationYear";
+            yield return "Model.Author";
+            yield return "Model.Bookmark";
+            yield return "Model.FullReadDate";
+            yield return "Model.CountOfReadings";
+        }
+
         public Visibility CategoryVisibility
         {
             get => _categoryVisibility;
@@ -294,63 +299,11 @@ namespace WpfApp.ViewModels
         sortTable ?? (sortTable = new RelayCommand(obj =>
         {
             string str = obj as string;
-            ListSortDirection direction = getSortDirection(str);
-            CollectionViewSource[] sources = getVisibleCVS();
-
-            foreach (CollectionViewSource item in sources)
-            {
-                CVSChangeSort(item, str, direction);
-            }
+            CategoriesViewCollection.ChangeSortProperty(str);
+            SimpleBooksViewCollection.ChangeSortProperty(str);
+            BooksViewCollection.ChangeSortProperty(str);
+            PriorityViewCollection.ChangeSortProperty(str);
         }));
-
-        private ListSortDirection getSortDirection(string paramenter)
-        {
-            switch (paramenter)
-            {
-                case "Model.Mark":
-                    return ListSortDirection.Descending;
-                case "Model.PublicationYear":
-                    return ListSortDirection.Descending;
-                case "Model.Author":
-                    return ListSortDirection.Descending;
-                case "Model.Bookmark":
-                    return ListSortDirection.Descending;
-                case "Model.FullReadDate":
-                    return ListSortDirection.Descending;
-                case "Model.CountOfReadings":
-                    return ListSortDirection.Descending;
-
-                default:
-                    return ListSortDirection.Ascending;
-            }
-        }
-
-        private CollectionViewSource[] getVisibleCVS()
-        {
-            List<CollectionViewSource> sources = new List<CollectionViewSource>();
-
-            if (CategoryVisibility == Visibility.Visible)
-            {
-                sources.Add(CategoryCVS);
-                sources.Add(SimpleBooksCVS);
-            }
-            if (BooksVisibility == Visibility.Visible)
-            {
-                sources.Add(BooksCVS);
-            }
-            if (PriorityVisibility == Visibility.Visible)
-            {
-                sources.Add(PriorityBooksCVS);
-            }
-
-            return sources.ToArray();
-        }
-
-        private void CVSChangeSort(CollectionViewSource cvs, string property, ListSortDirection direction)
-        {
-            cvs.SortDescriptions.Clear();
-            cvs.SortDescriptions.Add(new SortDescription(property, direction));
-        }
 
         private void FilterTable(IEnumerable table, IGenre[] genres)
         {
@@ -536,14 +489,14 @@ namespace WpfApp.ViewModels
                 if (infoMenuCondition == BookInfoMenuCondition.Closed)
                 {
                     InfoMenuDataContext = null;
-                    SourcesCVS.Source = null;
+                    SelectedSources = null;
                 }
                     
                 OnPropertyChanged();
             }
         }
         
-        public Object InfoMenuDataContext
+        public object InfoMenuDataContext
         {
             get => _infoMenuDataContext;
             set
@@ -555,7 +508,7 @@ namespace WpfApp.ViewModels
 
         public void OpenInfoMenu(Cell model)
         {
-            SourcesCVS.Source = null;
+            SelectedSources = null;
             InfoMenuCondition = BookInfoMenuCondition.Closed;
             if (model.GetType() == typeof(Book))
             {
@@ -567,7 +520,7 @@ namespace WpfApp.ViewModels
 
         public void OpenUpdateMenu(Cell model)
         {
-            SourcesCVS.Source = null;
+            SelectedSources = null;
             InfoMenuCondition = BookInfoMenuCondition.Closed;
             if (model.GetType() == typeof(Book))
             {
@@ -585,38 +538,35 @@ namespace WpfApp.ViewModels
         
         public void OpenSourcesMenu(ObservableCollection<Source> sources)
         {
-            SourcesCVS.Source = sources;
+            SelectedSources = sources;
         }
         
         public RelayCommand RemoveSourceCommand =>
         removeSourceCommand ?? (removeSourceCommand = new RelayCommand(obj =>
         {
-            if (SourcesCVS.Source != null)
+            if (SelectedSources != null)
             {
                 Source source = obj as Source;
-                ObservableCollection<Source> sources = SourcesCVS.Source as ObservableCollection<Source>;
-                sources.Remove(source);
+                SelectedSources.Remove(source);
             }
         }));
         
         public RelayCommand AddSourceCommand =>
         addSourceCommand ?? (addSourceCommand = new RelayCommand(obj =>
         {
-            if (SourcesCVS.Source != null)
+            if (SelectedSources != null)
             {
-                ObservableCollection<Source> sources = SourcesCVS.Source as ObservableCollection<Source>;
-                sources.Add(new Source());
+                SelectedSources.Add(new Source());
             }
         }));
         
         public RelayCommand MoveUpSourceCommand =>
         moveUpSourceCommand ?? (moveUpSourceCommand = new RelayCommand(obj =>
         {
-            if (SourcesCVS.Source != null)
+            if (SelectedSources != null)
             {
                 Source source = obj as Source;
-                ObservableCollection<Source> sources = SourcesCVS.Source as ObservableCollection<Source>;
-                sources.Move(sources.IndexOf(source), 0);
+                SelectedSources.Move(SelectedSources.IndexOf(source), 0);
             }
         }));
         

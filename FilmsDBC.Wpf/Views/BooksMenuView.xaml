@@ -108,7 +108,7 @@
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource BlueButton}">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding SourcesCVS.Source}" Value="{x:Null}">
+                                    <DataTrigger Binding="{Binding SelectedSources}" Value="{x:Null}">
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -116,7 +116,7 @@
                         </Button.Style>
                     </Button>
                     <ScrollViewer Grid.Row="1">
-                        <ItemsControl ItemsSource="{Binding SourcesCVS.View}">
+                        <ItemsControl ItemsSource="{Binding SelectedSources}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -252,7 +252,7 @@
                 <StackPanel>
                     <!--Categories Menu-->
                     <StackPanel Visibility="{Binding CategoryVisibility}">
-                        <ItemsControl ItemsSource="{Binding CategoryCVS.View}">
+                        <ItemsControl ItemsSource="{Binding CategoriesViewCollection.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -264,7 +264,7 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <ItemsControl ItemsSource="{Binding SimpleBooksCVS.View}">
+                        <ItemsControl ItemsSource="{Binding SimpleBooksViewCollection.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -280,7 +280,7 @@
 
                     <!--Books Menu-->
                     <StackPanel Visibility="{Binding BooksVisibility}">
-                        <ItemsControl ItemsSource="{Binding BooksCVS.View}">
+                        <ItemsControl ItemsSource="{Binding BooksViewCollection.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -296,7 +296,7 @@
 
                     <!--Priority Menu-->
                     <StackPanel Visibility="{Binding PriorityVisibility}">
-                        <ItemsControl ItemsSource="{Binding PriorityBooksCVS.View}">
+                        <ItemsControl ItemsSource="{Binding PriorityViewCollection.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />

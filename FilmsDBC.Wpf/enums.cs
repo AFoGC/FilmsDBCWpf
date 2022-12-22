@@ -34,3 +34,12 @@ namespace WpfApp.Services
         Medium = 1
     }
 }
+
+namespace WpfApp.Factories
+{
+    public enum SortDirection
+    {
+        Ascending = 0,
+        Descending = 1,
+    }
+}

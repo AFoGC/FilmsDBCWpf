@@ -130,7 +130,7 @@
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource BlueButton}">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding SourcesCVS.Source}" Value="{x:Null}">
+                                    <DataTrigger Binding="{Binding SelectedSources}" Value="{x:Null}">
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -138,7 +138,7 @@
                         </Button.Style>
                     </Button>
                     <ScrollViewer Grid.Row="1">
-                        <ItemsControl ItemsSource="{Binding SourcesCVS.View}">
+                        <ItemsControl ItemsSource="{Binding SelectedSources}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -319,7 +319,7 @@
                 <StackPanel>
                     <!--Categories Menu-->
                     <StackPanel Visibility="{Binding CategoryVisibility}">
-                        <ItemsControl ItemsSource="{Binding CategoryCVS.View}">
+                        <ItemsControl ItemsSource="{Binding CategoriesViewCollection.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -331,7 +331,7 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <ItemsControl ItemsSource="{Binding SimpleFilmsCVS.View}">
+                        <ItemsControl ItemsSource="{Binding SimpleFilmsViewCollection.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -347,7 +347,7 @@
 
                     <!--Films Menu-->
                     <StackPanel Visibility="{Binding FilmsVisibility}">
-                        <ItemsControl ItemsSource="{Binding FilmsCVS.View}">
+                        <ItemsControl ItemsSource="{Binding FilmsViewCollection.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -363,7 +363,7 @@
 
                     <!--Series Menu-->
                     <StackPanel Visibility="{Binding SeriesVisibility}">
-                        <ItemsControl ItemsSource="{Binding SeriesCVS.View}">
+                        <ItemsControl ItemsSource="{Binding SeriesViewCollection.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />
@@ -379,7 +379,7 @@
 
                     <!--Priority Menu-->
                     <StackPanel Visibility="{Binding PriorityVisibility}">
-                        <ItemsControl ItemsSource="{Binding PriorityFilmsCVS.View}">
+                        <ItemsControl ItemsSource="{Binding PriorityViewCollection.View}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel />

@@ -12,6 +12,7 @@ using TL_Objects;
 using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
 using WpfApp.Commands;
+using WpfApp.Factories;
 using WpfApp.Models;
 using WpfApp.TableViewModels;
 using WpfApp.TableViewModels.Interfaces;
@@ -48,7 +49,7 @@ namespace WpfApp.ViewModels
         private RelayCommand closeInfoCommand;
 
         private FilmInfoMenuCondition _infoMenuCondition;
-        private Object _infoMenuDataContext;
+        private object _infoMenuDataContext;
 
         public ObservableCollection<GenreButtonViewModel> GenresTable { get; private set; }
         public ObservableCollection<FilmCategoryViewModel> CategoriesMenu { get; private set; }
@@ -56,14 +57,14 @@ namespace WpfApp.ViewModels
         public ObservableCollection<FilmViewModel> FilmsMenu { get; private set; }
         public ObservableCollection<FilmSerieViewModel> SeriesMenu { get; private set; }
         public ObservableCollection<FilmViewModel> PriorityFilmsMenu { get; private set; }
-        public CollectionViewSource SourcesCVS { get; private set; }
-        public CollectionViewSource CategoryCVS { get; private set; }
-        public CollectionViewSource SimpleFilmsCVS { get; private set; }
-        public CollectionViewSource FilmsCVS { get; private set; }
-        public CollectionViewSource SeriesCVS { get; private set; }
-        public CollectionViewSource PriorityFilmsCVS { get; private set; }
+        public ObservableCollection<Source> SelectedSources { get; private set; }
+        public IViewCollection CategoriesViewCollection { get; private set; }
+        public IViewCollection SimpleFilmsViewCollection { get; private set; }
+        public IViewCollection FilmsViewCollection { get; private set; }
+        public IViewCollection SeriesViewCollection { get; private set; }
+        public IViewCollection PriorityViewCollection { get; private set; }
 
-        public FilmsViewModel(FilmsModel model)
+        public FilmsViewModel(FilmsModel model, IViewCollectionFactory viewCollectionFactory)
         {
             _model = model;
 
@@ -85,25 +86,29 @@ namespace WpfApp.ViewModels
             CategoryVisibility = Visibility.Visible;
             TableLoad();
 
-            SimpleFilmsCVS = new CollectionViewSource();
-            CategoryCVS = new CollectionViewSource();
-            FilmsCVS = new CollectionViewSource();
-            SeriesCVS = new CollectionViewSource();
-            PriorityFilmsCVS = new CollectionViewSource();
+            viewCollectionFactory.SetDescendingProperties(GetDescendingProperties());
+            CategoriesViewCollection = viewCollectionFactory.CreateViewCollection(CategoriesMenu);
+            SimpleFilmsViewCollection = viewCollectionFactory.CreateViewCollection(SimpleFilmsMenu);
+            FilmsViewCollection = viewCollectionFactory.CreateViewCollection(FilmsMenu);
+            SeriesViewCollection = viewCollectionFactory.CreateViewCollection(SeriesMenu);
+            PriorityViewCollection = viewCollectionFactory.CreateViewCollection(PriorityFilmsMenu);
 
-            SimpleFilmsCVS.Source = SimpleFilmsMenu;
-            CategoryCVS.Source = CategoriesMenu;
-            FilmsCVS.Source = FilmsMenu;
-            SeriesCVS.Source = SeriesMenu;
-            PriorityFilmsCVS.Source = PriorityFilmsMenu;
+            CategoriesViewCollection.ChangeSortProperty("Model.ID");
+            SimpleFilmsViewCollection.ChangeSortProperty("Model.ID");
+            FilmsViewCollection.ChangeSortProperty("Model.ID");
+            SeriesViewCollection.ChangeSortProperty("Model.ID");
+            PriorityViewCollection.ChangeSortProperty("Model.ID");
+        }
 
-            CVSChangeSort(CategoryCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(SimpleFilmsCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(FilmsCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(SeriesCVS, "Model.ID", ListSortDirection.Ascending);
-            CVSChangeSort(PriorityFilmsCVS, "Model.ID", ListSortDirection.Ascending);
-
-            SourcesCVS = new CollectionViewSource();
+        private IEnumerable<string> GetDescendingProperties()
+        {
+            yield return "Model.Mark";
+            yield return "Model.RealiseYear";
+            yield return "Model.CountOfViews";
+            yield return "Model.DateOfWatch";
+            yield return "Model.StartWatchDate";
+            yield return "Model.CountOfWatchedSeries";
+            yield return "Model.TotalSeries";
         }
 
         public Visibility CategoryVisibility
@@ -308,69 +313,13 @@ namespace WpfApp.ViewModels
                 return sortTable ?? (sortTable = new RelayCommand(obj =>
                 {
                     string str = obj as string;
-                    ListSortDirection direction = GetSortDirection(str);
-                    CollectionViewSource[] sources = GetVisibleCVS();
-
-                    foreach (CollectionViewSource item in sources)
-                        CVSChangeSort(item, str, direction);
+                    CategoriesViewCollection.ChangeSortProperty(str);
+                    SimpleFilmsViewCollection.ChangeSortProperty(str);
+                    FilmsViewCollection.ChangeSortProperty(str);
+                    SeriesViewCollection.ChangeSortProperty(str);
+                    PriorityViewCollection.ChangeSortProperty(str);
                 }));
             }
-        }
-            
-
-        private ListSortDirection GetSortDirection(string paramenter)
-        {
-            switch (paramenter)
-            {
-                case "Model.Mark":
-                    return ListSortDirection.Descending;
-                case "Model.RealiseYear":
-                    return ListSortDirection.Descending;
-                case "Model.CountOfViews":
-                    return ListSortDirection.Descending;
-                case "Model.DateOfWatch":
-                    return ListSortDirection.Descending;
-                case "Model.StartWatchDate":
-                    return ListSortDirection.Descending;
-                case "Model.CountOfWatchedSeries":
-                    return ListSortDirection.Descending;
-                case "Model.TotalSeries":
-                    return ListSortDirection.Descending;
-
-                default:
-                    return ListSortDirection.Ascending;
-            }
-        }
-
-        private CollectionViewSource[] GetVisibleCVS()
-        {
-            List<CollectionViewSource> sources = new List<CollectionViewSource>();
-
-            if (CategoryVisibility == Visibility.Visible)
-            {
-                sources.Add(CategoryCVS);
-                sources.Add(SimpleFilmsCVS);
-            }
-            if (FilmsVisibility == Visibility.Visible)
-            {
-                sources.Add(FilmsCVS);
-            }
-            if (SeriesVisibility == Visibility.Visible)
-            {
-                sources.Add(SeriesCVS);
-            }
-            if (PriorityVisibility == Visibility.Visible)
-            {
-                sources.Add(PriorityFilmsCVS);
-            }
-
-            return sources.ToArray();
-        }
-
-        private void CVSChangeSort(CollectionViewSource cvs, string property, ListSortDirection direction)
-        {
-            cvs.SortDescriptions.Clear();
-            cvs.SortDescriptions.Add(new SortDescription(property, direction));
         }
 
         private void FilterTable(IEnumerable table, IGenre[] genres)
@@ -599,14 +548,14 @@ namespace WpfApp.ViewModels
                 if (_infoMenuCondition == FilmInfoMenuCondition.Closed)
                 {
                     InfoMenuDataContext = null;
-                    SourcesCVS.Source = null;
+                    SelectedSources = null;
                 }
 
                 OnPropertyChanged();
             }
         }
 
-        public Object InfoMenuDataContext
+        public object InfoMenuDataContext
         {
             get => _infoMenuDataContext;
             set
@@ -618,7 +567,7 @@ namespace WpfApp.ViewModels
 
         public void OpenInfoMenu(Cell model)
         {
-            SourcesCVS.Source = null;
+            SelectedSources = null;
             InfoMenuCondition = FilmInfoMenuCondition.Closed;
             if (model.GetType() == typeof(Film))
             {
@@ -638,12 +587,12 @@ namespace WpfApp.ViewModels
 
         public void OpenSourcesMenu(ObservableCollection<Source> sources)
         {
-            SourcesCVS.Source = sources;
+            SelectedSources = sources;
         }
 
         public void OpenUpdateMenu(Cell model)
         {
-            SourcesCVS.Source = null;
+            SelectedSources = null;
             InfoMenuCondition = FilmInfoMenuCondition.Closed;
             if (model.GetType() == typeof(Film))
             {
@@ -670,32 +619,29 @@ namespace WpfApp.ViewModels
         public RelayCommand RemoveSourceCommand =>
         removeSourceCommand ?? (removeSourceCommand = new RelayCommand(obj =>
         {
-            if (SourcesCVS.Source != null)
+            if (SelectedSources != null)
             {
                 Source source = obj as Source;
-                ObservableCollection<Source> sources = SourcesCVS.Source as ObservableCollection<Source>;
-                sources.Remove(source);
+                SelectedSources.Remove(source);
             }
         }));
 
         public RelayCommand AddSourceCommand =>
         addSourceCommand ?? (addSourceCommand = new RelayCommand(obj =>
         {
-            if (SourcesCVS.Source != null)
+            if (SelectedSources != null)
             {
-                ObservableCollection<Source> sources = SourcesCVS.Source as ObservableCollection<Source>;
-                sources.Add(new Source());
+                SelectedSources.Add(new Source());
             }
         }));
 
         public RelayCommand MoveUpSourceCommand =>
         moveUpSourceCommand ?? (moveUpSourceCommand = new RelayCommand(obj =>
         {
-            if (SourcesCVS.Source != null)
+            if (SelectedSources != null)
             {
                 Source source = obj as Source;
-                ObservableCollection<Source> sources = SourcesCVS.Source as ObservableCollection<Source>;
-                sources.Move(sources.IndexOf(source), 0);
+                SelectedSources.Move(SelectedSources.IndexOf(source), 0);
             }
         }));
 

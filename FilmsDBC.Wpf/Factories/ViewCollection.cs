@@ -1,17 +1,22 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Data;
 
 namespace WpfApp.Factories
 {
     public class ViewCollection : IViewCollection
     {
+        private readonly IEnumerable<string> _descendingProperties;
         private CollectionViewSource _collectionViewSource;
 
-        public ViewCollection(INotifyCollectionChanged source)
+        public ViewCollection(INotifyCollectionChanged source, IEnumerable<string> descendingProperties)
         {
             _collectionViewSource = new CollectionViewSource();
             _collectionViewSource.Source = source;
+
+            _descendingProperties = descendingProperties;
         }
 
         public INotifyCollectionChanged View => _collectionViewSource.View;
@@ -22,6 +27,15 @@ namespace WpfApp.Factories
 
         public void ChangeSortProperty(string propertyName)
         {
+            if (_descendingProperties != null)
+            {
+                if (_descendingProperties.Contains(propertyName))
+                {
+                    ChangeSortProperty(propertyName, SortDirection.Descending);
+                    return;
+                }
+            }
+
             ChangeSortProperty(propertyName, SortDirection.Ascending);
         }
 

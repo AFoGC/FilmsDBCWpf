@@ -5,6 +5,7 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
+using WpfApp.Factories;
 using WpfApp.Models;
 using WpfApp.Services;
 using WpfApp.ViewModels;
@@ -31,6 +32,7 @@ namespace FilmsDBC.Wpf
             services.AddSingleton<ScaleService>();
             services.AddSingleton<SettingsService>();
 
+            services.AddTransient<IViewCollectionFactory>(s => new ViewCollectionFactory());
             services.AddTransient<StatusService>();
             services.AddScoped<ExitService>();
 

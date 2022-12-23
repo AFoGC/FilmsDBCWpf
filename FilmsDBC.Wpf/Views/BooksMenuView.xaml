@@ -10,6 +10,32 @@
              xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
              mc:Ignorable="d" 
              d:DesignHeight="705" d:DesignWidth="1265" Focusable="True">
+    <UserControl.Resources>
+        <Style x:Key="CategoriesVisiblity" TargetType="FrameworkElement">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding MenuMode}" Value="Categories">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="BooksVisiblity" TargetType="FrameworkElement">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding MenuMode}" Value="Books">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PrioritiesVisiblity" TargetType="FrameworkElement">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding MenuMode}" Value="Priorities">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="{StaticResource MainBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -163,11 +189,8 @@
                     <Setter Property="Height" Value="20"/>
                     <Setter Property="Margin" Value="1,0"/>
                 </Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="Orientation" Value="Horizontal"/>
-                </Style>
             </Grid.Resources>
-            <StackPanel Visibility="{Binding CategoryVisibility}">
+            <StackPanel Style="{StaticResource CategoriesVisiblity}" Orientation="Horizontal">
                 <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" 
                         ToolTip="{DynamicResource id_tt}" 
                         Command="{Binding SortTable}" CommandParameter="Model.ID"/>
@@ -180,8 +203,8 @@
                         ToolTip="{DynamicResource mark_tt}" 
                         Command="{Binding SortTable}" CommandParameter="Model.Mark"/>
             </StackPanel>
-            
-            <StackPanel Visibility="{Binding BooksVisibility}">
+
+            <StackPanel Style="{StaticResource BooksVisiblity}" Orientation="Horizontal">
                 <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" 
                         ToolTip="{DynamicResource id_tt}" 
                         Command="{Binding SortTable}" CommandParameter="Model.ID"/>
@@ -223,7 +246,7 @@
                 </Button>
             </StackPanel>
 
-            <StackPanel Visibility="{Binding PriorityVisibility}">
+            <StackPanel Style="{StaticResource PrioritiesVisiblity}" Orientation="Horizontal">
                 <Button Width="{DynamicResource id_width}" Content="{DynamicResource id_sort}" 
                         ToolTip="{DynamicResource id_tt}" 
                         Command="{Binding SortTable}" CommandParameter="Model.ID"/>
@@ -247,71 +270,59 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="3">
-            <ScrollViewer>
-                <StackPanel>
-                    <!--Categories Menu-->
-                    <StackPanel Visibility="{Binding CategoryVisibility}">
-                        <ItemsControl ItemsSource="{Binding CategoriesViewCollection.View}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <views:BookCategoryControl/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <ItemsControl ItemsSource="{Binding SimpleBooksViewCollection.View}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <views:BookSimpleControl/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
+        <ScrollViewer Grid.Column="1" Grid.Row="3">
+            <ScrollViewer.Resources>
+                <Style TargetType="ItemsControl">
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate >
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ScrollViewer.Resources>
 
-                    <!--Books Menu-->
-                    <StackPanel Visibility="{Binding BooksVisibility}">
-                        <ItemsControl ItemsSource="{Binding BooksViewCollection.View}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <views:BookControl/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-
-                    <!--Priority Menu-->
-                    <StackPanel Visibility="{Binding PriorityVisibility}">
-                        <ItemsControl ItemsSource="{Binding PriorityViewCollection.View}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <views:BookPriorityControl/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
+            <StackPanel>
+                <!--Categories Menu-->
+                <StackPanel Style="{StaticResource CategoriesVisiblity}">
+                    <ItemsControl ItemsSource="{Binding CategoriesViewCollection.View}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <views:BookCategoryControl/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl ItemsSource="{Binding SimpleBooksViewCollection.View}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <views:BookSimpleControl/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
-            </ScrollViewer>
-        </Grid>
+
+                <!--Books Menu-->
+                <ItemsControl ItemsSource="{Binding BooksViewCollection.View}" 
+                              Style="{StaticResource BooksVisiblity}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <views:BookControl/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!--Priority Menu-->
+                <ItemsControl ItemsSource="{Binding PriorityViewCollection.View}" 
+                              Style="{StaticResource PrioritiesVisiblity}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <views:BookPriorityControl/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
 
         <Border BorderBrush="White" BorderThickness="1" Width="268"
                 Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"
@@ -353,17 +364,17 @@
                             VerticalAlignment="Top" Command="{Binding AddBookCommand}"
                             Grid.Column="0" Grid.Row="2"/>
 
-                    <Button Style="{StaticResource GB}" Content="{DynamicResource show_cat_btn}"
-                            VerticalAlignment="Top" Command="{Binding ShowCategoriesCommand}"
-                            Grid.Column="2" Grid.Row="1"/>
+                    <Button Content="{DynamicResource show_cat_btn}" Style="{StaticResource GB}"
+                            VerticalAlignment="Top" Grid.Column="2" Grid.Row="1"
+                            Command="{Binding ChangeMenuModeCommand}" CommandParameter="{x:Static vm:BooksMenuMode.Categories}"/>
 
                     <Button Content="{DynamicResource show_book_btn}" Style="{StaticResource GB}"
-                            VerticalAlignment="Top" Command="{Binding ShowBooksCommand}"
-                            Grid.Column="2" Grid.Row="2"/>
+                            VerticalAlignment="Top" Grid.Column="2" Grid.Row="2"
+                            Command="{Binding ChangeMenuModeCommand}" CommandParameter="{x:Static vm:BooksMenuMode.Books}"/>
 
                     <Button Content="{DynamicResource show_bprior_btn}" Style="{StaticResource GB}" 
-                            VerticalAlignment="Top" Command="{Binding ShowPriorityCommand}"
-                            Grid.Column="2" Grid.Row="3"/>
+                            VerticalAlignment="Top" Grid.Column="2" Grid.Row="3"
+                            Command="{Binding ChangeMenuModeCommand}" CommandParameter="{x:Static vm:BooksMenuMode.Priorities}"/>
                 </Grid>
                 <StackPanel Grid.Row="1">
                     <StackPanel.Resources>

@@ -17,6 +17,21 @@
         SerieUpdate,
         CategoryUpdate
     }
+
+    public enum FilmsMenuMode
+    {
+        Categories,
+        Films,
+        Series,
+        Priorities
+    }
+
+    public enum BooksMenuMode
+    {
+        Categories,
+        Books,
+        Priorities
+    }
 }
 
 namespace WpfApp.Services

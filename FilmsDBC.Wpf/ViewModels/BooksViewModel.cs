@@ -25,17 +25,13 @@ namespace WpfApp.ViewModels
 
         private BaseViewModel<Book> _selectedElement;
 
-        private Visibility _categoryVisibility = Visibility.Collapsed;
-        private Visibility _booksVisibility = Visibility.Collapsed;
-        private Visibility _priorityVisibility = Visibility.Collapsed;
+        private BooksMenuMode _menuMode = BooksMenuMode.Categories;
 
         private bool _isReadedChecked = true;
         private bool _isUnReadedChecked = true;
         private string _searchText = string.Empty;
 
-        private RelayCommand showCategoriesCommand;
-        private RelayCommand showBooksCommand;
-        private RelayCommand showPriorityCommand;
+        private RelayCommand changeMenuModeCommand;
         private RelayCommand addCategoryCommand;
         private RelayCommand addBookCommand;
         private RelayCommand saveTablesCommand;
@@ -50,16 +46,16 @@ namespace WpfApp.ViewModels
         private BookInfoMenuCondition infoMenuCondition;
         private object _infoMenuDataContext;
 
-        public ObservableCollection<GenreButtonViewModel> GenresTable { get; private set; }
-        public ObservableCollection<BookCategoryViewModel> CategoriesMenu { get; private set; }
-        public ObservableCollection<BookViewModel> SimpleBooksMenu { get; private set; }
-        public ObservableCollection<BookViewModel> BooksMenu { get; private set; }
-        public ObservableCollection<BookViewModel> PriorityBooksMenu { get; private set; }
         public ObservableCollection<Source> SelectedSources { get; private set; }
-        public IViewCollection CategoriesViewCollection { get; private set; }
-        public IViewCollection SimpleBooksViewCollection { get; private set; }
-        public IViewCollection BooksViewCollection { get; private set; }
-        public IViewCollection PriorityViewCollection { get; private set; }
+        public ObservableCollection<GenreButtonViewModel> GenresTable { get; }
+        public ObservableCollection<BookCategoryViewModel> CategoriesMenu { get; }
+        public ObservableCollection<BookViewModel> SimpleBooksMenu { get; }
+        public ObservableCollection<BookViewModel> BooksMenu { get; }
+        public ObservableCollection<BookViewModel> PriorityBooksMenu { get; }
+        public IViewCollection CategoriesViewCollection { get; }
+        public IViewCollection SimpleBooksViewCollection { get; }
+        public IViewCollection BooksViewCollection { get; }
+        public IViewCollection PriorityViewCollection { get; }
 
         public BooksViewModel(BooksModel model, IViewCollectionFactory viewCollectionFactory)
         {
@@ -78,7 +74,6 @@ namespace WpfApp.ViewModels
             _model.BookCategoriesTable.CollectionChanged += CategoriesChanged;
             _model.PriorityBooksTable.CollectionChanged += PriorityChanged;
 
-            CategoryVisibility = Visibility.Visible;
             TableLoad();
 
             viewCollectionFactory.SetDescendingProperties(GetDescendingProperties());
@@ -103,32 +98,12 @@ namespace WpfApp.ViewModels
             yield return "Model.CountOfReadings";
         }
 
-        public Visibility CategoryVisibility
+        public BooksMenuMode MenuMode
         {
-            get => _categoryVisibility;
+            get => _menuMode;
             set
             {
-                _categoryVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-        
-        public Visibility BooksVisibility
-        {
-            get => _booksVisibility;
-            set
-            {
-                _booksVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-        
-        public Visibility PriorityVisibility
-        {
-            get => _priorityVisibility;
-            set
-            {
-                _priorityVisibility = value;
+                _menuMode = value;
                 OnPropertyChanged();
             }
         }
@@ -193,49 +168,19 @@ namespace WpfApp.ViewModels
                 vm.SetFinded(search);
             }
         }
-        
-        public RelayCommand ShowCategoriesCommand
+
+        public RelayCommand ChangeMenuModeCommand
         {
             get
             {
-                return showCategoriesCommand ??
-                (showCategoriesCommand = new RelayCommand(obj =>
+                return changeMenuModeCommand ??
+                (changeMenuModeCommand = new RelayCommand(obj =>
                 {
-                    CategoryVisibility = Visibility.Visible;
-                    BooksVisibility = Visibility.Collapsed;
-                    PriorityVisibility = Visibility.Collapsed;
+                    MenuMode = (BooksMenuMode)obj;
                 }));
             }
         }
-        
-        public RelayCommand ShowBooksCommand
-        {
-            get
-            {
-                return showBooksCommand ??
-                (showBooksCommand = new RelayCommand(obj =>
-                {
-                    CategoryVisibility = Visibility.Collapsed;
-                    BooksVisibility = Visibility.Visible;
-                    PriorityVisibility = Visibility.Collapsed;
-                }));
-            }
-        }
-        
-        public RelayCommand ShowPriorityCommand
-        {
-            get
-            {
-                return showPriorityCommand ??
-                (showPriorityCommand = new RelayCommand(obj =>
-                {
-                    CategoryVisibility = Visibility.Collapsed;
-                    BooksVisibility = Visibility.Collapsed;
-                    PriorityVisibility = Visibility.Visible;
-                }));
-            }
-        }
-        
+
         public RelayCommand AddCategoryCommand
         {
             get

@@ -25,19 +25,13 @@ namespace WpfApp.ViewModels
 
         private BaseViewModel<Film> _selectedElement;
 
-        private Visibility _categoryVisibility = Visibility.Collapsed;
-        private Visibility _filmsVisibility = Visibility.Collapsed;
-        private Visibility _seriesVisibility = Visibility.Collapsed;
-        private Visibility _priorityVisibility = Visibility.Collapsed;
+        private FilmsMenuMode _menuMode = FilmsMenuMode.Categories;
 
         private bool _isReadedChecked = true;
         private bool _isUnReadedChecked = true;
         private string _searchText = string.Empty;
 
-        private RelayCommand showCategoriesCommand;
-        private RelayCommand showFilmsCommand;
-        private RelayCommand showSeriesCommand;
-        private RelayCommand showPriorityCommand;
+        private RelayCommand changeMenuModeCommand;
         private RelayCommand addCategoryCommand;
         private RelayCommand addBookCommand;
         private RelayCommand saveTablesCommand;
@@ -83,7 +77,6 @@ namespace WpfApp.ViewModels
             _model.SeriesTable.CollectionChanged += SeriesChanged;
             _model.PriorityFilmsTable.CollectionChanged += PriorityChanged;
 
-            CategoryVisibility = Visibility.Visible;
             TableLoad();
 
             viewCollectionFactory.SetDescendingProperties(GetDescendingProperties());
@@ -111,42 +104,12 @@ namespace WpfApp.ViewModels
             yield return "Model.TotalSeries";
         }
 
-        public Visibility CategoryVisibility
+        public FilmsMenuMode MenuMode
         {
-            get => _categoryVisibility;
+            get => _menuMode;
             set
             {
-                _categoryVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Visibility FilmsVisibility
-        {
-            get => _filmsVisibility;
-            set
-            {
-                _filmsVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Visibility SeriesVisibility
-        {
-            get => _seriesVisibility;
-            set
-            {
-                _seriesVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Visibility PriorityVisibility
-        {
-            get => _priorityVisibility;
-            set
-            {
-                _priorityVisibility = value;
+                _menuMode = value;
                 OnPropertyChanged();
             }
         }
@@ -215,67 +178,17 @@ namespace WpfApp.ViewModels
                 vm.SetFinded(search);
         }
 
-        public RelayCommand ShowCategoriesCommand
+        public RelayCommand ChangeMenuModeCommand
         {
             get
             {
-                return showCategoriesCommand ??
-                (showCategoriesCommand = new RelayCommand(obj =>
+                return changeMenuModeCommand ??
+                (changeMenuModeCommand = new RelayCommand(obj =>
                 {
-                    CategoryVisibility = Visibility.Visible;
-                    FilmsVisibility = Visibility.Collapsed;
-                    SeriesVisibility = Visibility.Collapsed;
-                    PriorityVisibility = Visibility.Collapsed;
+                    MenuMode = (FilmsMenuMode)obj;
                 }));
             }
         }
-
-        public RelayCommand ShowFilmsCommand
-        {
-            get
-            {
-                return showFilmsCommand ??
-                (showFilmsCommand = new RelayCommand(obj =>
-                {
-                    CategoryVisibility = Visibility.Collapsed;
-                    FilmsVisibility = Visibility.Visible;
-                    SeriesVisibility = Visibility.Collapsed;
-                    PriorityVisibility = Visibility.Collapsed;
-                }));
-            }
-        }
-
-        public RelayCommand ShowSeriesCommand
-        {
-            get
-            {
-                return showSeriesCommand ?? 
-                (showSeriesCommand = new RelayCommand(obj =>
-                {
-                    CategoryVisibility = Visibility.Collapsed;
-                    FilmsVisibility = Visibility.Collapsed;
-                    SeriesVisibility = Visibility.Visible;
-                    PriorityVisibility = Visibility.Collapsed;
-                }));
-            }
-        }
-            
-
-        public RelayCommand ShowPriorityCommand
-        {
-            get
-            {
-                return showPriorityCommand ?? 
-                (showPriorityCommand = new RelayCommand(obj =>
-                {
-                    CategoryVisibility = Visibility.Collapsed;
-                    FilmsVisibility = Visibility.Collapsed;
-                    SeriesVisibility = Visibility.Collapsed;
-                    PriorityVisibility = Visibility.Visible;
-                }));
-            }
-        }
-            
 
         public RelayCommand AddCategoryCommand =>
             addCategoryCommand ?? (addCategoryCommand = new RelayCommand(obj => 

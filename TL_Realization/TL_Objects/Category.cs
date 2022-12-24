@@ -7,11 +7,12 @@ using System.Text;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects.CellDataClasses;
+using TL_Objects.Interfaces;
 
 namespace TL_Objects
 {
     [TableCell("Category")]
-    public class Category : Cell
+    public class Category : Cell, ICategory<Film>
     {
         private string _name;
         private string _hideName;
@@ -58,7 +59,7 @@ namespace TL_Objects
             }
 
             sbyte i = 0;
-            foreach (Film item in Films)
+            foreach (Film item in CategoryElements)
             {
                 item.FranshiseListIndex = i++;
             }
@@ -84,12 +85,12 @@ namespace TL_Objects
         
         public bool ChangeFilmPositionBy(Film film, int i)
         {
-            int oldIndex = Films.IndexOf(film);
+            int oldIndex = CategoryElements.IndexOf(film);
             int newIndex = oldIndex + i;
 
-            if (newIndex > -1 && newIndex < Films.Count)
+            if (newIndex > -1 && newIndex < CategoryElements.Count)
             {
-                Films.Move(oldIndex, newIndex);
+                CategoryElements.Move(oldIndex, newIndex);
                 return true;
             }
             return false;
@@ -149,7 +150,7 @@ namespace TL_Objects
             set 
             { 
                 _hideName = value;
-                foreach (Film film in Films)
+                foreach (Film film in CategoryElements)
                 {
                     film.OnPropertyChanged(nameof(film.Name));
                 }
@@ -174,7 +175,7 @@ namespace TL_Objects
             set { _priority = value; OnPropertyChanged(nameof(Priority)); }
         }
 
-        public ObservableCollection<Film> Films
+        public ObservableCollection<Film> CategoryElements
         {
             get { return _films; }
         }

@@ -204,7 +204,7 @@ namespace WpfApp.TableViewModels
 					BookCategory category = categories.GetCategoryByBook(Model);
 					if (category != null)
 					{
-						category.Books.Remove(Model);
+						category.CategoryElements.Remove(Model);
 					}
 				}));
 			}

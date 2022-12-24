@@ -177,7 +177,7 @@ namespace WpfApp.TableViewModels
                     Category category = categories.GetCategoryByFilm(Model);
                     if (category != null)
                     {
-                        category.Films.Remove(Model);
+                        category.CategoryElements.Remove(Model);
                     }
                 }));
             }

@@ -49,7 +49,7 @@ namespace TL_Tables
 				{
                     BookCategoriesTable categoriesTable = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
                     BookCategory category = categoriesTable.GetCategoryByBook(book);
-                    category.Books.Remove(book);
+                    category.CategoryElements.Remove(book);
                 }
 			}
 		}

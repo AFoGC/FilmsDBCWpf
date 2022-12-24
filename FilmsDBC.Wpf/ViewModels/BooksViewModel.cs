@@ -330,12 +330,12 @@ namespace WpfApp.ViewModels
                 case NotifyCollectionChangedAction.Add:
                     category = (BookCategory)e.NewItems[0];
                     CategoriesMenu.Add(new BookCategoryViewModel(category, this));
-                    category.Books.CollectionChanged += CategoryChanged;
+                    category.CategoryElements.CollectionChanged += CategoryChanged;
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     category = (BookCategory)e.OldItems[0];
                     CategoriesMenu.Remove(CategoriesMenu.Where(x => x.Model == category).FirstOrDefault());
-                    category.Books.CollectionChanged -= CategoryChanged;
+                    category.CategoryElements.CollectionChanged -= CategoryChanged;
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     CategoriesMenu.Clear();
@@ -407,7 +407,7 @@ namespace WpfApp.ViewModels
             foreach (BookCategory category in _model.BookCategoriesTable)
             {
                 CategoriesMenu.Add(new BookCategoryViewModel(category, this));
-                category.Books.CollectionChanged += CategoryChanged;
+                category.CategoryElements.CollectionChanged += CategoryChanged;
             }
 
             foreach (Book book in _model.BooksTable)

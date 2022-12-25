@@ -14,7 +14,7 @@ using WpfApp.TableViewModels.Interfaces;
 
 namespace WpfApp.TableViewModels
 {
-	public class BookViewModel : BaseViewModel<Book>, IHasGenre, IFilter, IFinded
+	public class BookViewModel : BaseViewModel<Book>
 	{
 		private readonly BookGenresTable genresTable;
 		private readonly IMenuViewModel<Book> menu;
@@ -42,13 +42,13 @@ namespace WpfApp.TableViewModels
 			genresTable = (BookGenresTable)model.BookGenre.ParentTable;
 		}
 
-		public bool SetFinded(string search)
+		public override bool SetFinded(string search)
 		{
 			IsFinded = Model.Name.ToLowerInvariant().Contains(search);
             return IsFinded ;
 		}
 
-		public bool HasSelectedGenre(IGenre[] selectedGenres)
+		public override bool HasSelectedGenre(IGenre[] selectedGenres)
 		{
 			foreach (IGenre genre in selectedGenres)
 			{
@@ -60,7 +60,7 @@ namespace WpfApp.TableViewModels
 			return false;
 		}
 
-		public bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
+		public override bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
 		{
 			bool passedFilter = false;
 

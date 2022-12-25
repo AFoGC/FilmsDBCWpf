@@ -13,7 +13,7 @@ using WpfApp.TableViewModels.Interfaces;
 
 namespace WpfApp.TableViewModels
 {
-    public class FilmCategoryViewModel : BaseViewModel<Category>, IHasGenre, IFilter, IFinded
+    public class FilmCategoryViewModel : BaseViewModel<Category>
     {
         private readonly IMenuViewModel<Film> menu;
 
@@ -50,7 +50,7 @@ namespace WpfApp.TableViewModels
             }
         }
 
-        public bool HasSelectedGenre(IGenre[] selectedGenres)
+        public override bool HasSelectedGenre(IGenre[] selectedGenres)
         {
             foreach (FilmInCategoryViewModel vm in FilmsVMs)
             {
@@ -63,7 +63,7 @@ namespace WpfApp.TableViewModels
             return false;
         }
 
-        public bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
+        public override bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
         {
             bool passedFilter = false;
 
@@ -82,7 +82,7 @@ namespace WpfApp.TableViewModels
             return passedFilter;
         }
 
-        public bool SetFinded(string search)
+        public override bool SetFinded(string search)
         {
             IsFinded = Model.Name.ToLower().Contains(search);
 

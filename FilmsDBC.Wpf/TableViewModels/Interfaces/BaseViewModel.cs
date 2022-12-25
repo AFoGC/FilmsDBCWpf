@@ -1,39 +1,46 @@
-﻿using System;
+﻿using FilmsDBC.Wpf.TableViewModels.Interfaces;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
+using TL_Objects.Interfaces;
 
 namespace WpfApp.TableViewModels.Interfaces
 {
-    public abstract class BaseViewModel<T> : INotifyPropertyChanged where T : Cell
+    public abstract class BaseViewModel<T> : IBaseViewModel, INotifyPropertyChanged where T : Cell
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         protected readonly DateTime defaultDate = new DateTime();
-
-        public T Model { get; protected set; }
-        protected TableCollection TableCollection { get; private set; }
-
         private bool _isSelected = false;
-        public bool IsSelected
-        {
-            get => _isSelected;
-            set { _isSelected = value; OnPropertyChanged(); }
-        }
-
         private bool _isFinded = true;
-        public bool IsFinded
-        {
-            get => _isFinded;
-            set { _isFinded = value; OnPropertyChanged(); }
-        }
 
         public BaseViewModel(T model)
         {
             Model = model;
             TableCollection = Model.ParentTable.TableCollection;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public T Model { get; }
+        protected TableCollection TableCollection { get; }
         
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set { _isSelected = value; OnPropertyChanged(); }
+        }
+        
+        public bool IsFinded
+        {
+            get => _isFinded;
+            set { _isFinded = value; OnPropertyChanged(); }
+        }
+
+        public abstract bool HasSelectedGenre(IGenre[] selectedGenres);
+        public abstract bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked);
+        public abstract bool SetFinded(string search);
+
         protected string FormateDate(DateTime date)
         {
             if (date != defaultDate)
@@ -58,14 +65,14 @@ namespace WpfApp.TableViewModels.Interfaces
             return export;
         }
 
-        public void OnPropertyChanged(PropertyChangedEventArgs e)
+        protected void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
                 handler(this, e);
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FilmsDBC.Wpf.TableViewModels.Interfaces;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using TL_Objects.Interfaces;
 
 namespace WpfApp.TableViewModels
 {
-    public class GenreButtonViewModel: INotifyPropertyChanged
+    public class GenreButtonViewModel: INotifyPropertyChanged, IGenreButton
     {
         private bool _isChecked = true;
 

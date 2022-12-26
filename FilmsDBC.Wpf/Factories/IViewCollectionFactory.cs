@@ -5,7 +5,7 @@ namespace WpfApp.Factories
 {
     public interface IViewCollectionFactory
     {
-        IViewCollection CreateViewCollection(INotifyCollectionChanged source);
+        IViewCollection CreateViewCollection(object source);
         void SetDescendingProperties(IEnumerable<string> descendingProperties);
     }
 }

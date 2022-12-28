@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NewTablesLibrary;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.IO;
-using System.Linq;
-using System.Text;
-using TablesLibrary.Interpreter;
-using TablesLibrary.Interpreter.Table;
-using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Tables.Interfaces;
 
@@ -15,111 +8,57 @@ namespace TL_Tables
 {
 	public class CategoriesTable : Table<Category>, IHasMarkSystem
 	{
-		private int markSystem;
-		public bool NewMarkSystem { get; private set; }
-		public int MarkSystem
-		{
-			get => markSystem;
-			set
-			{
-				markSystem = value;
-				foreach (Category category in this)
-				{
-					category.FormatedMark.MarkSystem = markSystem;
-				}
-			}
-		}
-		public CategoriesTable()
+        [SaveField("markSystem")]
+        private int _markSystem;
+
+        [SaveField("newMarkSystem")]
+        private bool _newMarkSystem;
+
+        public CategoriesTable()
         {
-			NewMarkSystem = false;
-			MarkSystem = 6;
-            this.CollectionChanged += CategoriesTable_CollectionChanged;
-		}
+            _newMarkSystem = false;
+            MarkSystem = 6;
+        }
 
-        private void CategoriesTable_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        public bool NewMarkSystem => _newMarkSystem;
+        public int MarkSystem
         {
-			if (e.Action == NotifyCollectionChangedAction.Add)
-			{
-				Category category = (Category)e.NewItems[0];
-				category.FormatedMark.MarkSystem = MarkSystem;
-			}
-		}
-
-		protected override void saveBody(StreamWriter streamWriter)
-		{
-			streamWriter.Write(Cell.FormatParam("newMarkSystem", NewMarkSystem, false, 1));
-			streamWriter.Write(Cell.FormatParam("markSystem", MarkSystem, 6, 1));
-		}
-
-		protected override void loadBody(Comand comand)
-		{
-			switch (comand.Paramert)
-			{
-				case "newMarkSystem":
-					NewMarkSystem = Convert.ToBoolean(comand.Value);
-					break;
-				case "markSystem":
-					MarkSystem = Convert.ToInt32(comand.Value);
-					break;
-
-				default:
-					break;
-			}
-		}
-
-		public override void ConnectionsSubload(TableCollection tablesCollection)
-		{
-            MarkSystem = MarkSystem;
-            Table<Film> filmsTable = tablesCollection.GetTable<Film>();
-
-			List<Film> categoryFilms = new List<Film>();
-			foreach (Category category in this)
+            get => _markSystem;
+            set
             {
-				categoryFilms.Clear();
-                foreach (Film film in filmsTable)
-                {
-                    if (film.FranshiseId == category.ID)
-                    {
-						categoryFilms.Add(film);
-					}
-                }
-				sortFilms(category.CategoryElements, categoryFilms);
+                _markSystem = value;
+                foreach (Category category in this)
+                    category.FormatedMark.MarkSystem = _markSystem;
+            }
+        }
+
+        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                Category category = (Category)e.NewItems[0];
+                category.FormatedMark.MarkSystem = MarkSystem;
             }
 
-			if (!this.NewMarkSystem)
-			{
-				changeToNewMarkSystem();
-			}
-		}
+            base.OnCollectionChanged(e);
+        }
 
-		private void changeToNewMarkSystem()
-		{
-			foreach (Category category in this)
-			{
-				category.Mark *= 50;
-			}
+        protected override void OnLoaded()
+        {
+            MarkSystem = _markSystem;
 
-			this.NewMarkSystem = true;
-		}
+            if (NewMarkSystem == false)
+                ChangeToNewMarkSystem();
 
-		private void sortFilms(ObservableCollection<Film> categoryFilms, List<Film> source)
-		{
-			IEnumerable<Film> enumerable = source.OrderBy(o => o.FranshiseListIndex);
-			
-			foreach (Film film in enumerable)
-			{
-				categoryFilms.Add(film);
-			}
-		}
+            base.OnLoaded();
+        }
 
-		public Category GetCategoryByFilm(Film film)
-		{
-			foreach (Category item in this)
-			{
-				if (item.CategoryElements.Contains(film))
-					return item;
-			}
-			return null;
-		}
-	}
+        private void ChangeToNewMarkSystem()
+        {
+            foreach (Category category in this)
+                category.Mark *= 50;
+
+            _newMarkSystem = true;
+        }
+    }
 }

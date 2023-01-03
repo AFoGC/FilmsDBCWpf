@@ -45,8 +45,6 @@ namespace TL_Objects
 
 		private readonly OneToOne<Book, PriorityBook> _prioryty;
 
-        
-
 		public Book()
 		{
 			_name = String.Empty;
@@ -68,7 +66,16 @@ namespace TL_Objects
 			_mark.PropertyChanged += Mark_PropertyChanged;
 		}
 
-		private void Mark_PropertyChanged(object sender, EventArgs e)
+        protected override void OnRemoving()
+        {
+			_genre.Value = null;
+			_category.Value = null;
+			_prioryty.Value = null;
+
+            base.OnRemoving();
+        }
+
+        private void Mark_PropertyChanged(object sender, EventArgs e)
 		{
 			OnPropertyChanged(nameof(Mark));
 			OnPropertyChanged(nameof(FormatedMark));

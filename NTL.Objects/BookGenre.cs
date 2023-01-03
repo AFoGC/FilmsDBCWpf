@@ -16,6 +16,13 @@ namespace TL_Objects
             _books = new OneToManyCollection<BookGenre, Book>(this);
         }
 
+        protected override void OnRemoving()
+        {
+            _books.Clear();
+
+            base.OnRemoving();
+        }
+
         public string Name
         {
             get { return _name; }

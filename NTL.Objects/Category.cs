@@ -34,6 +34,13 @@ namespace TL_Objects
             _mark.PropertyChanged += Mark_PropertyChanged;
         }
 
+        protected override void OnRemoving()
+        {
+            _films.Clear();
+
+            base.OnRemoving();
+        }
+
         private void Mark_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             OnPropertyChanged(nameof(Mark));

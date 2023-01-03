@@ -13,7 +13,14 @@ namespace TL_Objects
 			_film = new OneToOne<PriorityFilm, Film>(this);
 		}
 
-		public Film Film
+        protected override void OnRemoving()
+        {
+			_film.SetValue(null);
+
+            base.OnRemoving();
+        }
+
+        public Film Film
 		{
 			get => _film.Value;
 			set

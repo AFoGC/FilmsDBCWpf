@@ -22,6 +22,13 @@ namespace TL_Objects
             _films = new OneToManyCollection<Genre, Film>(this);
         }
 
+        protected override void OnRemoving()
+        {
+            _films.Clear();
+
+            base.OnRemoving();
+        }
+
         public string Name
         {
             get { return _name; }

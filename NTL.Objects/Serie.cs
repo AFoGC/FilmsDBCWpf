@@ -25,6 +25,13 @@ namespace TL_Objects
             _totalSeries = 0;
         }
 
+        protected override void OnRemoving()
+        {
+            _film.SetValue(null);
+
+            base.OnRemoving();
+        }
+
         public Film Film
         {
             get { return _film.Value; }

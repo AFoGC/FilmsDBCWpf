@@ -12,6 +12,13 @@ namespace TL_Objects
             _book = new OneToOne<PriorityBook, Book>(this);
         }
 
+        protected override void OnRemoving()
+        {
+            _book.SetValue(null);
+
+            base.OnRemoving();
+        }
+
         public Book Book
         {
             get => _book.Value;

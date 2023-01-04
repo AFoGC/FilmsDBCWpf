@@ -6,7 +6,7 @@ namespace TL_Objects.Interfaces
 {
     public interface ICategory<T> : ICategory where T : Cell
     {
-        ObservableCollection<T> CategoryElements { get; }
+        ICollection<T> CategoryElements { get; }
     }
 
     public interface ICategory

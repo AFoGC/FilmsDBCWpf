@@ -1,10 +1,11 @@
 ﻿using NewTablesLibrary;
 using TL_Objects.CellDataClasses;
+using TL_Objects.Interfaces;
 
 namespace TL_Objects
 {
     [Cell("BookCategory")]
-    public class BookCategory : Cell
+    public class BookCategory : Cell, ICategory<Book>
     {
         [SaveField("name")]
         private string _name;
@@ -91,6 +92,11 @@ namespace TL_Objects
         public OneToManyCollection<BookCategory, Book> CategoryElements
         {
             get => _books;
+        }
+
+        ICollection<Book> ICategory<Book>.CategoryElements
+        {
+            get => CategoryElements;
         }
     }
 }

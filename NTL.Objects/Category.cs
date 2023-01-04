@@ -7,7 +7,7 @@ using TL_Objects.Interfaces;
 namespace TL_Objects
 {
     [Cell("Category")]
-    public class Category : Cell
+    public class Category : Cell, ICategory<Film>
     {
         [SaveField("name")]
         private string _name;
@@ -95,6 +95,11 @@ namespace TL_Objects
         public OneToManyCollection<Category, Film> CategoryElements
         {
             get { return _films; }
+        }
+
+        ICollection<Film> ICategory<Film>.CategoryElements
+        {
+            get => CategoryElements;
         }
     }
 }

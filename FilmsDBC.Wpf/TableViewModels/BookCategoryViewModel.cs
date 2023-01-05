@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using TL_Objects;
 using TL_Objects.Interfaces;
 using TL_Tables;
@@ -96,7 +95,7 @@ namespace WpfApp.TableViewModels
 
             return IsFinded;
         }
-        
+
         public RelayCommand OpenUpdateCommand
         {
             get
@@ -108,7 +107,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand CreateBookCommand
         {
             get
@@ -118,8 +117,8 @@ namespace WpfApp.TableViewModels
                 {
                     Book book = new Book();
                     book.Name = GetDefaulBookName();
-                    book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
-                    TableCollection.GetTable<Book>().AddElement(book);
+                    book.BookGenre = TableCollection.GetTableByDataType<BookGenre>()[0];
+                    TableCollection.GetTableByDataType<Book>().Add(book);
                     Model.CategoryElements.Add(book);
                 }));
             }
@@ -132,7 +131,7 @@ namespace WpfApp.TableViewModels
             else
                 return Model.HideName;
         }
-        
+
         public RelayCommand AddSelectedCommand
         {
             get
@@ -143,7 +142,7 @@ namespace WpfApp.TableViewModels
                     if (menu.SelectedElement != null)
                     {
                         Book book = menu.SelectedElement.Model;
-                        if (book.FranshiseId == 0)
+                        if (book.Category?.ID == 0)
                         {
                             Model.CategoryElements.Add(book);
                             menu.SelectedElement = null;
@@ -152,7 +151,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand RemoveSelectedCommand
         {
             get
@@ -168,7 +167,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand DeleteCategoryCommand
         {
             get
@@ -178,13 +177,13 @@ namespace WpfApp.TableViewModels
                 {
                     if (Model.CategoryElements.Count == 0)
                     {
-                        BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
+                        BookCategoriesTable categories = TableCollection.GetTableByTableType<BookCategoriesTable>();
                         categories.Remove(Model);
                     }
                 }));
             }
         }
-        
+
         public RelayCommand CollapseCommand
         {
             get
@@ -196,7 +195,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand CMOpenedCommand
         {
             get
@@ -208,7 +207,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand CMClosedCommand
         {
             get
@@ -261,7 +260,7 @@ namespace WpfApp.TableViewModels
         {
             OnPropertyChanged(e);
         }
-        
+
         public bool IsCollectionVisible
         {
             get => _isCollectionVisible;

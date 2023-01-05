@@ -1,13 +1,10 @@
-﻿using System;
+﻿using NewTablesLibrary;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
-using System.Windows;
-using System.Windows.Data;
-using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
@@ -107,7 +104,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public bool IsReadedChecked
         {
             get => _isReadedChecked;
@@ -120,7 +117,7 @@ namespace WpfApp.ViewModels
                 }
             }
         }
-        
+
         public bool IsUnReadedChecked
         {
             get => _isUnReadedChecked;
@@ -133,9 +130,9 @@ namespace WpfApp.ViewModels
                 }
             }
         }
-        
-        public BaseViewModel<Book> SelectedElement 
-        { 
+
+        public BaseViewModel<Book> SelectedElement
+        {
             get => _selectedElement;
             set
             {
@@ -143,9 +140,9 @@ namespace WpfApp.ViewModels
                 _selectedElement = value;
 
                 if (_selectedElement != null) _selectedElement.IsSelected = true;
-            } 
+            }
         }
-        
+
         public String SearchText
         {
             get => _searchText;
@@ -189,7 +186,7 @@ namespace WpfApp.ViewModels
                 (addCategoryCommand = new RelayCommand(obj => _model.AddCategory()));
             }
         }
-        
+
         public RelayCommand AddBookCommand
         {
             get
@@ -198,7 +195,7 @@ namespace WpfApp.ViewModels
                 (addBookCommand = new RelayCommand(obj => _model.AddBook()));
             }
         }
-        
+
         public RelayCommand SaveTablesCommand
         {
             get
@@ -207,7 +204,7 @@ namespace WpfApp.ViewModels
                 (saveTablesCommand = new RelayCommand(obj => _model.SaveTables()));
             }
         }
-        
+
         public RelayCommand FilterCommand
         {
             get
@@ -224,7 +221,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand SearchCommand
         {
             get
@@ -239,7 +236,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand SortTable =>
         sortTable ?? (sortTable = new RelayCommand(obj =>
         {
@@ -413,7 +410,7 @@ namespace WpfApp.ViewModels
             foreach (Book book in _model.BooksTable)
             {
                 BooksMenu.Add(new BookViewModel(book, this));
-                if (book.FranshiseId == 0)
+                if (book.Category?.ID == 0)
                 {
                     SimpleBooksMenu.Add(new BookViewModel(book, this));
                 }
@@ -424,7 +421,7 @@ namespace WpfApp.ViewModels
                 PriorityBooksMenu.Add(new BookViewModel(book.Book, this));
             }
         }
-        
+
         public BookInfoMenuCondition InfoMenuCondition
         {
             get => infoMenuCondition;
@@ -436,11 +433,11 @@ namespace WpfApp.ViewModels
                     InfoMenuDataContext = null;
                     SelectedSources = null;
                 }
-                    
+
                 OnPropertyChanged();
             }
         }
-        
+
         public object InfoMenuDataContext
         {
             get => _infoMenuDataContext;
@@ -480,12 +477,12 @@ namespace WpfApp.ViewModels
                 InfoMenuCondition = BookInfoMenuCondition.CategoryUpdate;
             }
         }
-        
+
         public void OpenSourcesMenu(ObservableCollection<Source> sources)
         {
             SelectedSources = sources;
         }
-        
+
         public RelayCommand RemoveSourceCommand =>
         removeSourceCommand ?? (removeSourceCommand = new RelayCommand(obj =>
         {
@@ -495,7 +492,7 @@ namespace WpfApp.ViewModels
                 SelectedSources.Remove(source);
             }
         }));
-        
+
         public RelayCommand AddSourceCommand =>
         addSourceCommand ?? (addSourceCommand = new RelayCommand(obj =>
         {
@@ -504,7 +501,7 @@ namespace WpfApp.ViewModels
                 SelectedSources.Add(new Source());
             }
         }));
-        
+
         public RelayCommand MoveUpSourceCommand =>
         moveUpSourceCommand ?? (moveUpSourceCommand = new RelayCommand(obj =>
         {
@@ -514,7 +511,7 @@ namespace WpfApp.ViewModels
                 SelectedSources.Move(SelectedSources.IndexOf(source), 0);
             }
         }));
-        
+
         public RelayCommand CloseInfoCommand =>
         closeInfoCommand ?? (closeInfoCommand = new RelayCommand(obj =>
         {

@@ -6,7 +6,7 @@ using TL_Objects.Interfaces;
 
 namespace WpfApp.TableViewModels
 {
-    public class GenreButtonViewModel: INotifyPropertyChanged, IGenreButton
+    public class GenreButtonViewModel : INotifyPropertyChanged, IGenreButton
     {
         private bool _isChecked = true;
 
@@ -21,8 +21,8 @@ namespace WpfApp.TableViewModels
         public String Name => Model.Name;
 
         public bool IsChecked
-        { 
-            get => _isChecked; 
+        {
+            get => _isChecked;
             set
             {
                 _isChecked = value;

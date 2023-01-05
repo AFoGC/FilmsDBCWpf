@@ -1,5 +1,4 @@
-﻿using TablesLibrary.Interpreter;
-using WpfApp.Services;
+﻿using WpfApp.Services;
 
 namespace WpfApp.Models
 {
@@ -14,7 +13,7 @@ namespace WpfApp.Models
             _tablesService = tablesService;
         }
 
-        public bool IsInfoUnsaved => _tablesService.TablesCollection.IsInfoUnsaved;
+        public bool IsInfoUnsaved => false;
 
         public void SaveSettings()
         {

@@ -16,7 +16,7 @@ namespace WpfApp.Models
         public SettingsModel(SettingsService settingsService)
         {
             _settingsService = settingsService;
-            TablesService.TablesCollection.TableLoad += OnTableLoad;
+            TablesService.TablesCollection.TablesLoaded += OnTableLoad;
         }
 
         private TablesService TablesService => _settingsService.TablesService;
@@ -62,7 +62,7 @@ namespace WpfApp.Models
             set => TablesService.IsAutosaveEnable = value;
         }
 
-        private void OnTableLoad(object sender, EventArgs e)
+        private void OnTableLoad()
         {
             TablesLoaded?.Invoke();
         }
@@ -70,20 +70,20 @@ namespace WpfApp.Models
         public void AddBookGenre()
         {
             BookGenre genre = new BookGenre();
-            TablesService.BookGenresTable.AddElement(genre);
+            TablesService.BookGenresTable.Add(genre);
             genre.Name = $"Genre{genre.ID}";
         }
 
         public void AddFilmGenre()
         {
             Genre genre = new Genre();
-            TablesService.FilmGenresTable.AddElement(genre);
+            TablesService.FilmGenresTable.Add(genre);
             genre.Name = $"Genre{genre.ID}";
         }
 
         public bool RemoveBookGenre(BookGenre genre)
         {
-            if (TablesService.BooksTable.GenreHasBook(genre) == false)
+            if (genre.Books.Count == 0)
                 return TablesService.BookGenresTable.Remove(genre);
 
             return false;
@@ -91,7 +91,7 @@ namespace WpfApp.Models
 
         public bool RemoveFilmGenre(Genre genre)
         {
-            if (TablesService.FilmsTable.GenreHasFilm(genre) == false)
+            if (genre.Films.Count == 0)
                 return TablesService.FilmGenresTable.Remove(genre);
 
             return false;
@@ -99,7 +99,7 @@ namespace WpfApp.Models
 
         public bool ChangeCheckFilmGenre(Genre genre)
         {
-            if (TablesService.FilmsTable.GenreHasFilm(genre))
+            if (genre.Films.Count == 0)
             {
                 genre.IsSerialGenre = !genre.IsSerialGenre;
                 return true;

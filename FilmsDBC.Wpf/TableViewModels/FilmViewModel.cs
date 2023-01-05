@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using TL_Objects;
 using TL_Objects.Interfaces;
 using TL_Tables;
@@ -21,7 +20,7 @@ namespace WpfApp.TableViewModels
         private readonly IMenuViewModel<Film> menu;
         private bool _isCommentVisible = false;
         private bool _isFiltered = true;
-        
+
 
         private RelayCommand selectCommand;
         private RelayCommand copyUrlCommand;
@@ -43,9 +42,9 @@ namespace WpfApp.TableViewModels
             model.PropertyChanged += ModelPropertyChanged;
             this.menu = menu;
             genresTable = (GenresTable)model.Genre.ParentTable;
-            seriesTable = (SeriesTable)Model.ParentTable.TableCollection.GetTable<Serie>();
+            seriesTable = (SeriesTable)Model.ParentTable.ParentCollection.GetTableByDataType<Serie>();
         }
-        
+
         public RelayCommand SelectCommand
         {
             get
@@ -57,7 +56,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand CopyUrlCommand
         {
             get
@@ -69,7 +68,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand OpenUpdateCommand
         {
             get
@@ -81,7 +80,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand OpenInfoCommand
         {
             get
@@ -93,7 +92,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand OpenSourceCommand
         {
             get
@@ -105,7 +104,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand AddToPriorityCommand
         {
             get
@@ -113,17 +112,17 @@ namespace WpfApp.TableViewModels
                 return addToPriorityCommand ??
                 (addToPriorityCommand = new RelayCommand(obj =>
                 {
-                    PriorityFilmsTable priorityBooks = (PriorityFilmsTable)TableCollection.GetTable<PriorityFilm>();
-                    if (!priorityBooks.ContainFilm(Model))
+                    PriorityFilmsTable priorityBooks = TableCollection.GetTableByTableType<PriorityFilmsTable>();
+                    if (!priorityBooks.ContainsFilm(Model))
                     {
                         PriorityFilm priority = new PriorityFilm();
                         priority.Film = Model;
-                        priorityBooks.AddElement(priority);
+                        priorityBooks.Add(priority);
                     }
                 }));
             }
         }
-        
+
         public RelayCommand RemoveFromPriorityCommand
         {
             get
@@ -131,13 +130,13 @@ namespace WpfApp.TableViewModels
                 return removeFromPriorityCommand ??
                 (removeFromPriorityCommand = new RelayCommand(obj =>
                 {
-                    PriorityFilmsTable priorityFilms = (PriorityFilmsTable)TableCollection.GetTable<PriorityFilm>();
-                    IEnumerable<PriorityFilm> enumerable = priorityFilms as IEnumerable<PriorityFilm>;
+                    PriorityFilmsTable priorityFilms = TableCollection.GetTableByTableType<PriorityFilmsTable>();
+                    IEnumerable<PriorityFilm> enumerable = priorityFilms;
                     priorityFilms?.Remove(enumerable.Where(x => x.Film == Model).FirstOrDefault());
                 }));
             }
         }
-        
+
         public RelayCommand UpInCategoryIDCommand
         {
             get
@@ -145,13 +144,13 @@ namespace WpfApp.TableViewModels
                 return upInCategoryIDCommand ??
                 (upInCategoryIDCommand = new RelayCommand(obj =>
                 {
-                    CategoriesTable categories = (CategoriesTable)TableCollection.GetTable<Category>();
-                    Category category = categories.GetCategoryByFilm(Model);
+                    CategoriesTable categories = TableCollection.GetTableByTableType<CategoriesTable>();
+                    Category category = Model.Category;
                     category.ChangeFilmPositionBy(Model, -1);
                 }));
             }
         }
-        
+
         public RelayCommand DownInCategoryIDCommand
         {
             get
@@ -159,13 +158,13 @@ namespace WpfApp.TableViewModels
                 return downInCategoryIDCommand ??
                 (downInCategoryIDCommand = new RelayCommand(obj =>
                 {
-                    CategoriesTable categories = (CategoriesTable)TableCollection.GetTable<Category>();
-                    Category category = categories.GetCategoryByFilm(Model);
+                    CategoriesTable categories = TableCollection.GetTableByTableType<CategoriesTable>();
+                    Category category = Model.Category;
                     category.ChangeFilmPositionBy(Model, 1);
                 }));
             }
         }
-        
+
         public RelayCommand RemoveFromCategoryCommand
         {
             get
@@ -173,8 +172,8 @@ namespace WpfApp.TableViewModels
                 return removeFromCategoryCommand ??
                 (removeFromCategoryCommand = new RelayCommand(obj =>
                 {
-                    CategoriesTable categories = (CategoriesTable)TableCollection.GetTable<Category>();
-                    Category category = categories.GetCategoryByFilm(Model);
+                    CategoriesTable categories = TableCollection.GetTableByTableType<CategoriesTable>();
+                    Category category = Model.Category;
                     if (category != null)
                     {
                         category.CategoryElements.Remove(Model);
@@ -182,7 +181,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand DeleteFilmCommand
         {
             get
@@ -190,12 +189,12 @@ namespace WpfApp.TableViewModels
                 return deleteFilmCommand ??
                 (deleteFilmCommand = new RelayCommand(obj =>
                 {
-                    FilmsTable filmsTable = (FilmsTable)TableCollection.GetTable<Film>();
+                    FilmsTable filmsTable = TableCollection.GetTableByTableType<FilmsTable>();
                     filmsTable.Remove(Model);
                 }));
             }
         }
-        
+
         public RelayCommand BaseAutoFill
         {
             get
@@ -213,7 +212,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand FullAutoFill
         {
             get
@@ -234,13 +233,13 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand OpenComment
         {
             get
             {
                 return openComment ??
-                (openComment = new RelayCommand(obj => 
+                (openComment = new RelayCommand(obj =>
                 {
                     IsCommentVisible = !IsCommentVisible;
                 }));
@@ -294,7 +293,7 @@ namespace WpfApp.TableViewModels
 
             OnPropertyChanged(e);
         }
-        
+
         public bool IsFiltered
         {
             get => _isFiltered;

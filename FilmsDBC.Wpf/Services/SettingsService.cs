@@ -20,10 +20,10 @@ namespace WpfApp.Services
         private LanguageService _languageService;
         private ScaleService _scaleService;
 
-        public SettingsService( TablesService tablesService, 
+        public SettingsService(TablesService tablesService,
                                 LanguageService languageService,
                                 ProfilesService profilesService,
-                                ScaleService scaleService )
+                                ScaleService scaleService)
         {
             _tablesService = tablesService;
             _profilesService = profilesService;

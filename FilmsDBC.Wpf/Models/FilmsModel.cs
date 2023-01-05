@@ -14,7 +14,7 @@ namespace WpfApp.Models
         public FilmsModel(TablesService tablesService)
         {
             _tablesService = tablesService;
-            _tablesService.TablesCollection.TableLoad += OnTableLoad;
+            _tablesService.TablesCollection.TablesSaved += OnTableLoad;
         }
 
         public FilmsTable FilmsTable => _tablesService.FilmsTable;
@@ -23,23 +23,23 @@ namespace WpfApp.Models
         public GenresTable GenresTable => _tablesService.FilmGenresTable;
         public PriorityFilmsTable PriorityFilmsTable => _tablesService.PriorityFilmsTable;
 
-        private void OnTableLoad(object sender, EventArgs e)
+        private void OnTableLoad()
         {
             TablesLoaded?.Invoke();
         }
 
         public void AddCategory()
         {
-            CategoriesTable.AddElement(new Category());
+            CategoriesTable.Add(new Category());
         }
 
         public void AddFilm()
         {
             Film film = new Film();
             film.Genre = GenresTable[0];
-            FilmsTable.AddElement(film);
+            FilmsTable.Add(film);
         }
 
-        public void SaveTables() => _tablesService.TablesCollection.SaveTables();
+        public void SaveTables() { }//_tablesService.TablesCollection.SaveTables();
     }
 }

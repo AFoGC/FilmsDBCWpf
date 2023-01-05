@@ -1,13 +1,11 @@
-﻿using System;
+﻿using NewTablesLibrary;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows;
-using System.Windows.Data;
-using TablesLibrary.Interpreter.TableCell;
 using TL_Objects;
 using TL_Objects.CellDataClasses;
 using TL_Objects.Interfaces;
@@ -191,15 +189,15 @@ namespace WpfApp.ViewModels
         }
 
         public RelayCommand AddCategoryCommand =>
-            addCategoryCommand ?? (addCategoryCommand = new RelayCommand(obj => 
+            addCategoryCommand ?? (addCategoryCommand = new RelayCommand(obj =>
                 _model.AddCategory()));
 
         public RelayCommand AddBookCommand =>
-            addBookCommand ?? (addBookCommand = new RelayCommand(obj => 
+            addBookCommand ?? (addBookCommand = new RelayCommand(obj =>
                 _model.AddFilm()));
 
         public RelayCommand SaveTablesCommand =>
-            saveTablesCommand ?? (saveTablesCommand = new RelayCommand(obj => 
+            saveTablesCommand ?? (saveTablesCommand = new RelayCommand(obj =>
                 _model.SaveTables()));
 
         public RelayCommand FilterCommand
@@ -217,7 +215,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-            
+
 
         public RelayCommand SortTable
         {
@@ -416,7 +414,7 @@ namespace WpfApp.ViewModels
                 film.PropertyChanged += FilmPropertyChanged;
 
                 FilmsMenu.Add(new FilmViewModel(film, this));
-                if (film.FranshiseId == 0)
+                if (film.Category?.ID == 0)
                 {
                     SimpleFilmsMenu.Add(new FilmViewModel(film, this));
                 }

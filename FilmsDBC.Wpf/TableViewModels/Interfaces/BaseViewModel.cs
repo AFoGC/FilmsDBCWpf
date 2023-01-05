@@ -1,9 +1,8 @@
 ﻿using FilmsDBC.Wpf.TableViewModels.Interfaces;
+using NewTablesLibrary;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TablesLibrary.Interpreter;
-using TablesLibrary.Interpreter.TableCell;
 using TL_Objects.Interfaces;
 
 namespace WpfApp.TableViewModels.Interfaces
@@ -17,20 +16,20 @@ namespace WpfApp.TableViewModels.Interfaces
         public BaseViewModel(T model)
         {
             Model = model;
-            TableCollection = Model.ParentTable.TableCollection;
+            TableCollection = Model.ParentTable.ParentCollection;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public T Model { get; }
-        protected TableCollection TableCollection { get; }
-        
+        protected TablesCollection TableCollection { get; }
+
         public bool IsSelected
         {
             get => _isSelected;
             set { _isSelected = value; OnPropertyChanged(); }
         }
-        
+
         public bool IsFinded
         {
             get => _isFinded;
@@ -51,7 +50,14 @@ namespace WpfApp.TableViewModels.Interfaces
 
         protected string formatZero(int import)
         {
-            return Cell.FormatToString(import, 0);
+            if (import == 0)
+            {
+                return String.Empty;
+            }
+            else
+            {
+                return import.ToString();
+            }
         }
 
         protected int formatEmpty(string import)

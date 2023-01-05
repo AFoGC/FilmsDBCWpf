@@ -14,10 +14,10 @@ namespace WpfApp.Models
         public BooksModel(TablesService tablesService)
         {
             _tablesService = tablesService;
-            _tablesService.TablesCollection.TableLoad += OnTableLoad;
+            _tablesService.TablesCollection.TablesLoaded += OnTableLoad;
         }
 
-        private void OnTableLoad(object sender, EventArgs e)
+        private void OnTableLoad()
         {
             TablesLoaded?.Invoke();
         }
@@ -29,16 +29,16 @@ namespace WpfApp.Models
 
         public void AddCategory()
         {
-            BookCategoriesTable.AddElement(new BookCategory());
+            BookCategoriesTable.Add(new BookCategory());
         }
 
         public void AddBook()
         {
             Book book = new Book();
             book.BookGenre = BookGenresTable[0];
-            BooksTable.AddElement(book);
+            BooksTable.Add(book);
         }
 
-        public void SaveTables() => _tablesService.TablesCollection.SaveTables();
+        public void SaveTables() { }//=> _tablesService.TablesCollection.SaveTables();
     }
 }

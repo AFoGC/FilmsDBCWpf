@@ -53,6 +53,20 @@ namespace TL_Objects.CellDataClasses
             }
         }
 
+        public void SetMarkFromString(String str)
+        {
+            if (str != String.Empty)
+            {
+                string cleanedString = str.Substring(0, str.IndexOf('/'));
+                int mark = Convert.ToInt32(cleanedString);
+                FormatedMark = mark;
+            }
+            else
+            {
+                RawMark = 0;
+            }
+        }
+
         public override string ToString()
         {
             return RawMark.ToString();

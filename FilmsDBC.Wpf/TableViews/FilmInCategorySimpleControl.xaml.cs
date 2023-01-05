@@ -8,10 +8,10 @@ namespace WpfApp.TableViews
     /// </summary>
     public partial class FilmInCategorySimpleControl : UserControl
     {
-		public FilmInCategorySimpleControl()
-		{
-			InitializeComponent();
-		}
+        public FilmInCategorySimpleControl()
+        {
+            InitializeComponent();
+        }
 
         private void OpenCM(object sender, RoutedEventArgs e)
         {

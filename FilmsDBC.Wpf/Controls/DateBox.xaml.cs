@@ -27,11 +27,11 @@ namespace WpfApp.Controls
             set { SetValue(DateProperty, value); }
         }
 
-        
+
         public static readonly DependencyProperty DateProperty =
             DependencyProperty.Register(
-                "Date", 
-                typeof(DateTime), 
+                "Date",
+                typeof(DateTime),
                 typeof(DateBox),
                 new FrameworkPropertyMetadata(new DateTime(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, DatePropertyChanged)
                 );

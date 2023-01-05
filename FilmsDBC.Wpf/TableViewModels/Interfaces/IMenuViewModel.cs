@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using TablesLibrary.Interpreter.TableCell;
+﻿using NewTablesLibrary;
+using System.Collections.ObjectModel;
 using TL_Objects.CellDataClasses;
 
 namespace WpfApp.TableViewModels.Interfaces

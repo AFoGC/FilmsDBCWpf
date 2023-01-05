@@ -1,14 +1,13 @@
 ﻿using FilmsDBC.Wpf.Helper;
 using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 using TL_Objects.CellDataClasses;
 
 namespace WpfApp.Helper
 {
     public static class SourcesHelper
     {
-		public static String SourcesStateString(ObservableCollection<Source> sources)
+        public static String SourcesStateString(ObservableCollection<Source> sources)
         {
             if (sources.Count == 0)
             {
@@ -34,5 +33,5 @@ namespace WpfApp.Helper
                 ClipboardHelper.SetText(sources[0].SourceUrl);
             }
         }
-	}
+    }
 }

@@ -7,8 +7,8 @@ namespace WpfApp.TableViews
     /// Логика взаимодействия для SerieControl.xaml
     /// </summary>
     public partial class FilmSerieControl : UserControl
-	{
-		public FilmSerieControl()
+    {
+        public FilmSerieControl()
         {
             InitializeComponent();
         }

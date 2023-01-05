@@ -8,10 +8,10 @@ namespace WpfApp.TableViews
     /// </summary>
     public partial class BookInCategorySimpleControl : UserControl
     {
-		public BookInCategorySimpleControl()
-		{
-			InitializeComponent();
-		}
+        public BookInCategorySimpleControl()
+        {
+            InitializeComponent();
+        }
 
         private void OpenCM(object sender, RoutedEventArgs e)
         {

@@ -108,7 +108,7 @@ namespace WpfApp.Windows
             RegistrationMenu.Visibility = Visibility.Hidden;
 
         }
-        
+
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

@@ -22,7 +22,7 @@ namespace WpfApp.Services
             {
                 return false;
             }
-            
+
         }
     }
 }

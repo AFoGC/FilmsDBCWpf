@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using TablesLibrary.Interpreter;
 using TL_Objects;
 using TL_Tables;
 using WpfApp.Helper;
+using NewTablesLibrary;
 
 namespace WpfApp.Services
 {
@@ -14,7 +14,7 @@ namespace WpfApp.Services
         public event Action AutosaveIntervalChanged;
         public event Action MarkSystemCanged;
 
-        private readonly TableCollection _tablesCollection;
+        private readonly TablesCollection _tablesCollection;
 
         private System.Timers.Timer _saveTimer;
         private bool _isAutosaveEnable = false;
@@ -26,12 +26,12 @@ namespace WpfApp.Services
 
             _tablesCollection = GetDefaultTableCollection();
 
-            _tablesCollection.CellInTablesChanged += (s, e) => StartSaveTimer();
-            _tablesCollection.TableSave += (s, e) => StopSaveTimer();
+            _tablesCollection.DataChanged += StartSaveTimer;
+            _tablesCollection.TablesSaved += StopSaveTimer;
             _saveTimer.Elapsed += (s, e) => Autosave();
         }
 
-        public TableCollection TablesCollection => _tablesCollection;
+        public TablesCollection TablesCollection => _tablesCollection;
         public Double SaveTimerInterval
         {
             get => _autosaveInterval;
@@ -76,30 +76,29 @@ namespace WpfApp.Services
             }
         }
 
-        public CategoriesTable FilmCategoriesTable => (CategoriesTable)_tablesCollection.GetTable<Category>();
-        public GenresTable FilmGenresTable => (GenresTable)_tablesCollection.GetTable<Genre>();
-        public FilmsTable FilmsTable => (FilmsTable)_tablesCollection.GetTable<Film>();
-        public SeriesTable SeriesTable => (SeriesTable)_tablesCollection.GetTable<Serie>();
-        public PriorityFilmsTable PriorityFilmsTable => (PriorityFilmsTable)_tablesCollection.GetTable<PriorityFilm>();
-        public BookGenresTable BookGenresTable => (BookGenresTable)_tablesCollection.GetTable<BookGenre>();
-        public BooksTable BooksTable => (BooksTable)_tablesCollection.GetTable<Book>();
-        public BookCategoriesTable BookCategoriesTable => (BookCategoriesTable)_tablesCollection.GetTable<BookCategory>();
-        public PriorityBooksTable PriorityBooksTable => (PriorityBooksTable)_tablesCollection.GetTable<PriorityBook>();
+        public CategoriesTable FilmCategoriesTable => _tablesCollection.GetTableByTableType<CategoriesTable>();
+        public GenresTable FilmGenresTable => _tablesCollection.GetTableByTableType<GenresTable>();
+        public FilmsTable FilmsTable => _tablesCollection.GetTableByTableType<FilmsTable>();
+        public SeriesTable SeriesTable => _tablesCollection.GetTableByTableType<SeriesTable>();
+        public PriorityFilmsTable PriorityFilmsTable => _tablesCollection.GetTableByTableType<PriorityFilmsTable>();
+        public BookGenresTable BookGenresTable => _tablesCollection.GetTableByTableType<BookGenresTable>();
+        public BooksTable BooksTable => _tablesCollection.GetTableByTableType<BooksTable>();
+        public BookCategoriesTable BookCategoriesTable => _tablesCollection.GetTableByTableType<BookCategoriesTable>();
+        public PriorityBooksTable PriorityBooksTable => _tablesCollection.GetTableByTableType<PriorityBooksTable>();
 
-        private static TableCollection GetDefaultTableCollection()
+        private static TablesCollection GetDefaultTableCollection()
         {
-            TableCollection export = new TableCollection();
-            export.FileEncoding = Encoding.UTF8;
+            TablesCollection export = new TablesCollection();
 
-            export.AddTable(new CategoriesTable());
-            export.AddTable(GenresTable.GetDefaultGenresTable());
-            export.AddTable(new FilmsTable());
-            export.AddTable(new SeriesTable());
-            export.AddTable(new PriorityFilmsTable());
-            export.AddTable(BookGenresTable.GetDefaultGenresTable());
-            export.AddTable(new BooksTable());
-            export.AddTable(new BookCategoriesTable());
-            export.AddTable(new PriorityBooksTable());
+            export.Add(new CategoriesTable());
+            export.Add(GenresTable.GetDefaultGenresTable());
+            export.Add(new FilmsTable());
+            export.Add(new SeriesTable());
+            export.Add(new PriorityFilmsTable());
+            export.Add(BookGenresTable.GetDefaultGenresTable());
+            export.Add(new BooksTable());
+            export.Add(new BookCategoriesTable());
+            export.Add(new PriorityBooksTable());
 
             return export;
         }
@@ -117,20 +116,19 @@ namespace WpfApp.Services
                 Directory.CreateDirectory(dir);
                 File.Create(path).Dispose();
             }
-                
+
 
             return path;
         }
 
-        public bool LoadTables(string profileName)
+        public void LoadTables(string profileName)
         {
-            _tablesCollection.TableFilePath = CreateProfileFile(profileName);
-            return _tablesCollection.LoadTables();
+            _tablesCollection.LoadFromFile(CreateProfileFile(profileName));
         }
 
         public void SaveTables()
         {
-            _tablesCollection.SaveTables();
+            ///_tablesCollection.SaveTable(CreateProfileFile(profileName));
         }
 
         private void StartSaveTimer()
@@ -150,7 +148,7 @@ namespace WpfApp.Services
         private void Autosave()
         {
             _saveTimer.Stop();
-            _tablesCollection.SaveTables();
+            //_tablesCollection.SaveTables();
         }
     }
 }

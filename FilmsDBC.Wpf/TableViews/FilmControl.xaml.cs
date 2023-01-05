@@ -3,20 +3,20 @@ using System.Windows.Controls;
 
 namespace WpfApp.TableViews
 {
-	/// <summary>
-	/// Логика взаимодействия для FilmControl.xaml
-	/// </summary>
-	public partial class FilmControl : UserControl
-	{
+    /// <summary>
+    /// Логика взаимодействия для FilmControl.xaml
+    /// </summary>
+    public partial class FilmControl : UserControl
+    {
 
-		public FilmControl()
-		{
-			InitializeComponent();
-		}
+        public FilmControl()
+        {
+            InitializeComponent();
+        }
 
-		private void OpenCM(object sender, RoutedEventArgs e)
-		{
-			cm.IsOpen = true;
-		}
-	}
+        private void OpenCM(object sender, RoutedEventArgs e)
+        {
+            cm.IsOpen = true;
+        }
+    }
 }

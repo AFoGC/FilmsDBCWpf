@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using WpfApp.Commands;
 using WpfApp.Models;
@@ -41,7 +39,7 @@ namespace WpfApp.ViewModels
             _filmsVM = filmsVM;
             _booksVM = booksVM;
             _settingsVM = settingsVM;
-            
+
             _statusService.StatusChanged += OnStatusChange;
 
             FilmsSelected = true;
@@ -55,7 +53,7 @@ namespace WpfApp.ViewModels
         {
             get => _status;
             set
-            { 
+            {
                 _status = value;
                 OnPropertyChanged();
             }
@@ -81,7 +79,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public bool? BooksSelected
         {
             get => _booksSelected;
@@ -97,7 +95,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public bool? SettingsSelected
         {
             get => _settingsSelected;
@@ -119,11 +117,11 @@ namespace WpfApp.ViewModels
             get => _currentViewModel;
             set
             {
-                _currentViewModel = value; 
+                _currentViewModel = value;
                 OnPropertyChanged();
             }
         }
-        
+
         public RelayCommand KeyDownCommand
         {
             get
@@ -139,7 +137,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand SaveAndExitCommand
         {
             get
@@ -160,7 +158,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand SaveSettingsCommand
         {
             get

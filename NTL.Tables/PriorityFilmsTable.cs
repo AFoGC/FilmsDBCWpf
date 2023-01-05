@@ -9,5 +9,10 @@ namespace TL_Tables
         {
 
         }
+
+        public bool ContainsFilm(Film film)
+        {
+            return this.Any(x => x.Film == film);
+        }
     }
 }

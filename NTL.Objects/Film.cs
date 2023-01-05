@@ -41,9 +41,11 @@ namespace TL_Objects
         [SaveField("genre")]
         private readonly ManyToOne<Film, Genre> _genre;
 
-		public readonly OneToOne<Film, Serie> _serie;
+		private readonly OneToOne<Film, Serie> _serie;
 
-		public Film()
+        private readonly OneToOne<Film, PriorityFilm> _priority;
+
+        public Film()
 		{
 			_name = String.Empty;
 			_realiseYear = 0;
@@ -151,5 +153,17 @@ namespace TL_Objects
 			get { return _franshiseListIndex; }
 			set { _franshiseListIndex = value; OnPropertyChanged(nameof(FranshiseListIndex)); }
 		}
-	}
+
+        public Category Category
+        {
+            get => _category.Value;
+            set => _category.SetValue(value);
+        }
+
+		public Serie Serie
+		{
+			get => _serie.Value;
+			set => _serie.SetValue(value);
+		}
+    }
 }

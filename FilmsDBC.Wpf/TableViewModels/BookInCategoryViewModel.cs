@@ -1,5 +1,5 @@
-﻿using System;
-using TablesLibrary.Interpreter;
+﻿using NewTablesLibrary;
+using System;
 using TL_Objects;
 using TL_Tables;
 using WpfApp.TableViewModels.Interfaces;
@@ -11,8 +11,8 @@ namespace WpfApp.TableViewModels
         private readonly BookCategoriesTable bookCategories;
         public BookInCategoryViewModel(Book model, IMenuViewModel<Book> menu) : base(model, menu)
         {
-            TableCollection tableCollection = model.ParentTable.TableCollection;
-            bookCategories = (BookCategoriesTable)tableCollection.GetTable<BookCategory>();
+            TablesCollection tableCollection = model.ParentTable.ParentCollection;
+            bookCategories = tableCollection.GetTableByTableType<BookCategoriesTable>();
             PropertyChanged += NamePropertyChanged;
         }
 
@@ -26,9 +26,9 @@ namespace WpfApp.TableViewModels
         {
             get
             {
-                if (Model.FranshiseId != 0)
+                if (Model.Category?.ID != 0)
                 {
-                    BookCategory category = bookCategories.GetCategoryByBook(Model);
+                    BookCategory category = Model.Category;
                     if (category != null)
                     {
                         if (category.HideName != String.Empty)

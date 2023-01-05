@@ -1,5 +1,5 @@
-﻿using System;
-using TablesLibrary.Interpreter;
+﻿using NewTablesLibrary;
+using System;
 using TL_Objects;
 using TL_Tables;
 using WpfApp.TableViewModels.Interfaces;
@@ -11,8 +11,8 @@ namespace WpfApp.TableViewModels
         private CategoriesTable categories;
         public FilmInCategoryViewModel(Film model, IMenuViewModel<Film> menu) : base(model, menu)
         {
-            TableCollection tableCollection = model.ParentTable.TableCollection;
-            categories = (CategoriesTable)tableCollection.GetTable<Category>();
+            TablesCollection tableCollection = model.ParentTable.ParentCollection;
+            categories = tableCollection.GetTableByTableType<CategoriesTable>();
             PropertyChanged += NamePropertyChanged;
         }
 
@@ -26,9 +26,9 @@ namespace WpfApp.TableViewModels
         {
             get
             {
-                if (Model.FranshiseId != 0)
+                if (Model.Category?.ID != 0)
                 {
-                    Category category = categories.GetCategoryByFilm(Model);
+                    Category category = Model.Category;
                     if (category != null)
                     {
                         if (category.HideName != String.Empty)

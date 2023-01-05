@@ -29,6 +29,8 @@ namespace TL_Objects
             set { _name = value; OnPropertyChanged(nameof(Name)); }
         }
 
+        public ICollection<Book> Books => _books;
+
         public override string ToString()
         {
             return _name;

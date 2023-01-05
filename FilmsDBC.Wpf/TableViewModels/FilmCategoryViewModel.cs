@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using TL_Objects;
 using TL_Objects.Interfaces;
 using TL_Tables;
@@ -96,7 +95,7 @@ namespace WpfApp.TableViewModels
 
             return IsFinded;
         }
-        
+
         public RelayCommand OpenUpdateCommand
         {
             get
@@ -108,7 +107,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand CreateBookCommand
         {
             get
@@ -118,8 +117,8 @@ namespace WpfApp.TableViewModels
                 {
                     Film film = new Film();
                     film.Name = GetDefaulBookName();
-                    film.Genre = TableCollection.GetTable<Genre>()[0];
-                    TableCollection.GetTable<Film>().AddElement(film);
+                    film.Genre = TableCollection.GetTableByDataType<Genre>()[0];
+                    TableCollection.GetTableByDataType<Film>().Add(film);
                     Model.CategoryElements.Add(film);
                 }));
             }
@@ -132,7 +131,7 @@ namespace WpfApp.TableViewModels
             else
                 return Model.HideName;
         }
-        
+
         public RelayCommand AddSelectedCommand
         {
             get
@@ -143,7 +142,7 @@ namespace WpfApp.TableViewModels
                     if (menu.SelectedElement != null)
                     {
                         Film film = menu.SelectedElement.Model;
-                        if (film.FranshiseId == 0)
+                        if (film.Category?.ID == 0)
                         {
                             Model.CategoryElements.Add(film);
                             menu.SelectedElement = null;
@@ -152,7 +151,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand RemoveSelectedCommand
         {
             get
@@ -168,7 +167,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand DeleteCategoryCommand
         {
             get
@@ -178,13 +177,13 @@ namespace WpfApp.TableViewModels
                 {
                     if (Model.CategoryElements.Count == 0)
                     {
-                        CategoriesTable categories = (CategoriesTable)TableCollection.GetTable<Category>();
+                        CategoriesTable categories = TableCollection.GetTableByTableType<CategoriesTable>();
                         categories.Remove(Model);
                     }
                 }));
             }
         }
-        
+
         public RelayCommand CollapseCommand
         {
             get
@@ -196,7 +195,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand CMOpenedCommand
         {
             get
@@ -208,7 +207,7 @@ namespace WpfApp.TableViewModels
                 }));
             }
         }
-        
+
         public RelayCommand CMClosedCommand
         {
             get
@@ -261,7 +260,7 @@ namespace WpfApp.TableViewModels
         {
             OnPropertyChanged(e);
         }
-        
+
         public bool IsCollectionVisible
         {
             get => _isCollectionVisible;
@@ -271,7 +270,7 @@ namespace WpfApp.TableViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public bool IsFiltered
         {
             get => _isFiltered;

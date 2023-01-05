@@ -36,7 +36,7 @@ namespace WpfApp.ViewModels
         private RelayCommand addProfileCommand;
         private RelayCommand openExplorerCommand;
 
-        private static readonly char[] symbols = new char[] 
+        private static readonly char[] symbols = new char[]
         { '"', '\\', '/', ':', '|', '<', '>', '*', '?' };
 
         public ObservableCollection<Genre> FilmGenres { get; private set; }
@@ -95,7 +95,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public bool TimerIsEnabled
         {
             get => _model.IsTimerEnable;
@@ -125,7 +125,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public RelayCommand AddBookGenreCommand
         {
             get
@@ -137,7 +137,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand DeleteBookGenreCommand
         {
             get
@@ -149,7 +149,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand AddFilmGenreCommand
         {
             get
@@ -161,7 +161,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand DeleteFilmGenreCommand
         {
             get
@@ -173,7 +173,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand ChangeFilmGenreIsSerialCommand
         {
             get
@@ -185,7 +185,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public int IndexOfFilmMarkSystem
         {
             get => _indexOfFilmMarkSystem;
@@ -216,7 +216,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public int IndexOfBookMarkSystem
         {
             get => _indexOfBookMarkSystem;
@@ -247,13 +247,13 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public String NewProfileName
         {
             get => _newProfileName;
             set { _newProfileName = value; OnPropertyChanged(); }
         }
-        
+
         public RelayCommand ChangeProfileCommand
         {
             get
@@ -265,7 +265,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand DeleteProfileCommand
         {
             get
@@ -277,7 +277,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand AddProfileCommand
         {
             get
@@ -299,7 +299,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand ImportProfileCommand
         {
             get
@@ -314,7 +314,7 @@ namespace WpfApp.ViewModels
                 }));
             }
         }
-        
+
         public RelayCommand OpenExplorerCommand
         {
             get

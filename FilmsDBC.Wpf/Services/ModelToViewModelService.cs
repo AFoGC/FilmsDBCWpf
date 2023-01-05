@@ -1,6 +1,5 @@
-﻿using System.Collections.Specialized;
-using TablesLibrary.Interpreter.Table;
-using TablesLibrary.Interpreter.TableCell;
+﻿using NewTablesLibrary;
+using System.Collections.Specialized;
 
 namespace FilmsDBC.Wpf.Services
 {

@@ -22,23 +22,23 @@ namespace WpfApp.Services
             _statusTimer.Interval = 2000;
             _statusTimer.Elapsed += StatusTimerTick;
 
-            _tablesService.TablesCollection.TableSave += OnSaveStatus;
-            _tablesService.TablesCollection.CellInTablesChanged += OnUnsaveStatus;
+            _tablesService.TablesCollection.TablesSaved += OnSaveStatus;
+            _tablesService.TablesCollection.DataChanged += OnUnsaveStatus;
         }
 
-        private void OnSaveStatus(object sender, EventArgs e)
+        private void OnSaveStatus()
         {
             SetStatus(StatusEnum.Saved);
         }
 
-        private void OnUnsaveStatus(object sender, EventArgs e)
+        private void OnUnsaveStatus()
         {
             SetStatus(StatusEnum.UnSaved);
         }
 
         public void SetStatus(StatusEnum status)
         {
-            if(_statusTimer.Enabled)
+            if (_statusTimer.Enabled)
                 _statusTimer.Stop();
 
             if (IsStatusWithTimeDelay(status))

@@ -26,13 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TL_Realization\TL_Objects\TL_Objects.csproj" />
-    <ProjectReference Include="..\TL_Realization\TL_Tables\TL_Tables.csproj" />
+    <ProjectReference Include="..\NTL.Objects\NTL.Objects.csproj" />
+    <ProjectReference Include="..\NTL.Tables\NTL.Tables.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="TablesLibrary">
-      <HintPath>..\TablesLibrary.dll</HintPath>
+    <Reference Include="NewTablesLibrary">
+      <HintPath>..\NewTablesLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
 

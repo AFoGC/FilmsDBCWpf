@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TL_Objects.Interfaces;
+﻿using TL_Objects.Interfaces;
 
 namespace FilmsDBC.Wpf.TableViewModels.Interfaces
 {

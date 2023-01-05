@@ -41,6 +41,8 @@ namespace TL_Objects
             set { _isSerialGenre = value; OnPropertyChanged(); }
         }
 
+        public ICollection<Film> Films => _films;
+
         public override string ToString()
         {
             return this._name;

@@ -8,7 +8,7 @@ namespace WpfApp.Helper
         public static readonly string MainDirectory;
         public static readonly string ProfilesPath;
         public static readonly string SettingsPath;
-        
+
 
         static PathHelper()
         {

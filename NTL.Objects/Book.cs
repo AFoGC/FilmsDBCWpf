@@ -152,5 +152,17 @@ namespace TL_Objects
 			get { return _bookmark; }
 			set { _bookmark = value; OnPropertyChanged(); }
 		}
-	}
+
+        public BookCategory Category
+        {
+            get => _category.Value;
+            set => _category.SetValue(value);
+        }
+
+		public PriorityBook PriorityBook
+		{
+			get => _prioryty.Value;
+			set => _prioryty.SetValue(value);
+		}
+    }
 }

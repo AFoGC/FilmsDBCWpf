@@ -9,5 +9,10 @@ namespace TL_Tables
         {
 
         }
+
+        public bool ContainsBook(Book book)
+        {
+            return this.Any(x => x.Book == book);
+        }
     }
 }

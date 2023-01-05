@@ -65,6 +65,7 @@ namespace TL_Objects
             set 
             { 
                 _hideName = value;
+                //TODO сделать оповещение фильмов о том чтобы они обновили свой HideName
                 /*
                 foreach (Film film in CategoryElements)
                 {

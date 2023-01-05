@@ -1,4 +1,5 @@
 ﻿using NewTablesLibrary;
+using NTL.Objects.CellDataClasses;
 using System.Collections.ObjectModel;
 using TL_Objects.CellDataClasses;
 
@@ -32,7 +33,7 @@ namespace TL_Objects
         private readonly Mark _mark;
 
         [SaveField("sourceUrl")]
-        private ObservableCollection<Source> _sources;
+        private SourcesCollection _sources;
 
         [SaveField("franshiseId")]
         private readonly ManyToOne<Film, Category> _category;
@@ -53,7 +54,7 @@ namespace TL_Objects
 			_franshiseListIndex = -1;
 
             _mark = new Mark();
-            _sources = new ObservableCollection<Source>();
+            _sources = new SourcesCollection();
 
             _category = new ManyToOne<Film, Category>(this);
 			_genre = new ManyToOne<Film, Genre>(this);
@@ -137,7 +138,6 @@ namespace TL_Objects
 		public ObservableCollection<Source> Sources
 		{
 			get { return _sources; }
-			set { _sources = value; OnPropertyChanged(nameof(Sources)); }
 		}
 
 		public int CountOfViews

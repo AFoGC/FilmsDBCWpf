@@ -1,4 +1,5 @@
 ﻿using NewTablesLibrary;
+using NTL.Objects.CellDataClasses;
 using System.Collections.ObjectModel;
 using TL_Objects.CellDataClasses;
 
@@ -26,7 +27,7 @@ namespace TL_Objects
         private Mark _mark;
 
         [SaveField("sourceUrl")]
-        private ObservableCollection<Source> _sources;
+        private SourcesCollection _sources;
 
         [SaveField("countOfReadings")]
         private int _countOfReadings;
@@ -53,7 +54,7 @@ namespace TL_Objects
 			_readed = false;
 			_fullReadDate = new DateTime();
 			_mark = new Mark();
-			_sources = new ObservableCollection<Source>();
+			_sources = new SourcesCollection();
 			_countOfReadings = 0;
 			_bookmark = String.Empty;
 			_franshiseListIndex = -1;
@@ -68,9 +69,9 @@ namespace TL_Objects
 
         protected override void OnRemoving()
         {
-			_genre.Value = null;
-			_category.Value = null;
-			_prioryty.Value = null;
+			_genre.SetValue(null);
+			_category.SetValue(null);
+			_prioryty.SetValue(null);
 
             base.OnRemoving();
         }
@@ -132,7 +133,6 @@ namespace TL_Objects
 		public ObservableCollection<Source> Sources
 		{
 			get { return _sources; }
-			set { _sources = value; OnPropertyChanged(); }
 		}
 
 		public int CountOfReadings

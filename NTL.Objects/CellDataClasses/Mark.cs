@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewTablesLibrary;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,11 +7,11 @@ using System.Text;
 
 namespace TL_Objects.CellDataClasses
 {
-    public class Mark : INotifyPropertyChanged
+    public class Mark : INotifyPropertyChanged, ILoadField
     {
         public const int MaxRawMark = 300;
-        private int maxMark;
-        private int rawMark;
+        private int _maxMark;
+        private int _rawMark;
 
         public Mark()
         {
@@ -20,13 +21,13 @@ namespace TL_Objects.CellDataClasses
 
         public int MarkSystem
         {
-            get => maxMark;
-            set { maxMark = value; OnPropertyChanged(nameof(MarkSystem)); }
+            get => _maxMark;
+            set { _maxMark = value; OnPropertyChanged(nameof(MarkSystem)); }
         }
         public int RawMark
         {
-            get => rawMark;
-            set { rawMark = value; OnPropertyChanged(nameof(RawMark)); }
+            get => _rawMark;
+            set { _rawMark = value; OnPropertyChanged(nameof(RawMark)); }
         }
         public int FormatedMark
         {
@@ -54,36 +55,24 @@ namespace TL_Objects.CellDataClasses
 
         public override string ToString()
         {
-            int outMark = FormatedMark;
-            if (outMark != 0)
-            {
-                return $"{outMark}/{MarkSystem}";
-            }
-            else
-            {
-                return String.Empty;
-            }
+            return RawMark.ToString();
         }
 
-        public void SetMarkFromString(String str)
+        public void FromString(string value)
         {
-            if (str != String.Empty)
-            {
-                string cleanedString = str.Substring(0, str.IndexOf('/'));
-                int mark = Convert.ToInt32(cleanedString);
-                FormatedMark = mark;
-            }
-            else
-            {
-                RawMark = 0;
-            }
+            int i = Convert.ToInt32(value);
+
+            if (i > 300) i = 300;
+            if (i < 0) i = 0;
+
+            RawMark = i;
         }
 
         public List<String> GetComboItems()
         {
             List<String> strs = new List<String>();
 
-            for (int i = 1; i <= maxMark; i++)
+            for (int i = 1; i <= _maxMark; i++)
             {
                 strs.Add($"{i}/{MarkSystem}");
             }
@@ -97,16 +86,12 @@ namespace TL_Objects.CellDataClasses
 
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, e);
+            PropertyChanged?.Invoke(this, e);
         }
 
         protected void OnPropertyChanged(string propertyName)
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
-
-
     }
 }

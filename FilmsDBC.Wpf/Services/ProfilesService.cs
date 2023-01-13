@@ -12,6 +12,7 @@ namespace WpfApp.Services
     {
         public event Action UsedProfileChanged;
 
+        private readonly string _profilesPath;
         private ProfileModel _usedProfile;
         private ObservableCollection<ProfileModel> _profiles;
 
@@ -21,6 +22,7 @@ namespace WpfApp.Services
         public ProfilesService()
         {
             _profiles = new ObservableCollection<ProfileModel>();
+            _profilesPath = PathHelper.ProfilesPath;
             LoadProfiles();
         }
 
@@ -50,11 +52,23 @@ namespace WpfApp.Services
             return true;
         }
 
+        public ProfileModel GetProfile(string name)
+        {
+            foreach (ProfileModel profile in _profiles)
+                if (profile.Name == name)
+                    return profile;
+
+            return null;
+        }
+
         public bool AddProfile(string profileName)
         {
             if (_profiles.Any(p => p.Name == profileName) == false)
             {
-                _profiles.Add(new ProfileModel(profileName));
+                ProfileModel profile = new ProfileModel(profileName, _profilesPath);
+                profile.CreateProfileDirectory();
+                _profiles.Add(profile);
+
                 return true;
             }
 
@@ -75,22 +89,24 @@ namespace WpfApp.Services
                 i++;
             }
 
-            File.Copy(filePath, PathHelper.GetProfileFilePath(profName), true);
+            ProfileModel profile = GetProfile(profName);
+            string profileFilePath = profile.GetProfileMainFilePath();
+            File.Copy(filePath, profileFilePath, true);
         }
 
         private void LoadProfiles()
         {
             _profiles.Clear();
 
-            string profilesPath = PathHelper.ProfilesPath;
+            string profilesPath = _profilesPath;
             DirectoryInfo directory = Directory.CreateDirectory(profilesPath);
             DirectoryInfo[] directories = directory.GetDirectories();
 
             foreach (DirectoryInfo item in directories)
-                _profiles.Add(new ProfileModel(item.Name));
+                AddProfile(item.Name);
 
             if (directories.Length == 0)
-                _profiles.Add(new ProfileModel("Main"));
+                AddProfile("Main");
 
             _usedProfile = _profiles[0];
         }

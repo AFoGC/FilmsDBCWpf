@@ -13,13 +13,8 @@ namespace WpfApp.Helper
         static PathHelper()
         {
             MainDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            SettingsPath = Path.Combine(MainDirectory, "ProgramSetting.xml");
-            ProfilesPath = Path.Combine(MainDirectory, "Profiles");
-        }
-
-        public static string GetProfileFilePath(string profileName)
-        {
-            return Path.Combine(ProfilesPath, profileName, "Films.fdbc");
+            SettingsPath = "ProgramSetting.xml";
+            ProfilesPath = "Profiles";
         }
     }
 }

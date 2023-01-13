@@ -15,12 +15,14 @@ namespace WpfApp.Models
         {
             _profilesService = profilesService;
             _tablesService = tablesFileService;
-            _profilesService.UsedProfileChanged += OnProfileChange;
+            _profilesService.UsedProfileChanged += OnUsedProfileChanged;
         }
 
-        private void OnProfileChange()
+        private void OnUsedProfileChanged()
         {
-            _tablesService.LoadTables(UsedProfile.Name);
+            string filePath = UsedProfile.GetProfileMainFilePath();
+            _tablesService.FilePath = filePath;
+            _tablesService.LoadTables();
         }
 
         public bool SetUsedProfile(ProfileModel profile)

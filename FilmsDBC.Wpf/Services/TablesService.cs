@@ -31,6 +31,8 @@ namespace WpfApp.Services
             _saveTimer.Elapsed += (s, e) => Autosave();
         }
 
+        public string FilePath { get; set; }
+
         public TableCollection TablesCollection => _tablesCollection;
         public Double SaveTimerInterval
         {
@@ -104,27 +106,9 @@ namespace WpfApp.Services
             return export;
         }
 
-        /// <summary>
-        /// Creates profiles direcotry and file if didn't exist
-        /// </summary>
-        /// <returns>Full path of profile directory</returns>
-        private string CreateProfileFile(string profileName)
+        public bool LoadTables()
         {
-            string path = PathHelper.GetProfileFilePath(profileName);
-            if (File.Exists(path) == false)
-            {
-                string dir = Path.GetDirectoryName(path);
-                Directory.CreateDirectory(dir);
-                File.Create(path).Dispose();
-            }
-                
-
-            return path;
-        }
-
-        public bool LoadTables(string profileName)
-        {
-            _tablesCollection.TableFilePath = CreateProfileFile(profileName);
+            _tablesCollection.TableFilePath = FilePath;
             return _tablesCollection.LoadTables();
         }
 

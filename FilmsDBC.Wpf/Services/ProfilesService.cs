@@ -66,7 +66,6 @@ namespace WpfApp.Services
             if (_profiles.Any(p => p.Name == profileName) == false)
             {
                 ProfileModel profile = new ProfileModel(profileName, _profilesPath);
-                profile.CreateProfileDirectory();
                 _profiles.Add(profile);
 
                 return true;
@@ -90,7 +89,7 @@ namespace WpfApp.Services
             }
 
             ProfileModel profile = GetProfile(profName);
-            string profileFilePath = profile.GetProfileMainFilePath();
+            string profileFilePath = profile.ProfileFilePath;
             File.Copy(filePath, profileFilePath, true);
         }
 

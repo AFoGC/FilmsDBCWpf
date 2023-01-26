@@ -88,7 +88,7 @@ namespace WpfApp.Services
         public BookCategoriesTable BookCategoriesTable => (BookCategoriesTable)_tablesCollection.GetTable<BookCategory>();
         public PriorityBooksTable PriorityBooksTable => (PriorityBooksTable)_tablesCollection.GetTable<PriorityBook>();
 
-        private static TableCollection GetDefaultTableCollection()
+        public static TableCollection GetDefaultTableCollection()
         {
             TableCollection export = new TableCollection();
             export.FileEncoding = Encoding.UTF8;

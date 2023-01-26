@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using TablesLibrary.Interpreter;
 using WpfApp.Services;
 
 namespace WpfApp.Models
@@ -20,8 +22,10 @@ namespace WpfApp.Models
 
         private void OnUsedProfileChanged()
         {
-            string filePath = UsedProfile.GetProfileMainFilePath();
+            string filePath = UsedProfile.ProfileFilePath;
             _tablesService.FilePath = filePath;
+
+            CreateProfileDirectoryIfNotExist(UsedProfile);
             _tablesService.LoadTables();
         }
 
@@ -43,6 +47,23 @@ namespace WpfApp.Models
         public void ImportProfile(string filePath)
         {
             _profilesService.ImportProfile(filePath);
+        }
+
+        private void CreateProfileDirectoryIfNotExist(ProfileModel profile)
+        {
+            string directoryPath = profile.ProfleDirectoryPath;
+            string mainFilePath = profile.ProfileFilePath;
+
+            Directory.CreateDirectory(directoryPath);
+
+            if (File.Exists(mainFilePath) == false)
+            {
+                File.Create(mainFilePath).Dispose();
+                TableCollection defaultCollection = TablesService.GetDefaultTableCollection();
+
+                defaultCollection.TableFilePath = mainFilePath;
+                defaultCollection.SaveTables();
+            }
         }
     }
 }

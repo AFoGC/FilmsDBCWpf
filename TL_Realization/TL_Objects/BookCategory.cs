@@ -7,11 +7,12 @@ using System.Text;
 using TablesLibrary.Interpreter;
 using TablesLibrary.Interpreter.TableCell;
 using TL_Objects.CellDataClasses;
+using TL_Objects.Interfaces;
 
 namespace TL_Objects
 {
     [TableCell("BookCategory")]
-    public class BookCategory : Cell
+    public class BookCategory : Cell, ICategory<Book>
     {
         private string _name;
         private string _hideName;
@@ -58,7 +59,7 @@ namespace TL_Objects
             }
 
             sbyte i = 0;
-            foreach (Book item in Books)
+            foreach (Book item in CategoryElements)
             {
                 item.FranshiseListIndex = i++;
             }
@@ -83,12 +84,12 @@ namespace TL_Objects
 
         public bool ChangeBookPositionBy(Book book, int i)
         {
-            int oldIndex = Books.IndexOf(book);
+            int oldIndex = CategoryElements.IndexOf(book);
             int newIndex = oldIndex + i;
 
-            if (newIndex > -1 && newIndex < Books.Count)
+            if (newIndex > -1 && newIndex < CategoryElements.Count)
             {
-                Books.Move(oldIndex, newIndex);
+                CategoryElements.Move(oldIndex, newIndex);
                 return true;
             }
             return false;
@@ -147,7 +148,7 @@ namespace TL_Objects
             set 
             { 
                 _hideName = value;
-                foreach (Book book in Books)
+                foreach (Book book in CategoryElements)
                 {
                     book.OnPropertyChanged(nameof(book.Name));
                 }
@@ -172,7 +173,7 @@ namespace TL_Objects
             set { _priority = value; OnPropertyChanged(nameof(Priority)); }
         }
 
-        public ObservableCollection<Book> Books
+        public ObservableCollection<Book> CategoryElements
         {
             get { return _books; }
         }

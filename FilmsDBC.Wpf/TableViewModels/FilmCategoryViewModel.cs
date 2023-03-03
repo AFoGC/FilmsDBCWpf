@@ -13,7 +13,7 @@ using WpfApp.TableViewModels.Interfaces;
 
 namespace WpfApp.TableViewModels
 {
-    public class FilmCategoryViewModel : BaseViewModel<Category>, IHasGenre, IFilter, IFinded
+    public class FilmCategoryViewModel : BaseViewModel<Category>
     {
         private readonly IMenuViewModel<Film> menu;
 
@@ -36,21 +36,21 @@ namespace WpfApp.TableViewModels
 
             model.PropertyChanged += ModelPropertyChanged;
             model.FormatedMark.PropertyChanged += MarkPropertyChanged;
-            model.Films.CollectionChanged += BooksCollectionChanged;
+            model.CategoryElements.CollectionChanged += BooksCollectionChanged;
 
             FillCategoryFilms();
         }
 
         private void FillCategoryFilms()
         {
-            foreach (Film film in Model.Films)
+            foreach (Film film in Model.CategoryElements)
             {
                 FilmInCategoryViewModel vm = new FilmInCategoryViewModel(film, menu);
                 FilmsVMs.Add(vm);
             }
         }
 
-        public bool HasSelectedGenre(IGenre[] selectedGenres)
+        public override bool HasSelectedGenre(IGenre[] selectedGenres)
         {
             foreach (FilmInCategoryViewModel vm in FilmsVMs)
             {
@@ -63,7 +63,7 @@ namespace WpfApp.TableViewModels
             return false;
         }
 
-        public bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
+        public override bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
         {
             bool passedFilter = false;
 
@@ -82,7 +82,7 @@ namespace WpfApp.TableViewModels
             return passedFilter;
         }
 
-        public bool SetFinded(string search)
+        public override bool SetFinded(string search)
         {
             IsFinded = Model.Name.ToLower().Contains(search);
 
@@ -120,7 +120,7 @@ namespace WpfApp.TableViewModels
                     film.Name = GetDefaulBookName();
                     film.Genre = TableCollection.GetTable<Genre>()[0];
                     TableCollection.GetTable<Film>().AddElement(film);
-                    Model.Films.Add(film);
+                    Model.CategoryElements.Add(film);
                 }));
             }
         }
@@ -145,7 +145,7 @@ namespace WpfApp.TableViewModels
                         Film film = menu.SelectedElement.Model;
                         if (film.FranshiseId == 0)
                         {
-                            Model.Films.Add(film);
+                            Model.CategoryElements.Add(film);
                             menu.SelectedElement = null;
                         }
                     }
@@ -161,7 +161,7 @@ namespace WpfApp.TableViewModels
                 (removeSelectedCommand = new RelayCommand(obj =>
                 {
                     Film film = menu.SelectedElement.Model;
-                    if (Model.Films.Remove(film))
+                    if (Model.CategoryElements.Remove(film))
                     {
                         menu.SelectedElement = null;
                     }
@@ -176,7 +176,7 @@ namespace WpfApp.TableViewModels
                 return deleteCategoryCommand ??
                 (deleteCategoryCommand = new RelayCommand(obj =>
                 {
-                    if (Model.Films.Count == 0)
+                    if (Model.CategoryElements.Count == 0)
                     {
                         CategoriesTable categories = (CategoriesTable)TableCollection.GetTable<Category>();
                         categories.Remove(Model);

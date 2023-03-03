@@ -83,7 +83,7 @@ namespace TL_Tables
 						categoryFilms.Add(book);
 					}
 				}
-				sortBooks(category.Books, categoryFilms);
+				sortBooks(category.CategoryElements, categoryFilms);
 			}
 
 			if (!this.NewMarkSystem)
@@ -116,7 +116,7 @@ namespace TL_Tables
         {
             foreach (BookCategory item in this)
             {
-				if (item.Books.Contains(book)) 
+				if (item.CategoryElements.Contains(book)) 
 					return item;
             }
 			return null;

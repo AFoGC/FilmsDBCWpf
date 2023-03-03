@@ -49,7 +49,7 @@ namespace TL_Tables
                 {
                     CategoriesTable categoriesTable = (CategoriesTable)TableCollection.GetTable<Category>();
                     Category category = categoriesTable.GetCategoryByFilm(film);
-                    category.Films.Remove(film);
+                    category.CategoryElements.Remove(film);
                 }
             }
         }

@@ -13,7 +13,7 @@ using WpfApp.TableViewModels.Interfaces;
 
 namespace WpfApp.TableViewModels
 {
-    public class FilmViewModel : BaseViewModel<Film>, IHasGenre, IFilter, IFinded
+    public class FilmViewModel : BaseViewModel<Film>
     {
         private readonly GenresTable genresTable;
         private readonly SeriesTable seriesTable;
@@ -177,7 +177,7 @@ namespace WpfApp.TableViewModels
                     Category category = categories.GetCategoryByFilm(Model);
                     if (category != null)
                     {
-                        category.Films.Remove(Model);
+                        category.CategoryElements.Remove(Model);
                     }
                 }));
             }
@@ -247,13 +247,13 @@ namespace WpfApp.TableViewModels
             }
         }
 
-        public bool SetFinded(string search)
+        public override bool SetFinded(string search)
         {
             IsFinded = Model.Name.ToLowerInvariant().Contains(search);
             return IsFinded;
         }
 
-        public bool HasSelectedGenre(IGenre[] selectedGenres)
+        public override bool HasSelectedGenre(IGenre[] selectedGenres)
         {
             foreach (IGenre genre in selectedGenres)
             {
@@ -265,7 +265,7 @@ namespace WpfApp.TableViewModels
             return false;
         }
 
-        public bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
+        public override bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
         {
             bool passedFilter = false;
 

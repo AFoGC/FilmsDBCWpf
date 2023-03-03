@@ -11,7 +11,7 @@ namespace WpfApp.Factories
         private readonly IEnumerable<string> _descendingProperties;
         private CollectionViewSource _collectionViewSource;
 
-        public ViewCollection(INotifyCollectionChanged source, IEnumerable<string> descendingProperties)
+        public ViewCollection(object source, IEnumerable<string> descendingProperties)
         {
             _collectionViewSource = new CollectionViewSource();
             _collectionViewSource.Source = source;

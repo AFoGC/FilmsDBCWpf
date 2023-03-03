@@ -83,7 +83,7 @@ namespace TL_Tables
 						categoryFilms.Add(film);
 					}
                 }
-				sortFilms(category.Films, categoryFilms);
+				sortFilms(category.CategoryElements, categoryFilms);
             }
 
 			if (!this.NewMarkSystem)
@@ -116,7 +116,7 @@ namespace TL_Tables
 		{
 			foreach (Category item in this)
 			{
-				if (item.Films.Contains(film))
+				if (item.CategoryElements.Contains(film))
 					return item;
 			}
 			return null;

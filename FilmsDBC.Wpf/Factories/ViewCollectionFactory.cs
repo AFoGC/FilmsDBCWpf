@@ -7,7 +7,7 @@ namespace WpfApp.Factories
     {
         private IEnumerable<string> _descendingProperties;
 
-        public IViewCollection CreateViewCollection(INotifyCollectionChanged source)
+        public IViewCollection CreateViewCollection(object source)
         {
             ViewCollection viewCollection = new ViewCollection(source, _descendingProperties);
 

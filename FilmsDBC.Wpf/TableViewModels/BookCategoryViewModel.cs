@@ -13,7 +13,7 @@ using WpfApp.TableViewModels.Interfaces;
 
 namespace WpfApp.TableViewModels
 {
-    public class BookCategoryViewModel : BaseViewModel<BookCategory>, IHasGenre, IFilter, IFinded
+    public class BookCategoryViewModel : BaseViewModel<BookCategory>
     {
         private readonly IMenuViewModel<Book> menu;
 
@@ -36,21 +36,21 @@ namespace WpfApp.TableViewModels
 
             model.PropertyChanged += ModelPropertyChanged;
             model.FormatedMark.PropertyChanged += MarkPropertyChanged;
-            model.Books.CollectionChanged += BooksCollectionChanged;
+            model.CategoryElements.CollectionChanged += BooksCollectionChanged;
 
             FillCategoryBooks();
         }
 
         private void FillCategoryBooks()
         {
-            foreach (Book book in Model.Books)
+            foreach (Book book in Model.CategoryElements)
             {
                 BookInCategoryViewModel vm = new BookInCategoryViewModel(book, menu);
                 BooksVMs.Add(vm);
             }
         }
 
-        public bool HasSelectedGenre(IGenre[] selectedGenres)
+        public override bool HasSelectedGenre(IGenre[] selectedGenres)
         {
             foreach (BookInCategoryViewModel vm in BooksVMs)
             {
@@ -63,7 +63,7 @@ namespace WpfApp.TableViewModels
             return false;
         }
 
-        public bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
+        public override bool Filter(IGenre[] selectedGenres, bool isReadedChecked, bool isUnReadedChecked)
         {
             bool passedFilter = false;
 
@@ -82,7 +82,7 @@ namespace WpfApp.TableViewModels
             return passedFilter;
         }
 
-        public bool SetFinded(string search)
+        public override bool SetFinded(string search)
         {
             IsFinded = Model.Name.ToLower().Contains(search);
 
@@ -120,7 +120,7 @@ namespace WpfApp.TableViewModels
                     book.Name = GetDefaulBookName();
                     book.BookGenre = TableCollection.GetTable<BookGenre>()[0];
                     TableCollection.GetTable<Book>().AddElement(book);
-                    Model.Books.Add(book);
+                    Model.CategoryElements.Add(book);
                 }));
             }
         }
@@ -145,7 +145,7 @@ namespace WpfApp.TableViewModels
                         Book book = menu.SelectedElement.Model;
                         if (book.FranshiseId == 0)
                         {
-                            Model.Books.Add(book);
+                            Model.CategoryElements.Add(book);
                             menu.SelectedElement = null;
                         }
                     }
@@ -161,7 +161,7 @@ namespace WpfApp.TableViewModels
                 (removeSelectedCommand = new RelayCommand(obj =>
                 {
                     Book book = menu.SelectedElement.Model;
-                    if (Model.Books.Remove(book))
+                    if (Model.CategoryElements.Remove(book))
                     {
                         menu.SelectedElement = null;
                     }
@@ -176,7 +176,7 @@ namespace WpfApp.TableViewModels
                 return deleteCategoryCommand ??
                 (deleteCategoryCommand = new RelayCommand(obj =>
                 {
-                    if (Model.Books.Count == 0)
+                    if (Model.CategoryElements.Count == 0)
                     {
                         BookCategoriesTable categories = (BookCategoriesTable)TableCollection.GetTable<BookCategory>();
                         categories.Remove(Model);

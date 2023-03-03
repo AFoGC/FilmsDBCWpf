@@ -302,12 +302,12 @@ namespace WpfApp.ViewModels
                 case NotifyCollectionChangedAction.Add:
                     category = (Category)e.NewItems[0];
                     CategoriesMenu.Add(new FilmCategoryViewModel(category, this));
-                    category.Films.CollectionChanged += CategoryChanged;
+                    category.CategoryElements.CollectionChanged += CategoryChanged;
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     category = (Category)e.OldItems[0];
                     CategoriesMenu.Remove(CategoriesMenu.Where(x => x.Model == category).FirstOrDefault());
-                    category.Films.CollectionChanged -= CategoryChanged;
+                    category.CategoryElements.CollectionChanged -= CategoryChanged;
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     CategoriesMenu.Clear();
@@ -408,7 +408,7 @@ namespace WpfApp.ViewModels
             foreach (Category category in _model.CategoriesTable)
             {
                 CategoriesMenu.Add(new FilmCategoryViewModel(category, this));
-                category.Films.CollectionChanged += CategoryChanged;
+                category.CategoryElements.CollectionChanged += CategoryChanged;
             }
 
             foreach (Film film in _model.FilmsTable)

@@ -116,8 +116,11 @@ namespace WpfApp.Services
                 string dir = Path.GetDirectoryName(path);
                 Directory.CreateDirectory(dir);
                 File.Create(path).Dispose();
+
+                TableCollection collection = GetDefaultTableCollection();
+                collection.TableFilePath = path;
+                collection.SaveTables();
             }
-                
 
             return path;
         }

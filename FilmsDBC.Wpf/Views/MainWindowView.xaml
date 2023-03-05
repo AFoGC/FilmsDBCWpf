@@ -76,19 +76,49 @@
         </StackPanel>
 
         <!--Menu sector-->
-        <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="2">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type vm:FilmsViewModel}">
-                    <local:FilmsMenuView />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type vm:BooksViewModel}">
-                    <local:BooksMenuView />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
-                    <local:SettingsMenuView />
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
+        <Grid Grid.Row="2">
+            <Grid>
+                <local:FilmsMenuView DataContext="{Binding FilmsVM}"/>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FilmsSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+
+            <Grid>
+                <local:BooksMenuView DataContext="{Binding BooksVM}"/>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding BooksSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+
+            <Grid>
+                <local:SettingsMenuView DataContext="{Binding SettingsVM}"/>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SettingsSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+        </Grid>
         <!--Menu sector End-->
 
         

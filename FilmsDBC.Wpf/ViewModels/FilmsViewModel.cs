@@ -98,9 +98,9 @@ namespace WpfApp.ViewModels
             yield return "Model.RealiseYear";
             yield return "Model.CountOfViews";
             yield return "Model.DateOfWatch";
-            yield return "Model.StartWatchDate";
-            yield return "Model.CountOfWatchedSeries";
-            yield return "Model.TotalSeries";
+            yield return "Serie.StartWatchDate";
+            yield return "Serie.CountOfWatchedSeries";
+            yield return "Serie.TotalSeries";
         }
 
         public FilmsMenuMode MenuMode

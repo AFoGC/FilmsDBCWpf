@@ -286,10 +286,10 @@
                 <Rectangle Width="56"/>
                 <Button Width="{DynamicResource date_width}" Content="{DynamicResource date_sort}" 
                         ToolTip="{DynamicResource start_watch_date_tt}"
-                        Command="{Binding SortTable}" CommandParameter="Model.StartWatchDate"/>
+                        Command="{Binding SortTable}" CommandParameter="Serie.StartWatchDate"/>
                 
                 <Button Width="{DynamicResource id_width}" ToolTip="{DynamicResource watched_series_tt}"
-                        Command="{Binding SortTable}" CommandParameter="Model.CountOfWatchedSeries">
+                        Command="{Binding SortTable}" CommandParameter="Serie.CountOfWatchedSeries">
                     
                     <Button.Content>
                         <Path Style="{StaticResource ArrowDownImage}"/>
@@ -301,7 +301,7 @@
                         Command="{Binding SortTable}" CommandParameter="Model.DateOfWatch"/>
                 
                 <Button Width="{DynamicResource id_width}" ToolTip="{DynamicResource total_series_tt}"
-                        Command="{Binding SortTable}" CommandParameter="Model.TotalSeries">
+                        Command="{Binding SortTable}" CommandParameter="Serie.TotalSeries">
                     
                     <Button.Content>
                         <Path Style="{StaticResource ArrowDownImage}"/>

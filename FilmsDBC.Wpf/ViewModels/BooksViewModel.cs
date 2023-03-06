@@ -85,7 +85,6 @@ namespace WpfApp.ViewModels
             CategoriesViewCollection.ChangeSortProperty("Model.ID");
             SimpleBooksViewCollection.ChangeSortProperty("Model.ID");
             BooksViewCollection.ChangeSortProperty("Model.ID");
-            PriorityViewCollection.ChangeSortProperty("Model.ID");
         }
 
         private IEnumerable<string> GetDescendingProperties()
@@ -244,10 +243,22 @@ namespace WpfApp.ViewModels
         sortTable ?? (sortTable = new RelayCommand(obj =>
         {
             string str = obj as string;
-            CategoriesViewCollection.ChangeSortProperty(str);
-            SimpleBooksViewCollection.ChangeSortProperty(str);
-            BooksViewCollection.ChangeSortProperty(str);
-            PriorityViewCollection.ChangeSortProperty(str);
+
+            switch (MenuMode)
+            {
+                case BooksMenuMode.Categories:
+                    CategoriesViewCollection.ChangeSortProperty(str);
+                    SimpleBooksViewCollection.ChangeSortProperty(str);
+                    break;
+
+                case BooksMenuMode.Books:
+                    BooksViewCollection.ChangeSortProperty(str);
+                    break;
+
+                case BooksMenuMode.Priorities:
+                    PriorityViewCollection.ChangeSortProperty(str);
+                    break;
+            }
         }));
 
         private void FilterTable(IEnumerable table, IGenre[] genres)

@@ -90,7 +90,6 @@ namespace WpfApp.ViewModels
             SimpleFilmsViewCollection.ChangeSortProperty("Model.ID");
             FilmsViewCollection.ChangeSortProperty("Model.ID");
             SeriesViewCollection.ChangeSortProperty("Model.ID");
-            PriorityViewCollection.ChangeSortProperty("Model.ID");
         }
 
         private IEnumerable<string> GetDescendingProperties()
@@ -226,11 +225,26 @@ namespace WpfApp.ViewModels
                 return sortTable ?? (sortTable = new RelayCommand(obj =>
                 {
                     string str = obj as string;
-                    CategoriesViewCollection.ChangeSortProperty(str);
-                    SimpleFilmsViewCollection.ChangeSortProperty(str);
-                    FilmsViewCollection.ChangeSortProperty(str);
-                    SeriesViewCollection.ChangeSortProperty(str);
-                    PriorityViewCollection.ChangeSortProperty(str);
+
+                    switch (MenuMode)
+                    {
+                        case FilmsMenuMode.Categories:
+                            CategoriesViewCollection.ChangeSortProperty(str);
+                            SimpleFilmsViewCollection.ChangeSortProperty(str);
+                            break;
+
+                        case FilmsMenuMode.Films:
+                            FilmsViewCollection.ChangeSortProperty(str);
+                            break;
+
+                        case FilmsMenuMode.Series:
+                            SeriesViewCollection.ChangeSortProperty(str);
+                            break;
+
+                        case FilmsMenuMode.Priorities:
+                            PriorityViewCollection.ChangeSortProperty(str);
+                            break;
+                    }
                 }));
             }
         }

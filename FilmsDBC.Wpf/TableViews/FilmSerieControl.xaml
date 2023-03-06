@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
+            <ColumnDefinition x:Name="MidColumn" Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.ContextMenu>
@@ -107,7 +107,7 @@
         <Button Content="⋮" Grid.Column="2" Click="OpenCM"/>
 
         <TextBox HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Text="{Binding Comment}"
-                 ToolTip="{DynamicResource comment_tt}"/>
+                 ToolTip="{DynamicResource comment_tt}" Width="{Binding ElementName=MidColumn, Path=ActualWidth}"/>
 
     </Grid>
 </UserControl>

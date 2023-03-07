@@ -24,6 +24,12 @@ namespace WpfApp.Services
 
             _tablesService.TablesCollection.TableSave += OnSaveStatus;
             _tablesService.TablesCollection.CellInTablesChanged += OnUnsaveStatus;
+            _tablesService.TablesCollection.TableLoad += OnTableLoad;
+        }
+
+        private void OnTableLoad(object sender, EventArgs e)
+        {
+            SetStatus(StatusEnum.Normal);
         }
 
         private void OnSaveStatus(object sender, EventArgs e)
